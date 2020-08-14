@@ -1,0 +1,82 @@
+%! Author = francis
+%! Date = 13.08.20
+
+% Preamble
+\documentclass[11pt, leqno]{article}
+
+% Packages
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage{hyperref}
+
+%\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\numberwithin{equation}{section}
+% Document
+\begin{document}
+    \section{Step by step derivation of $F_{R^h}$}\label{sec:steps}
+Transformation of CDF:
+    \begin{align}
+        F_{-Y}(y)
+        &= \mathbb{P}(-Y \leq y) \nonumber\\
+        &= \mathbb{P}(Y \geq -y) \nonumber\\
+        &= 1 - \mathbb{P}(Y \leq -y)\nonumber\\
+        &= 1 - F_{Y}(-y)   \label{eq:tCDF}
+    \end{align}
+Transformation of Copula:
+    \begin{align}
+        C_{X,-Y}(u,v) &=
+        F_{X,-Y}(F_X^{-1}(u),F_{-Y}^{-1}(v)) &&\text{Sklar}\nonumber\\
+        &=
+        \mathbb{P}(X \leq F_X^{-1}(u), -Y \leq F_{-Y}^{-1}(v)) \nonumber\\
+        &=
+        \mathbb{P}(F_X(X) \leq u, F_{-Y}(-Y) \leq v) \nonumber\\
+        &=
+        \mathbb{P}(F_X(X) \leq u, 1-F_{Y}(Y) \leq v) && \text{\eqref{eq:tCDF}}\nonumber\\
+        &=
+        \mathbb{P}(F_X(X) \leq u, F_{Y}(Y) \geq 1-v) \nonumber\\
+        &=
+        \mathbb{P}(X \leq F_X^{-1}(u), Y \geq F_Y^{-1}(1-v)) \nonumber\\
+        &=
+        F_X[F_X^{-1}(u)] - F_{X,Y}[F_X^{-1}(u), F_Y^{-1}(1-v)] \nonumber\\
+        &=
+        u - C_{X,Y}(u, 1-v) &&\text{Sklar} \label{eq:trans-Copula}
+    \end{align}
+
+We continue with the result from \eqref{eq:trans-Copula}:
+    \begin{align}
+        C_{X,-Y}(u,v) &= u - C_{X,Y}(u, 1-v)\nonumber\\
+        \frac{\partial C_{X,-Y}(u,v)}{\partial u} &= 1 - \frac{\partial C_{X,Y}(u, 1-v)}{\partial u} \nonumber\\
+        \int^1_0 D_1 C_{X,-Y}(u,v)du &= 1 - \int^1_0 D_1 C_{X,Y}(u,1-v)du \label{eq:D1C_integral}
+    \end{align}
+
+Now we plug \eqref{eq:tCDF} and \eqref{eq:D1C_integral} into C-Convolution equation:
+    \begin{align*}
+        F_{R^h}(r^h) &= \int^1_0 D_1 C_{R^S, -hR^F}
+        \{w,
+        F_{-hR^F}[r^h - F^{-1}_{R^S}(w)
+        ]\}dw \\
+        &= 1 - \int^1_0 D_1C^t_{R^S, hR^F}
+        \{w,
+        1- F_{-hR^F}[r^h - F^{-1}_{R^S}(w)
+        ]\}dw && \text{\eqref{eq:D1C_integral}}\\
+        &= 1 - \int^1_0 D_1C^t_{R^S, hR^F}
+        \{w,
+        F_{hR^F}[F^{-1}_{R^S}(w) - r^h
+        ]\}dw && \text{\eqref{eq:tCDF}}
+    \end{align*}
+
+We proceed wih $F_{hR^F}(x)=F_{R^F}(x/h)$ and $C_{R^S,hR^F}(w, \lambda)=C_{R^S,R^F}(w, \lambda)$:
+    \begin{align*}
+        F_{R^h}(r^h)
+        &= 1- \int^1_0 D_1 C_{R^S, R^F}
+        \left\{
+        w,
+        F_{R^F}
+        \left[
+        \frac{F^{-1}_{R^S}(w)-r^h}{h}
+        \right]
+        \right\}dw \\
+    \end{align*}
+\end{document}

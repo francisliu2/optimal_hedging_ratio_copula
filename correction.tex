@@ -47,7 +47,7 @@ Transformation of Copula:
 We continue with the result from \eqref{eq:trans-Copula}:
     \begin{align}
         C_{X,-Y}(u,v) &= u - C_{X,Y}(u, 1-v)\nonumber\\
-        \frac{\partial C_{X,-Y}(u,v)}{\partial u} &= 1 - \frac{\partial C_{X,Y}(u, 1-v)}{\partial u} \nonumber\\
+        \frac{\partial C_{X,-Y}(u,v)}{\partial u} &= 1 - \frac{\partial C_{X,Y}(u, 1-v)}{\partial u}\\
         \int^1_0 D_1 C_{X,-Y}(u,v)du &= 1 - \int^1_0 D_1 C_{X,Y}(u,1-v)du \label{eq:D1C_integral}
     \end{align}
 
@@ -78,5 +78,13 @@ We proceed wih $F_{hR^F}(x)=F_{R^F}(x/h)$ and $C_{R^S,hR^F}(w, \lambda)=C_{R^S,R
         \frac{F^{-1}_{R^S}(w)-r^h}{h}
         \right]
         \right\}dw \\
+    \end{align*}
+Barbi and Romagnoli's proof of Corollary 2:
+    \begin{align*}
+        F_{R^h}(r^h)
+        &= 1 - \int^1_0 D_1 C_{R^S, R^F}
+        \left\{w,
+        1- F_{hR^F}\left[\frac{r^h - F^{-1}_{R^S}(w)}{h}
+        \right]\right\}dw \\
     \end{align*}
 \end{document}

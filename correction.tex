@@ -3,20 +3,42 @@
 
 % Preamble
 \documentclass[11pt, leqno]{article}
-
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
 % Packages
 \usepackage{amsfonts}
-\usepackage{amssymb}
+%\usepackage{amssymb}
 \usepackage{amsmath}
-
+\usepackage{amsthm}
 \usepackage{hyperref}
 
-%\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{prf}{Proof}[section]
+
 \numberwithin{equation}{section}
+
 % Document
 \begin{document}
     \section{Step by step derivation of $F_{R^h}$}\label{sec:steps}
-Transformation of CDF:
+\begin{prop}[Fixed Result of Barbi and Romagnoli]\label{prop:BarbiRoma}
+Given the hedging equation $R^h = R^S - hR^F$, copula copuling $R^S$, and $R^F$ $C_{R^S, R^F}$ and $D_1$ defined previously,
+the c.d.f. of $R^h$ can be written as:
+    \begin{align*}
+        F_{R^h}(r^h)
+        &= 1- \int^1_0 D_1 C_{R^S, R^F}
+        \left\{
+        w,
+        F_{R^F}
+        \left[
+        \frac{F^{-1}_{R^S}(w)-r^h}{h}
+        \right]
+        \right\}dw \\
+    \end{align*}
+Proof will be shown after lemmas required for it.
+\end{prop}
+\begin{lemma}[Transformation of CDF]
     \begin{align}
         F_{-Y}(y)
         &= \mathbb{P}(-Y \leq y) \nonumber\\
@@ -24,7 +46,8 @@ Transformation of CDF:
         &= 1 - \mathbb{P}(Y \leq -y)\nonumber\\
         &= 1 - F_{Y}(-y)   \label{eq:tCDF}
     \end{align}
-Transformation of Copula:
+\end{lemma}
+\begin{lemma}[Transformation of Copula]
     \begin{align}
         C_{X,-Y}(u,v) &=
         F_{X,-Y}(F_X^{-1}(u),F_{-Y}^{-1}(v)) &&\text{Sklar}\nonumber\\
@@ -43,31 +66,33 @@ Transformation of Copula:
         &=
         u - C_{X,Y}(u, 1-v) &&\text{Sklar} \label{eq:trans-Copula}
     \end{align}
-
-We continue with the result from \eqref{eq:trans-Copula}:
+\end{lemma}
+\begin{lemma}[I don't know how this should be called]
     \begin{align}
         C_{X,-Y}(u,v) &= u - C_{X,Y}(u, 1-v)\nonumber\\
         \frac{\partial C_{X,-Y}(u,v)}{\partial u} &= 1 - \frac{\partial C_{X,Y}(u, 1-v)}{\partial u}\\
         \int^1_0 D_1 C_{X,-Y}(u,v)du &= 1 - \int^1_0 D_1 C_{X,Y}(u,1-v)du \label{eq:D1C_integral}
     \end{align}
+\end{lemma}
+\begin{prf}[Proof of Proposition~\ref{prop:BarbiRoma}]
 
-Now we plug \eqref{eq:tCDF} and \eqref{eq:D1C_integral} into C-Convolution equation:
+    We plug~\eqref{eq:tCDF}and\eqref{eq:D1C_integral} into the C-Convolution equation:
+
     \begin{align*}
         F_{R^h}(r^h) &= \int^1_0 D_1 C_{R^S, -hR^F}
         \{w,
         F_{-hR^F}[r^h - F^{-1}_{R^S}(w)
         ]\}dw \\
-        &= 1 - \int^1_0 D_1C^t_{R^S, hR^F}
+        &= 1 - \int^1_0 D_1 C_{R^S, hR^F}
         \{w,
         1- F_{-hR^F}[r^h - F^{-1}_{R^S}(w)
         ]\}dw && \text{\eqref{eq:D1C_integral}}\\
-        &= 1 - \int^1_0 D_1C^t_{R^S, hR^F}
+        &= 1 - \int^1_0 D_1 C_{R^S, hR^F}
         \{w,
         F_{hR^F}[F^{-1}_{R^S}(w) - r^h
         ]\}dw && \text{\eqref{eq:tCDF}}
     \end{align*}
-
-We proceed wih $F_{hR^F}(x)=F_{R^F}(x/h)$ and $C_{R^S,hR^F}(w, \lambda)=C_{R^S,R^F}(w, \lambda)$:
+We proceed wih $F_{hR^F}(x)=F_{R^F}(x/h)$ and $C_{R^S,hR^F}(w, \lambda)=C_{R^S,R^F}(w, \lambda)$, and we have
     \begin{align*}
         F_{R^h}(r^h)
         &= 1- \int^1_0 D_1 C_{R^S, R^F}
@@ -79,7 +104,9 @@ We proceed wih $F_{hR^F}(x)=F_{R^F}(x/h)$ and $C_{R^S,hR^F}(w, \lambda)=C_{R^S,R
         \right]
         \right\}dw \\
     \end{align*}
-Barbi and Romagnoli's proof of Corollary 2:
+\end{prf}
+
+Barbi and Romagnoli's proof of Corollary 2: (This is just for us)
     \begin{align*}
         F_{R^h}(r^h)
         &= 1 - \int^1_0 D_1 C_{R^S, R^F}
@@ -87,4 +114,86 @@ Barbi and Romagnoli's proof of Corollary 2:
         1- F_{hR^F}\left[\frac{r^h - F^{-1}_{R^S}(w)}{h}
         \right]\right\}dw \\
     \end{align*}
+
+    \section{About the $D_1$ Operator (This is just my idea, there might be a lot of mistake)}\label{sec:D1}
+
+    The definition of the $D_1$ operator is critical to our application.
+Let's trace back to earlier papers to see how the $D_1$ operator is defined before.\newline
+
+\subsection{Applying Darsow et al. (1992)'s Definition in our case}\label{sec:Darsow}
+
+Darsow et al. (1992) gave a clear definition of $D_1$ and use it in the proof of the * product.
+The * product is renamed in Cherubini et al. (2011) as C-Convolution.
+The two concepts are indeed the same concept.
+\begin{lemma}[$D_n$ Operator]\label{lem:Dn} We follow the exact notation in Theorem 3.1 of Darsow et al. (1992):
+    \begin{align}
+        \mathbb{P}(X<x|Y=y) &= \lim_{\Delta y \rightarrow 0} \mathbb{P}(X<x|y<Y\leq y+ \Delta y)\\
+        &= \lim_{\Delta y \rightarrow 0} \frac{F_{XY}(x,y+\Delta y) - F_{XY}(x,y)}{F_Y(y+\Delta y)-F_Y(y)}\\
+        &= \lim_{\Delta y \rightarrow 0} \frac{C[F_X(x), F_Y(y+\Delta y)] - C[F_X(x), F_Y(y)]}{F_Y(y+\Delta y)-F_Y(y)}  \label{eq:limD2}\\
+        &=: C_{,2}[F_X(x), F_Y(y)]
+    \end{align}
+$C_{,2}[F_X(x), F_Y(y)]$ is the $D_2$ operator we see from (Barbi \& Romagnoli, 2014)\newline
+\end{lemma}
+
+    With the lemma\ref{lem:Dn}, Darsow et al. (1992) stated that the equality
+\begin{align} \label{eq:leb}
+    \int^a_{-\infty}C_{,2}[F_X(x), F_Y(t)]dF_Y(t) = \int^{F_Y(a)}_0 C_{,2}[F_X(x), F_Y(F_Y^{[-1]}(s))]ds
+\end{align}
+holds by Lebesgue's definition of the Lebesgue-Stieltjes integral (i.e. the Lebesgue Integral).\newline
+
+    Indeed on the L.H.S of~\ref{eq:leb} the Lebesgue integral is equivalent to the Riemann-Stieltjes integral
+ if we assume $C_{,2}(\cdot)$ is a continuous real-valued function of a real variable and $F_Y(\cdot)$ is a non-decreasing real function.
+And so, we can rewrite the L.H.S of~\ref{eq:leb}.
+\begin{prop}[Copula in a Form of Riemann-Stieltjes Integral Integrating the Partial Derviative of Copula]\label{prop:leb2rie} Assume the above assumptions are satisfied
+and partition $Y = \{-\infty=t_0<t_1<\dots<t_n=a| \Delta t = t_{i+1}-t_i~\forall i\}$, we can write equation~\ref{eq:leb} as follow
+    \begin{align} \label{eq:leb2rie}
+        \int^a_{-\infty}C_{,2}[F_X(x), F_Y(t)]dF_Y(t)
+            &= \lim_{\Delta t \rightarrow 0} \sum^{n-1}_{i=0} C_{,2}[F_X(x), F_Y(k_i)] \cdot [F_Y(t_i+\Delta t)-F_Y(t_i)] \nonumber\\
+            &= \lim_{\Delta t \rightarrow 0} \sum^{n-1}_{i=0}
+                \frac{C[F_X(x), F_Y(k_i)]}
+                {[F_Y(t_i+\Delta t)-F_Y(t_i)]}
+                \cdot [F_Y(t_i+\Delta t)-F_Y(t_i)] &&\eqref{eq:limD2}\\
+            &= \lim_{\Delta t \rightarrow 0} \sum^{n-1}_{i=0}C[F_X(x), F_Y(k_i)]
+    \end{align}
+    where $k_i$ is any choice of points in $[t_i, t_{i+1}]$
+\end{prop}
+
+Let's take a look of our case
+    \begin{align}
+    F_{X, X+Y}(a, b)
+        &= \mathbb{P}(X \leq a, X+Y \leq b)\\
+        &= \int^a_{-\infty} \mathbb{P}(X+Y \leq b|X=t) dF_X(t)\\
+        &= \int^a_{-\infty} \mathbb{P}(Y \leq b-t|X=t) dF_X(t)\\
+        &= \lim_{\Delta t \rightarrow 0 }\sum^{n-1}_{i=0}
+        \frac{C_{X,Y}[F_X(k_i), F_Y(b - k_i)]}{F_Y(t_{i+1})-F_Y(t_{i})} \cdot [F_Y(t_{i+1})-F_Y(t_{i})] \\
+        &= \lim_{\Delta t \rightarrow 0 }\sum^{n-1}_{i=0}C_{X,Y}[F_X(k_i), F_Y(b - k_i)]
+    \end{align}
+    where $Y = \{-\infty= t_0 < t_1<\dots<t_n=a| \Delta t = t_{i+1}-t_i~\forall i\}$ and $k_i$ is any points in $[t_{i+1},t_i]$ \newline
+
+We apply the result above to our case $R^h = n_S R^S - n_F R^F$.
+\begin{align*}
+    F_{R^h}(r^h)
+                &= \lim_{\Delta t \rightarrow 0}
+                   \sum^{n-1}_{i=0} C_{n_S R^S, -n_F R^F}[F_{n_S R^S}(k_i), F_{-n_F R^F}(r^h-k_i)] \nonumber \\
+                &= \lim_{\Delta t \rightarrow 0}
+                   \sum^{n-1}_{i=0} \{F_{n_S R^S}(k_i) - C_{n_S R^S, n_F R^F}[F_{n_S R^S}(k_i), F_{n_F R^F}(k_i-r^h)]\}\\
+                &= \lim_{\Delta t \rightarrow 0}
+                       \sum^{n-1}_{i=0} \{F_{R^S}(k_i/n_S) - C_{R^S, R^F}[F_{R^S}(k_i/n_S), F_{R^F}((k_i-r^h)/n_F)]\}\\
+\end{align*}
+        where $Y = \{-\infty= t_0 < t_1<\dots<t_n=a| \Delta t = t_{i+1}-t_i~\forall i\}$ and $k_i$ is any points in $[t_{i+1},t_i]$ \newline
+
+We can now solve $F_{R^h}(r^h)$ numerically by taking large value of $n$, $a$, and a very small value for $-\infty$.
+\subsection{Dini Derivatives Construction}\label{sec:Dini}
+
+
+Jaworski (2014) considered the $D_1$ as a kind of Dini derivatives.
+There are serval kinds of Dini derivatives, left-side upper Dini derivative is of our interest. It is defined as the following:
+
+\theoremstyle{definition}
+\begin{definition}[Left-Side Upper Dini Derivative]
+    Let $a,b \in \mathbb{R}$, $a < b$, and let $f:(a,b] \rightarrow \mathbb{R})$ be a continuous function.
+    Let $x$ be a point in $(a,b]$.
+    The left-side upper Dini derivative is defined as
+    \[D^- f(x) = \limsup_{h \rightarrow 0^+} \frac{f(x)-f(x-h)}{h}\]
+\end{definition}
 \end{document}

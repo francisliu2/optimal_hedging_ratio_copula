@@ -15,6 +15,7 @@
 \newtheorem{prop}{Proposition}[section]
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
 \newtheorem{prf}{Proof}[section]
 
 \numberwithin{equation}{section}
@@ -120,6 +121,16 @@ Barbi and Romagnoli's proof of Corollary 2: (This is just for us)
     The definition of the $D_1$ operator is critical to our application.
 Let's trace back to earlier papers to see how the $D_1$ operator is defined before.\newline
 
+
+    \begin{remark}
+        It is important to recognise that the $D_n$ operator only differentiate the $n^\text{th}$ input of the copula.
+        \begin{align*}
+            \mathbb{P}(X+Y \leq x, | Y=y)
+            &= \lim_{\Delta y \rightarrow 0} \mathbb{P}(X \leq x - y| y \leq Y \leq y+\Delta y)\\
+            &= \lim_{\Delta y \rightarrow 0}
+                \frac{F_{X,Y}(x-y, y+\Delta y)}{}
+        \end{align*}
+    \end{remark}
 \subsection{Applying Darsow et al. (1992)'s Definition in our case}\label{sec:Darsow}
 
 Darsow et al. (1992) gave a clear definition of $D_1$ and use it in the proof of the * product.

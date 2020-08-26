@@ -11,200 +11,86 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{hyperref}
-
 \newtheorem{prop}{Proposition}[section]
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{definition}{Definition}[section]
 \newtheorem{remark}{Remark}[section]
 \newtheorem{prf}{Proof}[section]
-
 \numberwithin{equation}{section}
 
 % Document
 \begin{document}
-    \section{Step by step derivation of $F_{R^h}$}\label{sec:steps}
-\begin{prop}[Fixed Result of Barbi and Romagnoli]\label{prop:BarbiRoma}
-Given the hedging equation $R^h = R^S - hR^F$, copula copuling $R^S$, and $R^F$ $C_{R^S, R^F}$ and $D_1$ defined previously,
-the c.d.f. of $R^h$ can be written as:
-    \begin{align*}
-        F_{R^h}(r^h)
-        &= 1- \int^1_0 D_1 C_{R^S, R^F}
-        \left\{
-        w,
-        F_{R^F}
-        \left[
-        \frac{F^{-1}_{R^S}(w)-r^h}{h}
-        \right]
-        \right\}dw \\
-    \end{align*}
-Proof will be shown after lemmas required for it.
-\end{prop}
-\begin{lemma}[Transformation of CDF]
+    \section{Another way to get $F_{X+Y}$ without using the $D_1$ Operator}\label{sec:D1alt}
+The motivation of this section is that the current $D_1$ operator cannot give us a sensible result of $F_{X+Y}$.
+This section provide an alternative route to involve the copula in the equation of $F_{X+Y}$.\\ \newline
+    In principle, this alternative way should give us the same expression as by $D_1$ operator. \\ \newline
+To keep things simple, we start with $F_Z$ where $Z = X+Y$.
+    Assume the marginals $F_{X}$ and $F_{Y}$ are twice differentiable with respect to their input,
+    and there exist a twice differentiable copula with respect to its two inputs $C_{XY} = F_{XY}$, we can write the p.d.f. of $Z$
     \begin{align}
-        F_{-Y}(y)
-        &= \mathbb{P}(-Y \leq y) \nonumber\\
-        &= \mathbb{P}(Y \geq -y) \nonumber\\
-        &= 1 - \mathbb{P}(Y \leq -y)\nonumber\\
-        &= 1 - F_{Y}(-y)   \label{eq:tCDF}
-    \end{align}
-\end{lemma}
-\begin{lemma}[Transformation of Copula]
+    f_{Z}(z) = \int^\infty_{-\infty} f_{XY}(x, z-x)dx.
+    \end{align} (Source!)
+
+    We know by definition that the copula density $c_{XY}(u_1, u_2) = \frac{f_{XY}(F_X^{-1}(u_1), F_Y^{-1}(u_2))}{f_X(F_X^{-1}(u_1)) f_Y(F_Y^{-1}(u_2))}$,\\
+    and $c_{XY}(u_1, u_2) = \frac{\partial^2 C_{XY}(u_1, u_2)}{\partial u_1 \partial u_2}$, we immediately have:
     \begin{align}
-        C_{X,-Y}(u,v) &=
-        F_{X,-Y}(F_X^{-1}(u),F_{-Y}^{-1}(v)) &&\text{Sklar}\nonumber\\
-        &=
-        \mathbb{P}(X \leq F_X^{-1}(u), -Y \leq F_{-Y}^{-1}(v)) \nonumber\\
-        &=
-        \mathbb{P}(F_X(X) \leq u, F_{-Y}(-Y) \leq v) \nonumber\\
-        &=
-        \mathbb{P}(F_X(X) \leq u, 1-F_{Y}(Y) \leq v) && \text{\eqref{eq:tCDF}}\nonumber\\
-        &=
-        \mathbb{P}(F_X(X) \leq u, F_{Y}(Y) \geq 1-v) \nonumber\\
-        &=
-        \mathbb{P}(X \leq F_X^{-1}(u), Y \geq F_Y^{-1}(1-v)) \nonumber\\
-        &=
-        F_X[F_X^{-1}(u)] - F_{X,Y}[F_X^{-1}(u), F_Y^{-1}(1-v)] \nonumber\\
-        &=
-        u - C_{X,Y}(u, 1-v) &&\text{Sklar} \label{eq:trans-Copula}
-    \end{align}
-\end{lemma}
-\begin{lemma}[I don't know how this should be called]
+    f_{Z}(z) = \int^\infty_{-\infty} \label{eq:main}
+    \frac{\partial^2 C_{XY}[F_X(x), F_Y(z-x)]}
+         {\partial F_X(x) \partial F_Y(z-x)}f_X(x)f_Y(z-x)dx
+    \end{align}.
+
+    Let $u_1:=F_X(x)$ and $u_2:=F_Y(z-x)$, so $u_2=F_Y(z-F_X^{-1}(u_1))$, and
+    \begin{enumerate}
+        \item $\frac{\partial u_1}{\partial x}= f_X(x)$,
+        \item $\frac{\partial u_2}{\partial x}= -f_Y(z-x)$,
+        \item $\frac{\partial u_2}{\partial u_1} = -\frac{f_Y(z-x)}{f_X(x)}$, and
+        \item $\frac{\partial^2 u_2}{\partial^2 u_1} =
+                \frac{\partial f_Y(z-F^{-1}_X(u_1))}{\partial z - F_X^{-1}(u_1)}
+                \frac{1}{f_X^2(F^{-1}(u_1))} +
+                \frac{1}{f_X^3(F^{-1}(u_1))}\frac{\partial f_X(F^{-1}_X(u_1))}{\partial F_X^{-1}(u_1)}
+                f_Y(z-F_X^{-1}(u_1))$
+    \end{enumerate}
+
+    Now we rewrite~\ref{eq:main}.
     \begin{align}
-        C_{X,-Y}(u,v) &= u - C_{X,Y}(u, 1-v)\nonumber\\
-        \frac{\partial C_{X,-Y}(u,v)}{\partial u} &= 1 - \frac{\partial C_{X,Y}(u, 1-v)}{\partial u}\\
-        \int^1_0 D_1 C_{X,-Y}(u,v)du &= 1 - \int^1_0 D_1 C_{X,Y}(u,1-v)du \label{eq:D1C_integral}
+            f_{Z}(z) &= \int^\infty_{-\infty}
+    \frac{\partial }{\partial u_2}
+        \left(   \frac{\partial C_{XY}(u_1, u_2)}
+         {\partial u_1}   \right)
+            f_X(x)f_Y(z-x)dx\\
+              &= \int^\infty_{-\infty}
+    \frac{\partial }{\partial u_2}
+        \left(   \frac{\partial C_{XY}(u_1, u_2)}
+         {\partial u_1}   \right)\frac{\partial u_1}{\partial u_1}
+            f_X(x)f_Y(z-x)dx\\
+        &= \int^\infty_{-\infty} \frac{\partial^2 C_{XY}(u_1, u_2)}{\partial u_1^2} f^2_X(x)dx
     \end{align}
-\end{lemma}
-\begin{prf}[Proof of Proposition~\ref{prop:BarbiRoma}]
-
-    We plug~\eqref{eq:tCDF}and\eqref{eq:D1C_integral} into the C-Convolution equation:
-
-    \begin{align*}
-        F_{R^h}(r^h) &= \int^1_0 D_1 C_{R^S, -hR^F}
-        \{w,
-        F_{-hR^F}[r^h - F^{-1}_{R^S}(w)
-        ]\}dw \\
-        &= 1 - \int^1_0 D_1 C_{R^S, hR^F}
-        \{w,
-        1- F_{-hR^F}[r^h - F^{-1}_{R^S}(w)
-        ]\}dw && \text{\eqref{eq:D1C_integral}}\\
-        &= 1 - \int^1_0 D_1 C_{R^S, hR^F}
-        \{w,
-        F_{hR^F}[F^{-1}_{R^S}(w) - r^h
-        ]\}dw && \text{\eqref{eq:tCDF}}
-    \end{align*}
-We proceed wih $F_{hR^F}(x)=F_{R^F}(x/h)$ and $C_{R^S,hR^F}(w, \lambda)=C_{R^S,R^F}(w, \lambda)$, and we have
-    \begin{align*}
-        F_{R^h}(r^h)
-        &= 1- \int^1_0 D_1 C_{R^S, R^F}
-        \left\{
-        w,
-        F_{R^F}
-        \left[
-        \frac{F^{-1}_{R^S}(w)-r^h}{h}
-        \right]
-        \right\}dw \\
-    \end{align*}
-\end{prf}
-
-Barbi and Romagnoli's proof of Corollary 2: (This is just for us)
-    \begin{align*}
-        F_{R^h}(r^h)
-        &= 1 - \int^1_0 D_1 C_{R^S, R^F}
-        \left\{w,
-        1- F_{hR^F}\left[\frac{r^h - F^{-1}_{R^S}(w)}{h}
-        \right]\right\}dw \\
-    \end{align*}
-
-    \section{About the $D_1$ Operator (This is just my idea, there might be a lot of mistake)}\label{sec:D1}
-
-    The definition of the $D_1$ operator is critical to our application.
-Let's trace back to earlier papers to see how the $D_1$ operator is defined before.\newline
-
-
-    \begin{remark}
-        It is important to recognise that the $D_n$ operator only differentiate the $n^\text{th}$ input of the copula.
-        \begin{align*}
-            \mathbb{P}(X+Y \leq x, | Y=y)
-            &= \lim_{\Delta y \rightarrow 0} \mathbb{P}(X \leq x - y| y \leq Y \leq y+\Delta y)\\
-            &= \lim_{\Delta y \rightarrow 0}
-                \frac{F_{X,Y}(x-y, y+\Delta y)}{}
-        \end{align*}
-    \end{remark}
-\subsection{Applying Darsow et al. (1992)'s Definition in our case}\label{sec:Darsow}
-
-Darsow et al. (1992) gave a clear definition of $D_1$ and use it in the proof of the * product.
-The * product is renamed in Cherubini et al. (2011) as C-Convolution.
-The two concepts are indeed the same concept.
-\begin{lemma}[$D_n$ Operator]\label{lem:Dn} We follow the exact notation in Theorem 3.1 of Darsow et al. (1992):
-    \begin{align}
-        \mathbb{P}(X<x|Y=y) &= \lim_{\Delta y \rightarrow 0} \mathbb{P}(X<x|y<Y\leq y+ \Delta y)\\
-        &= \lim_{\Delta y \rightarrow 0} \frac{F_{XY}(x,y+\Delta y) - F_{XY}(x,y)}{F_Y(y+\Delta y)-F_Y(y)}\\
-        &= \lim_{\Delta y \rightarrow 0} \frac{C[F_X(x), F_Y(y+\Delta y)] - C[F_X(x), F_Y(y)]}{F_Y(y+\Delta y)-F_Y(y)}  \label{eq:limD2}\\
-        &=: C_{,2}[F_X(x), F_Y(y)]
+    For Archimedean copula $C_{XY}(u,v) = \phi^{-1}[\phi(u)+\phi(v)]$, we can further rewrite~\ref{eq:main}
+        \begin{align}
+            f_{Z}(z) &=
+            \int^1_0 \bigg [
+            \frac{\partial}{\partial u_1}
+            \frac{\partial \phi^{-1}[\phi(u_1)+\phi(u_2)]}{\partial \phi(u_1)+\phi(u_2)}
+            \left(
+            \frac{\partial \phi(u_2)}{\partial u_1}-
+            \frac{\partial \phi(u_1)}{\partial u_1}
+            \right)
+            \nonumber \\
+            \qquad & +\frac{\partial \phi^{-1}[\phi(u_1)+\phi(u_2)]}{\partial \phi(u_1)+\phi(u_2)}
+            \left(
+            \frac{\partial^2 \phi(u_2)}{\partial u_1^2}-
+            \frac{\partial^2 \phi(u_1)}{\partial u_1^2}
+            \right)
+            \bigg ]f^2_X(F^{-1}_X(u_1))du_1 \label{eq:fZ}
     \end{align}
-$C_{,2}[F_X(x), F_Y(y)]$ is the $D_2$ operator we see from (Barbi \& Romagnoli, 2014)\newline
-\end{lemma}
-
-    With the lemma\ref{lem:Dn}, Darsow et al. (1992) stated that the equality
-\begin{align} \label{eq:leb}
-    \int^a_{-\infty}C_{,2}[F_X(x), F_Y(t)]dF_Y(t) = \int^{F_Y(a)}_0 C_{,2}[F_X(x), F_Y(F_Y^{[-1]}(s))]ds
-\end{align}
-holds by Lebesgue's definition of the Lebesgue-Stieltjes integral (i.e. the Lebesgue Integral).\newline
-
-    Indeed on the L.H.S of~\ref{eq:leb} the Lebesgue integral is equivalent to the Riemann-Stieltjes integral
- if we assume $C_{,2}(\cdot)$ is a continuous real-valued function of a real variable and $F_Y(\cdot)$ is a non-decreasing real function.
-And so, we can rewrite the L.H.S of~\ref{eq:leb}.
-\begin{prop}[Copula in a Form of Riemann-Stieltjes Integral Integrating the Partial Derviative of Copula]\label{prop:leb2rie} Assume the above assumptions are satisfied
-and partition $Y = \{-\infty=t_0<t_1<\dots<t_n=a| \Delta t = t_{i+1}-t_i~\forall i\}$, we can write equation~\ref{eq:leb} as follow
-    \begin{align} \label{eq:leb2rie}
-        \int^a_{-\infty}C_{,2}[F_X(x), F_Y(t)]dF_Y(t)
-            &= \lim_{\Delta t \rightarrow 0} \sum^{n-1}_{i=0} C_{,2}[F_X(x), F_Y(k_i)] \cdot [F_Y(t_i+\Delta t)-F_Y(t_i)] \nonumber\\
-            &= \lim_{\Delta t \rightarrow 0} \sum^{n-1}_{i=0}
-                \frac{C[F_X(x), F_Y(k_i)]}
-                {[F_Y(t_i+\Delta t)-F_Y(t_i)]}
-                \cdot [F_Y(t_i+\Delta t)-F_Y(t_i)] &&\eqref{eq:limD2}\\
-            &= \lim_{\Delta t \rightarrow 0} \sum^{n-1}_{i=0}C[F_X(x), F_Y(k_i)]
-    \end{align}
-    where $k_i$ is any choice of points in $[t_i, t_{i+1}]$
-\end{prop}
-
-Let's take a look of our case
-    \begin{align}
-    F_{X, X+Y}(a, b)
-        &= \mathbb{P}(X \leq a, X+Y \leq b)\\
-        &= \int^a_{-\infty} \mathbb{P}(X+Y \leq b|X=t) dF_X(t)\\
-        &= \int^a_{-\infty} \mathbb{P}(Y \leq b-t|X=t) dF_X(t)\\
-        &= \lim_{\Delta t \rightarrow 0 }\sum^{n-1}_{i=0}
-        \frac{C_{X,Y}[F_X(k_i), F_Y(b - k_i)]}{F_Y(t_{i+1})-F_Y(t_{i})} \cdot [F_Y(t_{i+1})-F_Y(t_{i})] \\
-        &= \lim_{\Delta t \rightarrow 0 }\sum^{n-1}_{i=0}C_{X,Y}[F_X(k_i), F_Y(b - k_i)]
-    \end{align}
-    where $Y = \{-\infty= t_0 < t_1<\dots<t_n=a| \Delta t = t_{i+1}-t_i~\forall i\}$ and $k_i$ is any points in $[t_{i+1},t_i]$ \newline
-
-We apply the result above to our case $R^h = n_S R^S - n_F R^F$.
-\begin{align*}
-    F_{R^h}(r^h)
-                &= \lim_{\Delta t \rightarrow 0}
-                   \sum^{n-1}_{i=0} C_{n_S R^S, -n_F R^F}[F_{n_S R^S}(k_i), F_{-n_F R^F}(r^h-k_i)] \nonumber \\
-                &= \lim_{\Delta t \rightarrow 0}
-                   \sum^{n-1}_{i=0} \{F_{n_S R^S}(k_i) - C_{n_S R^S, n_F R^F}[F_{n_S R^S}(k_i), F_{n_F R^F}(k_i-r^h)]\}\\
-                &= \lim_{\Delta t \rightarrow 0}
-                       \sum^{n-1}_{i=0} \{F_{R^S}(k_i/n_S) - C_{R^S, R^F}[F_{R^S}(k_i/n_S), F_{R^F}((k_i-r^h)/n_F)]\}\\
-\end{align*}
-        where $Y = \{-\infty= t_0 < t_1<\dots<t_n=a| \Delta t = t_{i+1}-t_i~\forall i\}$ and $k_i$ is any points in $[t_{i+1},t_i]$ \newline
-
-We can now solve $F_{R^h}(r^h)$ numerically by taking large value of $n$, $a$, and a very small value for $-\infty$.
-\subsection{Dini Derivatives Construction}\label{sec:Dini}
-
-
-Jaworski (2014) considered the $D_1$ as a kind of Dini derivatives.
-There are serval kinds of Dini derivatives, left-side upper Dini derivative is of our interest. It is defined as the following:
-
-\theoremstyle{definition}
-\begin{definition}[Left-Side Upper Dini Derivative]
-    Let $a,b \in \mathbb{R}$, $a < b$, and let $f:(a,b] \rightarrow \mathbb{R})$ be a continuous function.
-    Let $x$ be a point in $(a,b]$.
-    The left-side upper Dini derivative is defined as
-    \[D^- f(x) = \limsup_{h \rightarrow 0^+} \frac{f(x)-f(x-h)}{h}\]
-\end{definition}
+    Let's observe the equation.
+    \begin{enumerate}
+    \item $\frac{\partial}{\partial u_1}
+            \frac{\partial \phi^{-1}[\phi(u_1)+\phi(u_2)]}{\partial \phi(u_1)+\phi(u_2)}$
+    \item $\frac{\partial \phi(u_2)}{\partial u_1} = \frac{\partial \phi(u_2)}{\partial u_2}\frac{\partial u_2}{\partial u_1}$
+    \item $\frac{\partial^2 \phi(u_2)}{\partial u_1^2} = \frac{\partial^2 \phi(u_2)}{\partial u_1 \partial u_2}+
+    \frac{\partial^2 u_2}{\partial u_1^2}\frac{\partial \phi(u_2)}{\partial u_2}$
+    \end{enumerate}
+    The above parts are solvable case by case depending on which copula is chosen.
+    The equation~\ref{eq:fZ} is now ready to be numerically solved by plugging in $x=F^{-1}(u_1)$ and $u_2 = F_Y(z-F^{-1}_X(u_1))$ to it.
 \end{document}

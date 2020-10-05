@@ -87,12 +87,15 @@ np.random.seed(87654)
 Following \citep{Barbi2014}, we consider the problem of the optimal
 hedge ratios by extending commmonly known minimum variance hedge ratio
 to more general risk measures and dependence structures.\medskip\\
-Spectral risk measures \citep{Acerbi2002}:
+Spectral risk measure \citep{Acerbi2002}:
 \begin{equation*}
 \rho_\phi = -\int_0^1 \phi(p)\, q_p\, \dd p,
 \end{equation*}
 where $q_p$ is the $p$-quantile of the return distribution and
-$\phi(s)$, $s\in [0,1]$, is a weighting function such that
+$\phi(s)$, $s\in [0,1]$, is the so-called {\em risk aversion
+  function\/}, a weighting function such that\footnote{Note that the
+  treatment in \citep{Acerbi2002} is measure-based and therefore
+  slightly different} 
 \begin{enumerate}[(i)]
 \item $\phi(p)\geq 0$,
 \item $\int_0^1\phi(p)\, \dd p=1$,
@@ -120,9 +123,8 @@ re-write spectral risk measures as follows:
 \item Then:
   \begin{equation*}
     -\int_0^1 \phi(p)\, F^{(-1)}(p)\, \dd p = -\int_{-\infty}^\infty
-    \phi(F(x))\, x\, f'(x)\, \dd x.
+    \phi(F(x))\, x\, f(x)\, \dd x.
   \end{equation*}
-
 \end{itemize}
 
 

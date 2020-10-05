@@ -6,3 +6,4 @@
 *.pdfsync
 *.pytxcode
 *.gz
+.DS_Store

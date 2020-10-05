@@ -1,0 +1,8 @@
+
+*.log
+*.aux
+*.bbl
+*.out
+*.pdfsync
+*.pytxcode
+*.gz

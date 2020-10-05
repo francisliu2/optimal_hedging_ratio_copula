@@ -1,0 +1,186 @@
+%%
+%% $Id: Definitions.tex,v 1.6 2008/07/26 14:55:50 natalie Exp $
+%% $Source: /Users/natalie/cvs/tex/dynamics/Definitions.tex,v $
+%% $Date: 2008/07/26 14:55:50 $
+%% $Revision: 1.6 $
+%%
+
+\usepackage{mathrsfs}
+
+%% GENERAL DEFINITIONS
+\unitlength1cm
+
+%% COMMAND DEFINITIONS
+\newcommand{\E}{{\mathbb{E}}}
+%%\renewcommand{\E}{{\mathds E}}
+%%\renewcommand{\E}{{\varmathbb{E}}}
+%%\renewcommand{\E}{{\mathrm{I\!E}}}
+\providecommand{\R}{{\mathbb{R}}}
+\newcommand{\T}{{\mathbb{T}}}
+\newcommand{\Fb}{{\mathbb{F}}}
+\newcommand{\Eqn}{{\mathbb{E}}_{{\bf Q}_N}}
+\newcommand{\Eq}{{\mathbb{E}}_{{\bf Q}}}
+\newcommand{\Eqm}{{\mathbb{E}}_{{\bf Q}_M}}
+\newcommand{\EqT}{{\mathbb{E}}_{{\bf Q}_T}}
+\newcommand{\EqTz}{{\mathbb{E}}_{{\bf Q}_{T_2}}}
+\newcommand{\EqTe}{{\mathbb{E}}_{{\bf Q}_{T_1}}}
+\newcommand{\EqSe}{{\mathbb{E}}_{{\bf Q}_{S^1}}}
+\newcommand{\EqSz}{{\mathbb{E}}_{{\bf Q}_{S^2}}}
+\newcommand{\p}{{\bf P}}
+%%\renewcommand{\p}{{\mathds{P}}}
+%%\renewcommand{\p}{{\varmathbb{P}}}
+%%\renewcommand{\p}{{\mathrm{I\!P}}}
+\newcommand{\pas}{\text{{\bf P}--a.s.}}
+\newcommand{\paa}{\text{{\bf P}--a.a.}}
+\newcommand{\qas}{\text{{\bf Q}--a.s.}}
+\newcommand{\e}{{\bf e}}
+\newcommand{\q}{{\bf Q}}
+\newcommand{\qn}{{\bf Q}_N}
+\newcommand{\qm}{{\bf Q}_M}
+\newcommand{\qT}{{\bf Q}_T}
+\newcommand{\qTz}{{\bf Q}_{T_2}}
+\newcommand{\qTe}{{\bf Q}_{T_1}}
+\newcommand{\qS}{{\bf Q}_S}
+\newcommand{\qSe}{{\bf Q}_{S^1}}
+\newcommand{\qSz}{{\bf Q}_{S^2}}
+\newcommand{\F}{{\cal F}}
+\newcommand{\G}{{\cal G}}
+\newcommand{\A}{{\cal A}}
+\newcommand{\Hc}{{\cal H}}
+\newcommand{\dP}{{\rm d}{\bf P}}
+\newcommand{\du}{{\rm d}u}
+%%\newcommand{\dt}{{\rm d}t}
+\newcommand{\dd}{{\rm d}}
+\newcommand{\df}{{\rm \bf DF}}
+\providecommand{\N}{{\mathbb N}}
+\providecommand{\Ncdf}{{\rm N}}
+%\renewcommand{\Ncdf}{{\Phi}}
+\newcommand{\n}{{\rm n}}
+\newcommand{\emb}{\bf \em}
+\newcommand{\1}{\textbf{1}}
+\newcommand{\qs}{{\q_{\rm Swap}}}
+\newcommand{\fx}{{\rm fx}}
+\newcommand{\V}{{\rm Var}}
+%\newcommand{\C}{{\bf C}}
+\newcommand{\Om}{{\Omega}}
+\providecommand{\limn}{\ensuremath{\lim_{n\rightarrow\infty}}}
+\providecommand{\qv}[2]{\ensuremath{\langle #1,#1\rangle_{#2}}}
+
+%% ENVIRONMENT DEFINITIONS
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem{theo}{Theorem}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{ass}{Assumption}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{aufg}{Exercise}[section]
+%\newtheorem{defi}{Definition}[section]
+
+\ifx\prop\undefined
+\newtheorem{prop}{Proposition}[section]
+\fi
+\newtheorem{theo}[prop]{Theorem}
+\newtheorem{lem}[prop]{Lemma}
+\newtheorem{cor}[prop]{Corollary}
+\newtheorem{defi}[prop]{Definition}
+
+%% enumeration in lists
+\providecommand{\labelenumi}{{\rm (\roman{enumi})}}
+   %\setlength{\topsep}{0cm}
+    \setlength{\labelsep}{0.3cm}
+    %\setlength{\itemindent}{0cm}
+   \setlength{\leftmargin}{10cm}
+    \setlength{\labelwidth}{5cm}
+
+\providecommand{\cadlag}{c\`adl\`ag }
+\providecommand{\cadlagns}{c\`adl\`ag}
+\providecommand{\caglad}{c\`agl\`ad }
+\providecommand{\cad}{c\`ad}
+\providecommand{\cag}{c\`ag}
+\providecommand{\levy}{L\'evy\ }
+\providecommand{\levyns}{L\'evy}
+\providecommand{\levyito}{L\'evy-It\^o\ } 
+\providecommand{\levykhinchin}{L\'evy-Khinchin\ }
+\providecommand{\D}{\ensuremath{D(\R_+,\R)}}
+\providecommand{\Dsig}{\ensuremath{D(\R_+, \R_+\setminus\{0\}})}
+\providecommand{\Dd}{\ensuremath{D(\R_+,\R^d)}}
+\providecommand{\C}{\ensuremath{C(\R_+,\R)}}
+\providecommand{\Cd}{\ensuremath{C(\R_+,\R^d)}}
+\providecommand{\rpos}{\ensuremath{{[0,\infty)}}}
+
+\def\Z{{\mathbb Z}}
+%\def\N{{\mathbb N}}
+%\def\R{{\mathbb R}}
+%\def\C{{\mathbb C}}
+%\def\H{{\mathbb H}}
+\def\P{{\mathbb P}}
+\def\Q{{\mathbb Q}}
+%\def\E{{\mathbb E}}
+\def\I{{\mathbb I}}
+%\def\T{{\mathbb T}}
+%\def\F{{\mathbb F}}
+\def\M{{\mathbb M}}
+%\def\Hc{{\mathcal H}}
+\def\Mc{{\mathcal M}}
+\def\filtration#1{{\ensuremath\mathcal{#1}}}
+%\def\filt{{\mathcal F}}
+\def\tp{\tilde{\p}}
+\providecommand{\vec}[1]{\ensuremath{\bm #1}}
+\providecommand{\vecb}[1]{\ensuremath{\bm #1}}
+\providecommand{\abs}[1]{\ensuremath{\lvert#1\rvert}}
+\providecommand{\norm}[1]{\ensuremath{\lVert#1\rVert}}
+\providecommand{\var}{\ensuremath{\text{Var}}}
+\providecommand{\cov}{\ensuremath{\text{Cov}}}
+\providecommand{\borel}[0]{\ensuremath{\mathcal{B}}}
+\providecommand{\intinf}[0]{\ensuremath{\int_{-\infty}^\infty}}
+\providecommand{\intpos}[0]{\ensuremath{\int_0^\infty}}
+\providecommand{\intneg}[0]{\ensuremath{\int_{-\infty}^0}}
+\providecommand{\todo}[1]{\footnote{#1}}
+\providecommand{\dynkin}[0]{\ensuremath{\mathcal D}}
+\providecommand{\ce}[2]{\ensuremath{\E(#1|\filtration{#2})}}
+\providecommand{\inv}[1]{\ensuremath{#1^{(-1)}}}
+\providecommand{\os}[2]{\ensuremath{#1^{(#2)}}}
+\providecommand{\pos}[2]{\ensuremath{h_{#1}(#2)}}
+%\providecommand{\poslong}[2]{\ensuremath{h(#1, #2)}}
+\providecommand{\poslong}[3]{\ensuremath{h_{#1, #2}(#3)}}
+
+%% Class of finite variation processes
+\providecommand{\classfv}{\ensuremath{\mathscr V}}
+\providecommand{\classv}{\ensuremath{\mathscr V}}
+%% Stochastic integral operator
+\providecommand{\stint}{\ensuremath{\cdotp}}
+\providecommand{\classh}{\ensuremath{\mathscr H^2}}
+\providecommand{\classhloc}{\ensuremath{\mathscr H^2_{\rm loc}}}
+\providecommand{\classm}{\ensuremath{\mathscr M}}
+\providecommand{\classmloc}{\ensuremath{\mathscr M_{\rm loc}}}
+\providecommand{\classl}{\ensuremath{L^2}}
+\providecommand{\classlloc}{\ensuremath{L^2_{\rm loc}}}
+\providecommand{\classa}{\ensuremath{\mathscr A}}
+\providecommand{\classaloc}{\ensuremath{\mathscr A_{\rm loc}}}
+\providecommand{\classalocpos}{\ensuremath{\mathscr A_{\rm loc}^+}}
+\providecommand{\classp}{\ensuremath{\mathscr P}}
+\providecommand{\classo}{\ensuremath{\mathscr O}}
+\providecommand{\classs}{\ensuremath{\mathscr S}}
+\providecommand{\classsp}{\ensuremath{\mathscr S_p}}
+\providecommand{\nullset}{\ensuremath{\mathscr N}}
+
+\providecommand{\ito}{It\^o }
+\providecommand{\itos}{It\^o's\, }
+
+\providecommand{\variation}[2]{\ensuremath{\rm V_{#1}(#2)}}
+\renewcommand{\H}{\ensuremath{\mathcal H}}
+%% CPO distribution
+\providecommand{\cpo}{\ensuremath{{\rm CPO}}}
+\providecommand{\Fsigma}{\ensuremath{\mathcal \F_\infty^\sigma}}
+\providecommand{\sigd}{\ensuremath{\mathscr D}}
+
+%% Credit spreads
+\providecommand{\s}{{\bf s}}
+\providecommand{\classu}{\ensuremath{\mathscr U}}
+
+\providecommand{\sX}{\ensuremath{\mathcal X}}
+\providecommand{\sY}{\ensuremath{\mathcal Y}}
+\providecommand{\dx}{\ensuremath{\frac{\partial}{\partial x}}} %%
+\providecommand{\dt}{\ensuremath{\frac{\partial}{\partial t}}} %%
+\providecommand{\dy}{\ensuremath{\frac{\partial}{\partial y}}} %%
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}

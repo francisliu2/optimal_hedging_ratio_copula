@@ -1,0 +1,136 @@
+%%
+%% $Id: article.tex,v 1.1 2008/09/20 10:19:28 natalie Exp $
+%% $Source: /Users/natalie/cvs/tex/templates/article.tex,v $
+%% $Date: 2008/09/20 10:19:28 $
+%% $Revision: 1.1 $
+%%
+
+%\documentclass[a4paper,11pt,BCOR1cm,DIV11,headinclude]{scrbook}
+% bei 12pt ist DIV 12 default, bei 11pt ist es DIV 10
+% Textbereiche 
+% DIV 10: 147*207.9mm, DIV 11: 152.73*216mm, DIV 12:157.50*222.75
+% DIV 13: 161.54*228.46mm, DIV 14: 165*233.36mm
+
+\def\deftitle{Notes on hedging cryptos with spectral risk measures}
+% \def\defauthor{N.\ Packham}
+\def\defauthor{nat}
+
+%% option: largefont
+\documentclass[square]{article} %
+%% options: vscreen, garamond, wnotes, savespace
+\usepackage[vscreen]{nat}
+\usepackage[longnamesfirst]{natbib}
+\bibpunct{(}{)}{;}{a}{,}{,}
+\usepackage{amsfonts,amssymb,amsthm} %
+\usepackage[tbtags]{amsmath} %
+% \usepackage{fullpage}
+
+\usepackage{graphicx,color}
+\graphicspath{{./pics/}}
+\definecolor{BrickRed}{rgb}{.625,.25,.25}
+\providecommand{\red}[1]{\textcolor{BrickRed}{#1}}
+\definecolor{markergreen}{rgb}{0.6, 1.0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkred}{rgb}{.7,0,0}
+\providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
+\providecommand{\natp}[1]{\textcolor{darkred}{#1}}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary} %%
+\newtheorem{lemma}[theorem]{Lemma} %%
+\theoremstyle{definition} %%
+\newtheorem{definition}{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remarks}{Remarks}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{assumption}{Assumption}
+
+\usepackage[makestderr]{pythontex}
+\begin{pycode}
+import numpy as np
+from scipy import stats
+import statsmodels.api as sm
+import pandas as pd
+import matplotlib.pyplot as plt
+np.random.seed(87654)
+\end{pycode}
+
+
+\input{definitions}
+\sloppy
+\begin{document}
+\setlength{\boxlength}{0.95\textwidth} %
+\title{\large{\bf\deftitle}} %
+\author{{\normalsize\bf\defauthor}}%
+\thispagestyle{empty}
+\addtocounter{page}{1}
+\maketitle
+\begin{abstract}
+  We investigate different methods of hedging cryptocurrencies with
+  Bitcoin futures. A useful generalisation of variance-based hedging
+  uses spectral risk measures and copulas. 
+\end{abstract}
+% \keywords{keywords here} %%
+% \jel{jel here} %%
+\vspace{.5cm}
+\def\contentsname{Contents}
+\tableofcontents
+%%
+\vspace{.5cm}
+%\clearpage
+
+\section{Setup}
+\label{sec:setup}
+
+Following \citep{Barbi2014}, we consider the problem of the optimal
+hedge ratios by extending commmonly known minimum variance hedge ratio
+to more general risk measures and dependence structures.\medskip\\
+Spectral risk measures \citep{Acerbi2002}:
+\begin{equation*}
+\rho_\phi = -\int_0^1 \phi(p)\, q_p\, \dd p,
+\end{equation*}
+where $q_p$ is the $p$-quantile of the return distribution and
+$\phi(s)$, $s\in [0,1]$, is a weighting function such that
+\begin{enumerate}[(i)]
+\item $\phi(p)\geq 0$,
+\item $\int_0^1\phi(p)\, \dd p=1$,
+\item $\phi'(p)\leq 0$. 
+\end{enumerate}
+Examples: VaR, ES\\
+Dependence through copula (e.g.\ Student t, Clayton or Gumbel)\\
+Hedge portfolio: $R_t^h = R_t^S - R_t^F$, involving returns of spot
+and future contract\\
+Optimal hedge ratio: $h^\ast = \argmin_h \rho_\phi(s,h)$, for given
+confidence level $1-s$.\\
+
+\section{Representation of spectral risk measures}
+\label{sec:repr-spectr-risk}
+
+To prevent numerical instabilities involving the quantile function,
+re-write spectral risk measures as follows:
+\begin{itemize}
+\item Integration by substitution: $\displaystyle \int_a^b
+  g(\varphi(x)) \,\varphi'(x)\, \dd x = \int_{\varphi(a)}^{\varphi(b)}
+  g(u)\, \dd u$.
+\item Spectral risk measures: $\displaystyle -\int_0^1 \phi(p) \,
+  F^{(-1)}(p)\, \dd p$
+\item Set $\varphi(x)=F(x)$, $g(p) = \phi(p)\, F^{(-1)}(p)$.
+\item Then:
+  \begin{equation*}
+    -\int_0^1 \phi(p)\, F^{(-1)}(p)\, \dd p = -\int_{-\infty}^\infty
+    \phi(F(x))\, x\, f'(x)\, \dd x.
+  \end{equation*}
+
+\end{itemize}
+
+
+\bibliographystyle{abbrvnamed} %
+\bibliography{finance} %
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

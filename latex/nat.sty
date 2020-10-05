@@ -1,0 +1,134 @@
+%%
+%% My own style file for stuff I use all the time
+%%
+\NeedsTeXFormat{LaTeX2e}[1995/06/01]
+\ProvidesPackage{nat}[2008/09/20]
+
+\newif\if@vscreen
+\newif\if@garamond
+\newif\if@wnotes
+\newif\if@savespace
+
+\DeclareOption{vscreen}{\@vscreentrue}
+\DeclareOption{garamond}{\@garamondtrue}
+\DeclareOption{wnotes}{\@wnotestrue}
+\DeclareOption{savespace}{\@savespacetrue}
+
+\ProcessOptions\relax
+
+\if@garamond
+\RequirePackage[T1]{fontenc}
+\RequirePackage{textcomp}
+\RequirePackage{xagaramon}
+\fi
+
+\if@vscreen
+%\usepackage[screen,gray,panelright,gray,paneltoc]{pdfscreen}
+% \margins{.75in}{.75in}{.75in}{.75in}
+% \screensize{6.25in}{10in}
+% \panelwidth=1.5in
+% \backgroundcolor{white}
+\usepackage[screen,nopanel]{pdfscreen}
+\margins{.75in}{.75in}{.75in}{.75in}
+%\margins{.5in}{.5in}{.5in}{.5in}
+\screensize{6.25in}{8.5in}
+\backgroundcolor{white}
+%%\overlay{overlay9.pdf}
+\def\cvsfooter{0}
+\renewcommand{\tableofcontents}{}
+\fi
+
+%% Package for wnotes option
+\RequirePackage{float}    %% package for creating new float environments
+\floatstyle{boxed}        %% {plain,boxed,ruled}; style of subsequently defined new floats
+\newfloat{notef}{p}{note} %% the new float style, arguments are: name, placements (p:
+                          %% separate page), suffix for auxiliary files
+\floatname{notef}{Note}   %% the name that appears in the caption
+
+\RequirePackage{afterpage}%% package to handle clearpage gracefully; see below
+
+\if@wnotes
+\providecommand{\fnote}[1]{ %
+   \setlength{\@fpsep}{2pt}   %% space between floats on a float
+  \begin{notef}
+    \textcolor{NavyBlue}{\small #1}
+%     #1
+  \end{notef} %
+  \afterpage{ %
+    \addtocounter{page}{-1} %
+    \clearpage %
+  } %% clearpage triggers that pending floats are flushed; afterpage
+                       %% ensures that the current page is finished first.
+} % \fnote
+\else
+\providecommand{\fnote}[1]{}
+\fi
+
+%% Some further packages
+\RequirePackage{ifpdf}
+\RequirePackage{lscape}
+
+\RequirePackage{graphicx}
+\RequirePackage{color}
+\ifpdf
+% we are running pdflatex, so convert .eps files to .pdf
+\RequirePackage{epstopdf}
+\DeclareGraphicsExtensions{.png,.pdf,.eps}
+\DeclareGraphicsRule{.pdftex}{pdf}{.pdftex}{}
+\RequirePackage{pdfsync}
+\else
+% % we are running LaTeX, not pdflatex
+\DeclareGraphicsExtensions{.eps}
+\fi
+
+\definecolor{darkgreen}{rgb}{0,0.75,0}
+\definecolor{BrickRed}{rgb}{.625,.25,.25}
+\definecolor{NavyBlue}{rgb}{0,0,.5}
+\definecolor{LimeGreen}{cmyk}{.5, 0, 1, 0}
+
+\newlength{\boxlength}
+\providecommand{\todo}[1]{ %
+  \noindent\begin{minipage}[h]{.98\linewidth}
+    \textcolor{BrickRed}{\footnotesize{{\bf [Todo: #1]}}\normalsize}
+  \end{minipage} %
+}
+\providecommand{\source}[1]{\footnote{\textcolor{LimeGreen}{#1}}}
+\providecommand{\tempnote}[1]{
+  \begin{minipage}[h]{.98\linewidth}
+    \textcolor{NavyBlue}{\footnotesize{[Remark: #1]}\normalsize}
+  \end{minipage}
+}
+\providecommand{\red}[1]{\textcolor{BrickRed}{#1}}
+
+\providecommand{\redbox}[1]{\fcolorbox{red}{white}{#1}}
+\providecommand{\mredbox}[1]{\fcolorbox{red}{white}{$#1$}}
+
+%%\usepackage{lineno}
+%%\pagewiselinenumbers
+\RequirePackage[boxed]{algorithm}
+\RequirePackage{algorithmic}
+\algsetup{indent=2em}
+\renewcommand{\algorithmiccomment}[1]{$\qquad$// #1}
+
+\if@savespace
+%% save paper
+  \addtolength\textwidth{1in}
+  \addtolength\oddsidemargin{-.5in}
+  \addtolength\evensidemargin{-.5in}
+  \addtolength\textheight{1.5in}
+  \addtolength\topmargin{-.5in}
+\fi
+
+%% Better roman enumeration list; no conflict with hyperref
+\usepackage{enumerate}
+\newenvironment{enumeroman} { %
+\begin{enumerate}[(i)]
+} { %
+\end{enumerate}}%
+
+\newenvironment{alphlist} { %
+  \begin{enumerate}[(a)]
+} { %
+\end{enumerate}} %
+
+\setcounter{totalnumber}{1} %% restrict the number of figures on any one page to 1

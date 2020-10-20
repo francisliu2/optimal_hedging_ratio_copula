@@ -81,13 +81,39 @@ np.random.seed(87654)
 \vspace{.5cm}
 %\clearpage
 
-\section{Setup}
-\label{sec:setup}
+\section{Optimal hedge ratio}
+\label{sec:optimal-hedge-ratio}
 
 Following \citep{Barbi2014}, we consider the problem of the optimal
 hedge ratios by extending commmonly known minimum variance hedge ratio
 to more general risk measures and dependence structures.\medskip\\
-Spectral risk measure \citep{Acerbi2002}:
+Hedge portfolio: $R_t^h = R_t^S - h R_t^F$, involving returns of spot
+and future contract and where $h$ is the hedge ratio\\
+Optimal hedge ratio: $h^\ast = \argmin_h \rho_\phi(s,h)$, for given
+confidence level $1-s$ (if applicable, e.g.\ in the case of VaR, ES),
+where $\rho_\phi$ is a spectral risk measure with weighting function
+$\phi$ (see below). \\ 
+Corollary 2.1 of \citep{Barbi2014}, corrected: Let $R^S$ and $R^F$ be
+two real-valued random variables on the same probability space
+$(\Omega, \mathcal A, \p)$ with corresponding absolutely continuous
+copula $C^t_{R^S, R^F}(w,\lambda)$ and continuous marginals $F_{R^S}$
+and $F_{R^F}$. Then, the $s$-quantile of $R^h$ solves the following:
+\begin{equation*}
+  F_{R^h}(r^h) = 1- \int^1_0 D_1 C_{R^S, R^F}
+  \left\{ w, F_{R^F} \left[ \frac{F^{-1}_{R^S}(w)-r^h}{h} \right]
+  \right\}dw.  
+\end{equation*}
+[..]\\
+Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
+which can be shown to fulfil \citep{Cherubini2011}
+\begin{equation*}
+  D_1 C_{X,Y}(F_X(x), F_Y(y)) = \p(Y\leq y|X=x).
+\end{equation*}
+
+\section{Spectral risk measures}
+\label{sec:spectr-risk-meas}
+
+Spectral risk measure \citep{Acerbi2002,Cotter2006}:
 \begin{equation*}
 \rho_\phi = -\int_0^1 \phi(p)\, q_p\, \dd p,
 \end{equation*}
@@ -102,13 +128,11 @@ $\phi(s)$, $s\in [0,1]$, is the so-called {\em risk aversion
 \item $\phi'(p)\leq 0$. 
 \end{enumerate}
 Examples: VaR, ES\\
-Dependence through copula (e.g.\ Student t, Clayton or Gumbel)\\
-Hedge portfolio: $R_t^h = R_t^S - R_t^F$, involving returns of spot
-and future contract\\
-Optimal hedge ratio: $h^\ast = \argmin_h \rho_\phi(s,h)$, for given
-confidence level $1-s$.\\
+Replacing the last property with $\phi'(p)>0$ rules out risk-neutral
+behaviour. \\
+Spectral risk measures are coherent \citep{Acerbi2002}. 
 
-\section{Representation of spectral risk measures}
+\subsection{Representation of spectral risk measures}
 \label{sec:repr-spectr-risk}
 
 To prevent numerical instabilities involving the quantile function,
@@ -126,6 +150,42 @@ re-write spectral risk measures as follows:
     \phi(F(x))\, x\, f(x)\, \dd x.
   \end{equation*}
 \end{itemize}
+
+
+\subsection{Exponential spectral risk measures}
+\label{sec:expon-risk-meas}
+
+\begin{itemize}
+\item Choose exponential utiliy function:
+  $\displaystyle U(x) = -\e^{-k x}$, where $k>0$ is the Arrow-Pratt
+  coefficient of absolute risk aversion
+  (ARA).
+\item Coefficient of absolute risk aversion: $\displaystyle R_A(x) =
+  -\frac{U''(x)}{U'(x)} = k$
+\item Coefficient of relative risk aversion: $\displaystyle R_R(x) = -
+  \frac{x U''(x)}{U'(x)} = xk$
+\item Weighting function $\phi(p) = \lambda \e^{-k(1-p)}$, where
+  $\lambda$ is an unknown positive constant.
+\item Set $\displaystyle\lambda = \frac{k}{1-\e^{-k}}$ to satisfy
+  normalisation.
+\item Exponential spectral risk measure:
+  \begin{equation*}
+    \rho_{\phi} = \int_0^1 \phi(p)\, F^{(-1)}(p)\, \dd p =
+    \frac{k}{1-\e^{-k}} \int_0^1 \e^{-k(1-p)\, F^{(-1)}(p)\, \dd p. 
+  \end{equation*}
+(If calculation of quantiles is a problem use change of variables
+above.)
+\item What exactly is the link between risk measure and utility?
+    I think there is no direct link: the exponential risk measure is
+   {\em inspired\/} by ARA utility.
+\end{itemize}
+
+
+\section{Dependence}
+\label{sec:dependence}
+
+Dependence through copula (e.g.\ Student t, Clayton or Gumbel)
+
 
 
 \bibliographystyle{abbrvnamed} %

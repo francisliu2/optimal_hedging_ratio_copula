@@ -8,3 +8,5 @@
 *.gz
 .DS_Store
 .DS_Store
+latex/notes.tex.ok
+*.rel

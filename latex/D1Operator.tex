@@ -1,0 +1,68 @@
+%! Author = francis
+%! Date = 30.10.20
+
+\section{$D_1$ Operator}
+We give a explicit equation of the $D_1$ operator for Archimedean copulae.
+
+The $D_1$ operator is defined as the partial derivatives of the first input to the copula function,
+so we fix the second argument while taking derivative with respect to the first, and then evaluate the function.
+we have
+
+\begin{align}
+\left.\frac{\partial C\{v, g(w)\}}{\partial v} \right\vert_{v=w}
+&=
+\left.\frac{\partial  \phi^{-1}\{\phi(v)+\phi(g(w))\}}
+{\partial  \{\phi(v)+\phi(g(w))\}}
+\frac{\partial  [\phi(v)+\phi(g(w))]}
+{\partial  v}
+\right\vert_{v=w}\\
+&=
+\left.\frac{\partial   \phi^{-1}\{\phi(v)+\phi(g(w))\}}
+{\partial \{\phi(v)+\phi(g(w))\}}
+\frac{\partial  \phi(v)}{\partial  v}
+\right\vert_{v=w}\\
+&=
+\frac{\partial   \phi^{-1}\{\phi(w)+\phi(g(w))\}}
+{\partial \{\phi(w)+\phi(g(w))\}}
+\frac{\partial  \phi(w)}{\partial  w}\\
+&,
+\text{where } g(w) = F_{R^F}\left[\frac{F^{-1}_{R^S}(w)-r^h}{h}\right]\\
+\end{align}
+
+\begin{table}
+    \center
+    \begin{tabular}{c c c c c}
+        Function & Gumbel & Frank & Clayton & Independence\\
+        $\phi(t)$    &
+        $\{-\log(t)\}^\theta$ &
+        $-\ln \left\{
+        \frac{\exp(-\theta t)-1}
+        {\exp(-\theta)-1}
+        \right\}$&
+        $\frac{1}{\theta}
+        (t^{-\theta}-1)$
+        & Same to Gumbel where \theta=1\\
+        $\phi^{-1}(t)$ &
+        $\exp(-t^{1/\theta})$ &
+        $\frac{-1}{\theta}
+        \ln[1+ \exp(-t)\{\exp(-\theta)-1\}]$ &
+        $(1+\theta t)^{-\frac{1}{\theta}}$
+        & \\
+
+        $\partial \phi(t)/\partial t$ &
+        $\theta \frac{\phi(t)}{t\log(t)}$ &
+        $\frac{\theta \exp(-\theta t)}{\exp(-\theta t)-1}$ &
+        $-t^{-(\theta + 1)}$&
+        \\
+        $\partial \phi^{-1}(t)/\partial t$ &
+        $\frac{-1}{\theta}t^{\frac{1}{\theta}-1}\phi^{-1}(t)$&
+        $\frac{\exp(-t)}{\theta \{1+\exp(-t)\}}$&
+        $\theta (1+\theta t)^{-\frac{1}{\theta}-1}$&
+        \end{tabular}\label{tab:archcopula}
+\end{table}
+
+
+
+
+
+

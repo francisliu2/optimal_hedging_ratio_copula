@@ -22,7 +22,7 @@ we have
 \frac{\partial  \phi(v)}{\partial  v}
 \right\vert_{v=w}\\
 &=
-\frac{\partial   \phi^{-1}\{\phi(w)+\phi(g(w))\}}
+\frac{\partial \phi^{-1}\{\phi(w)+\phi(g(w))\}}
 {\partial \{\phi(w)+\phi(g(w))\}}
 \frac{\partial  \phi(w)}{\partial  w}\\
 &,
@@ -42,21 +42,22 @@ we have
         $\frac{1}{\theta}
         (t^{-\theta}-1)$
         & Same to Gumbel where \theta=1\\
+
         $\phi^{-1}(t)$ &
         $\exp(-t^{1/\theta})$ &
         $\frac{-1}{\theta}
-        \ln[1+ \exp(-t)\{\exp(-\theta)-1\}]$ &
+        \log[1+ \exp(-t)\{\exp(-\theta)-1\}]$ &
         $(1+\theta t)^{-\frac{1}{\theta}}$
         & \\
 
         $\partial \phi(t)/\partial t$ &
         $\theta \frac{\phi(t)}{t\log(t)}$ &
-        $\frac{\theta \exp(-\theta t)}{\exp(-\theta t)-1}$ &
+        $\frac{\theta \exp(-\theta t)} {\exp(-\theta t)-1}$ &
         $-t^{-(\theta + 1)}$&
         \\
         $\partial \phi^{-1}(t)/\partial t$ &
         $\frac{-1}{\theta}t^{\frac{1}{\theta}-1}\phi^{-1}(t)$&
-        $\frac{\exp(-t)}{\theta \{1+\exp(-t)\}}$&
+        $\frac{1}{\theta}\frac{\exp(-t)\{\exp(-\theta)-1\}}{1+\exp(-t)\{\exp(-\theta)-1\}}$&
         $\theta (1+\theta t)^{-\frac{1}{\theta}-1}$&
         \end{tabular}\label{tab:archcopula}
 \end{table}

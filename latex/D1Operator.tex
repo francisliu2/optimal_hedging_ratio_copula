@@ -9,16 +9,16 @@ The $D_1$ operator is given as
 \end{equation*}
 In the context of the above notation, we obtain
 \begin{align*}
-  D_1 C_{R^s, R^F}(w, g(w)) &= \p(R_F\leq F_{F}^{(-1)}(g(w))|
-  R_s=F_S^{(-1)}(w)) %
-  = \p(V\leq g(w)| U=w)\\ %
-  &= \frac{\p(U\in \dd w, V\leq g(w))} {\p(U\in \dd w)} %
-  = \p(U\in \dd w| V\leq g(w)) %
+  D_1 C_{R^s, R^F}\{w, g(w)\} &= \p[R_F\leq F_{F}^{(-1)}\{g(w)\}|
+  R_s=F_S^{(-1)}(w)] %
+  = \p\{V\leq g(w)| U=w\}\\ %
+  &= \frac{\p\{U\in \dd w, V\leq g(w)\}} {\p(U\in \dd w)} %
+  = \p\{U\in \dd w| V\leq g(w)\} %
   = \int_0^{g(w)} c(w,v)\, \dd v. 
 \end{align*}
 The last line can also be written as
 \begin{equation*}
-  \frac{\partial }{\partial w} C(w, g(w')) \big|_{w'=w}. 
+  \frac{\partial }{\partial w} C\{w, g(w')\} \big|_{w'=w}.
 \end{equation*}
 
 
@@ -52,8 +52,8 @@ we have
 
 \begin{table}
     \center
-    \begin{tabular}{c c c c c}
-        Function & Gumbel & Frank & Clayton & Independence\\
+    \begin{tabular}{c | c c c c}
+        Function & Gumbel & Frank & Clayton & Independence\\        \hline
         $\phi(t)$    &
         $\{-\log(t)\}^\theta$ &
         $-\ln \left\{
@@ -79,7 +79,7 @@ we have
         $\frac{-1}{\theta}t^{\frac{1}{\theta}-1}\phi^{-1}(t)$&
         $\frac{1}{\theta}\frac{\exp(-t)\{\exp(-\theta)-1\}}{1+\exp(-t)\{\exp(-\theta)-1\}}$&
         $\theta (1+\theta t)^{-\frac{1}{\theta}-1}$&
-        \end{tabular}\label{tab:archcopula}
+        \end{tabular}\caption{Archemdean Copulae's Generator, Generator Inverse, and their derivative.}\label{tab:ArcGenerator}
 \end{table}
 
 

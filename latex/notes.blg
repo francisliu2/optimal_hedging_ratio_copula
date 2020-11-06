@@ -1,46 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2016)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: notes.aux
 The style file: abbrvnamed.bst
 Database file #1: finance.bib
-You've used 4 entries,
+You've used 8 entries,
             2456 wiz_defined-function locations,
-            590 strings with 5229 characters,
-and the built_in function-call counts, 1653 in all, are:
-= -- 184
-> -- 51
-< -- 0
-+ -- 18
-- -- 16
-* -- 145
-:= -- 268
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 24
-chr.to.int$ -- 4
-cite$ -- 4
-duplicate$ -- 56
-empty$ -- 127
-format.name$ -- 22
-if$ -- 335
+            617 strings with 5887 characters,
+and the built_in function-call counts, 3236 in all, are:
+= -- 360
+> -- 96
+< -- 2
++ -- 33
+- -- 30
+* -- 267
+:= -- 511
+add.period$ -- 24
+call.type$ -- 8
+change.case$ -- 46
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 124
+empty$ -- 250
+format.name$ -- 41
+if$ -- 671
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 4
-newline$ -- 23
-num.names$ -- 12
-pop$ -- 12
+missing$ -- 9
+newline$ -- 43
+num.names$ -- 24
+pop$ -- 30
 preamble$ -- 1
-purify$ -- 28
+purify$ -- 55
 quote$ -- 0
-skip$ -- 46
+skip$ -- 105
 stack$ -- 0
-substring$ -- 140
-swap$ -- 8
-text.length$ -- 0
+substring$ -- 251
+swap$ -- 28
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 32
+type$ -- 60
 warning$ -- 0
-while$ -- 16
-width$ -- 6
-write$ -- 54
+while$ -- 31
+width$ -- 11
+write$ -- 106

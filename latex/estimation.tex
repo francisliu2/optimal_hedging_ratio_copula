@@ -3,7 +3,19 @@
 
 
 \subsection{Two-Stage Estimation}\label{subsec:two-stage-estimation}
-~\cite{joe2005asymptotic} study the efficient properties of a two-stage estimation procedure of copula estimation.
+~\cite{joe2005asymptotic} study the efficiency of a two-stage estimation procedure of copula estimation.
+The authors also call this method inference function for margins IFM.
+
+\textbf{Pros}
+\begin{enumerate}
+    \item Almost as efficient as MLE methods but easier to be implemented
+    \item Yields an asymptotically Gaussian, unbiased estimate
+\end{enumerate}
+
+\textbf{Cons}
+\begin{enumerate}
+    \item Subject to specification of marginals \cite{kim2007comparison}
+\end{enumerate}
 
 Our data
 \begin{align}
@@ -17,7 +29,7 @@ Let $F$ and $f$ be the joint cdf and joint density of $\pmb{y}$ with parameters 
 and let $F_i$ and $f_i$ be the marginal cdf and marginal density for the $i^\text{th}$ random variable with parameters $\pmb{\theta}_i$, we have
 \begin{align}
     f(\pmb{y}; \pmb{\theta}_1, \pmb{\theta}_2,\dots \pmb{\theta}_i, \pmb{\delta}) =
-    c\{F_1(\pmb{y}_1;\pmb{\theta}_1), F_2(\pmb{y}_2; \pmb{\theta}_2; \pmb{\delta}), \dots, F_i(\pmb{y}_1;\pmb{\theta}_i)\}
+    c\{F_1(\pmb{y}_1;\pmb{\theta}_1), F_2(\pmb{y}_2; \pmb{\theta}_2), \dots, F_i(\pmb{y}_1;\pmb{\theta}_i); \pmb{\delta}\}
     \prod^i_{j=1}f_i(\pmb{y}_j;\pmb{\theta}_j)
     \end{align}
 
@@ -28,7 +40,7 @@ For a sample of size $n$, the log-likelihood of functions of the $i^\text{th}$ u
 
 and the log-likelihood function for the joint distribution is
 \begin{align}
-    L(\delta, \theta_1, \theta_2, \dots, \theta_i) = \sum^n_{m=1} \log f(y_i; \delta, \theta_1, \theta_2, ..., \theta_i)
+    L(\delta, \theta_1, \theta_2, \dots, \theta_i) = \sum^n_{m=1}\sum^i_{j=1} \log f(y_{mj}; \delta, \theta_1, \theta_2, ..., \theta_i)
     \end{align}
 
 In most cases, one does not have closed form estimators and numerical techniques are needed.
@@ -53,7 +65,7 @@ $\int g(x) dx < \infty$, $\int h(x) dx < \infty$, $\mathbb{E}_\theta \{H(X)\} < 
 \left(
 \frac{\partial \log f(X;\theta)}{\partial \theta}
 \right)^2
-\right\}$. For detail please section 4.2.2 of \cite{serfling2009approximation}}
+\right\}$. For detail see section 4.2.2 of~\cite{serfling2009approximation}}
 , $(\pmb{\tilde{\theta}}_1,\dots \pmb{\tilde{\theta}}_i, \pmb{\tilde{\delta}})$ is the solution of
 \begin{align}
     (\partial L_1 / \partial \pmb{\theta}^\intercal_1,
@@ -71,10 +83,16 @@ $\tilde{\pmb{\eta}} = (\pmb{\tilde{\theta}}_1,\dots \pmb{\tilde{\theta}}_i, \pmb
 $\hat{\pmb{\eta}} =(\pmb{\hat{\theta}}_1,\dots \pmb{\hat{\theta}}_i, \pmb{\hat{\delta}})$ for MLE procedure.
 and compare the asymptotic relative efficiency of $\tilde{\pmb{\eta}}$ and $\hat{\pmb{\eta}}$.
 
-Asymptotics: yet to be done
+Asymptotics: yet to be done.
+~\cite{kim2007comparison} show the estimation of $\pmb{\theta}$ may be seriously affected.
+They compare the two-stage approach and Canonical Maximum Likelihood Method by simulation and
+conclude that Canonical Maximum Likelihood is prefered from a computational statistics and data analysis point of view.
 
 \subsection{Canonical Maximum Likelihood Method}\label{subsec:canonical-maximum-likelihood-method}
 This approach was studied by~\cite{genest1995semiparametric} and~\cite{shih1995inferences}.
+also by Wang and Ding, 2000; Tsukahara, 2005
+This is also known as pseudo maximum likelihood (PML) and as canonical maximum likelihood (see Cherubini et al., 2004)
 
+Genest and Werker (2002) obtained conditions under which the PMLE is asymptotically efficient.
 
 

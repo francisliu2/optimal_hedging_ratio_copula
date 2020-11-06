@@ -187,52 +187,7 @@ above.)
 
 \section{Dependence}
 \label{sec:dependence}
-
-Dependence through copula (e.g.\ Student t, Clayton or Gumbel)
-
-\subsection{Archimedean copulas}
-\label{sec:archimedean-copulas}
-
-\begin{itemize}
-\item A well-studied one-parameter family of copulas are the {\bf 
-    Archimedean copulas}. 
-\item Let $\phi:[0,1]\rightarrow[0,\infty]$ be a
-  continuous and strictly decreasing function with $\phi(1)=0$ and
-  $\phi(0)\leq\infty$.
-\item  We define the {\bf pseudo-inverse} of $\phi$ as 
-  \begin{equation*}
-    \phi^{(-1)}(t)=
-    \begin{cases}
-      \phi^{-1}(t), &0\leq t\leq \phi(0),\\
-      0, &\phi(0)<t\leq\infty.
-    \end{cases}
-  \end{equation*}
-\item If, in addition, $\phi$ is convex, then the following function
-  is a copula: 
-  \begin{equation*}
-    C(u,v)=\phi^{(-1)}(\phi(u)+\phi(v)).
-  \end{equation*}
-  \vspace*{-\baselineskip}
-\item Such copulas are called {\bf Archimedean copulas}, and the
-  function $\phi$ is called an {\bf Archimedean copula generator}. 
-\item Examples of Archimedean copulas are the {\bf Gumbel} and the
-  {\bf Clayton} copulas:
-  \begin{align*}
-    C_{\theta,{\rm Gu}}(u,v) &= \exp\left\{-((-\ln u)^\theta + (-\ln
-                               v)^\theta)^{1/\theta}\right\},& 1\leq \theta<\infty,\\
-    C_{\theta,{\rm Cl}}(u,v)&= (u^{-\theta} + v^{-\theta}
-                              -1)^{-1/\theta}, & 0<\theta<\infty. 
-  \end{align*}
-\item In the case of the Gumbel copula, the independence copula is 
-  attained when $\theta=1$ and the comonotonicity copula is attained
-  as $\theta\rightarrow\infty$. 
-\item Thus, the Gumbel copula interpolates between independence and
-  perfect dependence.  
-\item In the case of the Clayton copula, the independence copula is
-  attained as $\theta\rightarrow 0$, whereas the comonotonicity
-  copula is attained as $\theta\rightarrow\infty$. 
-\end{itemize}
-
+\input{dependence.tex}
 
 \section{Estimation}
 \input{estimation.tex}

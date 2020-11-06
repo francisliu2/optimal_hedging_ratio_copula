@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: notes.aux
 The style file: abbrvnamed.bst
 Database file #1: finance.bib
-You've used 8 entries,
+You've used 10 entries,
             2456 wiz_defined-function locations,
-            617 strings with 5887 characters,
-and the built_in function-call counts, 3236 in all, are:
-= -- 360
-> -- 96
+            629 strings with 6189 characters,
+and the built_in function-call counts, 3947 in all, are:
+= -- 435
+> -- 121
 < -- 2
-+ -- 33
-- -- 30
-* -- 267
-:= -- 511
-add.period$ -- 24
-call.type$ -- 8
-change.case$ -- 46
-chr.to.int$ -- 8
-cite$ -- 8
-duplicate$ -- 124
-empty$ -- 250
-format.name$ -- 41
-if$ -- 671
++ -- 41
+- -- 38
+* -- 324
+:= -- 628
+add.period$ -- 30
+call.type$ -- 10
+change.case$ -- 57
+chr.to.int$ -- 10
+cite$ -- 10
+duplicate$ -- 153
+empty$ -- 307
+format.name$ -- 51
+if$ -- 817
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 9
-newline$ -- 43
-num.names$ -- 24
-pop$ -- 30
+missing$ -- 12
+newline$ -- 53
+num.names$ -- 30
+pop$ -- 42
 preamble$ -- 1
-purify$ -- 55
+purify$ -- 69
 quote$ -- 0
-skip$ -- 105
+skip$ -- 125
 stack$ -- 0
-substring$ -- 251
-swap$ -- 28
+substring$ -- 292
+swap$ -- 32
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 60
+type$ -- 72
 warning$ -- 0
-while$ -- 31
-width$ -- 11
-write$ -- 106
+while$ -- 37
+width$ -- 14
+write$ -- 131

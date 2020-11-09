@@ -61,7 +61,7 @@ The function $g(\cdot; \nu)$ is known as characteristic generator, whereas $\pmb
 
 \begin{corollary} \citep[equation 2.12]{fang2018symmetric}
     If $\pmb{y}$ follows an elliptical distribution, then $\pmb{y}$ has a stochastic representation
-    \begin{align}
+    \begin{align}\label{eq:stochastic-representation}
         \pmb{y} = \pmb{\mu} + r\pmb{A}^\top \pmb{u},
         \end{align}
     where $r \in \mathbb{R}_+$ is independent of
@@ -81,4 +81,47 @@ The function $g(\cdot; \nu)$ is known as characteristic generator, whereas $\pmb
 \end{table}
 
 
-\subsection{Extreme-value copulae}\label{subsec:extreme-value-copulae}
+\subsection{Gaussian Copula}\label{subsec:Gaussian-copula}
+The Gaussian or Normal copula is
+\begin{align}
+    C^{Ga}_\Sigma(x) = \frac{1}{(2\pi)^{i/2} |\Sigma|^{1/2}}
+    \int_{-\infty}^{\Phi^{-1}(x_1)} \dots \int_{-\infty}^{\Phi^{-1}(x_n)}
+    \exp \left\{
+    -\frac{1}{2}y^\top \Sigma^{-1}y
+    \right\}
+    dy_1 \dots dy_n
+    \end{align}
+
+\subsection{t-copulae}\label{subsec:t-copulae}
+The t copula is to represent the dependency structure by t distribution~\citep{fang2002meta, embrechts2002correlation}.
+\cite{demarta2005t} extend this thinking to skewed t copula and rouped t copula to allow more flexibility in the modelling of dependency structure.
+T-copula is based on the Gaussian mixture representation (see equation~\ref{eq:stochastic-representation}) of a multivariate t distribution,
+and based on that skewed t copula and grouped t copula are constructed.
+
+\subsubsection{Vanilla t-copula}\label{subsec:vanilla-t-copula}
+The t-copula is
+\begin{align}
+    C^t_{\nu, \Sigma}(x) = \frac{1}{(2\pi)^{i/2} |\Sigma|^{1/2}}
+    \int_{-\infty}^{t_\nu^{-1}(x_1)} \dots \int_{-\infty}^{t_\nu^{-1}(x_n)}
+    \frac{\Gamma\left\{ \frac{\nu + i}{2}\right\}}{\Gamma \left\{\frac{\nu}{2}\right\} (\pi \nu)^{i/2}|\Sigma|^{1/2}}
+    \left(
+    1+ \frac{y^\top \Sigma^{-1}y}{\nu}
+    \right)^{-\frac{\nu + i}{2}}
+    dy_1 \dots dy_n
+    \end{align}
+
+\subsubsection{Skewed t copula}\label{subsec:skewed-t-copula}
+Mean variance mixture
+
+\subsubsection{Double t copula}
+under construction
+
+\subsubsection{Normal Inverse Gaussian Copual}
+under construction
+
+
+
+
+
+
+%\subsection{Extreme-value copulae}\label{subsec:extreme-value-copulae}

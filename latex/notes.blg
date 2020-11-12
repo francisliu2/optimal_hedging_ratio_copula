@@ -3,49 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: notes.aux
 The style file: abbrvnamed.bst
 Database file #1: finance.bib
-Repeated entry---line 5055 of file finance.bib
- : @article{embrechts2002correlation
- :                                  ,
-I'm skipping whatever remains of this entry
-You've used 13 entries,
+You've used 15 entries,
             2456 wiz_defined-function locations,
-            646 strings with 6677 characters,
-and the built_in function-call counts, 5166 in all, are:
-= -- 573
-> -- 170
-< -- 2
-+ -- 59
-- -- 54
-* -- 431
-:= -- 823
-add.period$ -- 39
-call.type$ -- 13
-change.case$ -- 77
-chr.to.int$ -- 13
-cite$ -- 13
-duplicate$ -- 195
-empty$ -- 393
-format.name$ -- 71
-if$ -- 1065
+            658 strings with 6975 characters,
+and the built_in function-call counts, 5810 in all, are:
+= -- 641
+> -- 190
+< -- 3
++ -- 65
+- -- 60
+* -- 482
+:= -- 928
+add.period$ -- 45
+call.type$ -- 15
+change.case$ -- 87
+chr.to.int$ -- 15
+cite$ -- 15
+duplicate$ -- 224
+empty$ -- 445
+format.name$ -- 80
+if$ -- 1197
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 15
-newline$ -- 68
-num.names$ -- 39
-pop$ -- 53
+missing$ -- 18
+newline$ -- 78
+num.names$ -- 45
+pop$ -- 63
 preamble$ -- 1
-purify$ -- 92
+purify$ -- 105
 quote$ -- 0
-skip$ -- 159
+skip$ -- 182
 stack$ -- 0
-substring$ -- 375
-swap$ -- 38
-text.length$ -- 2
+substring$ -- 401
+swap$ -- 43
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 96
+type$ -- 108
 warning$ -- 0
-while$ -- 49
-width$ -- 17
-write$ -- 170
-(There was 1 error message)
+while$ -- 55
+width$ -- 19
+write$ -- 196

@@ -83,16 +83,30 @@ $\tilde{\pmb{\eta}} = (\pmb{\tilde{\theta}}_1,\dots \pmb{\tilde{\theta}}_i, \pmb
 $\hat{\pmb{\eta}} =(\pmb{\hat{\theta}}_1,\dots \pmb{\hat{\theta}}_i, \pmb{\hat{\delta}})$ for MLE procedure.
 and compare the asymptotic relative efficiency of $\tilde{\pmb{\eta}}$ and $\hat{\pmb{\eta}}$.
 
-Asymptotics: yet to be done.
+Asymptotics: yet to be done.\\
 ~\cite{kim2007comparison} show the estimation of $\pmb{\theta}$ may be seriously affected.
 They compare the two-stage approach and Canonical Maximum Likelihood Method by simulation and
 conclude that Canonical Maximum Likelihood is prefered from a computational statistics and data analysis point of view.
 
 \subsection{Canonical Maximum Likelihood Method}\label{subsec:canonical-maximum-likelihood-method}
 This approach was studied by~\cite{genest1995semiparametric} and~\cite{shih1995inferences}.
-also by Wang and Ding, 2000; Tsukahara, 2005
-This is also known as pseudo maximum likelihood (PML) and as canonical maximum likelihood (see Cherubini et al., 2004)
+One estimates the margins using empirical CDF
+\begin{align}F_X(x)=\frac{1}{n+1}\sum_{i=1}^n 1(X_i \leq x)\end{align},
 
-Genest and Werker (2002) obtained conditions under which the PMLE is asymptotically efficient.
+we maximize the log-likelihood
+\begin{align}
+    L(\theta) = \sum_{i=1}^n \log [c_\theta \{F_X(X_i), F_Y(Y_i)\}]
+    \end{align}
+
+This procedure does not require specification of marginals.
 
 
+
+
+
+%also by Wang and Ding, 2000; Tsukahara, 2005
+%This is also known as pseudo maximum likelihood (PML) and as canonical maximum likelihood (see Cherubini et al., 2004)
+%
+%Genest and Werker (2002) obtained conditions under which the PMLE is asymptotically efficient.
+%
+%

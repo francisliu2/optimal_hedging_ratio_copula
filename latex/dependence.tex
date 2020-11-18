@@ -1,5 +1,7 @@
 
-Dependence through copula (e.g.\ Student t, Clayton or Gumbel)
+Dependence through copula (e.g.\ Student t, Clayton, Gumbel, double t,
+NIG, Frank, skewed-t, elliptical (this is too general, but maybe some
+theoretical results))
 
 \subsection{Archimedean copulas}
 \label{sec:archimedean-copulas}
@@ -45,7 +47,81 @@ Dependence through copula (e.g.\ Student t, Clayton or Gumbel)
 \end{itemize}
 
 \subsection{Elliptical Copulae}\label{subsec:elliptical-copulae}
-    under construction
+
+
+\providecommand{\bZ}{\ensuremath{\bm{Z}}}
+\providecommand{\bU}{\ensuremath{\bm{U}}}
+\providecommand{\bu}{\ensuremath{\bm{u}}}
+
+See e.g.\ Theorem 3.22, Definition 3.26 and Theorem 3.28 of
+\citep{McNeil2005}:
+\begin{definition}
+  A random vector $\bZ=(Z_0,\ldots, Z_d)^T$ follows an elliptical
+  distribution if it has a representation
+  \begin{equation*}
+    \bZ\stackrel{\mathcal L}= G A \bU,
+  \end{equation*}
+  where $G>0$ is a scalar random variable, the so-called {\em mixing
+  variable}, $A$ is a deterministic $(d+1)\times (d+1)$ matrix with
+$A A^T:=\Sigma$, which in turn is a $(d+1)\times (d+1)$ nonnegative
+definite symmetric matrix of rank $d+1$, and $\bU$ is a
+$(d+1)$-dimensional random vector uniformly distributed on the unit
+sphere $\mathcal S_{d+1}:=\{\bm{z}\in \R^{d+1}: \bm z^T \bm z=1\}$,
+and $\bU$ is independent of $G$.
+\end{definition}
+
+A subclass of elliptical distributions are the so-called {\em normal
+  variance mixtures (NVM)}, see Section 3.3 of \citep{McNeil2005}. For the
+connection between NVM and elliptical distributions, see also Theorem
+3.25 of \citep{McNeil2005}. 
+
+\begin{definition}[Normal variance mixture (NVM)]
+  The random vector $\mathbf X=(X_1, \ldots, X_k)^T$ follows a
+  multivariate {\em normal variance mixture (NVM) distribution} if
+  \begin{equation*}
+    \mathbf X \stackrel{\mathcal L}{=} \mathbf \mu + \sqrt{W} A\mathbf
+    Z, 
+  \end{equation*}
+  where
+  \begin{enumerate}[(i)]
+  \item $\mathbf Z\sim \Ncdf_k(\mathbf 0, I_k)$, i.e., $\mathbf Z$ are
+    independent, standard normally distributed,
+  \item $W\geq 0$ is a random variable independent of $\mathbf Z$,
+  \item $A\in \R^{d\times k}$ and $\mathbf \mu\in R^d$ are a matrix
+    and vector of constants, respectively. 
+  \end{enumerate}
+\end{definition}
+
+It is easily observed that $\mathbf X|W=w \sim \Ncdf_d(\mathbf \mu,
+w\Sigma)$, where $\sigma = A A'$.
+
+In general, we will assume that $\Sigma$ is positive definite and that
+$W>0$ $\pas$. Then, the density of $\mathbf X$ is given by
+\begin{align*}
+  f(\mathbf x) &= \int f_{\mathbf X|W} (\mathbf x|w)\, \dd H(w)\\
+  &= \int \frac{w^{-d/2}} {(2\pi)^{d/2} |\Sigma|^{1/2}} \exp\left( -
+    \frac{(\mathbf x-\mathbf \mu)' \Sigma^{-1} (\mathbf x-\mathbf
+    \mu)} {2w} \right)\, \dd H(w),
+\end{align*}
+where $H$ is the distribution function of $W$.
+
+Special cases:
+\begin{itemize}
+\item Normal distribution: $W$ constant
+\item Student $t$ distribution: $W\sim \displaystyle Ig(1/2 \nu, 1/2
+  \nu)$, where $Ig$ is an inverse gamma distribution
+\item Symmetric generalised hyperbolic distribution: $W\sim
+  N^{-}(\lambda, \chi, \psi)$ where $N^{-}$ refers to
+  the generlised inverse Gaussian (GIG) distribution
+\item Normal inverse Gaussian (NIG): $W$ follows a GIG distribution
+  with $\lambda=-0.5$.  
+\end{itemize}
+
+
+under construction
+
+\natp{\em [The definition below is one way of introducing the
+  elliptical copula, but not the most practical one for our purposes.]}
 
 \begin{definition}
     Elliptical Distribution.
@@ -159,8 +235,11 @@ where $t^{-1}_\nu$ is the quantile function of a univariate student-t distributi
 Mean variance mixture
 
 \subsubsection{Double-t copula}\label{subsec:double-t-copula}
+\natp{\em [It is OK to introduce the copula without any reference to CDO's.]}
 \cite{hull2006valuing} present an alternative way to the Gaussian copula for valuing CDO tranches.
-The double-t copula model is a weighted sum of a common (or market) variable $M$ and a idiosyncratic variable $Z_i$.
+The double-t copula model is a weighted sum of a common (or market)
+variable $M$ and a idiosyncratic variable $Z_i$. \natp{\em [They are
+  $t$-distributed, right?]}
 The double-t copula is
 \begin{align} \label{eq:one-fator-model}
 X_i = w_i M + \sqrt{1-w_i^2} Z_i
@@ -174,7 +253,19 @@ In our case, we map $X_i$ to log-returns of portfolio constituents,
 \begin{align}
     F_{X_1}(x) = F_{r^S}(s) \text{ and } F_{X_2}(x) = F_{r^F}(t).
     \end{align}
-This is also known as percentile-to-percentile mapping\citep{hull2006defining}.
+This is also known as percentile-to-percentile
+mapping\citep{hull2006defining}.
+
+\natp{\em [The percentile-to-percentile mapping is just the property
+  that applying the cdf to a random variable yields a $U(0,1)$
+  variable:
+  \begin{equation*}
+    F(x) = \p(X\leq x) = \p(F(X) \leq F(x)) = \p(U\leq F(x)),
+  \end{equation*}
+  since by definition, $U\sim U(0,1)$ fulfills $\p(U\leq u)=u$, $0\leq
+  u\leq 1$. This could be introduced when copulas and Sklar's Theorem
+  are introduced. 
+]}
 The reason for this mapping is to turn incomprehensible dependency structures into known structure.
 
 \subsubsection{Normal Inverse Gaussian Copula}
@@ -216,6 +307,10 @@ NIG distribution is a mixture of normal and inverse Gaussian distribution.
     \end{definition}
 
 
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "notes.tex"
+%%% End: 
 
 
 

@@ -10,3 +10,4 @@
 .DS_Store
 latex/notes.tex.ok
 *.rel
+*.blg

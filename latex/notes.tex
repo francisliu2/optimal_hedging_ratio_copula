@@ -13,7 +13,8 @@
 
 \def\deftitle{Notes on hedging cryptos with spectral risk measures}
 % \def\defauthor{N.\ Packham}
-\def\defauthor{nat}
+% \def\defauthor{nat}
+\def\defauthor{}
 
 %% option: largefont
 \documentclass[square]{article} %
@@ -23,6 +24,8 @@
 \bibpunct{(}{)}{;}{a}{,}{,}
 \usepackage{amsfonts,amssymb,amsthm} %
 \usepackage[tbtags]{amsmath} %
+\usepackage{bm}
+
 % \usepackage{fullpage}
 
 \usepackage{graphicx,color}
@@ -48,6 +51,7 @@
 \newtheorem{assumption}{Assumption}
 
 \usepackage[makestderr]{pythontex}
+\usepackage{amsmath}
 \begin{pycode}
 import numpy as np
 from scipy import stats
@@ -93,22 +97,121 @@ Optimal hedge ratio: $h^\ast = \argmin_h \rho_\phi(s,h)$, for given
 confidence level $1-s$ (if applicable, e.g.\ in the case of VaR, ES),
 where $\rho_\phi$ is a spectral risk measure with weighting function
 $\phi$ (see below). \\ 
-Corollary 2.1 of \citep{Barbi2014}, corrected: Let $R^S$ and $R^F$ be
-two real-valued random variables on the same probability space
-$(\Omega, \mathcal A, \p)$ with corresponding absolutely continuous
-copula $C^t_{R^S, R^F}(w,\lambda)$ and continuous marginals $F_{R^S}$
-and $F_{R^F}$. Then, the $s$-quantile of $R^h$ solves the following:
-\begin{equation*}
-  F_{R^h}(r^h) = 1- \int^1_0 D_1 C_{R^S, R^F}
-  \left\{ w, F_{R^F} \left[ \frac{F^{-1}_{R^S}(w)-r^h}{h} \right]
-  \right\}dw.  
-\end{equation*}
-[..]\\
+Corollary 2.1 of \citep{Barbi2014}, corrected:
+\begin{proposition}
+  Let $R^S$ and $R^F$ be two real-valued random variables on the same
+  probability space $(\Omega, \mathcal A, \p)$ with corresponding
+  absolutely continuous copula $C^t_{R^S, R^F}(w,\lambda)$ and
+  continuous marginals $F_{R^S}$ and $F_{R^F}$. Then, the distribution
+  of of $R^h$ is given by
+  \begin{equation*}
+    F_{R^h}(x) = 1- \int^1_0 D_1 C_{R^S, R^F}
+    \left( u, F_{R^F} \left[ \frac{F^{-1}_{R^S}(u)-x}{h} \right]
+    \right)\, \dd u.  
+  \end{equation*}
+\end{proposition}
+The proof uses the $D_1$-operator 
 Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
 which can be shown to fulfil \citep{Cherubini2011}
-\begin{equation*}
+\begin{equation}
+  \label{eq:1}
   D_1 C_{X,Y}(F_X(x), F_Y(y)) = \p(Y\leq y|X=x).
+\end{equation}
+\begin{proof}
+  Using the identity (\ref{eq:1}) gives
+  \begin{align*}
+    F_{R^h}(x) &= \p(R^s - h R^F\leq x) %
+                 = \E\left[\p\left(R^F\geq \frac{R^S-x}{h}\Big|
+                 R^S\right)\right]\\[10pt]
+               &= 1-\E\left[\p\left(R^F\leq \frac{R^S-x}{h}\Big|
+                 R^S\right)\right]\\[10pt] 
+               &= 1- \int_0^1 D_1 C_{R^S, R^F}\left(u,
+                 F_{R^F}\left(\frac{F^{(-1)}_{R^S}(u) -
+                 x}{h}\right)\right)\, \dd u.
+  \end{align*}
+\end{proof}
+
+\subsection{Special case: Gaussian copula}
+\label{sec:spec-case:-gauss}
+
+Let $R^S\sim \Ncdf(\mu_S, \sigma_S^2)$ and $R^F\sim \Ncdf(\mu_F,
+\sigma_F^2)$ and assume further that they are jointly normally
+distributed with correlation $\rho$. Then,
+\begin{equation*}
+  R^h = R^S - h R^F \sim \Ncdf(\mu_S - h \mu_F, \sigma_s^2 + h^2
+  \sigma_F^2 - 2\rho h \sigma_S \sigma_F).
 \end{equation*}
+More generally, if $R^k\sim F^k$, $k\in \{S,F\}$, then
+\begin{align*}
+  \p(R^S-h R^F\leq x)
+  &= 1-\E\left[ \p\left(R^F\leq \frac{R^S-x}{h}\big| R^S\right)\right] \\ %
+  &= 1-\E\left[\p \left(\Ncdf^{(-1)}(F_F(R^F)) \leq
+    \Ncdf^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) \Big|
+    R^S\right)\right] \\%
+  &= 1-\E\left[ \p\left(\rho \Ncdf^{(-1)}(F_S(R^S)) + \sqrt{1-\rho^2}
+    \varepsilon \leq \Ncdf^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) \Big|
+    R^S\right)\right]\\ %
+  &= 1-\E\left[ \Ncdf \left(
+    \frac{\Ncdf^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) -\rho
+    \Ncdf^{(-1)}(F_S(R^S))} { \sqrt{1-\rho^2}}\right)\right]\\
+  &= 1-\int_0^1  \Ncdf \left(
+    \frac{\Ncdf^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(u)-x}{h}\right)\right) -\rho
+    \Ncdf^{(-1)}(u)} { \sqrt{1-\rho^2}}\right) \,\dd u.
+\end{align*}
+
+
+\section{Special case: Normal variance mixtures}
+\label{sec:special-case:-normal}
+
+Let $(R^S, R^F)$ follow a normal variance mixture, i.e., there exists a
+decomposition such that
+\begin{align*}
+  R^S &=\mu_S + \sqrt{W} \sigma_S Z_1\\
+  R^F &= \mu_F + \sqrt{W} \sigma_F (\rho Z_1 + \sqrt{1-\rho^2} Z_2),
+\end{align*}
+where $W$ is the mixing variable and $Z_1, Z_2$ are independent
+standard normal variables. Then, $R^h$ follows a NVM distribution with
+\begin{equation*}
+  R^h = R^S - h R^F =  \mu_S - h \mu_F + \sqrt{W}
+  \left((\sigma_S-h\sigma_F\rho)Z_1 -h \sqrt{1-\rho^2} 
+    \sigma_F Z_2\right) = \mu_S - h \mu_F + \sqrt{W} Z_3,
+\end{equation*}
+where $Z_3\sim \Ncdf(0, \sigma_S^2 + h^2\sigma_F^2 - 2\rho
+h\sigma_S \sigma_F)$. 
+
+More generally, let $R^k\sim F^k$, $k\in \{S,F\}$ and write $V$
+as the marginal distribution functions of the NVM distribution
+components. Let $V^{(-1)}(F_S(R^S)) = \sqrt{W} Z_1$ and $V^{(-1)}(F_F(R^F)) =
+\sqrt{W} \rho Z_1 + \sqrt{W} \sqrt{1-\rho^2} Z_2$, were $Z_1, Z_2$ are
+independent standard normals. Then 
+\begin{align*}
+  \p(R^S-h R^F\leq x)
+  &= 1-\E\left[ \p\left(R^F\leq \frac{R^S-x}{h}\big| R^S\right)\right] \\ %
+  &= 1-\E\left[\p \left(V^{(-1)}(F_F(R^F)) \leq
+    V^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) \Big|
+    W, Z_1\right)\right] \\%
+  &= 1-\E\left[ \p\left(\sqrt{W} \rho Z_1 + \sqrt{W} \sqrt{1-\rho^2}
+    Z_2\leq V^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(V(\sqrt{W}
+    Z_1))-x}{h}\right)\right) \Big| W, Z_1\right)\right]\\ %
+  &= 1-\E\left[ \Ncdf \left(
+    \frac{V^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(V(\sqrt{W}
+    Z_1))-x}{h}\right)\right) -\rho \sqrt{W} Z_1} {
+    \sqrt{W}\sqrt{1-\rho^2}}\right)\right]\\ 
+  &= 1-\int_0^\infty \int_{-\infty}^{\infty} \Ncdf \left(
+    \frac{V^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(V(\sqrt{w}
+    z_1))-x}{h}\right)\right) -\rho\sqrt{w} z_1} { \sqrt{w}
+    \sqrt{1-\rho^2}}\right) \, \varphi(z_1)\, f_W(w)\, \dd z_1\, \dd
+    w\\
+  &= 1-\int_0^1 \int_{-\infty}^\infty  \Ncdf \left(
+    \frac{V^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(u)-x}{h}\right)\right)
+    -\rho V^{(-1)}(u)} { V^{(-1)}(u)/z_1
+    \sqrt{1-\rho^2}}\right) \, \varphi(z_1)\, \dd z_1\, \dd
+    u\\
+\end{align*}
+
+
+
+
 
 \section{Spectral risk measures}
 \label{sec:spectr-risk-meas}
@@ -171,7 +274,7 @@ re-write spectral risk measures as follows:
 \item Exponential spectral risk measure:
   \begin{equation*}
     \rho_{\phi} = \int_0^1 \phi(p)\, F^{(-1)}(p)\, \dd p =
-    \frac{k}{1-\e^{-k}} \int_0^1 \e^{-k(1-p)\, F^{(-1)}(p)\, \dd p. 
+    \frac{k}{1-\e^{-k}} \int_0^1 \e^{-k(1-p)}\, F^{(-1)}(p)\, \dd p. 
   \end{equation*}
 (If calculation of quantiles is a problem use change of variables
 above.)
@@ -181,13 +284,18 @@ above.)
 \end{itemize}
 
 
+\input{D1Operator.tex}
+
 \section{Dependence}
 \label{sec:dependence}
+\input{dependence.tex}
 
-Dependence through copula (e.g.\ Student t, Clayton or Gumbel)
+\newpage
+\section{Estimation}
+\input{estimation.tex}
 
 
-
+\newpage
 \bibliographystyle{abbrvnamed} %
 \bibliography{finance} %
 \end{document}

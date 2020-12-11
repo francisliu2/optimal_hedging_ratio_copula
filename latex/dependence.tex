@@ -1,0 +1,318 @@
+
+Dependence through copula (e.g.\ Student t, Clayton, Gumbel, double t,
+NIG, Frank, skewed-t, elliptical (this is too general, but maybe some
+theoretical results))
+
+\subsection{Archimedean copulas}
+\label{sec:archimedean-copulas}
+
+\begin{itemize}
+\item A well-studied one-parameter family of copulas are the {\bf 
+    Archimedean copulas}. 
+\item Let $\phi:[0,1]\rightarrow[0,\infty]$ be a
+  continuous and strictly decreasing function with $\phi(1)=0$ and
+  $\phi(0)\leq\infty$.
+\item  We define the {\bf pseudo-inverse} of $\phi$ as 
+  \begin{equation*}
+    \phi^{(-1)}(t)=
+    \begin{cases}
+      \phi^{-1}(t), &0\leq t\leq \phi(0),\\
+      0, &\phi(0)<t\leq\infty.
+    \end{cases}
+  \end{equation*}
+\item If, in addition, $\phi$ is convex, then the following function
+  is a copula: 
+  \begin{equation*}
+    C(u,v)=\phi^{(-1)}(\phi(u)+\phi(v)).
+  \end{equation*}
+  \vspace*{-\baselineskip}
+\item Such copulas are called {\bf Archimedean copulas}, and the
+  function $\phi$ is called an {\bf Archimedean copula generator}. 
+\item Examples of Archimedean copulas are the {\bf Gumbel} and the
+  {\bf Clayton} copulas:
+  \begin{align*}
+    C_{\theta,{\rm Gu}}(u,v) &= \exp\left\{-((-\ln u)^\theta + (-\ln
+                               v)^\theta)^{1/\theta}\right\},& 1\leq \theta<\infty,\\
+    C_{\theta,{\rm Cl}}(u,v)&= (u^{-\theta} + v^{-\theta}
+                              -1)^{-1/\theta}, & 0<\theta<\infty. 
+  \end{align*}
+\item In the case of the Gumbel copula, the independence copula is 
+  attained when $\theta=1$ and the comonotonicity copula is attained
+  as $\theta\rightarrow\infty$. 
+\item Thus, the Gumbel copula interpolates between independence and
+  perfect dependence.  
+\item In the case of the Clayton copula, the independence copula is
+  attained as $\theta\rightarrow 0$, whereas the comonotonicity
+  copula is attained as $\theta\rightarrow\infty$. 
+\end{itemize}
+
+\subsection{Elliptical Copulae}\label{subsec:elliptical-copulae}
+
+
+\providecommand{\bZ}{\ensuremath{\bm{Z}}}
+\providecommand{\bU}{\ensuremath{\bm{U}}}
+\providecommand{\bu}{\ensuremath{\bm{u}}}
+
+See e.g.\ Theorem 3.22, Definition 3.26 and Theorem 3.28 of
+\citep{McNeil2005}:
+\begin{definition}
+  A random vector $\bZ=(Z_0,\ldots, Z_d)^T$ follows an elliptical
+  distribution if it has a representation
+  \begin{equation*}
+    \bZ\stackrel{\mathcal L}= G A \bU,
+  \end{equation*}
+  where $G>0$ is a scalar random variable, the so-called {\em mixing
+  variable}, $A$ is a deterministic $(d+1)\times (d+1)$ matrix with
+$A A^T:=\Sigma$, which in turn is a $(d+1)\times (d+1)$ nonnegative
+definite symmetric matrix of rank $d+1$, and $\bU$ is a
+$(d+1)$-dimensional random vector uniformly distributed on the unit
+sphere $\mathcal S_{d+1}:=\{\bm{z}\in \R^{d+1}: \bm z^T \bm z=1\}$,
+and $\bU$ is independent of $G$.
+\end{definition}
+
+A subclass of elliptical distributions are the so-called {\em normal
+  variance mixtures (NVM)}, see Section 3.3 of \citep{McNeil2005}. For the
+connection between NVM and elliptical distributions, see also Theorem
+3.25 of \citep{McNeil2005}. 
+
+\begin{definition}[Normal variance mixture (NVM)]
+  The random vector $\mathbf X=(X_1, \ldots, X_k)^T$ follows a
+  multivariate {\em normal variance mixture (NVM) distribution} if
+  \begin{equation*}
+    \mathbf X \stackrel{\mathcal L}{=} \mathbf \mu + \sqrt{W} A\mathbf
+    Z, 
+  \end{equation*}
+  where
+  \begin{enumerate}[(i)]
+  \item $\mathbf Z\sim \Ncdf_k(\mathbf 0, I_k)$, i.e., $\mathbf Z$ are
+    independent, standard normally distributed,
+  \item $W\geq 0$ is a random variable independent of $\mathbf Z$,
+  \item $A\in \R^{d\times k}$ and $\mathbf \mu\in R^d$ are a matrix
+    and vector of constants, respectively. 
+  \end{enumerate}
+\end{definition}
+
+It is easily observed that $\mathbf X|W=w \sim \Ncdf_d(\mathbf \mu,
+w\Sigma)$, where $\sigma = A A'$.
+
+In general, we will assume that $\Sigma$ is positive definite and that
+$W>0$ $\pas$. Then, the density of $\mathbf X$ is given by
+\begin{align*}
+  f(\mathbf x) &= \int f_{\mathbf X|W} (\mathbf x|w)\, \dd H(w)\\
+  &= \int \frac{w^{-d/2}} {(2\pi)^{d/2} |\Sigma|^{1/2}} \exp\left( -
+    \frac{(\mathbf x-\mathbf \mu)' \Sigma^{-1} (\mathbf x-\mathbf
+    \mu)} {2w} \right)\, \dd H(w),
+\end{align*}
+where $H$ is the distribution function of $W$.
+
+Special cases:
+\begin{itemize}
+\item Normal distribution: $W$ constant
+\item Student $t$ distribution: $W\sim \displaystyle Ig(1/2 \nu, 1/2
+  \nu)$, where $Ig$ is an inverse gamma distribution
+\item Symmetric generalised hyperbolic distribution: $W\sim
+  N^{-}(\lambda, \chi, \psi)$ where $N^{-}$ refers to
+  the generlised inverse Gaussian (GIG) distribution
+\item Normal inverse Gaussian (NIG): $W$ follows a GIG distribution
+  with $\lambda=-0.5$.  
+\end{itemize}
+
+
+under construction
+
+\natp{\em [The definition below is one way of introducing the
+  elliptical copula, but not the most practical one for our purposes.]}
+
+\begin{definition}
+    Elliptical Distribution.
+    The $d$-dimensional random vector $\pmb{y}$ has an elliptical distribution if and only if the characteristic function
+    $\pmb{t} \mapsto \mathbb{E}\{\exp(i\pmb{t}^\top \pmb{y})\}$ with $\pmb{t} \in \mathbb{R}^d$ has the representation
+    \begin{align}
+        \phi_g(\pmb{t}; \pmb{\mu}, \pmb{\Sigma}, \pmb{\nu}) = \exp(i\pmb{t}^\top\pmb{\mu})g(\pmb{t}^\top\pmb{\Sigma}\pmb{t};\pmb{\nu})
+        \end{align}
+    where $g(\cdot;\nu):[0, \infty[ \mapsto \mathbb{R}$, $\nu \in \mathbb{R}^d$, and $\Sigma$ is a symmetric positive semidefinite $d\times d$-matrix.
+    \end{definition}
+
+If $r$ has a density, then the density of $\pmb{y}$ is of the form
+\begin{align}
+    |\Sigma|^{\frac{1}{2}} g\{(\pmb{y} - \pmb{\mu})^\top \Sigma^{-1}(\pmb{y} - \pmb{\mu})\}.
+    \end{align}
+
+The function $g(\cdot; \nu)$ is known as characteristic generator, whereas $\pmb{\nu}$ is parameter that determines the shape, in particular the tai index of the distribution.
+
+
+
+
+
+\begin{corollary} \citep[equation 2.12]{fang2018symmetric}
+    If $\pmb{y}$ follows an elliptical distribution, then $\pmb{y}$ has a stochastic representation
+    \begin{align}\label{eq:stochastic-representation}
+        \pmb{y} = \pmb{\mu} + r\pmb{A}^\top \pmb{u},
+        \end{align}
+    where $r \in \mathbb{R}_+$ is independent of
+    $\pmb{u}$
+%\footnote{$\pmb{u}$ is uniformly distributed on $S_d = \{\pmb{u} \in \mathbb{R}^d s.t. ||\pmb{u}|| = 1\}$},
+    , and $\pmb{A}^\top\pmb{A}=\pmb{\Sigma}$.
+    \end{corollary}
+
+\begin{table}[ht]
+    \center
+    \begin{tabular}{lll}
+    Distribution & $r \sim$ & $g(\pmb{t})$\\ \hline
+    Gaussian & $\chi_n$ &
+        \end{tabular}
+    \caption{Generators of Elliptical Distributions summarised from~\cite[Chapter 2]{fang2018symmetric}}
+    \label{tab:table}
+\end{table}
+
+
+\subsection{Gaussian Copula}\label{subsec:Gaussian-copula}
+The Gaussian or Normal copula is
+\begin{align}
+    C^{Ga}_\Sigma(x) &= \frac{1}{(2\pi)^{d/2} |\Sigma|^{1/2}}
+    \int_{-\infty}^{\Phi^{-1}(x_1)} \dots \int_{-\infty}^{\Phi^{-1}(x_d)}
+    \exp \left\{
+    -\frac{1}{2}y^\top \Sigma^{-1}y
+    \right\}
+    dy_1 \dots dy_d
+    \end{align}
+
+The copula density is
+\begin{align}
+    c^{Ga}_\Sigma(x) &= \frac{1}{(2\pi)^{d/2} |\Sigma|^{1/2}}
+    \exp \left\{
+    -\frac{1}{2}\begin{pmatrix} \Phi^{-1}(x_1) \\ \vdots \\ \Phi^{-1}(x_d) \end{pmatrix}^\top \Sigma^{-1} \begin{pmatrix} \Phi^{-1}(x_1) \\ \vdots \\ \Phi^{-1}(x_d) \end{pmatrix}
+    \right\}
+    \end{align}
+
+Simplified notation bivariate Gaussian copula
+\begin{align}
+       C^{Ga}_\rho \{w, g(w)\} &= \Phi_\rho [\Phi^{-1}(w), \Phi^{-1}\{g(w)\}],
+\end{align}
+where $g(w): [0,1] \mapsto \mathbb{R}$ is defined above,
+$\rho$ is the dependency parameter of a bivariate Gaussian copula,
+$\Phi_\rho$ is bivariate normal distribution with mean 0 and covariance $\begin{bmatrix}1 & \rho \\ \rho & 1 \end{bmatrix}$,
+$\Phi(\cdot)$ is CDF of standard normal,
+$\phi(\cdot)$ is PDF of standard normal,
+$\Phi^{-1}(\cdot)$ is quantile function of standard normal.
+
+The bivariate $D_1 C^{Ga}\{w, g(w)\}$ is
+\begin{align}
+    D_1 C^{Ga}_\rho\{w, g(w)\} = \int_{-\infty}^{\Phi^{-1}\{g(w)\}} \phi_\rho\{
+    \Phi^{-1}(w), u \}du \cdot \frac{1}{\phi\{\Phi^{-1}(w)\}}
+    \end{align}
+\begin{proof}
+    \begin{align}
+    D_1 C_\rho\{w, g(w)\}
+    &= \left. \frac{\partial C_\rho\{w, g(w')\}}{\partial w}\right|_{w'=w}\\
+    &= \left. \frac{\partial \Phi_\rho [\Phi^{-1}(w), \Phi^{-1}\{g(w)\}]}{\partial \Phi^{-1}(w)} \frac{\partial \Phi^{-1}(w)}{\partial w}\right|_{w'=w}\\
+    &= \frac{1}{2\pi\rho} \int_{-\infty}^{\Phi^{-1}\{g(w)\}} \exp\left\{
+        -\frac{1}{2(1-\rho^2)} \Phi^{-1}(w)^2 - 2\rho\Phi^{-1}(w)u + u^2
+        \right\}du
+        \cdot \frac{1}{\phi\{\Phi^{-1}(w)\}}
+        \end{align}
+    \end{proof}
+
+
+\subsection{t-copulae}\label{subsec:t-copulae}
+The t copula is to represent the dependency structure by t distribution~\citep{fang2002meta, embrechts2002correlation}.
+\cite{demarta2005t} extend this idea to skewed t copula and grouped t copula to allow more flexibility in the modelling of dependency structure.
+
+\subsubsection{Vanilla t-copula}\label{subsec:vanilla-t-copula}
+The t-copula is
+\begin{align}
+    C^t_{\nu, \Sigma}(x) =
+    \int_{-\infty}^{t_\nu^{-1}(x_1)} \dots \int_{-\infty}^{t_\nu^{-1}(x_n)}
+    \frac{\Gamma\left\{ \frac{\nu + i}{2}\right\}}{\Gamma \left\{\frac{\nu}{2}\right\} (\pi \nu)^{i/2}|\Sigma|^{1/2}}
+    \left(
+    1+ \frac{y^\top \Sigma^{-1}y}{\nu}
+    \right)^{-\frac{\nu + i}{2}}
+    dy_1 \dots dy_n,
+    \end{align}
+where $t^{-1}_\nu$ is the quantile function of a univariate student-t distribution with degree of freedom $\nu$.
+
+\subsubsection{Skewed t copula}\label{subsec:skewed-t-copula}
+Mean variance mixture
+
+\subsubsection{Double-t copula}\label{subsec:double-t-copula}
+\natp{\em [It is OK to introduce the copula without any reference to CDO's.]}
+\cite{hull2006valuing} present an alternative way to the Gaussian copula for valuing CDO tranches.
+The double-t copula model is a weighted sum of a common (or market)
+variable $M$ and a idiosyncratic variable $Z_i$. \natp{\em [They are
+  $t$-distributed, right?]}
+The double-t copula is
+\begin{align} \label{eq:one-fator-model}
+X_i = w_i M + \sqrt{1-w_i^2} Z_i
+\end{align}
+where $M$ and $Z_i$ are independent random variables with zero mean and unit variance, and $X_i$ is an indicator variable for $i^\text{th}$ asset.
+The authors map the time to default of the $i^\text{th}$ obligor, $t_i$, to $X_i$,
+\begin{align}
+    F_{X_i}(x) = F_{t_i}(t).
+    \end{align}
+In our case, we map $X_i$ to log-returns of portfolio constituents,
+\begin{align}
+    F_{X_1}(x) = F_{r^S}(s) \text{ and } F_{X_2}(x) = F_{r^F}(t).
+    \end{align}
+This is also known as percentile-to-percentile
+mapping\citep{hull2006defining}.
+
+\natp{\em [The percentile-to-percentile mapping is just the property
+  that applying the cdf to a random variable yields a $U(0,1)$
+  variable:
+  \begin{equation*}
+    F(x) = \p(X\leq x) = \p(F(X) \leq F(x)) = \p(U\leq F(x)),
+  \end{equation*}
+  since by definition, $U\sim U(0,1)$ fulfills $\p(U\leq u)=u$, $0\leq
+  u\leq 1$. This could be introduced when copulas and Sklar's Theorem
+  are introduced. 
+]}
+The reason for this mapping is to turn incomprehensible dependency structures into known structure.
+
+\subsubsection{Normal Inverse Gaussian Copula}
+Normal Inverse Gaussian (NIG) distribution is a flexible 4-parameter distribution that can produce fat tails and skewness, unlike student-t distribution,
+NIG's convolution is stable under certain conditions and the CDF, PDF and quantile function can still be computed sufficiently fast~\cite[chapter 5]{schlosser2011pricing}.
+NIG distribution is a mixture of normal and inverse Gaussian distribution.
+\begin{definition} Inverse Gaussian Distribution.
+    A non-negative random variable $Y$ has an Inverse Gaussian (IG) distribution with parameters $\alpha >0$ and $\beta >0$ if its density funcion is of the form
+    \begin{align}
+        f_\text{IG}(y; \alpha, \beta) = \frac{\alpha}{\sqrt{2\pi \beta}}y^{-1.5} \exp\left\{
+        -\frac{(\alpha - \beta z)^2}{2\beta z}
+        \right\}
+    \end{align}
+    The corresponding distribution function is:
+        \begin{align}
+        F_\text{IG}(y; \alpha, \beta) = \frac{\alpha}{\sqrt{2\pi \beta}}
+        \int_0^y z^{-1.5} \exp\left\{
+        -\frac{(\alpha - \beta z)^2}{2\beta z}
+        \right\}
+            dz.
+    \end{align}
+    We write $Y \sim \text{IG}(\alpha, \beta)$.
+    \end{definition}
+
+\begin{definition} Normal Inverse Gaussian Distribution.
+    A random variable $X$ has an Normal Inverse Gaussian (NIG) distribution with parameters $\alpha$, $\beta$, $\mu$ and $\delta$ if its density funcion is of the form
+    \begin{align}
+        X|Y=y &\sim \Phi(\mu + \beta y, y)\\
+            Y &\sim \text{IG}(\delta \gamma, \gamma^2) \text{ with } \gamma \overset{\text{def}}{=}\sqrt{\alpha^2-\beta^2}
+    \end{align}
+    The corresponding distribution function is:
+        \begin{align}
+        F_\text{NIG}(y; \alpha, \beta) = \frac{\alpha}{\sqrt{2\pi \beta}}
+        \int_0^y z^{-1.5} \exp\left\{
+        -\frac{(\alpha - \beta z)^2}{2\beta z}
+        \right\}
+            dz.
+    \end{align}
+    \end{definition}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "notes.tex"
+%%% End: 
+
+
+
+
+%\subsection{Extreme-value copulae}\label{subsec:extreme-value-copulae}

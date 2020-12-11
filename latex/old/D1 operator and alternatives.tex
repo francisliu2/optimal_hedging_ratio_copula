@@ -1,0 +1,96 @@
+%! Author = francis
+%! Date = 13.08.20
+
+% Preamble
+\documentclass[11pt, leqno]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+% Packages
+\usepackage{amsfonts}
+%\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{prf}{Proof}[section]
+\numberwithin{equation}{section}
+
+% Document
+\begin{document}
+    \section{Another way to get $F_{X+Y}$ without using the $D_1$ Operator}\label{sec:D1alt}
+The motivation of this section is that the current $D_1$ operator cannot give us a sensible result of $F_{X+Y}$.
+This section provide an alternative route to involve the copula in the equation of $F_{X+Y}$.\\ \newline
+    In principle, this alternative way should give us the same expression as by $D_1$ operator. \\ \newline
+To keep things simple, we start with $F_Z$ where $Z = X+Y$.
+    Assume the marginals $F_{X}$ and $F_{Y}$ are twice differentiable with respect to their input,
+    and there exist a twice differentiable copula with respect to its two inputs $C_{XY} = F_{XY}$, we can write the p.d.f. of $Z$
+    \begin{align}
+    f_{Z}(z) = \int^\infty_{-\infty} f_{XY}(x, z-x)dx.
+    \end{align} (Source!)
+
+    We know by definition that the copula density $c_{XY}(u_1, u_2) = \frac{f_{XY}(F_X^{-1}(u_1), F_Y^{-1}(u_2))}{f_X(F_X^{-1}(u_1)) f_Y(F_Y^{-1}(u_2))}$,\\
+    and $c_{XY}(u_1, u_2) = \frac{\partial^2 C_{XY}(u_1, u_2)}{\partial u_1 \partial u_2}$, we immediately have:
+    \begin{align}
+    f_{Z}(z) = \int^\infty_{-\infty} \label{eq:main}
+    \frac{\partial^2 C_{XY}[F_X(x), F_Y(z-x)]}
+         {\partial F_X(x) \partial F_Y(z-x)}f_X(x)f_Y(z-x)dx
+    \end{align}.
+
+    Let $u_1:=F_X(x)$ and $u_2:=F_Y(z-x)$, so $u_2=F_Y(z-F_X^{-1}(u_1))$, and
+    \begin{enumerate}
+        \item $\frac{\partial u_1}{\partial x}= f_X(x)$,
+        \item $\frac{\partial u_2}{\partial x}= -f_Y(z-x)$,
+        \item $\frac{\partial u_2}{\partial u_1} = -\frac{f_Y(z-x)}{f_X(x)}$, and
+        \item $\frac{\partial^2 u_2}{\partial^2 u_1} =
+                \frac{\partial f_Y(z-F^{-1}_X(u_1))}{\partial z - F_X^{-1}(u_1)}
+                \frac{1}{f_X^2(F^{-1}(u_1))} +
+                \frac{1}{f_X^3(F^{-1}(u_1))}\frac{\partial f_X(F^{-1}_X(u_1))}{\partial F_X^{-1}(u_1)}
+                f_Y(z-F_X^{-1}(u_1))$
+    \end{enumerate}
+
+    Now we rewrite~\ref{eq:main}.
+    \begin{align}
+            f_{Z}(z) &= \int^\infty_{-\infty}
+    \frac{\partial }{\partial u_2}
+        \left(   \frac{\partial C_{XY}(u_1, u_2)}
+         {\partial u_1}   \right)
+            f_X(x)f_Y(z-x)dx\\
+              &= \int^\infty_{-\infty}
+    \frac{\partial }{\partial u_2}
+        \left(   \frac{\partial C_{XY}(u_1, u_2)}
+         {\partial u_1}   \right)\frac{\partial u_1}{\partial u_1}
+            f_X(x)f_Y(z-x)dx\\
+        &= \int^\infty_{-\infty} \frac{\partial^2 C_{XY}(u_1, u_2)}{\partial u_1^2} f^2_X(x)dx
+    \end{align}
+    For Archimedean copula $C_{XY}(u,v) = \phi^{-1}[\phi(u)+\phi(v)]$, we can further rewrite~\ref{eq:main}
+        \begin{align}
+            f_{Z}(z) &=
+            \int^1_0 \bigg [
+            \frac{\partial}{\partial u_1}
+            \frac{\partial \phi^{-1}[\phi(u_1)+\phi(u_2)]}{\partial \phi(u_1)+\phi(u_2)}
+            \left(
+            \frac{\partial \phi(u_2)}{\partial u_1}-
+            \frac{\partial \phi(u_1)}{\partial u_1}
+            \right)
+            \nonumber \\
+            \qquad & +\frac{\partial \phi^{-1}[\phi(u_1)+\phi(u_2)]}{\partial \phi(u_1)+\phi(u_2)}
+            \left(
+            \frac{\partial^2 \phi(u_2)}{\partial u_1^2}-
+            \frac{\partial^2 \phi(u_1)}{\partial u_1^2}
+            \right)
+            \bigg ]f^2_X(F^{-1}_X(u_1))du_1 \label{eq:fZ}
+    \end{align}
+    Let's observe the equation.
+    \begin{enumerate}
+    \item $\frac{\partial}{\partial u_1}
+            \frac{\partial \phi^{-1}[\phi(u_1)+\phi(u_2)]}{\partial \phi(u_1)+\phi(u_2)}$
+    \item $\frac{\partial \phi(u_2)}{\partial u_1} = \frac{\partial \phi(u_2)}{\partial u_2}\frac{\partial u_2}{\partial u_1}$
+    \item $\frac{\partial^2 \phi(u_2)}{\partial u_1^2} = \frac{\partial^2 \phi(u_2)}{\partial u_1 \partial u_2}+
+    \frac{\partial^2 u_2}{\partial u_1^2}\frac{\partial \phi(u_2)}{\partial u_2}$
+    \end{enumerate}
+    The above parts are solvable case by case depending on which copula is chosen.
+    The equation~\ref{eq:fZ} is now ready to be numerically solved by plugging in $x=F^{-1}(u_1)$ and $u_2 = F_Y(z-F^{-1}_X(u_1))$ to it.
+\end{document}

@@ -21,7 +21,7 @@ library(dplyr)
 #SP = read_excel("../data/SP500_2020.xlsx", range = "C7046:C7827")#C3916:C5219
 #SPF = read_excel("../data/SP500FUT_2020.xlsx", range = "C7046:C7827")  #C3:C7827
 
-data=read.csv("../data/sp500.csv")
+data=read.csv("D:/Git_copula/optimal_hedging_ratio_copula/data/sp500.csv")
 
 #colnames(SP)="SP"
 #colnames(SPF)="SPF"
@@ -36,4 +36,6 @@ data = as.matrix(data)
 
 SP_copula = gof(data, priority = "tests", copula = c("normal", "t", "clayton", "gumbel", "frank"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 1000)
 
-gof(data, priority = "tests", copula = c("normal", "t"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 10)
+#gof(data, priority = "tests", copula = c("normal", "t"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 10)
+SP_copula_3y = unlist(SP_copula)
+write.xlsx(SP_copula_3y, "D:/Git_copula/optimal_hedging_ratio_copula/parameter_estimation/SP_copula_3y.xlsx")

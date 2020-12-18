@@ -5,6 +5,7 @@ install.packages("Rcpp")
 install.packages("goft")
 install.packages("fitdistrplus")
 install.packages("ExtDist")
+install.packages("rugarch")
 
 library(ExtDist)
 library(fitdistrplus)
@@ -19,28 +20,45 @@ library(readxl)
 library(gofCopula)
 library(dplyr)
 library(disclap)
-
+library(rugarch)
 
 # SP and SPF
 SP = read_excel("D:/Project/project/project/project/SRM/SRM data/2020/2020/SP500_2020.xlsx", range = "C3:C7827")#C3916:C5219
 SPF = read_excel("D:/Project/project/project/project/SRM/SRM data/2020/2020/SP500FUT_2020.xlsx", range = "C3:C7827")  #C3:C7827
+data=read.csv("D:/Git_copula/optimal_hedging_ratio_copula/data/sp500.csv")
+
 
 colnames(SP)="SP"
 colnames(SPF)="SPF"
 
-SP    = as.numeric(unlist(SP))
+
+SP1   = data.frame(SP)
+
+spec = ugarchspec(variance.model = list(model = "eGARCH", garchOrder = c(1,1)),
+                  mean.model = list(armaOrder = c(1,1), include.mean = TRUE),
+                  distribution.model = "std")
+
+fit = ugarchfit(data = SP1, spec = spec)
+
+SP.std = sqrt(uncvariance(fit))
+
+SP1_degarch = SP1/(SP.std)
+
+SP    = as.numeric(unlist(SP1_degarch))
+
+
 
 SP2 = SP  
 SP2[SP2<0.001] <- NA
 SP2<-SP2[complete.cases(SP2)]
 
 # # Loglikelihood and AIC for normal distribuiton
-# 
-# norm.log<-function(param) {
-#   
-#   -sum(dnorm(SP,param[1],param[2],log=T)) }
-# 
-# AIC.norm = -2*optim(c(0,1),ll1)$value + 2*2
+
+norm.log<-function(param) {
+
+  -sum(dnorm(SP,param[1],param[2],log=T)) }
+
+AIC.norm = -2*optim(c(0,1),ll1)$value + 2*2
 
 # Loglikelihood and AIC for t distribuiton
 
@@ -58,18 +76,6 @@ est.par <- eLaplace(SP, method="analytic.MLE");
 laplace.AIc = -2*lLaplace(SP,param=est.par)+2*2
 
 
-# normal distribution
-
-fit.n = fitdist(SP,"norm")
-
-a.norm=summary(fit.n)
-a.norm$aic
-
-# t distribution
-fit.t = fitdist(SP, "t", start = list(df=3))
-
-a.t=summary(fit.t)
-a.t$aic
 
 
 

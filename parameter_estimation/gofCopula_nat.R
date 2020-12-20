@@ -21,7 +21,7 @@ library(dplyr)
 #SP = read_excel("../data/SP500_2020.xlsx", range = "C7046:C7827")#C3916:C5219
 #SPF = read_excel("../data/SP500FUT_2020.xlsx", range = "C7046:C7827")  #C3:C7827
 
-data=read.csv("D:/Git_copula/optimal_hedging_ratio_copula/data/sp500.csv")
+data=read.csv("../data/sp500.csv")
 
 #colnames(SP)="SP"
 #colnames(SPF)="SPF"

@@ -112,57 +112,417 @@ Special cases:
   \nu)$, where $Ig$ is an inverse gamma distribution
 \item Symmetric generalised hyperbolic distribution: $W\sim
   N^{-}(\lambda, \chi, \psi)$ where $N^{-}$ refers to
-  the generlised inverse Gaussian (GIG) distribution
+  the generalised inverse Gaussian (GIG) distribution;
 \item Normal inverse Gaussian (NIG): $W$ follows a GIG distribution
   with $\lambda=-0.5$.  
 \end{itemize}
 
+\subsection{Normal inverse Gaussian distribution}
 
-under construction
+As an interesting additional copula model, we consider the normal
+inverse Gaussian (NIG) distribution: first, it is a normal
+mean-variance mixture (an uncentered NVM distribution); second, its
+distribution type is preserved under 
+convolution / linear combinations. The last property, together with
+its infinite divisibility, allow for the construction of L\'evy
+processes from NIG distributions. 
 
+Following \citep{BarndorffNielsen1997}, a normal inverse Gaussian
+(NIG) distribution has density function
+\begin{equation*}
+  g(x; \alpha,\beta, \mu, \delta) = \frac{\alpha}{\pi} \e^{\delta
+    \sqrt{\alpha^2-\beta^2} -\beta\mu} \frac{1}{q((x-\mu)/\delta)}
+  K_1\left[\delta \alpha q\left(\frac{x-\mu}{\delta}\right) \right]
+  \e^{\beta x},\quad x>0,
+\end{equation*}
+where $q(x) = \sqrt{1+x^2}$ and where $K_1$ is the modified Bessel
+function of third order and index $1$. The parameters satisfy $0\leq
+|\beta|\leq \alpha$, $\mu\in \R$ and $\delta>0$. The parameters are
+interpreted as follows: $\mu$ and $\delta$ are location and scale
+parameters, respectively, $\alpha$
+determines the heaviness of the tails and $\beta$ determines the degree
+of asymmetry. If $\beta=0$, then the distribution is symmetric around
+$\mu$. 
+
+The moment-generating function of the NIG distribution is given by
+\begin{equation*}
+  M(u; \alpha, \beta, \mu, \delta) = \exp\left( \delta
+    \left(\sqrt{\alpha^2-\beta^2} - \sqrt{\alpha^2 - (\beta +
+        u)^2}\right) + \mu u\right). 
+\end{equation*}
+As a direct consequence, the expectation and variance of the NIG
+distribution are easily calculated to be
+\begin{align}
+  \label{eq:4}
+  \mathbb E X &= \mu + 
+                \frac{\delta \beta}{\sqrt{\alpha^2-\beta^2}}\\
+  \label{eq:5}
+  \text{Var}(X) &= \frac{\alpha^2\delta}{(\alpha^2-\beta^2)^{3/2}}.
+\end{align}
+
+
+Let $\text{IG}(\delta,\gamma)$ denote the {\em inverse Gamma
+  distribution} with density function\footnote{%
+  The density of the IG distribution in {\tt Mathematica} is given as
+  \begin{equation*}
+    f(x) = \sqrt{\frac{\lambda}{x^3}} \frac{1}{\sqrt{2\pi}}
+    \e^{-\frac{\lambda(x-\mu)^2}{2 x\mu^2}},\quad x>0,
+  \end{equation*}
+  with parameters $\mu=\delta/\gamma$ and $\lambda=\delta^2$. 
+  }%
+\begin{equation}
+  \label{eq:2}
+  d(w; \delta, \gamma) = \frac{1}{\sqrt{2\pi}} \exp(\delta \gamma)
+  w^{-3/2} \exp(-\frac{\delta^2/w + \gamma^2 z}{2}). 
+\end{equation}
+The $\text{NIG}(\alpha, \beta, \mu\, \delta)$ distribution is a normal
+variance-mean mixture: $X$ follows an
+$\text{NIG}(\alpha,\beta,\mu,\delta)$ distribution if $X$ conditional
+on $W$ follows a normal distribution with mean $\mu+\beta W$ and
+variance $W$, i.e., 
+\begin{equation*}
+  X|W\stackrel{\mathcal L}\sim \Ncdf(\mu + \beta W, W),
+\end{equation*}
+where $W$ follows an $\text{IG}(\delta, \sqrt{\alpha^2-\beta^2})$
+distribution. 
+
+It is easily seen from the moment-generating function that linear
+combinations of NIG random variables are again NIG-distributed
+provided they share the parameters $\alpha$ and $\beta$. Let $X_i\sim
+\text{NIG}(\alpha, \beta, \mu_i, \delta_i)$, $i=1,2$, and $X_1\perp 
+X_2$. Then, 
+\begin{equation*}
+  \E\left[\e^{u(X_1+X_2)}\right] = \E\left[\e^{u X_1}\right]
+  \E\left[\e^{u X_2}\right] = \exp\left((\delta_1+\delta_2)
+    \left(\sqrt{\alpha^2-\beta^2} - \sqrt{\alpha^2 -
+        (\beta+u)^2}\right) + (\mu_1+\mu_2) u\right),
+\end{equation*}
+hence $X_1+X_2\sim \text{NIG}(\alpha, \beta, \mu_1+\mu_2,
+\delta_1+\delta_2)$. (This is also a direct consequence from the
+properties of 
+the normal inverse Gaussian L\'evy process $X_t$, which may be
+represented as Brownian motion with a random time change,
+\begin{equation*}
+  X_t = B_{W_t} + \mu t,
+\end{equation*}
+where $B=(B_t)_{t\geq 0}$ is a Brownian motion and $W=(W_t)_{t\geq 0}$
+is a L\'evy process with density given by \eqref{eq:2}. The random
+variable $W_t$ can be interpreted as a first-passage time of an
+independent Brownian motion $\overline B$, i.e., $W_t=\inf\{s>0:
+\overline B_s + \sqrt{\alpha^2-\beta^2}s = \delta t\}$.)
+
+As a consequence, the NIG distribution gives rise to two copulas:
+\begin{itemize}
+\item a copula determined from a linear combination of independent NIG
+  random variables with identical parameters $\alpha, \beta$
+  (essentially a factor model);
+\item a copula determined from the multivariate normal-mean-variance
+  mixture, which is a linear combination of normal random variables
+  scaled by one scalar inverse Gaussian random variable.
+\end{itemize}
+
+\subsection{Normal inverse Gaussian factor copula}
+\label{sec:norm-inverse-gauss}
+
+We consider a simple factor model consisting of NIG-distributed random
+variables.
+\begin{proposition}
+  Let $Z\sim \text{NIG}(\alpha, \beta, \mu, \delta)$ and
+  $Z_i\sim \text{NIG}(\alpha, \beta, \mu_i, \delta_i)$,
+  $i=1,\ldots, n$ be independent NIG-distributed random
+  variables. Then (i) 
+  $X_i = Z + Z_i\sim \text{NIG}(\alpha,\beta,\mu+\mu_i,
+  \delta+\delta_i)$ and (ii)
+  \begin{align}
+    \text{Cov}(X_i,X_j) &= \text{Var(Z)},\nonumber\\
+    \text{Corr}(X_i,X_j) &= \frac{\delta}{\sqrt{(\delta+\delta_i)
+                           (\delta+\delta_j)}}. \label{eq:6}
+  \end{align}
+\end{proposition}
+\begin{proof}
+  \begin{enumerate}[(i)]
+  \item This follows directly from the moment-generating function (see
+    also previous page). \natp{need re-writing}
+  \item For the covariance,
+    \begin{align*}
+      \text{Cov}(X_i,X_j)
+      &= \E[(Z+Z_i) (Z+Z_j)] - \E[Z+Z_i] \E[Z+Z_j]\\
+      &= \E[Z^2] -(\E[Z])^2.
+    \end{align*}
+    The correlation is determined directly from \eqref{eq:5}. 
+  \end{enumerate}
+\end{proof}
+
+\subsection{Fitting the NIG distribution}
+\label{sec:fitt-nig-distr}
+
+Given that the parameters $\alpha, \beta, \mu, \delta$ denote tail
+heaviness, skewness, location and scale, one can fit the NIG
+distribution by matching the first four moments. Let
+$\hat\mu_r=\frac{1}{n} \sum_{i=1}^n x_i^r$ denote the $r$-th moment of
+the sample $x_1, \ldots, x_n$. Then moment-matching the NIG
+distribution corresponds to solving for $\alpha, \beta, \mu, \delta$
+the system of equations
+\begin{equation*}
+  \begin{pmatrix}
+    \frac{\partial}{\partial u} M(u; \alpha, \beta, \mu,
+    \delta)|_{u=0}\\[5pt]
+    \frac{\partial^2}{\partial u^2} M(u; \alpha, \beta, \mu,
+    \delta)|_{u=0}\\[5pt]
+    \frac{\partial^3}{\partial u^3} M(u; \alpha, \beta, \mu,
+    \delta)|_{u=0}\\[5pt]
+    \frac{\partial^4}{\partial u^4} M(u; \alpha, \beta, \mu,
+    \delta)|_{u=0}\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \hat\mu_1\\[5pt]
+    \hat\mu_2\\[5pt]
+    \hat\mu_3\\[5pt]
+    \hat\mu_4
+  \end{pmatrix}
+\end{equation*}
+
+
+Bivariate data, as present in our case, can be
+fit by moment-matching involving the parameters $(\alpha, \beta,
+\mu_1, \mu_2, \delta_1, \delta_2)$ and then fitting $\delta$ of the
+joint factor via the empirical correlation. Without loss of
+generality, set $\mu=0$. Then:
+\begin{align*}
+  \min_{\alpha, \beta, \mu_1, \mu_2, \tilde\delta_1, \tilde\delta_2}
+  \sqrt{\sum_{k=1}^2 \sum_{r=1}^4
+  \left(\hat\mu_{r,k}-\frac{\partial^r}{\partial u^r} M(u; \alpha, \beta,
+  \mu_k, \tilde\delta_k)\Big|_{u=0}\right)^2}
+\end{align*}
+Note that $\tilde\delta_k$ refers to the scale parameter of
+$X_k$. The scale parameters of the independent NIG components $Z_k$,
+$k=1,2$, are obtained as $\delta_k=\delta-\tilde \delta_k$ after
+fitting $\delta$ from \eqref{eq:6}. Figure \ref{fig:nig} shows
+histograms and the fitted NIG densities of the Bitcoin reference rate
+(BRR) returns and the Bitcoin Futures contract returns (BTCF). 
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[scale=.7]{_pics/fittedNIG.pdf} 
+  \includegraphics[scale=.7]{_pics/scatter.pdf}
+  \caption{BRR and BTCF return distributions (empirical and fitted to
+    NIG) as well as scatter plot.}
+  \label{fig:nig}
+\end{figure}
+
+\subsection{Hedge calculation in the NIG factor model}
+\label{sec:hedge-calc-nig}
+
+Optimising for the hedge quantity $h$ requires fast calculations of
+the hedge distribution function \eqref{eq:3}. The position obtained
+from hedging Bitcoin with $h$ units of the Bitcoin future returns
+\begin{equation*}
+  R^h = X_1 - h X_2 = Z + Z_1 - h Z - h Z_2 = (1-h) Z + Z_1 - h Z_2,
+\end{equation*}
+with $Z, Z_1, Z_2$ independent NIG-distributed random
+variables. Without loss of generally, set $\mu=0$. Because of the
+scaling with $1-h$ and $h$, $R^h$ will not follow an NIG distribution,
+unless $h=0$.  A direct calculation of the distribution function is
+achieved by numerically computing the integral
+\begin{equation*}
+  \p(R^h\leq x) = \int_0^\infty \int_0^\infty \int_0^\infty
+  \Ncdf(y; \mu_1 - h \mu_2 + \beta w_1 - h w_2, (1-h)^2 w + w_1 + h^2
+  w_2)\, f_W(w)\, f_{W_1}(w_1)\, f_{W_2} (w_2)\, \dd w\, \dd w_1\, \dd w_2,
+\end{equation*}
+where $\Ncdf(x; \mu, \sigma^2)$ denotes the normal distribution
+function with expectation $\mu$ and variance $\sigma^2$, and
+$f_W, f_{W_1}, f_{W_2}$ are the inverse gamma density functions of the
+scaling variables $W$, $W_1$ and $W_2$ with parameters
+$\delta, \delta_1, \delta_2$ and $\sqrt{\alpha^2-\beta^2}$. 
+
+However, for determining the optimal hedge parameter $h$, numerical
+computation of the three-fold integral may be slow, compared to other
+methods that make explicit use of the simple form of the
+moment-generating function.  The following two methods achieve a much
+faster computation for the NIG factor model.  The first method uses
+Fourier inversion to calculate the density from the characteristic
+function. The second method approximates the distribution of $R^h$ by
+an NIG distribution.  Both methods use the moment-generating function
+of $R^h$, which is given by
+\begin{align}
+  \varphi_h(u):=\E\left[\e^{u R^h}\right]
+  &= \E\left[ \e^{u[(1-h) Z + Z_1 -h Z_2]}\right] %
+    = \E\left[ \e^{u(1-h) Z}\right]\, \E\left[ \e^{u Z_1}\right] \,
+    \E\left[ \e^{-u h Z_2}\right]\nonumber\\
+  &=M\left(u;\frac{\alpha}{1-h}, \frac{\beta}{1-h}, (1-h)\mu,
+    (1-h)\delta\right)\,
+    M\left(u; \alpha, \beta, \mu_1, \delta_1\right)\,
+    M\left(-u; \frac{\alpha}{h}, \frac{\beta}{h}, h\mu_2,
+    h\delta_2\right).
+    \label{eq:7}
+\end{align}
+
+
+\subsubsection{Calculation via Fourier inversion}
+\label{sec:calc-via-four}
+
+Because of the simple form of the moment-generating function
+\eqref{eq:7}, the density $f$ of $R^h$ can be calculated numerically
+using the inverse Fourier transform of the characteristic function
+$\varphi(u) $:
+\begin{equation*}
+  f(x) = \frac{1}{2\pi} \int_\R \e^{-i u x} \varphi_h(u)\, \dd u, 
+\end{equation*}
+and the distribution function of $R^h$ can be calculated as
+\begin{equation*}
+  \p(R^h\leq x) = \lim_{b\rightarrow-\infty} \frac{1}{2\pi} \int_\R
+  \frac{\e^{-i u x} - \e^{-i u b}}{i u}\, \varphi_h(u)\, \dd u,
+\end{equation*}
+see e.g.\ II.\S 12, Theorem 3 of \citep{Shiryaev1996}.
+
+
+\subsubsection{NIG approximation of hedged position}
+\label{sec:nig-appr-hedg}
+
+If $h=1$ and $\beta=0$, then $R^h$ is NIG, hence, if $h$ is close to
+$1$, it may be feasible to approximate $R^h$ by an NIG. The parameters
+can be determined either by moment-matching or by a first-order Taylor
+approximation of the moment-generating function's exponent.
+
+
+For the moment-matching procedure, set
+$R^h\approx \text{NIG}(\alpha_h, \beta_h, \mu_h, \delta_h)$ and solve
+for $\alpha_h, \beta_h, \mu_h, \delta_h$, 
+\begin{equation*}
+  \begin{pmatrix}
+    \frac{\partial}{\partial u} \varphi_h(u)\big|_{u=0}\\[5pt]
+    \frac{\partial^2}{\partial u^2} \varphi_h(u)\big|_{u=0}\\[5pt]
+    \frac{\partial^3}{\partial u^3} \varphi_h(u)\big|_{u=0}\\[5pt]
+    \frac{\partial^4}{\partial u^4} \varphi_h(u)\big|_{u=0}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \frac{\partial}{\partial u} M(u;\alpha_h, \beta_h, \mu_h,
+    \delta_h)_{u=0}\\[5pt]
+    \frac{\partial^1}{\partial u^2} M(u;\alpha_h, \beta_h, \mu_h,
+    \delta_h)_{u=0}\\[5pt]
+    \frac{\partial^2}{\partial u^3} M(u;\alpha_h, \beta_h, \mu_h,
+    \delta_h)_{u=0}\\[5pt]
+    \frac{\partial^3}{\partial u^4} M(u;\alpha_h, \beta_h, \mu_h,
+    \delta_h)_{u=0}
+  \end{pmatrix}.
+\end{equation*}
+% \begin{equation*}
+%   \min_{\alpha_h, \beta_h, \mu_h, \delta_h} \sqrt{\sum_{r=1}^4
+%     \left(\frac{\partial^r}{\partial u^r} \left[\E\left[\e^{u
+%             R^h}\right] - M(u;\alpha_h, \beta_h, \mu_h,
+%         \delta_h)\right]_{u=0}\right)^2}, 
+% \end{equation*}
+% allows for an efficient computation of
+
+An alternative to determine the parameters is to assume that $h=1$ so
+that $R^1 = Z_1 - Z_2$ and using the following first-order Taylor
+approximation around zero: 
+\begin{equation*}
+  \sqrt{\alpha^2 -
+    (\beta + u)^2}-\sqrt{\alpha^2 - (\beta - u)^2} \approx
+  -\frac{2\beta}{\sqrt{\alpha^2 - \beta^2}}\, u. 
+\end{equation*}
+This gives 
+\begin{align*}
+  \varphi_1(u)
+  &= M(u; \alpha, \beta, \mu_1, \delta_1) M(-u; \alpha, \beta, \mu_2,
+    \delta_2) \\
+  &= \exp\left(\delta_1 (\sqrt{\alpha^2-\beta^2} - \sqrt{\alpha^2 -
+    (\beta+u)^2}) + \mu_1 \, u + \delta_2 (\sqrt{\alpha^2 - \beta^2} -
+    \sqrt{\alpha^2 - (\beta - u)^2}) - \mu_2\, u\right)\\
+  &= \exp\left(\delta_1 (\sqrt{\alpha^2-\beta^2} - \sqrt{\alpha^2 -
+    (\beta+u)^2}) + \mu_1 \, u + \delta_2 (\sqrt{\alpha^2 - \beta^2} -
+    \sqrt{\alpha^2 - (\beta + u)^2})  - \mu_2\, u\right)\\
+  &\, \cdot \exp\left(\delta_2( \sqrt{\alpha^2 -
+    (\beta + u)^2}-\sqrt{\alpha^2 - (\beta - u)^2})\right)\\
+  &\approx \exp\left((\delta_1+\delta_2) (\sqrt{\alpha^2-\beta^2} -
+    \sqrt{\alpha^2-(\beta+u)^2}) + \left(\mu_1-\mu_2
+    -\frac{2\delta_2\beta}{\sqrt{\alpha^2-\beta^2}}\right) u\right)\\ 
+  &= M\left(u; \alpha, \beta, \mu_1-\mu_2
+    -\frac{2\delta_2\beta}{\sqrt{\alpha^2-\beta^2}},
+    \delta_1+\delta_2\right). 
+\end{align*}
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[scale=.8]{_pics/NIG1.pdf}
+  \includegraphics[scale=.8]{_pics/NIG2.pdf}
+  \caption{Left: CDF of $R^{0.95}$ using Bitcoin data. Right:
+    Difference of different methods to direct integration. CPU times:
+    NIG approximation (moment matching): 0.2 seconds plus 18.6 seconds
+    for parameter calibration; Direct integration: 82 seconds; NIG 
+    approximation (Taylor): 0.18 seconds; Fourier inversion: 0.034
+    seconds plus 1.55 seconds to generate smooth density function.}
+  \label{fig:NIGs}
+\end{figure}
+
+Figure \ref{fig:NIGs} shows an example of the distribution of
+$R^{0.95}$ for the different approximations as well as their error
+relative to direct integration. It turns out that the NIG
+moment-matching approximation performs best in terms of the error,
+while the Taylor approximation performs worst. Taking into account CPU
+times, the Fourier inversion technique performs best in terms of
+balancing error and CPU time. 
+
+
+
+\clearpage%
 \natp{\em [The definition below is one way of introducing the
-  elliptical copula, but not the most practical one for our purposes.]}
+  elliptical copula, but not the most practical one for our
+  purposes.]}
 
 \begin{definition}
-    Elliptical Distribution.
-    The $d$-dimensional random vector $\pmb{y}$ has an elliptical distribution if and only if the characteristic function
-    $\pmb{t} \mapsto \mathbb{E}\{\exp(i\pmb{t}^\top \pmb{y})\}$ with $\pmb{t} \in \mathbb{R}^d$ has the representation
-    \begin{align}
-        \phi_g(\pmb{t}; \pmb{\mu}, \pmb{\Sigma}, \pmb{\nu}) = \exp(i\pmb{t}^\top\pmb{\mu})g(\pmb{t}^\top\pmb{\Sigma}\pmb{t};\pmb{\nu})
-        \end{align}
-    where $g(\cdot;\nu):[0, \infty[ \mapsto \mathbb{R}$, $\nu \in \mathbb{R}^d$, and $\Sigma$ is a symmetric positive semidefinite $d\times d$-matrix.
-    \end{definition}
+  Elliptical Distribution.  The $d$-dimensional random vector
+  $\pmb{y}$ has an elliptical distribution if and only if the
+  characteristic function
+  $\pmb{t} \mapsto \mathbb{E}\{\exp(i\pmb{t}^\top \pmb{y})\}$ with
+  $\pmb{t} \in \mathbb{R}^d$ has the representation
+  \begin{align}
+    \phi_g(\pmb{t}; \pmb{\mu}, \pmb{\Sigma}, \pmb{\nu}) = \exp(i\pmb{t}^\top\pmb{\mu})g(\pmb{t}^\top\pmb{\Sigma}\pmb{t};\pmb{\nu})
+  \end{align}
+  where $g(\cdot;\nu):[0, \infty[ \mapsto \mathbb{R}$,
+  $\nu \in \mathbb{R}^d$, and $\Sigma$ is a symmetric positive
+  semidefinite $d\times d$-matrix.
+\end{definition}
 
 If $r$ has a density, then the density of $\pmb{y}$ is of the form
 \begin{align}
-    |\Sigma|^{\frac{1}{2}} g\{(\pmb{y} - \pmb{\mu})^\top \Sigma^{-1}(\pmb{y} - \pmb{\mu})\}.
-    \end{align}
+  |\Sigma|^{\frac{1}{2}} g\{(\pmb{y} - \pmb{\mu})^\top \Sigma^{-1}(\pmb{y} - \pmb{\mu})\}.
+\end{align}
 
-The function $g(\cdot; \nu)$ is known as characteristic generator, whereas $\pmb{\nu}$ is parameter that determines the shape, in particular the tai index of the distribution.
+The function $g(\cdot; \nu)$ is known as characteristic generator,
+whereas $\pmb{\nu}$ is parameter that determines the shape, in
+particular the tai index of the distribution.
 
 
 
 
 
-\begin{corollary} \citep[equation 2.12]{fang2018symmetric}
-    If $\pmb{y}$ follows an elliptical distribution, then $\pmb{y}$ has a stochastic representation
-    \begin{align}\label{eq:stochastic-representation}
-        \pmb{y} = \pmb{\mu} + r\pmb{A}^\top \pmb{u},
-        \end{align}
-    where $r \in \mathbb{R}_+$ is independent of
-    $\pmb{u}$
-%\footnote{$\pmb{u}$ is uniformly distributed on $S_d = \{\pmb{u} \in \mathbb{R}^d s.t. ||\pmb{u}|| = 1\}$},
-    , and $\pmb{A}^\top\pmb{A}=\pmb{\Sigma}$.
-    \end{corollary}
+\begin{corollary} \citep[equation 2.12]{fang2018symmetric} If
+  $\pmb{y}$ follows an elliptical distribution, then $\pmb{y}$ has a
+  stochastic representation
+  \begin{align}\label{eq:stochastic-representation}
+    \pmb{y} = \pmb{\mu} + r\pmb{A}^\top \pmb{u},
+  \end{align}
+  where $r \in \mathbb{R}_+$ is independent of $\pmb{u}$
+  % \footnote{$\pmb{u}$ is uniformly distributed on
+  % $S_d = \{\pmb{u} \in \mathbb{R}^d s.t. ||\pmb{u}|| = 1\}$},
+  , and $\pmb{A}^\top\pmb{A}=\pmb{\Sigma}$.
+\end{corollary}
 
 \begin{table}[ht]
-    \center
-    \begin{tabular}{lll}
+  \center
+  \begin{tabular}{lll}
     Distribution & $r \sim$ & $g(\pmb{t})$\\ \hline
     Gaussian & $\chi_n$ &
-        \end{tabular}
-    \caption{Generators of Elliptical Distributions summarised from~\cite[Chapter 2]{fang2018symmetric}}
-    \label{tab:table}
+  \end{tabular}
+  \caption{Generators of Elliptical Distributions summarised
+    from~\cite[Chapter 2]{fang2018symmetric}}
+  \label{tab:table}
 \end{table}
 
 

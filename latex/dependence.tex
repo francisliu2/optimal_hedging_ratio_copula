@@ -105,7 +105,7 @@ The copula density is
 \begin{align}
     c^{Ga}_\Sigma(x) &= \frac{1}{(2\pi)^{d/2} |\Sigma|^{1/2}}
     \exp \left\{
-    -\frac{1}{2}\begin{pmatrix} \Phi^{-1}(x_1) \\ \vdots \\ \Phi^{-1}(x_d) \end{pmatrix}^\top \Sigma^{-1} \begin{pmatrix} \Phi^{-1}(x_1) \\ \vdots \\ \Phi^{-1}(x_d) \end{pmatrix}
+    -\frac{1}{2}\begin{pmatrix} \Phi^{-1}(x_1) \\ \vdots \\ \Phi^{-1}(x_d) \end{pmatrix}^\top \Sigma^{-1}-I \begin{pmatrix} \Phi^{-1}(x_1) \\ \vdots \\ \Phi^{-1}(x_d) \end{pmatrix}
     \right\}
     \end{align}
 
@@ -136,6 +136,15 @@ The bivariate $D_1 C^{Ga}\{w, g(w)\}$ is
         \cdot \frac{1}{\phi\{\Phi^{-1}(w)\}}
         \end{align}
     \end{proof}
+
+The bivariate Gaussian Copula density~$c^{Ga}\{w, g(w)\}$ is
+\begin{align}
+    c_\rho^{Ga}\{w, g(w)\} &= \frac{\partial D_1C_\rho^{Ga}\{w, g(w)\}}{\partial g(w)}\\
+                           &= \frac{\phi_\rho [\Phi^{-1}(w), \Phi^{-1}\{g(w)\}]}
+                            {\phi\{\Phi^{-1}(w)\}\phi[\Phi^{-1}\{g(w)\}]}
+    \end{align}
+
+
 
 
 \subsection{t-copulae}\label{subsec:t-copulae}

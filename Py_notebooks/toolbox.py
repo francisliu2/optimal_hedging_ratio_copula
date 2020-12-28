@@ -4,6 +4,9 @@ import scipy.linalg as la
 from functools import partial, lru_cache
 from scipy import integrate
 import scipy
+import dill
+dill.settings['recurse'] = True
+fs = dill.load(open("NIG_k3-k5_fn", 'rb'))
 
 class multivariate_t:
     def __init__(self, nu, Sigma):
@@ -120,13 +123,49 @@ class norminvgauss:
     
     def normalise(self):
         # Standardised NIG for CF approximation use
+        fs = dill.load(open("NIG_k3-k5_fn", 'rb'))
+        k3_fn = fs['k3']
+        k4_fn = fs['k4']
+        k5_fn = fs['k5']
+        
         self.a = self.std()
         self.b = self.mean()
         self.standardisedNIG = norminvgauss(alpha=self.alpha*self.a,
                                           beta=self.beta*self.a,
                                           mu=(self.mu-self.b)/self.a,
                                           delta=self.delta/self.a)
+        
+        
+        salpha = self.alpha*self.a
+        sbeta  = self.beta*self.a
+        smu=(self.mu-self.b)/self.a
+        sdelta=self.delta/self.a
+        
+        self._k3 = k3_fn(salpha,sbeta,smu,sdelta)
+        self._k4 = k4_fn(salpha,sbeta,smu,sdelta)
+        self._k5 = k5_fn(salpha,sbeta,smu,sdelta)
 
+
+    def ppf_approx(self, Zq):
+        self.normalise()
+        # level 0
+        part1 =  Zq
+
+        # level 1
+        part2 =  self._k3*(Zq**2 - 1)/6
+
+        # level 2
+        part3 =  self._k4*(Zq**3 - 3*Zq)/24
+        part4 = -self._k3**2*(2*Zq**3 - 5*Zq)/36
+
+        # level 3
+        part5 =  self._k5*(Zq**4 - 6*Zq**2 + 3)/120
+        part6 = -self._k3*self._k4*(Zq**4-5*Zq**2+2)/24
+        part7 =  self._k3**3*(12*Zq**4 - 53*Zq**2+17)/324
+
+        Xq = self.a*(part1 + part2 + part3 + part4 + part5 + part6 + part7) + self.b
+        return Xq
+    
     def rvs(self, size):
         z = invgauss(delta=self.delta, gamma=self.gamma).rvs(size=size)
         x = stats.norm(loc=self.mu + self.beta*z, scale= np.sqrt(z)).rvs(size=size)

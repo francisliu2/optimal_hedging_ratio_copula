@@ -166,6 +166,10 @@ class norminvgauss:
         Xq = self.a*(part1 + part2 + part3 + part4 + part5 + part6 + part7) + self.b
         return Xq
     
+    def ppf_sampling_approx(self, q_arr, size=5000000):
+        NIG = NIG_law.rvs(size)
+        q_sample = np.quantile(NIG, q_arr)
+        return q_sample
     def rvs(self, size):
         z = invgauss(delta=self.delta, gamma=self.gamma).rvs(size=size)
         x = stats.norm(loc=self.mu + self.beta*z, scale= np.sqrt(z)).rvs(size=size)

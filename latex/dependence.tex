@@ -221,6 +221,14 @@ As a consequence, the NIG distribution gives rise to two copulas:
   scaled by one scalar inverse Gaussian random variable.
 \end{itemize}
 
+\subsection{NIG quantiles}
+\label{sec:nig-quantiles}
+
+A fast implementation of the NIG quantile function is necessary for
+various purposes, such as calibrating an NIG-based copula model (NIG
+copula or NIG factor copula). One way of implementing this is via the
+so-called {\em Cornish-Fisher expansion}. 
+
 \subsection{Normal inverse Gaussian factor copula}
 \label{sec:norm-inverse-gauss}
 
@@ -255,6 +263,10 @@ variables.
 
 \subsection{Fitting the NIG distribution}
 \label{sec:fitt-nig-distr}
+
+\subsubsection{NIG margins}
+\label{sec:nig-margins}
+
 
 Given that the parameters $\alpha, \beta, \mu, \delta$ denote tail
 heaviness, skewness, location and scale, one can fit the NIG
@@ -311,6 +323,11 @@ histograms and the fitted NIG densities of the Bitcoin reference rate
     NIG) as well as scatter plot.}
   \label{fig:nig}
 \end{figure}
+
+\subsubsection{Copula }
+\label{sec:copula-}
+
+
 
 \subsection{Hedge calculation in the NIG factor model}
 \label{sec:hedge-calc-nig}

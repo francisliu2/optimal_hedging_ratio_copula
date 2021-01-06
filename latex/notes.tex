@@ -49,6 +49,7 @@
 \newtheorem{condition}[theorem]{Condition}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{assumption}{Assumption}
+\setlength{\parindent}{0pt}
 
 \usepackage[makestderr]{pythontex}
 \usepackage{amsmath}
@@ -88,32 +89,73 @@ np.random.seed(87654)
 \section{Optimal hedge ratio}
 \label{sec:optimal-hedge-ratio}
 
-Following \citep{Barbi2014}, we consider the problem of the optimal
-hedge ratios by extending commmonly known minimum variance hedge ratio
-to more general risk measures and dependence structures.\medskip\\
+Following \citep{Barbi2014}, we consider the problem of optimal
+hedge ratios by extending the commmonly known minimum variance hedge
+ratio to more general risk measures and dependence
+structures.\medskip
+
 Hedge portfolio: $R_t^h = R_t^S - h R_t^F$, involving returns of spot
-and future contract and where $h$ is the hedge ratio\\
+and future contract and where $h$ is the hedge ratio
+
 Optimal hedge ratio: $h^\ast = \argmin_h \rho_\phi(s,h)$, for given
 confidence level $1-s$ (if applicable, e.g.\ in the case of VaR, ES),
 where $\rho_\phi$ is a spectral risk measure with weighting function
-$\phi$ (see below). \\ 
-Corollary 2.1 of \citep{Barbi2014}, corrected:
+$\phi$ (see below).
+
+The distribution function of $R^h$ can be expressed in terms of the
+copula and the marginal distributions as Proposition \ref{prop:dfrh}
+result shows (this is a corrected version of Corollary 2.1 of
+\citep{Barbi2014}). For practical applications, it is numerically
+faster and more stable to use additional information about the
+specific copula and marginal distributions. We therefore derive
+semi-analytic formulas for a number of special cases, such as the
+Gaussian-, Student $t$-, normal inverse Gaussian (NIG) and Archimedean
+copulas.
 \begin{proposition}
+  \label{prop:dfrh}
   Let $R^S$ and $R^F$ be two real-valued random variables on the same
   probability space $(\Omega, \mathcal A, \p)$ with corresponding
-  absolutely continuous copula $C^t_{R^S, R^F}(w,\lambda)$ and
+  absolutely continuous copula $C_{R^S, R^F}(w,\lambda)$ and
   continuous marginals $F_{R^S}$ and $F_{R^F}$. Then, the distribution
   of of $R^h$ is given by
   \begin{equation}
     \label{eq:3}
     F_{R^h}(x) = 1- \int^1_0 D_1 C_{R^S, R^F}
-    \left( u, F_{R^F} \left[ \frac{F^{-1}_{R^S}(u)-x}{h} \right]
+    \left( u, F_{R^F} \left( \frac{F^{-1}_{R^S}(u)-x}{h} \right)
     \right)\, \dd u.  
   \end{equation}
 \end{proposition}
-The proof uses the $D_1$-operator 
 Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
-which can be shown to fulfil \citep{Cherubini2011}
+which can be shown to fulfil \citep{Cherubini2011}:\footnote{%
+  Let $F_X(x)=u$, $F_Y(y)=v$. Then,
+  \begin{align*}
+    \frac{\partial}{\partial F_X(x)} C(F_X(x), F_Y(y)) %
+    &= \frac{\partial}{\partial F_X(x)} \p(F_X(X)\leq F_X(x),
+      F_Y(Y)\leq F_Y(y)) %
+      = \p(F_X(X)\in \dd F_X(x), F_Y(Y)\leq F_Y(y))\\ %
+    &= \p(F_Y(Y)\leq F_Y(y)| F_X(X) = F_X(x))\cdot \p(F_X(X) \in \dd
+      F_X(x)) %
+      = \p(Y\leq y|X=x)\cdot \p(U\in \dd u)\\ %
+    &= \p(Y\leq y|X=x)
+  \end{align*}
+  % \begin{align*}
+  %   C(u,v) &=\int_0^1 \frac{\partial}{\partial u} C(u,v)\, \dd u %
+  %            = \int_0^1 \frac{\partial}{\partial u} \p(U\leq u, V\leq v)\, \dd
+  %            u \\ %
+  %          &= \int_0^1 \p(U\in \dd u, V\leq v)\, \dd u %
+  %            = \int_0^1 \p(V\leq v|U=u) \underbrace{\p(U\in \dd
+  %            u)}_{=1}\, \dd u\\
+  %          &= \int_0^1 \p(V\leq v|U=u) \, \dd u %
+  %            % = \int_\R \p(F_Y(Y)\leq F_Y(y) |F_X(X) = F_X(x))\, \dd
+  %            % F_X(x) \\
+  %          = \int_\R \p(F_Y(Y)\leq F_Y(y) |F_X(X) = F_X(x))\, f_X(x) \dd
+  %            x %
+  %            = \int_\R \p(Y\leq y|X=x)\, f_X(x) \dd x. 
+  % \end{align*}
+  % Consequently $\displaystyle \frac{\partial}{\partial u} C(u,v) =
+  % \frac{\partial}{\partial F(x)} C(F(x), F(y)) = \p(Y\leq y|X=x)$
+  % $\pas$. 
+  }
 \begin{equation}
   \label{eq:1}
   D_1 C_{X,Y}(F_X(x), F_Y(y)) = \p(Y\leq y|X=x).
@@ -125,8 +167,8 @@ which can be shown to fulfil \citep{Cherubini2011}
                  = \E\left[\p\left(R^F\geq \frac{R^S-x}{h}\Big|
                  R^S\right)\right]\\[10pt]
                &= 1-\E\left[\p\left(R^F\leq \frac{R^S-x}{h}\Big|
-                 R^S\right)\right]\\[10pt] 
-               &= 1- \int_0^1 D_1 C_{R^S, R^F}\left(u,
+                 R^S\right)\right]% \\[10pt] 
+               = 1- \int_0^1 D_1 C_{R^S, R^F}\left(u,
                  F_{R^F}\left(\frac{F^{(-1)}_{R^S}(u) -
                  x}{h}\right)\right)\, \dd u.
   \end{align*}

@@ -1,0 +1,1887 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     68827,       1878]
+NotebookOptionsPosition[     66171,       1776]
+NotebookOutlinePosition[     66524,       1792]
+CellTagsIndexPosition[     66481,       1789]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Cumulant", "Title"],
+
+Cell[CellGroupData[{
+
+Cell["Author", "Subsection"],
+
+Cell["\<\
+Eric W. Weisstein
+August 6, 2002\
+\>", "Text"],
+
+Cell[TextData[{
+ "This notebook downloaded from ",
+ ButtonBox["http://mathworld.wolfram.com/notebooks/Statistics/Cumulant.nb",
+  BaseStyle->"Hyperlink",
+  ButtonData:>{
+    URL["http://mathworld.wolfram.com/notebooks/Statistics/Cumulant.nb"], 
+    None}],
+ "."
+}], "Text"],
+
+Cell[TextData[{
+ "For more information, see Eric's ",
+ StyleBox["MathWorld",
+  FontSlant->"Italic"],
+ " entry ",
+ ButtonBox["http://mathworld.wolfram.com/Cumulant.html",
+  BaseStyle->"Hyperlink",
+  ButtonData:>{
+    URL["http://mathworld.wolfram.com/Cumulant.html"], None}],
+ "."
+}], "Text"],
+
+Cell["\<\
+\[Copyright]2005 Wolfram Research, Inc. except for portions noted otherwise\
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Requirements", "Subsection"],
+
+Cell[TextData[{
+ StyleBox["mathStatica",
+  FontSlant->"Italic"],
+ " Application package",
+ StyleBox["\n",
+  FontSlant->"Italic"],
+ ButtonBox["http://www.wolfram.com/products/applications/mathstatica/",
+  BaseStyle->"Hyperlink",
+  ButtonData:>{
+    URL["http://www.wolfram.com/products/applications/mathstatica/"], None}]
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Initialization", "Subsection"],
+
+Cell[BoxData[
+ RowBox[{"<<", "mathStatica`"}]], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Cumulants in terms of Raw Moments", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["One Coefficient at a Time", "Subsection"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"kappa", "[", "n_", "]"}], ":=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{
+    RowBox[{"SeriesCoefficient", "[", 
+     RowBox[{
+      RowBox[{"Series", "[", 
+       RowBox[{
+        RowBox[{"Log", "[", 
+         RowBox[{"1", "+", 
+          RowBox[{"Sum", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"I", " ", "t"}], ")"}], "^", "k"}], "/", 
+              RowBox[{"k", "!"}]}], " ", 
+             SubscriptBox[
+              OverscriptBox["\[Mu]", "\[Prime]"], "k"]}], ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "n"}], "}"}]}], "]"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", "0", ",", "n"}], "}"}]}], "]"}], ",", "n"}], "]"}], 
+    RowBox[{
+     RowBox[{"n", "!"}], "/", 
+     RowBox[{"I", "^", "n"}]}]}], "]"}]}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"kappa", "[", "n", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "5"}], "}"}]}], "]"}], "//", "ColumnForm"}]], "Input"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {
+     SubscriptBox[
+      OverscriptBox["\[Mu]", "\[Prime]"], "1"]},
+    {
+     RowBox[{
+      RowBox[{"-", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "2"]}]},
+    {
+     RowBox[{
+      RowBox[{"2", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"]}], "-", 
+      RowBox[{"3", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "3"]}]},
+    {
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "6"}], " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "4"]}], "+", 
+      RowBox[{"12", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "-", 
+      RowBox[{"3", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+      RowBox[{"4", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "4"]}]},
+    {
+     RowBox[{
+      RowBox[{"24", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "5"]}], "-", 
+      RowBox[{"60", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+      RowBox[{"20", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "-", 
+      RowBox[{"10", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+      RowBox[{"5", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"6", " ", 
+          SubsuperscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+         SubscriptBox[
+          OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], ")"}]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "5"]}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  ColumnForm[{
+    Subscript[
+     Overscript[Global`\[Mu], Global`\[Prime]], 1], -Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 + Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 2], 2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 - 3 Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 2] + Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 3], (-6) Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^4 + 12 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] - 3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 - 4 Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 3] + Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 4], 24 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^5 - 60 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 2] + 20 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3] - 10 Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 3] + 5 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] (6 Subscript[
+          Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 - Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4]) + Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 5]}],
+  Editable->False]], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["All of them", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"cum", "=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{"Series", "[", 
+    RowBox[{
+     RowBox[{"Log", "[", 
+      RowBox[{"1", "+", 
+       RowBox[{"Sum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"I", " ", "t"}], ")"}], "^", "k"}], "/", 
+           RowBox[{"k", "!"}]}], " ", 
+          SubscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "k"]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"k", ",", "1", ",", "30"}], "}"}]}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "6"}], "}"}]}], "]"}], "]"}]}]], "Input"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   RowBox[{"\[ImaginaryI]", " ", 
+    SubscriptBox[
+     OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", "t"}], "+", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      SubsuperscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], "-", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], ")"}], " ", 
+    SuperscriptBox["t", "2"]}], "+", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "6"]}], " ", "\[ImaginaryI]", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"]}], "-", 
+      RowBox[{"3", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], ")"}], " ", 
+    SuperscriptBox["t", "3"]}], "+", 
+   RowBox[{
+    FractionBox["1", "24"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "6"}], " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "4"]}], "+", 
+      RowBox[{"12", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "-", 
+      RowBox[{"3", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+      RowBox[{"4", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], ")"}], " ", 
+    SuperscriptBox["t", "4"]}], "+", 
+   RowBox[{
+    FractionBox["1", "120"], " ", "\[ImaginaryI]", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"24", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "5"]}], "-", 
+      RowBox[{"60", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+      RowBox[{"20", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "-", 
+      RowBox[{"10", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+      RowBox[{"5", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"6", " ", 
+          SubsuperscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+         SubscriptBox[
+          OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], ")"}]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "5"]}], ")"}], " ", 
+    SuperscriptBox["t", "5"]}], "+", 
+   RowBox[{
+    FractionBox["1", "720"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"120", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "6"]}], "-", 
+      RowBox[{"360", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "4"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "-", 
+      RowBox[{"30", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2", "3"]}], "+", 
+      RowBox[{"120", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+      RowBox[{"10", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3", "2"]}], "+", 
+      RowBox[{"30", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"9", " ", 
+          SubsuperscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+         SubscriptBox[
+          OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], ")"}]}], "+", 
+      RowBox[{"15", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], "+", 
+      RowBox[{"6", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "20"}], " ", 
+          SubscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+          SubscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+         SubscriptBox[
+          OverscriptBox["\[Mu]", "\[Prime]"], "5"]}], ")"}]}], "-", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "6"]}], ")"}], " ", 
+    SuperscriptBox["t", "6"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "t", "]"}], "7"],
+    SeriesData[Global`t, 0, {}, 1, 7, 1]]}],
+  SeriesData[Global`t, 0, {Complex[0, 1] Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 1], Rational[1, 2] (Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 - Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 2]), Complex[0, 
+      Rational[-1, 6]] (2 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 - 3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3]), 
+    Rational[1, 24] ((-6) Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^4 + 12 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2] - 3 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 - 4 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4]), Complex[0, 
+      Rational[1, 120]] (24 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^5 - 60 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] + 20 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3] - 10 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3] + 5 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1] (6 Subscript[
+           Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 - Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 4]) + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 5]), 
+    Rational[1, 720] (120 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^6 - 360 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^4 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] - 30 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2]^3 + 120 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3] + 10 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 3]^2 + 30 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 (9 Subscript[
+           Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 - Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 4]) + 15 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 4] + 6 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1] ((-20) Subscript[
+          Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+          Overscript[Global`\[Mu], Global`\[Prime]], 3] + Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 5]) - Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 6])}, 1, 7, 1]]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"l", "=", 
+  RowBox[{"CoefficientList", "[", 
+   RowBox[{
+    RowBox[{"Normal", "[", "cum", "]"}], ",", "t"}], "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SubscriptBox[
+     OverscriptBox["\[Mu]", "\[Prime]"], "1"]}], ",", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      SubsuperscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], "-", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], ")"}]}], ",", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "6"]}], " ", "\[ImaginaryI]", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"]}], "-", 
+      RowBox[{"3", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], ")"}]}], ",", 
+   RowBox[{
+    FractionBox["1", "24"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "6"}], " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "4"]}], "+", 
+      RowBox[{"12", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "-", 
+      RowBox[{"3", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+      RowBox[{"4", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], ")"}]}], ",", 
+   RowBox[{
+    FractionBox["1", "120"], " ", "\[ImaginaryI]", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"24", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "5"]}], "-", 
+      RowBox[{"60", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+      RowBox[{"20", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "-", 
+      RowBox[{"10", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+      RowBox[{"5", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"6", " ", 
+          SubsuperscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+         SubscriptBox[
+          OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], ")"}]}], "+", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "5"]}], ")"}]}], ",", 
+   RowBox[{
+    FractionBox["1", "720"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"120", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "6"]}], "-", 
+      RowBox[{"360", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "4"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "-", 
+      RowBox[{"30", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2", "3"]}], "+", 
+      RowBox[{"120", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+      RowBox[{"10", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3", "2"]}], "+", 
+      RowBox[{"30", " ", 
+       SubsuperscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"9", " ", 
+          SubsuperscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+         SubscriptBox[
+          OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], ")"}]}], "+", 
+      RowBox[{"15", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], "+", 
+      RowBox[{"6", " ", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "20"}], " ", 
+          SubscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+          SubscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+         SubscriptBox[
+          OverscriptBox["\[Mu]", "\[Prime]"], "5"]}], ")"}]}], "-", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "6"]}], ")"}]}]}], "}"}]], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["From the Series", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"cum1", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["\[Kappa]", "n"], "\[Rule]", 
+        RowBox[{
+         RowBox[{"l", "[", 
+          RowBox[{"[", 
+           RowBox[{"n", "+", "1"}], "]"}], "]"}], 
+         RowBox[{
+          RowBox[{"n", "!"}], "/", 
+          RowBox[{"I", "^", "n"}]}]}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", 
+         RowBox[{
+          RowBox[{"Length", "[", "l", "]"}], "-", "1"}]}], "}"}]}], "]"}]}], 
+    ")"}], "//", "ColumnForm"}]}]], "Input"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "1"], "\[Rule]", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "1"]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "2"], "\[Rule]", 
+      RowBox[{
+       RowBox[{"-", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "3"], "\[Rule]", 
+      RowBox[{
+       RowBox[{"2", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"]}], "-", 
+       RowBox[{"3", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "4"], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "6"}], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "4"]}], "+", 
+       RowBox[{"12", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "-", 
+       RowBox[{"3", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+       RowBox[{"4", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "4"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "5"], "\[Rule]", 
+      RowBox[{
+       RowBox[{"24", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "5"]}], "-", 
+       RowBox[{"60", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+       RowBox[{"20", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "-", 
+       RowBox[{"10", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+       RowBox[{"5", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"6", " ", 
+           SubsuperscriptBox[
+            OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+          SubscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], ")"}]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "5"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "6"], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "120"}], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "6"]}], "+", 
+       RowBox[{"360", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "4"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+       RowBox[{"30", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2", "3"]}], "-", 
+       RowBox[{"120", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "-", 
+       RowBox[{"10", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3", "2"]}], "-", 
+       RowBox[{"30", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"9", " ", 
+           SubsuperscriptBox[
+            OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+          SubscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], ")"}]}], "-", 
+       RowBox[{"15", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], "-", 
+       RowBox[{"6", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "20"}], " ", 
+           SubscriptBox[
+            OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+           SubscriptBox[
+            OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+          SubscriptBox[
+           OverscriptBox["\[Mu]", "\[Prime]"], "5"]}], ")"}]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "6"]}]}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  ColumnForm[{Subscript[Global`\[Kappa], 1] -> Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 1], 
+    Subscript[Global`\[Kappa], 2] -> -Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2], 
+    Subscript[Global`\[Kappa], 3] -> 2 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 - 3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3], 
+    Subscript[Global`\[Kappa], 4] -> (-6) Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^4 + 12 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2] - 3 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 - 4 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4], 
+    Subscript[Global`\[Kappa], 5] -> 24 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^5 - 60 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] + 20 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3] - 10 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3] + 5 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1] (6 Subscript[
+           Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 - Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 4]) + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 5], 
+    Subscript[Global`\[Kappa], 6] -> (-120) Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^6 + 360 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^4 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2] + 30 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 2]^3 - 120 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3] - 10 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3]^2 - 30 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 (9 Subscript[
+          Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 - Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4]) - 15 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4] - 6 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] ((-20) Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 3] + Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 5]) + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 6]}],
+  Editable->False]], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Using mathStatica", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"cum2", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"CumulantToRaw", "[", "n", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "6"}], "}"}]}], "]"}]}], ")"}], "//", 
+  "ColumnForm"}]], "Input"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "1"], "\[Rule]", 
+      SubscriptBox[
+       OverscriptBox["\[Mu]", "\[Prime]"], "1"]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "2"], "\[Rule]", 
+      RowBox[{
+       RowBox[{"-", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "2"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "3"], "\[Rule]", 
+      RowBox[{
+       RowBox[{"2", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"]}], "-", 
+       RowBox[{"3", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "3"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "4"], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "6"}], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "4"]}], "+", 
+       RowBox[{"12", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "-", 
+       RowBox[{"3", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "-", 
+       RowBox[{"4", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "4"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "5"], "\[Rule]", 
+      RowBox[{
+       RowBox[{"24", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "5"]}], "-", 
+       RowBox[{"60", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "+", 
+       RowBox[{"30", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "+", 
+       RowBox[{"20", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "-", 
+       RowBox[{"10", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "-", 
+       RowBox[{"5", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "5"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "6"], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "120"}], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "6"]}], "+", 
+       RowBox[{"360", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "4"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"]}], "-", 
+       RowBox[{"270", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2", "2"]}], "+", 
+       RowBox[{"30", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2", "3"]}], "-", 
+       RowBox[{"120", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "3"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "+", 
+       RowBox[{"120", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3"]}], "-", 
+       RowBox[{"10", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "3", "2"]}], "+", 
+       RowBox[{"30", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1", "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], "-", 
+       RowBox[{"15", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "4"]}], "-", 
+       RowBox[{"6", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "1"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], "5"]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], "6"]}]}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  ColumnForm[{Subscript[Global`\[Kappa], 1] -> Subscript[
+      Overscript[Global`\[Mu], Global`\[Prime]], 1], 
+    Subscript[Global`\[Kappa], 2] -> -Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2], 
+    Subscript[Global`\[Kappa], 3] -> 2 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 - 3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3], 
+    Subscript[Global`\[Kappa], 4] -> (-6) Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^4 + 12 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2] - 3 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 - 4 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4], 
+    Subscript[Global`\[Kappa], 5] -> 24 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^5 - 60 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] + 30 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 + 20 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3] - 10 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3] - 5 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 5], 
+    Subscript[Global`\[Kappa], 6] -> (-120) Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^6 + 360 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^4 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2] - 270 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2]^2 + 30 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 2]^3 - 120 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1]^3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3] + 120 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3] - 10 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3]^2 + 30 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 4] - 15 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4] - 6 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 5] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 6]}],
+  Editable->False]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{
+   RowBox[{"Last", "/@", "cum1"}], "-", 
+   RowBox[{"Last", "/@", "cum2"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+  "}"}]], "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Cumulants in Terms of Central Moments", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["Using mathStatica", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"cum2", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"CumulantToCentral", "[", "n", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "6"}], "}"}]}], "]"}]}], ")"}], "//", 
+  "ColumnForm"}]], "Input"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "1"], "\[Rule]", "0"}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "2"], "\[Rule]", 
+      SubscriptBox["\[Mu]", "2"]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "3"], "\[Rule]", 
+      SubscriptBox["\[Mu]", "3"]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "4"], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "3"}], " ", 
+        SubsuperscriptBox["\[Mu]", "2", "2"]}], "+", 
+       SubscriptBox["\[Mu]", "4"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "5"], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "10"}], " ", 
+        SubscriptBox["\[Mu]", "2"], " ", 
+        SubscriptBox["\[Mu]", "3"]}], "+", 
+       SubscriptBox["\[Mu]", "5"]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", "6"], "\[Rule]", 
+      RowBox[{
+       RowBox[{"30", " ", 
+        SubsuperscriptBox["\[Mu]", "2", "3"]}], "-", 
+       RowBox[{"10", " ", 
+        SubsuperscriptBox["\[Mu]", "3", "2"]}], "-", 
+       RowBox[{"15", " ", 
+        SubscriptBox["\[Mu]", "2"], " ", 
+        SubscriptBox["\[Mu]", "4"]}], "+", 
+       SubscriptBox["\[Mu]", "6"]}]}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  ColumnForm[{
+   Subscript[Global`\[Kappa], 1] -> 0, Subscript[Global`\[Kappa], 2] -> 
+    Subscript[Global`\[Mu], 2], Subscript[Global`\[Kappa], 3] -> 
+    Subscript[Global`\[Mu], 3], 
+    Subscript[Global`\[Kappa], 4] -> (-3) Subscript[Global`\[Mu], 2]^2 + 
+     Subscript[Global`\[Mu], 4], 
+    Subscript[
+     Global`\[Kappa], 5] -> (-10) Subscript[Global`\[Mu], 2] 
+      Subscript[Global`\[Mu], 3] + Subscript[Global`\[Mu], 5], 
+    Subscript[Global`\[Kappa], 6] -> 
+    30 Subscript[Global`\[Mu], 2]^3 - 10 Subscript[Global`\[Mu], 3]^2 - 15 
+     Subscript[Global`\[Mu], 2] Subscript[Global`\[Mu], 4] + 
+     Subscript[Global`\[Mu], 6]}],
+  Editable->False]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{
+   RowBox[{"Last", "/@", "cum1"}], "-", 
+   RowBox[{"Last", "/@", "cum2"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+  "}"}]], "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Multavariate Cumulants in Terms of Raw Moments", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["Using mathStatica", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"CumulantToRaw", "[", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "1"}], "}"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "5"}], "}"}]}], "]"}], "//", "ColumnForm"}]], "Input"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"1", ",", "1"}]], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         SubscriptBox[
+          OverscriptBox["\[Mu]", "\[Prime]"], 
+          RowBox[{"0", ",", "1"}]]}], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], 
+        RowBox[{"1", ",", "1"}]]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"2", ",", "1"}]], "\[Rule]", 
+      RowBox[{
+       RowBox[{"2", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "2"]}], "-", 
+       RowBox[{"2", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]]}], "-", 
+       RowBox[{
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], 
+        RowBox[{"2", ",", "1"}]]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"3", ",", "1"}]], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "6"}], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "3"]}], "+", 
+       RowBox[{"6", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]]}], "+", 
+       RowBox[{"6", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]]}], "-", 
+       RowBox[{"3", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]]}], "-", 
+       RowBox[{"3", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "1"}]]}], "-", 
+       RowBox[{
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "0"}]]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], 
+        RowBox[{"3", ",", "1"}]]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"4", ",", "1"}]], "\[Rule]", 
+      RowBox[{
+       RowBox[{"24", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "4"]}], "-", 
+       RowBox[{"24", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "3"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]]}], "-", 
+       RowBox[{"36", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]]}], "+", 
+       RowBox[{"24", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]]}], "+", 
+       RowBox[{"6", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}], "2"]}], "+", 
+       RowBox[{"12", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "1"}]]}], "-", 
+       RowBox[{"6", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "1"}]]}], "+", 
+       RowBox[{"8", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "0"}]]}], "-", 
+       RowBox[{"4", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "0"}]]}], "-", 
+       RowBox[{"4", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "1"}]]}], "-", 
+       RowBox[{
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"4", ",", "0"}]]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], 
+        RowBox[{"4", ",", "1"}]]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"5", ",", "1"}]], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "120"}], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "5"]}], "+", 
+       RowBox[{"120", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "4"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]]}], "+", 
+       RowBox[{"240", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "3"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]]}], "-", 
+       RowBox[{"180", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]]}], "-", 
+       RowBox[{"90", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}], "2"]}], "+", 
+       RowBox[{"30", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}], "2"]}], "-", 
+       RowBox[{"60", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "3"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "1"}]]}], "+", 
+       RowBox[{"60", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "1"}]]}], "-", 
+       RowBox[{"60", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "0"}]]}], "+", 
+       RowBox[{"40", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "0"}]]}], "+", 
+       RowBox[{"20", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "0"}]]}], "-", 
+       RowBox[{"10", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "0"}]]}], "+", 
+       RowBox[{"20", " ", 
+        SubsuperscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}], "2"], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "1"}]]}], "-", 
+       RowBox[{"10", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"2", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"3", ",", "1"}]]}], "+", 
+       RowBox[{"10", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"4", ",", "0"}]]}], "-", 
+       RowBox[{"5", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"4", ",", "0"}]]}], "-", 
+       RowBox[{"5", " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"1", ",", "0"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"4", ",", "1"}]]}], "-", 
+       RowBox[{
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"0", ",", "1"}]], " ", 
+        SubscriptBox[
+         OverscriptBox["\[Mu]", "\[Prime]"], 
+         RowBox[{"5", ",", "0"}]]}], "+", 
+       SubscriptBox[
+        OverscriptBox["\[Mu]", "\[Prime]"], 
+        RowBox[{"5", ",", "1"}]]}]}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  ColumnForm[{Subscript[Global`\[Kappa], 1, 1] -> -Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 1], 
+    Subscript[Global`\[Kappa], 2, 1] -> 2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^2 - 2 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] - Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 1], 
+    Subscript[Global`\[Kappa], 3, 1] -> (-6) Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^3 + 6 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] + 6 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] - 3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] - 3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 1] - Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3, 0] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3, 1], 
+    Subscript[Global`\[Kappa], 4, 1] -> 24 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^4 - 24 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] - 36 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^2 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] + 24 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] + 6 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 2, 0]^2 + 12 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2, 1] - 6 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 1] + 8 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3, 0] - 4 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3, 0] - 4 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3, 1] - Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4, 0] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4, 1], 
+    Subscript[Global`\[Kappa], 5, 1] -> (-120) Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^5 + 120 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^4 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] + 240 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^3 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] - 180 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^2 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] - 90 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2, 0]^2 + 30 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 2, 0]^2 - 60 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^3 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 1] + 60 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2, 1] - 60 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^2 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3, 0] + 40 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3, 0] + 20 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3, 0] - 10 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3, 0] + 20 Subscript[
+         Overscript[Global`\[Mu], Global`\[Prime]], 1, 0]^2 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 3, 1] - 10 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 2, 0] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 3, 1] + 10 Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+        Overscript[Global`\[Mu], Global`\[Prime]], 4, 0] - 5 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4, 0] - 5 Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 1, 0] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 4, 1] - Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 0, 1] Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 5, 0] + Subscript[
+       Overscript[Global`\[Mu], Global`\[Prime]], 5, 1]}],
+  Editable->False]], "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Multavariate Cumulants in Terms of Central Moments", "Section"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"CumulantToCentral", "[", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "1"}], "}"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "5"}], "}"}]}], "]"}], "//", "ColumnForm"}]], "Input"],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"1", ",", "1"}]], "\[Rule]", 
+      SubscriptBox["\[Mu]", 
+       RowBox[{"1", ",", "1"}]]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"2", ",", "1"}]], "\[Rule]", 
+      SubscriptBox["\[Mu]", 
+       RowBox[{"2", ",", "1"}]]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"3", ",", "1"}]], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "3"}], " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"2", ",", "0"}]]}], "+", 
+       SubscriptBox["\[Mu]", 
+        RowBox[{"3", ",", "1"}]]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"4", ",", "1"}]], "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "6"}], " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"2", ",", "0"}]], " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"2", ",", "1"}]]}], "-", 
+       RowBox[{"4", " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"3", ",", "0"}]]}], "+", 
+       SubscriptBox["\[Mu]", 
+        RowBox[{"4", ",", "1"}]]}]}]},
+    {
+     RowBox[{
+      SubscriptBox["\[Kappa]", 
+       RowBox[{"5", ",", "1"}]], "\[Rule]", 
+      RowBox[{
+       RowBox[{"30", " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubsuperscriptBox["\[Mu]", 
+         RowBox[{"2", ",", "0"}], "2"]}], "-", 
+       RowBox[{"10", " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"2", ",", "1"}]], " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"3", ",", "0"}]]}], "-", 
+       RowBox[{"10", " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"2", ",", "0"}]], " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"3", ",", "1"}]]}], "-", 
+       RowBox[{"5", " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"1", ",", "1"}]], " ", 
+        SubscriptBox["\[Mu]", 
+         RowBox[{"4", ",", "0"}]]}], "+", 
+       SubscriptBox["\[Mu]", 
+        RowBox[{"5", ",", "1"}]]}]}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  ColumnForm[{
+   Subscript[Global`\[Kappa], 1, 1] -> Subscript[Global`\[Mu], 1, 1], 
+    Subscript[Global`\[Kappa], 2, 1] -> Subscript[Global`\[Mu], 2, 1], 
+    Subscript[
+     Global`\[Kappa], 3, 1] -> (-3) Subscript[Global`\[Mu], 1, 1] 
+      Subscript[Global`\[Mu], 2, 0] + Subscript[Global`\[Mu], 3, 1], 
+    Subscript[
+     Global`\[Kappa], 4, 1] -> (-6) Subscript[Global`\[Mu], 2, 0] 
+      Subscript[Global`\[Mu], 2, 1] - 4 Subscript[Global`\[Mu], 1, 1] 
+     Subscript[Global`\[Mu], 3, 0] + Subscript[Global`\[Mu], 4, 1], 
+    Subscript[Global`\[Kappa], 5, 1] -> 
+    30 Subscript[Global`\[Mu], 1, 1] Subscript[Global`\[Mu], 2, 0]^2 - 10 
+     Subscript[Global`\[Mu], 2, 1] Subscript[Global`\[Mu], 3, 0] - 10 
+     Subscript[Global`\[Mu], 2, 0] Subscript[Global`\[Mu], 3, 1] - 5 
+     Subscript[Global`\[Mu], 1, 1] Subscript[Global`\[Mu], 4, 0] + 
+     Subscript[Global`\[Mu], 5, 1]}],
+  Editable->False]], "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 867},
+WindowMargins->{{196, Automatic}, {8, Automatic}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 25, 0, 92, "Title"],
+Cell[CellGroupData[{
+Cell[629, 26, 28, 0, 44, "Subsection"],
+Cell[660, 28, 56, 3, 49, "Text"],
+Cell[719, 33, 272, 8, 30, "Text"],
+Cell[994, 43, 291, 10, 30, "Text"],
+Cell[1288, 55, 99, 2, 30, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1424, 62, 34, 0, 44, "Subsection"],
+Cell[1461, 64, 332, 10, 49, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1830, 79, 36, 0, 44, "Subsection"],
+Cell[1869, 81, 56, 1, 28, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1962, 87, 52, 0, 80, "Section"],
+Cell[CellGroupData[{
+Cell[2039, 91, 47, 0, 44, "Subsection"],
+Cell[2089, 93, 902, 27, 112, "Input"],
+Cell[CellGroupData[{
+Cell[3016, 124, 200, 6, 28, "Input"],
+Cell[3219, 132, 4453, 109, 136, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7721, 247, 33, 0, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[7779, 251, 664, 20, 40, "Input"],
+Cell[8446, 273, 8221, 194, 191, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16704, 472, 152, 4, 28, "Input"],
+Cell[16859, 478, 4830, 138, 191, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21738, 622, 37, 0, 44, "Subsection"],
+Cell[CellGroupData[{
+Cell[21800, 626, 602, 20, 70, "Input"],
+Cell[22405, 648, 8239, 194, 70, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30693, 848, 39, 0, 70, "Subsection"],
+Cell[CellGroupData[{
+Cell[30757, 852, 271, 9, 70, "Input"],
+Cell[31031, 863, 8456, 196, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39524, 1064, 146, 4, 70, "Input"],
+Cell[39673, 1070, 116, 3, 70, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39850, 1080, 56, 0, 70, "Section"],
+Cell[CellGroupData[{
+Cell[39931, 1084, 39, 0, 70, "Subsection"],
+Cell[CellGroupData[{
+Cell[39995, 1088, 275, 9, 70, "Input"],
+Cell[40273, 1099, 2069, 60, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42379, 1164, 146, 4, 70, "Input"],
+Cell[42528, 1170, 116, 3, 70, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42705, 1180, 65, 0, 70, "Section"],
+Cell[CellGroupData[{
+Cell[42795, 1184, 39, 0, 70, "Subsection"],
+Cell[CellGroupData[{
+Cell[42859, 1188, 261, 8, 70, "Input"],
+Cell[43123, 1198, 19312, 459, 70, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[62496, 1664, 69, 0, 70, "Section"],
+Cell[CellGroupData[{
+Cell[62590, 1668, 265, 8, 70, "Input"],
+Cell[62858, 1678, 3273, 93, 70, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

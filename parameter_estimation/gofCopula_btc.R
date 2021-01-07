@@ -26,16 +26,22 @@ BTC    = as.numeric(unlist(BTC))
 BRR    = data.frame(BRR)
 BTC    = data.frame(BTC)
 
-data = cbind(BRR, BTC)
+data = cbind(BRR, BRR)
 data = as.matrix(data)
 
-BTC_copula_norm = gof(data, priority = "tests", copula = c("normal"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 100)
+#BTC_copula_norm = gof(data, priority = "tests", copula = c("normal"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 100)
+BTC_copula_norm = gof(data, priority = "tests", copula = c("normal"), M = 100)
+
+
 
 BTC_copula_norm_1 = unlist(BTC_copula_norm)
 write.xlsx(BTC_copula_norm_1, "D:\\Git_copula\\optimal_hedging_ratio_copula\\parameter_estimation\\BTC_copula_norm.xlsx")
 
 #gofGetHybrid(result = SP_copula_norm, p_values = c("MyTest" = 0.3, "AnotherTest" = 0.7), nsets = 2)
-BTC_copula_t = gof(data, priority = "tests", copula = c("t"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 100)
+#BTC_copula_t = gof(data, priority = "tests", copula = c("t"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 100)
+BTC_copula_t = gof(data, priority = "tests", copula = c("t"), M = 100)
+
+
 BTC_copula_t_1 = unlist(BTC_copula_t)
 write.xlsx(BTC_copula_t_1, "D:\\Git_copula\\optimal_hedging_ratio_copula\\parameter_estimation\\BTC_copula_t.xlsx")
 

@@ -1,13 +1,14 @@
 install.packages("gofCopula")
+install.packages("rlang")
 library(gofCopula)
 
 # simulate normal copula 
 require(mvtnorm)
 S <- matrix(c(1,.8,.8,1),2,2)
-AB <- rmvnorm(mean=c(0,0),sig=S,n=1000)
+AB <- rmvnorm(mean=c(0,0),sig=S,n=200)
 
 U= pnorm(AB)
-SP_copula_norm = gof(AB, priority = "tests", copula = c("normal"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 100)
+SP_copula_all_1 = gof(AB, priority = "tests", copula = c("normal", "t", "gumbel","frank","clayton"),tests = c("gofKernel", "gofKendallCvM", "gofKendallKS"), M = 100)
 
 SP_copula_norm_1 = unlist(SP_copula_norm)
 write.xlsx(SP_copula_norm_1, "D:\\Git_copula\\optimal_hedging_ratio_copula\\parameter_estimation\\SP_copula_norm.xlsx")

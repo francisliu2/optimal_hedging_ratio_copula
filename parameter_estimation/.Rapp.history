@@ -1,0 +1,599 @@
+plot(w2)
+mean(w2)
+n/m
+w2
+w2[i] = length(w1[ind[i]:ind[(i+1)]]) / (n/m); # rel HF
+for (i in 1:m) {
+w2[i] = length(w1[ind[i]:ind[(i+1)]]) / (n/m); # rel HF
+}
+plot(w2)
+w2
+mean(w2)
+var(w2)
+p=1/6;
+p*(1-p)/(n/m)
+n=10^6;#
+#
+w=floor(runif(n,1,7)); # simuliert Würfel#
+mean(w)#
+var(w)#
+#
+w1=(which(w==1)) # Einser-Würfe#
+length(w1) # absolute Häufigkeit#
+length(w1)/n # relative Häufigkeit#
+#
+# Unterteilen in m Einzelexperimente zu je n/m Würfen#
+m=1000;#
+ind=rep(1,m+1);#
+w2=rep(0,m);#
+for (i in 1:m) {#
+	ind[i+1]=length(which(w1<=i*n/m)); # Indices die Einzelexperimente teilen#
+}#
+#
+for (i in 1:m) {#
+	w2[i] = length(w1[ind[i]:ind[(i+1)]]) / (n/m); # rel HF#
+}#
+plot(w2)
+mean(w2)
+var(w2)
+p=1/6
+p*(1-p)/(n/m)
+n=10^6;#
+#
+w=floor(runif(n,1,7)); # simuliert Würfel#
+mean(w)#
+var(w)#
+#
+w1=(which(w==1)) # Einser-Würfe#
+length(w1) # absolute Häufigkeit#
+length(w1)/n # relative Häufigkeit#
+#
+# Unterteilen in m Einzelexperimente zu je n/m Würfen#
+m=1000;#
+ind=rep(1,m+1);#
+w2=rep(0,m);#
+for (i in 1:m) {#
+	ind[i+1]=length(which(w1<=i*n/m)); # Indices die Einzelexperimente teilen#
+}#
+#
+# rel. Häufigkeiten von Einserwürfen in den Einzelexperimenten#
+for (i in 1:m) {#
+	w2[i] = length(w1[ind[i]:ind[(i+1)]]) / (n/m); # rel HF#
+}#
+#
+# empirische Erwartungswert, theoretischer Erwartungswert#
+p=1/6;#
+c(mean(w2), p)#
+# empirische Varianz, theoretische Varianz#
+c(var(w2), p*(1-p)/(n/m))
+?sum
+ew=sum(1:6)/6;
+var=sum((1:6)^2*1/6)-(ew^2)
+ew
+var
+1/6 + 4/6 + 9/6 + 16/6 + 25/6 + 36/6 - 3.5^2
+v=sum((1:6)^2*1/6)-(ew^2) #Varianz
+c(mean(w), ew)
+c(var(w), v)
+print("empirischer und theoretischer Erwartungswert:")
+c(mean(w), ew)
+##
+# Testen eines fairen Würfels#
+# (c) N. Packham, 2017#
+##
+#
+# Gesamtzahl an Simulationen#
+n=10^6;#
+#
+w=floor(runif(n,1,7)); # simuliert Würfel (gleicherverteilte ganze Zahlen zwischen 1 und 6)#
+#
+ew=sum(1:6)/6; # Erwartungswert#
+v=sum((1:6)^2*1/6)-(ew^2) #Varianz#
+print("empirischer und theoretischer Erwartungswert:")#
+c(mean(w), ew)#
+print("empirische und theoretische Varianz:")#
+c(var(w), v)#
+w1=(which(w==1)) # Einser-Würfe#
+length(w1) # absolute Häufigkeit#
+length(w1)/n # relative Häufigkeit#
+#
+# Unterteilen in m Einzelexperimente zu je n/m Würfen#
+m=1000;#
+ind=rep(1,m+1);#
+w2=rep(0,m);#
+for (i in 1:m) {#
+	ind[i+1]=length(which(w1<=i*n/m)); # Indices die Einzelexperimente teilen#
+}#
+#
+# rel. Häufigkeiten von Einserwürfen in den Einzelexperimenten#
+for (i in 1:m) {#
+	w2[i] = length(w1[ind[i]:ind[(i+1)]]) / (n/m); # rel HF#
+}#
+#
+# empirische Erwartungswert, theoretischer Erwartungswert#
+p=1/6;#
+c(mean(w2), p)#
+# empirische Varianz, theoretische Varianz#
+c(var(w2), p*(1-p)/(n/m))
+print("Erwartungswert und Varianz des Ereignisses 'Einserwürfe'")
+##
+# Testen eines fairen Würfels#
+# (c) N. Packham, 2017#
+##
+#
+# Gesamtzahl an Simulationen#
+n=10^6;#
+#
+w=floor(runif(n,1,7)); # simuliert Würfel (gleicherverteilte ganze Zahlen zwischen 1 und 6)#
+#
+ew=sum(1:6)/6; # Erwartungswert#
+v=sum((1:6)^2*1/6)-(ew^2) #Varianz#
+print("empirischer und theoretischer Erwartungswert:")#
+c(mean(w), ew)#
+print("empirische und theoretische Varianz:")#
+c(var(w), v)#
+#
+print("Erwartungswert und Varianz des Ereignisses 'Einserwürfe'")#
+#
+w1=(which(w==1)) # Einser-Würfe#
+length(w1) # absolute Häufigkeit#
+length(w1)/n # relative Häufigkeit#
+#
+# Unterteilen in m Einzelexperimente zu je n/m Würfen#
+m=1000;#
+ind=rep(1,m+1);#
+w2=rep(0,m);#
+for (i in 1:m) {#
+	ind[i+1]=length(which(w1<=i*n/m)); # Indices die Einzelexperimente teilen#
+}#
+#
+# rel. Häufigkeiten von Einserwürfen in den Einzelexperimenten#
+for (i in 1:m) {#
+	w2[i] = length(w1[ind[i]:ind[(i+1)]]) / (n/m); # rel HF#
+}#
+#
+print("empirischer und theoretischer Erwartungswert")#
+p=1/6;#
+c(mean(w2), p)#
+print("empirische und theoretische Varianz:")#
+c(var(w2), p*(1-p)/(n/m))
+plot(w2)
+hist(w2)
+w1
+hist(w2) # Histogramm
+line(dbinom(seq(0,1,0.01), 1/6, n/m))
+seq(0,1,0.01)
+plot(dbinom(seq(0,1,0.01), 1/6, 100))
+plot(seq(0,1,0.01),dbinom(seq(0,1,0.01), 1/6, 100))
+hist(w2)
+plot(dbinom(seq(0,1,0.01), 1/6, 100))
+dbinom(seq(0,1,0.1), 1/6)
+dbinom(seq(0,1,0.1), 100,1/6)
+dbinom(1:6, 100,1/6)
+plot(dbinom(1:6, 100,1/6))
+plot([1:6/6,dbinom(1:6, 100,1/6))
+plot([1:6]/6,dbinom(1:6, 100,1/6))
+[1:6]
+1:6
+(1:6)
+plot((1:6)/6,dbinom(1:6, 100,1/6))
+hist(w2)
+hist(w2*6)
+hist(w2)
+plot(((n/m))/6,dbinom((n/m), (n/m),1/6))
+n/m
+dbinom((n/m), (n/m),1/6)
+dbinom((1:n/m), (n/m),1/6)
+plot(dbinom((1:n/m), (n/m),1/6))
+plot(dbinom(seq(1,n/m,n/m/100), (n/m),1/6))
+plot(seq(1,n/m,n/m/100),dbinom(seq(1,n/m,n/m/100), (n/m),1/6))
+plot(seq(1,n/m,n/m/100)/(n/m),dbinom(seq(1,n/m,n/m/100), (n/m),1/6))
+hist(w2)
+lines(seq(1,n/m,n/m/100)/(n/m),dbinom(seq(1,n/m,n/m/100), (n/m),1/6))
+?hist
+hist(w2,freq=FALSE)
+lines(seq(1,n/m,n/m/100)/(n/m),dbinom(seq(1,n/m,n/m/100), (n/m),1/6))
+plot(seq(1,n/m,n/m/100)/(n/m),dbinom(seq(1,n/m,n/m/100), (n/m),1/6))
+dbinom(10,(n/m),1/6)
+dbinom(166,(n/m),1/6)
+n/m
+hist(w2,prob=TRUE)
+plot(seq(1,n/m,n/m/100)/(n/m),dbinom(seq(1,n/m,n/m/100), (n/m),1/6/(n/m)))
+plot(seq(1,n/m,n/m/100),dbinom(seq(1,n/m,n/m/100), (n/m),1/6/(n/m)))
+dbinom(166,(n/m),1/6)
+hist(w2*(n/m))
+hist(w2*(n/m),prob=TRUE)
+lines(seq(1,n/m,n/m/100),dbinom(seq(1,n/m,n/m/100), (n/m),1/6))
+lines(seq(1,n/m,n/m/500),dbinom(seq(1,n/m,n/m/500), (n/m),1/6))
+##
+# Testen eines fairen Würfels#
+# (c) N. Packham, 2017#
+##
+#
+# Gesamtzahl an Simulationen#
+n=10^6;#
+#
+w=floor(runif(n,1,7)); # simuliert Würfel (gleicherverteilte ganze Zahlen zwischen 1 und 6)#
+#
+ew=sum(1:6)/6; # Erwartungswert#
+v=sum((1:6)^2*1/6)-(ew^2) #Varianz#
+print("empirischer und theoretischer Erwartungswert:")#
+c(mean(w), ew)#
+print("empirische und theoretische Varianz:")#
+c(var(w), v)#
+#
+print("Erwartungswert und Varianz des Ereignisses 'Einserwürfe'")#
+#
+w1=(which(w==1)) # Einser-Würfe#
+length(w1) # absolute Häufigkeit#
+length(w1)/n # relative Häufigkeit#
+#
+# Unterteilen in m Einzelexperimente zu je n/m Würfen#
+m=1000;#
+ind=rep(1,m+1);#
+w2=rep(0,m);#
+for (i in 1:m) {#
+	ind[i+1]=length(which(w1<=i*n/m)); # Indices die Einzelexperimente teilen#
+}#
+#
+# rel. Häufigkeiten von Einserwürfen in den Einzelexperimenten#
+for (i in 1:m) {#
+	w2[i] = length(w1[ind[i]:ind[(i+1)]]) / (n/m); # rel HF#
+}#
+#
+print("empirischer und theoretischer Erwartungswert")#
+p=1/6;#
+c(mean(w2), p)#
+print("empirische und theoretische Varianz:")#
+c(var(w2), p*(1-p)/(n/m))#
+#
+hist(w2 * (n/m),prob=TRUE) # Histogramm der absoluten HF#
+# dazugehörige Binomialverteilung#
+lines(seq(1,n/m,n/m/500),dbinom(seq(1,n/m,n/m/500), (n/m),1/6),col="red")
+n/m
+hist(w2 * (n/m),prob=TRUE) # Histogramm der absoluten HF
+lines(seq(1,n/m,n/m),dbinom(seq(1,n/m,n/m), (n/m),1/6),col="red")
+hist(w2 * (n/m),prob=TRUE) # Histogramm der absoluten HF
+lines(seq(1,n/m),dbinom(seq(1,n/m,n/m), (n/m),1/6),col="red")
+lines(seq(1,n/m),dbinom(seq(1,n/m), (n/m),1/6),col="red")
+w[1:100]
+w[1:10]
+which(w[1:10]==1)
+##
+# Verteilung bis erste "eins"#
+# (c) N. Packham, 2017#
+##
+#
+# Gesamtzahl an Simulationen#
+n=10^6;#
+#
+w=floor(runif(n,1,7)); # simuliert Würfel (gleicherverteilte ganze Zahlen zwischen 1 und 6)#
+#
+m=10; # Anzahl an Würfen pro Experiment#
+#
+t=rep(0,(n/m));#
+for(i in 1:(n/m)) {#
+	t2=which(w[((i-1)*n+1):(i*n)]==1);#
+	if(length(t2)==0) {#
+		t[i]=0;#
+	} else {#
+		t[i]=t2[1];#
+	}#
+}#
+#
+hist(t,prob=TRUE);#
+# lines(seq(1,n/m),dbinom(seq(1,n/m), (n/m),1/6),col="red")
+i
+(n/m)
+t2=which(w==1)
+length(t2)
+t2[1:10]
+w=floor(runif(n,1,7)); # simuliert Würfel (gleicherverteilte ganze Zahlen
+w=matrix(w,nrow=n/m,ncol=m);
+dim(w)
+w[1]
+w[1,:]
+w[1,]
+w[2,]
+w[3,]
+t2=which(w==1)
+dim(t2)
+t2
+t2[1:10]
+length(t2)
+?which
+t2=which(w==1,array.Ind=TRUE)
+t2=which(w==1,arr.Ind=TRUE)
+t2=which(w==1,arr.ind=TRUE)
+dim(t2)
+t2[1:10]
+? binom
+?binom
+?binomial
+??pbinom
+?pbinom
+n=10;#
+k=seq(0,n);#
+p=runif();#
+plot(k,dbinom(k,n,p))
+runif(1)
+n=10;#
+k=seq(0,n);#
+p=runif(1);#
+plot(k,dbinom(k,n,p))
+plot(k,dbinom(k,n,p),type="l")
+?plot
+plot(k,dbinom(k,n,p),type="h")
+plot(k,dbinom(k,n,p),type="s")
+plot(k,dbinom(k,n,p),type="S")
+plot(k,dbinom(k,n,p),type="b")
+line(x,dnorm(x,p,sqrt(p(1-p))))
+x=seq(0,n,by=0.1)
+line(x,dnorm(x,p,sqrt(p(1-p))))
+line(x,dnorm(x,p,sqrt(p*(1-p))))
+dnorm(0,p,sqrt(p*(1-p)))
+?line
+dnorm(x,p,sqrt(p*(1-p)))
+line(x,dnorm(x,p,sqrt(p*(1-p))))
+plot(k,dbinom(k,n,p),type="b")
+line(x,dnorm(x,p,sqrt(p*(1-p))))
+line(x)
+x
+lines(x,dnorm(x,p,sqrt(p*(1-p))))
+lines(x,dnorm(x,p,sqrt(p*(1-p))), col="r")
+?plot
+lines(x,dnorm(x,p,sqrt(p*(1-p))), c="r")
+lines(x,dnorm(x,p,sqrt(p*(1-p))), col="red")
+n=10;#
+k=seq(0,n);#
+p=runif(1);#
+plot(k,dbinom(k,n,p),type="b")#
+lines(x,dnorm(x,p,sqrt(p*(1-p))), col="red")#
+#
+n=100;#
+k=seq(0,n);#
+p=runif(1);#
+plot(k,dbinom(k,n,p),type="b")#
+lines(x,dnorm(x,p,sqrt(p*(1-p))), col="red")
+lines(x,dnorm(x,np,sqrt(n*p*(1-p))), col="red")
+lines(x,dnorm(x,n*p,sqrt(n*p*(1-p))), col="red")
+n=100;#
+k=seq(0,n);#
+p=runif(1);#
+plot(k,dbinom(k,n,p),type="b")#
+lines(x,dnorm(x,n*p,sqrt(n*p*(1-p))), col="red")
+n=100;#
+k=seq(0,n);#
+x=seq(0,n,by=0.1);#
+p=runif(1);#
+plot(k,dbinom(k,n,p),type="b")#
+lines(x,dnorm(x,n*p,sqrt(n*p*(1-p))), col="red")
+for(n in c(10,50)) {}
+for(n in c(10,50)) {n}
+for(n in c(10,50))
+n
+for(n in c(10,50))
+print(n)
+par(mfrow=c(2,2))#
+#
+for(n in c(10,20,40,80)) {#
+k=seq(0,n);#
+x=seq(0,n,by=0.1);#
+p=runif(1);#
+plot(k,dbinom(k,n,p),type="b")#
+lines(x,dnorm(x,n*p,sqrt(n*p*(1-p))), col="red")#
+}
+par(mfrow=c(2,2))#
+p=runif(1);#
+#
+for(n in c(10,20,40,80)) {#
+k=seq(0,n);#
+x=seq(0,n,by=0.1);#
+plot(k,dbinom(k,n,p),type="b")#
+lines(x,dnorm(x,n*p,sqrt(n*p*(1-p))), col="red")#
+}
+par(mfrow=c(2,2)) # Legt vier Plots in zwei Zeilen und zwei Spalten an#
+p=runif(1);       # Zufallszahl in [0,1]#
+#
+for(n in c(10,20,40,80)) {#
+  k=seq(0,n);#
+  x=seq(0,n,by=0.1);#
+  plot(k,dbinom(k,n,p),type="b")#
+  lines(x,dnorm(x,n*p,sqrt(n*p*(1-p))), col="red")#
+}
+##
+# Testen eines fairen Würfels#
+# (c) N. Packham, 2017#
+##
+#
+# Gesamtzahl an Simulationen#
+n=10^6;#
+#
+w=floor(runif(n,1,7)); # simuliert Würfel (gleicherverteilte ganze Zahlen zwischen 1 und 6)#
+#
+ew=sum(1:6)/6; # Erwartungswert#
+v=sum((1:6)^2*1/6)-(ew^2) #Varianz#
+print("empirischer und theoretischer Erwartungswert:")#
+c(mean(w), ew)#
+print("empirische und theoretische Varianz:")#
+c(var(w), v)#
+#
+print("Erwartungswert und Varianz des Ereignisses 'Einserwürfe'")#
+#
+w1=(which(w==1)) # Einser-Würfe#
+length(w1) # absolute Häufigkeit#
+length(w1)/n # relative Häufigkeit#
+#
+# Unterteilen in m Einzelexperimente zu je n/m Würfen#
+m=1000;#
+ind=rep(1,m+1);#
+w2=rep(0,m);#
+for (i in 1:m) {#
+	ind[i+1]=length(which(w1<=i*n/m)); # Indices die Einzelexperimente teilen#
+}#
+#
+# rel. Häufigkeiten von Einserwürfen in den Einzelexperimenten#
+for (i in 1:m) {#
+	w2[i] = length(w1[ind[i]:ind[(i+1)]]) / (n/m); # rel HF#
+}#
+#
+print("empirischer und theoretischer Erwartungswert")#
+p=1/6;#
+c(mean(w2), p)#
+print("empirische und theoretische Varianz:")#
+c(var(w2), p*(1-p)/(n/m))#
+#
+hist(w2 * (n/m),prob=TRUE) # Histogramm der absoluten HF#
+# dazugehörige Binomialverteilung#
+lines(seq(1,n/m),dbinom(seq(1,n/m), (n/m),1/6),col="red")
+w[1:10]
+max[w]
+max(w)
+min(w)
+which(w1<=n/m)
+w1
+which(w1<=n/m)
+which(w1<=2*n/m)
+length(which(w1<=2*n/m))
+ind
+n/m
+w1[1:10]
+which(w1<=n/m)
+w1[1:20]
+help(which)
+w1<=10
+(w1<=10)[1:10]
+which(w1<=10)
+w1(1:10)
+w1[1:10]
+w2
+##
+# Testen eines fairen Würfels#
+# (c) N. Packham, 2017#
+##
+#
+# Gesamtzahl an Simulationen#
+n=10^6;#
+#
+w=floor(runif(n,1,7)); # simuliert Würfel (gleicherverteilte ganze Zahlen zwischen 1 und 6)#
+#
+ew=sum(1:6)/6; # Erwartungswert#
+v=sum((1:6)^2*1/6)-(ew^2) #Varianz#
+print("empirischer und theoretischer Erwartungswert:")#
+c(mean(w), ew)#
+print("empirische und theoretische Varianz:")#
+c(var(w), v)#
+#
+print("Erwartungswert und Varianz des Ereignisses 'Einserwürfe'")#
+#
+w1=(which(w==1)) # Einser-Würfe#
+length(w1) # absolute Häufigkeit#
+length(w1)/n # relative Häufigkeit#
+#
+# Unterteilen in m Einzelexperimente zu je n/m Würfen#
+m=1000;#
+ind=rep(1,m+1);#
+w2=rep(0,m);#
+for (i in 1:m) {#
+	ind[i+1]=length(which(w1<=i*n/m)); # Indices die Einzelexperimente teilen#
+}#
+#
+# rel. Häufigkeiten von Einserwürfen in den Einzelexperimenten#
+for (i in 1:m) {#
+	w2[i] = length(w1[ind[i]:ind[(i+1)]]) / (n/m); # rel HF#
+}#
+#
+print("empirischer und theoretischer Erwartungswert")#
+p=1/6;#
+c(mean(w2), p)#
+print("empirische und theoretische Varianz:")#
+c(var(w2), p*(1-p)/(n/m))#
+#
+hist(w2 * (n/m),prob=TRUE) # Histogramm der absoluten HF#
+# dazugehörige Binomialverteilung#
+lines(seq(1,n/m),dbinom(seq(1,n/m), (n/m),1/6),col="red")
+w2
+1-qnorm(0.95,25,2.4/sqrt(30))
+?qnorm
+qnorm(0.95,25,2.4/sqrt(30))
+?l
+help(l)
+help(I)
+help(l)
+RSS = 3:10 #Right shoe size#
+LSS = rnorm(RSS, RSS, 0.1) #Left shoe size - similar to RSS#
+cor(LSS, RSS) #correlation ~ 0.99#
+#
+weights = 120 + rnorm(RSS, 10*RSS, 10)#
+#
+##Fit a joint model#
+m = lm(weights ~ LSS + RSS)#
+#
+##F-value is very small, but neither LSS or RSS are significant#
+summary(m)#
+#
+##Fitting RSS or LSS separately gives a significant result. #
+summary(lm(weights ~ LSS))
+demo(graphics)
+library("SmartEDA")
+library("ISLR")
+Carseats <- ISLR::Carseats
+ExpData(data=Carseats,type=1)
+Carseats
+help(write.csv)
+write.csv(Carseats, file="~/Downloads/carseats.csv")
+library(xtable)#
+library(dplyr)
+library(xlsx)
+Sys.setenv(JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands')
+library(xlsx)
+Sys.setenv(JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Versions/Current')
+library(xlsx)
+Sys.setenv(JAVA_HOME="/Library/Java/JavaVirtualMarchines/jdk-11.jdk/Contents/Home")
+library(xlsx)
+Sys.setenv(JAVA_HOME="/Library/Java/JavaVirtualMarchines/jdk-11.jdk/Contents/Home/")
+library(xlsx)
+java
+pwd
+getwd()
+setwd("Documents/GitHub/optimal_hedging_ratio_copula/parameter_estimation/")
+install.packages("xtable")
+library(xtable)
+library(dplyr)
+library(xlsx)
+library(readxl)
+library(gofCopula)
+library(dplyr)
+data=read.csv("D:/Git_copula/optimal_hedging_ratio_copula/data/sp500.csv")
+data = as.matrix(data)
+SP_copula = gof(data, priority = "tests", copula = c("normal"), M = 1000)
+data=read.csv("../data/sp500.csv")
+data = as.matrix(data)
+SP_copula = gof(data, priority = "tests", copula = c("normal"), M = 1000)
+Test gofKernel is running                                                               #
+Test gofPIOSRn is running                                                               #
+Test gofPIOSTn is running                                                               #
+Progress: [=============================================>--------]  85% | time left: 46s
+SP_copula = gof(data, priority = "tests", copula = c("normal", tests = c("gofRosenblattSnB", "gofRosenblattSnC")), M = 1000)
+SP_copula = gof(data, priority = "tests", copula = c("normal", tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 1000)
+SP_copula = gof(data, priority = "tests", copula = c("normal"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 1000)
+whos
+SP_copula
+gofGetHybrid()
+help(SP_copula)
+SP_copula = gof(data, priority = "tests", copula = c("normal"), M = 1000)
+SP_copula
+getwd()
+install.packages("xtable")#
+install.packages("xlsx", dependencies = TRUE)#
+install.packages("dplyr")#
+install.packages("Rcpp")
+library(dplyr)
+library(gofCopula)
+data = read.csv("../simulated_data.csv")
+data = read.csv("./simulated_data.csv")
+data = as.matrix(data)
+SP_copula = gof(data, priority = "tests", copula = c("normal"), M=1000)
+SP_copula_3y = unlist(SP_copula)
+SP_copula_3y
+SP_copula

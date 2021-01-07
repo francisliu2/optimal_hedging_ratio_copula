@@ -110,7 +110,8 @@ faster and more stable to use additional information about the
 specific copula and marginal distributions. We therefore derive
 semi-analytic formulas for a number of special cases, such as the
 Gaussian-, Student $t$-, normal inverse Gaussian (NIG) and Archimedean
-copulas.
+copulas in Section \ref{sec:dependence}. 
+
 \begin{proposition}
   \label{prop:dfrh}
   Let $R^S$ and $R^F$ be two real-valued random variables on the same
@@ -126,17 +127,17 @@ copulas.
   \end{equation}
 \end{proposition}
 Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
-which can be shown to fulfil \citep{Cherubini2011}:\footnote{%
-  Let $F_X(x)=u$, $F_Y(y)=v$. Then,
+which is easily shown to fulfil:\footnote{%
+  Let $F_X(x)=u$, $F_Y(y)=v$. Then, formally,
   \begin{align*}
     \frac{\partial}{\partial F_X(x)} C(F_X(x), F_Y(y)) %
-    &= \frac{\partial}{\partial F_X(x)} \p(F_X(X)\leq F_X(x),
-      F_Y(Y)\leq F_Y(y)) %
-      = \p(F_X(X)\in \dd F_X(x), F_Y(Y)\leq F_Y(y))\\ %
-    &= \p(F_Y(Y)\leq F_Y(y)| F_X(X) = F_X(x))\cdot \p(F_X(X) \in \dd
+    &= \frac{\partial}{\partial F_X(x)} \p(U\leq F_X(x),
+      V\leq F_Y(y)) %
+      = \p(U\in \dd F_X(x), V\leq F_Y(y))\\ %
+    &= \p(V\leq F_Y(y)| U = F_X(x))\cdot \p(U \in \dd
       F_X(x)) %
       = \p(Y\leq y|X=x)\cdot \p(U\in \dd u)\\ %
-    &= \p(Y\leq y|X=x)
+    &= \p(Y\leq y|X=x).
   \end{align*}
   % \begin{align*}
   %   C(u,v) &=\int_0^1 \frac{\partial}{\partial u} C(u,v)\, \dd u %
@@ -174,88 +175,6 @@ which can be shown to fulfil \citep{Cherubini2011}:\footnote{%
   \end{align*}
 \end{proof}
 
-\subsection{Special case: Gaussian copula}
-\label{sec:spec-case:-gauss}
-
-Let $R^S\sim \Ncdf(\mu_S, \sigma_S^2)$ and $R^F\sim \Ncdf(\mu_F,
-\sigma_F^2)$ and assume further that they are jointly normally
-distributed with correlation $\rho$. Then,
-\begin{equation*}
-  R^h = R^S - h R^F \sim \Ncdf(\mu_S - h \mu_F, \sigma_s^2 + h^2
-  \sigma_F^2 - 2\rho h \sigma_S \sigma_F).
-\end{equation*}
-More generally, if $R^k\sim F^k$, $k\in \{S,F\}$, then
-\begin{align*}
-  \p(R^S-h R^F\leq x)
-  &= 1-\E\left[ \p\left(R^F\leq \frac{R^S-x}{h}\big| R^S\right)\right] \\ %
-  &= 1-\E\left[\p \left(\Ncdf^{(-1)}(F_F(R^F)) \leq
-    \Ncdf^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) \Big|
-    R^S\right)\right] \\%
-  &= 1-\E\left[ \p\left(\rho \Ncdf^{(-1)}(F_S(R^S)) + \sqrt{1-\rho^2}
-    \varepsilon \leq \Ncdf^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) \Big|
-    R^S\right)\right]\\ %
-  &= 1-\E\left[ \Ncdf \left(
-    \frac{\Ncdf^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) -\rho
-    \Ncdf^{(-1)}(F_S(R^S))} { \sqrt{1-\rho^2}}\right)\right]\\
-  &= 1-\int_0^1  \Ncdf \left(
-    \frac{\Ncdf^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(u)-x}{h}\right)\right) -\rho
-    \Ncdf^{(-1)}(u)} { \sqrt{1-\rho^2}}\right) \,\dd u.
-\end{align*}
-
-
-\subsection{Special case: Normal variance mixtures}
-\label{sec:special-case:-normal}
-
-Let $(R^S, R^F)$ follow a normal variance mixture, i.e., there exists a
-decomposition such that
-\begin{align*}
-  R^S &=\mu_S + \sqrt{W} \sigma_S Z_1\\
-  R^F &= \mu_F + \sqrt{W} \sigma_F (\rho Z_1 + \sqrt{1-\rho^2} Z_2),
-\end{align*}
-where $W$ is the mixing variable and $Z_1, Z_2$ are independent
-standard normal variables. Then, $R^h$ follows a NVM distribution with
-\begin{equation*}
-  R^h = R^S - h R^F =  \mu_S - h \mu_F + \sqrt{W}
-  \left((\sigma_S-h\sigma_F\rho)Z_1 -h \sqrt{1-\rho^2} 
-    \sigma_F Z_2\right) = \mu_S - h \mu_F + \sqrt{W} Z_3,
-\end{equation*}
-where $Z_3\sim \Ncdf(0, \sigma_S^2 + h^2\sigma_F^2 - 2\rho
-h\sigma_S \sigma_F)$. 
-
-More generally, let $R^k\sim F^k$, $k\in \{S,F\}$ and write $V$
-as the marginal distribution functions of the NVM distribution
-components. Let $V^{(-1)}(F_S(R^S)) = \sqrt{W} Z_1$ and $V^{(-1)}(F_F(R^F)) =
-\sqrt{W} \rho Z_1 + \sqrt{W} \sqrt{1-\rho^2} Z_2$, were $Z_1, Z_2$ are
-independent standard normals. Then 
-\begin{align*}
-  \p(R^S-h R^F\leq x)
-  &= 1-\E\left[ \p\left(R^F\leq \frac{R^S-x}{h}\big| R^S\right)\right] \\ %
-  &= 1-\E\left[\p \left(V^{(-1)}(F_F(R^F)) \leq
-    V^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) \Big|
-    W, Z_1\right)\right] \\%
-  &= 1-\E\left[ \p\left(\sqrt{W} \rho Z_1 + \sqrt{W} \sqrt{1-\rho^2}
-    Z_2\leq V^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(V(\sqrt{W}
-    Z_1))-x}{h}\right)\right) \Big| W, Z_1\right)\right]\\ %
-  &= 1-\E\left[ \Ncdf \left(
-    \frac{V^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(V(\sqrt{W}
-    Z_1))-x}{h}\right)\right) -\rho \sqrt{W} Z_1} {
-    \sqrt{W}\sqrt{1-\rho^2}}\right)\right]\\ 
-  &= 1-\int_0^\infty \int_{-\infty}^{\infty} \Ncdf \left(
-    \frac{V^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(V(\sqrt{w}
-    z_1))-x}{h}\right)\right) -\rho\sqrt{w} z_1} { \sqrt{w}
-    \sqrt{1-\rho^2}}\right) \, \varphi(z_1)\, f_W(w)\, \dd z_1\, \dd
-    w% \\
-  % &= 1-\int_0^1 \int_{-\infty}^\infty  \Ncdf \left(
-  %   \frac{V^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(u)-x}{h}\right)\right)
-  %   -\rho V^{(-1)}(u)} { V^{(-1)}(u)/z_1
-  %   \sqrt{1-\rho^2}}\right) \, \varphi(z_1)\, \dd z_1\, \dd
-  %   u\\
-\end{align*}
-
-\subsection{Special case: double-$t$ copula}
-\label{sec:special-case:-double}
-Let $(R^S, R^F)$ follow a double-$t$ copula.
-
 
 
 \section{Spectral risk measures}
@@ -269,7 +188,7 @@ where $q_p$ is the $p$-quantile of the return distribution and
 $\phi(s)$, $s\in [0,1]$, is the so-called {\em risk aversion
   function\/}, a weighting function such that\footnote{Note that the
   treatment in \citep{Acerbi2002} is measure-based and therefore
-  slightly different} 
+  slightly different.} 
 \begin{enumerate}[(i)]
 \item $\phi(p)\geq 0$,
 \item $\int_0^1\phi(p)\, \dd p=1$,
@@ -331,7 +250,7 @@ above.)
 
 \input{D1Operator.tex}
 
-\section{Dependence}
+\section{Special copulas}
 \label{sec:dependence}
 \input{dependence.tex}
 

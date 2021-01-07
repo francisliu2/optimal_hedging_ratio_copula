@@ -29,10 +29,10 @@ SPF    = data.frame(SPF)
 data = cbind(SP, SPF)
 data = as.matrix(data)
 
-SP_copula_norm_3y = gof(data, priority = "tests", copula = c("normal"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 100)
+SP_copula_norm_3y = gof(data, priority = "tests", copula = c("normal", "t", "gumbel","frank","clayton"), tests = c("gofKernel", "gofKendallCvM", "gofKendallKS"), M = 100)
 
-SP_copula_norm_3y_1 = unlist(SP_copula_norm_3y)
-write.xlsx(SP_copula_norm_3y_1, "D:\\Git_copula\\optimal_hedging_ratio_copula\\parameter_estimation\\SP_copula_norm_3y.xlsx")
+SP_copula_3y_1 = unlist(SP_copula_norm_3y)
+write.xlsx(SP_copula_3y_1, "D:\\Git_copula\\optimal_hedging_ratio_copula\\parameter_estimation\\SP_copula_3y_20210107.xlsx")
 
 #gofGetHybrid(result = SP_copula_norm, p_values = c("MyTest" = 0.3, "AnotherTest" = 0.7), nsets = 2)
 SP_copula_t_3y = gof(data, priority = "tests", copula = c("t"), tests = c("gofRosenblattSnB", "gofRosenblattSnC"), M = 100)

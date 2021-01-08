@@ -95,12 +95,9 @@ class norminvgauss:
     def pdf(self, x):
         part1 = self.alpha*self.delta
         part2 = scipy.special.kv(1.0, self.alpha*np.sqrt(self.delta**2 + (x-self.mu)**2))
-        if part2 == 0:
-            return 0
-        else:
-            part3 = np.pi * np.sqrt(self.delta**2 + (x-self.mu)**2)
-            part4 = np.exp(self.delta*self.gamma + self.beta*(x-self.mu))
-            return part1*part2*part4/part3
+        part3 = np.pi * np.sqrt(self.delta**2 + (x-self.mu)**2)
+        part4 = np.exp(self.delta*self.gamma + self.beta*(x-self.mu))
+        return part1*part2*part4/part3
     
     def cdf(self, y):
         return scipy.integrate.quad(self.pdf, -np.inf, y)[0]
@@ -128,6 +125,7 @@ class norminvgauss:
         k4_fn = fs['k4']
         k5_fn = fs['k5']
         
+        # normalise
         self.a = self.std()
         self.b = self.mean()
         self.standardisedNIG = norminvgauss(alpha=self.alpha*self.a,
@@ -135,12 +133,12 @@ class norminvgauss:
                                           mu=(self.mu-self.b)/self.a,
                                           delta=self.delta/self.a)
         
-        
         salpha = self.alpha*self.a
         sbeta  = self.beta*self.a
-        smu=(self.mu-self.b)/self.a
-        sdelta=self.delta/self.a
+        smu    = (self.mu-self.b)/self.a
+        sdelta = self.delta/self.a
         
+        # Cumulants of the standardised NIG distribtion for later approximation use
         self._k3 = k3_fn(salpha,sbeta,smu,sdelta)
         self._k4 = k4_fn(salpha,sbeta,smu,sdelta)
         self._k5 = k5_fn(salpha,sbeta,smu,sdelta)
@@ -167,9 +165,10 @@ class norminvgauss:
         return Xq
     
     def ppf_sampling_approx(self, q_arr, size=5000000):
-        NIG = NIG_law.rvs(size)
+        NIG = self.rvs(size)
         q_sample = np.quantile(NIG, q_arr)
         return q_sample
+    
     def rvs(self, size):
         z = invgauss(delta=self.delta, gamma=self.gamma).rvs(size=size)
         x = stats.norm(loc=self.mu + self.beta*z, scale= np.sqrt(z)).rvs(size=size)

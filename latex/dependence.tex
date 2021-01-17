@@ -610,8 +610,11 @@ histograms and the fitted NIG densities of the Bitcoin reference rate
 
 \begin{figure}[t]
   \centering
-  \includegraphics[scale=.7]{_pics/fittedNIG.pdf} 
-  \includegraphics[scale=.7]{_pics/scatter.pdf}
+  % \includegraphics[scale=.7]{_pics/fittedNIG.pdf} 
+  % \includegraphics[scale=.7]{_pics/scatter.pdf}
+  \includegraphics[scale=.55]{_pics/rbrr.pdf} \ \ 
+  \includegraphics[scale=.55]{_pics/rbtc.pdf}\ \ 
+  \includegraphics[scale=.4]{_pics/scatter.pdf}
   \caption{BRR and BTCF return distributions (empirical and fitted to
     NIG) as well as scatter plot.}
   \label{fig:nig}
@@ -658,7 +661,7 @@ and \citep[p.\ 232]{McNeil2005}):
   \hat F(x) = \frac{1}{n+1} \sum_{k=1}^n \1_{\{x_k\leq x\}}. 
 \end{equation*}
 Convergence of the sample measures to the population counterparts is
-proved by \citep{Fermanian2004}.
+established by \citep{Fermanian2004}.
 
 Denote the {\em standardised\/} NIG distribution function (i.e.,
 expectation $0$ and variance $1$) by $F(\cdot; \alpha, \beta)$. In this case
@@ -707,7 +710,7 @@ large values of $\alpha$, as the NIG converges to the normal
 distribution as $\alpha\rightarrow\infty$. It turns out that the
 approximation is close even for $\alpha$ in the order of e.g.\ $4$.
 
-\natp{\em \bf [Should be compute AIC in order to compare the
+\natp{\em \bf [Possibly compute AIC in order to compare the
   calibration performance across models?]}
 
 \paragraph{Bitcoin data}

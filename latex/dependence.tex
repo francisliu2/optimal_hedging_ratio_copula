@@ -554,6 +554,43 @@ variables.
 The NIG factor copula is obtained by transforming the margins to
 uniforms (see Sklar's Theorem).
 
+The NIG factor copula function can be written as \citep{krupskii2013factor}:
+\begin{align}
+  C_{R^S, R^F}\{F_{R^S}(r^S), F_{R^F}(r^F)\} = \int_\mathbb{R}
+  F_{Z_1}\{F_{X_1}^{-1} \circ F_{R^S}(r^S) -z\} \cdot
+  F_{Z_2}\{F_{X_2}^{-1} \circ F_{R^F}(r^F) -z\} \cdot
+  f_Z(z) dz
+  \end{align}
+
+The Spearman rho of NIG factor copula is
+\begin{align}
+  \rho_S = 12 \int \int \int_{\mathbb{R}^3}
+  F_{X_1}(x_1) \cdot
+  F_{X_2}(x_2) \cdot
+  f_{Z_1}(x_1-z) \cdot
+  f_{Z_2}(x_2-z) \cdot
+  f_Z(z) dx_1 dx_2 dz - \frac{1}{48}
+  \end{align}
+
+\begin{proof}
+  \begin{align}
+  \rho_S(R^S, R^F) &= \rho\{F_{R^S}(R^S), F_{R^F}(R^F)\} \\
+    &= \rho\{F_{X_1}(X_1), F_{X_2}(X_2)\} \\
+    &= 12 \cdot \mathbb{E}\{F_{X_1}(X_1) \cdot F_{X_2}(X_2) \} - \frac{1}{48}\\
+    &= 12 \cdot \int \int_{\mathbb{R}^2} F_{X_1}(X_1) \cdot F_{X_2}(X_2) dF_{X_1,X_2}(x_1,x_2)\\
+    \end{align}
+  Because
+  \begin{align}
+    F_{X_1,X_2}(x_1,x_2) &= \mathbb{P}(X_1 \leq x_1, X_2 \leq x_2)\\
+    &= \mathbb{P}(Z_1 \leq x_1 - Z, Z_2 \leq x_2 - Z) \\
+    &= \int_\mathbb{R}\mathbb{P}(Z_1 \leq x_1 - z) \cdot \mathbb{P}(Z_2 \leq x_2 - z) \cdot f_Z(z) dz,
+    \end{align}
+  so,
+  \begin{align}
+    \rho_S(R^S, R^F) = 12 \cdot \int \int \int_{\mathbb{R}^3} F_{X_1}(x_1) \cdot F_{X_2}(x_2) \cdot f_{Z_1}(x_1 -z) \cdot f_{Z_2}(x_2 -z) \cdot f_{Z}(z) dx_1 dx_2 dz -\frac{1}{48}
+    \end{align}
+  \end{proof}
+
 \subsubsection{Fitting the NIG factor model}
 \label{sec:fitt-nig-distr}
 

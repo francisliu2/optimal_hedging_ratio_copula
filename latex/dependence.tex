@@ -703,12 +703,27 @@ function, we approximate $\rho_S$ by the rank correlation for the
 Gaussian copula (see \citep[p.\ 215]{McNeil2005}), 
 \begin{equation}
   \label{eq:11}
-  \rho_S(X_1,X_2) = \frac{6}{\pi} \arcsin \frac{1}{2}\rho. 
+  \rho_S(X_1,X_2) = \frac{6}{\pi} \arcsin \frac{1}{2}\rho,
 \end{equation}
+where $\rho$ refers to the correlation coefficient, \eqref{eq:6}.
 This is justified if $\beta$ is close to zero and for sufficiently
 large values of $\alpha$, as the NIG converges to the normal
-distribution as $\alpha\rightarrow\infty$. It turns out that the
-approximation is close even for $\alpha$ in the order of e.g.\ $4$.
+distribution as $\alpha\rightarrow\infty$. 
+
+In addition, as $\rho_S$ in \eqref{eq:11} depends only on $\delta$ 
+(through $\rho$), we transform the optimisation of $\delta$ into a
+constraint, giving
+\begin{equation*}
+  \min_{\alpha, \beta} \sqrt{
+    (\lambda_{0.05}-\hat\lambda_{0.05})^2 + 
+    (\lambda_{0.1}-\hat\lambda_{0.1})^2 + 
+    (\lambda_{0.9}-\hat\lambda_{0.9})^2 + 
+    (\lambda_{0.95}-\hat\lambda_{0.95})^2},
+\end{equation*}
+subject to $\hat\rho_S=\displaystyle \frac{6}{\pi} \arcsin \frac{1}{2}
+\frac{\delta}{\delta + \delta_i}$. 
+
+
 
 \natp{\em \bf [Possibly compute AIC in order to compare the
   calibration performance across models?]}
@@ -716,24 +731,27 @@ approximation is close even for $\alpha$ in the order of e.g.\ $4$.
 \paragraph{Bitcoin data}
 
 The copula parameters obtained in the calibration of the Bitcoin data
-are $\alpha=3.1354$, $\beta=0.121548$, $\delta=2.53221$. The NIG rank
-correlation obtained with these parameters is $\rho_S=0.8011$, whereas
-the Gaussian approximation of \eqref{eq:11} gives $0.7958$.
+are $\alpha=0.773$, $\beta=0.02933$, $\delta=0.5782$. The 
+rank correlation $\hat\rho_S=0.7337$, whereas the calibrated rank
+correlation (subject to the error from the the Gaussian approximation
+of \eqref{eq:11}) gives $0.7470$. Figure~\ref{fig:copula_nig} shows
+scatter plots of the NIG copula applied to the BTC data and to
+simulated data. 
 
 \begin{table}[t]
   \centering
   \begin{tabular}{|c||c|c|}
     \hline %
     Measure & Empirical & Calibrated\\\hline
-    $\rho_s$ & 0.7337 & 0.7958\\
-    $\lambda_{0.05}$ & 0.5581 & 0.5290\\
-    $\lambda_{0.1}$ & 0.6357 & 0.5871\\
-    $\lambda_{0.9}$ & 0.6202 & 0.5896\\
-    $\lambda_{0.95}$ & 0.5891 & 0.5325\\\hline
+    $\rho_s$ & 0.7337 & 0.7470\\
+    $\lambda_{0.05}$ & 0.5581 & 0.5872\\
+    $\lambda_{0.1}$ & 0.6357 & 0.6100\\
+    $\lambda_{0.9}$ & 0.6202 & 0.6156\\
+    $\lambda_{0.95}$ & 0.5891 & 0.5954\\\hline
   \end{tabular}
   \caption{Empirical versus calibrated dependence measures. The
-    calibrated parameters are $\alpha=3.1354$, $\beta=0.121548$,
-    $\delta=2.53221$. }
+    calibrated parameters are $\alpha=0.773$, $\beta=0.02933$,
+    $\delta=0.5782$. The RMSE is $0.0395$.}
   \label{tab:nigcopula}
 \end{table}
 
@@ -742,7 +760,8 @@ the Gaussian approximation of \eqref{eq:11} gives $0.7958$.
   \includegraphics[scale=.5]{_pics/copula_nig1.pdf}\ \ \ \ \ 
   \includegraphics[scale=.5]{_pics/copula_nig2.pdf}
   \caption{Left: Scatter plot of empirical copula; right: scatter plot
-    of simulated sample with calibrated parameters.}
+    of simulated sample with calibrated parameters. The sample size is
+  645 in both cases.}
   \label{fig:copula_nig}
 \end{figure}
 
@@ -795,46 +814,46 @@ the Gaussian approximation of \eqref{eq:11} gives $0.7958$.
 %     \beta,\mu, \tilde\delta) \Big|_{u=0}\right)^2.
 % \end{equation*}
 
-\clearpage
-\subsubsection{NIG quantiles}
-\label{sec:nig-quantiles}
+% \clearpage
+% \subsubsection{NIG quantiles}
+% \label{sec:nig-quantiles}
 
-Calibration of the copula model requires an efficient implementation
-of the NIG quantile function, see Equation (\ref{eq:8}). One way of
-implementing this is via the so-called {\em Cornish-Fisher expansion}
-(CF expansion), \citep{Cornish1938}. The quantile function of a
-distribution function is approximated by the known quantile of another
-distribution (e.g.\ normal or $t$-distribution) and expanded using the
-cumulants of the 
-desired distribution. The CF expansion is a popular choice for
-calculating the value-at-risk of financial portfolios when no closed
-formula of the quantile function exists, see e.g.\
-\citep{Jaschke2002,Lau2015}.  The version of the CF expansion used
-here follows \citep{Abramowitz1972}, 26.2.49-26.2.51.
+% Calibration of the copula model requires an efficient implementation
+% of the NIG quantile function, see Equation (\ref{eq:8}). One way of
+% implementing this is via the so-called {\em Cornish-Fisher expansion}
+% (CF expansion), \citep{Cornish1938}. The quantile function of a
+% distribution function is approximated by the known quantile of another
+% distribution (e.g.\ normal or $t$-distribution) and expanded using the
+% cumulants of the 
+% desired distribution. The CF expansion is a popular choice for
+% calculating the value-at-risk of financial portfolios when no closed
+% formula of the quantile function exists, see e.g.\
+% \citep{Jaschke2002,Lau2015}.  The version of the CF expansion used
+% here follows \citep{Abramowitz1972}, 26.2.49-26.2.51.
 
-The CF expansion may not converge in the sense as a Taylor
-expansion does, so other techniques such as Monte Carlo simulation may
-produce better results, especially in the tails. However, the CF
-expansion is extremely fast, so that we use it for calibrating the
-copula model and switch to Monte Carlo simulation for calculating the
-optimal hedge ratio.
+% The CF expansion may not converge in the sense as a Taylor
+% expansion does, so other techniques such as Monte Carlo simulation may
+% produce better results, especially in the tails. However, the CF
+% expansion is extremely fast, so that we use it for calibrating the
+% copula model and switch to Monte Carlo simulation for calculating the
+% optimal hedge ratio.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[scale=.5]{_pics/CFerror.pdf}
-  \caption{blub}
-  \label{fig:CF_NIG}
-\end{figure}
+% \begin{figure}[t]
+%   \centering
+%   \includegraphics[scale=.5]{_pics/CFerror.pdf}
+%   \caption{blub}
+%   \label{fig:CF_NIG}
+% \end{figure}
 
-Figure
-
-
+% Figure
 
 
-\natp{Simulation produces better results but requires more
-  computational power. Hence, use CF for calibration, which performs
-  worse in the tails, and simulation in the hedge calculation / risk
-  measure calculation. Use importance sampling.}
+
+
+% \natp{Simulation produces better results but requires more
+%   computational power. Hence, use CF for calibration, which performs
+%   worse in the tails, and simulation in the hedge calculation / risk
+%   measure calculation. Use importance sampling.}
 
 
 \subsubsection{Hedge calculation in the NIG factor model}

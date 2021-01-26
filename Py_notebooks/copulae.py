@@ -62,6 +62,13 @@ class Gaussian:
         samples[:,1]=self.Law_RF.ppf(norm.cdf(copula_samples[:,1]))
         return samples
     
+    def sample_uv(self, n): # sample only the copula (Assuming uniform distribution of marginals)
+        copula_samples = self.meta_Gaussian.rvs(n)
+        samples = np.zeros((n,2))
+        samples[:,0]= norm.cdf(copula_samples[:,0])
+        samples[:,1]= norm.cdf(copula_samples[:,1])
+        return samples
+    
     # likelihood function
     def l_fn(self, rho, u, v):
         _meta_Gaussian = stats.multivariate_normal([0,0], 
@@ -92,6 +99,9 @@ class Gaussian:
                              maxiter=5000,
                              maxfun=400)
         self.rho = result[0]
+        self.samples = self.sample(200000) # generate samples for later use
+        self.rs = self.samples[:,0]
+        self.rf = self.samples[:,1]
         return result
     
     def VaR(self, q, h, method='sampling'):
@@ -99,6 +109,14 @@ class Gaussian:
             r = self.sample(1000000)
             rh = r[:,0]-h*r[:,1]
             return np.quantile(rh, q)
+        
+    def ERM(self, k, h, method='sampling'):
+        if method == 'sampling':
+            rh = self.rs - h*self.rf
+            n=200000
+            q_arr = np.linspace(0,1,n)
+            toin = ERM_weight(k=10,s=q_arr) * np.quantile(rh, q_arr)
+            return np.sum((toin[1:] + toin[:-1])/n/2)
         
     def tau(self):
         return 2/np.pi * np.arcsin(self.rho)
@@ -155,6 +173,13 @@ class t_Copula:
         samples = np.zeros((n,2))
         samples[:,0]=self.Law_RS.ppf(self.t1.cdf(copula_samples[:,0]))
         samples[:,1]=self.Law_RF.ppf(self.t2.cdf(copula_samples[:,1]))
+        return samples
+    
+    def sample_uv(self, n):
+        copula_samples = self.meta_t.rvs(n)
+        samples = np.zeros((n,2))
+        samples[:,0]= self.t1.cdf(copula_samples[:,0])
+        samples[:,1]= self.t2.cdf(copula_samples[:,1])
         return samples
     
         # likelihood function

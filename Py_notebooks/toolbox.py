@@ -191,3 +191,9 @@ class norminvgauss:
         part1 = 1j*self.mu*z 
         part2 = self.delta*(self.gamma-np.sqrt(self.alpha**2-(self.beta+1j*z)**2))
         return np.exp(part1+part2)
+    
+def empirical_lambda(u_arr, v_arr, q):
+    if q <=0.5:
+        return np.mean( ((u_arr <= q) & (v_arr <= q))/q)
+    else:
+        return np.mean( ((u_arr > q) & (v_arr > q))/(1-q) )

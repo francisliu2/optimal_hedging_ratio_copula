@@ -52,10 +52,14 @@ def sample_Gaussian(size, data, h):
     return datasample + kernelsample 
 
 class KDE():
-    def __init__(self, data, kernel_name):
+    def __init__(self, data, kernel_name, bw=None):
         uq               = np.quantile(data, .75)
         lq               = np.quantile(data, .25)
-        self.h_brot      = 1.06*min(np.std(data), (uq-lq)/1.34)*len(data)**(-1/5)
+        if bw==None:
+            self.h_brot      = 1.06*min(np.std(data), (uq-lq)/1.34)*len(data)**(-1/5)
+        else:
+            self.h_brot      = bw
+
         self.kernel_name = kernel_name
         self.data        = data
         self.ecdf        = ECDF(data)
@@ -71,6 +75,8 @@ class KDE():
         
         elif self.kernel_name == "Gaussian":
             self.kernel = K_Gaussian
+            
+        self.samples = self.rvs(len(data)*1000)
         
     def cdf(self, x): # KDE's cdf should be a cdf of a mixture...
         return self.ecdf(x)
@@ -97,9 +103,21 @@ class KDE():
             return sample_Gaussian(size, self.data,self.h_brot)
         
     def ppf(self, q):
-        return np.quantile(self.data, q)
+        return np.quantile(self.samples, q)
     
+    def plot_density(self):
+        a = min(self.data)-np.std(self.data)
+        b = max(self.data)+np.std(self.data)
+
+        x_arr = np.linspace(a,b,10000)
+
+        result = []
+
+        for x in x_arr:
+            result.append(self.pdf(x))
         
+        plt.plot(x_arr, result)
+        plt.scatter(self.data,np.zeros(len(self.data)), marker='+')
         
         
         

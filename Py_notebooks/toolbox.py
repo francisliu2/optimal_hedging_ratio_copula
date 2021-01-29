@@ -197,3 +197,85 @@ def empirical_lambda(u_arr, v_arr, q):
         return np.mean( ((u_arr <= q) & (v_arr <= q))/q)
     else:
         return np.mean( ((u_arr > q) & (v_arr > q))/(1-q) )
+    
+def ERM_weight(k,s):
+    return k*np.exp(-k*s)/(1-np.exp(-k))
+
+
+class stable:
+    def __init__(self, alpha, beta, mu, sigma):
+        self.alpha = alpha
+        self.beta  = beta
+        self.mu    = mu
+        self.sigma = sigma
+        
+        
+    def log_phi(self, t):
+        part1 = -1*np.abs(self.sigma*t)**self.alpha
+        part3 = 1j*self.mu*t
+
+        if self.alpha != 1:
+            part2 = 1-1j*self.beta*np.sign(t)*np.tan(np.pi*self.alpha/2)
+        else:
+            part2 = 1+1j*self.beta*np.sign(t)*2/np.pi*np.log(np.abs(t))
+        return part1*part2+part3
+    
+    def pdf(self, x):
+        fn = lambda t: np.exp(-1j*t*x)*np.exp(self.log_phi(t))
+        return scipy.integrate.quad(fn,-np.inf, np.inf)[0]/(2*np.pi)
+        
+        
+    def rvs(self, size):
+            
+        U    = stats.uniform.rvs(size=size)*2*np.pi-np.pi
+        W    = stats.expon.rvs(size=size)
+
+        zi = -self.beta*np.tan(np.pi*self.alpha/2)
+
+        if self.alpha != 1:
+            xi = 1/self.alpha * np.arctan(-zi)
+        else:
+            xi = np.pi/2 
+
+        if self.alpha != 1:
+            part1 = (1+zi**2)**(0.5/self.alpha)
+            part2 = np.sin(self.alpha*(U+xi))/(np.cos(U)**(1/self.alpha))
+            part3 = (np.cos(U-self.alpha*(U+xi))/W )**((1-self.alpha)/self.alpha)
+            X     = part1*part2*part3
+        else:
+            part1  = ((np.pi/2)+self.beta*U)*np.tan(U)
+            part2a = (np.pi/2)*W*np.cos(U)
+            part2b = np.pi/2+self.beta*U
+            part2  = self.beta*np.log(part2a/part2b)
+            X      =1/xi*(part1-part2)
+
+        if self.alpha == 1:
+            Y = self.sigma*X+2/np.pi*self.beta*self.sigma*np.log(self.sigma)+self.mu
+        else:
+            Y = self.sigma*X+self.mu
+        return Y
+    
+#         if removenan:
+#             return Y[~np.isnan(Y)][:size/3]
+#         else:
+#             return Y[:size/3]
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+
+
+

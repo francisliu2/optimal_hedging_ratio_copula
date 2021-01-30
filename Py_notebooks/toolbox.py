@@ -15,6 +15,8 @@ class multivariate_t:
         self.d = self.Sigma.shape[0] 
         if self.d !=  Sigma.shape[1]:
             return print("Sigma must be a square matrix")
+        self.MN = stats.multivariate_normal([0,0],  #for cdf approximation use
+                               Sigma)
         
     def pdf(self, *argv):
         # mean = \vec{0}
@@ -33,11 +35,15 @@ class multivariate_t:
         part3 = (1 + (x.dot(la.inv(self.Sigma)).dot(x))/self.nu)**(-(self.nu+self.d)/2)
         return (part1/part2)*part3
 
-    def cdf(self, upper):
+    def cdf_ref(self, upper): # reference computation of cdf
         uppers = [[-np.infty, upper[i]] for i in range(len(upper))]
         fn = partial(self.pdf)
         return integrate.nquad(fn, uppers)[0]
-
+    
+    def cdf(self, b): # cdf approximation by http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.554.9917&rep=rep1&type=pdf equation 2; The equation was originally from Tong (1990) eq. 9.4.1
+        fn = lambda s: s**(nu-1)*np.exp(-s**2/2)*MN.cdf(s*b/np.sqrt(nu))
+        return 2**(1-(nu/2))/gamma(nu/2)*scipy.integrate.quad(fn, 0, np.inf)[0]
+    
     def rvs(self, size): # Sample 
         Z_law = stats.multivariate_normal(np.zeros(self.d), # Mean
            np.eye(self.d))

@@ -1,15 +1,20 @@
 import numpy as np
+import pandas as pd
+
 import scipy
 from scipy import stats 
 from scipy.stats import norm
 from scipy import integrate
-from functools import partial
-import matplotlib.pyplot as plt
-from tqdm import tqdm
-import seaborn as sns
-import pandas as pd
-from statsmodels.distributions.empirical_distribution import ECDF
+from scipy.special import beta
 import scipy.linalg as la
+
+from statsmodels.distributions.empirical_distribution import ECDF
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from functools import partial
+from tqdm import tqdm
 from toolbox import *
 
 class Copula(object):
@@ -45,18 +50,19 @@ class Copula(object):
             return (1-(2*q)+self.C(q,q) )/(1-q)
     
 class Gaussian(Copula):
-    def __init__(self, rho, Law_RS, Law_RF):
-        self.rho = rho         # Dependence Parameter
+    def __init__(self, paras, Law_RS, Law_RF):
+        self.paras = paras
+        self.rho   = paras["rho"]         # Dependence Parameter
         self.Law_RS = Law_RS   # Marginal Distribution of Spot
         self.Law_RF = Law_RF   # Marginal Distribution of Future
         self.meta_Gaussian = stats.multivariate_normal([0,0], # Mean
-                                                       [[1,rho], # COV
-                                                        [rho,1]])
+                                                       [[1,self.rho], # COV
+                                                        [self.rho,1]])
         
     def C(self, u, v): # Copula Function
         return self.meta_Gaussian.cdf([norm.ppf(u), norm.ppf(v)])
     
-    def c(self, u, v): # copula density
+    def c(self, u, v): # copula density 
         X1 = norm.ppf(u)
         X2 = norm.ppf(v)  
 
@@ -68,6 +74,15 @@ class Gaussian(Copula):
             return 0
         else:
             return result
+#         n = len(u)
+#         u[u==0] = 0.5/n
+#         v[v==0] = 0.5/n
+#         u[u==1] = 1-0.5/n
+#         v[v==1] = 1-0.5/n
+#         X1 = norm.ppf(u)
+#         X2 = norm.ppf(v)
+#         _c = 1/np.sqrt(1-self.rho**2)*np.exp(-(self.rho**2*(X1**2+X2**2)-2*self.rho*X1*X2)/(2-2*self.rho**2))
+#         return _c
     
     def D1C(self, w, h, r_h):
         integrand = lambda u: self.meta_Gaussian.pdf([norm.ppf(w), u]) 
@@ -90,19 +105,22 @@ class Gaussian(Copula):
         part2 = norm.pdf(norm.ppf(u))*norm.pdf(norm.ppf(v))
         return np.nanmean(np.log(part1/part2))
     
+    def dependency_likelihood(self, u, v):
+        rho = self.rho
+        return self.l_fn(rho, u,v)
+        
+    
     def canonical_calibrate(self, u, v):
         fn_toopt = lambda rho: -self.l_fn(rho, u, v)
         result = scipy.optimize.fmin(fn_toopt, x0=self.rho,
                              xtol=1e-10, 
                              maxiter=5000,
                              maxfun=400)
+        self.paras = {"rho":result[0]}
         self.rho = result[0]
         self.meta_Gaussian = stats.multivariate_normal([0,0], # Mean
                                                        [[1,self.rho], # COV
                                                         [self.rho,1]])
-        self.samples = self.sample(200000) # generate samples for later use
-        self.rs = self.samples[:,0]
-        self.rf = self.samples[:,1]
         return result
     
     def sample(self, n):
@@ -122,17 +140,27 @@ class Gaussian(Copula):
     def tau(self):
         return 2/np.pi * np.arcsin(self.rho)
     
+    def Fisher_information(rho):
+        return (1+rho**2)/(1-rho**2)**2
+    
 class t_Copula(Copula):
-    def __init__(self, rho, nu, Law_RS, Law_RF):
-        self.rho        = rho      # Dependence Parameter
-        self.nu         = nu       # Degree of Freedom 
+    def __init__(self, paras, Law_RS, Law_RF, nu_lowerbound):
+        self.paras      = paras
+        self.rho        = paras["rho"]      # Dependence Parameter
+        self.nu         = paras["nu"]       # Degree of Freedom 
         self.Law_RS     = Law_RS   # Marginal Distribution of Spot
         self.Law_RF     = Law_RF   # Marginal Distribution of Future
-        self.meta_t     = multivariate_t(nu =nu,  # DF
-                                         Sigma=np.array([[1,rho], # COV
-                                            [rho,1]]))
-        self.t1 = stats.t(df=nu) # inner
-        self.t2 = stats.t(df=nu) 
+        self.meta_t     = multivariate_t(nu =self.nu,  # DF
+                                         Sigma=np.array([[1,self.rho], # COV
+                                            [self.rho,1]]))
+        self.t1 = stats.t(df=self.nu) # inner
+        self.t2 = stats.t(df=self.nu) 
+        
+        if nu_lowerbound == None: # lowerest value permitted for degree of freedom
+            self.nu_lowerbound = 2
+        else:
+            self.nu_lowerbound = nu_lowerbound
+           
         
     def C(self, u, v): # Copula Function
         return self.meta_t.cdf([self.t1.ppf(u), self.t2.ppf(v)])
@@ -147,7 +175,7 @@ class t_Copula(Copula):
         part2 = 1/self.t1.pdf(self.t1.ppf(w))
         return integrate.quad(integrand, -np.infty, self.t2.ppf(self.g(w, h, r_h)))[0] * part2
     
-    def l_fn(self, rho, nu,  u, v, nu_lowerbound=2): # Likelihood Function
+    def l_fn(self, rho, nu, u, v, nu_lowerbound=2): # Likelihood Function
         if (np.abs(rho)>=1) or (nu <nu_lowerbound):
             return -5000
         
@@ -169,20 +197,24 @@ class t_Copula(Copula):
         part2 = _t1.pdf(_t1.ppf(u))*_t2.pdf(_t2.ppf(v))
         return np.nanmean(np.log(part1/part2))
     
-    def canonical_calibrate(self, u, v, nu_lowerbound=2):
-        fn_toopt = lambda theta: -self.l_fn(theta[0],theta[1] , u, v, nu_lowerbound)
+    def dependency_likelihood(self, u, v):
+        rho = self.rho
+        nu  = self.nu
+        return self.l_fn(rho, nu, u,v, nu_lowerbound=2)
+    
+    def canonical_calibrate(self, u, v):
+        fn_toopt = lambda theta: -self.l_fn(theta[0],theta[1] , u, v, self.nu_lowerbound)
         result = scipy.optimize.fmin(fn_toopt, x0=(self.rho,self.nu), 
                              xtol=1e-10, 
                              maxiter=5000,
                              maxfun=400)
         self.rho = result[0]
         self.nu  = result[1]
+        self.paras = {"rho":result[0], "nu":result[1]}
+
         self.meta_t = multivariate_t(nu=self.nu,  # DF
                                          Sigma=np.array([[1,self.rho], # COV
                                             [self.rho,1]]))
-        self.samples = self.sample(200000) # generate samples for later use
-        self.rs = self.samples[:,0]
-        self.rf = self.samples[:,1]
         return result
     
     def sample(self, n):
@@ -191,10 +223,26 @@ class t_Copula(Copula):
         samples[:,0]=self.Law_RS.ppf(self.t1.cdf(copula_samples[:,0]))
         samples[:,1]=self.Law_RF.ppf(self.t2.cdf(copula_samples[:,1]))
         return samples
+    
+    def Fisher_information(rho, nu):
+        # I_rho
+        part1 = (1+rho**2)/(1-rho**2)**2 
+        part2 = (nu**2+2*nu)*(rho**2)/(4*(1-rho**2)**2)*beta(3, nu/2)
+        part3 = (nu**2+2*nu)*(2-3*rho**2+rho**6)/(16*(1-rho**2)**4)*beta(3, nu/2)
+        part4 = (nu**2+2*nu)*(1+rho**2)/(2*(1-rho**2)**2)*beta(2, nu/2)
+        I_rho = part1 + part2 + part3 + part4
+
+        # I_nu
+        I_nu = 1/nu*beta(2, nu/2) - (nu+2)/(4*nu)*beta(3, nu/2)
+
+        # I_rhonu
+        I_rhonu = -rho/(2*(1-rho**2))*(beta(2, nu/2)-(nu+2)/2*beta(3,nu/2))
+        return I_rho, I_nu, I_rhonu
 
 class Clayton(Copula):
-    def __init__(self, theta, Law_RS, Law_RF):
-        self.theta = theta     # Dependence Parameter
+    def __init__(self, paras, Law_RS, Law_RF):
+        self.paras = paras
+        self.theta = paras["theta"]     # Dependence Parameter
         self.Law_RS = Law_RS   # Marginal Distribution of Spot
         self.Law_RF = Law_RF   # Marginal Distribution of Future
         
@@ -237,15 +285,17 @@ class Clayton(Copula):
                              maxiter=5000,
                              maxfun=400)
         self.theta = result[0]
-        self.samples = self.sample(200000) # generate samples for later use
-        self.rs = self.samples[:,0]
-        self.rf = self.samples[:,1]
+        self.paras = {"theta":result[0]}
         return result
     
     def l_fn(self, theta, u, v): # log dependency likelihood 
         part1 = (1+theta) * (u*v)**(-1-theta)
         part2 = (-1 + u**(-theta) + v**(-theta))**(-2-(1/theta))
         return np.mean(np.log(part1*part2))
+    
+    def dependency_likelihood(self, u, v):
+        theta  = self.theta
+        return self.l_fn(theta, u,v)
     
     def sample(self, n):
         u1 = stats.uniform().rvs(n)
@@ -256,10 +306,26 @@ class Clayton(Copula):
         samples[:,1]=self.Law_RF.ppf(u2)
         return samples
     
+    def Fisher_information(theta): # Clayton
+        # rho(theta)
+        part1  = 1/((3*theta-2)*(2*theta-1))
+
+        part2a = theta/(2*(3*theta-2)*(2*theta-1)*(theta-1))
+        part2b = zeta(2,1/(2*(theta-1)))-zeta(2,theta/(2*(theta-1)))     # Trigamma is a special case of Huritz zeta function
+        part2  = part2a*part2b   
+
+        part3a = 1/(2*(3*theta-2)*(2*theta-1)*(theta-1))
+        part3b = zeta(2,theta/(2*(theta-1)))-zeta(2,(2*theta-1)/(2*(theta-1)))     # Trigamma is a special case of Huritz zeta function
+        part3  = part3a*part3b
+        rho = part1+part2+part3
+
+        I = 1/theta**2+2/(theta*(theta-1)*(2*theta-1)) + 4*theta/(3*theta-2) - 2*(2*theta-1)/(theta-1)*rho
+        return I
     
 class Frank(Copula):
-    def __init__(self, theta, Law_RS, Law_RF):
-        self.theta = theta     # Dependence Parameter
+    def __init__(self, paras, Law_RS, Law_RF):
+        self.paras = paras
+        self.theta = paras["theta"]     # Dependence Parameter
         self.Law_RS = Law_RS   # Marginal Distribution of Spot
         self.Law_RF = Law_RF   # Marginal Distribution of Future
         
@@ -303,6 +369,10 @@ class Frank(Copula):
         part2 = np.exp(-theta) - np.exp(-theta*u) - np.exp(-theta*v) + np.exp(-theta*(u+v))
         return np.mean(np.log(part1 /(part2**2)))
     
+    def dependency_likelihood(self, u, v):
+        theta  = self.theta
+        return self.l_fn(theta, u,v)
+    
     def canonical_calibrate(self, u, v):
         fn_toopt = lambda theta: -self.l_fn(theta, u, v)
         result = scipy.optimize.fmin(fn_toopt, x0=self.theta, 
@@ -310,9 +380,7 @@ class Frank(Copula):
                          maxiter=5000,
                          maxfun=400)
         self.theta = result[0]
-        self.samples = self.sample(200000) # generate samples for later use
-        self.rs = self.samples[:,0]
-        self.rf = self.samples[:,1]
+        self.paras = {"theta":result[0]}
         return result
     
     def tau(self, theta=None): # Statistical modeling of joint probability distribution using copula: Application to peak and permanent displacement seismic demands
@@ -341,8 +409,9 @@ class Frank(Copula):
         return samples
     
 class Gumbel(Copula):
-    def __init__(self, theta, Law_RS, Law_RF):
-        self.theta = theta     # Dependence Parameter
+    def __init__(self, paras, Law_RS, Law_RF):
+        self.paras = paras
+        self.theta = paras["theta"]     # Dependence Parameter
         self.Law_RS = Law_RS   # Marginal Distribution of Spot
         self.Law_RF = Law_RF   # Marginal Distribution of Future
         
@@ -406,6 +475,10 @@ class Gumbel(Copula):
             print(part1,part2,part3,part4,part5,part6)
         return np.nanmean(np.log(part1*part2*part3*part4*part5*part6))
     
+    def dependency_likelihood(self, u, v):
+        theta  = self.theta
+        return self.l_fn(theta, u,v)
+    
     def canonical_calibrate(self, u, v):
         fn_toopt = lambda theta: -self.l_fn(theta, u, v)
         result = scipy.optimize.fmin(fn_toopt, x0=self.theta, 
@@ -413,9 +486,7 @@ class Gumbel(Copula):
                          maxiter=5000,
                          maxfun=400)
         self.theta = result[0]
-        self.samples = self.sample(200000) # generate samples for later use
-        self.rs = self.samples[:,0]
-        self.rf = self.samples[:,1]
+        self.paras = {"theta":result[0]}
         return result[0]
     
     def sample(self, size):
@@ -447,8 +518,9 @@ class Gumbel(Copula):
         return samples
     
 class Plackett(Copula):
-    def __init__(self, theta, Law_RS, Law_RF):
-        self.theta  = theta    # Dependence Parameter
+    def __init__(self, paras, Law_RS, Law_RF):
+        self.paras  = paras
+        self.theta  = paras["theta"]   # Dependence Parameter
         self.Law_RS = Law_RS   # Marginal Distribution of Spot
         self.Law_RF = Law_RF   # Marginal Distribution of Future
     
@@ -500,7 +572,10 @@ class Plackett(Copula):
         samples[:,0] = self.Law_RS.ppf(u)
         samples[:,1] = self.Law_RF.ppf(v)
         return samples
-        
+    
+    def dependency_likelihood(self, u, v):
+        theta  = self.theta
+        return self.l_fn(theta, u,v)
         
     def canonical_calibrate(self, u, v):
         fn_toopt = lambda theta: -self.l_fn(theta, u, v)
@@ -509,9 +584,7 @@ class Plackett(Copula):
                              maxiter=5000,
                              maxfun=400)
         self.theta = result[0]
-        self.samples = self.sample(200000) # generate samples for later use
-        self.rs = self.samples[:,0]
-        self.rf = self.samples[:,1]
+        self.paras = {"theta":result[0]}
         return result[0]
     
     def l_fn(self, theta, u, v): # log dependency likelihood 
@@ -521,11 +594,12 @@ class Plackett(Copula):
         return np.nanmean(np.log(part1*part2))
     
 class Gaussian_Mix_Independent(Copula):
-    def __init__(self, rho, p, Law_RS, Law_RF):
-        self.rho = rho
-        self.p   = p
-        self.Gaussian    = Gaussian(rho, Law_RS, Law_RF)
-        self.Independent = Gaussian(0, Law_RS, Law_RF)
+    def __init__(self, paras, Law_RS, Law_RF):
+        self.paras = paras
+        self.rho = paras["rho"]
+        self.p   = paras["p"]
+        self.Gaussian    = Gaussian({"rho":self.rho}, Law_RS, Law_RF)
+        self.Independent = Gaussian({"rho":0}, Law_RS, Law_RF)
         self.Law_RS = Law_RS   # Marginal Distribution of Spot
         self.Law_RF = Law_RF   # Marginal Distribution of Future
         
@@ -541,10 +615,16 @@ class Gaussian_Mix_Independent(Copula):
     def l_fn(self, rho, p, u, v):
         if (p < 0) or (p >1) or (np.abs(rho)>.999):
             return -5000
-        _Gaussian    = Gaussian(rho, stats.norm, stats.norm)
+        _Gaussian    = Gaussian({"rho":rho}, stats.norm, stats.norm)
         _Gaussian_c = np.array([_Gaussian.c(u[i],v[i]) for i in range(len(u))])
         return np.nanmean(np.log(p*_Gaussian_c + (1-p)))
         
+        
+    def dependency_likelihood(self, u, v):
+        rho  = self.rho
+        p  = self.p
+        return self.l_fn(rho,p, u,v)
+    
     def canonical_calibrate(self, u, v):
         fn_toopt = lambda para: -self.l_fn(para[0],para[1], u, v)
         result = scipy.optimize.fmin(fn_toopt, x0=(self.rho, self.p), 
@@ -553,10 +633,8 @@ class Gaussian_Mix_Independent(Copula):
                              maxfun=400)
         self.rho = result[0]
         self.p   = result[1]
-        self.Gaussian = Gaussian(self.rho, self.Law_RS, self.Law_RF) 
-        self.samples = self.sample(200000) # generate samples for later use
-        self.rs = self.samples[:,0]
-        self.rf = self.samples[:,1]
+        self.paras = {"rho":result[0],"p":result[1]}
+        self.Gaussian = Gaussian({"rho":self.rho}, self.Law_RS, self.Law_RF) 
         return result
     
     def sample(self, size):

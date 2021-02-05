@@ -76,7 +76,7 @@ class KDE():
         elif self.kernel_name == "Gaussian":
             self.kernel = K_Gaussian
             
-        self.samples = self.rvs(len(data)*1000)
+        self.samples = self.rvs(len(data)*100)
         
     def cdf(self, x): # KDE's cdf should be a cdf of a mixture...
         return self.ecdf(x)

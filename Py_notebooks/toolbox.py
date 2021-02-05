@@ -41,8 +41,8 @@ class multivariate_t:
         return integrate.nquad(fn, uppers)[0]
     
     def cdf(self, b): # cdf approximation by http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.554.9917&rep=rep1&type=pdf equation 2; The equation was originally from Tong (1990) eq. 9.4.1
-        fn = lambda s: s**(nu-1)*np.exp(-s**2/2)*MN.cdf(s*b/np.sqrt(nu))
-        return 2**(1-(nu/2))/gamma(nu/2)*scipy.integrate.quad(fn, 0, np.inf)[0]
+        fn = lambda s: s**(self.nu-1)*np.exp(-s**2/2)*MN.cdf(s*b/np.sqrt(self.nu))
+        return 2**(1-(self.nu/2))/gamma(self.nu/2)*scipy.integrate.quad(fn, 0, np.inf)[0]
     
     def rvs(self, size): # Sample 
         Z_law = stats.multivariate_normal(np.zeros(self.d), # Mean
@@ -98,6 +98,7 @@ class norminvgauss:
             
         self.gamma = np.sqrt(self.alpha**2 - self.beta**2)
 
+    
     def pdf(self, x):
         part1 = self.alpha*self.delta
         part2 = scipy.special.kv(1.0, self.alpha*np.sqrt(self.delta**2 + (x-self.mu)**2))
@@ -182,8 +183,42 @@ class norminvgauss:
       
     def ppf(self, q):
         fn_toopt = lambda x: (self.cdf(x) - q)**2
-        result  = scipy.optimize.minimize(fn_toopt, x0=self.mean(), tol=1e-10)
-        return result.x
+        result  = scipy.optimize.fmin(fn_toopt, x0=self.ppf_approx(q))
+        return result
+    
+    
+    def ppf_approx2(self, q_arr):
+        # The main idea of this function is to leverage the numpy ability to to quick array operation.
+        # First step: calculate the pdf using an array with equally spaced elements with values ranging from a min to a max. 
+        # Next step: calculate the pdf array to calculate percentage points using trapezoidal rule and nu.cumsum.  
+        # Third step: for each q in q_arr, search for the nearest percentage point and return the corresponding element in x_arr
+        order = np.argsort(q_arr)
+        q_arr = np.sort(q_arr)
+        _max  = self.ppf(1)
+        _min  = self.ppf(0)
+        upper = np.ceil(_max)
+        lower = np.ceil(_min)
+        # create an array 
+        L = upper-lower
+        d = 10**(-4)
+        n = int(L/d)
+        x_arr = np.linspace(lower,upper,n)[:,0]
+
+        integrand = self.pdf(x_arr)
+        Probabilities = np.cumsum((integrand[:-1] +integrand[1:])*d/2)
+
+        result = []
+        
+        # search for the corresponding x_arr as quantile
+        m=0
+        for q in q_arr:
+            k = np.sum(Probabilities[m:]<=q)
+            result.append(x_arr[m+k])
+            m += k
+        result = np.array(result)
+        result[q_arr==0] = _min
+        result[q_arr==1] = _max
+        return result[order]
     
     def MGF(self, z):
         part1 = self.mu*z 

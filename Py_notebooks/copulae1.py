@@ -163,7 +163,7 @@ class t_Copula(Copula):
            
         
     def C(self, u, v): # Copula Function
-        return self.meta_t.cdf([self.t1.ppf(u), self.t2.ppf(v)])
+        return self.meta_t.cdf(np.array([self.t1.ppf(u), self.t2.ppf(v)]))
     
     def c(self, u, v): # copula density
         part1 = self.meta_t.pdf(self.t1.ppf(u), self.t2.ppf(v))
@@ -238,6 +238,9 @@ class t_Copula(Copula):
         # I_rhonu
         I_rhonu = -rho/(2*(1-rho**2))*(beta(2, nu/2)-(nu+2)/2*beta(3,nu/2))
         return I_rho, I_nu, I_rhonu
+    
+    def tau(self):
+        return 2/np.pi * np.arcsin(self.rho)
 
 class Clayton(Copula):
     def __init__(self, paras, Law_RS, Law_RF):
@@ -604,7 +607,7 @@ class Gaussian_Mix_Independent(Copula):
         self.Law_RF = Law_RF   # Marginal Distribution of Future
         
     def C(self, u,v):
-        return p*self.Gaussian.c(u,v) + (1-p)*self.Independent.c(u,v)
+        return self.p*self.Gaussian.c(u,v) + (1-self.p)*self.Independent.c(u,v)
 
     def c(self, u,v):
         return self.p*self.Gaussian.c(u,v) + (1-self.p)

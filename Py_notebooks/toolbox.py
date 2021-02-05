@@ -3,6 +3,7 @@ from scipy import stats
 import scipy.linalg as la
 from functools import partial, lru_cache
 from scipy import integrate
+from scipy.special import gamma
 import scipy
 import dill
 dill.settings['recurse'] = True
@@ -41,7 +42,8 @@ class multivariate_t:
         return integrate.nquad(fn, uppers)[0]
     
     def cdf(self, b): # cdf approximation by http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.554.9917&rep=rep1&type=pdf equation 2; The equation was originally from Tong (1990) eq. 9.4.1
-        fn = lambda s: s**(self.nu-1)*np.exp(-s**2/2)*MN.cdf(s*b/np.sqrt(self.nu))
+        
+        fn = lambda s: s**(self.nu-1)*np.exp(-s**2/2)*self.MN.cdf(s*b/np.sqrt(self.nu))
         return 2**(1-(self.nu/2))/gamma(self.nu/2)*scipy.integrate.quad(fn, 0, np.inf)[0]
     
     def rvs(self, size): # Sample 

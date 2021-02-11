@@ -1,26 +1,26 @@
-\contentsline {section}{\numberline {1}TODO}{4}{section.1}%
-\contentsline {section}{\numberline {2}Optimal hedge ratio}{5}{section.2}%
-\contentsline {section}{\numberline {3}Spectral risk measures}{6}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Representation of spectral risk measures}{7}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Exponential spectral risk measures}{8}{subsection.3.2}%
-\contentsline {section}{\numberline {4}$D_1$ Operator}{8}{section.4}%
-\contentsline {section}{\numberline {5}Special copulas}{10}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Gaussian Copula}{10}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Archimedean copulas}{13}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Elliptical Copulas and normal variance mixtures}{14}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Normal mean-variance mixtures}{17}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Normal inverse Gaussian factor copula model}{19}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Normal inverse Gaussian distribution}{19}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}NIG factor copula}{22}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Fitting the NIG factor model}{24}{subsubsection.5.5.3}%
-\contentsline {subsubsection}{\numberline {5.5.4}Fitting the NIG factor copula}{25}{subsubsection.5.5.4}%
-\contentsline {paragraph}{\numberline {5.5.4.1}Bitcoin data}{27}{paragraph.5.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.5.5}Hedge calculation in the NIG factor model}{28}{subsubsection.5.5.5}%
-\contentsline {subsection}{\numberline {5.6}t-copulae}{33}{subsection.5.6}%
-\contentsline {subsubsection}{\numberline {5.6.1}Vanilla t-copula}{34}{subsubsection.5.6.1}%
-\contentsline {subsubsection}{\numberline {5.6.2}Skewed t copula}{34}{subsubsection.5.6.2}%
-\contentsline {subsubsection}{\numberline {5.6.3}Double-t copula}{34}{subsubsection.5.6.3}%
-\contentsline {subsubsection}{\numberline {5.6.4}Normal Inverse Gaussian Copula}{35}{subsubsection.5.6.4}%
-\contentsline {section}{\numberline {6}Estimation}{37}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Two-Stage Estimation}{37}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Canonical Maximum Likelihood Method}{39}{subsection.6.2}%
+\contentsline {section}{\numberline {1}TODO}{3}{section.1}%
+\contentsline {section}{\numberline {2}Optimal hedge ratio}{4}{section.2}%
+\contentsline {section}{\numberline {3}Spectral risk measures}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Representation of spectral risk measures}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Exponential spectral risk measures}{7}{subsection.3.2}%
+\contentsline {section}{\numberline {4}$D_1$ Operator}{7}{section.4}%
+\contentsline {section}{\numberline {5}Special copulas}{9}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Gaussian Copula}{9}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Archimedean copulas}{12}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Elliptical Copulas and normal variance mixtures}{13}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Normal mean-variance mixtures}{16}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Normal inverse Gaussian factor copula model}{18}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Normal inverse Gaussian distribution}{18}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}NIG factor copula}{21}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Fitting the NIG factor model}{23}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Fitting the NIG factor copula}{24}{subsubsection.5.5.4}%
+\contentsline {paragraph}{\numberline {5.5.4.1}Bitcoin data}{26}{paragraph.5.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.5.5}Hedge calculation in the NIG factor model}{27}{subsubsection.5.5.5}%
+\contentsline {subsection}{\numberline {5.6}t-copulae}{32}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Vanilla t-copula}{33}{subsubsection.5.6.1}%
+\contentsline {subsubsection}{\numberline {5.6.2}Skewed t copula}{33}{subsubsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.3}Double-t copula}{33}{subsubsection.5.6.3}%
+\contentsline {subsubsection}{\numberline {5.6.4}Normal Inverse Gaussian Copula}{34}{subsubsection.5.6.4}%
+\contentsline {section}{\numberline {6}Estimation}{36}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Two-Stage Estimation}{36}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Canonical Maximum Likelihood Method}{38}{subsection.6.2}%

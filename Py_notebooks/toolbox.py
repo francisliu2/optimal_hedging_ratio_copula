@@ -4,6 +4,7 @@ import scipy.linalg as la
 from functools import partial, lru_cache
 from scipy import integrate
 from scipy.special import gamma
+from statsmodels.distributions.empirical_distribution import ECDF
 import scipy
 import dill
 dill.settings['recurse'] = True
@@ -289,7 +290,7 @@ class stable:
             part2a = (np.pi/2)*W*np.cos(U)
             part2b = np.pi/2+self.beta*U
             part2  = self.beta*np.log(part2a/part2b)
-            X      =1/xi*(part1-part2)
+            X      = 1/xi*(part1-part2)
 
         if self.alpha == 1:
             Y = self.sigma*X+2/np.pi*self.beta*self.sigma*np.log(self.sigma)+self.mu
@@ -313,6 +314,9 @@ def ES(q, rh):
     b = np.quantile(rh,q)
     return -np.mean(rh[rh<=q])
 
+def Var(rh):
+    return np.var(rh)
+
 def wrapper(rs, rf, h, risk_measure):
     rh = rs - h*rf
     return risk_measure(rh)
@@ -323,6 +327,9 @@ def optimize_h(C, k_arr, q_arr):
     rf = sample[:,1]
     best_h = []
     
+    fn = lambda h: wrapper(rs,rf,h,Var)
+    best_h.append(scipy.optimize.fmin(fn,1)[0])
+            
     for k in k_arr:
         fn = lambda h: wrapper(rs,rf,h,partial(ERM_estimate_trapezoidal,k))
         best_h.append(scipy.optimize.fmin(fn,1)[0])
@@ -332,6 +339,31 @@ def optimize_h(C, k_arr, q_arr):
         best_h.append(scipy.optimize.fmin(fn,1)[0])
     return best_h
 
+def risk_measures(k_arr, q_arr, rh):    
+    results = []
+    results.append(Var(rh))
+    for k in k_arr:
+        results.append(ERM_estimate_trapezoidal(k, rh))
+        
+    for q in q_arr:
+        results.append(ES(q, rh))
+    return np.array(results)
+
+def rh_PnL(rh):    
+    Mean = np.mean(rh)
+    Std = np.std(rh)
+    Max = np.max(rh)
+    UQ = np.quantile(rh, 0.75)
+    LQ = np.quantile(rh, 0.25)
+    Min = np.min(rh)
+    return (Mean, Std, Max, UQ, LQ, Min)
+
+def hedging_effectiveness(h_arr, spot, future, k_arr, q_arr):
+    results = np.ones((len(h_arr),1+len(k_arr)+len(q_arr)))
+    for i, h in enumerate(h_arr):
+        rh = spot-h*future
+        results[i,:]=1-risk_measures(k_arr, q_arr, rh)/risk_measures(k_arr, q_arr, spot)
+    return np.array([results[i,i] for i in range(len(h_arr))])
 
 
 

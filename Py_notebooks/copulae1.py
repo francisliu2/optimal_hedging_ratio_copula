@@ -542,6 +542,7 @@ class Frank(Copula):
 		u1 = stats.uniform.rvs(size=size)
 		v = stats.uniform.rvs(size=size)
 		u2 = self.D1C_inv(u1, v)
+		u2[u2>1] = 1 # prevent u2 > 1
 		samples[:, 0] = self.Law_RS.ppf(u1)
 		samples[:, 1] = self.Law_RF.ppf(u2)
 		return samples
@@ -663,18 +664,7 @@ class Gumbel(Copula):
 	def sample(self, size):
 		samples = np.zeros((size, 2))
 		gamma = np.cos(np.pi / (2 * self.theta)) ** self.theta
-		# samples of stable contain NaNs; Draw more samples and discard NaNs until len(V) = size
-		con = True  # continue or not
-		m = 1
-		while con:
-			V = stable(1 / self.theta, 1, 0, gamma).rvs(size * m)
-			V = V[~np.isnan(V)][:size]
-			if len(V) != size:
-				con = True
-				m += 1
-			else:
-				con = False
-
+		V = stable(1 / self.theta, 1, 0, gamma).rvs(size)
 		G_hat = lambda t: np.exp(-t ** (1 / self.theta))
 
 		X1 = stats.uniform.rvs(size=size)
@@ -683,13 +673,24 @@ class Gumbel(Copula):
 		U1 = G_hat(-np.log(X1) / V)
 		U2 = G_hat(-np.log(X2) / V)
 
+		# samples of stable contain NaNs; Draw more samples and discard NaNs until len(V) = size
+		nan_id = np.isnan(U1)
+		while np.sum(nan_id) != 0:
+			size1 = np.sum(nan_id)
+			V = stable(1 / self.theta, 1, 0, gamma).rvs(size1)
+			X1 = stats.uniform.rvs(size=size1)
+			X2 = stats.uniform.rvs(size=size1)
+
+			U1[nan_id] = G_hat(-np.log(X1) / V)
+			U2[nan_id] = G_hat(-np.log(X2) / V)
+			nan_id = np.isnan(U1)
+
 		samples[:, 0] = self.Law_RS.ppf(U1)
 		samples[:, 1] = self.Law_RF.ppf(U2)
-
 		return samples
 
 	def tau(self):
-		return ((self.theta - 1) / self.theta)
+		return (self.theta - 1)/ self.theta
 
 	def mm_loss(self, paras, u, v, q_arr):
 		theta = paras
@@ -763,12 +764,6 @@ class Plackett(Copula):
 		part2 = (u - C) * (v - C)
 		return part1 / part2
 
-	# From Appendix C.7. of "Extreme in Nature"
-	def Spearman_rho(self):
-		part1 = (self.theta + 1) / (self.theta - 1)
-		part2 = 2 * self.theta * np.log(self.theta) / (self.theta - 1) ** 2
-		return part1 - part2
-
 	def sample(self, size):
 		samples = np.ones((size, 2))
 		u = stats.uniform.rvs(size=size)
@@ -803,16 +798,17 @@ class Plackett(Copula):
 		part2 = theta * (1 + eta * (u + v - 2 * u * v))
 		return np.nanmean(np.log(part1 * part2))
 
+	# From Appendix C.7. of "Extreme in Nature"
 	def spearman_rho(self):
 		part1 = (self.theta + 1) / (self.theta - 1)
 		part2 = 2 * self.theta * np.log(self.theta) / (self.theta - 1) ** 2
-		return (part1 - part2)[0]
+		return part1 - part2
 
 	def mm_loss(self, paras, u, v, q_arr):
 		theta = paras
 		self.__init__({'theta': theta}, Law_RS=self.Law_RS, Law_RF=self.Law_RF)
-		m = np.array([stats.kendalltau(u, v)[0]] + [empirical_lambda(u, v, q) for q in q_arr]).reshape((1 + len(q_arr)))
-		m_hat = np.array([self.tau()] + [self._lambda(q) for q in q_arr]).reshape((1 + len(q_arr)))
+		m = np.array([stats.spearmanr(u, v)[0]] + [empirical_lambda(u, v, q) for q in q_arr]).reshape((1 + len(q_arr)))
+		m_hat = np.array([self.spearman_rho()] + [self._lambda(q) for q in q_arr]).reshape((1 + len(q_arr)))
 		g = m - m_hat
 		g = g.reshape((-1, 1))
 		return g.T.dot(g)[0][0]
@@ -830,7 +826,7 @@ class Plackett(Copula):
 		old_paras = self.paras
 		self.__init__(paras, Law_RS=self.Law_RS, Law_RF=self.Law_RF)
 		m = np.array([stats.spearmanr(u, v)[0]] + [empirical_lambda(u, v, q) for q in q_arr]).reshape((1 + len(q_arr)))
-		m_hat = np.array([self.spearman_rho()] + [self._lambda(q) for q in q_arr])
+		m_hat = np.array([self.spearman_rho()] + [self._lambda(q) for q in q_arr]).reshape((1 + len(q_arr)))
 		g = m - m_hat
 
 		self.__init__(old_paras, Law_RS=self.Law_RS, Law_RF=self.Law_RF)

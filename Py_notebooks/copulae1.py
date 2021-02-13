@@ -933,3 +933,65 @@ class Gaussian_Mix_Independent(Copula):
 		mc.index = ['Empirical', 'Parametric', 'Difference']
 		mc.columns = ['Spearman Rho'] + ["lambda " + str(q) for q in q_arr]
 		return mc
+    
+    
+    
+class Gaussian_Mix_Gaussian(Copula):
+	def __init__(self, paras, Law_RS, Law_RF):
+		super().__init__()
+		self.paras = paras
+		self.rho1 = paras["rho1"]
+		self.rho2 = paras["rho2"]
+		self.p = paras["p"]
+		self.Gaussian1 = Gaussian({"rho": self.rho1}, Law_RS, Law_RF)
+		self.Gaussian2 = Gaussian({"rho": self.rho2}, Law_RS, Law_RF)
+		self.Law_RS = Law_RS  # Marginal Distribution of Spot
+		self.Law_RF = Law_RF  # Marginal Distribution of Future
+
+	def C(self, u, v):
+		return self.p * self.Gaussian1.C(u, v) + (1 - self.p) * self.Gaussian2.C(u, v)
+
+	def c(self, u, v):
+		return self.p * self.Gaussian.c(u, v) + (1 - self.p)* self.Gaussian2.C(u, v)
+
+	def l_fn(self, rho1, rho2, p, u, v):
+		if (p < 0) or (p > 1) or (np.abs(rho1) > .999) or (np.abs(rho2) > .999):
+			return -5000
+		_Gaussian1 = Gaussian({"rho": rho1}, stats.norm, stats.norm)
+		_Gaussian_c1 = np.array([_Gaussian1.c(u[i], v[i]) for i in range(len(u))])
+		_Gaussian2 = Gaussian({"rho": rho2}, stats.norm, stats.norm)
+		_Gaussian_c2 = np.array([_Gaussian2.c(u[i], v[i]) for i in range(len(u))])
+		return np.nanmean(np.log(p * _Gaussian_c1 + (1 - p)* _Gaussian_c2))
+
+	def dependency_likelihood(self, u, v):
+		rho1 = self.rho1
+		rho2 = self.rho2
+
+		p = self.p
+		return self.l_fn(rho1, rho2, p, u, v)
+
+	def canonical_calibrate(self, u, v):
+		fn_toopt = lambda para: -self.l_fn(para[0], para[1], para[2], u, v)
+		result = scipy.optimize.fmin(fn_toopt, x0=(self.rho1,self.rho2, self.p),
+									 xtol=1e-10,
+									 maxiter=5000,
+									 maxfun=400)
+		self.rho1 = result[0]
+		self.rho2 = result[1]
+		self.p = result[2]
+		self.paras = {"rho1": result[0],"rho2": result[1], "p": result[2]}
+		self.Gaussian1 = Gaussian({"rho": self.rho1}, self.Law_RS, self.Law_RF)
+		self.Gaussian2 = Gaussian({"rho": self.rho2}, self.Law_RS, self.Law_RF)
+		return result
+
+	def sample(self, size):
+		samples = np.zeros((size, 2))
+		n_Gaussian1 = int(self.p * size)
+		n_Gaussian2 = size - n_Gaussian1
+		samples[:n_Gaussian, :] = self.Gaussian1.sample(n_Gaussian1)
+		samples[n_Gaussian:, :] = self.Gaussian2.sample(n_Gaussian2)
+
+		return samples
+
+	def spearman_rho(self):
+		return self.p * self.Gaussian1.spearman_rho() + (1-self.p)*self.p * self.Gaussian2.spearman_rho()

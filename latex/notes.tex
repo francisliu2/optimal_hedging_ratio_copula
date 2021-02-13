@@ -138,7 +138,8 @@ copulas in Section \ref{sec:dependence}.
   \end{equation}
 \end{proposition}
 Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
-which is easily shown to fulfil:\footnote{%
+which is easily shown to fulfil, see e.g.\ Equation (5.15) of
+\citep{McNeil2005}:\footnote{% 
   Let $F_X(x)=u$, $F_Y(y)=v$. Then, formally,
   \begin{align*}
     \frac{\partial}{\partial F_X(x)} C(F_X(x), F_Y(y)) %
@@ -257,6 +258,20 @@ above.)
     I think there is no direct link: the exponential risk measure is
    {\em inspired\/} by ARA utility.
 \end{itemize}
+
+\section{Hedge effectiveness}
+\label{sec:hedge-effectiveness}
+
+(Ederington, 1979): hedge effectiveness similar to $R^2$
+(Barbi R.): similar, but with actual risk measures (e.g.\ VaR)
+
+This uses the optimisation criterion to check out-of-sample
+performance of each method. It'll be interesting to compare across
+methods in which respect methods meet their target.
+
+Also use P\&L to compare across methods, this might give insights to
+what extent methods achieve their objective and how this compares
+across methods (e.g.\ hedging general risk vs.\ hedging tail risk). 
 
 
 \input{D1Operator.tex}

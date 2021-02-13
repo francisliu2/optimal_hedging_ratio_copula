@@ -31,3 +31,9 @@ _mathematica/tmp.nb
 latex/dependence.tex.francis
 latex/notes.toc
 latex/notes.toc
+*.toc
+latex/notes.toc
+latex/notes.ok.tex
+_mathematica/NIGRiskMeasures.ok.nb
+_mathematica/StudentT.ok.nb
+latex/dependence.ok.tex

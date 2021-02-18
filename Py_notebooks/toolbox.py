@@ -8,7 +8,10 @@ from statsmodels.distributions.empirical_distribution import ECDF
 import scipy
 import dill
 dill.settings['recurse'] = True
-fs = dill.load(open("NIG_k3-k5_fn", 'rb'))
+
+from pathlib import Path
+source_path = str(Path(__file__).resolve().parent)
+fs = dill.load(open(source_path +"/NIG_k3-k5_fn", 'rb'))
 
 class multivariate_t:
     def __init__(self, nu, Sigma):
@@ -303,6 +306,9 @@ class stable:
 #         else:
 #             return Y[:size/3]
 
+def Variance(rh):
+    return np.var(rh)
+
 def ERM_estimate_trapezoidal(k, rh):
     rh = np.sort(rh)
     s  = ECDF(rh)(rh)
@@ -312,41 +318,50 @@ def ERM_estimate_trapezoidal(k, rh):
 
 def ES(q, rh):
     b = np.quantile(rh,q)
-    return -np.mean(rh[rh<=q])
+    return -np.mean(rh[rh<=b])
 
-def Var(rh):
-    return np.var(rh)
+def VaR(q, rh):
+    return -np.quantile(rh, q)
 
 def wrapper(rs, rf, h, risk_measure):
     rh = rs - h*rf
     return risk_measure(rh)
 
-def optimize_h(C, k_arr, q_arr):
+def optimize_h(C, k_arr, q_arr_ES, q_arr_VaR):
     sample = C.sample(1000000)
     rs = sample[:,0]
     rf = sample[:,1]
     best_h = []
     
-    fn = lambda h: wrapper(rs,rf,h,Var)
+    fn = lambda h: wrapper(rs,rf,h,Variance)
     best_h.append(scipy.optimize.fmin(fn,1)[0])
             
     for k in k_arr:
         fn = lambda h: wrapper(rs,rf,h,partial(ERM_estimate_trapezoidal,k))
         best_h.append(scipy.optimize.fmin(fn,1)[0])
         
-    for q in q_arr:
+    for q in q_arr_ES:
         fn = lambda h: wrapper(rs,rf,h,partial(ES,q))
+        best_h.append(scipy.optimize.fmin(fn,1)[0])
+        
+    for q in q_arr_VaR:
+        fn = lambda h: wrapper(rs,rf,h,partial(VaR,q))
         best_h.append(scipy.optimize.fmin(fn,1)[0])
     return best_h
 
-def risk_measures(k_arr, q_arr, rh):    
+def risk_measures(k_arr, q_arr_ES, q_arr_VaR, rh):    
     results = []
     results.append(Var(rh))
+    
     for k in k_arr:
         results.append(ERM_estimate_trapezoidal(k, rh))
         
-    for q in q_arr:
+    for q in q_arr_ES:
         results.append(ES(q, rh))
+    
+    for q in q_arr_VaR:
+        results.append(VaR(q, rh))
+        
     return np.array(results)
 
 def rh_PnL(rh):    

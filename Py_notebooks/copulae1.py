@@ -92,6 +92,8 @@ class Gaussian(Copula):
 		return integrate.quad(integrand, -np.infty, norm.ppf(self.g(w, h, r_h)))[0] * part2
 
 	def l_fn(self, rho, u, v):
+		if rho >=1:
+			return -5000
 		_meta_Gaussian = stats.multivariate_normal([0, 0],
 												   [[1, rho],
 													[rho, 1]])

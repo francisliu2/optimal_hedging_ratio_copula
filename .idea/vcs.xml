@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Py_notebooks/break_point_analysis/GGS" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/_mathematica/Py_notebooks/break_point_analysis/GGS" vcs="Git" />
   </component>
 </project>

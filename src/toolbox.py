@@ -387,12 +387,12 @@ def rh_PnL(rh):
 	return Mean, Std, Max, UQ, LQ, Min
 
 
-def hedging_effectiveness(h_arr, spot, future, k_arr, q_arr):
-	results = np.ones((len(h_arr), 1 + len(k_arr) + len(q_arr)))
-	for i, h in enumerate(h_arr):
-		rh = spot - h * future
-		results[i, :] = 1 - risk_measures(k_arr, q_arr, rh) / risk_measures(k_arr, q_arr, spot)
-	return np.array([results[i, i] for i in range(len(h_arr))])
+# def hedging_effectiveness(h_arr, spot, future, k_arr, q_arr):
+# 	results = np.ones((len(h_arr), 1 + len(k_arr) + len(q_arr)))
+# 	for i, h in enumerate(h_arr):
+# 		rh = spot - h * future
+# 		results[i, :] = 1 - risk_measures(k_arr, q_arr, rh) / risk_measures(k_arr, q_arr, spot)
+# 	return np.array([results[i, i] for i in range(len(h_arr))])
 
 
 def clip_h(h, _min, _max):

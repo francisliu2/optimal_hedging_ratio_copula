@@ -30,8 +30,13 @@ class Copula(object):
 		return A / B
 
 	def g(self, w, h, r_h):
-		return self.Law_RF.cdf(self.H(w=w, h=h, r_h=r_h))
-
+		a = self.Law_RF.cdf(self.H(w=w, h=h, r_h=r_h))
+		if a >= 1: # to stablize the futher calulation
+			return .999
+		elif a <= 0:
+			return .0001
+		else:
+			return a
 	def F_RH(self, h, r_h):
 		func = partial(self.D1C, h=h, r_h=r_h)
 		I = integrate.quad(func, 0.0001, 0.999)

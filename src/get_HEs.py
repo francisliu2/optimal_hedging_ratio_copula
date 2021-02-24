@@ -30,13 +30,13 @@ future_name = config['future_name']
 calibration_method = config['calibration_method']  # MM or MLE
 q_arr = config['q_arr']  # moment conditions for MM
 
-# Parameters
+# Load parameters
 if calibration_method == "MLE":
 	paras = pd.read_json("../results/" + data_name + "/MLE/parameters.json")
 elif calibration_method == "MM":
 	paras = pd.read_json("../results/" + data_name + "/MM/parameters.json")
 
-
+# Path for reading OHR results and storing HE results
 if calibration_method == 'MLE':
     result_path = "../results/"+data_name+"/MLE/"
 elif calibration_method == 'MM':
@@ -46,6 +46,30 @@ elif calibration_method == 'MM':
 ls = os.listdir(data_path + 'train/')
 ls = [l for l in ls if l.endswith('.csv')]
 
+# read OHR
+OHR = pd.read_hdf(result_path+"best_h.h5")
+
+# Combine OHR with that of NIG factor
+try:
+	natp_path = config['natp_path']
+	print("combining with results in"+natp_path)
+	natp_ls = os.listdir(natp_path)
+	natp_h = [l for l in natp_ls if l.endswith('_h.csv')]
+	file_names = [l.replace('_h', '') for l in natp_h]
+	OHR_combined = []
+	for i in range(len(natp_h)):
+		_natp_h = pd.DataFrame(open(natp_path + natp_h[i], 'r').readlines())
+		_natp_h = _natp_h.iloc[1:7, :]
+		file_name = natp_h[i].replace('_h', '')
+		for i in range(len(_natp_h)):
+			_natp_h.iloc[i, 0] = np.float32(_natp_h.iloc[i, 0].replace('\n', ''))
+		_natp_h.columns = ['NIG_factor']
+		_natp_h.index = ['Variance', 'VaR q=0.01', 'VaR q=0.05', 'ES q=0.01', 'ES q=0.05', 'ERM k=10']
+		_natp_h = _natp_h.T
+		OHR_combined.append(OHR.loc[:, file_name].append(_natp_h))
+	OHR = pd.concat(OHR_combined, axis=1, keys=file_names).dropna(axis=1)
+except:
+	pass
 
 def hedging_effectiveness(rm, rs, rf, h):
 	if rm.startswith('Variance'):
@@ -76,7 +100,6 @@ def wrapper_HE(rm, file, h, insample=True):
 	rf = data.loc[:, future_name]
 	return hedging_effectiveness(rm, rs, rf, h)
 
-OHR = pd.read_hdf(result_path+"best_h.h5")
 
 OHR1 = OHR.reset_index()
 OHR1 = pd.melt(OHR1, id_vars='index')
@@ -91,7 +114,7 @@ HEs = HEs.reindex(OHR.index)
 
 RMs = np.unique(OHR.droplevel(0,1).columns)
 
-fig, ax = plt.subplots(len(RMs), 1, figsize=(10,5*len(RMs)))
+fig, ax = plt.subplots(len(RMs), 1, figsize=(12,5*len(RMs)))
 for i, name in enumerate(RMs):
     ax[i].boxplot(HEs.droplevel(0,axis=1).loc[:,name])
     ax[i].set_xticklabels(HEs.index)

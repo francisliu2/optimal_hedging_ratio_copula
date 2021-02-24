@@ -395,7 +395,9 @@ class Clayton(Copula):
 	def l_fn(self, theta, u, v):  # log dependency likelihood
 		part1 = (1 + theta) * (u * v) ** (-1 - theta)
 		part2 = (-1 + u ** (-theta) + v ** (-theta)) ** (-2 - (1 / theta))
-		return np.mean(np.log(part1 * part2))
+		l = np.log(part1 * part2)
+		l[~np.isfinite(l)] = np.min(l[np.isfinite(l)]) * 10
+		return np.mean(l)
 
 	def dependency_likelihood(self, u, v):
 		theta = self.theta
@@ -637,7 +639,7 @@ class Gumbel(Copula):
 		if theta < 1:
 			print("theta is smaller then 1; consider changing x0 of fmin by initiating the class with different theta")
 			return -5000
-		try:  # turn u==1 to a slightly smaller number to aviod inf
+		try:  # turn u==1 to a slightly smaller number to avoid inf
 			u[u == 1] = max(u[u != 1]) + 0.9 / len(u)
 			v[v == 1] = max(v[v != 1]) + 0.9 / len(v)
 		except:
@@ -650,6 +652,10 @@ class Gumbel(Copula):
 		part4 = t2 ** (-1 + theta)
 		part5 = -1 + theta + (t1 ** theta + t2 ** theta) ** (1 / theta)
 		part6 = (t1 ** theta + t2 ** theta) ** (-2 + (1 / theta))
+		if np.sum(np.isfinite(part6)) > 0:
+			part6[~np.isfinite(part6)] = np.max(part6[np.isfinite(part6)]) * 10
+		else:
+			part6[~np.isfinite(part6)] = 100
 		if verbose:
 			print(part1, part2, part3, part4, part5, part6)
 		return np.nanmean(np.log(part1 * part2 * part3 * part4 * part5 * part6))

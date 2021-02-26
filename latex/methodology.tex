@@ -1,0 +1,82 @@
+\section{Optimal hedge ratio}
+\label{sec:optimal-hedge-ratio}
+
+Following \citep{Barbi2014}, we consider the problem of optimal
+hedge ratios by extending the commmonly known minimum variance hedge
+ratio to more general risk measures and dependence
+structures.\medskip
+
+Hedge portfolio: $R_t^h = R_t^S - h R_t^F$, involving returns of spot
+and future contract and where $h$ is the hedge ratio
+
+Optimal hedge ratio: $h^\ast = \argmin_h \rho_\phi(s,h)$, for given
+confidence level $1-s$ (if applicable, e.g.\ in the case of VaR, ES),
+where $\rho_\phi$ is a spectral risk measure with weighting function
+$\phi$ (see below).
+
+The distribution function of $R^h$ can be expressed in terms of the
+copula and the marginal distributions as Proposition \ref{prop:dfrh}
+result shows (this is a corrected version of Corollary 2.1 of
+\citep{Barbi2014}). For practical applications, it is numerically
+faster and more stable to use additional information about the
+specific copula and marginal distributions. We therefore derive
+semi-analytic formulas for a number of special cases, such as the
+Gaussian-, Student $t$-, normal inverse Gaussian (NIG) and Archimedean
+copulas in Section \ref{sec:dependence}.
+
+\begin{proposition}
+  \label{prop:dfrh}
+  Let $R^S$ and $R^F$ be two real-valued random variables on the same
+  probability space $(\Omega, \mathcal A, \p)$ with corresponding
+  absolutely continuous copula $C_{R^S, R^F}(w,\lambda)$ and
+  continuous marginals $F_{R^S}$ and $F_{R^F}$. Then, the distribution
+  of of $R^h$ is given by
+  \begin{equation}
+    \label{eq:3}
+    F_{R^h}(x) = 1- \int^1_0 D_1 C_{R^S, R^F}
+    \left( u, F_{R^F} \left( \frac{F^{-1}_{R^S}(u)-x}{h} \right)
+    \right)\, \dd u.
+  \end{equation}
+\end{proposition}
+Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
+which is easily shown to fulfil, see e.g.\ Equation (5.15) of
+\citep{McNeil2005}:\footnote{%
+  Let $F_X(x)=u$, $F_Y(y)=v$. Then, formally,
+  \begin{align*}
+    \frac{\partial}{\partial F_X(x)} C(F_X(x), F_Y(y)) %
+    &= \frac{\partial}{\partial F_X(x)} \p(U\leq F_X(x),
+      V\leq F_Y(y)) %
+      = \p(U\in \dd F_X(x), V\leq F_Y(y))\\ %
+    &= \p(V\leq F_Y(y)| U = F_X(x))\cdot \p(U \in \dd
+      F_X(x)) %
+      = \p(Y\leq y|X=x)\cdot \p(U\in \dd u)\\ %
+    &= \p(Y\leq y|X=x).
+  \end{align*}
+
+In addition to \cite{Barbi2014}) we propose a more handy expression for the density of $r^h$
+
+\begin{prop} Given the formulation of the above portfolio, the density of $r^h$ can be written as
+  \begin{align}
+  f_{r^h}(y) &= \left|\frac{1}{h}\right|\int_0^1 c_{r^S, r^F} \left[u,
+  F_{r^F}\left\{\frac{F^{-1}_{r^S}(u)-y}{h}\right\}
+  \right]
+   \cdot
+  f_{r^F}
+  \left\{\frac{F^{-1}_{r^S}(u)-y}{h}\right\} du \label{eq:density1}
+  \end{align}, or
+    \begin{align}
+      f_{r^h}(y)
+      = \int_0^1 c_{r^S, r^F} \left[u,
+      F_{r^S}\left\{y + h F^{-1}_{r^F}(u)\right\}
+      \right]
+       \cdot
+      f_{r^S}
+      \left\{
+      y+ hF^{-1}_{r^F}(u).
+      \right\} du\label{eq:density2}
+  \end{align}
+  \end{prop}
+The two expression are equivalent, one can use any of them to get the density of $r^h$.
+Notice that the density of $r^h$ in the above proposition is readily accessible as long as we have
+the copula density and the marginal densities.
+A generic expression can be found in the appendix (TODO).

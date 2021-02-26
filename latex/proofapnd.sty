@@ -1,0 +1,79 @@
+%-----------------------------------------------------------------------
+% proofapnd.sty
+%
+% Places proofs in a special appendix of a paper.
+%
+% To use, create a directory named "fragment/" under the current
+% directory, and place
+%
+% \def\ProofInAppendix{TRUE}
+%
+% before doing \usepackage{proofapdn} to put proofs in the appendix. Otherwise,
+% the proofs stay in the current place..
+%
+% Any proof you want to put in the appendix, you should replace 
+%      \begin{proof}
+%          ....
+%      \end{proof}
+% by
+%      \begin{proof:in:appendix}{Lemma \ref{lemma:bogi}}
+%          ....
+%      \end{proof:in:appendix}
+%
+% Here, "Lemma \ref{lemma:bogi}" is the way to refer to the
+% statement of what being proved.
+%
+%
+% Finally, place 
+%     \AppendixOfProofs 
+% in the end of the paper, where you want this appendix to be created.
+%-----------------------------------------------------------------------
+% 6/26/2008, Version 0.1 
+%     First hacked version.
+%-----------------------------------------------------------------------
+
+
+\ifx\ProofInAppendix\undefined
+    \newenvironment{proof:in:appendix}[1]{\begin{proof}}{\end{proof}}
+    \newcommand{\AppendixOfProofs}{}
+\else
+
+\usepackage{fancyvrb}
+\newwrite\myoutfile 
+
+\immediate\openout\myoutfile=fragment/myfile.tmp 
+
+\newcommand{\AppendixOfProofs}{
+  \immediate\closeout\myoutfile. 
+  \appendix
+  \section{Proofs}
+  \input{fragment/myfile.tmp}
+}
+
+\newcommand{\ProofHere}[1]{The proof is in Appendix \ref{apnd:#1}.}
+\newcommand{\ProofInclude}[3]{%
+   \subsection{Proof of #1}
+   \label{apnd:#3}
+   \begin{proof}
+   \input{#2}
+   \end{proof}
+}
+
+\newcounter{PNumber} 
+\setcounter{PNumber}{0}%
+
+
+\newcommand{\FragmentName}[1]{fragment/#1}
+\newcommand{\IncFragment}[1]{\input{\FragmentName{#1}}}
+\newenvironment{proof:in:appendix}[1]%
+     {\VerbatimEnvironment
+        \let\TmpFragmentName\undefined%
+        \def\TmpFragmentName{\FragmentName{\thePNumber}}%
+      \immediate\write\myoutfile{\string\ProofInclude{\noexpand#1}{\FragmentName{\thePNumber}}{\thePNumber}}
+      \ProofHere{\thePNumber}%
+      \begin{VerbatimOut}{\FragmentName{\thePNumber}}}%
+         % end of environment
+     {\end{VerbatimOut}\addtocounter{PNumber}{1}}%
+\fi
+
+% proofapnd.sty - end of file

@@ -6,7 +6,7 @@
 This method is suggested by Oh and Patton (2013).
 In this setting, rank correlation e.g. Spearman's $\rho$ or Kendall's $\tau$,
 and quantile dependence measures at different levels $\lambda_q$
-are calibrated against their empirical counterparts.
+are calibrated against their empirical counterparts.\medskip
 
 Spearman's rho, Kendall's tau, and quantile dependence of a pair $(X,Y)$
 with copula $C$ are defined as
@@ -20,7 +20,7 @@ with copula $C$ are defined as
     \p(F_X(X)>q|F_Y(Y)>q) =\displaystyle \frac{1-2q+C_{\bm{\theta}}(q,q)} {1-q},
     &\text{ if } q\in (0.5,1).
   \end{cases}
-\end{align}
+\end{align}\medskip
 The empirical counterparts are
 \begin{align*}
   \hat\rho_S &= \frac{12}{n} \sum_{k=1}^n \hat F_X(x_k) \hat F_Y(y_k)
@@ -37,15 +37,14 @@ The empirical counterparts are
                   \end{cases},
 \end{align*}
 where $\hat{F}(x) := \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
-$\hat{C}(u,v) := \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$.
-
+$\hat{C}(u,v) := \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$.\medskip
 
 We denote $\tilde{\bm{m}}(\bm{\theta})$ be a $m$-dimensional vector of dependence measures according the the
 dependence parameters $\bm{\theta}$,and  $\hat{\bm{m}}$ be the corresponding empirical counterpart.
 The difference between dependence measures and their counterpart is denoted by
 \begin{align*}
     \bm{g}(\bm{\theta}) = \hat{\bm{m}} - \tilde{\bm{m}}(\bm{\theta}).
-\end{align*}
+\end{align*}\medskip
 
 The SMM estimator is
 \begin{align*}
@@ -53,23 +52,21 @@ The SMM estimator is
     \hat{\bm{W}}
      \bm{g}(\bm{\theta}),
 \end{align*}
-where $\hat{W}$ is some positive definite weigh matrix.
+where $\hat{W}$ is some positive definite weigh matrix.\medskip
 
 In this work, we use $\tilde{\bm{m}}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \lambda_{0.1},
 \lambda_{0.9}, \lambda_{0.95})^\intercal$
 for calibration of Bitcoin price and CME Bitcoin future.
 
-
 \subsection{Maximum Likelihood Estimation}
 The MLE estimator for a bivariate parametric copula is
-
 \begin{align}
     \hat{\bm{\theta}} = \argmax_{\bm{\theta} \in \bm{\Theta}} l(X,Y; \bm{\theta}), \label{eq:EMLE}
     \end{align}
 where
 \begin{align}
     l(X,Y; \bm{\theta}) = \sum_{k=1}^n \log c(x_i, y_i;\bm{\theta}). \label{eq:Likelihood}
-    \end{align}
+    \end{align}\medskip
 
 Procedure of maximising equation~\ref{eq:EMLE} as a whole is called exact maximum likelihood method.
 Leveraging the attractive feature of copula that one can model the dependence structure and marginals separately,
@@ -78,10 +75,10 @@ we rewrite~\ref{eq:Likelihood} into canonical expression
     l(X,Y; \bm{\theta}) = \sum_{k=1}^n \log c\{F_X(x_i; \delta_X), F_Y(y_i; \delta_Y); \bm{\gamma}\}
     + \sum_{k=1}^n \log f_X(x_i; \bm{\delta}_X) + \sum_{k=1}^n \log f_X(y_i; \bm{\delta}_Y),
     \end{align}
-where the $\bm{\gamma}$ is the dependence parameter in the copula and $\bm{\delta}$ is the parameters in the margins.
+where the $\bm{\gamma}$ is the dependence parameter in the copula and $\bm{\delta}$ is the parameters in the margins.\medskip
 
 The inference-functions for margins (IFM) approach by Joe is a two step procedure of maximising~\ref{eq:EMLE}.
-The approach calibrate first the $\bm{\delta}$s and then the  $\bm{\gamma}$.
+The approach calibrate first the $\bm{\delta}$s and then the  $\bm{\gamma}$.\medskip
 
 Similar to the IFM approach, pseudo-maximum likelihood approach by Genest and Rivest (1993) replace the parametric margins by
 empirical estimates, we rewrite \ref{eq:Likelihood} again with
@@ -104,11 +101,7 @@ Sample and fitted quantile dependence for Bitcoin and CME future.
   \caption{}
 \label{fig:quantile dependence1}
 \end{figure}
-\begin{figure}[h]
-\includegraphics[width=\textwidth]{_pics/Clayton Copula quantile dependence.png}
-  \caption{}
-\label{fig:quantile dependence2}
-\end{figure}
+
 
 The MM estimation perform just as we decided: match the upper and quantile dependence.
 

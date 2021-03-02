@@ -1,7 +1,7 @@
 
 \subsection{Copulas}
 We test different copulas' ability to model crypto-currency data,
-they include Gaussian-, t-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
+they include Gaussian-, $t$-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
 We will go through the copulas in this section.
 
 %Copula is a function represents the multivariate structure of random variables.
@@ -48,7 +48,7 @@ We will go through the copulas in this section.
 
 Elliptical copulas are copulas of elliptical distributions.
 Gaussian copula is the copula associated with multivariate normal distribution.
-The Gaussian copula (B1 in Joe) has a form
+The Gaussian copula has a form
     \begin{align}
         \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\} \\
                     &= \int_{-\infty}^{\Phi^{-1}(u)}
@@ -60,13 +60,13 @@ The Gaussian copula (B1 in Joe) has a form
         \end{align}
 where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution with zero mean, unit variance, and correlation $\rho$,
 and $\Phi^{-1}$ is quantile function univariate standard normal distribution.
-The copula density of Gaussian copula can be written as
+The Gaussian copula density is
 \begin{align}
-    \bm{c}_\rho(u,v) &= \frac{\phi_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
-                        {\phi\{\Phi^{-1}(u)\} \cdot \phi\{\Phi^{-1}(v)\}}\\
+    \bm{c}_\rho(u,v) &= \frac{\varphi_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
+                        {\varphi\{\Phi^{-1}(u)\} \cdot \varphi\{\Phi^{-1}(v)\}}\\
                 &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left(
                    -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
-                   \right) ,
+                   \right),
     \end{align}
 where $\phi_{2,\rho}(\cdot)$ is the density of bivariate Normal distribution with zero mean,
 unit variance,
@@ -116,9 +116,6 @@ In general, Archimedean copula takes a form
 where $\psi:[0,1] \rightarrow [0,\infty)$ is a continuous, strictly decreasing and convex function such that
 $\psi(1)=0$ for any permissible dependence parameter $\theta$. $\psi$ is also called generator.
 $\psi^{-1}$ is the inverse the generator.\medskip
-
-This section will briefly introduce this class of copula,
-we refer readers to Nelsen and Joe for detail of this class of copula.\medskip
 
 Frank copula (B3 in Joe) is a radial symmetric copula and does not have any tail dependence.
 It takes the form
@@ -204,7 +201,7 @@ the cross-product ratio is equal to the dependence parameter
     &= \theta.
     \end{align}\medskip
 That is, the dependence parameter is equal to the ratio between number of concordence pairs and number of discordence pairs of a bivariate random variable.
-\section{Mixture Copula}\label{sec:mixture-copula}
+\subsubsection{Mixture Copula}\label{sec:mixture-copula}
 Mixture copula is a linear combination of copulas.
 It allows us to model the dependence structure in a more flexible manner.
 
@@ -290,8 +287,8 @@ The corresponding copula density is
 This mixture allows us to model how much "random noise" appear in the dependency structure.
 In this hedging exercise, the structure of the "random noise" is not of our concern nor we can
 hedge the noise by a two-asset portfolio.
-However, the proportion of the "random noise" does affect the distribution of $r^h$ (see figure),
-so as the optimal hedging ratio $h$ (see figure).
+However, the proportion of the "random noise" does affect the distribution of $R^h$ (see figure),
+so as the optimal hedging ratio $h^\ast$ (see figure).
 One can consider the mixture copula as a handful tool for stress testing.
 Similar to this Gaussian mix Independent copula,
 t copula is also a two parameter copula allow us to model the noise,

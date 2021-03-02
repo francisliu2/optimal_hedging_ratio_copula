@@ -54,7 +54,6 @@ class Copula(object):
 		else:
 			return (1 - (2 * q) + self.C(q, q)) / (1 - q)
 
-
 class Gaussian(Copula):
 	def __init__(self, paras, Law_RS, Law_RF):
 		super().__init__()

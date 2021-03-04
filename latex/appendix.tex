@@ -1,0 +1,64 @@
+\newpage
+\section{Appendix}\label{sec:appendix}
+
+\begin{proposition}
+   Let $\bm{X} = (X_1, ..., X_d)^\top$ be real-valued random variables with corresponding
+   copula density $\bm{c}_{X_1, ..., X_d}$, and continuous marginals $F_{X_1}, ..., F_{X_d}$.
+   Then,
+   density of the linear combination of marginals $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ is
+
+   \begin{align}
+   f_Z(z) &= \left| n_1^{-1} \right| \int_{[0,1]^{d-1}} \left[ \bm{c}_{X_1,...,X_d}
+      \{F_{X_1} \circ S(z), u_2, ..., u_d \} \cdot
+      f_{X_1} \circ S(z) \right] du_2 ... du_d \\
+      S(z) &= \frac{1}{n_1}\cdot z - \frac{n_2}{n_1} \cdot F^{-1}_{X_2}(u_2) - ... -  \frac{n_d}{n_1} \cdot F^{-1}_{X_d}(u_d)
+      \end{align}
+   \end{proposition}
+
+\begin{proof} \medskip
+   Rewrite $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ in matrix
+   \begin{align}
+      \begin{bmatrix}
+      Y \\ X_2 \\ \vdots \\ X_d
+      \end{bmatrix}
+      = \begin{bmatrix}
+      n_1    & n_2   & \cdots & n_d     \\
+      0      & 1     &  \cdots & 0       \\
+      \vdots &       & \ddots & \vdots \\
+      0      & \cdots &       & 1  \\
+      \end{bmatrix}
+      \begin{bmatrix}
+         X_1 \\ X_2 \\ \vdots \\ X_d
+      \end{bmatrix}
+      = \bm{A}
+      \begin{bmatrix}
+         X_1 \\ X_2 \\ \vdots \\ X_d
+      \end{bmatrix}.
+      \end{align} \medskip
+
+   By transformation of variable
+   \begin{align}
+      \bm{f}_{Z,X_2,...,X_d}(z, x_2, ...,x_d) &= \bm{f}_{X_1,...,X_d}\left( \bm{A}^{-1}
+      \begin{bmatrix}
+         z \\ x_2 \\ \vdots \\ x_d
+      \end{bmatrix}
+      \right)  \cdot |\det \bm{A}^{-1}| \\
+      &= \left| n_1^{-1} \right| \bm{f}_{X_1,...,X_d}\{S(z), x_2,...,x_d\}
+      \end{align} \medskip
+
+   Let $u_i = F_{X_i}(x_i)$ and
+   use the relationship
+   \begin{align}
+      \bm{c}_{X_1,...,X_d}(u_1, ..., u_d)=\frac{\bm{f}_{X_1,...,X_d}(x_1,...,x_d)}{\prod_{i=1}^d f_{X_i}(x_i)},
+   \end{align}
+   we have
+   \begin{align}
+     & \bm{f}_{Z,X_2,...,X_d}(z, x_2, ...,x_d) = \\
+      & \left| n_1^{-1} \right| \cdot
+      \bm{c}_{X_1,...,X_d}\{F_{X_1} \circ S(z), u_2, ...,  u_d\}  \cdot
+      f_{X_1} \{ S(z) \} \cdot
+      \prod_{i=2}^d f_{X_i}(x_i)
+      \end{align}
+
+   Result is obtained by integrating out $x_2, ... x_d$ by substitution $dx_i = \frac{1}{f_{X_i}(x_i)}du_i$.
+   \end{proof}

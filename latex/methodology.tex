@@ -57,8 +57,8 @@ In addition to \cite{Barbi2014}) we propose a more handy expression for the dens
 
 \begin{prop} Given the formulation of the above portfolio, the density of $r^h$ can be written as
   \begin{align}
-  f_{r^h}(y) &= \left|\frac{1}{h}\right|\int_0^1 c_{r^S, r^F} \left[u,
-  F_{r^F}\left\{\frac{F^{-1}_{r^S}(u)-y}{h}\right\}
+  f_{r^h}(y) &= \left|\frac{1}{h}\right|\int_0^1 c_{r^S, r^F} \left[
+  F_{r^F}\left\{\frac{F^{-1}_{r^S}(u)-y}{h}\right\}, u
   \right]
    \cdot
   f_{r^F}
@@ -66,8 +66,8 @@ In addition to \cite{Barbi2014}) we propose a more handy expression for the dens
   \end{align}, or
     \begin{align}
       f_{r^h}(y)
-      = \int_0^1 c_{r^S, r^F} \left[u,
-      F_{r^S}\left\{y + h F^{-1}_{r^F}(u)\right\}
+      = \int_0^1 c_{r^S, r^F} \left[
+      F_{r^S}\left\{y + h F^{-1}_{r^F}(u)\right\}, u
       \right]
        \cdot
       f_{r^S}

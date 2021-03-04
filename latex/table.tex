@@ -1,15 +1,16 @@
 %\usepackage{fontspec}
 %\newcommand{\smallest}[1]{\textcolor{Maroon}{\textbf{#1}}}
-
+\newpage
 \begin{table}
+    \centering
 \begin{tabular}{lrrrrrr}
 \toprule
 {} &  ERM k=10 &    ES 99\% &    ES 95\% &   VaR 99\% &   VaR 95\% &  Variance \\
 \midrule
-Gaussian        &  0.019985 &  0.020802 &  0.020061 &  0.020230 &  0.019983 &  \color{blue}0.019757 \\
+Gaussian        &  0.019985 &  \color{green}0.020802 &  0.020061 &  \color{green}0.020230 &  0.019983 &  \color{blue}0.019757 \\
 t\_Copula        &  0.020097 &  0.021698 &  0.020381 &  0.020966 &  0.020071 &  \color{blue}0.019890 \\
 t\_Copula\_Capped &  0.020048 &  0.021018 &  0.020202 &  0.020554 &  0.020059 &  \color{blue}0.019792 \\
-Clayton         &  0.019519 &  0.021341 &  0.019789 &  0.021045 &  \color{blue}0.019389 &  0.019675 \\
+Clayton         &  \color{green}0.019519 &  0.021341 &  \color{green}0.019789 &  0.021045 &  \color{red}0.019389 &  \color{green}0.019675 \\
 Frank           &  0.029234 &  0.026240 &  0.030770 &  0.029157 &  \color{blue}0.023085 &  0.025928 \\
 Gumbel          &  0.020014 &  0.021411 &  0.020511 &  0.021643 &  \color{blue}0.019557 &  0.019757 \\
 Plackett        &  0.020010 &  0.021531 &  0.020363 &  0.020870 &  \color{blue}0.019755 &  0.019909 \\
@@ -21,6 +22,7 @@ NIG\_factor      &  \color{blue}0.019720 &  0.023425 &  0.020706 &  0.022039 &  
 \end{table}
 
 \begin{table}
+        \centering
 \begin{tabular}{lrrrrrr}
 \toprule
 {} &  ERM k=10 &    ES 99\% &    ES 95\% &   VaR 99\% &   VaR 95\% &  Variance \\
@@ -28,9 +30,9 @@ NIG\_factor      &  \color{blue}0.019720 &  0.023425 &  0.020706 &  0.022039 &  
 Gaussian        &  0.061084 &  0.062405 &  0.061201 &  0.062148 &  0.061712 &  \color{blue}0.059310 \\
 t\_Copula        &  0.062148 &  0.068702 &  0.063339 &  0.063964 &  0.062067 & \color{blue}0.060735 \\
 t\_Copula\_Capped &  0.061623 &  0.064114 &  0.062198 &  0.062466 &  0.062072 & \color{blue}0.059676 \\
-Clayton         &  0.058495 &  0.069910 &  0.060812 &  0.064595 &  \color{blue}0.055962 &  0.058318 \\
+Clayton         &  0.058495 &  0.069910 &  0.060812 &  0.064595 &  \color{blue}0.055962 &  \color{green}0.058318 \\
 Frank           &  0.104185 &  0.096795 &  0.108713 &  0.105070 &  \color{blue}0.068457 &  0.091321 \\
-Gumbel          &  0.056513 &  0.059574 &  0.056035 &  0.058162 &  \color{blue}0.055492 &  0.059525 \\
+Gumbel          &  \color{green}0.056513 &  \color{green}0.059574 &  \color{green}0.056035 &  \color{green}0.058162 &  \color{red}0.055492 &  0.059525 \\
 Plackett        &  0.061167 &  0.068027 &  0.063426 &  0.064563 &  \color{blue}0.058491 &  0.061017 \\
 Gauss Mix Indep &  0.061157 &  0.088023 &  0.063900 &  0.073316 &  \color{blue}0.057007 &  0.063081 \\
 NIG\_factor      &  \color{blue}0.060878 &  0.078959 &  0.065270 &  0.070919 &  0.062097 &  0.062848 \\
@@ -40,14 +42,15 @@ NIG\_factor      &  \color{blue}0.060878 &  0.078959 &  0.065270 &  0.070919 &  
 \end{table}
 
 \begin{table}
+        \centering
 \begin{tabular}{lrrrrrr}
 \toprule
 {} &  ERM k=10 &    ES 99\% &    ES 95\% &   VaR 99\% &   VaR 95\% &  Variance \\
 \midrule
-Gaussian        &  0.034488 &  0.035237 &  0.034548 &  0.035123 &  0.034838 &  \color{blue}0.034248 \\
+Gaussian        &  0.034488 &  \color{green}0.035237 &  0.034548 &  \color{green}0.035123 &  0.034838 &  \color{blue}0.034248 \\
 t\_Copula        &  0.034777 &  0.037100 &  0.035234 &  0.035634 &  0.035055 &  \color{blue}0.034494 \\
 t\_Copula\_Capped &  0.034647 &  0.035679 &  0.034862 &  0.035282 &  0.034937 &  \color{blue}0.034322 \\
-Clayton         &  0.033714 &  0.037282 &  0.034230 &  0.036089 &  \color{blue}0.033445 &  0.034046 \\
+Clayton         &  \color{green}0.033714 &  0.037282 &  \color{green}0.034230 &  0.036089 &  \color{red}0.033445 &  \color{green}0.034046 \\
 Frank           &  0.053661 &  0.047849 &  0.056299 &  0.053409 &  \color{blue}0.037638 &  0.046953 \\
 Gumbel          &  0.034028 &  0.035965 &  0.034528 &  0.036353 &  \color{blue}0.033568 &  0.034293 \\
 Plackett        &  0.034592 &  0.036831 &  0.035316 &  0.035752 &  \color{blue}0.034186 &  0.034558 \\
@@ -59,36 +62,39 @@ NIG\_factor      &  \color{blue}0.033882 &  0.041001 &  0.035677 &  0.037975 &  
 \end{table}
 
 \begin{table}
+            \centering
 \begin{tabular}{lrrrrrr}
 \toprule
 {} &  ERM k=10 &    ES 99\% &    ES 95\% &   VaR 99\% &   VaR 95\% &  Variance \\
 \midrule
-Gaussian        &  \color{blue}0.041327 &  0.044416 &  0.041943 &  0.043399 &  0.042275 &  0.041981 \\
+Gaussian        &  \color{blue}0.041327 &  0.044416 &  \color{green}0.041943 &  0.043399 &  0.042275 &  0.041981 \\
 t\_Copula        &  \color{blue}0.041450 &  0.044830 &  0.042806 &  0.043789 &  0.041693 &  0.041969 \\
 t\_Copula\_Capped &  \color{blue}0.041498 &  0.044169 &  0.042411 &  0.044051 &  0.042018 &  0.042056 \\
-Clayton         &  \color{blue}0.040022 &  0.044523 &  0.042878 &  0.044215 &  0.040913 &  0.041943 \\
+Clayton         &  \color{red}0.040022 &  0.044523 &  0.042878 &  0.044215 &  0.040913 &  0.041943 \\
 Frank           &  0.076644 &  0.055387 &  0.081273 &  0.073433 &  \color{blue}0.046177 &  0.061056 \\
-Gumbel          &  0.042079 &  0.042139 &  0.042187 &  0.045340 &  \color{blue}0.040523 &  0.041937 \\
-Plackett        &  \color{blue}0.041013 &  0.044971 &  0.042370 &  0.042995 &  0.041574 &  0.041731 \\
+Gumbel          &  0.042079 &  \color{green}0.042139 &  0.042187 &  0.045340 &  \color{blue}0.040523 &  0.041937 \\
+Plackett        &  \color{blue}0.041013 &  0.044971 &  0.042370 &  \color{green}0.042995 &  0.041574 &  \color{green}0.041731 \\
 Gauss Mix Indep &  0.040998 &  0.048017 &  0.043249 &  0.044518 &  \color{blue}0.040749 &  0.043386 \\
 NIG\_factor      &  \color{blue}0.040457 &  0.047201 &  0.043925 &  0.044230 &  0.043240 &  0.043138 \\
 \bottomrule
 \end{tabular}
 \caption{VaR 99\%}
+    \label{table:OOSRHVaR99}
 \end{table}
 
 \begin{table}
+            \centering
 \begin{tabular}{lrrrrrr}
 \toprule
 {} &  ERM k=10 &    ES 99\% &    ES 95\% &   VaR 99\% &   VaR 95\% &  Variance \\
 \midrule
-Gaussian        &  0.020385 &  0.020315 &  0.020143 &  0.020412 &  0.020121 &  \color{blue}0.019579 \\
+Gaussian        &  0.020385 &  0.020315 &  \color{green}0.020143 &  0.020412 &  0.020121 &  \color{blue}0.019579 \\
 t\_Copula        &  0.020547 &  0.020428 &  0.020661 &  0.020611 &  0.020370 &  \color{blue}0.019820 \\
 t\_Copula\_Capped &  0.020525 &  0.020544 &  0.020503 &  0.020486 &  0.020224 &  \color{blue}0.019656 \\
-Clayton         &  0.019702 &  0.021042 &  0.020143 &  0.020640 &  0.019990 &  \color{blue}0.019700 \\
+Clayton         &  \color{green}0.019702 &  0.021042 &  0.020143 &  0.020640 &  0.019990 &  \color{blue}0.019700 \\
 Frank           &  0.026372 &  0.023529 &  0.027105 &  0.026212 &  \color{blue}0.023389 &  0.023594 \\
-Gumbel          &  0.019781 &  0.021311 &  0.020716 &  0.020421 &  \color{blue}0.019077 &  0.019541 \\
-Plackett        &  0.020459 &  0.020257 &  0.020589 &  0.020100 &  0.020237 &  \color{blue}0.020047 \\
+Gumbel          &  0.019781 &  0.021311 &  0.020716 &  0.020421 &  \color{red}0.019077 &  \color{green}0.019541 \\
+Plackett        &  0.020459 &  \color{green}0.020257 &  0.020589 &  \color{green}0.020100 &  0.020237 &  \color{blue}0.020047 \\
 Gauss Mix Indep &  0.020482 &  0.024753 &  0.020304 &  0.024158 &  \color{blue}0.019944 &  0.020723 \\
 NIG\_factor      &  \color{blue}0.019923 &  0.023784 &  0.021009 &  0.022172 &  0.019980 &  0.020670 \\
 \bottomrule
@@ -97,20 +103,22 @@ NIG\_factor      &  \color{blue}0.019923 &  0.023784 &  0.021009 &  0.022172 &  
 \end{table}
 
 \begin{table}
+            \centering
 \begin{tabular}{lrrrrrr}
 \toprule
 {} &  ERM k=10 &    ES 99\% &    ES 95\% &   VaR 99\% &   VaR 95\% &  Variance \\
 \midrule
-Gaussian        &  0.014387 &  0.014380 &  0.014360 &  0.014530 &  0.014670 &  \color{blue}0.014294 \\
-t\_Copula        &  0.014378 &  0.014626 &  0.014343 &  0.014385 &  0.014627 &  \color{blue}0.014306 \\
+Gaussian        &  0.014387 &  \color{green}0.014380 &  0.014360 &  0.014530 &  0.014670 &  \color{blue}0.014294 \\
+t\_Copula        &  0.014378 &  0.014626 &  0.014343 &  \color{green}0.014385 &  0.014627 &  \color{blue}0.014306 \\
 t\_Copula\_Capped &  0.014375 &  0.014418 &  0.014332 &  0.014430 &  0.014643 &  \color{blue}0.014290 \\
-Clayton         &  0.014306 &  0.014870 &  0.014332 &  0.014532 &  0.014493 &  \color{blue}0.014267 \\
+Clayton         &  \color{green}0.014306 &  0.014870 &  \color{green}0.014332 &  0.014532 &  0.014493 &  \color{red}0.014267 \\
 Frank           &  0.021495 &  0.018982 &  0.022736 &  0.021476 &  \color{blue}0.018142 &  0.018897 \\
 Gumbel          &  0.014618 &  0.014971 &  0.014878 &  0.015438 &  0.014622 &  \color{blue}0.014321 \\
 Plackett        &  0.014444 &  0.014560 &  0.014424 &  0.014423 &  0.014596 &  \color{blue}0.014353 \\
-Gauss Mix Indep &  0.014404 &  0.017404 &  \color{blue}0.014341 &  0.015671 &  0.014453 &  0.014408 \\
+Gauss Mix Indep &  0.014404 &  0.017404 &  \color{blue}0.014341 &  0.015671 &  \color{green}0.014453 &  0.014408 \\
 NIG\_factor      &  \color{blue}0.014362 &  0.015841 &  0.014484 &  0.015043 &  0.014474 &  0.014415 \\
 \bottomrule
 \end{tabular}
 \caption{Standard Deviation}
 \end{table}
+\newpage

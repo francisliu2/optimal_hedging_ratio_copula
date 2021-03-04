@@ -195,9 +195,9 @@ Plackett copula has an expression
 We include Placket copula in our analysis as it possesses a special property,
 the cross-product ratio is equal to the dependence parameter
 \begin{align}
-    &\phantom{=} \frac{\mathbb{P}(U \leq u, V \leq v) \cdot \mathbb{P}(U > u, V > v)}
-    {\mathbb{P}(U \leq u, V > v) \cdot \mathbb{P}(U > u, V \leq v)}\\
-    &= \frac{C_\theta(u,v)\{1-u-v+C_\theta(u,v)\}}{\{u-C_\theta(u,v)\}\{v-C_\theta(u,v)}\\
+    &\phantom{=} \frac{\p(U \leq u, V \leq v) \cdot \p(U > u, V > v)}
+    {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\\
+    &= \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\\
     &= \theta.
     \end{align}\medskip
 That is, the dependence parameter is equal to the ratio between number of concordence pairs and number of discordence pairs of a bivariate random variable.
@@ -208,7 +208,7 @@ It allows us to model the dependence structure in a more flexible manner.
 For a 2-dimensional random variable $\bm{X}=(X_1,X_2)^\intercal$,
 its distribution can be written as linear combination $K$ copulas
 \begin{align}
-    \mathbb{P}(X_1 \leq x_1, X_2 \leq x_2) = \sum_{k=1}^K p^k \cdot \bm{C}^{(k)}\{F^{(k)}_{X_1}(x_1;\bm{\gamma}^{(k)}_1),
+    \p(X_1 \leq x_1, X_2 \leq x_2) = \sum_{k=1}^K p^k \cdot \bm{C}^{(k)}\{F^{(k)}_{X_1}(x_1;\bm{\gamma}^{(k)}_1),
     F^{(k)}_{X_2}(x_2;\bm{\gamma}^{(k)}_2); \bm{\theta^{(k)}}\}
     \end{align}
 where $p^{(k)} \in [0,1]$ is the weight of each component,

@@ -11,6 +11,7 @@
 \usepackage{subcaption}
 \usepackage{epsfig}
 \usepackage{graphicx}
+\usepackage{pdflscape}
 %\usepackage{multirow}
 \usepackage{psfrag}
 \usepackage{proofapnd}
@@ -87,13 +88,18 @@
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-\footnotesize{ We investigate different methods of hedging cryptocurrencies with Bitcoin futures.  The introduction of derivatives on Bitcoin, in particular the launch of futures contracts on CME in December 2017, allows for hedging exposures on Bitcoin and cryptocurrencies in general. Because of volatility swings and jumps in Bitcoin prices, the traditional variance-based approach to obtain the hedge ratios is infeasible.  The approach is therefore generalised  to various risk measures, such as value-at-risk ,expected shortfall and spectral risk measures, and to different copulas for capturing the dependency between spot and future returns, such as the Gaussian, Student-t, NIG and Archimedean copulas. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin and the CRIX index, a cryptocurrency index. This is joint work with Meng-Jou Lu (Asian Institute of Digital Finance Credit Research Initiative, National University of Singapore, Singapore) and Francis Liu (Berlin School of Economics and Law, Humboldt University Berlin).\\
-\renewcommand{\baselinestretch}{1.2}
+\footnotesize{ We investigate different methods of hedging cryptocurrencies with Bitcoin futures.
+The introduction of derivatives on Bitcoin, in particular the launch of futures contracts on CME in December 2017,
+allows for hedging exposures on Bitcoin and cryptocurrencies in general.
+Because of volatility swings and jumps in Bitcoin prices, the traditional variance-based approach to obtain the hedge ratios is infeasible.
+The approach is therefore generalised  to various risk measures, such as value-at-risk ,expected shortfall and spectral risk measures,
+and to different copulas for capturing the dependency between spot and future returns, such as the Gaussian, Student-$t$,
+NIG and Archimedean copulas. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin and the CRIX index,
+a cryptocurrency index. This is joint work with Meng-Jou Lu (Asian Institute of Digital Finance Credit Research Initiative,
+National University of Singapore, Singapore) and Francis Liu (Berlin School of Economics and Law, Humboldt University Berlin).\\
 
 \noindent {\bf JEL classification:}  \\
 \noindent {\bf Keywords:} Portfolio Selection, Spectral Risk Measurement,  Coherent Risk}\pagestyle{empty}\\
-
-
 \end{abstract}
 
 
@@ -102,16 +108,53 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Cryptocurrencies are a growing asset class. Bitcoin was the first cryptocurrency created in 2009 using a scheme proposed by {\color{blue}\citet{nakamoto2019bitcoin}}. Hedging is an important measure for investors to resist extreme risks and improve their profits. The hedge ratio for futures is the appropriate size futures contracts which should be held in order to creak an opposite position. The determination of the fair number of futures is of course the difficulty in this hedging task. In this paper, we investigate different methods of hedging cryptocurrencies with Bitcoin futures. The approach is therefore generalised to various risk measures, such as the variance of the returns, value-at-risk (VaR), expected shortfall and spectral risk measures. The minimum variance hedge ratio is well known as a tool to obtain the optimal hedge ratio. However, it doesn't consider the investor's risk attitude. It is therefore important to describe the investor's behaviour when they choose to hedge the risk from spot market. In such an idealized stochastic framework downside risk, as determined by quantiles or VaR, the standard deviations (or variance) is all to know in order to hedge such positions.  In realistic financial data scenarios though one cannot rely on only 2nd order moment calculations in order to minimize downside risk.  The VaR as a sole risk measure has two disadvantages.  First, it reflects only tail probability and not tail loss, and next it is not a coherent risk measure a very natural property that says that pooling will reduce risk. \\
+Cryptocurrencies are a growing asset class.
+Bitcoin was the first cryptocurrency created in 2009 using a scheme proposed by \citet{nakamoto2019bitcoin}.
+Hedging is an important measure for investors to resist extreme risks and improve their profits.
+The hedge ratio for futures is the appropriate size futures contracts which should be held in short position
+in order to creak an opposite position.
+The determination of the fair number of futures is of course the difficulty in this hedging task.
+In this paper, we investigate different methods of hedging cryptocurrencies with Bitcoin futures.
+The approach is therefore generalised to various risk measures, such as the variance of the returns,
+value-at-risk (VaR), expected shortfall and spectral risk measures.
+The minimum variance hedge ratio is well known as a tool to obtain the optimal hedge ratio.
+However, it doesn't consider the investor's risk attitude.
+It is therefore important to describe the investor's behaviour when they choose to hedge the risk from spot market.
+In such an idealized stochastic framework downside risk, as determined by quantiles or VaR,
+the standard deviations (or variance) is all to know in order to hedge such positions.
+In realistic financial data scenarios though one cannot rely on only 2nd order moment calculations in order to minimize downside risk.
+The VaR as a sole risk measure has two disadvantages.
+First, it reflects only tail probability and not tail loss, and next it is not a coherent risk measure a very natural property that says that pooling will reduce risk. \\
 
+This insight opens a new path of optimizing the hedge ratio by employing special risk measures, SRMs as financial risk measures.
+This paper expects that investors are more risk averse who might choose to accept with a low but guaranteed payment,
+rather than taking high risk of losing money but have high expected returns.
+In doing so we follow \citet{barbi2014copula} by applying exponential SRMs to determine the hedge ratio.
+By investigating the relationship of investors' utility function and the optimal hedge ratio, we demonstrate the relationship of the investors' risk aversion and SRMs, see \citet{brandtner2015decision}.\\
 
-This insight opens a new path of optimizing the hedge ratio by employing special risk measures, SRMs as financial risk measures. This paper expects that investors are more risk averse who might choose to accept with a low but guaranteed payment, rather than taking high risk of losing money but have high expected returns. In doing so we follow {\color{blue}\citet{barbi2014copula}} by applying exponential SRMs to determine the hedge ratio.  By investigating the relationship of investors' utility function and the optimal hedge ratio, we demonstrate the relationship of the investors' risk aversion and SRMs, see {\color{blue}\citet{brandtner2015decision}}.\\
+SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion.
+In other words, the risk estimation is directly related to the user's utility function.
+Popular examples are the exponential SRM and power SRM introduced by \citet{dowd2008spectral}.
+Even though they reveal that SRM have some properties which cause problems when applying to practical risk management,
+they show that exponential utility function might be plausible in some circumstances under weak conditions \citealp{buhlmann1980economic}.
+However, it still causes some problems to capture the behaviors of investors when the value of absolute risk aversion (ARA) parameter beyond a threshold \citealp{markowitz2014mean}.
+If the relative risk aversion coefficients (RRA) are less than 1, \citet{dowd2008spectral} address that the weighting of lower risk-averse is higher than the higher risk-averse as the loss of portfolio increases.
+On the other hand, the power SRM proposed by \citet{dowd2008spectral} when the relative risk aversion coefficients (RRA) are larger than 1, has also proper features to give a higher weight as loss increase.
+Note that the selection of the utility function and the value of risk aversion parameter would be the matters of solving specific financial problem.
+By contrast, the estimation of the VaR and the ES are conditional on the confidence level which is not easy to determine.
+Since SRM is capable of reflecting the investor's attitude toward risk and has been applied to various fields of financial decision making, this paper apply to the determination of the optimal hedge ratio.
+It is important for the hedger who should choose a proper value for the hedge ratio in order to minimize the risk of portfolio.\\
 
-SRM is a weighted average of the quantiles of a loss distribution, the weights of which depend on the investor's risk-aversion.  In other words, the risk estimation is directly related to the user's utility  function. Popular examples are the exponential SRM and power SRM introduced by {\color{blue}\citet{dowd2008spectral}}.  Even though they reveal that SRM have some properties which cause problems when applying to practical risk management, they show that exponential utility function might be plausible in some circumstances under weak conditions ({\color{blue}\citealp{buhlmann1980economic}}). However, it still causes some problems to capture the behaviors of investors when the value of absolute risk aversion (ARA) parameter beyond a threshold ({\color{blue}\citealp{markowitz2014mean}}). If the relative risk aversion coefficients (RRA) are less than 1, {\color{blue}\citet{dowd2008spectral}} address that the weighting of lower risk-averse is higher than the higher risk-averse as the loss of portfolio increases. On the other hand, the power SRM proposed by {\color{blue}\citet{dowd2008spectral}} when the relative risk aversion coefficients (RRA) are larger than 1, has also proper features to give a higher weight as loss increase. Note that the selection of the utility function and the value of risk aversion parameter would be the matters of solving specific financial problem. By contrast, the estimation of the VaR and the ES are conditional on the confidence level which is not easy to determine. Since SRM is capable of reflecting the investor's attitude toward risk and has been applied to various fields of financial decision making, this paper apply to the determination of the optimal hedge ratio. It is important for the hedger who should choose a proper value for the hedge ratio in order to minimize the risk of portfolio.\\
+A joint distribution of spot and futures has been specified in terms of a copula function to embody the tail behaviors of the spot and the futures \citealp{barbi2014copula}.
+Copulae enable us to build the flexible multivariate distributions of dependence structure.
+This paper conducts four types of copulae (Gaussian, t, Frank, Clayton, and Normal Inverse Gaussian) to derive the copula representation of quantities to reach copula-based SRM of the hedged portfolio.
+It should be noted that the Clayton copula can be also used to construct the joint distribution with right tail dependence. Frank copula is symmetric and appropriate for data that exhibit weak or no tail dependence. Normal Inverse Gaussian (NIG) copula is a flexible system of joint distribution that includes fat-tailed and skewed distributions. However, there is still no evidence yet for selecting an exclusive copula in applications of hedging.\\
 
-A joint distribution of spot and futures has been specified in terms of a copula function to embody the tail behaviors of the spot and the futures ({\color{blue}\citealp{barbi2014copula}}). Copulae enable us to build the flexible multivariate distributions of dependence structure. This paper conducts four types of copulae (Gaussian, t, Frank, Clayton, and Normal Inverse Gaussian) to derive the copula representation of quantiles to reach copula-based SRM of the hedged portfolio. It should be noted that the Clayton copula can be also used to construct the joint distribution with right tail dependence. Frank copula is symmetric and appropriate for data that exhibit weak or no tail dependence. Normal Inverse Gaussian (NIG) copula is a flexible system of joint distribution that includes fat-tailed and skewed distributions. However, there is still no evidence yet for selecting an exclusive copula in applications of hedging.\\
-
-An optimal hedge ratio represents the investor's subjective marginal rate of substitution between risk and return. {\color{blue}\citet{cecchetti1988estimation}} found that the optimal hedge ratios increases when an investor with a greater risk aversion by maximizing the expected value of the logarithm of wealth. It is understandable if a investor's attitude is more risk-averse, they will increase the position of futures contracts to hedging the uncertain risk which they may take in the future. On the contrary, {\color{blue}\citet{brandtner2015decision}} address that the theoretical result predictions for the subset of exponential and power SRMs are not reasonable but may be counter-intuitive if the corresponding parameter of risk aversion is large enough. Different from {\color{blue}\citet{brandtner2015decision}}, we consider the joint distribution of financial assets to choose the optimal hedge ratio by minimizing SRM. However, the empirical result shows the direction of optimal hedge ratio is increasing as the parameters represents the investors' attitude increases. \\
+An optimal hedge ratio represents the investor's subjective marginal rate of substitution between risk and return. \citet{cecchetti1988estimation} found that the optimal hedge ratios increases when an investor with a greater risk aversion by maximizing the expected value of the logarithm of wealth.
+It is understandable if a investor's attitude is more risk-averse, they will increase the position of futures contracts to hedging the uncertain risk which they may take in the future.
+On the contrary, \citet{brandtner2015decision} address that the theoretical result predictions for the subset of exponential and power SRMs are not reasonable but may be counter-intuitive if the corresponding parameter of risk aversion is large enough.
+Different from \citet{brandtner2015decision}, we consider the joint distribution of financial assets to choose the optimal hedge ratio by minimizing SRM.
+However, the empirical result shows the direction of optimal hedge ratio is increasing as the parameters represents the investors' attitude increases. \\
 
 %This paper has two main contributions to the existing literature. First, we reveal the quantiles of loss function built by different copulae. Second, by minimizing exponential SRM (ESRM) to determine the optimal hedge ratio, we give a guidance on the choice of risk aversion function to assist the risk manager in choosing an optimal risk aversion function for a portfolio. To our knowledge, these have received no attention so far in the published literatures.\\
 
@@ -121,15 +164,15 @@ of the article is organized as follows. Section 2 methodology. Section 3 data, a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Methodology}\label{sec:methodology}
-Following \citep{Barbi2014}, we consider the problem of optimal
+Following \citet{Barbi2014}, we consider the problem of optimal
 hedge ratios by extending the commonly known minimum variance hedge
 ratio to more general risk measures and dependence
 structures.\medskip
 
 Hedge portfolio: $R_t^h = R_t^S - h R_t^F$, involving returns of spot
-and future contract and where $h$ is the hedge ratio.
+and future contract and where $h$ is the hedge ratio.\medskip
 
-The optimal hedge ratio
+The optimal hedge ratio is
 \begin{align}
     h^\ast = \argmin_h \rho_\phi(s,h),
     \end{align}
@@ -137,8 +180,13 @@ for given
 confidence level $1-s$ (if applicable, e.g.\ in the case of VaR, ES),
 where $\rho_\phi$ is a spectral risk measure with weighting function
 $\phi$ (see below).
-We reduce one risk measure at a time and we call the risk measure being used risk reduction objective.
-Different combinations of copula and risk reduction objective are studied in this work.
+In other words, our task is to search for the optimal $h$ which can minimize a particular risk measure.
+We call the risk measure being used in search process of $h^\ast$ risk reduction objective.
+This naming is to differentiate the risk objective and risk outcome.
+One can see from result section that the $h^\ast$ which minimize a particular risk measure in training does not
+necessarily minimize the risk measure in testing data.
+For example in table \ref{OOSRHVaR99}, the best performing risk reduction objective to reduce out-of-sample Value-at-Risk 99\% is
+exponential risk measure $k=10$. \medskip
 
 The distribution function of $R^h$ can be expressed in terms of the
 copula and the marginal distributions as Proposition \ref{prop:dfrh}
@@ -223,7 +271,7 @@ The two expressions are equivalent.
 One can use any of them to get the density of $R^h$.
 Notice that the density of $R^h$ in the above proposition is readily accessible as long as one have
 the copula density and the marginal densities.
-A generic expression can be found in the appendix (TODO).
+The proof and a generic expression can be found in the appendix.
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{_pics/density illustration1.png}
 \includegraphics[width=\textwidth]{_pics/density illustration2.png}
@@ -231,9 +279,9 @@ A generic expression can be found in the appendix (TODO).
   $X, Y \sim N(0,1)$,
   $0.75$ Spearman's rho between $X$ and $Y$, and $h=0.5$;
   Lower Panel: Scatter plot of samples from copulas.
-  This illustration shows how dependence structure modelled by copulas affects the density of the linear combination
+  This illustration shows how dependence structure modelled by different copulas affects the density of the linear combination
   of margins.
-  Notice that the $Z$ modelled by the asymmetric copulas namely the Clayton and Gumbel copulas are skewed to right
+  Notice that the $Z$ modelled by the asymmetric copulas, namely the Clayton and Gumbel copulas, are skewed to right
   and left respectively.}
 \label{fig:density illustration}
 \end{figure}
@@ -665,6 +713,11 @@ TODO:
 
 \input{results.tex}
 
-\bibliographystyle{model2-names}
-\bibliography{barrier}
+\newpage
+\bibliographystyle{abbrvnamed} %
+\bibliography{finance} %
+
+
+\input{appendix.tex}
+
 \end{document}

@@ -8,7 +8,8 @@ The hedging effectiveness(HE) is defined as
   1- \frac{\rho_\phi(R^h)}{\rho_\phi(R^S)}.
   \end{align}
 The hedging effectiveness is the reduction of portfolio risk.
-This way of evaluating of hedging performance is proposed by Ederington (1979) in the context of ...
+This way of evaluating of hedging performance is proposed by \cite{ederington1979hedging} in the context of, at that time, hedging the newly introduced
+organized futures market.
 He evaluates the extent of variance reduction by introducing another asset.
 We measure the hedging effectiveness also in other risk measure mentioned in section \ref{subsec:spectral-risk-measures},
 for example
@@ -16,12 +17,75 @@ for example
   1- \frac{\text{ES}_\alpha(R^h)}{\text{ES}_\alpha(R^S)}.
   \end{align}
 
-Figure \ref{fig:OOSHE} shows the out-of-sample hedging effectiveness of difference copulas under various risk
-reduction objectives.
-Observe that in every copulas perform well in most of the time.
+The box-plots in figure \ref{fig:OOSHE} show the out-of-sample hedging effectiveness of different copulas under various risk
+reduction objectives across testing datasets.
+Observe that in most of the copulas perform well in most of the time.
 The average HE of copulas and risk reduction objectives is higher than 60\% except for Frank-copula.
-However, the HEs vary a lot in every copula.
+However, the HEs vary a lot in different testing data.
 In some instances, the HE can be as low as 10\%.
+This reflects the highly violate nature of cryptocurrencies:
+the optimal hedge ratio in the training data deviates from that of testing data.
+There is a large literature about structural break points and time changing dependence, to name a few
+\citet{hafner2012dynamic}, \citet{patton2006modelling}, \citet{creal2008general},
+\citet{engle2002dynamic}, and \citet{giacomini2009inhomogeneous}.
+\citet{manner2012survey} gives a great survey about this issue.
+The discussion is out of the scope of this study.\medskip
+
+Frank-copula, in general, is not a good choice to model financial data.
+Figure~\ref{fig:Frank}
+
+\begin{figure}[th]
+   \centering
+   \includegraphics[width=\textwidth]{_pics/Frank.png}
+   \caption{Comparison of Frank Copula Samples and Pseudo Observations of Bitcoin and CME Future Returns.
+   }
+   \label{fig:Frank}
+\end{figure}
+
+Aside from the Frank-copula, the HEs of various combination of copula and risk reduction objective are very similar.
+This is an expected result as the portfolio consists only two assets.
+In addition to hedging effectiveness, we observe the out-of-sample returns of the hedged portfolio.
+Figure~\ref{fig:OOSRH} tabulates the time series of out-of-sample returns of hedged portfolio under various copulas and risk reduction objectives.
+
+One can see all the combinations of copula and risk reduction objective generate a large fluctuation of returns in
+25/09/2019 and 26/09/2019.
+This large fluctuation is due to dependence break.
+\medskip
+
+\begin{figure}[th]
+   \centering
+   \includegraphics[width=\textwidth]{_pics/OOSBitcoin.png}
+   \caption{Out of Sample Log-return of Bitcoin.
+%   Lower Panel: Out of Sample Hedged Portfolio log-returns.
+%   The $h^*$ is obtained from Gumbel copula aiming at reducing variance.
+%   The red dots indicate the 30 most extreme negative returns in Bitcoin.
+   }
+   \label{fig:Gumbel}
+\end{figure}
+
+\newpage
+\begin{landscape}
+\begin{figure}[th]
+   \centering
+   \includegraphics[width=\linewidth]{_pics/Rhs.png}
+   \caption{Out-of-Sample Returns of Hedged Portfolio of Copulas and Risk Reduction Objectives.
+   }
+   \label{fig:OOSRH}
+\end{figure}
+\end{landscape}
+\newpage
+
+\newpage
+\begin{landscape}
+\begin{figure}[th]
+   \centering
+   \includegraphics[width=\linewidth]{_pics/OHRs.png}
+   \caption{Optimal Hedge Ratio Obtained from Combinations of Copula and Risk Reduction Objective.
+   }
+   \label{fig:OHRs}
+\end{figure}
+\end{landscape}
+\newpage
 
 
 %\begin{figure}[t]
@@ -33,14 +97,13 @@ In some instances, the HE can be as low as 10\%.
 \begin{figure}[!th]
    \centering
    \includegraphics[height=25cm]{_pics/Out of Sample Hedging Effectiveness.png}
-   \caption{Out of Sample Hedging Effectiveness Boxplot.
+   \caption{Out of Sample Hedging Effectiveness Box-plot.
    The HEs are obtained from a set of out-of-sample data,
    each set consists 30 days log returns of Bitcoin and CME future.
    }
    \label{fig:OOSHE}
 \end{figure}
 
-\subsection{Ability of hedging extreme negative events}
 Figure~\ref{fig:Gumbel} shows the time series of out-of-sample $R^h$ using Gumbel copula with the
 objective of reducing variance.
 The red dots are the 30 most extreme negative returns in Bitcoin.
@@ -53,16 +116,7 @@ Another reason for Gumbel fail of capturing the loss is dependence break.
 The Kendall's tau in the training data is 0.2 higher than that of the testing data.
 Other copulas suffer from the break as well.
 
-\begin{figure}[!th]
-   \centering
-   \includegraphics[width=\textwidth]{_pics/OOSBitcoin.png}
-   \includegraphics[width=\textwidth]{_pics/Gumbel_rh.png}
-   \caption{Upper Panel: Out of Sample Log-return of Bitcoin; Lower Panel: Out of Sample Hedged Portfolio log-returns.
-   The $h^*$ is obtained from Gumbel copula aiming at reducing variance.
-   The red dots indicate the 30 most extreme negative returns in Bitcoin.
-   }
-   \label{fig:Gumbel}
-\end{figure}
+
 
 \subsection{Stability of $h^*$}
 We measure the stability of $h^*$ by sum of absolute change

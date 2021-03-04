@@ -2,7 +2,7 @@
 %! Date = 30.10.20
 
 
-\subsection{Simulated Method of Moments}
+\subsection{Simulated Method of Moments}\label{subsec:simulated-method-of-moments}
 This method is suggested by Oh and Patton (2013).
 In this setting, rank correlation e.g. Spearman's $\rho$ or Kendall's $\tau$,
 and quantile dependence measures at different levels $\lambda_q$
@@ -58,52 +58,85 @@ In this work, we use $\tilde{\bm{m}}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \la
 \lambda_{0.9}, \lambda_{0.95})^\intercal$
 for calibration of Bitcoin price and CME Bitcoin future.
 
-\subsection{Maximum Likelihood Estimation}
-The MLE estimator for a bivariate parametric copula is
+\subsection{Maximum Likelihood Estimation}\label{subsec:maximum-likelihood-estimation}
+By Sklar's theorem, the joint density of a $d$-dimensional random variable $\bm{X}$ with sample size $n$ can be written as
 \begin{align}
-    \hat{\bm{\theta}} = \argmax_{\bm{\theta} \in \bm{\Theta}} l(X,Y; \bm{\theta}), \label{eq:EMLE}
+    \bm{f}_{\bm{X}}(x_1, ..., x_d) = \bm{c}\{F_{X_1}(x_1), ..., F_{X_d}(x_d)\} \prod_{j=1}^d f_{X_i}(x_i).
     \end{align}
-where
+We follow the treatment of MLE documented in section 10.1 of \citet{joe1997multivariate}, namely the inference functions for margins or IFM method.
+The log-likelihood $\sum^n_{i=1}f_{\bm{X}}(X_{i,1}, ..., X_{i,d})$ can be decomposed into dependence part and marginal part,
 \begin{align}
-    l(X,Y; \bm{\theta}) = \sum_{k=1}^n \log c(x_i, y_i;\bm{\theta}). \label{eq:Likelihood}
-    \end{align}\medskip
-
-Procedure of maximising equation~\ref{eq:EMLE} as a whole is called exact maximum likelihood method.
-Leveraging the attractive feature of copula that one can model the dependence structure and marginals separately,
-we rewrite~\ref{eq:Likelihood} into canonical expression
-\begin{align}
-    l(X,Y; \bm{\theta}) = \sum_{k=1}^n \log c\{F_X(x_i; \delta_X), F_Y(y_i; \delta_Y); \bm{\gamma}\}
-    + \sum_{k=1}^n \log f_X(x_i; \bm{\delta}_X) + \sum_{k=1}^n \log f_X(y_i; \bm{\delta}_Y),
+    L(\bm{\theta}) &= \sum_{i=1}^n \bm{c}\{F_{X_1}(x_{i,1};\bm{\delta}_1), ..., F_{X_d}(x_{i,d}; \bm{\delta}_d);\bm{\gamma}\}
+    + \sum_{i=1}^n \sum_{j=1}^d f_{X_j}(x_{i,j};\bm{\delta}_j)
+    &= L_C(\bm{\delta}_1, ..., \bm{\delta}_d, \bm{\gamma}) + \sum_{j=1}^d L_j(\bm{\delta}_j)
     \end{align}
-where the $\bm{\gamma}$ is the dependence parameter in the copula and $\bm{\delta}$ is the parameters in the margins.\medskip
+where $\bm{\delta}_j$ is the parameter of the $j$-th margin, $\bm{\gamma}$ is the parameter of the parametric copula, and
+$\bm{\theta} = (\bm{\delta}_1,..., \bm{\delta}_d, \bm{\gamma})$.
 
-The inference-functions for margins (IFM) approach by Joe is a two step procedure of maximising~\ref{eq:EMLE}.
-The approach calibrate first the $\bm{\delta}$s and then the  $\bm{\gamma}$.\medskip
+Instead of searching the $\bm{\theta}$ is a high dimensional space, \citet{joe1997multivariate} suggests to
+search for $\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}$ that maximize $L_1(\bm{\delta}_1), ..., L_d(\bm{\delta}_d)$,
+then search for $\hat{\bm{\gamma}}$ that maximize $L_C(\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}, \bm{\gamma})$.
 
-Similar to the IFM approach, pseudo-maximum likelihood approach by Genest and Rivest (1993) replace the parametric margins by
-empirical estimates, we rewrite \ref{eq:Likelihood} again with
+That is, under regularity conditions, $(\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}, \hat{\bm{\gamma}})$ is the solution of
 \begin{align}
-    l(X,Y; \bm{\theta}) = \sum_{k=1}^n \log c(u_i, v_i;\bm{\gamma}),
+    \left( \frac{\partial L_1}{\partial \bm{\delta}_1}, ..., \frac{\partial L_d}{\partial \bm{\delta}_d},
+    \frac{\partial L_C}{\partial \bm{\gamma}}\right) = \bm{0}.
     \end{align}
-where $u_i = \hat{F}_X(x_i)$ and $v_i = \hat{F}_Y(y_i)$.
+
+However, the IFM requires making assumption to the distribution of of the margins.
+\citet{genest1995semiparametric} suggests to replace the estimation of marginals parameters estimation by non-parameteric estimation.
+Given non-parametric estimator $\hat{F}_i$ of the margins $F_i$, the estimator of the dependence parameters $\bm{\gamma}$ is
+\begin{align}
+    \hat{\bm{\gamma}} = \argmax_{\bm{\gamma}} \sum_{i=1}^n \bm{c}\{ \hat{F}_{X_1}(x_{i,1}), ..., \hat{F}_{X_d}(x_{i,d});\bm{\gamma}\}.
+    \end{align}
+
+
+
+%With the decomposition, the MLE estimator for a bivariate parametric copula is
+%\begin{align}
+%    \hat{\bm{\theta}} = \argmax_{\bm{\theta} \in \bm{\Theta}} l(X_1,X_2; \bm{\theta}), \label{eq:EMLE}
+%    \end{align}
+%where
+%\begin{align}
+%    l(X_1,X_2; \bm{\theta}) = \sum_{i=1}^n \log c(x_{i,1}, x_{i,2};\bm{\theta}). \label{eq:Likelihood}
+%    \end{align}\medskip
+
+%Procedure of maximising equation~\ref{eq:EMLE} as a whole is called exact maximum likelihood method.
+%Leveraging the attractive feature of copula that one can model the dependence structure and marginals separately,
+%we rewrite~\ref{eq:Likelihood} into canonical expression
+%\begin{align}
+%    l(X,Y; \bm{\theta}) = \sum_{k=1}^n \log c\{F_X(x_i; \delta_X), F_Y(y_i; \delta_Y); \bm{\gamma}\}
+%    + \sum_{k=1}^n \log f_X(x_i; \bm{\delta}_X) + \sum_{k=1}^n \log f_X(y_i; \bm{\delta}_Y),
+%    \end{align}
+%where the $\bm{\gamma}$ is the dependence parameter in the copula and $\bm{\delta}$ is the parameters in the margins.\medskip
+%
+%The inference-functions for margins (IFM) approach by Joe is a two step procedure of maximising~\ref{eq:EMLE}.
+%The approach calibrate first the $\bm{\delta}$s and then the  $\bm{\gamma}$.\medskip
+%
+%Similar to the IFM approach, pseudo-maximum likelihood approach by Genest and Rivest (1993) replace the parametric margins by
+%empirical estimates, we rewrite \ref{eq:Likelihood} again with
+%\begin{align}
+%    l(X,Y; \bm{\theta}) = \sum_{k=1}^n \log c(u_i, v_i;\bm{\gamma}),
+%    \end{align}
+%where $u_i = \hat{F}_X(x_i)$ and $v_i = \hat{F}_Y(y_i)$.
 
 \subsection{Comparison}
 Both the simulated method of moments and the maximum likelihood estimation are unbiased and
-proven to give good fits (ref ...).
+proven to give good fits.
 The problem remain is which procedure is more suitable for hedging.
 %Cryptocurrencies are known to be very volatile.
 Sample and fitted quantile dependence for Bitcoin and CME future.
 
-\begin{figure}[h]
-\includegraphics[width=\textwidth]{_pics/t Copula quantile dependence.png}
-\includegraphics[width=\textwidth]{_pics/Gumbel Copula quantile dependence.png}
-\includegraphics[width=\textwidth]{_pics/Clayton Copula quantile dependence.png}
-  \caption{}
-\label{fig:quantile dependence1}
-\end{figure}
+%\begin{figure}[th]
+%\includegraphics[width=\textwidth]{_pics/t Copula quantile dependence.png}
+%\includegraphics[width=\textwidth]{_pics/Gumbel Copula quantile dependence.png}
+%\includegraphics[width=\textwidth]{_pics/Clayton Copula quantile dependence.png}
+%  \caption{}
+%\label{fig:quantile dependence1}
+%\end{figure}
 
 
-The MM estimation perform just as we decided: match the upper and quantile dependence.
+The MM estimation perform just as we decided: match the upper and lower quantile dependence.
 
 
 

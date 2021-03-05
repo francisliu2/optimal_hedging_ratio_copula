@@ -12,7 +12,7 @@ Spearman's rho, Kendall's tau, and quantile dependence of a pair $(X,Y)$
 with copula $C$ are defined as
 \begin{align}
   \rho_S &= 12 \int\int_{I^2} C_{\bm{\theta}}(u,v)\, \dd u\, \dd v-3\label{eq:rho_S}\\
-  \tau_K &= 4\mathbb{E}[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
+  \tau_K &= 4\operatorname{E}[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
   \lambda_q &=
   \begin{cases}
     \p(F_X(X)\leq q| F_Y(Y)\leq q) = \displaystyle \frac{C_{\bm{\theta}}(q,q)}{q},
@@ -125,20 +125,21 @@ Both the simulated method of moments and the maximum likelihood estimation are u
 proven to give good fits.
 The problem remain is which procedure is more suitable for hedging.
 %Cryptocurrencies are known to be very volatile.
-Sample and fitted quantile dependence for Bitcoin and CME future.
 
-%\begin{figure}[th]
+\begin{figure}[h]
 %\includegraphics[width=\textwidth]{_pics/t Copula quantile dependence.png}
-%\includegraphics[width=\textwidth]{_pics/Gumbel Copula quantile dependence.png}
-%\includegraphics[width=\textwidth]{_pics/Clayton Copula quantile dependence.png}
-%  \caption{}
-%\label{fig:quantile dependence1}
-%\end{figure}
+\includegraphics[width=\textwidth]{_pics/Gumbel Copula quantile dependence.png}
+\includegraphics[width=\textwidth]{_pics/Clayton Copula quantile dependence.png}
+  \caption{Quantile dependences of Gumbel, and Clayton Copula. The blue circle dots are
+  the quantile dependence estimate of Bitcoin and CME future, blue dotted lines are the estimates' 90\% confidnece interval.}
+\label{fig:quantile dependence1}
+\end{figure}
 
-
-The MM estimation perform just as we decided: match the upper and lower quantile dependence.
-
-
+Figure~\ref{fig:quantile dependence1} shows the empirical quantile dependence of Bitcoin and CME future and the copula implied
+quantile dependence from MLE and MM calibration procedures.
+Although the MLE is a better fit to a range of quantile dependence in the middle, it fails to address the situation in the tails.
+Our data empirically has weaker quantile dependence in the ends, and those points generate PnL to the hedged portfolio.
+MM is preferred visually as it produces a better fit to the dependence structure in the two extremes.
 
 
 %

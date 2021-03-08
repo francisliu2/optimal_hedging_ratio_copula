@@ -97,8 +97,20 @@ In addition to \cite{barbi2014copula}) we propose a more handy expression for th
 The two expression are equivalent, one can use any of them to get the density of $R^h$.
 Notice that the density of $R^h$ in the above proposition is readily accessible as long as we have
 the copula density and the marginal densities.
-A generic expression can be found in the appendix (TODO).
-
+The proof and a generic expression can be found in the appendix.
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{_pics/density illustration1.png}
+\includegraphics[width=\textwidth]{_pics/density illustration2.png}
+  \caption{Upper Panel: Density of $Z= X - hY$ of different copulas with
+  $X, Y \sim N(0,1)$,
+  $0.75$ Spearman's rho between $X$ and $Y$, and $h=0.5$;
+  Lower Panel: Scatter plot of samples from copulas.
+  This illustration shows how dependence structure modelled by different copulas affects the density of the linear combination
+  of margins.
+  Notice that the $Z$ modelled by the asymmetric copulas, namely the Clayton and Gumbel copulas, are skewed to right
+  and left respectively. \href{http://www.quantlet.com/}{\includegraphics[width=15pt]{_pics/qletlogo_tr.png}}}
+\label{fig:density illustration}
+\end{figure}
 
 %OLD
 %\section{Methodology}\label{sec:methodology}
@@ -205,21 +217,3 @@ A generic expression can be found in the appendix (TODO).
 %      \right\} du.\label{eq:density2}
 %  \end{align}
 %  \end{proposition}
-%The two expressions are equivalent.
-%One can use any of them to get the density of $R^h$.
-%Notice that the density of $R^h$ in the above proposition is readily accessible as long as one have
-%the copula density and the marginal densities.
-%The proof and a generic expression can be found in the appendix.
-%\begin{figure}[h]
-%\includegraphics[width=\textwidth]{_pics/density illustration1.png}
-%\includegraphics[width=\textwidth]{_pics/density illustration2.png}
-%  \caption{Upper Panel: Density of $Z= X - hY$ of different copulas with
-%  $X, Y \sim N(0,1)$,
-%  $0.75$ Spearman's rho between $X$ and $Y$, and $h=0.5$;
-%  Lower Panel: Scatter plot of samples from copulas.
-%  This illustration shows how dependence structure modelled by different copulas affects the density of the linear combination
-%  of margins.
-%  Notice that the $Z$ modelled by the asymmetric copulas, namely the Clayton and Gumbel copulas, are skewed to right
-%  and left respectively.}
-%\label{fig:density illustration}
-%\end{figure}

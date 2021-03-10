@@ -2,11 +2,10 @@
 We illustrate the results in three directions, hedging effectiveness,
 ability of hedging extreme negative events in $R^S$, and the stability of $h^*$.
 
-\begin{itemize}
-   \item  Hedging Effectiveness
-   \begin{itemize}
-     \item Kick out Frank for its ineffectiveness; Alternative to a
-       one-parameter symmetric Archimedean copula is Plackett;
+%\begin{itemize}
+%   \item  Hedging Effectiveness
+%   \begin{itemize}
+%     \item Kick out Frank for its ineffectiveness; Alternative to a one-parameter symmetric Archimedean copula is Plackett;
        \natp{\em [The issue with the Frank copula is that is has no
          tails. A scatterplot looks like a strip, there is no
          concentration in the tails. For CDO pricing (and this is what
@@ -14,25 +13,25 @@ ability of hedging extreme negative events in $R^S$, and the stability of $h^*$.
          move from senior to junior tranches. Here, I suppose it just
          does not capture the empirical behaviour of the data.
          ]}
-     \item Differences among combinations of copula and risk reduction objective are small;
-     \item None of the combination can escape from the structural break point (dependence of training is stronger then that of testing). (The bump in 25-26th Sept 2019)
-     \item The best performing RRO of a particular risk measure in out-of-sample $R^h$ is not necessarily same, e.g.
-      VaR 95\% as RRO (with Gumbel copula) can generate the lowest out-of-sample ES 99\%.
-   \end{itemize}
-   \item Ability to hedge extreme events in $R^S$
-   \begin{itemize}
-     \item The extreme events in $R^S$ are well managed by the hedge.
-     The magnitudes of loss in $R^h$ is much smaller than that of $R^h$. (Visually seen from the time series of $R^h$)
-     \item None of the combination can escape from the structural break point (dependence of training is stronger then that of testing)
-   \end{itemize}
-   \item Stability of $h^\ast$
-   \begin{itemize}
-     \item Gumbel gives high $h$ all the time; the extreme events are "hedged" ex-ante.
-     \item ES 99\% and VaR 99\% as risk reduction objective are too sensitive to extremes in training data;
-     Large changes in $h$ are suggested in response to extremes training data, while the testing data are less extreme;
-     \item ERM can be seen as a smoothed risk measure focusing in the lower tail of $R^h$; Less sensitive to rare events; Suggested.
-   \end{itemize}
-\item \end{itemize}
+%     \item Differences among combinations of copula and risk reduction objective are small;
+%     \item None of the combination can escape from the structural break point (dependence of training is stronger then that of testing). (The bump in 25-26th Sept 2019)
+%     \item The best performing RRO of a particular risk measure in out-of-sample $R^h$ is not necessarily same, e.g.
+%      VaR 95\% as RRO (with Gumbel copula) can generate the lowest out-of-sample ES 99\%.
+%   \end{itemize}
+%   \item Ability to hedge extreme events in $R^S$
+%   \begin{itemize}
+%     \item The extreme events in $R^S$ are well managed by the hedge.
+%     The magnitudes of loss in $R^h$ is much smaller than that of $R^h$. (Visually seen from the time series of $R^h$)
+%     \item None of the combination can escape from the structural break point (dependence of training is stronger then that of testing)
+%   \end{itemize}
+%   \item Stability of $h^\ast$
+%   \begin{itemize}
+%     \item Gumbel gives high $h$ all the time; the extreme events are "hedged" ex-ante.
+%     \item ES 99\% and VaR 99\% as risk reduction objective are too sensitive to extremes in training data;
+%     Large changes in $h$ are suggested in response to extremes training data, while the testing data are less extreme;
+%     \item ERM can be seen as a smoothed risk measure focusing in the lower tail of $R^h$; Less sensitive to rare events; Suggested.
+%   \end{itemize}
+%\item \end{itemize}
 
 
 \subsection{Hedging Effectiveness}\label{subsec:hedging-effectiveness}
@@ -45,7 +44,7 @@ This way of evaluating of hedging performance is proposed by \cite{ederington197
 organized futures market.
 He evaluates the extent of variance reduction by introducing another asset.
 We measure the hedging effectiveness also in other risk measure mentioned in section \ref{subsec:spectral-risk-measures},
-for example
+e.g. via Expected Shortfall
 \begin{align}
   1- \frac{\text{ES}_\alpha(R^h)}{\text{ES}_\alpha(R^S)}.
   \end{align}
@@ -69,9 +68,9 @@ Figure~\ref{fig:Frank}
 
 \begin{figure}[th]
    \centering
-   \includegraphics[width=\textwidth]{_pics/Frank.png}
+   \includegraphics[width=\textwidth]{_pics/Frank.pdf}
    \caption{Comparison of Frank Copula Samples and Pseudo Observations of Bitcoin and CME Future Returns.
-   }
+   \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}}}
    \label{fig:Frank}
 \end{figure}
 
@@ -87,12 +86,14 @@ This large fluctuation is due to dependence break.
 
 \begin{figure}[th]
    \centering
-   \includegraphics[width=\textwidth]{_pics/OOSBitcoin.png}
-   \caption{Out of Sample Log-return of Bitcoin.
+   \includegraphics[width=\textwidth]{_pics/OOSreturns_compare.pdf}
+   \caption{Upper panel: Out of Sample Log-return of Bitcoin; Middle panel:Out of Sample Log-return of Future;
+   Lower panel: Out of Sample Log-return of Hedged Portfolio by Gumbel with the aim of variance reduction.
+   The red dots indicate the lowest 10\% return of Bitcoin.
 %   Lower Panel: Out of Sample Hedged Portfolio log-returns.
 %   The $h^*$ is obtained from Gumbel copula aiming at reducing variance.
 %   The red dots indicate the 30 most extreme negative returns in Bitcoin.
-   }
+   \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}}}
    \label{fig:Gumbel}
 \end{figure}
 
@@ -100,9 +101,9 @@ This large fluctuation is due to dependence break.
 \begin{landscape}
 \begin{figure}[th]
    \centering
-   \includegraphics[width=\linewidth]{_pics/Rhs.png}
+   \includegraphics[width=\linewidth]{_pics/Rhs.pdf}
    \caption{Out-of-Sample Returns of Hedged Portfolio of Copulas and Risk Reduction Objectives.
-   }
+   \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}}}
    \label{fig:OOSRH}
 \end{figure}
 \end{landscape}
@@ -112,9 +113,9 @@ This large fluctuation is due to dependence break.
 \begin{landscape}
 \begin{figure}[th]
    \centering
-   \includegraphics[width=\linewidth]{_pics/OHRs.png}
+   \includegraphics[width=\linewidth]{_pics/OHRs.pdf}
    \caption{Optimal Hedge Ratio Obtained from Combinations of Copula and Risk Reduction Objective.
-   }
+   \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}}}
    \label{fig:OHRs}
 \end{figure}
 \end{landscape}
@@ -133,7 +134,7 @@ This large fluctuation is due to dependence break.
    \caption{Out of Sample Hedging Effectiveness Box-plot.
    The HEs are obtained from a set of out-of-sample data,
    each set consists 30 days log returns of Bitcoin and CME future.
-   }
+   \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}}}
    \label{fig:OOSHE}
 \end{figure}
 
@@ -165,8 +166,8 @@ sum of absolute change in OHR.
    \centering
    \includegraphics[width=\textwidth]{_pics/Sum of absolute change in OHR.png}
    \caption{Sum of Absolute Change in OHR.
-   }
+   \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}}}
    \label{fig:SAD}
 \end{figure}
 
-\input{table.tex}
+%\input{table.tex}

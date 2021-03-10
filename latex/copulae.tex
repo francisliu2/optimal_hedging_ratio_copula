@@ -1,8 +1,7 @@
 
-\subsection{Copulas}
-We test different copulas' ability to model crypto-currency data,
+\subsection{Copulae}
+We test different copulae's ability to model crypto-currency data,
 they include Gaussian-, $t$-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
-We will go through the copulas in this section.
 
 %Copula is a function represents the multivariate structure of random variables.
 %
@@ -12,45 +11,12 @@ We will go through the copulas in this section.
 %They describe the perfect counter-dependence, perfect dependence, and independence of two random variables, respectively.
 %The inequality $\bm{W}(u,v) \leq \bm{C}(u,v) \leq \bm{M}(u,v)$ holds for every copula $\bm{C}$ ad every $(u,v) \in \mathbb{I}^2$ (Nelsen 2.2.5).
 
-\subsubsection{Ellpitical Copulas}\label{sec:ellpitical-copulas}
-%    A random vector $X \in \mathbb{R}^d$ is said to have an elliptical distribution if it admits the stochastic representation
-%    \begin{align}
-%        \bm{X} = \bm{\mu}+ R\bm{A}\bm{U}
-%        \end{align}
-%where $\bm{\mu} \in \mathbb{R}^d$, $R$ is a positive random variable independent of $\bm{U}$,
-%    $\bm{U}$ is a random vector uniform on the unit sphere in $\mathbb{R}^d$,
-%    and $\bm{A}$ is a fixed $d \times d$ matrix such that $\bm{\Sigma} = \bm{A} \bm{A}^\intercal$ is non-singular.
-%
-%    The density function of an elliptical distribution is given by
-%    \begin{align}
-%        f(\bm{x}) = |\bm{\Sigma}|^{-\frac{1}{2}} g\{(\bm{x}-\bm{\mu})^\intercal \bm{\Sigma}^{-1}(\bm{x}-\bm{\mu})\}
-%        \end{align}
-%    for some function $g:\mathbb{R} \rightarrow \mathbb{R}^+$, the density generator.
-%    The function g uniquely determine the distriution of $R$ (ref).
-%
-%    For multivariate Normal distribution, its density generator is
-%    \begin{align}
-%        g(t)=Ce^{-\frac{t}{2}}
-%        \end{align}
-%    where $C$ is .
-%
-%    For multivariate Student-t distribution, its density generator is
-%        \begin{align}
-%            g(t)=C\left(1+\frac{t}{m}\right)^{-\frac{d+m}{2}}
-%        \end{align}
-%
-%%    An elliptical copula is .
-%%    It can also be obtained by method of inversion (see)
-%    If $H$ is a $d$-variate elliptical distribution, the corresponding elliptical copula is
-%    \begin{align}
-%        \bm{C}(\bm{u}) = H(F_{X_1}^{-1}(u_1),\dots, F_{X_d}^{-1}(u_d)).
-%        \end{align}
-
-Elliptical copulas are copulas of elliptical distributions.
+\subsubsection{Ellpitical Copulae}\label{sec:ellpitical-copulas}
+Elliptical copulae are copulae of elliptical distributions.
 Gaussian copula is the copula associated with multivariate normal distribution.
 The Gaussian copula has a form
     \begin{align}
-        \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\} \\
+        \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\} \nonumber \\
                     &= \int_{-\infty}^{\Phi^{-1}(u)}
                        \int_{-\infty}^{\Phi^{-1}(v)}
                        \frac{1}{2\pi\sqrt{1-\rho^2}}
@@ -63,7 +29,7 @@ and $\Phi^{-1}$ is quantile function univariate standard normal distribution.
 The Gaussian copula density is
 \begin{align}
     \bm{c}_\rho(u,v) &= \frac{\varphi_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
-                        {\varphi\{\Phi^{-1}(u)\} \cdot \varphi\{\Phi^{-1}(v)\}}\\
+                        {\varphi\{\Phi^{-1}(u)\} \cdot \varphi\{\Phi^{-1}(v)\}} \nonumber \\
                 &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left(
                    -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
                    \right),
@@ -81,10 +47,10 @@ The Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian Copula ar
         \rho_S(\rho) = \frac{6}{\pi}\arcsin\frac{\rho}{2}
         \end{align}\medskip
 
-t-copula is associated with multivariate t distribution.
-The t Copula takes a form
+The $t$-copula is associated with multivariate t distribution.
+The $t$-Copula takes a form
 \begin{align}
-        \bm{C}(u,v) &= \bm{T}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\} \\
+        \bm{C}(u,v) &= \bm{T}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\} \nonumber \\
             &= \int_{-\infty}^{T^{-1}_\nu(u)}
                \int_{-\infty}^{T^{-1}_\nu(v)}
             \frac{\Gamma\left(\frac{\nu+2}{2}\right)}
@@ -106,10 +72,10 @@ and $t_\nu$ the density of standard t distribution.\medskip
 
 Like all the other elliptical copula, t copula's Kendall's $\tau$ is same to that of Gaussian copula (Demarta and reference therein).
 
-\subsubsection{Archimedean Copula}\label{sec:archimedean-copula}
-Archimedean copula forms a large class of copulas with many convenient features.\medskip
+\subsubsection{Archimedean Copulae}\label{sec:archimedean-copula}
+The Archimedean copulae forms a large class of copulas with many convenient features.\medskip
 
-In general, Archimedean copula takes a form
+In general, they take a form
 \begin{align}
     \bm{C}(u,v)= \psi^{-1}\{\psi(u), \psi(v)\},
     \end{align}
@@ -117,7 +83,7 @@ where $\psi:[0,1] \rightarrow [0,\infty)$ is a continuous, strictly decreasing a
 $\psi(1)=0$ for any permissible dependence parameter $\theta$. $\psi$ is also called generator.
 $\psi^{-1}$ is the inverse the generator.\medskip
 
-Frank copula (B3 in Joe) is a radial symmetric copula and does not have any tail dependence.
+The Frank copula (B3 in \citet{joe1997multivariate}) is a radial symmetric copula and cannot produce any tail dependence.
 It takes the form
 \begin{align}
     \bm{C}_{\theta}(u,v) &= \frac{1}{\log(\theta)}
@@ -145,7 +111,7 @@ and
 where $D_1$ and $D_2$ are the Debye function of order 1 and 2.
 Debye function is $D_n = \frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$.\medskip
 
-Gumbel copula (B6 in Joe) has upper tail dependence with the dependence parameter
+Gumbel copula (B6 in \citet{joe1997multivariate}) has upper tail dependence with the dependence parameter
 $\lambda^U = 2-2^{\frac{1}{\theta}}$ and displays no lower tail dependence.
 \begin{align}
     \bm{C}_{\theta}(u,v) &= \exp{-\{
@@ -165,11 +131,11 @@ and $\lim\limits_{\theta \to \infty} \bm{C}_\theta = \bm{W}$ models the perfect 
     \tau_K(\theta) =\frac{\theta-1}{\theta}
     \end{align}
 
-Clayton copula, opposite to Gumbel copula,
+The Clayton copula, by contrast to Gumbel copula,
 generates lower tail dependence in a form $\lambda^L = 2^{-\frac{1}{\theta}}$,
-but generates no upper tail dependence.\medskip
+but cannot generate upper tail dependence.\medskip
 
-Clayton copula takes a form
+The Clayton copula takes a form
 \begin{align}
     \bm{C}_{\theta}(u,v) &= \left[
     \max\{u^{-\theta}+v^{-\theta}-1,0\}\right]^{-\frac{1}{\theta}},
@@ -182,7 +148,7 @@ Its Kendall's $\tau$ is
     \tau_K(\theta) =\frac{\theta}{\theta+2}.
     \end{align}\medskip
 
-Plackett copula has an expression
+The Plackett copula has an expression
 \begin{align}
     \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}
                          - \frac{\sqrt{\{
@@ -196,8 +162,8 @@ We include Placket copula in our analysis as it possesses a special property,
 the cross-product ratio is equal to the dependence parameter
 \begin{align}
     &\phantom{=} \frac{\p(U \leq u, V \leq v) \cdot \p(U > u, V > v)}
-    {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\\
-    &= \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\\
+    {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\nonumber\\
+    &= \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\nonumber\\
     &= \theta.
     \end{align}\medskip
 That is, the dependence parameter is equal to the ratio between number of concordence pairs and number of discordence pairs of a bivariate random variable.
@@ -205,7 +171,7 @@ That is, the dependence parameter is equal to the ratio between number of concor
 Mixture copula is a linear combination of copulas.
 It allows us to model the dependence structure in a more flexible manner.
 
-For a 2-dimensional random variable $\bm{X}=(X_1,X_2)^\intercal$,
+For a 2-dimensional random variable $\bm{X}=(X_1,X_2)^\top$,
 its distribution can be written as linear combination $K$ copulas
 \begin{align}
     \p(X_1 \leq x_1, X_2 \leq x_2) = \sum_{k=1}^K p^k \cdot \bm{C}^{(k)}\{F^{(k)}_{X_1}(x_1;\bm{\gamma}^{(k)}_1),
@@ -251,9 +217,10 @@ the Spearman's $\rho$ is
         \rho_S = 12 \int_{\mathbb{I}^2} \sum_{k=1}^K p^{(k)} \cdot \bm{C}^{(k)}(s,t) ds dt - 3.
         \end{align}
     \end{proof}
+
 \begin{example}
     Frechet class can be seen as an example of mixture copula.
-    It is a convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$ (Nelsen)
+    It is a convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen2007}
     \begin{align}
         \bm{C}_{\alpha, \beta}(u,v)
         = \alpha \bm{M}(u,v) +

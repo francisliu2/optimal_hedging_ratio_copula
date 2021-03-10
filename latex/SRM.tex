@@ -30,6 +30,15 @@
 \usepackage{tabularx}
 \usepackage{longtable,booktabs}
 
+\definecolor{markergreen}{rgb}{0.6, 1.0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkorange}{rgb}{1,0.3,0}
+\definecolor{darkred}{rgb}{.7,0,0}
+\providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
+\providecommand{\mj}[1]{\textcolor{darkred}{#1}}
+\providecommand{\francis}[1]{\textcolor{darkgreen}{#1}}
+\providecommand{\natp}[1]{\textcolor{darkorange}{#1}}
+
 \setlist[itemize]{leftmargin=*}
 \setlist[description]{leftmargin=*}
 
@@ -38,7 +47,8 @@
 %\setlength{\evensidemargin}{-0.01in} \setlength{\textheight}{9in}
 \captionsetup{font={onehalfspacing,small}, labelfont=bf}
 
-\title{\LARGE \bf Hedging Futures with Spectral Risk Measures}
+\title{\natp{\large\bf Copula-based hedging of cryptocurrencies with Bitcoin futures}}
+%\title{\LARGE \bf Hedging Futures with Spectral Risk Measures}
 %\author{
 %	\begin{tabular}[t]{ccc}
 %		Lu, Meng-Jou\thanks{Corresponding author. 
@@ -101,6 +111,15 @@ National University of Singapore, Singapore) and Francis Liu (Berlin School of E
 \noindent {\bf Keywords:} Portfolio Selection, Spectral Risk Measurement,  Coherent Risk}\pagestyle{empty}\\
 \end{abstract}
 
+\natp{{\bf TODO}:
+  \begin{itemize}
+  \item Please generate all graphics as pdf and possibly eps. pdf is a
+    vector graphic format, so it scales well. eps may be
+    required during the publishing process.
+  \end{itemize}
+}
+
+%\tableofcontents
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -243,6 +262,10 @@ which is easily shown to fulfil, see e.g.\ Equation (5.15) of
   \end{align*}
 \end{proof}\medskip
 
+\natp{\em [Why ``in addition''? They have a density expression as
+  well. Be very careful with Barbi / Romagnoli -- since the paper is
+  so prominent here, chances are high that one of them will be asked
+  to referee.]}
 In addition to \cite{barbi2014copula} we propose an expression for the density of $R^h$
 
 \begin{proposition} With the same setting of the above proposition, the density of $r^h$ can be written as
@@ -351,6 +374,9 @@ Recognising the importance of the weighting function, we investigate different u
 \end{equation}
 
 \subsubsection{Power Spectral Risk Measure}
+
+\natp{\em [Are we going to use this anywhere?]}
+
 The power weighting function only has one parameter, $\gamma$, which leads to $w(p)= \frac{\lambda (1-p)^{\gamma-1}}{1-\gamma}$ as $0<\gamma<1$. Then, by setting $\lambda =\gamma(1-\gamma)$, the risk spectrum and its antiderivative are, 
 \begin{equation}\label{eq:wp}
  w(p)=\gamma(1-p)^{\gamma-1},\quad \mbox{and} \quad  W(p)=-(1-p)^{\gamma}

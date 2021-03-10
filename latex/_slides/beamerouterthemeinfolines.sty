@@ -1,0 +1,59 @@
+\ProvidesPackageRCS $Header: /Users/natalie/cvs/tex/dynamics/slides/beamerouterthemeinfolines.sty,v 1.1 2008/10/01 13:50:39 natalie Exp $
+
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+\mode<presentation>
+
+\setbeamercolor*{author in head/foot}{parent=palette primary}
+\setbeamercolor*{title in head/foot}{parent=palette primary}
+\setbeamercolor*{date in head/foot}{parent=palette primary}
+
+\setbeamercolor*{section in head/foot}{parent=palette primary}
+\setbeamercolor*{subsection in head/foot}{parent=palette primary}
+\setbeamercolor*{section in toc}{parent=palette primary}
+\setbeamercolor*{subsection in toc}{parent=palette primary}
+
+\defbeamertemplate*{footline}{infolines theme}
+{
+  \leavevmode%
+%%  \textcolor{grey}{\hspace{.25in}\makebox{\paperwidth-.5in}{\hrulefill}\hspace{.25in}}
+  \textcolor{grey}{\hrulefill}
+  \hbox{%
+  \begin{beamercolorbox}[wd=.3333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor %%~~(\insertshortinstitute)
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%%   \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \includegraphics[height=2.25ex]{LogoFS} \qquad
+    \insertframenumber{} %/ \inserttotalframenumber
+    \hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% \defbeamertemplate*{headline}{infolines theme}
+% {
+%   \leavevmode%
+%   \hbox{%
+%   \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+%     \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+%   \end{beamercolorbox}%
+%   \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+%     \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+%   \end{beamercolorbox}}%
+
+%   \textcolor{grey}{\hrulefill}
+%   \vskip0pt%
+% }
+
+%\setbeamersize{text margin left=1em,text margin right=1em}
+\setbeamersize{text margin left=.85cm, text margin right=.85cm}
+
+\mode
+<all>

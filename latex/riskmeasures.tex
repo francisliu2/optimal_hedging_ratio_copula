@@ -7,6 +7,8 @@ Following \citet{dowd2008spectral}, the spectral risk measures (SRM) of a hedged
 
 where $p$ is the loss quantile and $\phi(p)$ is a user-defined weighting function defined over $[0,1]$. \medskip
 
+\natp{\em [Add properties on $\phi$! (Nonnegative, etc.)]}
+
 Spectral risk measures can also be written as
 \begin{align}
 	\rho_\phi(R^h) = - \int_\mathbb{R} x f_{R^h}(x) \phi\{F_{R^h}(x)\} \dd x.
@@ -18,7 +20,8 @@ VaR at the $\alpha$-confidence level is
 \begin{align}
 	\text{VaR}_\alpha = - F_{R^h}^{-1}(1-\alpha)
 	\end{align};
-ES at the $\alpha$-confidence level is
+ES at the $\alpha$-confidence level is \natp{\em [Please check, there
+  should be a minus in front of the ES expression, just as with VaR.]}
 \begin{align}
 	\text{ES}_\alpha = \frac{1}{1-\alpha}\int_{-\infty}^{\alpha} F_{R^h}^{-1}(p) \dd p
 	\end{align}.

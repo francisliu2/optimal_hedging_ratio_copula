@@ -94,7 +94,12 @@ np.random.seed(87654)
   that creating a hedge with one instrument is linear, so only
   co-movement can be hedged. With BTC we see quite a few
   counter-movement events, so this might be idiosyncratic risk, but it
-  might also point to another risk factor that could be hedged separately
+  might also point to another risk factor that could be hedged
+  separately
+\item Basis risk: the risk that prices of financial instruments in a
+  hedging strategy are imperfectly correlated, reducing the
+  effectiveness of the hedging strategy (see {\tt
+    Minimum-capital-requirements-for-market-risk-BIS-2019.pdf}). 
 \end{itemize}
 
 \section{Optimal hedge ratio}
@@ -325,6 +330,63 @@ across methods (e.g.\ hedging general risk vs.\ hedging tail risk).
 
 
 \newpage
+
+\section{Backtesting}
+\label{sec:backtesting}
+
+Especially for VaR and ES, at the 99\% level, but also at the 95\%
+level, out-of-sample testing the hedge effectiveness by means of a
+30-day window may lead to unstable results. To evaluate these risk
+measures we therefore employ backtesting techniques from Basel
+regulation \natp{(references here)}.
+
+\section{Backtesting value-at-risk}
+\label{sec:backtesting-value-at}
+
+The standard procedure for backtesting VaR, the so-called ``traffic
+light approach'', dates back to the beginnings of VaR and Basel
+regulation \cite{Basel1996b}. The method is described in e.g.\ Section
+2.3 of \cite{McNeil2005}.
+
+At time $t$, let $\text{VaR}_\alpha^t$ denote the true one-period 
+value-at-risk (VaR) at the confidence level $\alpha$. The realised
+P\&L of the position, $\Delta V_t=V_{t+1}-V_t$, is assumed to follow a
+continuous distribution. % Because at time $t$, $\p(\Delta V_t\leq
+% \text{VaR}_\alpha^t)=1-\alpha$, the probability of a violation of VaR
+% is $1-\alpha$.
+A violation (also called exception or outlier) of VaR is expressed by
+the Bernoulli variable 
+$\1_{t+1}:=\1_{\{\Delta V_t>\text{VaR}_\alpha^t\}}$.
+If the sequence $(\1_{t+1})_{t\in \Z}$ is adapted 
+to the filtration $(\mathcal F_t)_{t\in \Z}$ and $\E(\1_{t+1}|\mathcal
+F_t)=1-p$, for all $t$, then $(\1_t)_{t\in \Z}$ is a process of 
+identically distributed Bernoulli variables, see 
+Lemma 4.29 \cite{McNeil2005}.
+
+
+In order to backtest a VaR model, 
+one-period estimates are 
+compared against realised P\&L of the
+position, giving a sequence $\hat\1_{t+1}:=\hat\1_{\{\Delta V_t >
+  \widehat{\text{VaR}}_\alpha^t\}}$, $t+1=1, \ldots, n$. If indeed the
+model measures VaR at the given level $\alpha$, then the number of
+violations $X$ follows a binomial distribution, i.e., $X\sim
+B(n,1-p)$. The ``traffic light approach'' in the Basel accord
+specifies the acceptable number of violations such that falsely
+rejecting the null hypothesis of a vaild model at most 5\%. In
+our setting, because $n\cdot p$ is sufficiently large, we approximate
+the number of violations by a normal distribution, i.e.\
+$X\stackrel{a}{\sim} \displaystyle \Ncdf\left(n\, p, 
+  n\, p(1-p)\right)$ and hence reject the null hypothesis if
+\begin{equation*}
+  \frac{\hat X-n\, p}{\sqrt{n\, p(1-p)}} > \Ncdf_{1-\delta},
+\end{equation*}
+where $\delta$ denotes the level of statistical significance. 
+
+
+
+
+
 \bibliographystyle{abbrvnamed} %
 \bibliography{finance} %
 \end{document}

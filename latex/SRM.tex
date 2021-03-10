@@ -34,6 +34,15 @@
 \usepackage{hyperref}
 
 
+\definecolor{markergreen}{rgb}{0.6, 1.0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkorange}{rgb}{1,0.3,0}
+\definecolor{darkred}{rgb}{.7,0,0}
+\providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
+\providecommand{\mj}[1]{\textcolor{darkred}{#1}}
+\providecommand{\francis}[1]{\textcolor{darkgreen}{#1}}
+\providecommand{\natp}[1]{\textcolor{darkorange}{#1}}
+
 \setlist[itemize]{leftmargin=*}
 \setlist[description]{leftmargin=*}
 
@@ -43,6 +52,7 @@
 %\setlength{\evensidemargin}{-0.01in} \setlength{\textheight}{9in}
 \captionsetup{font={onehalfspacing,small}, labelfont=bf}
 
+\title{\natp{\large\bf Copula-based hedging of cryptocurrencies with Bitcoin futures}}
 \title{\LARGE \bf Hedging Cryptos with Bitcoin Futures}
 \author{
 	\begin{tabular}[t]{ccc}
@@ -142,6 +152,16 @@ National University of Singapore, Singapore) and Francis Liu (Berlin School of E
 \noindent {\bf JEL classification:}  \\
 \noindent {\bf Keywords:} Portfolio Selection, Spectral Risk Measurement,  Coherent Risk}\pagestyle{empty}\\
 \end{abstract}
+
+\natp{{\bf TODO}:
+  \begin{itemize}
+  \item Please generate all graphics as pdf and possibly eps. pdf is a
+    vector graphic format, so it scales well. eps may be
+    required during the publishing process.
+  \end{itemize}
+}
+
+%\tableofcontents
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,245 @@
+\documentclass[11pt,a4paper,english]{article}
+\usepackage[titletoc, title]{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{array}
+\usepackage{babel}
+\usepackage{bbding}
+\usepackage{color}
+\usepackage[normal]{caption}
+\usepackage{subcaption}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{lipsum}
+%\usepackage{multirow}
+\usepackage{psfrag}
+\usepackage{proofapnd}
+\usepackage[round]{natbib}
+%\usepackage{bbm}
+%\usepackage[T1]{fontenc}
+%\usepackage[normal]{caption2} % for caption
+\usepackage{rotating}
+\usepackage[margin=2cm]{geometry} % for the same margin
+\usepackage{latexsym}
+%\usepackage{subfig}
+\usepackage{setspace}
+\usepackage{slashbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable,booktabs}
+\usepackage{authblk}
+\usepackage{hyperref}
+
+
+\definecolor{markergreen}{rgb}{0.6, 1.0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkorange}{rgb}{1,0.3,0}
+\definecolor{darkred}{rgb}{.7,0,0}
+\providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
+\providecommand{\mj}[1]{\textcolor{darkred}{#1}}
+\providecommand{\francis}[1]{\textcolor{darkgreen}{#1}}
+\providecommand{\natp}[1]{\textcolor{darkorange}{#1}}
+
+\setlist[itemize]{leftmargin=*}
+\setlist[description]{leftmargin=*}
+
+
+%\setlength{\topmargin}{0.0 in} \setlength{\textwidth}{6in}
+%\setlength{\oddsidemargin}{0.5in}
+%\setlength{\evensidemargin}{-0.01in} \setlength{\textheight}{9in}
+\captionsetup{font={onehalfspacing,small}, labelfont=bf}
+
+\title{\natp{\large\bf Copula-based hedging of cryptocurrencies with Bitcoin futures}}
+\title{\LARGE \bf Hedging Cryptos with Bitcoin Futures}
+\author{
+	\begin{tabular}[t]{ccc}
+		\and
+        Liu, Francis\thanks{
+			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
+            Blockchain Research Center, Humboldt-Universität zu Berlin, Germany.
+            International Research Training Group
+1792, Humboldt-Universität zu Berlin, Germany.
+     E-mail: \texttt{Francis.Liu@hwr-berlin.de}.}
+        \and
+		Lu, Meng-Jou
+        \thanks{
+			Department of Information and Finance
+			Management, Institute of Finance and Institute of Information
+			Management, National Chiao-Tung University, No.1001 Daxue Rd,
+			Hsinchu City, Taiwan. Ladislaus von Bortkiewicz Chair of Statistics,
+			Humboldt--Universit\"{a}t zu Berlin, C.A.S.E. -- Center for
+			Applied Statistics and Economics, Unter den Linden 6, 10099 Berlin, Germany.
+     E-mail: \texttt{mangrou@gmail.com}.}
+
+		 \and
+        Packham, Natalie \thanks{
+			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
+            International Research Training Group 1792, Humboldt-Universität zu Berlin, Germany.
+     E-mail: \texttt{packham@hwr-berlin.de}.}
+		 \and
+        H\"ardle, Karl Wolfgang  \thanks{
+			Blockchain Research Center, Humboldt-Universit\"at zu Berlin, Germany. Wang Yanan Institute for Studies in Economics, Xiamen University, China. Sim Kee Boon Institute for Financial Economics, Singapore Management University, Singapore. Faculty of Mathematics and Physics, Charles University, Czech Republic. National Chiao Tung University, Taiwan.
+     E-mail: \texttt{haerdle@wiwi.hu-berlin.de}.}
+        \thanks{ Financial support of the European Union's Horizon 2020 research and innovation program ``FIN-TECH: A Financial supervision and Technology compliance training programme" under the grant agreement No 825215 (Topic: ICT-35-2018, Type of action: CSA), the European Cooperation in Science \& Technology COST Action grant CA19130 - Fintech and Artificial Intelligence in Finance - Towards a transparent financial industry, the Deutsche Forschungsgemeinschaft's IRTG 1792 grant, the Yushan Scholar Program of Taiwan, the Czech Science Foundation's grant no. 19-28231X / CAS: XDA 23020303, as well as support by Ansar Aynetdinov (\texttt{ansar.aynetdinov@hu-berlin.de}) are greatly acknowledged.
+     }
+	\end{tabular}
+}
+\date{This version: \today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\baselinestretch}{1.2}
+%\newcommand{\indicator}{$1{\hskip -2.5 pt}\hbox{I}$}
+\newcommand{\indicator}{I}
+\input{definitions}
+
+\begin{document}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem {proposition}[lemma]{Proposition}
+\newtheorem {corollary}{Corollary}
+\newtheorem {theorem}{Theorem}
+\newtheorem{claim}[lemma]{Claim}
+\newtheorem{comment}[lemma]{Comment}
+\newtheorem{example}[lemma]{Example}
+\newtheorem{fact}[lemma]{Fact}
+\newtheorem{defn}[lemma]{Definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\newtheorem{programming}[exercise]{Programming assignment}
+\newenvironment{proof}{{\flushleft\textbf{\textsl{Proof.\ \ }}}}{\hfill{\hfill\rule{2mm}{2mm}}}
+\pagenumbering{arabic}
+
+
+%\author[*]{Meng-Jou Lu}
+%\thanks[*]{Risk Management Institue of National University of Singapore \\ EMAIL}
+%
+%
+%\author{Francis Liu}
+%\affil{Berlin School of Economics and Laws
+%\thanks{Francis.Liu@hwr-berlin.de\\ Berlin School of Economics and Laws}
+%}
+%
+%\author{Natalie Packham}
+%\affil{
+%\thanks{Natalie.Packham@hwr-berlin.de \\ Berlin School of Economics and Laws}
+%}
+%
+%\author[***]{Wolfgang Karl H\"ardle}
+%\affil[***]{Blockchain Research Center, Humboldt-Universit\"at zu Berlin, Germany. \\ Wang Yanan Institute for Studies in Economics, Xiamen University, China. \\ Sim Kee Boon Institute for Financial Economics, Singapore Management University, Singapore. \\ Faculty of Mathematics and Physics, Charles University, Czech Republic.\\ National Chiao Tung University, Taiwan
+%\thanks{haerdle@wiwi.hu-berlin.de\\
+%Financial support of the European Union's Horizon 2020 research and innovation program ``FIN-TECH: A Financial supervision and Technology compliance training programme" under the grant agreement No 825215 (Topic: ICT-35-2018, Type of action: CSA), the European Cooperation in Science \& Technology COST Action grant CA19130 - Fintech and Artificial Intelligence in Finance - Towards a transparent financial industry, the Deutsche Forschungsgemeinschaft's IRTG 1792 grant, the Yushan Scholar Program of Taiwan, the Czech Science Foundation's grant no. 19-28231X / CAS: XDA 23020303, as well as support by Ansar Aynetdinov (ansar.aynetdinov@hu-berlin.de) are greatly acknowledged.
+%}
+%}
+%
+
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+\footnotesize{ We investigate different methods of hedging cryptocurrencies with Bitcoin futures.
+The introduction of derivatives on Bitcoin, in particular the launch of futures contracts on CME in December 2017,
+allows for hedging exposures on Bitcoin and cryptocurrencies in general.
+Because of volatility swings and jumps in Bitcoin prices, the traditional variance-based approach to obtain the hedge ratios is infeasible.
+The approach is therefore generalised  to various risk measures, such as value-at-risk ,expected shortfall and spectral risk measures,
+and to different copulas for capturing the dependency between spot and future returns, such as the Gaussian, Student-$t$,
+NIG and Archimedean copulas. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin and the CRIX index,
+a cryptocurrency index. This is joint work with Meng-Jou Lu (Asian Institute of Digital Finance Credit Research Initiative,
+National University of Singapore, Singapore) and Francis Liu (Berlin School of Economics and Law, Humboldt University Berlin).\\
+
+\noindent {\bf JEL classification:}  \\
+\noindent {\bf Keywords:} Portfolio Selection, Spectral Risk Measurement,  Coherent Risk}\pagestyle{empty}\\
+\end{abstract}
+
+\natp{{\bf TODO}:
+  \begin{itemize}
+  \item Please generate all graphics as pdf and possibly eps. pdf is a
+    vector graphic format, so it scales well. eps may be
+    required during the publishing process.
+  \end{itemize}
+}
+
+%\tableofcontents
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}\label{sec:introduction}
+
+Cryptocurrencies (CCs) are a growing asset class.
+Bitcoin was the first cryptocurrency created in 2009 using a scheme proposed by \citet{nakamoto2019bitcoin}.
+Hedging is an important measure for investors to resist extreme risks and improve their profits.
+The hedge ratio for futures is the appropriate size futures contracts which should be held in short position
+in order to create an opposite position.
+The determination of the fair number of futures is of course the difficulty in this hedging task.
+In this paper, we investigate different methods of hedging cryptocurrencies with Bitcoin futures.
+The approach is therefore generalised to various risk measures, such as the variance of the returns,
+value-at-risk (VaR), expected shortfall and spectral risk measures.
+The minimum variance hedge ratio is well known as a tool to obtain the optimal hedge ratio.
+However, it doesn't consider the investor's risk attitude.
+It is therefore important to describe the investor's behaviour when they choose to hedge the risk from spot market.
+Vast literature discussed the relationship between risk measures and investor's risk attitude, we refer readers to
+\citet{artzner1999coherent} for an axiomatic, economic reasoning approach of risk measure construction;
+\citet{embrechts2002correlation} for reasoning of using expected shortfall and spectral risk in addition to VaR;
+\citet{Acerbi2002} for direct linkage between risk measures and investor's risk attitude using the concept of "risk aversion function".
+
+In such an idealized stochastic framework downside risk, as determined by quantiles or VaR,
+the standard deviations (or variance) is all to know in order to hedge such positions.
+In realistic financial data scenarios though one cannot rely on only 2nd order moment calculations in order to minimize downside risk.
+The VaR as a sole risk measure has two disadvantages.
+First, it reflects only tail probability and not tail loss, and next it is not a coherent risk measure a very natural property that says that pooling will reduce risk. \\
+
+This insight opens a new path of optimizing the hedge ratio by employing special risk measures, SRMs as financial risk measures.
+This paper expects that investors are more risk averse who might choose to accept with a low but guaranteed payment,
+rather than taking high risk of losing money but have high expected returns.
+In doing so we follow \citet{barbi2014copula} by applying exponential SRMs to determine the hedge ratio.
+By investigating the relationship of investors' utility function and the optimal hedge ratio $h^\ast$, we demonstrate the relationship of the investors' risk aversion and SRMs, see \citet{brandtner2015decision}.\\
+
+SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion.
+In other words, the risk estimation is directly related to the user's utility function.
+Popular examples are the exponential SRM and power SRM introduced by \citet{dowd2008spectral}.
+Even though they reveal that SRM have some properties which cause problems when applying to practical risk management,
+they show that exponential utility function might be plausible in some circumstances under weak conditions \citealp{buhlmann1980economic}.
+However, it still causes some problems to capture the behaviors of investors when the value of absolute risk aversion (ARA) parameter beyond a threshold \citealp{markowitz2014mean}.
+If the relative risk aversion coefficients (RRA) are less than 1, \citet{dowd2008spectral} address that the weighting of lower risk-averse is higher than the higher risk-averse as the loss of portfolio increases.
+On the other hand, the power SRM proposed by \citet{dowd2008spectral} when the relative risk aversion coefficients (RRA) are larger than 1, has also proper features to give a higher weight as loss increase.
+Note that the selection of the utility function and the value of risk aversion parameter would be the matters of solving specific financial problem.
+By contrast, the estimation of the VaR and the ES are conditional on the confidence level which is not easy to determine.
+Since SRM is capable of reflecting the investor's attitude toward risk and has been applied to various fields of financial decision making, this paper apply to the determination of the optimal hedge ratio.
+It is important for the hedger who should choose a proper value for the hedge ratio in order to minimize the risk of portfolio.\\
+
+A joint distribution of spot and futures has been specified in terms of a copula function to embody the tail behaviors of the spot and the futures \citealp{barbi2014copula}.
+Copulae enable us to build the flexible multivariate distributions of dependence structure.
+This paper conducts four types of copulae (Gaussian, t, Frank, Clayton, and Normal Inverse Gaussian) to derive the copula representation of quantities to reach copula-based SRM of the hedged portfolio.
+It should be noted that the Clayton copula can be also used to construct the joint distribution with right tail dependence. Frank copula is symmetric and appropriate for data that exhibit weak or no tail dependence. Normal Inverse Gaussian (NIG) copula is a flexible system of joint distribution that includes fat-tailed and skewed distributions. However, there is still no evidence yet for selecting an exclusive copula in applications of hedging.\\
+
+An optimal hedge ratio represents the investor's subjective marginal rate of substitution between risk and return. \citet{cecchetti1988estimation} found that the optimal hedge ratios increases when an investor with a greater risk aversion by maximizing the expected value of the logarithm of wealth.
+It is understandable if a investor's attitude is more risk-averse, they will increase the position of futures contracts to hedging the uncertain risk which they may take in the future.
+On the contrary, \citet{brandtner2015decision} address that the theoretical result predictions for the subset of exponential and power SRMs are not reasonable but may be counter-intuitive if the corresponding parameter of risk aversion is large enough.
+Different from \citet{brandtner2015decision}, we consider the joint distribution of financial assets to choose the optimal hedge ratio by minimizing SRM.
+However, the empirical result shows the direction of optimal hedge ratio is increasing as the parameters represents the investors' attitude increases. \\
+
+%This paper has two main contributions to the existing literature. First, we reveal the quantiles of loss function built by different copulae. Second, by minimizing exponential SRM (ESRM) to determine the optimal hedge ratio, we give a guidance on the choice of risk aversion function to assist the risk manager in choosing an optimal risk aversion function for a portfolio. To our knowledge, these have received no attention so far in the published literatures.\\
+
+The remainder
+of the article is organized as follows. Section 2 methodology. Section 3 data, and Section 4 empirical result. Section 5 concludes.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{methodology.tex}
+
+\input{riskmeasures.tex}
+
+\input{copulae.tex}
+
+\input{estimation.tex}
+
+\input{results.tex}
+
+\newpage
+\bibliographystyle{abbrvnamed} %
+\bibliography{finance} %
+\input{appendix.tex}
+\end{document}

@@ -1,0 +1,49 @@
+\ProvidesPackageRCS $Header: /Users/natalie/cvs/tex/stratified/slides/ulm/beamercolorthemecrane.sty,v 1.1 2008/11/26 08:33:47 natalie Exp $
+
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+\mode<presentation>
+
+%%\definecolor{fsblue}{RGB}{45,79,140} %% FS-blue
+\definecolor{fsblue}{RGB}{0, 72, 128}
+\definecolor{white}{RGB}{255,255,255}
+\definecolor{grey}{RGB}{100,100,100}
+
+\setbeamercolor{structure}{fg=fsblue}
+\setbeamercolor{local structure}{fg=fsblue}
+
+\setbeamercolor{palette primary}{fg=fsblue,bg=white}
+\setbeamercolor{palette secondary}{fg=black,bg=white}
+\setbeamercolor{palette tertiary}{fg=black,bg=white}
+\setbeamercolor{palette quaternary}{fg=white,bg=fsblue}
+
+\setbeamercolor{titlelike}{parent=palette quaternary}
+%\setbeamercolor{titlelike}{parent=palette tertiary}
+
+%\setbeamercolor{block title}{fg=craneblue,bg=fsblue}
+\setbeamercolor{block title}{fg=white,bg=fsblue}
+\setbeamercolor{block title alerted}{use=alerted text,fg=fsblue,bg=alerted text.fg!100!bg}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!100!bg}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!15!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!20!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+\setbeamercolor{sidebar}{bg=fsblue!70}
+  
+\setbeamercolor{palette sidebar primary}{fg=fsblue}
+\setbeamercolor{palette sidebar secondary}{fg=fs!75}
+\setbeamercolor{palette sidebar tertiary}{fg=fs!75}
+\setbeamercolor{palette sidebar quaternary}{fg=fs}
+
+\setbeamercolor{item}{bg=fsblue, fg=fsblue}
+\setbeamercolor{itemize}{bg=fsblue, fg=fsblue}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\mode
+<all>

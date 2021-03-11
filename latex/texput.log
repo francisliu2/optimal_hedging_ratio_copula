@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.6.24)  3 MAR 2021 17:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.6.24)  10 MAR 2021 11:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**"20210211 Lu SR"
+**"20210211 Lu SRM"
 
 ! Emergency stop.
-<*> "20210211 Lu SR"
-                    
+<*> "20210211 Lu SRM"
+                     
 End of file on the terminal!
 
  
@@ -17,5 +17,5 @@ Here is how much of TeX's memory you used:
  15998 multiletter control sequences out of 15000+600000
  532338 words of font info for 24 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 0i,0n,0p,23b,6s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 0i,0n,0p,32b,6s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!

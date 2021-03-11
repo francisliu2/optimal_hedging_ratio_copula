@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    416752,       8309]
-NotebookOptionsPosition[    411662,       8219]
-NotebookOutlinePosition[    412089,       8236]
-CellTagsIndexPosition[    412046,       8233]
+NotebookDataLength[    377330,       7443]
+NotebookOptionsPosition[    370665,       7325]
+NotebookOutlinePosition[    371092,       7342]
+CellTagsIndexPosition[    371049,       7339]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1208,6 +1208,27 @@ Sm6SxTPO/4H9avM=
 Cell[CellGroupData[{
 
 Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
+    "\"\<../latex/_pics/btc_series.pdf\>\""}], ",", " ", "p1"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.824397909655858*^9, 3.824397957461116*^9}},
+ CellLabel->
+  "In[181]:=",ExpressionUUID->"8324ec44-0310-4287-80aa-660e86633222"],
+
+Cell[BoxData[
+ FormBox["\<\"/Users/nat/Documents/GitHub/optimal_hedging_ratio_copula/_\
+mathematica/../latex/_pics/btc_series.pdf\"\>", TraditionalForm]], "Output",
+ CellChangeTimes->{3.824397958603096*^9},
+ CellLabel->
+  "Out[181]=",ExpressionUUID->"4065bee5-3689-474c-a76d-3e7add3bf9f0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
  RowBox[{"p2", "=", 
   RowBox[{"DateListPlot", "[", 
    RowBox[{
@@ -1229,11 +1250,14 @@ Cell[BoxData[
     RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
     RowBox[{
     "PlotLabel", "\[Rule]", "\"\<Difference BTC spot and future\>\""}], ",", 
-    RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]}]], "Input",
+    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+    RowBox[{"AspectRatio", "\[Rule]", 
+     RowBox[{"1", "/", "4"}]}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.824387190330229*^9, 3.824387236217988*^9}, {
   3.8243873173660173`*^9, 3.8243873351418667`*^9}, {3.824387400224778*^9, 
-  3.824387526494239*^9}},
- CellLabel->"In[25]:=",ExpressionUUID->"13810295-848f-4aa1-a5e3-971dbbdcab6e"],
+  3.824387526494239*^9}, {3.824398208459793*^9, 3.824398213190205*^9}},
+ CellLabel->
+  "In[203]:=",ExpressionUUID->"13810295-848f-4aa1-a5e3-971dbbdcab6e"],
 
 Cell[BoxData[
  FormBox[
@@ -1408,7 +1432,8 @@ qj9VRf2zLsCMrV//xH50Xy6dDaw88Hfy0Z70PfLNqLv+/LNvOf2+obqEzAZY
 t67n7x+Gp2D9eu6Zn9saGu8IYGV6cMOeixRP5QbUCxa9bJ3GKf8HoeJiTA==
 
        "]]}}, {{}, {}}},
-   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+   AspectRatio->NCache[
+     Rational[1, 4], 0.25],
    Axes->{False, False},
    AxesLabel->{None, None},
    AxesOrigin->{3.7365408*^9, 0},
@@ -1748,8 +1773,33 @@ t67n7x+Gp2D9eu6Zn9saGu8IYGV6cMOeixRP5QbUCxa9bJ3GKf8HoeJiTA==
       Scaled[0.05]}},
    Ticks->{{}, Automatic},
    TicksStyle->GrayLevel[0]], TraditionalForm]], "Output",
- CellChangeTimes->{{3.824387483967946*^9, 3.824387526880116*^9}},
- CellLabel->"Out[25]=",ExpressionUUID->"b537e1a0-bff6-4c03-90c7-9cc91f6fda89"]
+ CellChangeTimes->{{3.824387483967946*^9, 3.824387526880116*^9}, 
+   3.824397964001093*^9, {3.824398211203535*^9, 3.824398213474751*^9}},
+ CellLabel->
+  "Out[203]=",ExpressionUUID->"2c221cd6-f2b9-4da7-8a43-2bbce00fc6be"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
+    "\"\<../latex/_pics/btc_vs_future_series.pdf\>\""}], ",", " ", "p2"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.824397969318069*^9, 3.824397983113302*^9}},
+ CellLabel->
+  "In[204]:=",ExpressionUUID->"6bb7729d-ebda-4f9f-923b-afeec0239892"],
+
+Cell[BoxData[
+ FormBox["\<\"/Users/nat/Documents/GitHub/optimal_hedging_ratio_copula/_\
+mathematica/../latex/_pics/btc_vs_future_series.pdf\"\>", 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{{3.824397973013509*^9, 3.824397983550845*^9}, 
+   3.824398217879533*^9},
+ CellLabel->
+  "Out[204]=",ExpressionUUID->"ffbd4c6a-5385-45b5-b851-539ae2ac7da0"]
 }, Open  ]],
 
 Cell[BoxData[{
@@ -1800,7 +1850,8 @@ Cell[BoxData[
  CellChangeTimes->{{3.824387190330229*^9, 3.824387236217988*^9}, {
   3.8243873173660173`*^9, 3.8243873351418667`*^9}, {3.824387400224778*^9, 
   3.824387567579314*^9}, {3.8243938373355923`*^9, 3.824393837531101*^9}},
- CellLabel->"In[65]:=",ExpressionUUID->"d4b3a30f-7ea7-4606-8fb7-e53aad6da20f"],
+ CellLabel->
+  "In[184]:=",ExpressionUUID->"d4b3a30f-7ea7-4606-8fb7-e53aad6da20f"],
 
 Cell[BoxData[
  FormBox[
@@ -2326,8 +2377,31 @@ avE/cQFbqw==
    Ticks->{{}, Automatic},
    TicksStyle->GrayLevel[0]], TraditionalForm]], "Output",
  CellChangeTimes->{{3.82438753547575*^9, 3.824387567897993*^9}, 
-   3.8243938388402147`*^9},
- CellLabel->"Out[65]=",ExpressionUUID->"90be18d2-e376-48d1-b517-0ab34c111e84"]
+   3.8243938388402147`*^9, 3.824397976754813*^9},
+ CellLabel->
+  "Out[184]=",ExpressionUUID->"655ce3d1-a398-4737-a029-91db7b39f38d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
+    "\"\<../latex/_pics/btc_return_series.pdf\>\""}], ",", " ", "p3"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.824397986817609*^9, 3.8243979946179132`*^9}},
+ CellLabel->
+  "In[186]:=",ExpressionUUID->"18a63e53-440e-48f4-8ce5-bb363d18e609"],
+
+Cell[BoxData[
+ FormBox["\<\"/Users/nat/Documents/GitHub/optimal_hedging_ratio_copula/_\
+mathematica/../latex/_pics/btc_return_series.pdf\"\>", 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{3.824397995058702*^9},
+ CellLabel->
+  "Out[186]=",ExpressionUUID->"edca7be7-e712-4c49-945c-06d7c4268727"]
 }, Open  ]],
 
 Cell[BoxData[{
@@ -2357,7 +2431,8 @@ Cell[BoxData[{
  CellChangeTimes->{{3.824393881908774*^9, 3.824393891140872*^9}, {
   3.824393926181192*^9, 3.8243939499679117`*^9}, {3.824393999816806*^9, 
   3.824394000069418*^9}},
- CellLabel->"In[82]:=",ExpressionUUID->"d697cc0a-e2ee-401d-941d-bd175c9b1b80"],
+ CellLabel->
+  "In[187]:=",ExpressionUUID->"d697cc0a-e2ee-401d-941d-bd175c9b1b80"],
 
 Cell[BoxData[
  RowBox[{
@@ -2376,18 +2451,25 @@ Cell[BoxData[
        RowBox[{"Red", ",", "Thick"}], "}"}]}], ",", 
      RowBox[{"Joined", "\[Rule]", "False"}]}], "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.8243939540057297`*^9, 3.8243940648385983`*^9}},
- CellLabel->"In[90]:=",ExpressionUUID->"d772c118-8e70-40db-9e69-25a1cadd08f7"],
+ CellLabel->
+  "In[189]:=",ExpressionUUID->"d772c118-8e70-40db-9e69-25a1cadd08f7"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"Show", "[", 
-  RowBox[{"p3", ",", "p3a", ",", " ", 
-   RowBox[{
-   "PlotLabel", "\[Rule]", "\"\<BTC spot returns with 30 extremes\>\""}]}], 
-  "]"}]], "Input",
- CellChangeTimes->{{3.8243940598783703`*^9, 3.8243941116970263`*^9}},
- CellLabel->"In[92]:=",ExpressionUUID->"c548823a-412c-49d8-8c49-f2c95b419c28"],
+ RowBox[{"p3b", "=", 
+  RowBox[{"Show", "[", 
+   RowBox[{"p3", ",", "p3a", ",", " ", 
+    RowBox[{
+    "PlotLabel", "\[Rule]", 
+     "\"\<BTC spot returns with 30 most extreme returns\>\""}], ",", 
+    RowBox[{"AspectRatio", "\[Rule]", 
+     RowBox[{"1", "/", "4"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.8243940598783703`*^9, 3.8243941116970263`*^9}, {
+  3.824398016971353*^9, 3.8243980186380177`*^9}, {3.824398222070999*^9, 
+  3.824398230453197*^9}, {3.824403436679991*^9, 
+  3.824403440032641*^9}},ExpressionUUID->"c548823a-412c-49d8-8c49-\
+f2c95b419c28"],
 
 Cell[BoxData[
  FormBox[
@@ -2585,7 +2667,8 @@ v3GUquX4IJ0OVu+Q4fXGsdMnLKU2DezfhiSfN47z3s8/dygNrP+DUOQbx9/a
 RwznTwWrZ4jIfeMoH1wSFrYIHP4TrgH5OnJVx7ijwP67UFz0xvH7uVm55icg
 /j1U8sbxwYIygyd1YPMCMsreOBZcevdMyHjPfgAvwMTK
        "]]}, {{}, {}}}},
-   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+   AspectRatio->NCache[
+     Rational[1, 4], 0.25],
    Axes->{False, False},
    AxesLabel->{None, None},
    AxesOrigin->{3.7365408*^9, 0},
@@ -2926,8 +3009,32 @@ RwznTwWrZ4jIfeMoH1wSFrYIHP4TrgH5OnJVx7ijwP67UFz0xvH7uVm55icg
       Scaled[0.05]}},
    Ticks->{{}, Automatic},
    TicksStyle->GrayLevel[0]], TraditionalForm]], "Output",
- CellChangeTimes->{3.8243940620935717`*^9, 3.824394113646367*^9},
- CellLabel->"Out[92]=",ExpressionUUID->"811ba602-ba25-48eb-a6d3-75c9e3b5005a"]
+ CellChangeTimes->{
+  3.8243940620935717`*^9, 3.824394113646367*^9, {3.824398000588118*^9, 
+   3.824398019005865*^9}, 3.824398230769829*^9},
+ CellLabel->
+  "Out[205]=",ExpressionUUID->"5784a774-53ba-4f74-9e6f-fa5b3aa7d358"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
+    "\"\<../latex/_pics/btc_series.pdf\>\""}], ",", " ", "p3b"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.824398021363167*^9, 3.824398021777995*^9}},
+ CellLabel->
+  "In[206]:=",ExpressionUUID->"675d9a35-650d-4e99-8bf3-c821300b9132"],
+
+Cell[BoxData[
+ FormBox["\<\"/Users/nat/Documents/GitHub/optimal_hedging_ratio_copula/_\
+mathematica/../latex/_pics/btc_series.pdf\"\>", TraditionalForm]], "Output",
+ CellChangeTimes->{3.824398022560155*^9, 3.824398232914729*^9},
+ CellLabel->
+  "Out[206]=",ExpressionUUID->"90b9a27a-308d-4c34-86f3-0f1ca13407f6"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5230,7 +5337,8 @@ Cell[BoxData[
     RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.8243875747832727`*^9, 3.8243875977401657`*^9}, {
   3.824387761485095*^9, 3.824387786025226*^9}},
- CellLabel->"In[33]:=",ExpressionUUID->"17153f96-f261-41bb-9407-dea3588cd0d6"],
+ CellLabel->
+  "In[193]:=",ExpressionUUID->"17153f96-f261-41bb-9407-dea3588cd0d6"],
 
 Cell[BoxData[
  FormBox[
@@ -5322,8 +5430,30 @@ Cell[BoxData[
       Scaled[0.05]}},
    Ticks->{Automatic, Automatic}], TraditionalForm]], "Output",
  CellChangeTimes->{{3.824387579899433*^9, 3.824387598355101*^9}, {
-  3.824387774481206*^9, 3.824387786255444*^9}},
- CellLabel->"Out[33]=",ExpressionUUID->"e34115ce-0c8d-4a31-ba4b-6a38769f3449"]
+   3.824387774481206*^9, 3.824387786255444*^9}, 3.824398030560288*^9},
+ CellLabel->
+  "Out[193]=",ExpressionUUID->"f189098e-68c2-4d1e-8ef2-386b40d3690d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
+    "\"\<../latex/_pics/btc_hist.pdf\>\""}], ",", " ", "p4"}], "]"}]], "Input",\
+
+ CellChangeTimes->{{3.824398033987801*^9, 3.824398036768106*^9}},
+ CellLabel->
+  "In[194]:=",ExpressionUUID->"04f27747-daa4-469c-a3e2-71e611048278"],
+
+Cell[BoxData[
+ FormBox["\<\"/Users/nat/Documents/GitHub/optimal_hedging_ratio_copula/_\
+mathematica/../latex/_pics/btc_hist.pdf\"\>", TraditionalForm]], "Output",
+ CellChangeTimes->{3.8243980371289377`*^9},
+ CellLabel->
+  "Out[194]=",ExpressionUUID->"95a321e0-2e3c-4177-93d6-86a0f1743482"]
 }, Open  ]],
 
 Cell["See gretl for summary statistics", "Text",
@@ -5710,1096 +5840,21 @@ hljn6Zykdshb67w0M/YMVP8aKA0e7oP/ARa+YTs=
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"BoxWhiskerChart", "[", 
+ RowBox[{"Export", "[", 
   RowBox[{
-   RowBox[{"{", 
-    RowBox[{"r", ",", "f"}], "}"}], ",", "\"\<Outliers\>\"", ",", 
-   RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", "  ", 
-   RowBox[{"ChartLabels", "\[Rule]", 
-    RowBox[{"{", 
-     RowBox[{"\"\<spot\>\"", ",", " ", "\"\<future\>\""}], "}"}]}]}], 
-  "]"}]], "Input",
- CellChangeTimes->{{3.8243966591140842`*^9, 3.82439672185845*^9}, {
-  3.8243967924041758`*^9, 3.824396804302166*^9}},
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
+    "\"\<../latex/_pics/btc_qq.pdf\>\""}], ",", " ", "p5"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8243980456461143`*^9, 3.824398047302936*^9}},
  CellLabel->
-  "In[173]:=",ExpressionUUID->"6dc581be-e0fd-489f-b58c-a111ff0b5834"],
+  "In[195]:=",ExpressionUUID->"bdd43e7b-9440-423d-8f9d-5766c6868a32"],
 
 Cell[BoxData[
- FormBox[
-  GraphicsBox[{
-    {Opacity[0], 
-     PointBox[{{0.3836399216673073, -0.3146461815086952}, {
-      2.6163600783326926`, 0.2614082132567631}}]}, 
-    {RGBColor[0.798413061722744, 0.824719615472648, 0.968322270542458], 
-     CapForm[None], {}, 
-     {RGBColor[0.798413061722744, 0.824719615472648, 0.968322270542458], 
-      {RGBColor[0.798413061722744, 0.824719615472648, 0.968322270542458], 
-       TagBox[
-        TooltipBox[
-         TagBox[
-          DynamicBox[{
-            FEPrivate`If[
-             CurrentValue["MouseOver"], 
-             EdgeForm[{
-               GrayLevel[0.5], 
-               AbsoluteThickness[1.5], 
-               Opacity[0.66]}], {}, {}], 
-            GraphicsGroupBox[{Antialiasing -> False, 
-              
-              PolygonBox[{{0.7754133086869819, 0.019465430917005876`}, {
-               1.2245866913130181`, 0.019465430917005876`}, {
-               1.2245866913130181`, -0.014290810001057285`}, {
-               0.7754133086869819, -0.014290810001057285`}}], {}, {{
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.11015432489404886`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.06862413070829272}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.10403956995680773`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.06669849496494994}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.09052440747734286}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.0652943403440736}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.06597375286648421}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.08599478952713545}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.09366274038801484}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.06806960224223554}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.0660253235718103}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.10553314076172464`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.08789319595911968}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.09226371495060995}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.09287721551832553}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.07740264923245178}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.07079674410386715}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.0836500399039095}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.07634577469687716}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.07558717437617027}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.07625886337523706}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.07489941495843865}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.10217179860744073`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., -0.11231127944625653`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07578389861914235}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.10121794047376899`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07855928033823742}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07259136409887809}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.09232533845439347}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.08265714739465939}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.08202338539219066}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.0776957519818168}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07254218996981442}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07056340510924616}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07252120180841481}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.09519987744533309}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.1026316325813729}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.11568692855990323`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07198486436303277}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.10876316153258177`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.0764965214220817}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.10210988010377521`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.0740622814106421}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07830122359016385}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.10102465271867353`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.08557775156710738}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.08674534496530927}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07774851536724414}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.08326315340794634}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.09215256944968298}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.09733671556763888}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.07186445223864127}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 1., 0.10635703871581897`}]}, {
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.1523099171292932}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.15157351578806993`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.28846189083753804`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.1489647586842244}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.14993265724883723`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.14072529592909425`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.12114046696573565`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.1472363992449437}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.12567801849096222`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., -0.11606670102658524`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.13111012317460055`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.12774798575650104`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.14519109659190108`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.13594024085304948`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.14377164097184264`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.14133064612010318`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.12663231063036084`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.23522392258560593`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.13883689252658002`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {1., 0.12128555910177496`}]}}, {}, {
-               GrayLevel[0], 
-               GrayLevel[1], 
-               
-               LineBox[{{1.2245866913130181`, 0.0013855365247364458`}, {
-                0.7754133086869819, 0.0013855365247364458`}}]}, {}, {
-               GrayLevel[0], 
-               GrayLevel[0.5], 
-               
-               LineBox[{{{1., -0.014290810001057285`}, {
-                1., -0.06365042233552587}}, {{1., 0.019465430917005876`}, {1.,
-                 0.07007520722607087}}}]}, {
-               GrayLevel[0], 
-               GrayLevel[0.5], 
-               
-               LineBox[{{{1.112293345656509, -0.06365042233552587}, {
-                0.8877066543434909, -0.06365042233552587}}, {{
-                1.112293345656509, 0.07007520722607087}, {0.8877066543434909, 
-                0.07007520722607087}}}]}, {}}]},
-           
-           ImageSizeCache->{{113.5857864376269, 
-            193.4142135623731}, {-125.50334415216403`, 105.27290766446353`}}],
-          
-          "DelayedMouseEffectStyle"],
-         StyleBox[
-          TagBox[
-           GridBox[{{
-              StyleBox["\"max\"", Bold, StripOnInput -> False], 
-              "0.23522392258560593`"}, {
-              StyleBox["\"75%\"", Bold, StripOnInput -> False], 
-              "0.019465430917005876`"}, {
-              StyleBox["\"median\"", Bold, StripOnInput -> False], 
-              "0.0013855365247364458`"}, {
-              StyleBox["\"25%\"", Bold, StripOnInput -> False], 
-              RowBox[{"-", "0.014290810001057285`"}]}, {
-              StyleBox["\"min\"", Bold, StripOnInput -> False], 
-              RowBox[{"-", "0.28846189083753804`"}]}}, 
-            GridBoxAlignment -> {"Columns" -> {Center, ".", {Left}}}, 
-            AutoDelete -> False, GridBoxDividers -> {"Columns" -> {
-                Directive[
-                 GrayLevel[0.3]], {
-                 Directive[
-                  GrayLevel[0.3]]}, 
-                Directive[
-                 GrayLevel[0.3]]}, "Rows" -> {
-                Directive[
-                 GrayLevel[0.3]], {
-                 Directive[
-                  GrayLevel[0.3]]}, 
-                Directive[
-                 GrayLevel[0.3]]}}, 
-            GridBoxFrame -> {
-             "ColumnsIndexed" -> {{{1, -1}, {1, -1}} -> GrayLevel[0]}}, 
-            GridBoxItemSize -> {
-             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, BaseStyle -> 
-            Directive[
-              AbsoluteThickness[1], 
-              Dashing[{}]]], "Grid"], {FontFamily -> "Times"}, StripOnInput -> 
-          False]],
-        Annotation[#, 
-         Style[
-          Grid[{{
-             Style["max", Bold], 0.23522392258560593`}, {
-             Style["75%", Bold], 0.019465430917005876`}, {
-             Style["median", Bold], 0.0013855365247364458`}, {
-             Style["25%", Bold], -0.014290810001057285`}, {
-             Style["min", Bold], -0.28846189083753804`}}, Dividers -> {{
-              Directive[
-               GrayLevel[0.3]], {
-               Directive[
-                GrayLevel[0.3]]}, 
-              Directive[
-               GrayLevel[0.3]]}, {
-              Directive[
-               GrayLevel[0.3]], {
-               Directive[
-                GrayLevel[0.3]]}, 
-              Directive[
-               GrayLevel[0.3]]}}, Alignment -> {{Center, ".", {Left}}}, Frame -> 
-           GrayLevel[0], BaseStyle -> Directive[
-             AbsoluteThickness[1], 
-             Dashing[{}]]], {FontFamily -> "Times"}], "Tooltip"]& ]}, 
-      {RGBColor[0.798413061722744, 0.824719615472648, 0.968322270542458], 
-       TagBox[
-        TooltipBox[
-         TagBox[
-          DynamicBox[{
-            FEPrivate`If[
-             CurrentValue["MouseOver"], 
-             EdgeForm[{
-               GrayLevel[0.5], 
-               AbsoluteThickness[1.5], 
-               Opacity[0.66]}], {}, {}], 
-            GraphicsGroupBox[{Antialiasing -> False, 
-              
-              PolygonBox[{{1.7754133086869819`, 0.021595523632227158`}, {
-               2.224586691313018, 0.021595523632227158`}, {
-               2.224586691313018, -0.015493742071792289`}, {
-               1.7754133086869819`, -0.015493742071792289`}}], {}, {{
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.09664905479164305}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.10352497413730144`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.12481552845498124`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.07614670884357022}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.07801225012315444}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.12007351036936305`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.0948878188000674}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.07779096161965214}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.11987514577458853`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.11271683580288884`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.12497026032248894`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.09284330736827427}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.07761699393104879}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.10340329428649007`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.07922404205270049}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.08701137698962981}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.11928185417643437`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.09703209155134457}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.08471081436728285}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., -0.12581652422520856`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.08199838645399009}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.07896649644778814}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.0883100033285213}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.08864247157678139}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.129347959331028}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.1031999098479205}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.08734938611909432}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.07974335128752592}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.080977505591574}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.08819640782060278}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.11258821877927944`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.12001211306779393`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.09975040276705942}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.08041821736149352}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.09229964065145367}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.10559745441026755`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.08066018222233098}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.08712719145498599}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.10155581861416244`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.07934946674455991}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.11548398079280149`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.09217516735457672}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.07860910503451354}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0], StripOnInput -> False], TraditionalForm]], {
-                 2., 0.1197820179728899}]}, {
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., -0.15526227137011347`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., -0.13169250675376898`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., -0.26772552316046827`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., -0.15487834949735121`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., -0.15704454515431793`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., -0.24618331742850771`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., -0.14679258756590646`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., -0.1307167844409517}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., -0.1593392765803952}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., 0.1793930441759913}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., 0.1533485012361852}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., 0.1337236818280764}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., 0.1557545294092328}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., 0.15415067982725836`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., 0.19895169206057808`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., 0.22251442263664856`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., 0.14632795414604918`}], 
-                InsetBox[
-                 BoxData[
-                  FormBox[
-                   StyleBox["\"\[FilledSmallCircle]\"", 10, 
-                    GrayLevel[0.5], StripOnInput -> False], 
-                   TraditionalForm]], {2., 0.14678773239956439`}]}}, {}, {
-               GrayLevel[0], 
-               GrayLevel[1], 
-               
-               LineBox[{{2.224586691313018, 0.0012539502052215253`}, {
-                1.775413308686982, 0.0012539502052215253`}}]}, {}, {
-               GrayLevel[0], 
-               GrayLevel[0.5], 
-               
-               LineBox[{{{2., -0.015493742071792289`}, {
-                2., -0.07054687335368569}}, {{2., 0.021595523632227158`}, {2.,
-                 0.077068936369961}}}]}, {
-               GrayLevel[0], 
-               GrayLevel[0.5], 
-               
-               LineBox[{{{2.112293345656509, -0.07054687335368569}, {
-                1.887706654343491, -0.07054687335368569}}, {{
-                2.112293345656509, 0.077068936369961}, {1.887706654343491, 
-                0.077068936369961}}}]}, {}}]},
-           
-           ImageSizeCache->{{283.5857864376269, 
-            363.4142135623731}, {-120.33524469695652`, 96.8408205701449}}],
-          "DelayedMouseEffectStyle"],
-         StyleBox[
-          TagBox[
-           GridBox[{{
-              StyleBox["\"max\"", Bold, StripOnInput -> False], 
-              "0.22251442263664856`"}, {
-              StyleBox["\"75%\"", Bold, StripOnInput -> False], 
-              "0.021595523632227158`"}, {
-              StyleBox["\"median\"", Bold, StripOnInput -> False], 
-              "0.0012539502052215253`"}, {
-              StyleBox["\"25%\"", Bold, StripOnInput -> False], 
-              RowBox[{"-", "0.015493742071792289`"}]}, {
-              StyleBox["\"min\"", Bold, StripOnInput -> False], 
-              RowBox[{"-", "0.26772552316046827`"}]}}, 
-            GridBoxAlignment -> {"Columns" -> {Center, ".", {Left}}}, 
-            AutoDelete -> False, GridBoxDividers -> {"Columns" -> {
-                Directive[
-                 GrayLevel[0.3]], {
-                 Directive[
-                  GrayLevel[0.3]]}, 
-                Directive[
-                 GrayLevel[0.3]]}, "Rows" -> {
-                Directive[
-                 GrayLevel[0.3]], {
-                 Directive[
-                  GrayLevel[0.3]]}, 
-                Directive[
-                 GrayLevel[0.3]]}}, 
-            GridBoxFrame -> {
-             "ColumnsIndexed" -> {{{1, -1}, {1, -1}} -> GrayLevel[0]}}, 
-            GridBoxItemSize -> {
-             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, BaseStyle -> 
-            Directive[
-              AbsoluteThickness[1], 
-              Dashing[{}]]], "Grid"], {FontFamily -> "Times"}, StripOnInput -> 
-          False]],
-        Annotation[#, 
-         Style[
-          Grid[{{
-             Style["max", Bold], 0.22251442263664856`}, {
-             Style["75%", Bold], 0.021595523632227158`}, {
-             Style["median", Bold], 0.0012539502052215253`}, {
-             Style["25%", Bold], -0.015493742071792289`}, {
-             Style["min", Bold], -0.26772552316046827`}}, Dividers -> {{
-              Directive[
-               GrayLevel[0.3]], {
-               Directive[
-                GrayLevel[0.3]]}, 
-              Directive[
-               GrayLevel[0.3]]}, {
-              Directive[
-               GrayLevel[0.3]], {
-               Directive[
-                GrayLevel[0.3]]}, 
-              Directive[
-               GrayLevel[0.3]]}}, Alignment -> {{Center, ".", {Left}}}, Frame -> 
-           GrayLevel[0], BaseStyle -> Directive[
-             AbsoluteThickness[1], 
-             Dashing[{}]]], {FontFamily -> "Times"}], 
-         "Tooltip"]& ]}}, {}, {}}, {{{{{{{}, {}}, {}}, {{{}, {}}, {}}}, {}}, \
-{}}, {}}, {}},
-   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
-   Axes->{False, False},
-   AxesLabel->{None, None},
-   AxesOrigin->{0.70295463955568, -0.3146461815086952},
-   AxesStyle->Directive[
-     GrayLevel[0], 
-     AbsoluteThickness[0.2]],
-   BaseStyle->Automatic,
-   DisplayFunction->Identity,
-   Frame->True,
-   FrameLabel->{{None, None}, {None, None}},
-   FrameStyle->Directive[
-     GrayLevel[0], 
-     AbsoluteThickness[0.2]],
-   FrameTicks->{{Automatic, Automatic}, {{{1., 
-        FormBox[
-         TemplateBox[{0}, "Spacer1"], TraditionalForm], {0.008, 0}}, {1., 
-        FormBox["\"spot\"", TraditionalForm], 0}, {2., 
-        FormBox[
-         TemplateBox[{0}, "Spacer1"], TraditionalForm], {0.008, 0}}, {2., 
-        FormBox["\"future\"", TraditionalForm], 0}, {0.7754133086869819, 
-        FormBox[
-         TemplateBox[{0}, "Spacer1"], TraditionalForm], {0, 0}}, {
-       2.224586691313018, 
-        FormBox[
-         TemplateBox[{0}, "Spacer1"], TraditionalForm], {0, 0}}}, {{1., 
-        FormBox[
-         TemplateBox[{0}, "Spacer1"], TraditionalForm], {0.008, 0}}, {2., 
-        FormBox[
-         TemplateBox[{0}, "Spacer1"], TraditionalForm], {0.008, 0}}, {
-       0.7754133086869819, 
-        FormBox[
-         TemplateBox[{0}, "Spacer1"], TraditionalForm], {0, 0}}, {
-       2.224586691313018, 
-        FormBox[
-         TemplateBox[{0}, "Spacer1"], TraditionalForm], {0, 0}}}}},
-   GridLinesStyle->Automatic,
-   LabelStyle->{FontFamily -> "Times"},
-   PlotRangePadding->{{
-      Scaled[0.05], 
-      Scaled[0.05]}, {
-      Scaled[0.05], 
-      Scaled[0.05]}},
-   Ticks->{{{1., 
-       FormBox[
-        TemplateBox[{0}, "Spacer1"], TraditionalForm], {0.008, 0}}, {1., 
-       FormBox["\"spot\"", TraditionalForm], 0}, {2., 
-       FormBox[
-        TemplateBox[{0}, "Spacer1"], TraditionalForm], {0.008, 0}}, {2., 
-       FormBox["\"future\"", TraditionalForm], 0}, {0.7754133086869819, 
-       FormBox[
-        TemplateBox[{0}, "Spacer1"], TraditionalForm], {0, 0}}, {
-      2.224586691313018, 
-       FormBox[
-        TemplateBox[{0}, "Spacer1"], TraditionalForm], {0, 0}}}, Automatic}], 
-  TraditionalForm]], "Output",
- CellChangeTimes->{{3.824396663654873*^9, 3.824396722195705*^9}, {
-  3.824396794416884*^9, 3.8243968047834053`*^9}},
+ FormBox["\<\"/Users/nat/Documents/GitHub/optimal_hedging_ratio_copula/_\
+mathematica/../latex/_pics/btc_qq.pdf\"\>", TraditionalForm]], "Output",
+ CellChangeTimes->{3.824398047772985*^9},
  CellLabel->
-  "Out[173]=",ExpressionUUID->"9b77d5d4-123a-4ab7-b509-3873f8575378"]
+  "Out[195]=",ExpressionUUID->"e89ac0ca-5a44-44f0-bfb7-e07061ff3b86"]
 }, Open  ]],
 
 Cell["\<\
@@ -6813,27 +5868,29 @@ beyond 3 times  the interquartile range.\
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"BoxWhiskerChart", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"r", ",", "f"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"\"\<Outliers\>\"", ",", " ", "\"\<\[FilledSmallCircle]\>\""}], 
-      "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"\"\<FarOutliers\>\"", ",", " ", "o"}], "}"}]}], "}"}], ",", 
-   RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", "  ", 
-   RowBox[{"ChartLabels", "\[Rule]", 
+ RowBox[{"p6", "=", 
+  RowBox[{"BoxWhiskerChart", "[", 
+   RowBox[{
     RowBox[{"{", 
-     RowBox[{"\"\<Spot\>\"", ",", " ", "\"\<Future\>\""}], "}"}]}], ",", 
-   RowBox[{"BarOrigin", "\[Rule]", "Left"}]}], "]"}]], "Input",
+     RowBox[{"r", ",", "f"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<Outliers\>\"", ",", " ", "\"\<\[FilledSmallCircle]\>\""}],
+        "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<FarOutliers\>\"", ",", " ", "o"}], "}"}]}], "}"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", "  ", 
+    RowBox[{"ChartLabels", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Spot\>\"", ",", " ", "\"\<Future\>\""}], "}"}]}], ",", 
+    RowBox[{"BarOrigin", "\[Rule]", "Left"}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.8243966591140842`*^9, 3.82439672185845*^9}, {
   3.8243967924041758`*^9, 3.824396804302166*^9}, {3.82439686886411*^9, 
-  3.82439687233675*^9}, {3.824396915701685*^9, 3.8243969266240473`*^9}},
+  3.82439687233675*^9}, {3.824396915701685*^9, 3.8243969266240473`*^9}, {
+  3.8243980681021423`*^9, 3.824398068623995*^9}},
  CellLabel->
-  "In[176]:=",ExpressionUUID->"e37150d4-5594-45f6-9938-e4fb357bee6c"],
+  "In[198]:=",ExpressionUUID->"e37150d4-5594-45f6-9938-e4fb357bee6c"],
 
 Cell[BoxData[
  FormBox[
@@ -7911,27 +6968,53 @@ Cell[BoxData[
         TemplateBox[{0}, "Spacer1"], TraditionalForm], {0, 0}}}}], 
   TraditionalForm]], "Output",
  CellChangeTimes->{
-  3.824396873109331*^9, {3.824396918357868*^9, 3.8243969271182623`*^9}},
+  3.824396873109331*^9, {3.824396918357868*^9, 3.8243969271182623`*^9}, 
+   3.8243980693969812`*^9},
  CellLabel->
-  "Out[176]=",ExpressionUUID->"38e2f98f-0bdf-41a7-817e-fd8f8e2a7044"]
+  "Out[198]=",ExpressionUUID->"c8225d90-f517-48d5-98b0-726e3dcbf162"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"ListPlot", "[", 
+ RowBox[{"Export", "[", 
   RowBox[{
    RowBox[{
-    RowBox[{"{", 
-     RowBox[{"r", ",", "f"}], "}"}], "\[Transpose]"}], ",", 
-   RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", 
-   RowBox[{"AxesLabel", "\[Rule]", 
-    RowBox[{"{", 
-     RowBox[{"\"\<Spot\>\"", ",", " ", "\"\<Future\>\""}], "}"}]}]}], 
+    RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
+    "\"\<../latex/_pics/btc_future_box.pdf\>\""}], ",", " ", "p6"}], 
   "]"}]], "Input",
- CellChangeTimes->{{3.824397859627001*^9, 3.8243978847304773`*^9}},
+ CellChangeTimes->{{3.824398058397655*^9, 3.824398062147181*^9}},
  CellLabel->
-  "In[180]:=",ExpressionUUID->"38141439-194f-406e-ac82-d99a06243d6a"],
+  "In[199]:=",ExpressionUUID->"9dcb43e6-0cc8-4240-8816-77d621ed4574"],
+
+Cell[BoxData[
+ FormBox["\<\"/Users/nat/Documents/GitHub/optimal_hedging_ratio_copula/_\
+mathematica/../latex/_pics/btc_future_box.pdf\"\>", 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{3.824398078416451*^9},
+ CellLabel->
+  "Out[199]=",ExpressionUUID->"c3cca219-424e-4807-859d-258f68ba875a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"p7", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", ",", "f"}], "}"}], "\[Transpose]"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Classic\>\""}], ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Spot\>\"", ",", " ", "\"\<Future\>\""}], "}"}]}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.824397859627001*^9, 3.8243978847304773`*^9}, {
+  3.824398079099103*^9, 3.824398079638494*^9}, {3.824399006988819*^9, 
+  3.8243990099835243`*^9}},
+ CellLabel->
+  "In[207]:=",ExpressionUUID->"38141439-194f-406e-ac82-d99a06243d6a"],
 
 Cell[BoxData[
  FormBox[
@@ -8202,8 +7285,8 @@ Bgcpzd06ZFkwUWSfwjuUgN3fZ8b0RJPx49aeA3WcvvDxxiA1k5AX/A9WjCLw
           Part[#, 1]], 
          Identity[
           Part[#, 2]]}& )}},
-   PlotRange->{{-0.10726142898284514`, 
-    0.11501037937851226`}, {-0.1120935700421867, 0.12106932499897007`}},
+   PlotRange->{{-0.28846189083753804`, 
+    0.23522392258560593`}, {-0.26772552316046827`, 0.22251442263664856`}},
    PlotRangeClipping->True,
    PlotRangePadding->{{
       Scaled[0.02], 
@@ -8212,9 +7295,32 @@ Bgcpzd06ZFkwUWSfwjuUgN3fZ8b0RJPx49aeA3WcvvDxxiA1k5AX/A9WjCLw
       Scaled[0.05]}},
    Ticks->{Automatic, Automatic},
    TicksStyle->GrayLevel[0]], TraditionalForm]], "Output",
- CellChangeTimes->{{3.824397863155889*^9, 3.824397885320793*^9}},
+ CellChangeTimes->{{3.824397863155889*^9, 3.824397885320793*^9}, 
+   3.824398080147483*^9, 3.8243990102318296`*^9},
  CellLabel->
-  "Out[180]=",ExpressionUUID->"cbc720fd-5d8a-4efb-a999-9529a93cf717"]
+  "Out[207]=",ExpressionUUID->"7514e8e7-992c-412a-866a-45437fc624da"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
+    "\"\<../latex/_pics/btc_future_scatter.pdf\>\""}], ",", " ", "p7"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.824398058397655*^9, 3.824398085752076*^9}},
+ CellLabel->
+  "In[208]:=",ExpressionUUID->"dda4a14a-31e4-4622-9e85-225c3f0ec2a1"],
+
+Cell[BoxData[
+ FormBox["\<\"/Users/nat/Documents/GitHub/optimal_hedging_ratio_copula/_\
+mathematica/../latex/_pics/btc_future_scatter.pdf\"\>", 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{3.824398086126274*^9, 3.824399011884223*^9},
+ CellLabel->
+  "Out[208]=",ExpressionUUID->"4e3adc7e-0ce6-4416-b858-5be6c32f2f48"]
 }, Open  ]]
 },
 WindowSize->{808, 655},
@@ -8254,62 +7360,90 @@ Cell[31015, 678, 803, 20, 64, "Input",ExpressionUUID->"a89ee280-26b6-4f40-8297-4
 Cell[31821, 700, 22951, 504, 315, "Output",ExpressionUUID->"55040e50-878d-4753-81d6-44badf0e7fb7"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[54809, 1209, 1031, 26, 90, "Input",ExpressionUUID->"13810295-848f-4aa1-a5e3-971dbbdcab6e"],
-Cell[55843, 1237, 23527, 514, 315, "Output",ExpressionUUID->"b537e1a0-bff6-4c03-90c7-9cc91f6fda89"]
-}, Open  ]],
-Cell[79385, 1754, 970, 29, 168, "Input",ExpressionUUID->"6f90d538-78e1-405a-8989-d9e0aabcd3ed"],
-Cell[CellGroupData[{
-Cell[80380, 1787, 773, 15, 64, "Input",ExpressionUUID->"d4b3a30f-7ea7-4606-8fb7-e53aad6da20f"],
-Cell[81156, 1804, 24163, 525, 321, "Output",ExpressionUUID->"90be18d2-e376-48d1-b517-0ab34c111e84"]
-}, Open  ]],
-Cell[105334, 2332, 947, 27, 90, "Input",ExpressionUUID->"d697cc0a-e2ee-401d-941d-bd175c9b1b80"],
-Cell[106284, 2361, 663, 17, 64, "Input",ExpressionUUID->"d772c118-8e70-40db-9e69-25a1cadd08f7"],
-Cell[CellGroupData[{
-Cell[106972, 2382, 332, 7, 37, "Input",ExpressionUUID->"c548823a-412c-49d8-8c49-f2c95b419c28"],
-Cell[107307, 2391, 24900, 538, 321, "Output",ExpressionUUID->"811ba602-ba25-48eb-a6d3-75c9e3b5005a"]
+Cell[54809, 1209, 357, 9, 64, "Input",ExpressionUUID->"8324ec44-0310-4287-80aa-660e86633222"],
+Cell[55169, 1220, 289, 5, 60, "Output",ExpressionUUID->"4065bee5-3689-474c-a76d-3e7add3bf9f0"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[132244, 2934, 539, 14, 64, "Input",ExpressionUUID->"20d43134-dc81-48c6-b798-3a1a93e228dd"],
-Cell[132786, 2950, 369, 9, 38, "Output",ExpressionUUID->"5fca536e-1f01-4543-9e74-cf76e66da462"]
-}, Open  ]],
-Cell[133170, 2962, 175, 3, 44, "Text",ExpressionUUID->"b4615e86-2faf-4bbf-b50a-1d9393cb609d"],
-Cell[133348, 2967, 138633, 2136, 214, "Text",ExpressionUUID->"8ab4d042-0299-4f81-9de7-838a1e4642d8"],
-Cell[CellGroupData[{
-Cell[272006, 5107, 455, 13, 64, "Input",ExpressionUUID->"372f8b73-3745-4540-9fa0-cc83cb285f9c"],
-Cell[272464, 5122, 297, 6, 38, "Output",ExpressionUUID->"f286c914-559d-4836-8300-b55911b8e895"]
-}, Open  ]],
-Cell[272776, 5131, 496, 13, 37, "Input",ExpressionUUID->"3b6b086b-e1b1-4640-a9ed-4f613547fc93"],
-Cell[273275, 5146, 518, 15, 37, "Input",ExpressionUUID->"3329bc11-6fcf-4ff9-b354-6edb2e59aa88"],
-Cell[CellGroupData[{
-Cell[273818, 5165, 661, 17, 37, "Input",ExpressionUUID->"7194b8ed-2b8a-4faa-a677-eb569240adfd"],
-Cell[274482, 5184, 524, 13, 44, "Output",ExpressionUUID->"b6880744-e157-4673-87f6-7fd731077c8f"]
+Cell[55495, 1230, 1158, 29, 116, "Input",ExpressionUUID->"13810295-848f-4aa1-a5e3-971dbbdcab6e"],
+Cell[56656, 1261, 23593, 517, 164, "Output",ExpressionUUID->"2c221cd6-f2b9-4da7-8a43-2bbce00fc6be"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[275043, 5202, 256, 5, 37, "Input",ExpressionUUID->"e6a19aa8-1400-4cb7-b4aa-c819fd533450"],
-Cell[275302, 5209, 222, 4, 38, "Output",ExpressionUUID->"7955e0c5-ae58-4376-b2b5-6681f09a967c"]
+Cell[80286, 1783, 367, 9, 64, "Input",ExpressionUUID->"6bb7729d-ebda-4f9f-923b-afeec0239892"],
+Cell[80656, 1794, 352, 7, 60, "Output",ExpressionUUID->"ffbd4c6a-5385-45b5-b851-539ae2ac7da0"]
+}, Open  ]],
+Cell[81023, 1804, 970, 29, 168, "Input",ExpressionUUID->"6f90d538-78e1-405a-8989-d9e0aabcd3ed"],
+Cell[CellGroupData[{
+Cell[82018, 1837, 777, 16, 64, "Input",ExpressionUUID->"d4b3a30f-7ea7-4606-8fb7-e53aad6da20f"],
+Cell[82798, 1855, 24189, 526, 321, "Output",ExpressionUUID->"655ce3d1-a398-4737-a029-91db7b39f38d"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[275561, 5218, 651, 14, 90, "Input",ExpressionUUID->"17153f96-f261-41bb-9407-dea3588cd0d6"],
-Cell[276215, 5234, 4189, 91, 318, "Output",ExpressionUUID->"e34115ce-0c8d-4a31-ba4b-6a38769f3449"]
+Cell[107024, 2386, 366, 9, 64, "Input",ExpressionUUID->"18a63e53-440e-48f4-8ce5-bb363d18e609"],
+Cell[107393, 2397, 299, 6, 60, "Output",ExpressionUUID->"edca7be7-e712-4c49-945c-06d7c4268727"]
 }, Open  ]],
-Cell[280419, 5328, 178, 3, 44, "Text",ExpressionUUID->"a17e079d-1087-407a-a55a-8db5cf82ea92"],
-Cell[280600, 5333, 802, 21, 64, "Input",ExpressionUUID->"db8059f2-56bb-42fa-b26e-938b67a3121f"],
+Cell[107707, 2406, 951, 28, 90, "Input",ExpressionUUID->"d697cc0a-e2ee-401d-941d-bd175c9b1b80"],
+Cell[108661, 2436, 667, 18, 64, "Input",ExpressionUUID->"d772c118-8e70-40db-9e69-25a1cadd08f7"],
 Cell[CellGroupData[{
-Cell[281427, 5358, 1421, 33, 220, "Input",ExpressionUUID->"0c4c513e-a064-4fea-a848-6e4de1fe1d72"],
-Cell[282851, 5393, 17628, 313, 321, "Output",ExpressionUUID->"bfe58f65-4a84-4430-945b-8d8e33c2c82a"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[300516, 5711, 557, 13, 64, "Input",ExpressionUUID->"6dc581be-e0fd-489f-b58c-a111ff0b5834"],
-Cell[301076, 5726, 46971, 1075, 304, "Output",ExpressionUUID->"9b77d5d4-123a-4ab7-b509-3873f8575378"]
-}, Open  ]],
-Cell[348062, 6804, 264, 6, 73, "Text",ExpressionUUID->"fb4f1b67-5816-4d6d-8e50-29ce8d723c4d"],
-Cell[CellGroupData[{
-Cell[348351, 6814, 917, 21, 90, "Input",ExpressionUUID->"e37150d4-5594-45f6-9938-e4fb357bee6c"],
-Cell[349271, 6837, 46089, 1078, 291, "Output",ExpressionUUID->"38e2f98f-0bdf-41a7-817e-fd8f8e2a7044"]
+Cell[109353, 2458, 579, 13, 116, "Input",ExpressionUUID->"c548823a-412c-49d8-8c49-f2c95b419c28"],
+Cell[109935, 2473, 24969, 542, 166, "Output",ExpressionUUID->"5784a774-53ba-4f74-9e6f-fa5b3aa7d358"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[395397, 7920, 499, 13, 64, "Input",ExpressionUUID->"38141439-194f-406e-ac82-d99a06243d6a"],
-Cell[395899, 7935, 15747, 281, 300, "Output",ExpressionUUID->"cbc720fd-5d8a-4efb-a999-9529a93cf717"]
+Cell[134941, 3020, 358, 9, 64, "Input",ExpressionUUID->"675d9a35-650d-4e99-8bf3-c821300b9132"],
+Cell[135302, 3031, 311, 5, 60, "Output",ExpressionUUID->"90b9a27a-308d-4c34-86f3-0f1ca13407f6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[135650, 3041, 539, 14, 64, "Input",ExpressionUUID->"20d43134-dc81-48c6-b798-3a1a93e228dd"],
+Cell[136192, 3057, 369, 9, 38, "Output",ExpressionUUID->"5fca536e-1f01-4543-9e74-cf76e66da462"]
+}, Open  ]],
+Cell[136576, 3069, 175, 3, 44, "Text",ExpressionUUID->"b4615e86-2faf-4bbf-b50a-1d9393cb609d"],
+Cell[136754, 3074, 138633, 2136, 214, "Text",ExpressionUUID->"8ab4d042-0299-4f81-9de7-838a1e4642d8"],
+Cell[CellGroupData[{
+Cell[275412, 5214, 455, 13, 64, "Input",ExpressionUUID->"372f8b73-3745-4540-9fa0-cc83cb285f9c"],
+Cell[275870, 5229, 297, 6, 38, "Output",ExpressionUUID->"f286c914-559d-4836-8300-b55911b8e895"]
+}, Open  ]],
+Cell[276182, 5238, 496, 13, 37, "Input",ExpressionUUID->"3b6b086b-e1b1-4640-a9ed-4f613547fc93"],
+Cell[276681, 5253, 518, 15, 37, "Input",ExpressionUUID->"3329bc11-6fcf-4ff9-b354-6edb2e59aa88"],
+Cell[CellGroupData[{
+Cell[277224, 5272, 661, 17, 37, "Input",ExpressionUUID->"7194b8ed-2b8a-4faa-a677-eb569240adfd"],
+Cell[277888, 5291, 524, 13, 44, "Output",ExpressionUUID->"b6880744-e157-4673-87f6-7fd731077c8f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[278449, 5309, 256, 5, 37, "Input",ExpressionUUID->"e6a19aa8-1400-4cb7-b4aa-c819fd533450"],
+Cell[278708, 5316, 222, 4, 38, "Output",ExpressionUUID->"7955e0c5-ae58-4376-b2b5-6681f09a967c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[278967, 5325, 655, 15, 90, "Input",ExpressionUUID->"17153f96-f261-41bb-9407-dea3588cd0d6"],
+Cell[279625, 5342, 4216, 92, 318, "Output",ExpressionUUID->"f189098e-68c2-4d1e-8ef2-386b40d3690d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[283878, 5439, 354, 9, 64, "Input",ExpressionUUID->"04f27747-daa4-469c-a3e2-71e611048278"],
+Cell[284235, 5450, 289, 5, 60, "Output",ExpressionUUID->"95a321e0-2e3c-4177-93d6-86a0f1743482"]
+}, Open  ]],
+Cell[284539, 5458, 178, 3, 44, "Text",ExpressionUUID->"a17e079d-1087-407a-a55a-8db5cf82ea92"],
+Cell[284720, 5463, 802, 21, 64, "Input",ExpressionUUID->"db8059f2-56bb-42fa-b26e-938b67a3121f"],
+Cell[CellGroupData[{
+Cell[285547, 5488, 1421, 33, 220, "Input",ExpressionUUID->"0c4c513e-a064-4fea-a848-6e4de1fe1d72"],
+Cell[286971, 5523, 17628, 313, 321, "Output",ExpressionUUID->"bfe58f65-4a84-4430-945b-8d8e33c2c82a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[304636, 5841, 352, 8, 64, "Input",ExpressionUUID->"bdd43e7b-9440-423d-8f9d-5766c6868a32"],
+Cell[304991, 5851, 285, 5, 38, "Output",ExpressionUUID->"e89ac0ca-5a44-44f0-bfb7-e07061ff3b86"]
+}, Open  ]],
+Cell[305291, 5859, 264, 6, 73, "Text",ExpressionUUID->"fb4f1b67-5816-4d6d-8e50-29ce8d723c4d"],
+Cell[CellGroupData[{
+Cell[305580, 5869, 1007, 23, 90, "Input",ExpressionUUID->"e37150d4-5594-45f6-9938-e4fb357bee6c"],
+Cell[306590, 5894, 46117, 1079, 291, "Output",ExpressionUUID->"c8225d90-f517-48d5-98b0-726e3dcbf162"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[352744, 6978, 361, 9, 64, "Input",ExpressionUUID->"9dcb43e6-0cc8-4240-8816-77d621ed4574"],
+Cell[353108, 6989, 296, 6, 60, "Output",ExpressionUUID->"c3cca219-424e-4807-859d-258f68ba875a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[353441, 7000, 679, 16, 64, "Input",ExpressionUUID->"38141439-194f-406e-ac82-d99a06243d6a"],
+Cell[354123, 7018, 15799, 282, 300, "Output",ExpressionUUID->"7514e8e7-992c-412a-866a-45437fc624da"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[369959, 7305, 365, 9, 64, "Input",ExpressionUUID->"dda4a14a-31e4-4622-9e85-225c3f0ec2a1"],
+Cell[370327, 7316, 322, 6, 60, "Output",ExpressionUUID->"4e3adc7e-0ce6-4416-b858-5be6c32f2f48"]
 }, Open  ]]
 }
 ]

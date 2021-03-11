@@ -6,7 +6,7 @@ Data
 - future price is the daily closing price (at 2300 Berlin time) from Bloomberg Terminal dated with Berlin Time
 - sliced into train set with length of 300 and test set with length of 100.
 - step size is 5
-- in each set, testing data is the 5 trading days consecutive to the last training data
+- in each set, testing data is the 100 trading days consecutive to the last training data
 
 Tickers of Contracts included in the Bitcoin future data
 - BTCH1 28/12/2020 - 03/02/2021

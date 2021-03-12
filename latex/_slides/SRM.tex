@@ -391,10 +391,9 @@
 
 \begin{frame}
   \frametitle{Examples of copulas}
+  \hspace*{-.75cm}\includegraphics[scale=.65]{../_pics/copulas_scatterplots.pdf}
   \begin{itemize}
-  \item Gaussian, Student $t$, NIG factor, Gumbel, Clayton, Frank,
-    Plackett, Gaussian Mixture
-  \item Add scatterplots here
+  \item All copulas are calibrated to a Spearman's Rho of 0.75.
   \end{itemize}
 \end{frame}
 
@@ -426,7 +425,7 @@
 \begin{frame}
   \frametitle{Risk measures}
   \begin{itemize}
-    \addtolength{\itemsep}{5pt}
+    \addtolength{\itemsep}{8pt}
   \item {\bf Variance}: $\text{Var}(R^h)$
   \item {\bf Value-at-risk (VaR)}: $\text{VaR}_\alpha = -
     F_{R^h}^{(-1)}(1-\alpha)$  
@@ -442,7 +441,7 @@
     \addtolength{\itemsep}{3pt}
 \item {\bf Spectral risk measures (SRM)} \citep{Acerbi2002,Cotter2006}:
     \begin{equation*}
-      \rho_\phi = -\int_0^1 \phi(p)\, F_{R^h}^{(-1)}\, \dd p,
+      \rho_\phi = -\int_0^1 \phi(p)\, F_{R^h}^{(-1)}(p)\, \dd p,
     \end{equation*}
     where $q_p$ is the $p$-quantile of the return distribution and
     $\phi(s)$, $s\in [0,1]$, is the so-called {\bf risk aversion
@@ -470,8 +469,8 @@
     $\lambda$ is an unknown positive constant, derived from exponential
   utility function: 
   \begin{equation*}
-    \rho_{\phi} = \int_0^1 \phi(p)\, F^{(-1)}(p)\, \dd p =
-    \frac{k}{1-\e^{-k}} \int_0^1 \e^{-k(1-p)}\, F^{(-1)}(p)\, \dd p. 
+    \rho_{\phi} = \int_0^1 \phi(p)\, F_{R^h}^{(-1)}(p)\, \dd p =
+    \frac{k}{1-\e^{-k}} \int_0^1 \e^{-k(1-p)}\, F_{R^h}^{(-1)}(p)\, \dd p. 
   \end{equation*}
 \end{itemize}
 \end{frame}
@@ -502,8 +501,9 @@ $h$.
   \begin{itemize}
   \item Daily log returns, 23pm CET
   \item 29 May 2018 through 3 Feb 2021
-  \item Spot: Coingecko Bitcoin / USDC 
+  \item Spot: Coingecko Bitcoin / USD 
   \item Future: CME BTC Future
+  \item Sources: Bloomberg, coingecko
   \end{itemize}
 \end{frame}
 
@@ -575,6 +575,13 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
   \frametitle{Spot and Future}
   \begin{center}
     \includegraphics[scale=1]{../_pics/btc_future_scatter.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Spot and Future copula}
+  \begin{center}
+    \includegraphics[scale=1]{../_pics/btc_future_copula_scatter.pdf}
   \end{center}
 \end{frame}
 

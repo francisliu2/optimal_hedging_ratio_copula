@@ -1,17 +1,19 @@
 
-\subsection{Copulae}
-We test different copulae's ability to model crypto-currency data,
+\subsection{Copulae}\label{subsec:copulae}
+We test different copulae for their ability to model crypto-currency data,
 they include Gaussian-, $t$-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
-
+An overview of copulae can be found in \citet{hardle2008applied}.
+Since the hedging exercise concerns only portfolii with two assets, we only present the bivariate version of copulae.
+For further detail, we refer readers to \citet{joe1997multivariate} and \citet{Nelsen1999}.
 %Copula is a function represents the multivariate structure of random variables.
 %
 %
 %Frechet-Hoeffding lower bound $\bm{W}(u,v) = \min(u,v)$, Frechet-Hoeffding upper bound $\bm{M}(u,v) = \max(u+v-1,0)$,
-%and product copula $\bm{\Pi}=uv$ are three important special instants of copulas.
+%and product copula $\bm{\Pi}=uv$ are three important special instants of copulae.
 %They describe the perfect counter-dependence, perfect dependence, and independence of two random variables, respectively.
 %The inequality $\bm{W}(u,v) \leq \bm{C}(u,v) \leq \bm{M}(u,v)$ holds for every copula $\bm{C}$ ad every $(u,v) \in \mathbb{I}^2$ (Nelsen 2.2.5).
 
-\subsubsection{Ellpitical Copulae}\label{sec:ellpitical-copulas}
+\subsubsection{Ellipitical Copulae}\label{sec:ellpitical-copulae}
 Elliptical copulae are copulae of elliptical distributions.
 Gaussian copula is the copula associated with multivariate normal distribution.
 The Gaussian copula has a form
@@ -28,16 +30,16 @@ where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution with zero mea
 and $\Phi^{-1}$ is quantile function univariate standard normal distribution.
 The Gaussian copula density is
 \begin{align}
-    \bm{c}_\rho(u,v) &= \frac{\varphi_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
+    \bm{c}_\rho(u,v) &= \frac{\bm{\varphi}_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
                         {\varphi\{\Phi^{-1}(u)\} \cdot \varphi\{\Phi^{-1}(v)\}} \nonumber \\
                 &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left(
                    -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
                    \right),
     \end{align}
-where $\phi_{2,\rho}(\cdot)$ is the density of bivariate Normal distribution with zero mean,
+where $\bm{\varphi}_{2,\rho}(\cdot)$ is the density of bivariate Normal distribution with zero mean,
 unit variance,
 and correlation $\rho$,
-and, $\phi(\cdot)$ the density of standard normal distribution.\medskip
+and, $\varphi(\cdot)$ the density of standard normal distribution.\medskip
 
 The Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian Copula are
     \begin{align}
@@ -47,7 +49,7 @@ The Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian Copula ar
         \rho_S(\rho) = \frac{6}{\pi}\arcsin\frac{\rho}{2}
         \end{align}\medskip
 
-The $t$-copula is associated with multivariate t distribution.
+The $t$-copula is associated with multivariate $t$ distribution.
 The $t$-Copula takes a form
 \begin{align}
         \bm{C}(u,v) &= \bm{T}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\} \nonumber \\
@@ -59,21 +61,21 @@ The $t$-Copula takes a form
         1+\frac{s^2-2st\rho+t^2}{\nu}
         \right)^{-\frac{\nu+2}{2}} ds dt,
     \end{align}
-where $\bm{T}_{2, \rho, \nu}(\cdot, \cdot)$ denotes the cdf of bivariate t distribution with scale parameter $\rho$ and degree of free $\nu$,
-$T^{-1}_\nu(\cdot)$ is the quantile function of a standard t distribution with degree of freedom $\rho$.
+where $\bm{T}_{2, \rho, \nu}(\cdot, \cdot)$ denotes the cdf of bivariate $t$ distribution with scale parameter $\rho$ and degree of freedom $\nu$,
+$T^{-1}_\nu(\cdot)$ is the quantile function of a standard $t$ distribution with degree of freedom $\rho$.
 
 The copula density is
 \begin{align}
     \bm{c}(u,v) &= \frac{\bm{t}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\}}
     {t_\nu\{T^{-1}_\nu(u)\}\cdot t_\nu\{T^{-1}_\nu(v)\}},
     \end{align}
-where $\bm{t}_{2,\rho, \nu}$ is the density of bivariate t distribution,
-and $t_\nu$ the density of standard t distribution.\medskip
+where $\bm{t}_{2,\rho, \nu}$ is the density of bivariate $t$ distribution,
+and $t_\nu$ the density of standard $t$ distribution.\medskip
 
-Like all the other elliptical copula, t copula's Kendall's $\tau$ is same to that of Gaussian copula (Demarta and reference therein).
+Like all the other elliptical copula, $t$ copula's Kendall's $\tau$ is same to that of Gaussian copula (Demarta and reference therein).
 
 \subsubsection{Archimedean Copulae}\label{sec:archimedean-copula}
-The Archimedean copulae forms a large class of copulas with many convenient features.\medskip
+The Archimedean copulae forms a large class of copulae with many convenient features.\medskip
 
 In general, they take a form
 \begin{align}
@@ -135,7 +137,7 @@ The Clayton copula, by contrast to Gumbel copula,
 generates lower tail dependence in a form $\lambda^L = 2^{-\frac{1}{\theta}}$,
 but cannot generate upper tail dependence.\medskip
 
-The Clayton copula takes a form
+The Clayton copula takes the form
 \begin{align}
     \bm{C}_{\theta}(u,v) &= \left[
     \max\{u^{-\theta}+v^{-\theta}-1,0\}\right]^{-\frac{1}{\theta}},
@@ -143,51 +145,29 @@ The Clayton copula takes a form
 where $\theta \in (-\infty, \infty)$ is the dependency parameter.
 $\lim\limits_{\theta \to -\infty} \bm{C}_\theta = \bm{M}$, $\bm{C}_0 = \bm{\Pi}$, and $\lim\limits_{\theta \to \infty} \bm{C}_\theta = \bm{W}$.\medskip
 
-Its Kendall's $\tau$ is
+Kendall's $\tau$ to this copula dependency is 
 \begin{align}
     \tau_K(\theta) =\frac{\theta}{\theta+2}.
     \end{align}\medskip
 
     \natp{The Plackett copula is not an Archimedean copula, so it
       should be moved somwhere else.}
-    
-The Plackett copula has an expression
-\begin{align}
-    \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}
-                         - \frac{\sqrt{\{
-    1+(\theta-1)(u+v)\}^2 - 4uv\theta(\theta-1)}}{2(\theta-1)}
-    \end{align}
-\begin{align}
-    \rho_S(\theta) = \frac{\theta+1}{\theta-1} - \frac{2\theta \log \theta}{(\theta-1)^2}
-    \end{align}\medskip
 
-We include Placket copula in our analysis as it possesses a special property,
-the cross-product ratio is equal to the dependence parameter
-\begin{align}
-    &\phantom{=} \frac{\p(U \leq u, V \leq v) \cdot \p(U > u, V > v)}
-    {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\nonumber\\
-    &= \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\nonumber\\
-    &= \theta.
-    \end{align}\medskip
-That is, the dependence parameter is equal to the ratio between number of concordence pairs and number of discordence pairs of a bivariate random variable.
 \subsubsection{Mixture Copula}\label{sec:mixture-copula}
-Mixture copula is a linear combination of copulas.
-It allows us to model the dependence structure in a more flexible manner.
-
+Mixture copula is a linear combination of copulae. 
 For a 2-dimensional random variable $\bm{X}=(X_1,X_2)^\top$,
-its distribution can be written as linear combination $K$ copulas
+its distribution can be written as linear combination $K$ copulae
 \begin{align}
     \p(X_1 \leq x_1, X_2 \leq x_2) = \sum_{k=1}^K p^k \cdot \bm{C}^{(k)}\{F^{(k)}_{X_1}(x_1;\bm{\gamma}^{(k)}_1),
     F^{(k)}_{X_2}(x_2;\bm{\gamma}^{(k)}_2); \bm{\theta^{(k)}}\}
     \end{align}
 where $p^{(k)} \in [0,1]$ is the weight of each component,
 $\bm{\gamma}^{(k)}$ is the parameter of the marginal distribution in the $k^\text{th}$ component,
-and $\bm{\theta^{(k)}}$ is the dependence parameter of the $k^\text{th}$ component.
-We also restrict the weight so that $\sum_{k=1}^K p^{(k)}=1$.
-Analysis of mixture copula with higher dimension can be found in Vrac et. al. (2011).
+and $\bm{\theta^{(k)}}$ is the dependence parameter with the copula of the $k^\text{th}$ component.
+The weights add up to one $\sum_{k=1}^K p^{(k)}=1$. \medskip
 
-We deploy a simplified version of the above representation by assuming the maringals of $\bm{X}$ are not mixture.
-By Sklar's theorem we write
+We deploy a simplified version of the above representation by assuming the margins of $\bm{X}$ are not mixture.
+By Sklar's theorem one may write
 \begin{align}
     \bm{C}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{C}^{(k)}\{F^{-1}_{X_1}(u),
     F^{-1}_{X_2}(v); \bm{\theta^{(k)}}\}.
@@ -223,7 +203,7 @@ the Spearman's $\rho$ is
 
 \begin{example}
     Frechet class can be seen as an example of mixture copula.
-    It is a convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen2007}
+    It is a convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}
     \begin{align}
         \bm{C}_{\alpha, \beta}(u,v)
         = \alpha \bm{M}(u,v) +
@@ -263,5 +243,27 @@ One can consider the mixture copula as a handful tool for stress testing.
 Similar to this Gaussian mix Independent copula,
 t copula is also a two parameter copula allow us to model the noise,
 but its interpretation of parameters is not as intuitive as that of a mixture.
-The mixing variable $p$ is the proportion of a manageable (hedgable?) Gaussian copula,
+The mixing variable $p$ is the proportion of a manageable (hedgable) Gaussian copula,
 while the remaining proportion $1-p$ cannot be managed.
+
+\subsection{Other Copula}\label{subsec:other-copula}
+The Plackett copula has an expression
+\begin{align}
+    \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}
+                         - \frac{\sqrt{\{
+    1+(\theta-1)(u+v)\}^2 - 4uv\theta(\theta-1)}}{2(\theta-1)}
+    \end{align}
+\begin{align}
+    \rho_S(\theta) = \frac{\theta+1}{\theta-1} - \frac{2\theta \log \theta}{(\theta-1)^2}
+    \end{align}\medskip
+
+We include Placket copula in our analysis as it possesses a special property,
+the cross-product ratio is equal to the dependence parameter
+\begin{align}
+    &\phantom{=} \frac{\p(U \leq u, V \leq v) \cdot \p(U > u, V > v)}
+    {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\nonumber\\
+    &= \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\nonumber\\
+    &= \theta.
+    \end{align}\medskip
+
+That is, the dependence parameter is equal to the ratio between number of concordence pairs and number of discordence pairs of a bivariate random variable.

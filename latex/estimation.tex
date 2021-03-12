@@ -5,7 +5,7 @@
 
 \subsection{Simulated Method of Moments}\label{subsec:simulated-method-of-moments}
 This method is suggested by Oh and Patton (2013).
-In this setting, rank correlation e.g. Spearman's $\rho$ or Kendall's $\tau$,
+In our setting, rank correlation e.g. Spearman's $\rho$ or Kendall's $\tau$,
 and quantile dependence measures at different levels $\lambda_q$
 are calibrated against their empirical counterparts.\medskip
 
@@ -13,7 +13,7 @@ Spearman's rho, Kendall's tau, and quantile dependence of a pair $(X,Y)$
 with copula $C$ are defined as
 \begin{align}
   \rho_S &= 12 \int\int_{I^2} C_{\bm{\theta}}(u,v)\, \dd u\, \dd v-3\label{eq:rho_S}\\
-  \tau_K &= 4\operatorname{E}[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
+  \tau_K &= 4\operatorname{\mathsf{E}}[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
   \lambda_q &=
   \begin{cases}
     \p(F_X(X)\leq q| F_Y(Y)\leq q) = \displaystyle \frac{C_{\bm{\theta}}(q,q)}{q},

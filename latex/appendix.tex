@@ -10,13 +10,13 @@
    \begin{align}
    f_Z(z) &= \left| n_1^{-1} \right| \int_{[0,1]^{d-1}} \left[ \bm{c}_{X_1,...,X_d}
       \{F_{X_1} \circ S(z), u_2, ..., u_d \} \cdot
-      f_{X_1} \circ S(z) \right] du_2 ... du_d \\
+      f_{X_1} \circ S(z) \right] du_2 ... du_d \label{density} \\
       S(z) &= \frac{1}{n_1}\cdot z - \frac{n_2}{n_1} \cdot F^{-1}_{X_2}(u_2) - ... -  \frac{n_d}{n_1} \cdot F^{-1}_{X_d}(u_d)
       \end{align}
    \end{proposition}
 
 \begin{proof} \medskip
-   Rewrite $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ in matrix
+   Rewrite $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ in matrix form
    \begin{align}
       \begin{bmatrix}
       Y \\ X_2 \\ \vdots \\ X_d
@@ -36,7 +36,7 @@
       \end{bmatrix}.
       \end{align} \medskip
 
-   By transformation of variable
+   By transformation variables
    \begin{align}
       \bm{f}_{Z,X_2,...,X_d}(z, x_2, ...,x_d) &= \bm{f}_{X_1,...,X_d}\left( \bm{A}^{-1}
       \begin{bmatrix}
@@ -60,5 +60,5 @@
       \prod_{i=2}^d f_{X_i}(x_i)
       \end{align}
 
-   Result is obtained by integrating out $x_2, ... x_d$ by substitution $dx_i = \frac{1}{f_{X_i}(x_i)}du_i$.
+   The claim \ref{density} is obtained by integrating out $x_2, ... x_d$ by substituting $dx_i = \frac{1}{f_{X_i}(x_i)}du_i$.
    \end{proof}

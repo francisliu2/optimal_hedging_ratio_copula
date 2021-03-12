@@ -1,8 +1,8 @@
 \subsection{Spectral Risk Measures}\label{subsec:spectral-risk-measures}
-Following \citet{dowd2008spectral}, the spectral risk measures (SRM) of a hedged portfolio return $R^h$ has a form
+Tthe spectral risk measures (SRM) of a hedged portfolio return $R^h$ has a form
 
 \begin{align}
-	\rho_\phi(R^h) = - \int_0^1 \phi(p) F_{R^h}^{-1}(p)\dd p,
+	\rho_\phi(R^h) = - \int_0^1 \phi(p) F_{R^h}^{(-1)}(p)\dd p,
 	\end{align}
 
 where $p$ is the loss quantile and $\phi(p)$ is a user-defined weighting function defined over $[0,1]$. \medskip
@@ -18,12 +18,12 @@ Value-at-Risk (VaR) and Expected Shortfall (ES) fall in to the class of SRM.
 VaR at the $\alpha$-confidence level is
 
 \begin{align}
-	\text{VaR}_\alpha = - F_{R^h}^{-1}(1-\alpha)
+	\text{VaR}_\alpha = - F_{R^h}^{(-1)}(1-\alpha)
 	\end{align};
 ES at the $\alpha$-confidence level is \natp{\em [Please check, there
   should be a minus in front of the ES expression, just as with VaR.]}
 \begin{align}
-	\text{ES}_\alpha = \frac{1}{1-\alpha}\int_{-\infty}^{\alpha} F_{R^h}^{-1}(p) \dd p
+	\text{ES}_\alpha = -\frac{1}{1-\alpha}\int_{-\infty}^{\alpha} F_{R^h}^{(-1)}(p) \dd p
 	\end{align}.
 The VaR's $\phi(p)$ gives all its weight on the $\alpha$ quantile of $R^h$ and zero elsewhere, i.e. the weighting function is a Dirac delta function.
 The ES' $\phi(p)$ gives all tail quantiles the same weight of $\frac{1}{1-\alpha}$ and non-tail quantiles zero weight. \medskip

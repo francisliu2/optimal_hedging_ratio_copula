@@ -402,22 +402,22 @@
   \frametitle{Copula-based hedging}
   \begin{proposition}[\cite{Barbi2014}]
   \label{prop:dfrh}
-  Let $R^S$ and $R^F$ be two real-valued random variables with
+  Let $X$ and $Y$ be two real-valued random variables with
   corresponding 
-  absolutely continuous copula $C_{R^S, R^F}$ and
-  continuous marginals $F_{R^S}$ and $F_{R^F}$. Then, the distribution
-  of of $R^h$ is given by
+  absolutely continuous copula $C$ and
+  continuous marginals $F_X$ and $F_Y$. Then, the distribution
+  of of $Z=X - h Y$ is given by
   \begin{equation}
     \label{eq:3}
-    F_{R^h}(x) = 1- \int^1_0 D_1 C_{R^S, R^F}
-    \left\{ u, F_{R^F} \left\{ \frac{F^{-1}_{R^S}(u)-x}{h} \right\}
+    F_Z(x) = 1- \int^1_0 D_1 C
+    \left\{ u, F_Y \left\{ \frac{F^{(-1)}_X(u)-x}{h} \right\}
     \right\}\, \dd u.
   \end{equation}
 \end{proposition}
 \begin{itemize}
 \item Easy to show (e.g.\ \citet{McNeil2005}):
 \begin{equation*}
-  D_1 C_{X,Y}(F_X(x), F_Y(y)) = \frac{\partial}{\partial u} C(u,v) = \p(Y\leq y|X=x).
+  D_1 C(F_X(x), F_Y(y)) = \frac{\partial}{\partial u} C(u,v) = \p(Y\leq y|X=x).
 \end{equation*}
 \end{itemize}
 \end{frame}
@@ -426,12 +426,12 @@
   \frametitle{Risk measures}
   \begin{itemize}
     \addtolength{\itemsep}{8pt}
-  \item {\bf Variance}: $\text{Var}(R^h)$
+  \item {\bf Variance}: $\text{Var}(Z)$
   \item {\bf Value-at-risk (VaR)}: $\text{VaR}_\alpha = -
-    F_{R^h}^{(-1)}(1-\alpha)$  
+    F_Z^{(-1)}(1-\alpha)$  
   \item {\bf Expected Shortfall (ES)}: 
     $\displaystyle \text{ES}_\alpha =-
-    \frac{1}{1-\alpha}\int_{-\infty}^{\alpha} F_{R^h}^{(-1)}(p) \dd p$.
+    \frac{1}{1-\alpha}\int_{-\infty}^{\alpha} F_Z^{(-1)}(p) \dd p$.
   \end{itemize}
 \end{frame}
 
@@ -441,7 +441,7 @@
     \addtolength{\itemsep}{3pt}
 \item {\bf Spectral risk measures (SRM)} \citep{Acerbi2002,Cotter2006}:
     \begin{equation*}
-      \rho_\phi = -\int_0^1 \phi(p)\, F_{R^h}^{(-1)}(p)\, \dd p,
+      \rho_\phi = -\int_0^1 \phi(p)\, F_Z^{(-1)}(p)\, \dd p,
     \end{equation*}
     where $q_p$ is the $p$-quantile of the return distribution and
     $\phi(s)$, $s\in [0,1]$, is the so-called {\bf risk aversion
@@ -469,8 +469,8 @@
     $\lambda$ is an unknown positive constant, derived from exponential
   utility function: 
   \begin{equation*}
-    \rho_{\phi} = \int_0^1 \phi(p)\, F_{R^h}^{(-1)}(p)\, \dd p =
-    \frac{k}{1-\e^{-k}} \int_0^1 \e^{-k(1-p)}\, F_{R^h}^{(-1)}(p)\, \dd p. 
+    \rho_{\phi} = \int_0^1 \phi(p)\, F_Z^{(-1)}(p)\, \dd p =
+    \frac{k}{1-\e^{-k}} \int_0^1 \e^{-k(1-p)}\, F_Z^{(-1)}(p)\, \dd p. 
   \end{equation*}
 \end{itemize}
 \end{frame}
@@ -579,7 +579,7 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
 \end{frame}
 
 \begin{frame}
-  \frametitle{Spot and Future copula}
+  \frametitle{Spot and Future empirical copula}
   \begin{center}
     \includegraphics[scale=1]{../_pics/btc_future_copula_scatter.pdf}
   \end{center}

@@ -22,6 +22,7 @@
 %\usepackage{dcolumn} % also supporting tables (alignment in stargazer function)
  \graphicspath{{_pics/}}
 
+
 \usepackage{color}
 %\usepackage{graphicx,color}
 % Makrele helps to STRG+F through the PDF file and find all comments.
@@ -111,8 +112,7 @@
 
 \footlineon
 
-\setbeamertemplate{subsection in
-  toc}{% \inserttocsubsectionnumber.~
+\setbeamertemplate{subsection in gtoc}{% \inserttocsubsectionnumber.~
   \ \ \ \inserttocsubsection\\}
 
 \setcounter{tocdepth}{4}
@@ -307,7 +307,8 @@
     \begin{minipage}[t]{.45\linewidth}
       \begin{center}
         \includegraphics[scale=.125]{../_pics/SkewCorrelation.pdf}\\
-        \hfill{\tiny Source: skew.com, December 2019}
+        \hfill{\tin
+          y Source: skew.com, December 2019}
       \end{center}
     \end{minipage}
     \vspace*{-4\baselineskip}
@@ -389,13 +390,28 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[label=copulas]
   \frametitle{Examples of copulas}
   \hspace*{-.75cm}\includegraphics[scale=.65]{../_pics/copulas_scatterplots.pdf}
   \begin{itemize}
   \item All copulas are calibrated to a Spearman's Rho of 0.75.
   \end{itemize}
 \end{frame}
+
+\note{%
+  \begin{itemize}
+  \item Frank has no ``tail''
+  \item Mixture: df is linear combination of Gaussian and product
+    copulas
+  \item Factor NIG: Random variables are linear combination of joint
+    factor and idiosyncratic component (again NIG under certain
+    condition)
+  \item Plackett
+  \item Which ones are heavy-tailed? Student-$t$ (not: Gaussian, NIG
+    factor, Mixture)
+  \item Which ones have tail dependence? Student-$t$ (not: Gaussian)
+  \end{itemize}
+}
 
 
 \begin{frame}
@@ -546,6 +562,12 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
   \end{center}
 \end{frame}
 
+\note{%
+  \begin{itemize}
+  \item Lower panel can be more-or-less thought of as hedge with $h=1$
+  \end{itemize}
+}
+
 \begin{frame}
   \frametitle{Distribution}
   \begin{center}
@@ -553,7 +575,7 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
   \end{center}
   \begin{itemize}
   \item Student $t$ distribution: $\nu=7.95$
-  \item Tail / Generalised Pareto distribution: tail index $1/\xi=4.92$ 
+  \item Generalised Pareto distribution (EVT): tail index $1/\xi=4.92$ 
   \end{itemize}
 \end{frame}
 
@@ -588,6 +610,27 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
 \section{Results}
 
 \begin{frame}
+  \frametitle{Calibration}
+  \begin{itemize}
+  \item Calibration to eight copula models (see slide
+    \hyperlink{copulas}{\beamergotobutton{Copulas}}) via {\bf method
+      of moments}, see e.g.\ \citep{Genest1993,Oh2013}
+  \item Margins follow empirical distribution
+  \item Recalibration every 5 days with 300 data points
+  \end{itemize}
+\end{frame}
+
+\note{%
+  \begin{itemize}
+  \item Francis: Do we use MLE as well?
+  \item Interesting to note that Student-$t$ copula always calibrates
+    to 2, resp.\ 4 (boundary solution)
+  \item This is not the case if calibrating the data to a multivariate
+    Student $t$.
+  \end{itemize}
+  }
+
+\begin{frame}
   \frametitle{Hedge Effectiveness}
   \begin{itemize}
   \item Hedge effectiveness \citep{Ederington1979} captures percentage
@@ -606,13 +649,46 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
 \end{frame}
 
 \begin{frame}
-  \frametitle{P\&L}
+  \frametitle{P\&L (dynamic)}
   
 \end{frame}
 
 \begin{frame}
+  \frametitle{P\&L (static)}
+  \begin{center}
+    \includegraphics[scale=0.85]{../_pics/PL_static_out_tcop.pdf}    
+  \end{center}
+  \begin{itemize}
+  \item P\&L from static hedge, out-of-sample, 100 days
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{P\&L (static)}
+  \hspace*{-0.75cm}\includegraphics[scale=0.65]{../_pics/PL_static_out.pdf}
+  \begin{itemize}
+  \item P\&L from static hedge, out-of-sample, 100 days
+  \item From left to right: Variance, VaR 99\%, VaR 95\%, ES 99\%, ES
+    95\%, Spectral 10
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
   \frametitle{Optimal hedge parameters}
-  \end{frame}
+  \hspace*{-.75cm}\includegraphics[scale=.65]{../_pics/hParams.pdf}\\
+  \includegraphics[scale=.85]{../_pics/hParams_Legend.pdf}
+\end{frame}
+
+\note{%
+  \begin{itemize}
+  \item Because of 300 day burn-in period, the data show end-of 2019,
+    2020 and beginning of 2021
+  \item NIG and Gaussian Mix, VaR 99\% and ES 99\%, show jump at
+    beginning of Covid-19 crisis
+  \item Frank copula aside, they have the lowest hedge parameters
+    pre-Covid 19
+  \end{itemize}
+}
 
 \section*{}
 

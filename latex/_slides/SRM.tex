@@ -406,9 +406,12 @@
   \item Factor NIG: Random variables are linear combination of joint
     factor and idiosyncratic component (again NIG under certain
     condition)
-  \item Plackett
-  \item Which ones have tail dependence? Student-$t$, Gumbel (one tail
-    only) (not: Gaussian, NIG factor, mixture)
+  \item Plackett: bivariate only; derived from the condition on a
+    constant odds ratio for all values that bivariate continuous df
+    can take.
+  \item Which ones have tail dependence? Student-$t$, Clayton (one
+    tail only), Gumbel (one tail only) (not: Gaussian, NIG factor,
+    mixture, Plackett, Frank) 
   \end{itemize}
 }
 
@@ -520,57 +523,77 @@ $h$.
   \item Future: CME BTC Future
   \item Sources: Bloomberg, coingecko
   \end{itemize}
-\end{frame}
+% \end{frame}
 
-\begin{frame}
-  \frametitle{Summary statistics}
-  {\small%
-\begin{center}
+% \begin{frame}
+%   \frametitle{Summary statistics}
+%   {\small%
+% \begin{center}
 
-\begin{tabular}{lr@{.}lr@{.}lr@{.}lr@{.}l}
-Variable & \multicolumn{2}{c}{Mean}
- & \multicolumn{2}{c}{Median}
-  & \multicolumn{2}{c}{Minimum}
-   & \multicolumn{2}{c}{Maximum} \\[1ex]
-BTC spot& 0&0023782 & 0&0013855 & $-$0&28846 & 0&23522\\
-Future & 0&0023970 & 0&0012540 & $-$0&26773 & 0&22251\\[10pt]
+% \begin{tabular}{lr@{.}lr@{.}lr@{.}lr@{.}l}
+% Variable & \multicolumn{2}{c}{Mean}
+%  & \multicolumn{2}{c}{Median}
+%   & \multicolumn{2}{c}{Minimum}
+%    & \multicolumn{2}{c}{Maximum} \\[1ex]
+% BTC spot& 0&0023782 & 0&0013855 & $-$0&28846 & 0&23522\\
+% Future & 0&0023970 & 0&0012540 & $-$0&26773 & 0&22251\\[10pt]
 
-Variable &  \multicolumn{2}{c}{Std.\ Dev.}
- & \multicolumn{2}{c}{C.V.}
-  & \multicolumn{2}{c}{Skewness}
-   & \multicolumn{2}{c}{Ex.\ kurtosis} \\[1ex]
-BTC spot & 0&043133 & 18&137 & $-$0&27245 & 5&8658\\
-Future & 0&046288 & 19&311 & $-$0&27321 & 5&4709\\[10pt]
+% Variable &  \multicolumn{2}{c}{Std.\ Dev.}
+%  & \multicolumn{2}{c}{C.V.}
+%   & \multicolumn{2}{c}{Skewness}
+%    & \multicolumn{2}{c}{Ex.\ kurtosis} \\[1ex]
+% BTC spot & 0&043133 & 18&137 & $-$0&27245 & 5&8658\\
+% Future & 0&046288 & 19&311 & $-$0&27321 & 5&4709\\[10pt]
 
-Variable &  \multicolumn{2}{c}{5\% perc.}
- & \multicolumn{2}{c}{95\% perc.}
-  & \multicolumn{2}{c}{IQ Range}
-   & \multicolumn{2}{c}{Missing obs.} \\[1ex]
-BTC spot & $-$0&065328 & 0&072665 & 0&033819 & \multicolumn{2}{c}{0}\\
-Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
-\end{tabular}
-\end{center}
-}
-\end{frame}
+% Variable &  \multicolumn{2}{c}{5\% perc.}
+%  & \multicolumn{2}{c}{95\% perc.}
+%   & \multicolumn{2}{c}{IQ Range}
+%    & \multicolumn{2}{c}{Missing obs.} \\[1ex]
+% BTC spot & $-$0&065328 & 0&072665 & 0&033819 & \multicolumn{2}{c}{0}\\
+% Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
+% \end{tabular}
+% \end{center}
+% }
+% \end{frame}
 
-\begin{frame}
-  \frametitle{Time series}
+% \begin{frame}
+%   \frametitle{Time series}
   \begin{center}
     \includegraphics[scale=1]{../_pics/btc_level_series.pdf}\\[10pt]
-    \includegraphics[scale=1]{../_pics/btc_series.pdf}\\
-%    \includegraphics[scale=1]{../_pics/btc_vs_future_series.pdf}    
   \end{center}
+  % \begin{minipage}[t]{.475\linewidth}
+  %   \includegraphics[scale=.6]{../_pics/btc_hist.pdf}
+  % \end{minipage}
+  % \begin{minipage}[t]{.5\linewidth}
+  %   \begin{itemize}
+  %   \item Student $t$ distribution: $\nu=7.95$
+  %   \item Generalised Pareto distribution (EVT): tail index
+  %     $1/\xi=4.92$
+  %   \end{itemize}
+  % \end{minipage}
+%     \includegraphics[scale=1]{../_pics/btc_series.pdf}\\
+% %     \includegraphics[scale=1]{../_pics/btc_vs_future_series.pdf}
 \end{frame}
+
 
 \begin{frame}
   \frametitle{Time series}
   \begin{center}
+        \includegraphics[scale=1]{../_pics/btc_series.pdf}\\[10pt]
     \includegraphics[scale=1]{../_pics/btc_vs_future_series.pdf}    
   \end{center}
   \begin{itemize}
   \item I.e., hedge ratio of 1.
   \end{itemize}
 \end{frame}
+
+
+% \begin{frame}
+%   \frametitle{QQ-plot}
+%   \begin{center}
+%     \includegraphics[scale=1]{../_pics/btc_qq.pdf}
+%   \end{center}
+% \end{frame}
 
 
 \begin{frame}
@@ -584,12 +607,6 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
   \end{itemize}
 \end{frame}
 
-% \begin{frame}
-%   \frametitle{QQ-plot}
-%   \begin{center}
-%     \includegraphics[scale=1]{../_pics/btc_qq.pdf}
-%   \end{center}
-% \end{frame}
 
 \begin{frame}
   \frametitle{Spot and Future}
@@ -649,8 +666,9 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
     \begin{equation*}
       1- \frac{\rho(R^h)}{\rho(R^S)}.
     \end{equation*}
-  \item Optimisation of $h^\ast$ every 100 days based on
-    300-day-window. 
+  \item Optimisation of $h^\ast$ every 5 days based on
+    300-day-window.
+  \item Out-of-sample effectiveness calculated on 100 days.
   \end{itemize}
 \end{frame}
 

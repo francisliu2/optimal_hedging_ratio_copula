@@ -177,8 +177,8 @@
   \includegraphics[width=4cm]{HWR_Logo_RGB.pdf}
   \hspace*{1cm}
   % \includegraphics[width=2cm]{_pics/IRTG.pdf}
-  \hspace*{2cm}
-  \hspace*{2.25cm}
+  \hspace*{3.55cm}
+%  \hspace*{2.25cm}
     \includegraphics[width=2cm]{HU.png}
 }
 \logo{
@@ -307,8 +307,7 @@
     \begin{minipage}[t]{.45\linewidth}
       \begin{center}
         \includegraphics[scale=.125]{../_pics/SkewCorrelation.pdf}\\
-        \hfill{\tin
-          y Source: skew.com, December 2019}
+        \hfill{\tiny Source: skew.com, December 2019}
       \end{center}
     \end{minipage}
     \vspace*{-4\baselineskip}
@@ -393,6 +392,7 @@
 \begin{frame}[label=copulas]
   \frametitle{Examples of copulas}
   \hspace*{-.75cm}\includegraphics[scale=.65]{../_pics/copulas_scatterplots.pdf}
+  \vspace*{-\baselineskip}
   \begin{itemize}
   \item All copulas are calibrated to a Spearman's Rho of 0.75.
   \end{itemize}
@@ -407,9 +407,8 @@
     factor and idiosyncratic component (again NIG under certain
     condition)
   \item Plackett
-  \item Which ones are heavy-tailed? Student-$t$ (not: Gaussian, NIG
-    factor, Mixture)
-  \item Which ones have tail dependence? Student-$t$ (not: Gaussian)
+  \item Which ones have tail dependence? Student-$t$, Gumbel (one tail
+    only) (not: Gaussian, NIG factor, mixture)
   \end{itemize}
 }
 
@@ -557,16 +556,19 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
 \begin{frame}
   \frametitle{Time series}
   \begin{center}
+    \includegraphics[scale=1]{../_pics/btc_level_series.pdf}\\[10pt]
     \includegraphics[scale=1]{../_pics/btc_series.pdf}\\
+%    \includegraphics[scale=1]{../_pics/btc_vs_future_series.pdf}    
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Time series}
+  \begin{center}
     \includegraphics[scale=1]{../_pics/btc_vs_future_series.pdf}    
   \end{center}
 \end{frame}
 
-\note{%
-  \begin{itemize}
-  \item Lower panel can be more-or-less thought of as hedge with $h=1$
-  \end{itemize}
-}
 
 \begin{frame}
   \frametitle{Distribution}
@@ -579,12 +581,12 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{QQ-plot}
-  \begin{center}
-    \includegraphics[scale=1]{../_pics/btc_qq.pdf}
-  \end{center}
-\end{frame}
+% \begin{frame}
+%   \frametitle{QQ-plot}
+%   \begin{center}
+%     \includegraphics[scale=1]{../_pics/btc_qq.pdf}
+%   \end{center}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Spot and Future}
@@ -596,14 +598,14 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
 \begin{frame}
   \frametitle{Spot and Future}
   \begin{center}
-    \includegraphics[scale=1]{../_pics/btc_future_scatter.pdf}
+    \includegraphics[scale=.8]{../_pics/btc_future_scatter.pdf}
   \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{Spot and Future empirical copula}
   \begin{center}
-    \includegraphics[scale=1]{../_pics/btc_future_copula_scatter.pdf}
+    \includegraphics[scale=.8]{../_pics/btc_future_copula_scatter.pdf}
   \end{center}
 \end{frame}
 
@@ -615,6 +617,7 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
   \item Calibration to eight copula models (see slide
     \hyperlink{copulas}{\beamergotobutton{Copulas}}) via {\bf method
       of moments}, see e.g.\ \citep{Genest1993,Oh2013}
+  \item {\bf add detail here}
   \item Margins follow empirical distribution
   \item Recalibration every 5 days with 300 data points
   \end{itemize}
@@ -622,7 +625,6 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
 
 \note{%
   \begin{itemize}
-  \item Francis: Do we use MLE as well?
   \item Interesting to note that Student-$t$ copula always calibrates
     to 2, resp.\ 4 (boundary solution)
   \item This is not the case if calibrating the data to a multivariate
@@ -638,7 +640,7 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
     \begin{equation*}
       1- \frac{\rho(R^h)}{\rho(R^S)}.
     \end{equation*}
-  \item Optimisation of $h^\ast$ every 30 days based on
+  \item Optimisation of $h^\ast$ every 100 days based on
     300-day-window. 
   \end{itemize}
 \end{frame}
@@ -648,9 +650,62 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
   
 \end{frame}
 
+% \begin{frame}
+%   \frametitle{P\&L (dynamic)}
+%     \begin{center}
+%     \includegraphics[scale=0.85]{../_pics/PL_dynamic_out_tcop.pdf}    
+%   \end{center}
+%   \begin{itemize}
+%   \item Daily return from hedge, out-of-sample
+%   \item Recalibration every 5 days
+%   \end{itemize}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{P\&L (dynamic)}
+%   \hspace*{-0.75cm}\includegraphics[scale=0.65]{../_pics/PL_dynamic_out.pdf}
+%   \begin{itemize}
+%   \item Daily return from hedge, out-of-sample
+%   \item Recalibration every 5 days
+%   \item From left to right: Variance, VaR 99\%, VaR 95\%, ES 99\%, ES
+%     95\%, Spectral 10
+%   \end{itemize}
+% \end{frame}
+
 \begin{frame}
   \frametitle{P\&L (dynamic)}
-  
+  \begin{center}
+    \includegraphics[scale=1]{../_pics/BTCspot_with_extremes.pdf}\\
+    \includegraphics[scale=.3325]{../_pics/BTCfuture_with_extremes_annotated.pdf-crop.pdf}
+  \end{center}
+  % \begin{itemize}
+  % \item Daily return from hedge, out-of-sample
+  % \item Recalibration every 5 days
+  % \item From left to right: Variance, VaR 99\%, VaR 95\%, ES 99\%, ES
+  %   95\%, Spectral 10
+  % \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{P\&L (dynamic)}
+  \begin{center}
+    \begin{overprint}
+      \includegraphics<1>[scale=.8]{../_pics/PL_dyn_series_Gaussian.pdf}
+      \includegraphics<2>[scale=.8]{../_pics/PL_dyn_series_t_Copula.pdf}
+      \includegraphics<3>[scale=.8]{../_pics/PL_dyn_series_Clayton.pdf}
+      \includegraphics<4>[scale=.8]{../_pics/PL_dyn_series_Frank.pdf}
+      \includegraphics<5>[scale=.8]{../_pics/PL_dyn_series_Gumbel.pdf}
+      \includegraphics<6>[scale=.8]{../_pics/PL_dyn_series_Plackett.pdf}
+      \includegraphics<7>[scale=.8]{../_pics/PL_dyn_series_NIG Factor.pdf}
+      \includegraphics<8>[scale=.8]{../_pics/PL_dyn_series_Gauss Mix Indep.pdf}
+    \end{overprint}
+  \end{center}
+  \vspace*{-\baselineskip}
+  \begin{itemize}
+  \item Daily return from hedge, out-of-sample
+  \item Recalibration every 5 days
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -659,7 +714,7 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
     \includegraphics[scale=0.85]{../_pics/PL_static_out_tcop.pdf}    
   \end{center}
   \begin{itemize}
-  \item P\&L from static hedge, out-of-sample, 100 days
+  \item P\&L from static hedge, out-of-sample, 100 days, rolling every 5 days
   \end{itemize}
 \end{frame}
 
@@ -667,11 +722,13 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
   \frametitle{P\&L (static)}
   \hspace*{-0.75cm}\includegraphics[scale=0.65]{../_pics/PL_static_out.pdf}
   \begin{itemize}
-  \item P\&L from static hedge, out-of-sample, 100 days
+  \item P\&L from static hedge, out-of-sample, rolling every
+    5 days
   \item From left to right: Variance, VaR 99\%, VaR 95\%, ES 99\%, ES
     95\%, Spectral 10
   \end{itemize}
 \end{frame}
+
 
 \begin{frame}
   \frametitle{Optimal hedge parameters}

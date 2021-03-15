@@ -7,6 +7,7 @@ import numpy as np
 import seaborn as sns
 from statsmodels.distributions.empirical_distribution import ECDF
 import random
+np.random.seed(0)
 
 def K_Uniform(u):
     u = np.abs(u)

@@ -567,6 +567,9 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
   \begin{center}
     \includegraphics[scale=1]{../_pics/btc_vs_future_series.pdf}    
   \end{center}
+  \begin{itemize}
+  \item I.e., hedge ratio of 1.
+  \end{itemize}
 \end{frame}
 
 
@@ -614,10 +617,16 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
 \begin{frame}
   \frametitle{Calibration}
   \begin{itemize}
-  \item Calibration to eight copula models (see slide
+  \item Calibration of eight copula models (see slide
     \hyperlink{copulas}{\beamergotobutton{Copulas}}) via {\bf method
       of moments}, see e.g.\ \citep{Genest1993,Oh2013}
-  \item {\bf add detail here}
+  \item ``Moments'':
+    \begin{itemize}
+    \item Spearman's Rho
+    \item Quantile dependence at $0.05$, $0.1$, $0.9$,
+      $0.95$ quantiles
+    \end{itemize}
+
   \item Margins follow empirical distribution
   \item Recalibration every 5 days with 300 data points
   \end{itemize}
@@ -647,7 +656,17 @@ Future & $-$0&066085 & 0&077146 & 0&037142 & \multicolumn{2}{c}{0}\\
 
 \begin{frame}
   \frametitle{Hedge effectiveness}
-  
+  \begin{center}
+    \hspace*{-2cm}
+    \begin{overprint}
+      \includegraphics<1>[scale=.45]{../_pics/hedging_effectiveness_100days_with_v3_OHR_with_naive/Variance_100days_with_v3_OHR_with_naive.pdf}
+      \includegraphics<2>[scale=.45]{../_pics/hedging_effectiveness_100days_with_v3_OHR_with_naive/VaR_99_100days_with_v3_OHR_with_naive.pdf}
+      \includegraphics<3>[scale=.45]{../_pics/hedging_effectiveness_100days_with_v3_OHR_with_naive/VaR_95_100days_with_v3_OHR_with_naive.pdf}
+      \includegraphics<4>[scale=.45]{../_pics/hedging_effectiveness_100days_with_v3_OHR_with_naive/ES_99_100days_with_v3_OHR_with_naive.pdf}
+      \includegraphics<5>[scale=.45]{../_pics/hedging_effectiveness_100days_with_v3_OHR_with_naive/ES_95_100days_with_v3_OHR_with_naive.pdf}
+      \includegraphics<6>[scale=.45]{../_pics/hedging_effectiveness_100days_with_v3_OHR_with_naive/ERM_k=10_100days_with_v3_OHR_with_naive.pdf}
+    \end{overprint}
+  \end{center}
 \end{frame}
 
 % \begin{frame}

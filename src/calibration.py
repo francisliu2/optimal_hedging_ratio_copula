@@ -4,6 +4,8 @@ from toolbox import *
 import os
 import json
 import argparse
+np.random.seed(0)
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--config", help="input config json file path")
 args = parser.parse_args()
@@ -98,7 +100,7 @@ paras_results_pd.index.name = None
 
 l_arr = []
 date_range_arr = []
-for i, file in enumerate(ls):
+for i, file in enumerate(list(paras_results_pd.columns)):
 	train = pd.read_csv(data_path + 'train/' + file)
 	date_range = train.Date.iloc[-1] + ' to ' + train.Date.iloc[0]
 	date_range_arr.append(date_range)

@@ -328,6 +328,7 @@ def wrapper(rs, rf, h, risk_measure):
     return risk_measure(rh)
 
 def optimize_h(C, k_arr, q_arr_ES, q_arr_VaR):
+    np.random.seed(0)
     sample = C.sample(1000000)
     rs = sample[:,0]
     rf = sample[:,1]

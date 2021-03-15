@@ -12,6 +12,7 @@ import numpy as np
 import seaborn as sns
 from statsmodels.distributions.empirical_distribution import ECDF
 import os
+np.random.seed(0)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--config", help="input config json file path")
@@ -43,8 +44,9 @@ elif calibration_method == 'MM':
     result_path = "../results/"+data_name+"/MM/"
 
 # Get List of csv files
-ls = os.listdir(data_path + 'train/')
-ls = [l for l in ls if l.endswith('.csv')]
+# ls = os.listdir(data_path + 'train/')
+# ls = [l for l in ls if l.endswith('.csv')]
+ls = list(paras.columns)
 
 # read OHR
 OHR = pd.read_hdf(result_path+"best_h.h5")

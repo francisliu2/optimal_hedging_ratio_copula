@@ -2,7 +2,7 @@
 \subsection{Copulae}\label{subsec:copulae}
 We test different copulae for their ability to model crypto-currency data,
 they include Gaussian-, $t$-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
-An overview of copulae can be found in \citet{hardle2008applied}.
+An overview of copulae can be found in \citet{hardle2010copulis}.
 Since the hedging exercise concerns only portfolii with two assets, we only present the bivariate version of copulae.
 For further detail, we refer readers to \citet{joe1997multivariate} and \citet{Nelsen1999}.
 %Copula is a function represents the multivariate structure of random variables.
@@ -14,9 +14,9 @@ For further detail, we refer readers to \citet{joe1997multivariate} and \citet{N
 %The inequality $\bm{W}(u,v) \leq \bm{C}(u,v) \leq \bm{M}(u,v)$ holds for every copula $\bm{C}$ ad every $(u,v) \in \mathbb{I}^2$ (Nelsen 2.2.5).
 
 \subsubsection{Ellipitical Copulae}\label{sec:ellpitical-copulae}
-Elliptical copulae are copulae of elliptical distributions.
-Gaussian copula is the copula associated with multivariate normal distribution.
-The Gaussian copula has a form
+Elliptical copulae are depednece structure associated with elliptical distributions.
+The Gaussian copula is associated with multivariate normal distribution.
+The bivariate Gaussian copula is:
     \begin{align}
         \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\} \nonumber \\
                     &= \int_{-\infty}^{\Phi^{-1}(u)}
@@ -72,11 +72,10 @@ The copula density is
 where $\bm{t}_{2,\rho, \nu}$ is the density of bivariate $t$ distribution,
 and $t_\nu$ the density of standard $t$ distribution.\medskip
 
-Like all the other elliptical copula, $t$ copula's Kendall's $\tau$ is same to that of Gaussian copula (Demarta and reference therein).
+Like all the other elliptical copula, $t$ copula's Kendall's $\tau$ is identical to that of Gaussian copula (Demarta and reference therein).
 
 \subsubsection{Archimedean Copulae}\label{sec:archimedean-copula}
-The Archimedean copulae forms a large class of copulae with many convenient features.\medskip
-
+The Archimedean copulae forms a large class of copulae with many convenient features.
 In general, they take a form
 \begin{align}
     \bm{C}(u,v)= \psi^{-1}\{\psi(u), \psi(v)\},

@@ -1,4 +1,4 @@
-\section{Optimal hedge ratio}
+\section{Optimal hedge ratio $h^*$}
 \label{sec:optimal-hedge-ratio}
 
 Consider the problem of an optimal
@@ -8,9 +8,9 @@ The hedged portfolio is $Z = X - h Y$.
 It involves returns of two assets $X$ and $Y$.
 This is the situation where we long one unit of asset $X$ and short $h$ unit of asset $Y$.
 $h$ is called the hedge ratio.
-We denote risk measure of the returns of the hedged portfolio $Z$ as $\rho(Z)$. \medskip
+We denote the risk measure of the returns of the hedged portfolio $Z$ as $\rho(Z)$. \medskip
 
-Optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio. \medskip
+The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ . \medskip
 
 The distribution function of $Z$ can be expressed in terms of the
 copula and the marginal distributions as Proposition \ref{prop:dfrh}
@@ -18,7 +18,7 @@ result shows (this is a corrected version of Corollary 2.1 of
 \citep{barbi2014copula}). For practical applications, it is numerically
 faster and more stable to use additional information about the
 specific copula and marginal distributions. We therefore derive
-semi-analytic formulas for a number of special cases, such as the
+semi-analytic formulae for a number of special cases, such as the
 Gaussian-, Student $t$-, normal inverse Gaussian (NIG) and Archimedean
 copulas in Section \ref{subsec:copulae}.
 
@@ -40,23 +40,10 @@ copulas in Section \ref{subsec:copulae}.
     \label{eq:3}
     F_{Z}(z) = 1- \int^1_0 D_1 C_{X, Y}
     \left[ u, F_{Y} \left\{ \frac{F^{(-1)}_{X}(u)-z}{h} \right\}
-    \right]\, \dd u.
+    \right]\, d u.
   \end{equation}
 \end{proposition}
-Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
-which is easily shown to fulfil, see e.g.\ Equation (5.15) of
-\citep{McNeil2005}:\footnote{%
-  Let $F_X(x)=u$, $F_Y(y)=v$. Then, formally,
-  \begin{align*}
-    \frac{\partial}{\partial F_X(x)} C\{F_X(x), F_Y(y))\}%
-    &= \frac{\partial}{\partial F_X(x)} \p\{U\leq F_X(x),
-      V\leq F_Y(y)\} %
-      = \p\{U\in \dd F_X(x), V\leq F_Y(y)\}\\ %
-    &= \p(V\leq F_Y(y)| U = F_X(x))\cdot \p(U \in \dd
-      F_X(x)) %
-      = \p(Y\leq y|X=x)\cdot \p(U\in \dd u)\\ %
-    &= \p(Y\leq y|X=x).
-  \end{align*}}
+Here $F^{(-1)}$ denotes the inverse of $F$, i.e. the quantile function.
 
 \begin{equation}
   \label{eq:1}
@@ -66,17 +53,30 @@ which is easily shown to fulfil, see e.g.\ Equation (5.15) of
   Using the identity (\ref{eq:1}) gives
   \begin{align*}
     F_{Z}(z) &= \p(X - h Y\leq z) %
-                 = \operatorname{E}\left\{\p\left(Y\geq \frac{X-z}{h}\Big|
+                 = \mbox{\sf E}\left\{\p\left(Y\geq \frac{X-z}{h}\Big|
                  X\right)\right\}\\[10pt]
-               &= 1-\operatorname{E}\left\{\p\left(Y\leq \frac{X-z}{h}\Big|
+               &= 1-\mbox{\sf E}\left\{\p\left(Y\leq \frac{X-z}{h}\Big|
                  X\right)\right\}% \\[10pt]
-               = 1- \int_0^1 D_1 C_{X, Y}\left\{u,
-                 F_{Y}\left(\frac{F^{(-1)}_{X}(u) -
-                 z}{h}\right)\right\}\, \dd u.
+               = 1- \int_0^1 D_1 C_{X, Y}\left[u,
+                 F_{Y}\left\{\frac{F^{(-1)}_{X}(u) -
+                 z}{h}\right\}\right]\, d u.
+  \end{align*}
+ The relationship $D_1 C(u,v)=\p(Y\leq y|X=x)$ is easily shown to fulfil. See e.g.\ equation (5.15)
+from \citet{McNeil2005}:
+  Let $F_X(x)=u$, $F_Y(y)=v$. Then, formally,
+  \begin{align*}
+    \frac{\partial}{\partial F_X(x)} C\{F_X(x), F_Y(y)\}%
+    &= \frac{\partial}{\partial F_X(x)} \p\{U\leq F_X(x),
+      V\leq F_Y(y)\} %
+      = \p\{U\in d F_X(x), V\leq F_Y(y)\}\\ %
+    &= \p(V\leq F_Y(y)| U = F_X(x))\cdot \p(U \in d
+      F_X(x)) %
+      = \p(Y\leq y|X=x)\cdot \p(U\in d u)\\ %
+    &= \p(Y\leq y|X=x).
   \end{align*}
 \end{proof}\medskip
 
-In addition to \cite{barbi2014copula}) we propose a more handy expression for the density of $Z$
+In addition to~\cite{barbi2014copula} we propose a more handy expression for the density of $Z$
 
 \begin{prop} Given the formulation of the above portfolio, the density of $Z$ can be written as
   \begin{align}
@@ -154,7 +154,7 @@ In this work, we consider two portfolii: $R^h = R^{\text{BTC}} - h R^{\text{futu
 %    \label{eq:3}
 %    F_{Z}(x) = 1- \int^1_0 D_1 C_{X, Y}
 %    \left( u, F_{Y} \left( \frac{F^{(-1)}_{X}(u)-x}{h} \right)
-%    \right)\, \dd u.
+%    \right)\, d u.
 %  \end{equation}
 %\end{proposition}\medskip
 %Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
@@ -165,10 +165,10 @@ In this work, we consider two portfolii: $R^h = R^{\text{BTC}} - h R^{\text{futu
 %    \frac{\partial}{\partial F_X(x)} C(F_X(x), F_Y(y)) %
 %    &= \frac{\partial}{\partial F_X(x)} \p(U\leq F_X(x),
 %      V\leq F_Y(y)) %
-%      = \p(U\in \dd F_X(x), V\leq F_Y(y))\\ %
-%    &= \p(V\leq F_Y(y)| U = F_X(x))\cdot \p(U \in \dd
+%      = \p(U\in d F_X(x), V\leq F_Y(y))\\ %
+%    &= \p(V\leq F_Y(y)| U = F_X(x))\cdot \p(U \in d
 %      F_X(x)) %
-%      = \p(Y\leq y|X=x)\cdot \p(U\in \dd u)\\ %
+%      = \p(Y\leq y|X=x)\cdot \p(U\in d u)\\ %
 %    &= \p(Y\leq y|X=x).
 %  \end{align*}}
 %\begin{equation}
@@ -185,7 +185,7 @@ In this work, we consider two portfolii: $R^h = R^{\text{BTC}} - h R^{\text{futu
 %                 X\right)\right]% \\[10pt]
 %               = 1- \int_0^1 D_1 C_{X, Y}\left(u,
 %                 F_{Y}\left(\frac{F^{(-1)}_{X}(u) -
-%                 x}{h}\right)\right)\, \dd u.
+%                 x}{h}\right)\right)\, d u.
 %  \end{align*}
 %\end{proof}\medskip
 %

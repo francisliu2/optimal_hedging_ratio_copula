@@ -37,8 +37,8 @@ The empirical counterparts are
                     {1-q}, &\text { if } q\in (0.5,1).
                   \end{cases},
 \end{align*}
-where $\hat{F}(x) := \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
-$\hat{C}(u,v) := \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$.\medskip
+where $\hat{F}(x) \overset{\mathrm{def}}{=} \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
+$\hat{C}(u,v) \overset{\mathrm{def}}{=}  \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$.\medskip
 
 We denote $\tilde{\bm{m}}(\bm{\theta})$ be a $m$-dimensional vector of dependence measures according the the
 dependence parameters $\bm{\theta}$,and  $\hat{\bm{m}}$ be the corresponding empirical counterpart.
@@ -49,14 +49,14 @@ The difference between dependence measures and their counterpart is denoted by
 
 The SMM estimator is
 \begin{align*}
-    \hat{\bm{\theta}} = \argmin_{\bm{\theta}\in \bm{\Theta}} \bm{g}(\bm{\theta})^\intercal
+    \hat{\bm{\theta}} = \argmin_{\bm{\theta}\in \bm{\Theta}} \bm{g}(\bm{\theta})^\top
     \hat{\bm{W}}
      \bm{g}(\bm{\theta}),
 \end{align*}
 where $\hat{W}$ is some positive definite weigh matrix.\medskip
 
 In this work, we use $\tilde{\bm{m}}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \lambda_{0.1},
-\lambda_{0.9}, \lambda_{0.95})^\intercal$
+\lambda_{0.9}, \lambda_{0.95})^\top$
 for calibration of Bitcoin price and CME Bitcoin future.
 
 \subsection{Maximum Likelihood Estimation}\label{subsec:maximum-likelihood-estimation}

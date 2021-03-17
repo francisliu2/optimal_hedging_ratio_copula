@@ -70,6 +70,7 @@
 		Meng-Jou Lu
         \thanks{
              Department of Finance, Asia University, 500, Lioufeng Rd., Wufeng, Taichung 41354, Taiwan
+             Department of Finance, Asia University, 500, Lioufeng Rd., Wufeng, Taichung 41354, Taiwan
      E-mail: \texttt{mangrou@gmail.com}.}
 
 		 \and
@@ -113,13 +114,14 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-\footnotesize{ We investigate different methods of hedging cryptocurrencies with Bitcoin futures.
+\footnotesize{
 The introduction of derivatives on Bitcoin, in particular the launch of futures contracts on CME in December 2017 and introduction of cryptocurrency index (CRIX) \citep{trimborn2018crix},
-allows for hedging exposures on Bitcoin and cryptocurrencies in general.
+enables investors to hedge risk exposures of Bitcoin by futures or cryptocurrency index.
+We investigate methods of finding the optimal hedge ratio $h^*$ under different dependence structures modeled by copulae and optimality definition described by a range of risk measures.
 Because of volatility swings and jumps in Bitcoin prices, the traditional variance-based approach to obtain the hedge ratios is infeasible.
-The approach is therefore generalised  to various risk measures, such as value-at-risk, expected shortfall and spectral risk measures,
+The approach is therefore generalised  to various risk measures, such as Value-at-Risk, Expected Shortfall and Spectral Risk Measures,
 and to different copulae for capturing the dependency between spot and future returns, such as the Gaussian, Student-$t$,
-NIG and Archimedean copulas. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin and the CRIX index,
+NIG and Archimedean copulae. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin and the CRIX,
 a cryptocurrency index.\\
 
 \noindent {\bf JEL classification:}  \\
@@ -150,36 +152,35 @@ Cryptocurrencies (CCs) are a growing asset class.
 Many more CCs are now available on the market since the first cryptocurrency Bitcoin (BTC) was introduced by \citet{nakamoto2019bitcoin}.
 In response to the rapid development of the cryptocurrency market, CRIX \citep{trimborn2018crix} is developed to represent the whole
 market by an index aggregating the price of important coins in the market.
-In Dec 2017, the CME group launched its new bitcoin future contract.
+In Dec 2017, the CME group launched its new Bitcoin future contract.
 While more and more investors (individuals and institution) are adding CCs and their derivatives into their portfolii,
 we see the need to understand the downside risk and find a suitable way to hedge.
 We are particularly interested in resisting extreme risks and improve their profits.
 In this paper, we investigate the performance of different copulae and risk measures in hedging Bitcoin and CRIX with Bitcoin futures.
-Copula provides the flexibility to model multivariate random variable separately by its margins and dependence structure.
+Copulae provide flexibility to model multivariate random variable separately by its margins and dependence structure.
 Different risk measures accounts for investors' risk attitude.
 Vast literature discussed the relationship between risk measures and investor's risk attitude, we refer readers to
 \citet{artzner1999coherent} for an axiomatic, economic reasoning approach of risk measure construction;
-\citet{embrechts2002correlation} for reasoning of using expected shortfall and spectral risk in addition to VaR;
+\citet{embrechts2002correlation} for reasoning of using Expected Shortfall and Spectral Risk in addition to VaR;
 \citet{Acerbi2002} for direct linkage between risk measures and investor's risk attitude using the concept of "risk aversion function".
-Financial data is known to be non Gaussian, let alone the violate cryptocurrencies.
-One cannot rely on only 2nd order moment calculations in order to minimize downside risk.
-One may turn to VaR to monitor The VaR as a sole risk measure has two disadvantages.
-First, it reflects only tail probability and not tail loss, and next it is not coherent;
-Coherency is a very natural property that suggest diversification will reduce risk. \medskip
+In addition to the development of risk measures, financial data is known to be non Gaussian, let alone the volatile cryptocurrencies. \medskip
 
-The non Gaussianity and weaknesses of VaR opens a new path of optimizing the hedge ratio by employing spectral risk measures.
+This paper considers a hedging problem of Bitcoin using its future and an aggregated index of cryptocurrencies CRIX,
+i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $R^h = R^S - h^*R^F$ has
+minimal risk.
+We denote $R^S$ as the log return of Bitcoin spot price, $R^F$ as log return of Bitcoin future and CRIX.
+The non Gaussianity and development of risk measures lead us to deploy copulae together with various risk measures as loss function to optimize the hedge ratio.
 In this paper, we calibrate the log returns of Bitcoin, CRIX, and CME future by copulae,
-then find the optimal quantity of assets in the hedged portfolio.
-By Sklar's theorem, we can model the margin and the dependence structure separately.
+then find the optimal quantity of assets in the hedged portfolio according to a range of risk measures.
+By Sklar's theorem, we can model the margin and the dependence structure separately using copulae.
 This gives us enormous flexibility to model financial data.
 \citet{barbi2014copula} use the C-convolution operator introduced by \citet{cherubini2011copula} to derive the distribution
 of linear combination of margins with copula as their dependence structure.
 We propose a corrected expression the \citet{barbi2014copula}'s equation and propose a general expression for the density of the linear
 combination. \medskip
 
-Unlike dependence measures, e.g. correlation, Kendall's tau, and Spearman's rho,
-copulae describe the whole dependence structure of random variables.
-Figure \ref{fig:density illustration} illustrate the samples drawn from different copulae but with the same Spearman's rho.
+Another advantage of copulae is that they describe the whole dependence structure of random variables.
+Figure \ref{fig:density illustration} illustrate samples drawn from different copulae but with the same Spearman's rho.
 The distribution of the linear combination of margins $Z$ is also affected by the copulae.
 One can see the $Z$ of Gumbel and Clayton copula are skewed to the right and left respectively due to the
 asymmetry (radial symmetry \citet{Nelsen1999}) of copula.
@@ -188,20 +189,20 @@ asymmetry (radial symmetry \citet{Nelsen1999}) of copula.
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{_pics/density illustration1.png}
 \includegraphics[width=\textwidth]{_pics/density illustration2.png}
-  \caption{Upper Panel: Density of $Z= X - hY$ of different copulas with
+  \caption{Upper Panel: Density of $Z= X - hY$ of different copulae with
   $X, Y \sim N(0,1)$,
   $0.75$ Spearman's rho between $X$ and $Y$, and $h=0.5$;
-  Lower Panel: Scatter plot of samples from copulas.
-  This illustration shows how dependence structure modelled by different copulas affects the density of the linear combination
+  Lower Panel: Scatter plot of samples from copulae.
+  This illustration shows how dependence structure modelled by different copulae affects the density of the linear combination
   of margins.
-  Notice that the $Z$ modelled by the asymmetric copulas, namely the Clayton and Gumbel copulas, are skewed to right
+  Notice that the $Z$ modelled by the asymmetric copulae, namely the Clayton and Gumbel copulae, are skewed to right
   and left respectively. \href{http://www.quantlet.com/}{\includegraphics[width=15pt]{_pics/qletlogo_tr.png}}}
 \label{fig:density illustration}
 \end{figure}
 
 
 The optimality of our hedge is determined by various risk measures, they include variance, expected shortfall (ES), value-at-risk (VaR), and spectral risk measures (SRM).
-In particular, the SRM proposed by \citet{acerbi2002spectral} accounts for investors' utility (i.e. risk preference).
+In particular, the SRM proposed by \citet{Acerbi2002} accounts for investors' utility (i.e. risk preference).
 SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion.
 In other words, the risk estimation is directly related to the user's utility function.
 Popular examples are the exponential SRM and power SRM introduced by \citet{dowd2008spectral}. \medskip

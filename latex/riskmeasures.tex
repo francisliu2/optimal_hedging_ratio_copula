@@ -1,8 +1,8 @@
 \subsection{Spectral Risk Measures}\label{subsec:spectral-risk-measures}
-Tthe spectral risk measures (SRM) of a hedged portfolio return $R^h$ has a form
+The Spectral Risk Measure (SRM) of a hedged portfolio return $R^h$ has the form
 
 \begin{align}
-	\rho_\phi(R^h) = - \int_0^1 \phi(p) F_{R^h}^{(-1)}(p)\dd p,
+	\rho_\phi(R^h) = - \int_0^1 \phi(p) F_{R^h}^{(-1)}(p)d p,
 	\end{align}
 
 where $p$ is the loss quantile and $\phi(p)$ is a user-defined weighting function defined over $[0,1]$. \medskip
@@ -11,24 +11,26 @@ where $p$ is the loss quantile and $\phi(p)$ is a user-defined weighting functio
 
 Spectral risk measures can also be written as
 \begin{align}
-	\rho_\phi(R^h) = - \int_\mathbb{R} x f_{R^h}(x) \phi\{F_{R^h}(x)\} \dd x.
+	\rho_\phi(R^h) = - \int_\mathbb{R} x f_{R^h}(x) \phi\{F_{R^h}(x)\} d x.
 	\end{align}
 
-Value-at-Risk (VaR) and Expected Shortfall (ES) fall in to the class of SRM.
+Value-at-Risk (VaR) and Expected Shortfall (ES) fall into the class of SRM. \medskip
+
 VaR at the $\alpha$-confidence level is
 
 \begin{align}
-	\text{VaR}_\alpha = - F_{R^h}^{(-1)}(1-\alpha)
-	\end{align};
+	\text{VaR}_\alpha = - F_{R^h}^{(-1)}(1-\alpha).
+	\end{align}
 ES at the $\alpha$-confidence level is \natp{\em [Please check, there
   should be a minus in front of the ES expression, just as with VaR.]}
 \begin{align}
-	\text{ES}_\alpha = -\frac{1}{1-\alpha}\int_{-\infty}^{\alpha} F_{R^h}^{(-1)}(p) \dd p
-	\end{align}.
-The VaR's $\phi(p)$ gives all its weight on the $\alpha$ quantile of $R^h$ and zero elsewhere, i.e. the weighting function is a Dirac delta function.
+	\text{ES}_\alpha = -\frac{1}{1-\alpha}\int_{-\infty}^{\alpha} F_{R^h}^{(-1)}(p) d p.
+	\end{align}
+The VaR's $\phi(p)$ gives all its weight on the $\alpha$ quantile of $R^h$ and zero elsewhere,
+i.e. the weighting function is a Dirac delta function.
 The ES' $\phi(p)$ gives all tail quantiles the same weight of $\frac{1}{1-\alpha}$ and non-tail quantiles zero weight. \medskip
 
-Spectral risk measures take account of investor's risk aversion by using different $\phi(p)$.
+Spectral risk measures take account of investor's risk aversion by specifying $\phi(p)$ according the utility function.
 Exponential spectral risk measures (ERM) as a kind of spectral risk measure take a form of the weight function
 
 \begin{align}
@@ -43,7 +45,7 @@ of investor's utility function on an risky asset
 	k = -\frac{U''(x)}{U'(x)},
 	\end{align}
 for $x$ in all possible outcomes.
-A summary of risk measures being used in portfolio selection probelm can be found in \citet{hardle2008applied}.\medskip
+A summary of risk measures being used in portfolio selection problem can be found in \citet{hardle2008applied}.\medskip
 
 In this hedging study, variance and the risk measures mentioned above serve as a loss function determining the optimality
 of $h^\ast$.

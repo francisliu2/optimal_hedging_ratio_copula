@@ -1,23 +1,44 @@
 \section{Optimal hedge ratio $h^*$}
 \label{sec:optimal-hedge-ratio}
 
+\natp{\em [Try to avoid mathematical notation in section
+  headings. Also, avoid mathematical notation at the beginning of a
+  sentence. Formulate {\bf carefully}! For example: ``The hedged
+  portfolio is $Z=X-hY$.'' is not precise. First, $X$ and $Y$ have not
+  been introduced. Second $Z$ refers to the portfolio return. Third,
+  $Z$ refers to {\em any\/} portfolio. It is not explained why this
+  would be a hedge. Below is a suggestion, now go through the text and
+  formulate carefully what you want to say. This takes time...]}
+
+\natp{Let $r_S$ and $r_F$ be the returns of the spot and futures price
+  of an asset. The hedged position is a portfolio with return $r_h =
+  r_S - h r_F$, where the amount $h$ of futures to short is chosen to
+  minimise the risk of the exposure in the spot. (was: 
 Consider the problem of an optimal
 hedge ratios by risk measures and dependence
 structures.
 The hedged portfolio is $Z = X - h Y$.
 It involves returns of two assets $X$ and $Y$.
 This is the situation where we long one unit of asset $X$ and short $h$ unit of asset $Y$.
-$h$ is called the hedge ratio.
+$h$ is called the hedge ratio.)}
 We denote the risk measure of the returns of the hedged portfolio $Z$ as $\rho(Z)$. \medskip
+\natp{\em [Again: Introduce $\rho$ as being a risk measure on financial
+  positions, i.e., a mapping from a financial position to a real
+  number (see e.g.\ McNeil, Chapter 6 or the book by F\"ollmer Schied).]} 
 
 The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ . \medskip
 
+\natp{\em [Introduce the definition of copulas here. Also, this is a
+  good place to motivate the separate modelling of dependence and
+  margins. First, explain that the ability to hedge is driven by the
+  dependence in $r_S$ and $r_F$. And so on. ]}
 The distribution function of $Z$ can be expressed in terms of the
 copula and the marginal distributions as Proposition \ref{prop:dfrh}
 result shows (this is a corrected version of Corollary 2.1 of
 \citep{barbi2014copula}). For practical applications, it is numerically
 faster and more stable to use additional information about the
-specific copula and marginal distributions. We therefore derive
+specific copula and marginal distributions. \natp{\em [What do you
+  mean by additional information? Fast than what?]} We therefore derive
 semi-analytic formulae for a number of special cases, such as the
 Gaussian-, Student $t$-, normal inverse Gaussian (NIG) and Archimedean
 copulas in Section \ref{subsec:copulae}.
@@ -27,15 +48,12 @@ copulas in Section \ref{subsec:copulae}.
 
 \begin{proposition}
   \label{prop:dfrh}
-  Let $X$ and $Y$ be two real-valued random variables on the same
-  probability space $(\Omega, \mathcal A, \p)$ with corresponding
+  Let $X$ and $Y$ be two real-valued \natp{continuous} random
+  variables on \natp{a (was: the same)}
+  probability space $(\Omega, \mathcal A, \p)$ with \natp{(delete: corresponding)}
   absolutely continuous copula $C_{X, Y}$ and
-  continuous marginals $F_{X}$ and $F_{Y}$. Then, the distribution
-  of of $Z$ is given by
-  
-  \natp{\em [Please use $F^{(-1)}$ to denote the inverse function, as
-    $F^{(-1)}$ may also refer to $1/F$.]}
-  
+  \natp{(delete: continuous)} marginal distribution functions $F_{X}$
+  and $F_{Y}$. Then, the distribution function of of $Z$ is given by 
   \begin{equation}
     \label{eq:3}
     F_{Z}(z) = 1- \int^1_0 D_1 C_{X, Y}
@@ -43,13 +61,18 @@ copulas in Section \ref{subsec:copulae}.
     \right]\, d u.
   \end{equation}
 \end{proposition}
-Here $F^{(-1)}$ denotes the inverse of $F$, i.e. the quantile function.
+Here, $F^{(-1)}$ denotes the inverse of $F$, i.e., the quantile
+function. \natp{\em [Spell out inverse function, with $\inf$.]}
 
+Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
+which is easily shown to fulfil, see e.g.\ Equation (5.15) of
+\citep{McNeil2005}:
 \begin{equation}
   \label{eq:1}
   D_1 C_{X,Y}(F_X(x), F_Y(y)) = \p(Y\leq y|X=x).
 \end{equation}
 \begin{proof}
+  \natp{\em [Use blackboard E as expectation operator, i.e., $\E$.]}
   Using the identity (\ref{eq:1}) gives
   \begin{align*}
     F_{Z}(z) &= \p(X - h Y\leq z) %
@@ -61,22 +84,12 @@ Here $F^{(-1)}$ denotes the inverse of $F$, i.e. the quantile function.
                  F_{Y}\left\{\frac{F^{(-1)}_{X}(u) -
                  z}{h}\right\}\right]\, d u.
   \end{align*}
- The relationship $D_1 C(u,v)=\p(Y\leq y|X=x)$ is easily shown to fulfil. See e.g.\ equation (5.15)
-from \citet{McNeil2005}:
-  Let $F_X(x)=u$, $F_Y(y)=v$. Then, formally,
-  \begin{align*}
-    \frac{\partial}{\partial F_X(x)} C\{F_X(x), F_Y(y)\}%
-    &= \frac{\partial}{\partial F_X(x)} \p\{U\leq F_X(x),
-      V\leq F_Y(y)\} %
-      = \p\{U\in d F_X(x), V\leq F_Y(y)\}\\ %
-    &= \p(V\leq F_Y(y)| U = F_X(x))\cdot \p(U \in d
-      F_X(x)) %
-      = \p(Y\leq y|X=x)\cdot \p(U\in d u)\\ %
-    &= \p(Y\leq y|X=x).
-  \end{align*}
-\end{proof}\medskip
 
-In addition to~\cite{barbi2014copula} we propose a more handy expression for the density of $Z$
+In addition to~\cite{barbi2014copula} we propose a more handy
+expression for the density of $Z$. \natp{\em [Is this used later? If
+  not, thenn possibly remove. If it stays, then make this a
+  corollary. Fix punctuation below. Also, please double-check the
+  ``+'' signs in the second equation.]}
 
 \begin{prop} Given the formulation of the above portfolio, the density of $Z$ can be written as
   \begin{align}
@@ -99,13 +112,24 @@ In addition to~\cite{barbi2014copula} we propose a more handy expression for the
       \right\} du\label{eq:density2}
   \end{align}
   \end{prop}
-The two expression are equivalent, one can use any of them to get the density of $Z$.
+The two expression are equivalent, one can use any of them to get the
+density of $Z$. \natp{\em [Reformuate... why ``get the density''? They
+  {\bf are} the density, no?]}
 Notice that the density of $Z$ in the above proposition is readily accessible as long as we have
 the copula density and the marginal densities.
-The proof and a generic expression can be found in the appendix. \medskip
+The proof and a generic expression can be found in the
+appendix. \medskip
+
+\natp{\em [Portfolios. Not aware that portfolio is a Latin word.]}
 
 In this work, we consider two portfolii: $R^h = R^{\text{BTC}} - h R^{\text{future}}$ and $R^h = R^{\text{BTC}} - h R^{\text{CRIX}}$.
 
+\natp{\em [For now, stick to $r_S$ and $r_F$. This is still the
+  general part, so no need to mention Bitcoin, CRIX, etc. here. Also,
+  wasn't the idea to hedge CRIX with the future? I don't see why CRIX
+  would be used to hedge Bitcoin when futures are readily
+  available. Entering into futures contracts requires no notional,
+  which makes them ideal for hedging.]}
 
 %OLD
 %\section{Methodology}\label{sec:methodology}

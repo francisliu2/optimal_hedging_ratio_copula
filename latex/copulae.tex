@@ -87,9 +87,9 @@ $\psi^{-1}$ is the inverse the generator.\medskip
 The Frank copula (B3 in \citet{joe1997multivariate}) is a radial symmetric copula and cannot produce any tail dependence.
 It takes the form
 \begin{align}
-    \bm{C}_{\theta}(u,v) &= \frac{1}{\log(\theta)}
+    \bm{C}_{\theta}(u,v) &= \frac{1}{\theta}
     \log \left\{
-    1 + \frac{(\theta^u-1)(\theta^v-1)}{\theta-1}
+    1 + \frac{(e^{-\theta u}-1)(e^{-\theta v}-1)}{e^{-\theta}-1}
     \right\}
     \end{align}
 where $\theta \in [0, \infty]$ is the dependency parameter.
@@ -97,8 +97,8 @@ $\bm{C}_1 = \bm{M}$, $\bm{C}_1 = \bm{\Pi}$, and $\bm{C}_\infty = \bm{W}$.
 
 The Copula density is
 \begin{align}
-    \bm{c}_{\theta}(u,v) &= \frac{(\theta-1)\theta^{u+v}\log(\theta)}
-    {\theta^{u+v}-\theta^u-\theta^v+\theta}
+    \bm{c}_{\theta}(u,v) &= \frac{\theta e^{\theta(u+v)(e^\theta-1)}}
+    {\left(e^\theta-e^{\theta u}-e^{\theta v}+e^{\theta (u+v)}\right)^2}
     \end{align}\medskip
 
 Frank copula has Kendall's $\tau$ and Spearman's $\rho$ as follow:

@@ -136,6 +136,14 @@ a cryptocurrency index.\\
     applications. It does not have tail dependence, which is one of
     the things we typically look for in finance. We need a compelling
     reason why it is of interest, otherwise I suggest to remove it.
+  \item We need to discuss if we use copulas or copulae. I have a
+    preference for copulas, which is the terminology used by Nelsen,
+    McNeil et al., Joe.
+  \item The introduction needs to be revised, see comments
+    below. Think about what needs to go into the introduction and what
+    does not, and then stick to this in a concise way. Also, re-read
+    every sentence 2-3 times and think carefully about what it says
+    and what it is supposed to say. 
   \end{itemize}
 }
 
@@ -147,25 +155,62 @@ a cryptocurrency index.\\
 \section{Introduction}\label{sec:introduction}
 
 Cryptocurrencies (CCs) are a growing asset class.
-Many more CCs are now available on the market since the first cryptocurrency Bitcoin (BTC) was introduced by \citet{nakamoto2019bitcoin}.
+Many more CCs are now available on the market since the first
+cryptocurrency Bitcoin (BTC) was introduced by
+\citet{nakamoto2019bitcoin}. \natp{\em [BTC was introduced in 2009.]}
 In response to the rapid development of the cryptocurrency market, CRIX \citep{trimborn2018crix} is developed to represent the whole
-market by an index aggregating the price of important coins in the market.
+market by an index aggregating the price of important coins in the
+market. \natp{\em [Not necessary to mention CRIX here, let's speak
+  about what the paper is about.]}
 In Dec 2017, the CME group launched its new bitcoin future contract.
-While more and more investors (individuals and institution) are adding CCs and their derivatives into their portfolii,
+While more and more investors (individuals and institution) are adding
+CCs and their derivatives into their portfolii, 
 we see the need to understand the downside risk and find a suitable way to hedge.
 We are particularly interested in resisting extreme risks and improve their profits.
-In this paper, we investigate the performance of different copulae and risk measures in hedging Bitcoin and CRIX with Bitcoin futures.
-Copula provides the flexibility to model multivariate random variable separately by its margins and dependence structure.
+In this paper, we investigate the performance of different copulae and
+risk measures in hedging Bitcoin and CRIX with Bitcoin
+futures. \natp{\em [$\leftarrow$ Make this the first sentence of the paper!]}
+Copulas provide the flexibility to model multivariate random variable
+separately by its margins and dependence structure. 
 Different risk measures accounts for investors' risk attitude.
 Vast literature discussed the relationship between risk measures and investor's risk attitude, we refer readers to
 \citet{artzner1999coherent} for an axiomatic, economic reasoning approach of risk measure construction;
 \citet{embrechts2002correlation} for reasoning of using expected shortfall and spectral risk in addition to VaR;
 \citet{Acerbi2002} for direct linkage between risk measures and investor's risk attitude using the concept of "risk aversion function".
-Financial data is known to be non Gaussian, let alone the violate cryptocurrencies.
-One cannot rely on only 2nd order moment calculations in order to minimize downside risk.
+Financial data is known to be non Gaussian \natp{\cite{Cont2001}}, let
+alone the violate cryptocurrencies. \natp{\em [non-Gaussian is not
+  very specific, a uniform r.v.\ is also non-Gaussian. Try to express
+  this in a more meaningful way, e.g.\ Financial data are known to
+  exhibit more extreme events than a normal distribution can capture.]}
+One cannot rely on only 2nd order moment calculations in order to
+minimize downside risk. \natp{\em [Why can one not rely on 2nd order
+  moment calculations? This: Variance as a risk measure applies only
+  to investors with certain utility functions. We know that investors'
+  risk aversion is different from this, e.g.\ investors are tail-risk
+  averse, etc. Add more detail and references.]}
 One may turn to VaR to monitor The VaR as a sole risk measure has two disadvantages.
 First, it reflects only tail probability and not tail loss, and next it is not coherent;
-Coherency is a very natural property that suggest diversification will reduce risk. \medskip
+Coherency is a very natural property that suggest diversification will
+reduce risk. \natp{\em [This needs not go in the introduction. Just
+  briefly mention the risk measures, and possibly that ES and SRM are
+  chosen because of their coherence.]}
+\medskip
+
+\natp{The introduction should go along the lines:
+  \begin{itemize}
+  \item 1-2 sentence: Which problem is solved in this paper?
+  \item Background Bitcoin: Growth, but roller-coaster ride, institutional investment,
+    exchange-traded futures (the exchange is important!) (5 sentences,
+    with references!)
+  \item Significant tail risks and basis risk lead to the need to
+    investigate even static hedges (=futures) with more refined
+    methods than minimum-variance based (reference to Ederington
+    here; this uses variance as risk measure and correlation as
+    dependence measure).
+  \item To capture empirical properties, extend to other risk measures
+    and dependence models. 
+  \end{itemize}
+  }
 
 The non Gaussianity and weaknesses of VaR opens a new path of optimizing the hedge ratio by employing spectral risk measures.
 In this paper, we calibrate the log returns of Bitcoin, CRIX, and CME future by copulae,
@@ -175,14 +220,18 @@ This gives us enormous flexibility to model financial data.
 \citet{barbi2014copula} use the C-convolution operator introduced by \citet{cherubini2011copula} to derive the distribution
 of linear combination of margins with copula as their dependence structure.
 We propose a corrected expression the \citet{barbi2014copula}'s equation and propose a general expression for the density of the linear
-combination. \medskip
-
-Unlike dependence measures, e.g. correlation, Kendall's tau, and Spearman's rho,
-copulae describe the whole dependence structure of random variables.
+combination. \natp{\em [No need to mention in the introduction that
+  the version is corrected. The main result -- that the distribution
+  function of a linear combination of random variables can be
+  expressed via the copula and margins -- remains valid.]}\medskip
+Unlike dependence measures, such as the correlation coefficient, Kendall's tau, and Spearman's rho,
+copulae \natp{capture (was: describe)} the whole dependence structure of random
+variables. 
 Figure \ref{fig:density illustration} illustrate the samples drawn from different copulae but with the same Spearman's rho.
 The distribution of the linear combination of margins $Z$ is also affected by the copulae.
 One can see the $Z$ of Gumbel and Clayton copula are skewed to the right and left respectively due to the
-asymmetry (radial symmetry \citet{Nelsen1999}) of copula.
+asymmetry (radial symmetry \citet{Nelsen1999}) of copula.\natp{\em
+  [Move this out of the introduction.]}
 \medskip
 
 \begin{figure}[h]
@@ -200,11 +249,16 @@ asymmetry (radial symmetry \citet{Nelsen1999}) of copula.
 \end{figure}
 
 
-The optimality of our hedge is determined by various risk measures, they include variance, expected shortfall (ES), value-at-risk (VaR), and spectral risk measures (SRM).
+The optimality of our hedge is determined by various risk measures,
+they include variance, expected shortfall (ES), value-at-risk (VaR),
+and spectral risk measures (SRM). \natp{\em [Careful with wording! The
+  hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
 In particular, the SRM proposed by \citet{acerbi2002spectral} accounts for investors' utility (i.e. risk preference).
 SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion.
 In other words, the risk estimation is directly related to the user's utility function.
-Popular examples are the exponential SRM and power SRM introduced by \citet{dowd2008spectral}. \medskip
+Popular examples are the exponential SRM and power SRM introduced by
+\citet{dowd2008spectral}. \medskip
+
 %Even though they reveal that SRM have some properties which cause problems when applying to practical risk management,
 %they show that exponential utility function might be plausible in some circumstances under weak conditions \citealp{buhlmann1980economic}.
 

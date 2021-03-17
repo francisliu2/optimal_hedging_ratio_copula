@@ -532,6 +532,7 @@ class Frank(Copula):
 	def tau(self,
 			theta=None):  # Statistical modeling of joint probability distribution using copula: Application to peak
 		# and permanent displacement seismic demands
+		# Exercise 5.9 in Nelsen
 		if theta == None:
 			theta = self.theta
 		part1 = 1 - 4 / theta

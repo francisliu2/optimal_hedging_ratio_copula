@@ -1,0 +1,37 @@
+\newpage
+\section{Data}
+Cryptocurrenices are traded around the clock, but CME future only be traded from
+Sunday to Friday from 05:00 p.m. to 04:00 p.m. U.S. central time.
+We match the timestamps and timezones of different data sources.
+
+\begin{table}[htb]
+        \centering
+    \begin{tabularx}{\textwidth}{s|CCCCCCCC}
+      \hline\hline
+     \# & Asset & Data Source & Type & Tradable at CT\footnotemark & Tradable at CET\footnotemark during CST\footnotemark & Tradable at CET during CDT\footnotemark & Tradable at UTC during CST & Tradable at UTC during CDT\\       \hline
+      1 & Bitcoin & Coingecko API & Hourly Close &  & 11:00pm D+0 & 11:00pm D+0 & 10:00pm D+0$^*$ &10:00pm D+0$^*$ \\\hline
+      2 & CME Future & Bloomberg & Daily Open & 05:00pm D-1 & 00:00am D+0$^*$ & 00:00am D+0$^*$ & 11:00pm D-1 & 10:00pm D-1 \\       \hline
+      3 & CME Future & Bloomberg & Daily Close & 04:00pm D+0& 11:00pm D+0$^*$ & 11:00pm D+0$^*$ & 10:00pm D+0 & 09:00pm D+0\\       \hline
+      4 & CRIX & IRTG (from Coingecko) & Index &  &  &  & & 00:00am D+0$^*$\\\hline
+    \end{tabularx}
+    \caption{$^*$ indicates the timestamp of raw data from data source. }
+    \label{tab:table}
+\end{table}
+
+\addtocounter{footnote}{-3}
+\footnotetext{CT stands for U.S. Central Time. It represents two observances of time, the Central Standard Time (CST) and the Central Daylight Time (CDT)}
+\addtocounter{footnote}{1}
+\footnotetext{CET stands for Central European Time. It is one hour ahead UTC.}
+\addtocounter{footnote}{1}
+\footnotetext{CST is six hours behind UTC.}
+\addtocounter{footnote}{1}
+\footnotetext{CDT is five hours behind UTC.}
+
+Hedging Pair 1 is hedging \#1 (Bitcoin Spot) with \#2 (CME future).
+The time difference between the two prices is zero.
+They are both adjusted to CET time:
+\#1 by pandas.Series.dt.tz\_convert; \#2 by retrieving data from Bloomberg Terminal located in Berlin. \medskip
+
+Hedging Pair 2 is hedging \#4 (CRIX) with \#2 (CME future).
+We observe \#2 two hours and one hour before \#4 during CST and CDT respectively.
+

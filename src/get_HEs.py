@@ -29,7 +29,8 @@ future_name = config['future_name']
 
 # Calibration Method
 calibration_method = config['calibration_method']  # MM or MLE
-q_arr = config['q_arr']  # moment conditions for MM
+if calibration_method =='MM':
+	q_arr = config['q_arr']  # moment conditions for MM
 
 # Load parameters
 if calibration_method == "MLE":

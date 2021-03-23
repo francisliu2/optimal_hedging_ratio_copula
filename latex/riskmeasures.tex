@@ -24,7 +24,7 @@ VaR at the $\alpha$-confidence level is
 ES at the $\alpha$-confidence level is \natp{\em [Please check, there
   should be a minus in front of the ES expression, just as with VaR.]}
 \begin{align}
-	\text{ES}_\alpha = -\frac{1}{1-\alpha}\int_{-\infty}^{\alpha} F_{R^h}^{(-1)}(p) d p.
+	\text{ES}_\alpha = -\frac{1}{1-\alpha}\int_{0}^{1-\alpha} F_{R^h}^{(-1)}(p) d p.
 	\end{align}
 The VaR's $\phi(p)$ gives all its weight on the $\alpha$ quantile of $R^h$ and zero elsewhere,
 i.e. the weighting function is a Dirac delta function.
@@ -49,11 +49,11 @@ A summary of risk measures being used in portfolio selection problem can be foun
 
 In this hedging study, variance and the risk measures mentioned above serve as a loss function determining the optimality
 of $h^\ast$.
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[scale = 0.7]{Figures/Fig1-1.png}\\
-		%\vspace*{-10pt}\quantnet \href{https://github.com/mangrou/SRM/blob/master/SRM_QF/SRM_QF.m}{SRM\_QF}
-	\end{center}
-	\caption{Exponential SRMs for $k=1$ (dashed) and $k=2$ (solid).}\label{Fig1:EPSRM}
-\end{figure}
+%
+%\begin{figure}[h]
+%	\begin{center}
+%		\includegraphics[scale = 0.7]{Figures/Fig1-1.png}\\
+%		%\vspace*{-10pt}\quantnet \href{https://github.com/mangrou/SRM/blob/master/SRM_QF/SRM_QF.m}{SRM\_QF}
+%	\end{center}
+%	\caption{Exponential SRMs for $k=1$ (dashed) and $k=2$ (solid).}\label{Fig1:EPSRM}
+%\end{figure}

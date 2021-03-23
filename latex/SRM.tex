@@ -34,11 +34,17 @@
 \usepackage{hyperref}
 \usepackage{indentfirst} % Macht eine Einrückung nach der Section
 \bibliographystyle{ecta}
+\usepackage{tabularx}
+
 
 \definecolor{markergreen}{rgb}{0.6, 1.0, 0}
 \definecolor{darkgreen}{rgb}{0, .5, 0}
 \definecolor{darkorange}{rgb}{1,0.3,0}
-\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkred}{RGB}{.7,0,0}
+\definecolor{darkblue}{RGB}{0,29,245}
+\definecolor{orange}{RGB}{239, 133, 54}
+\definecolor{lightblue}{RGB}{59, 188, 175}
+
 \providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
 \providecommand{\mj}[1]{\textcolor{darkred}{#1}}
 \providecommand{\francis}[1]{\textcolor{darkgreen}{#1}}
@@ -47,17 +53,16 @@
 \setlist[itemize]{leftmargin=*}
 \setlist[description]{leftmargin=*}
 
-
 %\setlength{\topmargin}{0.0 in} \setlength{\textwidth}{6in}
 %\setlength{\oddsidemargin}{0.5in}
 %\setlength{\evensidemargin}{-0.01in} \setlength{\textheight}{9in}
 \captionsetup{font={onehalfspacing,small}, labelfont=bf}
 
-\title{\LARGE \bf Hedging Cryptos with Bitcoin Futures}
-\title{\natp{\large\bf Copula-based hedging of cryptocurrencies with Bitcoin futures}}
+\title{\LARGE \bf Hedging Cryptos with Bitcoin Futures.}
+%\title{\natp{\large\bf Copula-based hedging of cryptocurrencies with Bitcoin futures}}
 \author{
-	\begin{tabular}[t]{ccc}
-		\and
+%	\begin{tabular}[t]{ccc}
+        \and
         Francis Liu\thanks{
 			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
             Blockchain Research Center, Humboldt-Universität zu Berlin, Germany.
@@ -70,7 +75,6 @@
              Department of Finance, Asia University, 500, Lioufeng Rd., Wufeng, Taichung 41354, Taiwan
              Department of Finance, Asia University, 500, Lioufeng Rd., Wufeng, Taichung 41354, Taiwan
      E-mail: \texttt{mangrou@gmail.com}.}
-
 		 \and
         Natalie Packham\thanks{
 			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
@@ -82,7 +86,7 @@
      E-mail: \texttt{haerdle@wiwi.hu-berlin.de}.}
         \thanks{ Financial support of the European Union's Horizon 2020 research and innovation program ``FIN-TECH: A Financial supervision and Technology compliance training programme" under the grant agreement No 825215 (Topic: ICT-35-2018, Type of action: CSA), the European Cooperation in Science \& Technology COST Action grant CA19130 - Fintech and Artificial Intelligence in Finance - Towards a transparent financial industry, the Deutsche Forschungsgemeinschaft's IRTG 1792 grant, the Yushan Scholar Program of Taiwan, the Czech Science Foundation's grant no. 19-28231X / CAS: XDA 23020303, as well as support by Ansar Aynetdinov (\texttt{ansar.aynetdinov@hu-berlin.de}) are greatly acknowledged.
      }
-	\end{tabular}
+%	\end{tabular}
 }
 \date{This version: \today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,7 +168,7 @@ market. \natp{\em [Not necessary to mention CRIX here, let's speak
   about what the paper is about.]}
 In Dec 2017, the CME group launched its new bitcoin future contract.
 While more and more investors (individuals and institution) are adding
-CCs and their derivatives into their \natp{portfolios (was: portfolii)}, 
+CCs and their derivatives into their \natp{portfolios (was: portfolios)},
 we see the need to understand the downside risk and find a suitable way to hedge.
 We are particularly interested in resisting extreme risks and improve their profits.
 In this paper, we investigate the performance of different copulae and

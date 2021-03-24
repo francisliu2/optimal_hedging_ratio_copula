@@ -1,0 +1,10 @@
+{
+  "data_name"   : "CRIX_future_v3",
+  "spot_name"   : "log return CRIX",
+  "future_name" : "log return future",
+  "calibration_method": "MLE",
+  "k_ERM": [10],
+  "q_arr_ES": [0.01,0.05],
+  "q_arr_VaR": [0.01,0.05],
+  "h_Clip": [0,99999]
+}

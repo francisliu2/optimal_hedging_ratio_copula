@@ -29,7 +29,8 @@ future_name = config['future_name']
 
 # Calibration Method
 calibration_method = config['calibration_method']  # MM or MLE
-q_arr = config['q_arr']  # moment conditions for MM
+if calibration_method =='MM':
+    q_arr = config['q_arr']  # moment conditions for MM
 
 # Parameters
 if calibration_method == "MLE":
@@ -121,6 +122,15 @@ for i, copula in enumerate(list(best_h_results_pd.index)):
     h_arr.append(h)
 best_h_mathematica = pd.concat(h_arr)
 
+
+if calibration_method == "MLE":
+    path = "../results/" + data_name + "/MLE/"
+    if os.path.exists(path)==False:
+        os.mkdir(path)
+elif calibration_method == "MM":
+    path = "../results/" + data_name + "/MM/"
+    if os.path.exists(path)==False:
+        os.mkdir(path)
 
 if calibration_method == "MLE":
     path = "../results/" + data_name + "/MLE/"

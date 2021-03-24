@@ -21,7 +21,8 @@ future_name = config['future_name']
 
 # Calibration Method
 calibration_method = config['calibration_method'] # MM or MLE
-q_arr = config['q_arr'] # moment conditions for MM
+if calibration_method =='MM':
+	q_arr = config['q_arr'] # moment conditions for MM
 
 # Gaussian, t_Copula, Clayton, Frank, Gumbel, Plackett, Gaussian mix Indep
 C1  = Gaussian(dict(rho=0.9),       Law_RS=stats.norm, Law_RF=stats.norm) # fix the maringals!

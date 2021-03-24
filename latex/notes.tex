@@ -25,8 +25,12 @@
 \usepackage{amsfonts,amssymb,amsthm} %
 \usepackage[tbtags]{amsmath} %
 \usepackage{bm}
-
+\usepackage{tabularx,ragged2e}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\newcolumntype{s}{>{\hsize=.2\hsize \Centering\arraybackslash}X}
 % \usepackage{fullpage}
+\usepackage{footnote}
+\makesavenoteenv{tabular}
 
 \usepackage{graphicx,color}
 \graphicspath{{./pics/}}
@@ -35,6 +39,14 @@
 \definecolor{markergreen}{rgb}{0.6, 1.0, 0}
 \definecolor{darkgreen}{rgb}{0, .5, 0}
 \definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{markergreen}{rgb}{0.6, 1.0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkorange}{rgb}{1,0.3,0}
+\definecolor{darkred}{RGB}{.7,0,0}
+\definecolor{darkblue}{RGB}{0,29,245}
+\definecolor{orange}{RGB}{239, 133, 54}
+\definecolor{lightblue}{RGB}{59, 188, 175}
+
 \providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
 \providecommand{\natp}[1]{\textcolor{darkred}{#1}}
 \theoremstyle{plain}
@@ -385,6 +397,7 @@ where $\delta$ denotes the level of statistical significance.
 
 \input{robustness.tex}
 
+\input{data.tex}
 
 
 

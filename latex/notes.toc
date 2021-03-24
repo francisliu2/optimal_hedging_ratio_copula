@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {5}$D_1$ Operator}{9}{section.5}%
 \contentsline {section}{\numberline {6}Special copulas}{10}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Gaussian Copula}{11}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Archimedean copulas}{14}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.2}Archimedean Copulae}{14}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Elliptical Copulas and normal variance mixtures}{15}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}Normal mean-variance mixtures}{18}{subsection.6.4}%
 \contentsline {subsection}{\numberline {6.5}Normal inverse Gaussian factor copula model}{20}{subsection.6.5}%
@@ -30,3 +30,4 @@
 \contentsline {section}{\numberline {9}Backtesting}{42}{section.9}%
 \contentsline {section}{\numberline {10}Backtesting value-at-risk}{42}{section.10}%
 \contentsline {section}{\numberline {11}Robustness}{43}{section.11}%
+\contentsline {section}{\numberline {12}Data}{44}{section.12}%

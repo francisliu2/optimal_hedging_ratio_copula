@@ -21,6 +21,8 @@
 %% options: vscreen, garamond, wnotes, savespace
 \usepackage[vscreen]{nat}
 \usepackage[longnamesfirst]{natbib}
+\usepackage{booktabs}
+
 \bibpunct{(}{)}{;}{a}{,}{,}
 \usepackage{amsfonts,amssymb,amsthm} %
 \usepackage[tbtags]{amsmath} %
@@ -336,12 +338,12 @@ across methods (e.g.\ hedging general risk vs.\ hedging tail risk).
 \label{sec:dependence}
 \input{dependence.tex}
 
-\newpage
+\clearpage
 \section{Estimation}
 \input{estimation.tex}
 
 
-\newpage
+\clearpage
 
 \section{Backtesting}
 \label{sec:backtesting}
@@ -399,8 +401,7 @@ where $\delta$ denotes the level of statistical significance.
 
 \input{data.tex}
 
-
-
+\clearpage
 \bibliographystyle{abbrvnamed} %
 \bibliography{finance} %
 \end{document}

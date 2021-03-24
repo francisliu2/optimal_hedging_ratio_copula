@@ -166,12 +166,29 @@
 % \author{Prof.\ Dr.\ Natalie
 %   Packham\\[3ex]
 % Hochschule f\"ur Wirtschaft und Recht Berlin}
-\author{{\bf Natalie Packham\medskip\\} joint work with\\ Francis Liu,
-  Meng-Jou Lu, Wolfgang K.\ H\"ardle}
+%\author{{\bf Natalie Packham\medskip\\} joint work with\\ Francis Liu,
+%  Meng-Jou Lu, Wolfgang K.\ H\"ardle}
+%\date{
+%  \vspace*{-1.5\baselineskip}
+%
+%  24 March 2021\\
+%
+%\hspace*{-.75cm}
+%  \includegraphics[width=4cm]{HWR_Logo_RGB.pdf}
+%  \hspace*{1cm}
+%  % \includegraphics[width=2cm]{_pics/IRTG.pdf}
+%  \hspace*{3.55cm}
+%%  \hspace*{2.25cm}
+%    \includegraphics[width=2cm]{HU.png}
+%}
+%\logo{
+%}
+%
+\author{{\bf Wolfgang K.\ H\"ardle\medskip\\} joint work with\\ Francis Liu,
+  Meng-Jou Lu, Natalie Packham}
 \date{
   \vspace*{-1.5\baselineskip}
-
-  RegTech Workshop \\
+  RegTech Workshop\\
   24 March 2021\\
 
 \hspace*{-.75cm}
@@ -184,8 +201,6 @@
 }
 \logo{
 }
-%
-
 %\setbeameroption{show notes}
 
 \renewcommand{\(}{\begin{columns}}
@@ -431,8 +446,8 @@
   \begin{equation}
     \label{eq:3}
     F_Z(x) = 1- \int^1_0 D_1 C
-    \left\{ u, F_Y \left\{ \frac{F^{(-1)}_X(u)-x}{h} \right\}
-    \right\}\, \dd u.
+    \left[ u, F_Y \left\{ \frac{F^{(-1)}_X(u)-x}{h} \right\}
+    \right]\, \dd u.
   \end{equation}
 \end{proposition}
 \begin{itemize}
@@ -452,7 +467,7 @@
     F_Z^{(-1)}(1-\alpha)$  
   \item {\bf Expected Shortfall (ES)}: 
     $\displaystyle \text{ES}_\alpha =-
-    \frac{1}{1-\alpha}\int_{-\infty}^{\alpha} F_Z^{(-1)}(p) \dd p$.
+    \frac{1}{1-\alpha}\int_{0}^{1-\alpha} F_Z^{(-1)}(p) \dd p$.
   \end{itemize}
 \end{frame}
 

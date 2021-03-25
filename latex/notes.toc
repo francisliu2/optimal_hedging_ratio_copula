@@ -32,3 +32,4 @@
 \contentsline {section}{\numberline {11}Robustness}{44}{section.11}%
 \contentsline {section}{\numberline {12}Data}{45}{section.12}%
 \contentsline {subsection}{\numberline {12.1}Time Difference}{46}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Statistics of Percentage Difference Between CME Bitcoin future Open Price and Last Close Price}{49}{subsection.12.2}%

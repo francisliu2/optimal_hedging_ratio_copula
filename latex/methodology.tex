@@ -1,58 +1,66 @@
-\section{Optimal hedge ratio $h^*$}
+\section{Optimal hedge ratio}
 \label{sec:optimal-hedge-ratio}
+We form a portfolio with two assets, a spot asset and a future contract, for example Bitcoin spot and CME Bitcoin future.
+Our objective is to minimize the risk of the exposure in the spot.
+To keep a simple portfolio setting, we long one unit of spot and short $h$ unit of future with $h \in [0, \infty)$.
+Let $r^S$ and $r^F$ be the log returns\footnote{The log return is simply the log of geometric difference between price at time $t$ and $t-1$ $\log \frac{\text{Price}_t}{\text{Price}_{t-1}}$.
+The index $t$ follow the trading calendar.
+The handling of calendar is important, we will discuss that in the data section.} of the spot and future price, the log return of the portfolio is
+\[r^h = r^S -h r^F.\]
+We call this portfolio a hedged portfolio: the price movement of spot is hedged by the price movement of future.
+\medskip
 
-\natp{\em [Try to avoid mathematical notation in section
-  headings. Also, avoid mathematical notation at the beginning of a
-  sentence. Formulate {\bf carefully}! For example: ``The hedged
-  portfolio is $Z=X-hY$.'' is not precise. First, $X$ and $Y$ have not
-  been introduced. Second $Z$ refers to the portfolio return. Third,
-  $Z$ refers to {\em any\/} portfolio. It is not explained why this
-  would be a hedge. Below is a suggestion, now go through the text and
-  formulate carefully what you want to say. This takes time...]}
+Risk is measured by risk measures.
+Assume payoff $r^h$ of a portfolio over a specified horizon live in a probability space, $r^h \in L(\Omega,\F, \P)$,
+a risk measure on $r^h$ is a map $\rho: r^h \rightarrow \mathbb{R}$.
+We formulate our objective in mathematical term: find an optimal hedge ratio $h^*$ which minimizes risk measures of our choice
 
-\natp{Let $r_S$ and $r_F$ be the returns of the spot and futures price
-  of an asset. The hedged position is a portfolio with return $r_h =
-  r_S - h r_F$, where the amount $h$ of futures to short is chosen to
-  minimise the risk of the exposure in the spot. (was: 
-Consider the problem of an optimal
-hedge ratios by risk measures and dependence
-structures.
-The hedged portfolio is $Z = X - h Y$.
-It involves returns of two assets $X$ and $Y$.
-This is the situation where we long one unit of asset $X$ and short $h$ unit of asset $Y$.
-$h$ is called the hedge ratio.)}
-We denote the risk measure of the returns of the hedged portfolio $Z$ as $\rho(Z)$. \medskip
-\natp{\em [Again: Introduce $\rho$ as being a risk measure on financial
-  positions, i.e., a mapping from a financial position to a real
-  number (see e.g.\ McNeil, Chapter 6 or the book by F\"ollmer Schied).]} 
+\[h^* = \argmin_h \rho(r^h).\]
 
-The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ . \medskip
+Most risk measures are defined as functionals of the portfolio loss distribution $F_{r^h}$, i.e. $\rho: F_{r^h} \rightarrow \mathbb{R}$.
+For example, Value-at-Risk is simply the quantile of $r^h$ multiply with negative one $\text{VaR}_{1-\alpha} = -F_{r^h}^{(-1)}(1-\alpha) = -\inf\{x \in \mathbb{R}: 1-\alpha \leq F_{r^h}(x) \}$, where $\alpha$ is a parameter chosen by investor.
+We need the knowledge of $F_{r^h}$ in order to measure risk.
+Starting with density of $r^h$, by convolution of random variables~\citep{WKHMVA}, $f_{r^h}(z) = \int_{-\infty}^{\infty}f_{r^S, -hr^F}(x, z-x)dx$, where
+$f_{r^S, -hr^F}$ is the joint density of $r^S$ and $-hr^F$.
+The joint distribution of $r^S$ is $F_{r^S, -hr^F}(x,y) = \int_{-\infty}^{x} \int_{-\infty}^{y}f_{r^S, -hr^F}(s,t) ds dt$.
+Therefore, the ability to minimize the risk exposure in the spot (to hedge) is driven by the joint distribution of $r^S$ and $-hr^F$. \medskip
 
-\natp{\em [Introduce the definition of copulas here. Also, this is a
-  good place to motivate the separate modelling of dependence and
-  margins. First, explain that the ability to hedge is driven by the
-  dependence in $r_S$ and $r_F$. And so on. ]}
-The distribution function of $Z$ can be expressed in terms of the
-copula and the marginal distributions as Proposition \ref{prop:dfrh}
-result shows (this is a corrected version of Corollary 2.1 of
-\citep{barbi2014copula}). For practical applications, it is numerically
-faster and more stable to use additional information about the
-specific copula and marginal distributions. \natp{\em [What do you
-  mean by additional information? Fast than what?]} We therefore derive
-semi-analytic formulae for a number of special cases, such as the
-Gaussian-, Student $t$-, normal inverse Gaussian (NIG) and Archimedean
-copulas in Section \ref{subsec:copulae}.
+We use copulae to model $F_{r^S, -hr^F}$ because of their two desirable properties.
+First property is that copulae allow us to model the margins and dependence structure separately.
+\begin{theorem}[Sklar's Theorem]
+  Let $F$ be a joint distribution function with margins $F_X,
+  F_Y$. Then, there exists a copula $C:[0,1]^2\rightarrow[0,1]$ such
+  that, for all $x,y\in \R$
+  \begin{equation}
+    \label{eq:4}
+    F(x,y)=C\{F_X(x), F_Y(y)\}.
+  \end{equation}
+  If the margins are continuous, then $C$ is unique; otherwise $C$ is
+  unique on the range of the margins.
 
-\natp{\em [What is the purpose of the parameters $w$ and $\lambda$
-  below? Leave them out here and use them where they are needed.]}
+  Conversely, if $C$ is a copula and $F_X, F_Y$ are univariate
+  distribution functions, then the function $F$ defined by (\ref{eq:4})
+  is a joint distribution function with margins $F_X, F_Y$.
+\end{theorem}
+
+Second, copulae are invariance under strictly monotone increasing function \citep{schweizer1981nonparametric}, we have
+\begin{lemma}
+  \begin{align}
+  C_{X, hY}\{F_X(s),F_{hY}(t)\} = C_{X, Y}\{F_X(s),F_{Y}(t/h)\}.
+    \end{align}
+  \end{lemma}
+
+
+%The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ . \medskip
+Leveraging the two features of copulae, \citet{barbi2014copula} introduces the distribution of linear combination of random variables using copulae.
+We slightly edit the Corollary 2.1 of their work and yield the following correct expression of the distribution.
 
 \begin{proposition}
   \label{prop:dfrh}
-  Let $X$ and $Y$ be two real-valued \natp{continuous} random
-  variables on \natp{a (was: the same)}
-  probability space $(\Omega, \mathcal A, \p)$ with \natp{(delete: corresponding)}
-  absolutely continuous copula $C_{X, Y}$ and
-  \natp{(delete: continuous)} marginal distribution functions $F_{X}$
+  Let $X$ and $Y$ be two real-valued continuous random
+  variables on a
+  probability space $(\Omega, \F, \p)$ with
+  absolutely continuous copula $C_{X, Y}$ and marginal distribution functions $F_{X}$
   and $F_{Y}$. Then, the distribution function of of $Z$ is given by 
   \begin{equation}
     \label{eq:3}
@@ -62,7 +70,7 @@ copulas in Section \ref{subsec:copulae}.
   \end{equation}
 \end{proposition}
 Here, $F^{(-1)}$ denotes the inverse of $F$, i.e., the quantile
-function. \natp{\em [Spell out inverse function, with $\inf$.]}
+function. \medskip
 
 Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
 which is easily shown to fulfil, see e.g.\ Equation (5.15) of
@@ -72,7 +80,6 @@ which is easily shown to fulfil, see e.g.\ Equation (5.15) of
   D_1 C_{X,Y}(F_X(x), F_Y(y)) = \p(Y\leq y|X=x).
 \end{equation}
 \begin{proof}
-  \natp{\em [Use blackboard E as expectation operator, i.e., $\E$.]}
   Using the identity (\ref{eq:1}) gives
   \begin{align*}
     F_{Z}(z) &= \p(X - h Y\leq z) %
@@ -86,14 +93,11 @@ which is easily shown to fulfil, see e.g.\ Equation (5.15) of
   \end{align*}
   \end{proof}
 
-
 In addition to~\cite{barbi2014copula} we propose a more handy
-expression for the density of $Z$. \natp{\em [Is this used later? If
-  not, thenn possibly remove. If it stays, then make this a
-  corollary. Fix punctuation below. Also, please double-check the
-  ``+'' signs in the second equation.]}
+expression for the density of $Z$. \natp{\em [Please double-check the
+  ``+'' signs in the second equation.]}\ \francis{ \em [the + sign is correct.]}
 
-\begin{prop} Given the formulation of the above portfolio, the density of $Z$ can be written as
+\begin{corollary} Given the formulation of the above portfolio, the density of $Z$ can be written as
   \begin{align}
   f_{Z}(z) &= \left|\frac{1}{h}\right|\int_0^1 c_{X, Y} \left[
   F_{Y}\left\{\frac{F^{(-1)}_{X}(u)-z}{h}\right\}, u
@@ -113,25 +117,21 @@ expression for the density of $Z$. \natp{\em [Is this used later? If
       z+ hF^{(-1)}_{Y}(u).
       \right\} du\label{eq:density2}
   \end{align}
-  \end{prop}
-The two expression are equivalent, one can use any of them to get the
-density of $Z$. \natp{\em [Reformuate... why ``get the density''? They
-  {\bf are} the density, no?]}
+  \end{corollary}
+The two expression are equivalent.
 Notice that the density of $Z$ in the above proposition is readily accessible as long as we have
 the copula density and the marginal densities.
 The proof and a generic expression can be found in the
 appendix. \medskip
 
-\natp{\em [Portfolios. Not aware that portfolio is a Latin word.]}
-
-In this work, we consider two portfolios: $R^h = R^{\text{BTC}} - h R^{\text{future}}$ and $R^h = R^{\text{BTC}} - h R^{\text{CRIX}}$.
-
-\natp{\em [For now, stick to $r_S$ and $r_F$. This is still the
-  general part, so no need to mention Bitcoin, CRIX, etc. here. Also,
-  wasn't the idea to hedge CRIX with the future? I don't see why CRIX
-  would be used to hedge Bitcoin when futures are readily
-  available. Entering into futures contracts requires no notional,
-  which makes them ideal for hedging.]}
+%In this work, we consider two portfolios: $R^h = R^{\text{BTC}} - h R^{\text{future}}$ and $R^h = R^{\text{BTC}} - h R^{\text{CRIX}}$.
+%
+%\natp{\em [For now, stick to $r_S$ and $r_F$. This is still the
+%  general part, so no need to mention Bitcoin, CRIX, etc. here. Also,
+%  wasn't the idea to hedge CRIX with the future? I don't see why CRIX
+%  would be used to hedge Bitcoin when futures are readily
+%  available. Entering into futures contracts requires no notional,
+%  which makes them ideal for hedging.]}
 
 %OLD
 %\section{Methodology}\label{sec:methodology}

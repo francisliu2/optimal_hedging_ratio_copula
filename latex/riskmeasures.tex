@@ -1,6 +1,12 @@
-\subsection{Spectral Risk Measures}\label{subsec:spectral-risk-measures}
-The Spectral Risk Measure (SRM) of a hedged portfolio return $R^h$ has the form
+\subsection{Risk Measures}\label{subsec:spectral-risk-measures}
+We consider four risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
+They are well discussed by many literature \francis{\em FL will put some references here} and used by regulatory bodies,
+for example Basel III ...  \francis{\em FL will put some references here}.
 
+Variance
+
+Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM) fall into the class of SRM.
+The Spectral Risk Measure (SRM) of a hedged portfolio return $R^h$ has the form
 \begin{align}
 	\rho_\phi(R^h) = - \int_0^1 \phi(p) F_{R^h}^{(-1)}(p)d p,
 	\end{align}
@@ -13,8 +19,6 @@ Spectral risk measures can also be written as
 \begin{align}
 	\rho_\phi(R^h) = - \int_\mathbb{R} x f_{R^h}(x) \phi\{F_{R^h}(x)\} d x.
 	\end{align}
-
-Value-at-Risk (VaR) and Expected Shortfall (ES) fall into the class of SRM. \medskip
 
 VaR at the $\alpha$-confidence level is
 
@@ -47,8 +51,6 @@ of investor's utility function on an risky asset
 for $x$ in all possible outcomes.
 A summary of risk measures being used in portfolio selection problem can be found in \citet{hardle2008applied}.\medskip
 
-In this hedging study, variance and the risk measures mentioned above serve as a loss function determining the optimality
-of $h^\ast$.
 %
 %\begin{figure}[h]
 %	\begin{center}

@@ -24,11 +24,15 @@
 \usepackage[margin=2cm]{geometry} % for the same margin
 \usepackage{latexsym}
 %\usepackage{subfig}
+\usepackage{float}
 \usepackage{setspace}
 \usepackage{slashbox}
 \usepackage{enumitem}
 \usepackage{booktabs}
-\usepackage{tabularx}
+\usepackage{tabularx,ragged2e}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\newcolumntype{s}{>{\hsize=.2\hsize \Centering\arraybackslash}X}
+
 \usepackage{longtable,booktabs}
 \usepackage{authblk}
 \usepackage{hyperref}
@@ -37,8 +41,15 @@
 
 \definecolor{markergreen}{rgb}{0.6, 1.0, 0}
 \definecolor{darkgreen}{rgb}{0, .5, 0}
-\definecolor{darkorange}{rgb}{1,0.3,0}
 \definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{markergreen}{rgb}{0.6, 1.0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkorange}{rgb}{1,0.3,0}
+\definecolor{darkred}{RGB}{.7,0,0}
+\definecolor{darkblue}{RGB}{0,29,245}
+\definecolor{orange}{RGB}{239, 133, 54}
+\definecolor{lightblue}{RGB}{59, 188, 175}
+
 \providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
 \providecommand{\mj}[1]{\textcolor{darkred}{#1}}
 \providecommand{\francis}[1]{\textcolor{darkgreen}{#1}}
@@ -46,7 +57,6 @@
 
 \setlist[itemize]{leftmargin=*}
 \setlist[description]{leftmargin=*}
-
 
 %\setlength{\topmargin}{0.0 in} \setlength{\textwidth}{6in}
 %\setlength{\oddsidemargin}{0.5in}

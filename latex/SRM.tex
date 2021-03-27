@@ -11,6 +11,7 @@
 \usepackage{subcaption}
 \usepackage{epsfig}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{pdflscape}
 \usepackage{lipsum}
 %\usepackage{multirow}
@@ -22,19 +23,20 @@
 %\usepackage[normal]{caption2} % for caption
 \usepackage{rotating}
 \usepackage[margin=2cm]{geometry} % for the same margin
-\usepackage{latexsym}
 %\usepackage{subfig}
 \usepackage{setspace}
 \usepackage{slashbox}
 \usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage{tabularx}
-\usepackage{longtable,booktabs}
+\usepackage{longtable}
 \usepackage{authblk}
 \usepackage{hyperref}
 \usepackage{indentfirst} % Macht eine Einrückung nach der Section
 \bibliographystyle{ecta}
-\usepackage{tabularx}
+\usepackage{booktabs, makecell, tabularx, ragged2e}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{s}{>{\hsize=.2\hsize \centering\arraybackslash}X}
+\newtheorem{exercise}{Exercise}[section]
+
 
 
 \definecolor{markergreen}{rgb}{0.6, 1.0, 0}
@@ -106,7 +108,7 @@
 \newtheorem{example}[lemma]{Example}
 \newtheorem{fact}[lemma]{Fact}
 \newtheorem{defn}[lemma]{Definition}
-\newtheorem{exercise}{Exercise}[section]
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
 
 \newtheorem{programming}[exercise]{Programming assignment}
 \newenvironment{proof}{{\flushleft\textbf{\textsl{Proof.\ \ }}}}{\hfill{\hfill\rule{2mm}{2mm}}}
@@ -326,7 +328,7 @@ The codes are available on \href{http://www.quantlet.com/}{www.quantlet.com}.
 % --- Results ---
 % ----------------
 
-\newpage
+\clearpage
 %
 \bibliography{finance} %
 \input{appendix.tex}

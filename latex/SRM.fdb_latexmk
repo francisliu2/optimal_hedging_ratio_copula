@@ -1,4 +1,5 @@
 # Fdb version 3
+<<<<<<< HEAD
 ["bibtex SRM"] 1616845046 "SRM.aux" "SRM.bbl" "SRM" 1616845048
   "./ecta.bst" 1191924788 29983 0ef0a2bd678e76d0ae833edd63f5ad06 ""
   "SRM.aux" 1616845048 16414 553e5979d8047e456517caae012e2798 "pdflatex"
@@ -7,6 +8,16 @@
   "SRM.bbl"
   "SRM.blg"
 ["pdflatex"] 1616845046 "SRM.tex" "SRM.pdf" "SRM" 1616845048
+=======
+["bibtex SRM"] 1616845079 "SRM.aux" "SRM.bbl" "SRM" 1616845704
+  "./ecta.bst" 1615879310 29983 0ef0a2bd678e76d0ae833edd63f5ad06 ""
+  "SRM.aux" 1616845702 16414 553e5979d8047e456517caae012e2798 "pdflatex"
+  "finance.bib" 1616843442 536854 2a1337ee56a90236d2a1a8a1e5676e62 ""
+  (generated)
+  "SRM.blg"
+  "SRM.bbl"
+["pdflatex"] 1616845692 "SRM.tex" "SRM.pdf" "SRM" 1616845704
+>>>>>>> c44b6f4ff5a23ce0a03c50a5142de46ede3cac42
   "/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/tcrm0600.tfm" 1136768653 1536 12e8c510d3e158fdd0e9a42e75118bd9 ""
@@ -203,6 +214,7 @@
   "/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/local/texlive/2020/texmf-dist/web2c/texmf.cnf" 1583102494 39451 60d7debd9ef8ece44cbe965493576c2d ""
   "/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1586288239 4811913 0be9a7e86c70a26e5e3042966bcd7097 ""
+<<<<<<< HEAD
   "/usr/local/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1592991134 2432460 e20d90badc1c296af0a9ecb144a7f205 ""
   "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
   "SRM.aux" 1616845048 16414 553e5979d8047e456517caae012e2798 "pdflatex"
@@ -242,3 +254,44 @@
   "SRM.pdf"
   "SRM.log"
   "SRM.out"
+=======
+  "/usr/local/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1616822734 2432453 a4f6f719c846ccc33beb06ce67042857 ""
+  "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
+  "SRM.aux" 1616845702 16414 553e5979d8047e456517caae012e2798 "pdflatex"
+  "SRM.bbl" 1616845079 7116 adc14c600a694eb635cdd10abb50a562 "bibtex SRM"
+  "SRM.out" 1616845702 1236 8b1d74c80ea2f9f2746e12d8d26f180f "pdflatex"
+  "SRM.tex" 1616845691 20339 80224fbd0ea4baf57ffbb42d9eb85d4a ""
+  "_pics/Clayton Copula quantile dependence.pdf" 1616573767 15844 e00ec94ada27b52e3ff0fac93cffa853 ""
+  "_pics/Frank.pdf" 1615441129 58643 61d2b48c4a089d06e04f8a56ae4e8728 ""
+  "_pics/Gumbel Copula quantile dependence.pdf" 1616573767 15989 da98c20f82b5451c1b0ca1ffb0cc0fb5 ""
+  "_pics/IF_plots/ERM10_t_copula_MLE.pdf" 1616843442 136721 7ae2d693d04554a2e21af579b1cbfc04 ""
+  "_pics/IF_plots/ES1_t_copula_MLE.pdf" 1616843442 153266 8c76416c6979f6ccf7c48e31eb785a02 ""
+  "_pics/IF_plots/ES5_t_copula_MLE.pdf" 1616843442 140733 6f628d8d18b22c8bbc3cc028266b254d ""
+  "_pics/IF_plots/VaR1_t_copula_MLE.pdf" 1616843442 146698 0cc14d13b49258abbc69c2c1a46c5247 ""
+  "_pics/IF_plots/VaR5_t_copula_MLE.pdf" 1616843442 135938 bd7cfe53d111984d2f174725083014c4 ""
+  "_pics/IF_plots/Variance_t_copula_MLE.pdf" 1616843442 140614 d9f84cdcc171611ea651947452d211b7 ""
+  "_pics/OHRs.pdf" 1615879309 36502 91f480a7652baeeefe337503c7757711 ""
+  "_pics/OOSreturns_compare.pdf" 1616843442 30017 0b733c9c178ecbc11da862f74c574618 ""
+  "_pics/Out of Sample Hedging Effectiveness.png" 1614484912 146583 82dbb8936e9f1c15beb1df22c22f0df1 ""
+  "_pics/Rhs.pdf" 1615879309 280354 5d3f6cb7f6903684b19e270c42deaf80 ""
+  "_pics/density illustration1.png" 1614324555 28353 4b1e3bb7da3f36bdcb4f41a0dd1083e6 ""
+  "_pics/density illustration2.png" 1614324555 21506 2573e34b00fbe4d1ae6d2ce40d3faeee ""
+  "_pics/qletlogo_tr.png" 1615441129 61242 516849013348a9ecd7b2650b26e46885 ""
+  "_pics_notes/CRIX_future_Open_Close.pdf" 1616763961 29326 8c52e00833809d0dbb2be3229c11b3d6 ""
+  "appendix.tex" 1616843442 2314 69c5d31cf7f258ee1999e4088b459ce3 ""
+  "copulae.tex" 1616843442 12171 2f25bd0e5da12ef13e119d3bd2aad0b5 ""
+  "data.tex" 1616843442 4867 f541214065d293748e7fcd77c30b2a57 ""
+  "definitions.tex" 1614235156 6633 b843e24247352bdd83e4d5b9dc913881 ""
+  "estimation.tex" 1616843442 13655 c7e755fb639995b9c0242a629e8cadd5 ""
+  "methodology.tex" 1616843442 10879 b500052a8951af0d029c17a83ad1882b ""
+  "proofapnd.sty" 1614484912 2223 40c4b7234fb460ebdad0841a81a1f7a3 ""
+  "results.tex" 1616843442 9101 f05a7aad1f1904f3bbdaa91ce1a55867 ""
+  "riskmeasures.tex" 1616843442 2553 b017234da5310bf204c2339e9a9ab346 ""
+  "robustness.tex" 1616844818 5244 a96244190e3b444c4a1f40109b555c0c ""
+  "slashbox.sty" 1614484912 2685 ce2190dc09125c3010b0dfd2226dd182 ""
+  (generated)
+  "SRM.out"
+  "SRM.aux"
+  "SRM.log"
+  "SRM.pdf"
+>>>>>>> c44b6f4ff5a23ce0a03c50a5142de46ede3cac42

@@ -2,6 +2,8 @@
 \usepackage[titletoc, title]{appendix}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mathrsfs}
+
 \usepackage{bm}
 \usepackage{array}
 \usepackage{babel}
@@ -99,9 +101,10 @@
 \renewcommand{\baselinestretch}{1.2}
 %\newcommand{\indicator}{$1{\hskip -2.5 pt}\hbox{I}$}
 \newcommand{\indicator}{I}
+\begin{document}
+
 \input{definitions}
 
-\begin{document}
 
 \newtheorem{lemma}{Lemma}
 \newtheorem {proposition}[lemma]{Proposition}
@@ -216,9 +219,9 @@ reduce risk. \natp{\em [This needs not go in the introduction. Just briefly ment
   }
 
 This paper considers a hedging problem of Bitcoin using its future and an aggregated index of cryptocurrencies CRIX,
-i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $R^h = R^S - h^*R^F$ has
+i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $r^h = r^S - h^*r^F$ has
 minimal risk.
-We denote $R^S$ as the log return of Bitcoin spot price, $R^F$ as log return of Bitcoin future and CRIX.
+We denote $r^S$ as the log return of Bitcoin spot price, $r^F$ as log return of Bitcoin future and CRIX.
 The non Gaussianity and development of risk measures lead us to deploy copulae together with various risk measures as loss function to optimize the hedge ratio.
 In this paper, we calibrate the log returns of Bitcoin, CRIX, and CME future by copulae,
 then find the optimal quantity of assets in the hedged portfolio according to a range of risk measures.

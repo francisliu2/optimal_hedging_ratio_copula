@@ -27,7 +27,7 @@ parameter.
   \includegraphics[scale=.35]{_pics/copulas/normal1.pdf}  
   \includegraphics[scale=.35]{_pics/copulas/normal2.pdf}  
   \caption{Left: Density of the Gaussian (Normal) copula. Right:
-    Density of the bivariate Normal distribution ($\rho=0.5$ in both
+    pdf of the bivariate Normal distribution ($\rho=0.5$ in both
     cases).} 
   \label{fig:normalcopula}
 \end{figure}
@@ -62,7 +62,7 @@ $\phi(\cdot)$ is PDF of standard normal,
 $\Phi^{-1}(\cdot)$ is quantile function of standard normal.
 
 \natp{\em [I suggest to move the part below to the section where the
-  formula for $R^h$ is discussed. Also, there is a simpler version
+  formula for $r^h$ is discussed. Also, there is a simpler version
   that requires only univariate function evluations.]}
 
 The bivariate $D_1 C^{Ga}\{w, g(w)\}$ is
@@ -94,28 +94,28 @@ The bivariate $D_1 C^{Ga}\{w, g(w)\}$ is
 \subsubsection*{Hedge distribution}
 \label{sec:hedge-distribution-gaussian}
 
-Let $R^S\sim \Ncdf(\mu_S, \sigma_S^2)$ and $R^F\sim \Ncdf(\mu_F,
+Let $r^S\sim \Ncdf(\mu_S, \sigma_S^2)$ and $r^F\sim \Ncdf(\mu_F,
 \sigma_F^2)$ and assume further that they are jointly normally
 distributed with correlation $\rho$. Then,
 \begin{equation*}
-  R^h = R^S - h R^F \sim \Ncdf(\mu_S - h \mu_F, \sigma_s^2 + h^2
+  r^h = r^S - h r^F \sim \Ncdf(\mu_S - h \mu_F, \sigma_s^2 + h^2
   \sigma_F^2 - 2\rho h \sigma_S \sigma_F).
 \end{equation*}
 More generally, if $R^k\sim F^k$, $k\in \{S,F\}$, then the
-distribution of $R^h$ can be expressed with univariate
+distribution of $r^h$ can be expressed with univariate
 expressions: 
 \begin{align*}
-  \p(R^S-h R^F\leq x)
-  &= 1-\E\left[ \p\left(R^F\leq \frac{R^S-x}{h}\big| R^S\right)\right] \\ %
-  &= 1-\E\left[\p \left(\Ncdf^{(-1)}(F_F(R^F)) \leq
-    \Ncdf^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) \Big|
-    R^S\right)\right] \\%
-  &= 1-\E\left[ \p\left(\rho \Ncdf^{(-1)}(F_S(R^S)) + \sqrt{1-\rho^2}
-    \varepsilon \leq \Ncdf^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) \Big|
-    R^S\right)\right]\\ %
+  \p(r^S-h r^F\leq x)
+  &= 1-\E\left[ \p\left(r^F\leq \frac{r^S-x}{h}\big| r^S\right)\right] \\ %
+  &= 1-\E\left[\p \left(\Ncdf^{(-1)}(F_F(r^F)) \leq
+    \Ncdf^{(-1)}\left(F_F\left(\frac{r^S-x}{h}\right)\right) \Big|
+    r^S\right)\right] \\%
+  &= 1-\E\left[ \p\left(\rho \Ncdf^{(-1)}(F_S(r^S)) + \sqrt{1-\rho^2}
+    \varepsilon \leq \Ncdf^{(-1)}\left(F_F\left(\frac{r^S-x}{h}\right)\right) \Big|
+    r^S\right)\right]\\ %
   &= 1-\E\left[ \Ncdf \left(
-    \frac{\Ncdf^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) -\rho
-    \Ncdf^{(-1)}(F_S(R^S))} { \sqrt{1-\rho^2}}\right)\right]\\
+    \frac{\Ncdf^{(-1)}\left(F_F\left(\frac{r^S-x}{h}\right)\right) -\rho
+    \Ncdf^{(-1)}(F_S(r^S))} { \sqrt{1-\rho^2}}\right)\right]\\
   &= 1-\int_0^1  \Ncdf \left(
     \frac{\Ncdf^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(u)-x}{h}\right)\right) -\rho
     \Ncdf^{(-1)}(u)} { \sqrt{1-\rho^2}}\right) \,\dd u.
@@ -217,7 +217,7 @@ It is easily observed that $\mathbf X|W=w \sim \Ncdf_d(\mathbf \mu,
 w\Sigma)$, where $\sigma = A A'$.
 
 In general, we will assume that $\Sigma$ is positive definite and that
-$W>0$ $\pas$. Then, the density of $\mathbf X$ is given by
+$W>0$ $\pas$. Then, the pdf of $\mathbf X$ is given by
 \begin{align*}
   f(\mathbf x) &= \int f_{\mathbf X|W} (\mathbf x|w)\, \dd H(w)\\
   &= \int \frac{w^{-d/2}} {(2\pi)^{d/2} |\Sigma|^{1/2}} \exp\left( -
@@ -244,16 +244,16 @@ by transforming the margins to uniforms.
 \subsubsection*{Hedge distribution}
 \label{sec:hedge-distribution-1}
 
-Let $(R^S, R^F)$ follow a normal variance mixture, i.e., there exists a
+Let $(r^S, r^F)$ follow a normal variance mixture, i.e., there exists a
 decomposition such that
 \begin{align*}
-  R^S &=\mu_S + \sqrt{W} \sigma_S Z_1\\
-  R^F &= \mu_F + \sqrt{W} \sigma_F (\rho Z_1 + \sqrt{1-\rho^2} Z_2),
+  r^S &=\mu_S + \sqrt{W} \sigma_S Z_1\\
+  r^F &= \mu_F + \sqrt{W} \sigma_F (\rho Z_1 + \sqrt{1-\rho^2} Z_2),
 \end{align*}
 where $W$ is the mixing variable and $Z_1, Z_2$ are independent
-standard normal variables. Then, $R^h$ follows a NVM distribution with
+standard normal variables. Then, $r^h$ follows a NVM distribution with
 \begin{equation*}
-  R^h = R^S - h R^F =  \mu_S - h \mu_F + \sqrt{W}
+  r^h = r^S - h r^F =  \mu_S - h \mu_F + \sqrt{W}
   \left((\sigma_S-h\sigma_F\rho)Z_1 -h \sqrt{1-\rho^2} 
     \sigma_F Z_2\right) = \mu_S - h \mu_F + \sqrt{W} Z_3,
 \end{equation*}
@@ -262,15 +262,15 @@ h\sigma_S \sigma_F)$.
 
 More generally, let $R^k\sim F^k$, $k\in \{S,F\}$ and write $V$
 as the marginal distribution functions of the NVM distribution
-components. Let $V^{(-1)}(F_S(R^S)) \stackrel{\mathcal L}{=} \sqrt{W}
-Z_1$ and $V^{(-1)}(F_F(R^F)) \stackrel{\mathcal L}{=} 
+components. Let $V^{(-1)}(F_S(r^S)) \stackrel{\mathcal L}{=} \sqrt{W}
+Z_1$ and $V^{(-1)}(F_F(r^F)) \stackrel{\mathcal L}{=}
 \sqrt{W} \rho Z_1 + \sqrt{W} \sqrt{1-\rho^2} Z_2$, were $Z_1, Z_2$ are
 independent standard normals. Then 
 \begin{align*}
-  \p(R^S-h R^F\leq x)
-  &= 1-\E\left[ \p\left(R^F\leq \frac{R^S-x}{h}\big| R^S\right)\right] \\ %
-  &= 1-\E\left[\p \left(V^{(-1)}(F_F(R^F)) \leq
-    V^{(-1)}\left(F_F\left(\frac{R^S-x}{h}\right)\right) \Big|
+  \p(r^S-h r^F\leq x)
+  &= 1-\E\left[ \p\left(r^F\leq \frac{r^S-x}{h}\big| r^S\right)\right] \\ %
+  &= 1-\E\left[\p \left(V^{(-1)}(F_F(r^F)) \leq
+    V^{(-1)}\left(F_F\left(\frac{r^S-x}{h}\right)\right) \Big|
     W, Z_1\right)\right] \\%
   &= 1-\E\left[ \p\left(\sqrt{W} \rho Z_1 + \sqrt{W} \sqrt{1-\rho^2}
     Z_2\leq V^{(-1)}\left(F_F\left(\frac{F_S^{(-1)}(V(\sqrt{W}
@@ -558,9 +558,9 @@ uniforms (see Sklar's Theorem).
 
 The NIG factor copula function can be written as \citep{krupskii2013factor}:
 \begin{align}
-  C_{R^S, R^F}\{F_{R^S}(r^S), F_{R^F}(r^F)\} = \int_\mathbb{R}
-  F_{Z_1}\{F_{X_1}^{-1} \circ F_{R^S}(r^S) -z\} \cdot
-  F_{Z_2}\{F_{X_2}^{-1} \circ F_{R^F}(r^F) -z\} \cdot
+  C_{r^S, r^F}\{F_{r^S}(r^S), F_{r^F}(r^F)\} = \int_\mathbb{R}
+  F_{Z_1}\{F_{X_1}^{-1} \circ F_{r^S}(r^S) -z\} \cdot
+  F_{Z_2}\{F_{X_2}^{-1} \circ F_{r^F}(r^F) -z\} \cdot
   f_Z(z) dz
   \end{align}
 
@@ -576,7 +576,7 @@ The Spearman rho of NIG factor copula is
 
 \begin{proof}
   \begin{align}
-  \rho_S(R^S, R^F) &= \rho\{F_{R^S}(R^S), F_{R^F}(R^F)\} \\
+  \rho_S(r^S, r^F) &= \rho\{F_{r^S}(r^S), F_{r^F}(r^F)\} \\
     &= \rho\{F_{X_1}(X_1), F_{X_2}(X_2)\} \\
     &= 12 \cdot \mathbb{E}\{F_{X_1}(X_1) \cdot F_{X_2}(X_2) \} - \frac{1}{48}\\
     &= 12 \cdot \int \int_{\mathbb{R}^2} F_{X_1}(X_1) \cdot F_{X_2}(X_2) dF_{X_1,X_2}(x_1,x_2)\\
@@ -589,7 +589,7 @@ The Spearman rho of NIG factor copula is
     \end{align}
   so,
   \begin{align}
-    \rho_S(R^S, R^F) = 12 \cdot \int \int \int_{\mathbb{R}^3} F_{X_1}(x_1) \cdot F_{X_2}(x_2) \cdot f_{Z_1}(x_1 -z) \cdot f_{Z_2}(x_2 -z) \cdot f_{Z}(z) dx_1 dx_2 dz -\frac{1}{48}
+    \rho_S(r^S, r^F) = 12 \cdot \int \int \int_{\mathbb{R}^3} F_{X_1}(x_1) \cdot F_{X_2}(x_2) \cdot f_{Z_1}(x_1 -z) \cdot f_{Z_2}(x_2 -z) \cdot f_{Z}(z) dx_1 dx_2 dz -\frac{1}{48}
     \end{align}
   \end{proof}
 
@@ -902,15 +902,15 @@ Optimising for the hedge quantity $h$ requires fast calculations of
 the hedge distribution function \eqref{eq:3}. The position obtained
 from hedging Bitcoin with $h$ units of the Bitcoin future returns
 \begin{equation*}
-  R^h = X_1 - h X_2 = Z + Z_1 - h Z - h Z_2 = (1-h) Z + Z_1 - h Z_2,
+  r^h = X_1 - h X_2 = Z + Z_1 - h Z - h Z_2 = (1-h) Z + Z_1 - h Z_2,
 \end{equation*}
 with $Z, Z_1, Z_2$ independent NIG-distributed random
 variables. Without loss of generally, set $\mu=0$. Because of the
-scaling with $1-h$ and $h$, $R^h$ will not follow an NIG distribution,
+scaling with $1-h$ and $h$, $r^h$ will not follow an NIG distribution,
 unless $h=0$.  A direct calculation of the distribution function is
 achieved by numerically computing the integral
 \begin{equation*}
-  \p(R^h\leq x) = \int_0^\infty \int_0^\infty \int_0^\infty
+  \p(r^h\leq x) = \int_0^\infty \int_0^\infty \int_0^\infty
   \Ncdf(y; \mu_1 - h \mu_2 + \beta w_1 - h w_2, (1-h)^2 w + w_1 + h^2
   w_2)\, f_W(w)\, f_{W_1}(w_1)\, f_{W_2} (w_2)\, \dd w\, \dd w_1\, \dd w_2,
 \end{equation*}
@@ -926,11 +926,11 @@ methods that make explicit use of the simple form of the
 moment-generating function.  The following two methods achieve a much
 faster computation for the NIG factor model.  The first method uses
 Fourier inversion to calculate the density from the characteristic
-function. The second method approximates the distribution of $R^h$ by
+function. The second method approximates the distribution of $r^h$ by
 an NIG distribution.  Both methods use the moment-generating function
-of $R^h$, which is given by
+of $r^h$, which is given by
 \begin{align}
-  \varphi_h(u):=\E\left[\e^{u R^h}\right]
+  \varphi_h(u):=\E\left[\e^{u r^h}\right]
   &= \E\left[ \e^{u[(1-h) Z + Z_1 -h Z_2]}\right] %
     = \E\left[ \e^{u(1-h) Z}\right]\, \E\left[ \e^{u Z_1}\right] \,
     \E\left[ \e^{-u h Z_2}\right]\nonumber\\
@@ -950,15 +950,15 @@ of $R^h$, which is given by
 \label{sec:calc-via-four}
 
 Because of the simple form of the moment-generating function
-\eqref{eq:7}, the density $f$ of $R^h$ can be calculated numerically
+\eqref{eq:7}, the density $f$ of $r^h$ can be calculated numerically
 using the inverse Fourier transform of the characteristic function
 $\varphi(u) $:
 \begin{equation*}
   f(x) = \frac{1}{2\pi} \int_\R \e^{-i u x} \varphi_h(u)\, \dd u, 
 \end{equation*}
-and the distribution function of $R^h$ can be calculated as
+and the distribution function of $r^h$ can be calculated as
 \begin{equation*}
-  \p(R^h\leq x) = \lim_{b\rightarrow-\infty} \frac{1}{2\pi} \int_\R
+  \p(r^h\leq x) = \lim_{b\rightarrow-\infty} \frac{1}{2\pi} \int_\R
   \frac{\e^{-i u x} - \e^{-i u b}}{i u}\, \varphi_h(u)\, \dd u,
 \end{equation*}
 see e.g.\ II.\S 12, Theorem 3 of \citep{Shiryaev1996}.
@@ -967,14 +967,14 @@ see e.g.\ II.\S 12, Theorem 3 of \citep{Shiryaev1996}.
 \paragraph*{NIG approximation of hedged position}
 \label{sec:nig-appr-hedg}
 
-If $h=1$ and $\beta=0$, then $R^h$ is NIG, hence, if $h$ is close to
-$1$, it may be feasible to approximate $R^h$ by an NIG. The parameters
+If $h=1$ and $\beta=0$, then $r^h$ is NIG, hence, if $h$ is close to
+$1$, it may be feasible to approximate $r^h$ by an NIG. The parameters
 can be determined either by moment-matching or by a first-order Taylor
 approximation of the moment-generating function's exponent.
 
 
 For the moment-matching procedure, set
-$R^h\approx \text{NIG}(\alpha_h, \beta_h, \mu_h, \delta_h)$ and solve
+$r^h\approx \text{NIG}(\alpha_h, \beta_h, \mu_h, \delta_h)$ and solve
 for $\alpha_h, \beta_h, \mu_h, \delta_h$, 
 \begin{equation*}
   \begin{pmatrix}
@@ -998,7 +998,7 @@ for $\alpha_h, \beta_h, \mu_h, \delta_h$,
 % \begin{equation*}
 %   \min_{\alpha_h, \beta_h, \mu_h, \delta_h} \sqrt{\sum_{r=1}^4
 %     \left(\frac{\partial^r}{\partial u^r} \left[\E\left[\e^{u
-%             R^h}\right] - M(u;\alpha_h, \beta_h, \mu_h,
+%             r^h}\right] - M(u;\alpha_h, \beta_h, \mu_h,
 %         \delta_h)\right]_{u=0}\right)^2}, 
 % \end{equation*}
 % allows for an efficient computation of

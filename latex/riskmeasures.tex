@@ -1,8 +1,8 @@
 \subsection{Risk Measures}\label{subsec:spectral-risk-measures}
 We consider four risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
-They are used in many literature about hedging, e.g. ;
-The risk measures are also used by regulatory bodies,
-for example Basel III ....
+%They are used in many literature about hedging, e.g. ;
+%The risk measures are also used by regulatory bodies,
+%for example Basel III ....
 A summary of risk measures being used in portfolio selection problem can be found in \citet{hardle2008applied}.\medskip
 \medskip
 
@@ -18,7 +18,7 @@ Let $Z$ be a random variable of distribution $F_Z$.
 VaR, ES, and ERM fall into the class of Spectral Risk Measure (SRM).
 SRM has the form \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
 \begin{align}
-	\rho_\phi(R^h) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
+	\rho_\phi(r^h) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
 	\end{align}
 
 where $p$ is the loss quantile and $\phi(p)$ is a user-defined weighting function defined over $[0,1]$. \medskip
@@ -52,5 +52,5 @@ for $x$ in all possible outcomes.
 
 %Spectral risk measures can also be written as
 %\begin{align}
-%	\rho_\phi(R^h) = - \int_\mathbb{R} x f_{R^h}(x) \phi\{F_{R^h}(x)\} d x.
+%	\rho_\phi(r^h) = - \int_\mathbb{R} x f_{r^h}(x) \phi\{F_{r^h}(x)\} d x.
 %	\end{align}

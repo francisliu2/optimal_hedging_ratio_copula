@@ -1,6 +1,7 @@
 \subsection{Robustness}\label{subsec:robustness}
-The study of robustness concerns the stability of statistical estimation procedure under the existence of outliers.
-This has an economical meaning to our hedging exercise: Do we want the optimal hedge ratio react to extreme market changes?
+The study of robustness concerns the stability of statistical estimation with respect to violation in assumptions.
+In our context, the robustness is with respect to outliers (or jumps).
+It is natural to do we want the optimal hedge ratio react to extreme market changes?
 In practice, outliers of returns can come from anywhere, for example, a tweet from Elon Musk, a sudden large order from
 institutional investor, or an incident of system failure in cryptocurrency exchanges.
 Rapid and drastic changes in portfolio weight causes problem of slippage and transaction cost.
@@ -18,9 +19,9 @@ Details of robustness of risk measures can be found in \citet{cont2010robustness
 \francis{\em [FL: Need to rewrite the following to show the IF of hedge performance instead of h. But Please have a look of the methodology first.]}
 With a probability space $(\Omega, \F, \p)$,
 we denote $M: \Omega \mapsto \mathscr{C}, M \in \{\text{MLE}, \text{MM}, \text{Empirical}\}$ be estimators of interest for distribution of returns,
-$\mathscr{C} = \{\text{Gaussian-Copula}, ..., \text{Plackett-Copula}, \text{Empirical-Copula}\} \in \p$ be a set of bivariate distributions of interest,
+$$\mathscr{C} = \{\text{Gaussian-Copula}, ..., \text{Plackett-Copula}, \text{Empirical-Copula}\} \in \p$$ be a set of bivariate distributions of interest,
 $\rho_{h}: \mathscr{C} \mapsto \mathbb{R}$ be a risk measure on the hedged portfolio given $h$,
-and finally, $\hat h_\rho = \argmin_h \rho_{h} \circ M$ be a functional to obtain the optimal hedge ratio (OHR) depending on risk measure
+and finally, $$\hat h_\rho = \argmin_h \rho_{h} \circ M$$ be a functional to obtain the optimal hedge ratio (OHR) depending on risk measure
 $\rho$. \medskip
 
 The influence function of $\hat h_\rho$ with finite sample size $n$ is
@@ -36,7 +37,8 @@ standardised by the mass of the contamination. \medskip
 
 Figure~\ref{fig:IFs} shows the influence function of $\hat h_\rho$ of using $t$ copula estimated by MLE with 300 data points of
 Bitcoin and CME future returns from 14/12/2018 to 25/02/2020.
-Contamination are $[-0.3,-0.27,..., 0.3] \bigotimes [-0.3,-0.27,..., 0.3]$, in total $900$ pairs of contamination. \medskip
+Contamination are in a set $\{-0.3,-0.27,..., 0.3\} \times \{-0.3,-0.27,..., 0.3\}$, in total $900$ pairs of contamination.
+The product is Cartesian product of two sets.\medskip
 
 We can see from the plots that Expected Shortfall with $\alpha = 99\%$ is very sensitive the negative return in spot (lower right plot).
 The $h^*$ obtained this way increases with a single contamination of negative jump in spot price.

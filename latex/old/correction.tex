@@ -22,18 +22,18 @@
 
 % Document
 \begin{document}
-    \section{Step by step derivation of $F_{R^h}$}\label{sec:steps}
+    \section{Step by step derivation of $F_{r^h}$}\label{sec:steps}
 \begin{prop}[Fixed Result of Barbi and Romagnoli]\label{prop:BarbiRoma}
-Given the hedging equation $R^h = R^S - hR^F$, copula copuling $R^S$, and $R^F$ $C_{R^S, R^F}$ and $D_1$ defined previously,
-the c.d.f. of $R^h$ can be written as:
+Given the hedging equation $r^h = r^S - hr^F$, copula copuling $r^S$, and $r^F$ $C_{r^S, r^F}$ and $D_1$ defined previously,
+the c.d.f. of $r^h$ can be written as:
     \begin{align*}
-        F_{R^h}(r^h)
-        &= 1- \int^1_0 D_1 C_{R^S, R^F}
+        F_{r^h}(r^h)
+        &= 1- \int^1_0 D_1 C_{r^S, r^F}
         \left\{
         w,
-        F_{R^F}
+        F_{r^F}
         \left[
-        \frac{F^{-1}_{R^S}(w)-r^h}{h}
+        \frac{F^{-1}_{r^S}(w)-r^h}{h}
         \right]
         \right\}dw \\
     \end{align*}
@@ -80,28 +80,28 @@ Proof will be shown after lemmas required for it.
     We plug~\eqref{eq:tCDF}and\eqref{eq:D1C_integral} into the C-Convolution equation:
 
     \begin{align*}
-        F_{R^h}(r^h) &= \int^1_0 D_1 C_{R^S, -hR^F}
+        F_{r^h}(r^h) &= \int^1_0 D_1 C_{r^S, -hr^F}
         \{w,
-        F_{-hR^F}[r^h - F^{-1}_{R^S}(w)
+        F_{-hr^F}[r^h - F^{-1}_{r^S}(w)
         ]\}dw \\
-        &= 1 - \int^1_0 D_1 C_{R^S, hR^F}
+        &= 1 - \int^1_0 D_1 C_{r^S, hr^F}
         \{w,
-        1- F_{-hR^F}[r^h - F^{-1}_{R^S}(w)
+        1- F_{-hr^F}[r^h - F^{-1}_{r^S}(w)
         ]\}dw && \text{\eqref{eq:D1C_integral}}\\
-        &= 1 - \int^1_0 D_1 C_{R^S, hR^F}
+        &= 1 - \int^1_0 D_1 C_{r^S, hr^F}
         \{w,
-        F_{hR^F}[F^{-1}_{R^S}(w) - r^h
+        F_{hr^F}[F^{-1}_{r^S}(w) - r^h
         ]\}dw && \text{\eqref{eq:tCDF}}
     \end{align*}
-We proceed wih $F_{hR^F}(x)=F_{R^F}(x/h)$ and $C_{R^S,hR^F}(w, \lambda)=C_{R^S,R^F}(w, \lambda)$, and we have
+We proceed wih $F_{hr^F}(x)=F_{r^F}(x/h)$ and $C_{r^S,hr^F}(w, \lambda)=C_{r^S,r^F}(w, \lambda)$, and we have
     \begin{align*}
-        F_{R^h}(r^h)
-        &= 1- \int^1_0 D_1 C_{R^S, R^F}
+        F_{r^h}(r^h)
+        &= 1- \int^1_0 D_1 C_{r^S, r^F}
         \left\{
         w,
-        F_{R^F}
+        F_{r^F}
         \left[
-        \frac{F^{-1}_{R^S}(w)-r^h}{h}
+        \frac{F^{-1}_{r^S}(w)-r^h}{h}
         \right]
         \right\}dw \\
     \end{align*}
@@ -109,10 +109,10 @@ We proceed wih $F_{hR^F}(x)=F_{R^F}(x/h)$ and $C_{R^S,hR^F}(w, \lambda)=C_{R^S,R
 
 Barbi and Romagnoli's proof of Corollary 2: (This is just for us)
     \begin{align*}
-        F_{R^h}(r^h)
-        &= 1 - \int^1_0 D_1 C_{R^S, R^F}
+        F_{r^h}(r^h)
+        &= 1 - \int^1_0 D_1 C_{r^S, r^F}
         \left\{w,
-        1- F_{hR^F}\left[\frac{r^h - F^{-1}_{R^S}(w)}{h}
+        1- F_{hr^F}\left[\frac{r^h - F^{-1}_{r^S}(w)}{h}
         \right]\right\}dw \\
     \end{align*}
 
@@ -181,19 +181,19 @@ Let's take a look of our case
     \end{align}
     where $Y = \{-\infty= t_0 < t_1<\dots<t_n=a| \Delta t = t_{i+1}-t_i~\forall i\}$ and $k_i$ is any points in $[t_{i+1},t_i]$ \newline
 
-We apply the result above to our case $R^h = n_S R^S - n_F R^F$.
+We apply the result above to our case $r^h = n_S r^S - n_F r^F$.
 \begin{align*}
-    F_{R^h}(r^h)
+    F_{r^h}(r^h)
                 &= \lim_{\Delta t \rightarrow 0}
-                   \sum^{n-1}_{i=0} C_{n_S R^S, -n_F R^F}[F_{n_S R^S}(k_i), F_{-n_F R^F}(r^h-k_i)] \nonumber \\
+                   \sum^{n-1}_{i=0} C_{n_S r^S, -n_F r^F}[F_{n_S r^S}(k_i), F_{-n_F r^F}(r^h-k_i)] \nonumber \\
                 &= \lim_{\Delta t \rightarrow 0}
-                   \sum^{n-1}_{i=0} \{F_{n_S R^S}(k_i) - C_{n_S R^S, n_F R^F}[F_{n_S R^S}(k_i), F_{n_F R^F}(k_i-r^h)]\}\\
+                   \sum^{n-1}_{i=0} \{F_{n_S r^S}(k_i) - C_{n_S r^S, n_F r^F}[F_{n_S r^S}(k_i), F_{n_F r^F}(k_i-r^h)]\}\\
                 &= \lim_{\Delta t \rightarrow 0}
-                       \sum^{n-1}_{i=0} \{F_{R^S}(k_i/n_S) - C_{R^S, R^F}[F_{R^S}(k_i/n_S), F_{R^F}((k_i-r^h)/n_F)]\}\\
+                       \sum^{n-1}_{i=0} \{F_{r^S}(k_i/n_S) - C_{r^S, r^F}[F_{r^S}(k_i/n_S), F_{r^F}((k_i-r^h)/n_F)]\}\\
 \end{align*}
         where $Y = \{-\infty= t_0 < t_1<\dots<t_n=a| \Delta t = t_{i+1}-t_i~\forall i\}$ and $k_i$ is any points in $[t_{i+1},t_i]$ \newline
 
-We can now solve $F_{R^h}(r^h)$ numerically by taking large value of $n$, $a$, and a very small value for $-\infty$.
+We can now solve $F_{r^h}(r^h)$ numerically by taking large value of $n$, $a$, and a very small value for $-\infty$.
 \subsection{Dini Derivatives Construction}\label{sec:Dini}
 
 

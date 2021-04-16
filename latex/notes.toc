@@ -29,7 +29,8 @@
 \contentsline {subsection}{\numberline {8.3}Comparison}{41}{subsection.8.3}%
 \contentsline {section}{\numberline {9}Backtesting}{43}{section.9}%
 \contentsline {section}{\numberline {10}Backtesting value-at-risk}{43}{section.10}%
-\contentsline {section}{\numberline {11}Robustness}{44}{section.11}%
-\contentsline {section}{\numberline {12}Data}{45}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Time Difference}{46}{subsection.12.1}%
-\contentsline {subsection}{\numberline {12.2}Statistics of Percentage Difference Between CME Bitcoin future Open Price and Last Close Price}{49}{subsection.12.2}%
+\contentsline {subsection}{\numberline {10.1}Robustness}{44}{subsection.10.1}%
+\contentsline {section}{\numberline {11}Data}{45}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Time Difference}{47}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Statistics of Percentage Difference Between CME Bitcoin future Open Price and Last Close Price}{51}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Hedging effectiveness}{51}{subsection.11.3}%

@@ -2,34 +2,45 @@
 \label{sec:optimal-hedge-ratio}
 We form a portfolio with two assets, a spot asset and a future contract, for example Bitcoin spot and CME Bitcoin future.
 Our objective is to minimize the risk of the exposure in the spot.
-To keep a simple portfolio setting, we long one unit of spot and short $h$ unit of future with $h \in [0, \infty)$.
-Let $r^S$ and $r^F$ be the log returns\footnote{The log return is simply the log of geometric difference between price at time $t$ and $t-1$ $\log \frac{\text{Price}_t}{\text{Price}_{t-1}}$.
-The index $t$ follow the trading calendar.
-The handling of calendar is important, we will discuss that in the data section.} of the spot and future price, the log return of the portfolio is
+To keep a simple portfolio setting, we long one unit of the spot and short $h$ unit of the future with $h \in [0, \infty)$.
+Let $r^S$ and $r^F$ be the log returns of the spot and future price, the log return of the portfolio is
 \[r^h = r^S -h r^F.\]
 We call this portfolio a hedged portfolio: the price movement of spot is hedged by the price movement of future.
 \medskip
 
+%\footnote{The log return is simply the log of geometric difference between price at time $t$ and $t-1$ $\log \frac{\text{Price}_t}{\text{Price}_{t-1}}$.
+%The index $t$ follow the trading calendar.
+%The handling of calendar is important, we will discuss that in the data section.}
+
+
 Risk is measured by risk measures.
-Assume payoff $r^h$ of a portfolio over a specified horizon live in a probability space, $r^h \in L(\Omega,\F, \P)$,
-a risk measure on $r^h$ is a map $\rho: r^h \rightarrow \mathbb{R}$.
-We formulate our objective in mathematical term: find an optimal hedge ratio $h^*$ which minimizes risk measures of our choice
+Assume the payoff $r^h$ of a portfolio lives in a probability space, $r^h \in L(\Omega,\F, \P)$,
+and there is a risk measure on $r^h$ $\rho: r^h \mapsto \mathbb{R}$.
+We are looking for an optimal hedge ratio $h^*$ which minimizes risk measure
 
 \[h^* = \argmin_h \rho(r^h).\]
 
-Most risk measures are defined as functionals of the portfolio loss distribution $F_{r^h}$, i.e. $\rho: F_{r^h} \rightarrow \mathbb{R}$.
-For example, Value-at-Risk is simply the quantile of $r^h$ multiply with negative one $\text{VaR}_{1-\alpha} = -F_{r^h}^{(-1)}(1-\alpha) = -\inf\{x \in \mathbb{R}: 1-\alpha \leq F_{r^h}(x) \}$, where $\alpha$ is a parameter chosen by investor.
+Most risk measures are defined as functionals of the portfolio loss distribution $F_{r^h}$, i.e. $\rho: F_{r^h} \mapsto \mathbb{R}$.
+For example, Value-at-Risk (VaR) is simply the quantile of $r^h$ multiply with negative one $\text{VaR}_{1-\alpha} = -F_{r^h}^{(-1)}(1-\alpha) = -\inf\{x \in \mathbb{R}: 1-\alpha \leq F_{r^h}(x) \}$, where $\alpha$ is a parameter chosen by investor.
 We need the knowledge of $F_{r^h}$ in order to measure risk.
-Starting with density of $r^h$, by convolution of random variables~\citep{WKHMVA}, $f_{r^h}(z) = \int_{-\infty}^{\infty}f_{r^S, -hr^F}(x, z-x)dx$, where
-$f_{r^S, -hr^F}$ is the joint density of $r^S$ and $-hr^F$.
-The joint distribution of $r^S$ is $F_{r^S, -hr^F}(x,y) = \int_{-\infty}^{x} \int_{-\infty}^{y}f_{r^S, -hr^F}(s,t) ds dt$.
-Therefore, the ability to minimize the risk exposure in the spot (to hedge) is driven by the joint distribution of $r^S$ and $-hr^F$. \medskip
+By convolution of random variables~\citep{WKHMVA}, $f_{r^h}(z) = \int_{-\infty}^{\infty}f_{r^S, -hr^F}(x, z-x)dx$, where
+$f_{r^S, -hr^F}$ is the joint pdf of $r^S$ and $-hr^F$.
+Obviously the cdf of $r^h$ and risk measure depend on the joint distribution of $r^S$ and $-hr^F$.\medskip
 
-We use copulae to model $F_{r^S, -hr^F}$ because of their two desirable properties.
-First property is that copulae allow us to model the margins and dependence structure separately.
+Optimising $h$ according to $f_{r^S,-hr^F}$ is unfavorable in a sense that one needs to calibrate a new joint pdf $f_{r^S, -hr^F}$ when updating $h$.
+This is too time consuming and unnecessary.
+Another problem of using joint pdf is that one lacks of flexibility to model the margins.
+A joint pdf completely determine the form of its marginals, for example, margins of a bivariate $t$-distribution are
+univariate $t$-distributions.\medskip
+
+To overcome the problems, we use copulae.
+The benefit of using copulae is two folded.
+First, copulae allow us to model the margins and dependence structure separately, see Sklar's Theorem.
+Second, copulae are invariance under strictly monotone increasing function \citep{schweizer1981nonparametric}, see lemma below.
+
 \begin{theorem}[Sklar's Theorem]
   Let $F$ be a joint distribution function with margins $F_X,
-  F_Y$. Then, there exists a copula $C:[0,1]^2\rightarrow[0,1]$ such
+  F_Y$. Then, there exists a copula $C:[0,1]^2 \mapsto [0,1]$ such
   that, for all $x,y\in \R$
   \begin{equation}
     \label{eq:4}
@@ -43,7 +54,10 @@ First property is that copulae allow us to model the margins and dependence stru
   is a joint distribution function with margins $F_X, F_Y$.
 \end{theorem}
 
-Second, copulae are invariance under strictly monotone increasing function \citep{schweizer1981nonparametric}, we have
+Indeed, many basic results about copulae can be traced back to early works of Wassily Hoeffding \citep{hoedffding1940, hoedffding1941}.
+The works aimed to derive a measure of relationship of variables which is invariant under change of scale.
+Readers can refer to \citet{hoeffding2012collected} for English translations of the works.
+
 \begin{lemma}
   \begin{align}
   C_{X, hY}\{F_X(s),F_{hY}(t)\} = C_{X, Y}\{F_X(s),F_{Y}(t/h)\}.
@@ -93,10 +107,10 @@ Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$ see e.g.\ Equ
   \end{proof}
 
 In addition to~\cite{barbi2014copula} we propose a more handy
-expression for the density of $Z$. \natp{\em [Please double-check the
-  ``+'' signs in the second equation.]}\ \francis{ \em [the + sign is correct.]}
+expression for the pdf of $Z$.
+%\natp{\em [Please double-check the ``+'' signs in the second equation.]}\ \francis{ \em [the + sign is correct.]}
 
-\begin{corollary} Given the formulation of the above portfolio, the density of $Z$ can be written as
+\begin{corollary} Given the formulation of the above portfolio, the pdf of $Z$ can be written as
   \begin{align}
   f_{Z}(z) &= \left|\frac{1}{h}\right|\int_0^1 c_{X, Y} \left[
   F_{Y}\left\{\frac{F^{(-1)}_{X}(u)-z}{h}\right\}, u
@@ -118,12 +132,12 @@ expression for the density of $Z$. \natp{\em [Please double-check the
   \end{align}
   \end{corollary}
 The two expression are equivalent.
-Notice that the density of $Z$ in the above proposition is readily accessible as long as we have
+Notice that the pdf of $Z$ in the above proposition is readily accessible as long as we have
 the copula density and the marginal densities.
 The proof and a generic expression can be found in the
 appendix. \medskip
 
-%In this work, we consider two portfolios: $R^h = R^{\text{BTC}} - h R^{\text{future}}$ and $R^h = R^{\text{BTC}} - h R^{\text{CRIX}}$.
+%In this work, we consider two portfolios: $r^h = R^{\text{BTC}} - h R^{\text{future}}$ and $r^h = R^{\text{BTC}} - h R^{\text{CRIX}}$.
 %
 %\natp{\em [For now, stick to $r_S$ and $r_F$. This is still the
 %  general part, so no need to mention Bitcoin, CRIX, etc. here. Also,
@@ -203,7 +217,7 @@ appendix. \medskip
 %\begin{proof}
 %  Using the identity (\ref{eq:1}) gives
 %  \begin{align*}
-%    F_{Z}(x) &= \p(R^s - h Y\leq x) %
+%    F_{Z}(x) &= \p(r^S - h Y\leq x) %
 %                 = \E\left[\p\left(Y\geq \frac{X-x}{h}\Big|
 %                 X\right)\right]\\[10pt]
 %               &= 1-\E\left[\p\left(Y\leq \frac{X-x}{h}\Big|

@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex SRM"] 1619151544 "SRM.aux" "SRM.bbl" "SRM" 1619154021
+["bibtex SRM"] 1619151544 "SRM.aux" "SRM.bbl" "SRM" 1619158449
   "./ecta.bst" 1615879310 29983 0ef0a2bd678e76d0ae833edd63f5ad06 ""
-  "SRM.aux" 1619154018 15417 dcaae52800c9a56753b80110da2130d5 "pdflatex"
+  "SRM.aux" 1619158445 15417 dcaae52800c9a56753b80110da2130d5 "pdflatex"
   "finance.bib" 1619148838 537951 3e994282283208aa0ca1d15b45370a6f ""
   (generated)
-  "SRM.bbl"
   "SRM.blg"
-["pdflatex"] 1619154016 "SRM.tex" "SRM.pdf" "SRM" 1619154021
+  "SRM.bbl"
+["pdflatex"] 1619158443 "SRM.tex" "SRM.pdf" "SRM" 1619158449
   "/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/tcrm0600.tfm" 1136768653 1536 12e8c510d3e158fdd0e9a42e75118bd9 ""
@@ -205,10 +205,10 @@
   "/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1586288239 4811913 0be9a7e86c70a26e5e3042966bcd7097 ""
   "/usr/local/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1616822734 2432453 a4f6f719c846ccc33beb06ce67042857 ""
   "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
-  "SRM.aux" 1619154018 15417 dcaae52800c9a56753b80110da2130d5 "pdflatex"
+  "SRM.aux" 1619158445 15417 dcaae52800c9a56753b80110da2130d5 "pdflatex"
   "SRM.bbl" 1619151545 7974 74dd41e56d3296434c73d1baa31bf1ca "bibtex SRM"
-  "SRM.out" 1619154018 1236 8b1d74c80ea2f9f2746e12d8d26f180f "pdflatex"
-  "SRM.tex" 1619154014 21621 e549063fd35114d7459deff0cd2510c7 ""
+  "SRM.out" 1619158445 1236 8b1d74c80ea2f9f2746e12d8d26f180f "pdflatex"
+  "SRM.tex" 1619158441 21634 84daec0ae18d36a031d1781f038bd452 ""
   "_pics/Clayton Copula quantile dependence.pdf" 1616573767 15844 e00ec94ada27b52e3ff0fac93cffa853 ""
   "_pics/Frank.pdf" 1615441129 58643 61d2b48c4a089d06e04f8a56ae4e8728 ""
   "_pics/Gumbel Copula quantile dependence.pdf" 1616573767 15989 da98c20f82b5451c1b0ca1ffb0cc0fb5 ""
@@ -237,6 +237,6 @@
   "slashbox.sty" 1614484912 2685 ce2190dc09125c3010b0dfd2226dd182 ""
   (generated)
   "SRM.out"
-  "SRM.log"
   "SRM.aux"
   "SRM.pdf"
+  "SRM.log"

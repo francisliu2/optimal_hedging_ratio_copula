@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex SRM"] 1619148984 "SRM.aux" "SRM.bbl" "SRM" 1619150113
+["bibtex SRM"] 1619151544 "SRM.aux" "SRM.bbl" "SRM" 1619154021
   "./ecta.bst" 1615879310 29983 0ef0a2bd678e76d0ae833edd63f5ad06 ""
-  "SRM.aux" 1619150110 16859 181e0c817e35b39b6924ff874d77432f "pdflatex"
+  "SRM.aux" 1619154018 15417 dcaae52800c9a56753b80110da2130d5 "pdflatex"
   "finance.bib" 1619148838 537951 3e994282283208aa0ca1d15b45370a6f ""
   (generated)
   "SRM.bbl"
   "SRM.blg"
-["pdflatex"] 1619150108 "SRM.tex" "SRM.pdf" "SRM" 1619150113
+["pdflatex"] 1619154016 "SRM.tex" "SRM.pdf" "SRM" 1619154021
   "/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/tcrm0600.tfm" 1136768653 1536 12e8c510d3e158fdd0e9a42e75118bd9 ""
@@ -205,10 +205,10 @@
   "/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1586288239 4811913 0be9a7e86c70a26e5e3042966bcd7097 ""
   "/usr/local/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1616822734 2432453 a4f6f719c846ccc33beb06ce67042857 ""
   "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
-  "SRM.aux" 1619150110 16859 181e0c817e35b39b6924ff874d77432f "pdflatex"
-  "SRM.bbl" 1619148984 8197 99e54b5da807db81647d8cb32cae088c "bibtex SRM"
-  "SRM.out" 1619150110 1236 8b1d74c80ea2f9f2746e12d8d26f180f "pdflatex"
-  "SRM.tex" 1619150105 21385 a37866b6e6b79093cd33e32c4c0decb8 ""
+  "SRM.aux" 1619154018 15417 dcaae52800c9a56753b80110da2130d5 "pdflatex"
+  "SRM.bbl" 1619151545 7974 74dd41e56d3296434c73d1baa31bf1ca "bibtex SRM"
+  "SRM.out" 1619154018 1236 8b1d74c80ea2f9f2746e12d8d26f180f "pdflatex"
+  "SRM.tex" 1619154014 21621 e549063fd35114d7459deff0cd2510c7 ""
   "_pics/Clayton Copula quantile dependence.pdf" 1616573767 15844 e00ec94ada27b52e3ff0fac93cffa853 ""
   "_pics/Frank.pdf" 1615441129 58643 61d2b48c4a089d06e04f8a56ae4e8728 ""
   "_pics/Gumbel Copula quantile dependence.pdf" 1616573767 15989 da98c20f82b5451c1b0ca1ffb0cc0fb5 ""
@@ -222,8 +222,6 @@
   "_pics/OOSreturns_compare.pdf" 1616843442 30017 0b733c9c178ecbc11da862f74c574618 ""
   "_pics/Out of Sample Hedging Effectiveness.png" 1614484912 146583 82dbb8936e9f1c15beb1df22c22f0df1 ""
   "_pics/Rhs.pdf" 1615879309 280354 5d3f6cb7f6903684b19e270c42deaf80 ""
-  "_pics/density illustration1.png" 1614324555 28353 4b1e3bb7da3f36bdcb4f41a0dd1083e6 ""
-  "_pics/density illustration2.png" 1614324555 21506 2573e34b00fbe4d1ae6d2ce40d3faeee ""
   "_pics/qletlogo_tr.png" 1615441129 61242 516849013348a9ecd7b2650b26e46885 ""
   "_pics_notes/CRIX_future_Open_Close.pdf" 1616763961 29326 8c52e00833809d0dbb2be3229c11b3d6 ""
   "appendix.tex" 1616843442 2314 69c5d31cf7f258ee1999e4088b459ce3 ""
@@ -239,6 +237,6 @@
   "slashbox.sty" 1614484912 2685 ce2190dc09125c3010b0dfd2226dd182 ""
   (generated)
   "SRM.out"
-  "SRM.pdf"
   "SRM.log"
   "SRM.aux"
+  "SRM.pdf"

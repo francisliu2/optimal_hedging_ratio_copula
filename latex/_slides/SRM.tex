@@ -788,12 +788,28 @@ $h$.
   \frametitle{P\&L (dynamic)}
   \vspace*{-\baselineskip}
   \begin{center}
-    \includegraphics[scale=.6]{../_pics/rrmse_dynamic.pdf}
+    \includegraphics[scale=.5]{../_pics/rrmse_dynamic.pdf}
   \end{center}
   \begin{itemize}
-  \item RMSE (compared to zero) relative to RMSE of unhedged position 
+  \item RMSE (compared to zero) relative to RMSE of unhedged position
+  \item 99\% risk measures underperform
   \end{itemize}
 \end{frame}
+
+
+\begin{frame}
+  \frametitle{P\&L (dynamic)}
+  \vspace*{-\baselineskip}
+  \begin{center}
+    \includegraphics[scale=.5]{../_pics/rdsv_dynamic.pdf}
+  \end{center}
+  \begin{itemize}
+  \item Downside semi-variance relative to downside
+    semi-variance of unhedged position
+  \item VaR 95\% and SRM perform best
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}
   \frametitle{P\&L (static)}
@@ -820,10 +836,24 @@ $h$.
   \frametitle{P\&L (static)}
   \vspace*{-\baselineskip}
   \begin{center}
-    \includegraphics[scale=.6]{../_pics/rrmse_static.pdf}
+    \includegraphics[scale=.55]{../_pics/rrmse_static.pdf}
   \end{center}
   \begin{itemize}
-  \item RMSE (compared to one) relative to RMSE of unhedged position 
+  \item RMSE (compared to one) relative to RMSE of unhedged position
+  \item Gumbel with ES 95\% or SRM performs best
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{P\&L (static)}
+  \vspace*{-\baselineskip}
+  \begin{center}
+    \includegraphics[scale=.55]{../_pics/rdsv_static.pdf}
+  \end{center}
+  \begin{itemize}
+  \item Downside semi-variance relative to downside semi-variance of
+    unhedged position 
+  \item SRM performs best, together with VaR 95\%
   \end{itemize}
 \end{frame}
 

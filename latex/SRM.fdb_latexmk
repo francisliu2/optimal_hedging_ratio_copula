@@ -1,11 +1,11 @@
 # Fdb version 3
-["bibtex SRM"] 1619164148 "SRM.aux" "SRM.bbl" "SRM" 1619164153
+["bibtex SRM"] 1619175305 "SRM.aux" "SRM.bbl" "SRM" 1619175305
   "./ecta.bst" 1615879310 29983 0ef0a2bd678e76d0ae833edd63f5ad06 ""
-  "SRM.aux" 1619164150 15417 dcaae52800c9a56753b80110da2130d5 "pdflatex"
-  "finance.bib" 1619164119 537951 3e994282283208aa0ca1d15b45370a6f ""
+  "SRM.aux" 1619164891 8192 ccc5d0d89f0367703be42943b06de947 "pdflatex"
+  "finance.bib" 1619164689 537751 a8283e7a5479f700bcd371b2edb99108 ""
   (generated)
-  "SRM.bbl"
   "SRM.blg"
+  "SRM.bbl"
 ["pdflatex"] 1619164149 "SRM.tex" "SRM.pdf" "SRM" 1619164153
   "/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -236,7 +236,7 @@
   "robustness.tex" 1619164119 5244 a96244190e3b444c4a1f40109b555c0c ""
   "slashbox.sty" 1614484912 2685 ce2190dc09125c3010b0dfd2226dd182 ""
   (generated)
-  "SRM.pdf"
+  "SRM.aux"
   "SRM.log"
   "SRM.out"
-  "SRM.aux"
+  "SRM.pdf"

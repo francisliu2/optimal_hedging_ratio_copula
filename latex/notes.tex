@@ -21,11 +21,16 @@
 %% options: vscreen, garamond, wnotes, savespace
 \usepackage[vscreen]{nat}
 \usepackage[longnamesfirst]{natbib}
+\usepackage{booktabs}
+
 \bibpunct{(}{)}{;}{a}{,}{,}
 \usepackage{amsfonts,amssymb,amsthm} %
+\usepackage{mathrsfs}
 \usepackage[tbtags]{amsmath} %
 \usepackage{bm}
 \usepackage{tabularx,ragged2e}
+\usepackage{subfig}
+
 \newcolumntype{C}{>{\Centering\arraybackslash}X}
 \newcolumntype{s}{>{\hsize=.2\hsize \Centering\arraybackslash}X}
 % \usepackage{fullpage}
@@ -49,6 +54,9 @@
 
 \providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
 \providecommand{\natp}[1]{\textcolor{darkred}{#1}}
+\providecommand{\mj}[1]{\textcolor{darkred}{#1}}
+\providecommand{\francis}[1]{\textcolor{darkgreen}{#1}}
+
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}%[section]
 \newtheorem{proposition}[theorem]{Proposition}
@@ -130,7 +138,7 @@ confidence level $1-s$ (if applicable, e.g.\ in the case of VaR, ES),
 where $\rho_\phi$ is a spectral risk measure with weighting function
 $\phi$ (see below).
 
-The distribution function of $R^h$ can be expressed in terms of the
+The distribution function of $r^h$ can be expressed in terms of the
 copula and the marginal distributions as Proposition \ref{prop:dfrh}
 result shows (this is a corrected version of Corollary 2.1 of
 \citep{Barbi2014}). For practical applications, it is numerically
@@ -142,15 +150,15 @@ copulas in Section \ref{sec:dependence}.
 
 \begin{proposition}
   \label{prop:dfrh}
-  Let $R^S$ and $R^F$ be two real-valued random variables on the same
+  Let $r^S$ and $r^F$ be two real-valued random variables on the same
   probability space $(\Omega, \mathcal A, \p)$ with corresponding
-  absolutely continuous copula $C_{R^S, R^F}s$ and
-  continuous marginals $F_{R^S}$ and $F_{R^F}$. Then, the distribution
-  of of $R^h$ is given by
+  absolutely continuous copula $C_{r^S, r^F}s$ and
+  continuous marginals $F_{r^S}$ and $F_{r^F}$. Then, the distribution
+  of of $r^h$ is given by
   \begin{equation}
     \label{eq:3}
-    F_{R^h}(x) = 1- \int^1_0 D_1 C_{R^S, R^F}
-    \left( u, F_{R^F} \left( \frac{F^{-1}_{R^S}(u)-x}{h} \right)
+    F_{r^h}(x) = 1- \int^1_0 D_1 C_{r^S, r^F}
+    \left( u, F_{r^F} \left( \frac{F^{-1}_{r^S}(u)-x}{h} \right)
     \right)\, \dd u.
   \end{equation}
 \end{proposition}\medskip
@@ -175,13 +183,13 @@ which is easily shown to fulfil, see e.g.\ Equation (5.15) of
 \begin{proof}
   Using the identity (\ref{eq:1}) gives
   \begin{align*}
-    F_{R^h}(x) &= \p(R^s - h R^F\leq x) %
-                 = \E\left[\p\left(R^F\geq \frac{R^S-x}{h}\Big|
-                 R^S\right)\right]\\[10pt]
-               &= 1-\E\left[\p\left(R^F\leq \frac{R^S-x}{h}\Big|
-                 R^S\right)\right]% \\[10pt]
-               = 1- \int_0^1 D_1 C_{R^S, R^F}\left(u,
-                 F_{R^F}\left(\frac{F^{(-1)}_{R^S}(u) -
+    F_{r^h}(x) &= \p(r^S - h r^F\leq x) %
+                 = \E\left[\p\left(r^F\geq \frac{r^S-x}{h}\Big|
+                 r^S\right)\right]\\[10pt]
+               &= 1-\E\left[\p\left(r^F\leq \frac{r^S-x}{h}\Big|
+                 r^S\right)\right]% \\[10pt]
+               = 1- \int_0^1 D_1 C_{r^S, r^F}\left(u,
+                 F_{r^F}\left(\frac{F^{(-1)}_{r^S}(u) -
                  x}{h}\right)\right)\, \dd u.
   \end{align*}
 \end{proof}\medskip
@@ -217,9 +225,9 @@ A generic expression can be found in the appendix (TODO).
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{_pics/density illustration1.png}
 \includegraphics[width=\textwidth]{_pics/density illustration2.png}
-  \caption{Upper Panel: Density of $R^h= R^S - hR^F$ of different copulas with
-  $R^S, R^F \sim N(0,1)$,
-  0.75 Spearman's rho between $R^S$ and $R^F$, and $h=0.5$;
+  \caption{Upper Panel: Density of $r^h= r^S - hr^F$ of different copulas with
+  $r^S, r^F \sim N(0,1)$,
+  0.75 Spearman's rho between $r^S$ and $r^F$, and $h=0.5$;
   Lower Panel: Scatter plot of samples from copulas.
   This illustration shows how dependence structure modelled by copulas affects the density of the linear combination
   of margins.
@@ -336,12 +344,11 @@ across methods (e.g.\ hedging general risk vs.\ hedging tail risk).
 \label{sec:dependence}
 \input{dependence.tex}
 
-\newpage
+\clearpage
 \section{Estimation}
 \input{estimation.tex}
 
-
-\newpage
+\clearpage
 
 \section{Backtesting}
 \label{sec:backtesting}
@@ -399,8 +406,9 @@ where $\delta$ denotes the level of statistical significance.
 
 \input{data.tex}
 
+\input{hedgingeffectiveness.tex}
 
-
+\clearpage
 \bibliographystyle{abbrvnamed} %
 \bibliography{finance} %
 \end{document}

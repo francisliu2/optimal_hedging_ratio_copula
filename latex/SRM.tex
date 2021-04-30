@@ -24,19 +24,24 @@
 \usepackage[margin=2cm]{geometry} % for the same margin
 \usepackage{latexsym}
 %\usepackage{subfig}
+\usepackage{float}
 \usepackage{setspace}
 \usepackage{slashbox}
 \usepackage{enumitem}
 \usepackage{booktabs}
-\usepackage{tabularx}
+\usepackage{tabularx,ragged2e}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\newcolumntype{s}{>{\hsize=.2\hsize \Centering\arraybackslash}X}
+
 \usepackage{longtable,booktabs}
 \usepackage{authblk}
 \usepackage{hyperref}
 \usepackage{indentfirst} % Macht eine Einrückung nach der Section
 \bibliographystyle{ecta}
-\usepackage{tabularx}
 
-
+\definecolor{markergreen}{rgb}{0.6, 1.0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkred}{rgb}{.7,0,0}
 \definecolor{markergreen}{rgb}{0.6, 1.0, 0}
 \definecolor{darkgreen}{rgb}{0, .5, 0}
 \definecolor{darkorange}{rgb}{1,0.3,0}
@@ -58,11 +63,11 @@
 %\setlength{\evensidemargin}{-0.01in} \setlength{\textheight}{9in}
 \captionsetup{font={onehalfspacing,small}, labelfont=bf}
 
-\title{\LARGE \bf Hedging Cryptos with Bitcoin Futures.}
-%\title{\natp{\large\bf Copula-based hedging of cryptocurrencies with Bitcoin futures}}
+\title{\LARGE \bf Hedging Cryptos with Bitcoin Futures}
+%\title{\natp{\large\bf Hedging Cryptocurrencies with Bitcoin Futures}}
 \author{
-%	\begin{tabular}[t]{ccc}
-        \and
+	\begin{tabular}[t]{ccc}
+		\and
         Francis Liu\thanks{
 			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
             Blockchain Research Center, Humboldt-Universität zu Berlin, Germany.
@@ -75,6 +80,7 @@
              Department of Finance, Asia University, 500, Lioufeng Rd., Wufeng, Taichung 41354, Taiwan
              Department of Finance, Asia University, 500, Lioufeng Rd., Wufeng, Taichung 41354, Taiwan
      E-mail: \texttt{mangrou@gmail.com}.}
+
 		 \and
         Natalie Packham\thanks{
 			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
@@ -86,7 +92,7 @@
      E-mail: \texttt{haerdle@wiwi.hu-berlin.de}.}
         \thanks{ Financial support of the European Union's Horizon 2020 research and innovation program ``FIN-TECH: A Financial supervision and Technology compliance training programme" under the grant agreement No 825215 (Topic: ICT-35-2018, Type of action: CSA), the European Cooperation in Science \& Technology COST Action grant CA19130 - Fintech and Artificial Intelligence in Finance - Towards a transparent financial industry, the Deutsche Forschungsgemeinschaft's IRTG 1792 grant, the Yushan Scholar Program of Taiwan, the Czech Science Foundation's grant no. 19-28231X / CAS: XDA 23020303, as well as support by Ansar Aynetdinov (\texttt{ansar.aynetdinov@hu-berlin.de}) are greatly acknowledged.
      }
-%	\end{tabular}
+	\end{tabular}
 }
 \date{This version: \today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -160,61 +166,62 @@ a cryptocurrency index.\\
 
 Cryptocurrencies (CCs) are a growing asset class.
 Many more CCs are now available on the market since the first
-cryptocurrency Bitcoin (BTC) was introduced by
-\citet{nakamoto2019bitcoin}. \natp{\em [BTC was introduced in 2009.]}
-In response to the rapid development of the cryptocurrency market, CRIX \citep{trimborn2018crix} is developed to represent the whole
-market by an index aggregating the price of important coins in the
-market. \natp{\em [Not necessary to mention CRIX here, let's speak
-  about what the paper is about.]}
-In Dec 2017, the CME group launched its new bitcoin future contract.
+cryptocurrency Bitcoin (BTC) was introduced to the world in 2009. %\natp{\em [BTC was introduced in 2009.]} 
+As the network effect weighs in, the prices of bitcoin and its variants have risen in tandem. These innovations and the perceived investment potential have led to rapid growth in the number of altcoins and the market size of CC. The price of bitcoin even surged to USD 20,000 at beginning of 2021. 
+Bitcoin is popular with the techno tribe, the currency is regarded as being beyond the reach of government regulation- the anonymous founder of Bitcoin introduced the idea of a distributed block chain to prevent the counterfeiting of Bitcoin (\citealp{ong2015evaluating}).  In response to the rapid development of the CC market, the CME group launched its new bitcoin future contract in Dec 2017. Trading volume in BTC futures surpassed \$2 trillion in 2020 (CryptoCompare, 2020).
 While more and more investors (individuals and institution) are adding
-CCs and their derivatives into their \natp{portfolios (was: portfolios)},
-we see the need to understand the downside risk and find a suitable way to hedge.
-We are particularly interested in resisting extreme risks and improve their profits.
-In this paper, we investigate the performance of different copulae and
-risk measures in hedging Bitcoin and CRIX with Bitcoin
-futures. \natp{\em [$\leftarrow$ Make this the first sentence of the paper!]}
+CCs and their derivatives into their portfolios. %\natp{portfolios (was: portfolii)}
+we see the need to understand the downside risk and find a suitable way to hedge and are interested in resisting extreme risks and improve their profits. This paper aims to propose modern techniques for analysis of the hedge ratio of the CC portfolios with various copulae and risk measures.\\
+
+ Hedge ratio is the appropriate size of futures contracts which should be held in order to creak an opposite position. The determination of the fair number of futures is of course the difficulty in hedging task.
+%In this paper, we investigate the performance of different copulae and
+%risk measures in hedging Bitcoin and CRIX with Bitcoin
+%futures. {\color{blue} only this portfolio?} \natp{\em [$\leftarrow$ Make this the first sentence of the paper!]}
 Copulas provide the flexibility to model multivariate random variable
 separately by its margins and dependence structure. 
 Different risk measures accounts for investors' risk attitude.
 Vast literature discussed the relationship between risk measures and investor's risk attitude, we refer readers to
 \citet{artzner1999coherent} for an axiomatic, economic reasoning approach of risk measure construction;
-\citet{embrechts2002correlation} for reasoning of using Expected Shortfall and Spectral Risk in addition to VaR;
+\citet{embrechts2002correlation} for reasoning of using Expected Shortfall (ES) and Spectral Risk Measure (SRM) in addition to VaR;
 \citet{Acerbi2002} for direct linkage between risk measures and investor's risk attitude using the concept of "risk aversion function".
-In addition to the development of risk measures, financial data is known to be non Gaussian \natp{\cite{Cont2001}}, let
-alone the violate cryptocurrencies. \natp{\em [non-Gaussian is not
-  very specific, a uniform r.v.\ is also non-Gaussian. Try to express
-  this in a more meaningful way, e.g.\ Financial data are known to
-  exhibit more extreme events than a normal distribution can capture.]}
+In addition to the development of risk measures, financial asset return is known to be non Gaussian (\citealp{fama1963mandelbrot}). In particular, Gaussian models cannot produce so-called fat tails and asymmetry of observed probability densities, which leads to underestimate financial risks. 
+%\natp{\cite{Cont2001}}. \natp{\em [non-Gaussian is not
+  %very specific, a uniform r.v.\ is also non-Gaussian. Try to express
+ % this in a more meaningful way, e.g.\ Financial data are known to
+  %exhibit more extreme events than a normal distribution can capture.]}
 One cannot rely on only 2nd order moment calculations in order to
-minimize downside risk. \natp{\em [Why can one not rely on 2nd order
-  moment calculations? This: Variance as a risk measure applies only
-  to investors with certain utility functions. We know that investors'
-  risk aversion is different from this, e.g.\ investors are tail-risk
-  averse, etc. Add more detail and references.]}
-One may turn to VaR to monitor The VaR as a sole risk measure has two disadvantages.
-First, it reflects only tail probability and not tail loss, and next it is not coherent;
-Coherency is a very natural property that suggest diversification will
-reduce risk. \natp{\em [This needs not go in the introduction. Just
-  briefly mention the risk measures, and possibly that ES and SRM are
-  chosen because of their coherence.]}
-\medskip
-
-\natp{The introduction should go along the lines:
-  \begin{itemize}
-  \item 1-2 sentence: Which problem is solved in this paper?
-  \item Background Bitcoin: Growth, but roller-coaster ride, institutional investment,
-    exchange-traded futures (the exchange is important!) (5 sentences,
-    with references!)
-  \item Significant tail risks and basis risk lead to the need to
-    investigate even static hedges (=futures) with more refined
-    methods than minimum-variance based (reference to Ederington
-    here; this uses variance as risk measure and correlation as
-    dependence measure).
-  \item To capture empirical properties, extend to other risk measures
-    and dependence models. 
-  \end{itemize}
-  }
+minimize downside risk. Variance as a risk measure doesn't consider the variety of investors' utility functions. However, the investors are tail-risk averse. \citet{bollerslev2015tail} find that the jump tail risk is more closely associated with changes in risk-aversion. It is important to link the investor utility's functions as hedging the tail risk. Significant tail risks lead to the need to investigate even static hedge with more refined methods than minimum-variance based (\citealp{ederington2008minimum}). 
+%One may turn to VaR to monitor tail risk. Hence, the VaR as a sole risk measure has two disadvantages.
+%First, it reflects only tail probability and not tail loss, and next it is not coherent;
+To capture empirical properties, we extend to other risk measures and dependence models. Coherency is a very natural property that suggest diversification will
+reduce risk. ES and SRM are chosen because of their coherence. In our study, the hedge ratio is determined by various risk measures,
+they include variance, ES, VaR,
+and SRM. 
+%\natp{\em [Careful with wording! The
+ %hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
+%In particular, the SRM proposed by \citet{Acerbi2002} accounts for investors' utility (i.e. risk preference).
+%SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion. In other words, 
+The risk estimation is directly related to the user's utility function.
+Popular examples are the exponential SRM and power SRM introduced by
+\citet{dowd2008spectral}. 
+% \natp{\em [This needs not go in the introduction. Just briefly mention the risk measures, and possibly that ES and SRM are chosen because of their coherence.]}
+%\medskip
+%
+%\natp{The introduction should go along the lines:
+%  \begin{itemize}
+%  \item 1-2 sentence: Which problem is solved in this paper?
+%  \item Background Bitcoin: Growth, but roller-coaster ride, institutional investment,
+%    exchange-traded futures (the exchange is important!) (5 sentences,
+%    with references!)
+%  \item Significant tail risks and basis risk lead to the need to
+%    investigate even static hedges (=futures) with more refined
+%    methods than minimum-variance based (reference to Ederington
+%    here; this uses variance as risk measure and correlation as
+%    dependence measure).
+%  \item To capture empirical properties, extend to other risk measures
+%    and dependence models. 
+%  \end{itemize}
+%  }
 
 This paper considers a hedging problem of Bitcoin using its future and an aggregated index of cryptocurrencies CRIX,
 i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $R^h = R^S - h^*R^F$ has
@@ -226,47 +233,38 @@ then find the optimal quantity of assets in the hedged portfolio according to a 
 By Sklar's theorem, we can model the margin and the dependence structure separately using copulae.
 This gives us enormous flexibility to model financial data.
 \citet{barbi2014copula} use the C-convolution operator introduced by \citet{cherubini2011copula} to derive the distribution
-of linear combination of margins with copula as their dependence structure.
-We propose a corrected expression the \citet{barbi2014copula}'s equation and propose a general expression for the density of the linear
-combination. \natp{\em [No need to mention in the introduction that
-  the version is corrected. The main result -- that the distribution
-  function of a linear combination of random variables can be
-  expressed via the copula and margins -- remains valid.]}\medskip
-Another advantage of copulae is that they \natp{capture (was: describe)} the whole dependence structure of random variables.
-Figure \ref{fig:density illustration} illustrate the samples drawn
-from different copulae but with the same Spearman's rho. \natp{\em
-  [Move this out of introduction.]}
+of linear combination of margins with copula as their dependence structure. Our main result shows that the distribution function of a linear combination of random variables can be expressed via the copula and margins. 
+%We propose a corrected expression the \citet{barbi2014copula}'s equation and propose a general expression for the density of the linear combination.
+ %\natp{\em [No need to mention in the introduction that
+ % the version is corrected. The main result -- that the distribution
+ % function of a linear combination of random variables can be
+  %expressed via the copula and margins -- remains valid.]}\medskip
+%Another advantage of copulae is that they \natp{capture (was: describe)} the whole dependence structure of random variables.
+%Figure \ref{fig:density illustration} illustrate the samples drawn
+%from different copulae but with the same Spearman's $\rho$. \natp{\em
+%  [Move this out of introduction.]}
+%
+%The distribution of the linear combination of margins $Z$ is also affected by the copulae.
+%One can see the $Z$ of Gumbel and Clayton copula are skewed to the right and left respectively due to the
+%asymmetry (radial symmetry \citet{Nelsen1999}) of copula.\natp{\em
+%  [Move this out of the introduction.]}
+%\medskip
+%
+%\begin{figure}[h]
+%\includegraphics[width=\textwidth]{_pics/density illustration1.png}
+%\includegraphics[width=\textwidth]{_pics/density illustration2.png}
+%  \caption{Upper Panel: Density of $Z= X - hY$ of different copulae with
+%  $X, Y \sim N(0,1)$,
+%  $0.75$ Spearman's rho between $X$ and $Y$, and $h=0.5$;
+%  Lower Panel: Scatter plot of samples from copulae.
+%  This illustration shows how dependence structure modelled by different copulae affects the density of the linear combination
+%  of margins.
+%  Notice that the $Z$ modelled by the asymmetric copulae, namely the Clayton and Gumbel copulae, are skewed to right
+%  and left respectively. \href{http://www.quantlet.com/}{\includegraphics[width=15pt]{_pics/qletlogo_tr.png}}}
+%\label{fig:density illustration}
+%\end{figure}
 
-The distribution of the linear combination of margins $Z$ is also affected by the copulae.
-One can see the $Z$ of Gumbel and Clayton copula are skewed to the right and left respectively due to the
-asymmetry (radial symmetry \citet{Nelsen1999}) of copula.\natp{\em
-  [Move this out of the introduction.]}
-\medskip
 
-\begin{figure}[h]
-\includegraphics[width=\textwidth]{_pics/density illustration1.png}
-\includegraphics[width=\textwidth]{_pics/density illustration2.png}
-  \caption{Upper Panel: Density of $Z= X - hY$ of different copulae with
-  $X, Y \sim N(0,1)$,
-  $0.75$ Spearman's rho between $X$ and $Y$, and $h=0.5$;
-  Lower Panel: Scatter plot of samples from copulae.
-  This illustration shows how dependence structure modelled by different copulae affects the density of the linear combination
-  of margins.
-  Notice that the $Z$ modelled by the asymmetric copulae, namely the Clayton and Gumbel copulae, are skewed to right
-  and left respectively. \href{http://www.quantlet.com/}{\includegraphics[width=15pt]{_pics/qletlogo_tr.png}}}
-\label{fig:density illustration}
-\end{figure}
-
-
-The optimality of our hedge is determined by various risk measures,
-they include variance, expected shortfall (ES), value-at-risk (VaR),
-and spectral risk measures (SRM). \natp{\em [Careful with wording! The
-  hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
-In particular, the SRM proposed by \citet{Acerbi2002} accounts for investors' utility (i.e. risk preference).
-SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion.
-In other words, the risk estimation is directly related to the user's utility function.
-Popular examples are the exponential SRM and power SRM introduced by
-\citet{dowd2008spectral}. \medskip
 
 %Even though they reveal that SRM have some properties which cause problems when applying to practical risk management,
 %they show that exponential utility function might be plausible in some circumstances under weak conditions \citealp{buhlmann1980economic}.
@@ -292,7 +290,10 @@ Popular examples are the exponential SRM and power SRM introduced by
 
 %This paper has two main contributions to the existing literature. First, we reveal the quantiles of loss function built by different copulae. Second, by minimizing exponential SRM (ESRM) to determine the optimal hedge ratio, we give a guidance on the choice of risk aversion function to assist the risk manager in choosing an optimal risk aversion function for a portfolio. To our knowledge, these have received no attention so far in the published literatures.\\
 
-TODO: "What do we find" \medskip
+
+This research proposes the model techniques for the analysis of the hedging strategy on the CC's tail risk in five aspects. First, 
+
+
 
 The remainder
 of the article is organized as follows. Section 2 methodology. Section 3 data, and Section 4 empirical result. Section 5 concludes.\medskip

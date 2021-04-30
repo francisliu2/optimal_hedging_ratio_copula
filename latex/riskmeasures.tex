@@ -1,40 +1,42 @@
-\subsection{Spectral Risk Measures}\label{subsec:spectral-risk-measures}
-The Spectral Risk Measure (SRM) of a hedged portfolio return $R^h$ has the form
+\subsection{Risk Measures}\label{subsec:spectral-risk-measures}
+We consider four risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
+%They are used in many literature about hedging, e.g. ;
+%The risk measures are also used by regulatory bodies,
+%for example Basel III ....
+A summary of risk measures being used in portfolio selection problem can be found in \citet{hardle2008applied}.\medskip
+\medskip
 
+
+Let $Z$ be a random variable of distribution $F_Z$.
+\begin{itemize}
+	\item Variance is $\text{Var}(F_Z) = \int_\mathbb{R}z^2 dF_Z(z)$
+	\item VaR of a given confidence level $\alpha$ is $\text{VaR}(F_Z) = -F_{Z}^{(-1)}(1-\alpha)$
+	\item ES with parameter $\alpha$ is $\text{ES}(F_Z) = -\frac{1}{1-\alpha}\int_0^{1-\alpha}F_Z^{(-1)}(p)dp$
+	\item ERM with Arrow-Pratt coeficient of absolute risk aversion $k$ is $\text{ERM}_k(F_Z) = \int_0^{1-\alpha}\phi(p) F_Z^{(-1)}(p)dp$ where $\phi$ is a weight function describe in equation \ref{eq:phi} below.
+	\end{itemize}\medskip
+
+VaR, ES, and ERM fall into the class of Spectral Risk Measure (SRM).
+SRM has the form \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
 \begin{align}
-	\rho_\phi(R^h) = - \int_0^1 \phi(p) F_{R^h}^{(-1)}(p)d p,
+	\rho_\phi(r^h) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
 	\end{align}
 
 where $p$ is the loss quantile and $\phi(p)$ is a user-defined weighting function defined over $[0,1]$. \medskip
+We consider only admissible risk spectrum \francis{\em [named by \citet{Acerbi2002}]} $\phi(p)$:
+\begin{itemize}
+	\item $\phi$ is positive
+	\item $\phi$ is decreasing
+	\item $\int_{[0,1]}\phi(q)dq = 1$
+	\end{itemize}\medskip
 
-\natp{\em [Add properties on $\phi$! (Nonnegative, etc.)]}
-
-Spectral risk measures can also be written as
-\begin{align}
-	\rho_\phi(R^h) = - \int_\mathbb{R} x f_{R^h}(x) \phi\{F_{R^h}(x)\} d x.
-	\end{align}
-
-Value-at-Risk (VaR) and Expected Shortfall (ES) fall into the class of SRM. \medskip
-
-VaR at the $\alpha$-confidence level is
-
-\begin{align}
-	\text{VaR}_\alpha = - F_{R^h}^{(-1)}(1-\alpha).
-	\end{align}
-ES at the $\alpha$-confidence level is \natp{\em [Please check, there
-  should be a minus in front of the ES expression, just as with VaR.]}
-\begin{align}
-	\text{ES}_\alpha = -\frac{1}{1-\alpha}\int_{0}^{1-\alpha} F_{R^h}^{(-1)}(p) d p.
-	\end{align}
-The VaR's $\phi(p)$ gives all its weight on the $\alpha$ quantile of $R^h$ and zero elsewhere,
+The VaR's $\phi(p)$ gives all its weight on the $1-\alpha$ quantile of $Z$ and zero elsewhere,
 i.e. the weighting function is a Dirac delta function.
-The ES' $\phi(p)$ gives all tail quantiles the same weight of $\frac{1}{1-\alpha}$ and non-tail quantiles zero weight. \medskip
-
-Spectral risk measures take account of investor's risk aversion by specifying $\phi(p)$ according the utility function.
-Exponential spectral risk measures (ERM) as a kind of spectral risk measure take a form of the weight function
+The ES' $\phi(p)$ gives all tail quantiles the same weight of $\frac{1}{1-\alpha}$ and non-tail quantiles zero weight.
+ERM assumes investor's risk preference is in a form of exponential utility function $U(x)=-e^{kx}$,
+its risk spectrum is defined as
 
 \begin{align}
-	\phi(p) =\frac{k e^{-k(1-p)}}{1-e^{-k}} ,
+	\phi(p) =\frac{k e^{-k(1-p)}}{1-e^{-k}} , \label{eq:phi}
 	\end{align}
 where $k$ is the Arrow-Pratt coefficient of absolute risk aversion. \medskip
 
@@ -45,15 +47,10 @@ of investor's utility function on an risky asset
 	k = -\frac{U''(x)}{U'(x)},
 	\end{align}
 for $x$ in all possible outcomes.
-A summary of risk measures being used in portfolio selection problem can be found in \citet{hardle2008applied}.\medskip
 
-In this hedging study, variance and the risk measures mentioned above serve as a loss function determining the optimality
-of $h^\ast$.
-%
-%\begin{figure}[h]
-%	\begin{center}
-%		\includegraphics[scale = 0.7]{Figures/Fig1-1.png}\\
-%		%\vspace*{-10pt}\quantnet \href{https://github.com/mangrou/SRM/blob/master/SRM_QF/SRM_QF.m}{SRM\_QF}
-%	\end{center}
-%	\caption{Exponential SRMs for $k=1$ (dashed) and $k=2$ (solid).}\label{Fig1:EPSRM}
-%\end{figure}
+
+
+%Spectral risk measures can also be written as
+%\begin{align}
+%	\rho_\phi(r^h) = - \int_\mathbb{R} x f_{r^h}(x) \phi\{F_{r^h}(x)\} d x.
+%	\end{align}

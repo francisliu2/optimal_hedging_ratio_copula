@@ -1,21 +1,19 @@
 
 \subsection{Copulae}\label{subsec:copulae}
-We test different copulae for their ability to model crypto-currency data,
-they include Gaussian-, $t$-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
-An overview of copulae can be found in \citet{hardle2010copulis}.
-Since the hedging exercise concerns only portfolios with two assets, we only present the bivariate version of copulae.
+As we saw from the last section, risk measures we considered are all functionals of joint distribution of $r^S$ and $r^F$.
+We test different copulae for their ability to model joint distribution of crypto-related assets returns.
+We consider Gaussian-, $t$-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
+This hedging exercise concerns only portfolios with two assets, we only present the bivariate version of copulae and some important features of a copula,
+they include Kendall's $\tau$, Spearman's $\rho$,
+upper tail dependence $\lambda_U \overset{\mathrm{def}}{=}  \lim_{q \rightarrow 1^-} \p\{X > F_{X}^{(-1)}(q)|Y > F_{Y}^{(-1)}(q)\}$ and
+lower tail dependence $\lambda_L \overset{\mathrm{def}}{=}  \lim_{q \rightarrow 0^+} \p\{X \leq F_{X}^{(-1)}(q)|Y \leq F_{Y}^{(-1)}(q)\}$.
+Furthermore, we denote the Fr{\'e}chet-Hoeffding lower bound as $\bm{W}$, product copula as $\bm{\Pi}$, and the Fr{\'e}chet-Hoeffding upper bound as $\bm{M}$,
+they represent cases of perfect negative dependence, independence, and perfect positive dependence respectively.
 For further detail, we refer readers to \citet{joe1997multivariate} and \citet{Nelsen1999}.
-%Copula is a function represents the multivariate structure of random variables.
-%
-%
-%Frechet-Hoeffding lower bound $\bm{W}(u,v) = \min(u,v)$, Frechet-Hoeffding upper bound $\bm{M}(u,v) = \max(u+v-1,0)$,
-%and product copula $\bm{\Pi}=uv$ are three important special instants of copulae.
-%They describe the perfect counter-dependence, perfect dependence, and independence of two random variables, respectively.
-%The inequality $\bm{W}(u,v) \leq \bm{C}(u,v) \leq \bm{M}(u,v)$ holds for every copula $\bm{C}$ ad every $(u,v) \in \mathbb{I}^2$ (Nelsen 2.2.5).
+See also \citet{hardle2010copulis}.
 
-\subsubsection{Ellipitical Copulae}\label{sec:ellpitical-copulae}
-Elliptical copulae are depednece structure associated with elliptical distributions.
-The Gaussian copula is associated with multivariate normal distribution.
+\subsubsection{Elliptical Copulae}\label{sec:ellpitical-copulae}
+Elliptical copulae are dependence structure associated with elliptical distributions.
 The bivariate Gaussian copula is:
     \begin{align}
         \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\} \nonumber \\
@@ -26,7 +24,7 @@ The bivariate Gaussian copula is:
                        \frac{s^2-2\rho st+t^2}{2(1-\rho^2)}
                        \right)} ds dt
         \end{align}
-where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution with zero mean, unit variance, and correlation $\rho$,
+where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution with zero mean, unit variance, and correlation $\rho$ \francis{\em the rho we use in risk measure is $\rho_{\text{something}}$. This should remove ambiguity.},
 and $\Phi^{-1}$ is quantile function univariate standard normal distribution.
 The Gaussian copula density is
 \begin{align}
@@ -36,10 +34,8 @@ The Gaussian copula density is
                    -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
                    \right),
     \end{align}
-where $\bm{\varphi}_{2,\rho}(\cdot)$ is the density of bivariate Normal distribution with zero mean,
-unit variance,
-and correlation $\rho$,
-and, $\varphi(\cdot)$ the density of standard normal distribution.\medskip
+where $\bm{\varphi}_{2,\rho}(\cdot)$ is the pdf of $\Phi_{2, \rho}$,
+and $\varphi(\cdot)$ the standard normal distribution pdf.\medskip
 
 The Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian Copula are
     \begin{align}
@@ -49,8 +45,7 @@ The Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian Copula ar
         \rho_S(\rho) = \frac{6}{\pi}\arcsin\frac{\rho}{2}
         \end{align}\medskip
 
-The $t$-copula is associated with multivariate $t$ distribution.
-The $t$-Copula takes a form
+The $t$-Copula has a form
 \begin{align}
         \bm{C}(u,v) &= \bm{T}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\} \nonumber \\
             &= \int_{-\infty}^{T^{-1}_\nu(u)}
@@ -69,10 +64,10 @@ The copula density is
     \bm{c}(u,v) &= \frac{\bm{t}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\}}
     {t_\nu\{T^{-1}_\nu(u)\}\cdot t_\nu\{T^{-1}_\nu(v)\}},
     \end{align}
-where $\bm{t}_{2,\rho, \nu}$ is the density of bivariate $t$ distribution,
+where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}(\cdot, \cdot)$,
 and $t_\nu$ the density of standard $t$ distribution.\medskip
 
-Like all the other elliptical copula, $t$ copula's Kendall's $\tau$ is identical to that of Gaussian copula (Demarta and reference therein).
+Like all the other elliptical copulae, $t$ copula's Kendall's $\tau$ is identical to that of Gaussian copula (Demarta and reference therein).
 
 \subsubsection{Archimedean Copulae}\label{sec:archimedean-copula}
 The Archimedean copulae forms a large class of copulae with many convenient features.
@@ -93,12 +88,12 @@ It takes the form
     \right\}
     \end{align}
 where $\theta \in [0, \infty]$ is the dependency parameter.
-$\bm{C}_1 = \bm{M}$, $\bm{C}_1 = \bm{\Pi}$, and $\bm{C}_\infty = \bm{W}$.
+$\bm{C}_{-\infty} = \bm{M}$, $\bm{C}_1 = \bm{\Pi}$, and $\bm{C}_\infty = \bm{W}$.
 
 The Copula density is
 \begin{align}
     \bm{c}_{\theta}(u,v) &= \frac{\theta e^{\theta(u+v)(e^\theta-1)}}
-    {\left(e^\theta-e^{\theta u}-e^{\theta v}+e^{\theta (u+v)}\right)^2}
+    {\left\{e^\theta-e^{\theta u}-e^{\theta v}+e^{\theta (u+v)}\right\}^2}
     \end{align}\medskip
 
 Frank copula has Kendall's $\tau$ and Spearman's $\rho$ as follow:
@@ -138,8 +133,8 @@ but cannot generate upper tail dependence.\medskip
 
 The Clayton copula takes the form
 \begin{align}
-    \bm{C}_{\theta}(u,v) &= \left[
-    \max\{u^{-\theta}+v^{-\theta}-1,0\}\right]^{-\frac{1}{\theta}},
+    \bm{C}_{\theta}(u,v) &= \left\{
+    \max(u^{-\theta}+v^{-\theta}-1,0)\right\}^{-\frac{1}{\theta}},
     \end{align}
 where $\theta \in (-\infty, \infty)$ is the dependency parameter.
 $\lim\limits_{\theta \to -\infty} \bm{C}_\theta = \bm{M}$, $\bm{C}_0 = \bm{\Pi}$, and $\lim\limits_{\theta \to \infty} \bm{C}_\theta = \bm{W}$.\medskip
@@ -148,9 +143,6 @@ Kendall's $\tau$ to this copula dependency is
 \begin{align}
     \tau_K(\theta) =\frac{\theta}{\theta+2}.
     \end{align}\medskip
-
-    \natp{The Plackett copula is not an Archimedean copula, so it
-      should be moved somwhere else.}
 
 \subsubsection{Mixture Copula}\label{sec:mixture-copula}
 Mixture copula is a linear combination of copulae. 
@@ -190,7 +182,7 @@ the Spearman's $\rho$ is
     \end{proposition}
 
 \begin{proof}
-    Spearman's $\rho$ is defined as (Nelsen)
+    Spearman's $\rho$ is defined as \citep{Nelsen1999}
     \begin{align}
         \rho_S = 12 \int_{\mathbb{I}^2} \bm{C}(s,t) ds dt - 3.
         \end{align}
@@ -201,7 +193,7 @@ the Spearman's $\rho$ is
     \end{proof}
 
 \begin{example}
-    Frechet class can be seen as an example of mixture copula.
+    The Fr{\'e}chet class can be seen as an example of mixture copula.
     It is a convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}
     \begin{align}
         \bm{C}_{\alpha, \beta}(u,v)
@@ -236,8 +228,8 @@ The corresponding copula density is
 This mixture allows us to model how much "random noise" appear in the dependency structure.
 In this hedging exercise, the structure of the "random noise" is not of our concern nor we can
 hedge the noise by a two-asset portfolio.
-However, the proportion of the "random noise" does affect the distribution of $R^h$ (see figure),
-so as the optimal hedging ratio $h^\ast$ (see figure).
+However, the proportion of the "random noise" does affect the distribution of $r^h$,
+so as the optimal hedging ratio $h^\ast$.
 One can consider the mixture copula as a handful tool for stress testing.
 Similar to this Gaussian mix Independent copula,
 t copula is also a two parameter copula allow us to model the noise,

@@ -1,6 +1,6 @@
 \section{Results}
 We illustrate the results in three directions, hedging effectiveness,
-ability of hedging extreme negative events in $R^S$, and the stability of $h^*$.
+ability of hedging extreme negative events in $r^S$, and the stability of $h^*$.
 
 %\begin{itemize}
 %   \item  Hedging Effectiveness
@@ -15,13 +15,13 @@ ability of hedging extreme negative events in $R^S$, and the stability of $h^*$.
          ]}
 %     \item Differences among combinations of copula and risk reduction objective are small;
 %     \item None of the combination can escape from the structural break point (dependence of training is stronger then that of testing). (The bump in 25-26th Sept 2019)
-%     \item The best performing RRO of a particular risk measure in out-of-sample $R^h$ is not necessarily same, e.g.
+%     \item The best performing RRO of a particular risk measure in out-of-sample $r^h$ is not necessarily same, e.g.
 %      VaR 95\% as RRO (with Gumbel copula) can generate the lowest out-of-sample ES 99\%.
 %   \end{itemize}
-%   \item Ability to hedge extreme events in $R^S$
+%   \item Ability to hedge extreme events in $r^S$
 %   \begin{itemize}
-%     \item The extreme events in $R^S$ are well managed by the hedge.
-%     The magnitudes of loss in $R^h$ is much smaller than that of $R^h$. (Visually seen from the time series of $R^h$)
+%     \item The extreme events in $r^S$ are well managed by the hedge.
+%     The magnitudes of loss in $r^h$ is much smaller than that of $r^h$. (Visually seen from the time series of $r^h$)
 %     \item None of the combination can escape from the structural break point (dependence of training is stronger then that of testing)
 %   \end{itemize}
 %   \item Stability of $h^\ast$
@@ -29,7 +29,7 @@ ability of hedging extreme negative events in $R^S$, and the stability of $h^*$.
 %     \item Gumbel gives high $h$ all the time; the extreme events are "hedged" ex-ante.
 %     \item ES 99\% and VaR 99\% as risk reduction objective are too sensitive to extremes in training data;
 %     Large changes in $h$ are suggested in response to extremes training data, while the testing data are less extreme;
-%     \item ERM can be seen as a smoothed risk measure focusing in the lower tail of $R^h$; Less sensitive to rare events; Suggested.
+%     \item ERM can be seen as a smoothed risk measure focusing in the lower tail of $r^h$; Less sensitive to rare events; Suggested.
 %   \end{itemize}
 %\item \end{itemize}
 
@@ -37,21 +37,21 @@ ability of hedging extreme negative events in $R^S$, and the stability of $h^*$.
 \subsection{Hedging Effectiveness}\label{subsec:hedging-effectiveness}
 The hedging effectiveness (HE) is defined as
 \begin{align}
-  1- \frac{\rho(R^h)}{\rho(R^S)}.
+  1- \frac{\rho(r^h)}{\rho(r^S)}.
   \end{align}
 The hedging effectiveness is the reduction of portfolio risk.
-This way of evaluating of hedging performance is proposed by \cite{ederington1979hedging} in the context of, at that time, hedging the newly introduced
+This notion of evaluating of hedging performance was proposed by \citet{ederington1979hedging} in the context of, at that time, hedging the newly introduced
 organized futures market.
-He evaluates the extent of variance reduction by introducing another asset.
-We measure the hedging effectiveness also in other risk measure mentioned in section \ref{subsec:spectral-risk-measures},
-e.g. via Expected Shortfall
+\citet{ederington1979hedging}  evaluates the extent of variance reduction by introducing another asset.
+We also measure the hedging effectiveness in other risk measure mentioned in section \ref{subsec:spectral-risk-measures},
+e.g. via Expected Shortfall (ES)
 \begin{align}
-  1- \frac{\text{ES}_\alpha(R^h)}{\text{ES}_\alpha(R^S)}.
+  1- \frac{\text{ES}_\alpha(r^h)}{\text{ES}_\alpha(r^S)}.
   \end{align}
 
 The box-plots in figure \ref{fig:OOSHE} show the out-of-sample hedging effectiveness of different copulas under various risk
 reduction objectives across testing datasets.
-Observe that in most of the copulas perform well in most of the time.
+Observe that most of the copulae perform well.
 The average HE of copulas and risk reduction objectives is higher than 60\% except for Frank-copula.
 However, the HEs vary a lot in different testing data.
 In some instances, the HE can be as low as 10\%.
@@ -59,12 +59,14 @@ This reflects the highly violate nature of cryptocurrencies:
 the optimal hedge ratio in the training data deviates from that of testing data.
 There is a large literature about structural break points and time changing dependence, to name a few
 \citet{hafner2012dynamic}, \citet{patton2006modelling}, \citet{creal2008general},
-\citet{engle2002dynamic}, and \citet{giacomini2009inhomogeneous}.
-\citet{manner2012survey} gives a great survey about this issue.
-The discussion is out of the scope of this study.\medskip
+\citet{engle2002dynamic}, \citet{giacomini2009inhomogeneous}, and also
+\citet{manner2012survey}.\medskip
 
 Frank-copula, in general, is not a good choice to model financial data.
-Figure~\ref{fig:Frank}
+We can see from figure~\ref{fig:Frank} that the Frank copula is not fitting the Bitcoin and its future visually, no matter
+which optimization procedure is being deployed.
+The samples of Frank diffuse like a strip with parallel edge when the parameter $\theta$ decrease (samples are being less dependent).
+This makes Frank copula not a a good fit to the data.
 
 \begin{figure}[th]
    \centering
@@ -72,12 +74,12 @@ Figure~\ref{fig:Frank}
    \caption{Comparison of Frank Copula Samples and Pseudo Observations of Bitcoin and CME Future Returns.
    \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}}}
    \label{fig:Frank}
-\end{figure}
+\end{figure} \medskip
 
 Aside from the Frank-copula, the HEs of various combination of copula and risk reduction objective are very similar.
 This is an expected result as the portfolio consists only two assets.
 In addition to hedging effectiveness, we observe the out-of-sample returns of the hedged portfolio.
-Figure~\ref{fig:OOSRH} tabulates the time series of out-of-sample returns of hedged portfolio under various copulas and risk reduction objectives.
+Figure~\ref{fig:OOSRH} tabulates the time series of out-of-sample returns of hedged portfolio under various copulas and risk reduction objectives. \medskip
 
 One can see all the combinations of copula and risk reduction objective generate a large fluctuation of returns in
 25/09/2019 and 26/09/2019.
@@ -87,9 +89,9 @@ This large fluctuation is due to dependence break.
 \begin{figure}[th]
    \centering
    \includegraphics[width=\textwidth]{_pics/OOSreturns_compare.pdf}
-   \caption{First Panel: Out of Sample Log-return of Bitcoin; Second Panel:Out of Sample Log-return of Future;
-   Third Panel: Out of Sample Log-return of Hedged Portfolio by Gumbel with the aim of variance reduction.
-   The red dots indicate the lowest 10\% return of Bitcoin.
+   \caption{First Panel: Out of Sample Log-return of Bitcoin; Second Panel: Out of Sample Log-return of Future;
+   Third Panel: Out of Sample Log-return of Hedged Portfolio by Gumbel copula with the aim of variance reduction.
+   The red dots indicate the lowest 10\% return of Bitcoin, i.e. large negative moments of price.
    Forth Panel: Out of Sample Log-return of Hedged Portfolio by $h=1$ (naive hedge).
 %   Lower Panel: Out of Sample Hedged Portfolio log-returns.
 %   The $h^*$ is obtained from Gumbel copula aiming at reducing variance.
@@ -129,9 +131,9 @@ This large fluctuation is due to dependence break.
 %\label{out of Sample Hedging Effectieness}
 %\end{figure}
 
-\begin{figure}[!th]
+\begin{figure}[H]
    \centering
-   \includegraphics[height=25cm]{_pics/Out of Sample Hedging Effectiveness.png}
+   \includegraphics[height=24cm]{_pics/Out of Sample Hedging Effectiveness.png}
    \caption{Out of Sample Hedging Effectiveness Box-plot.
    The HEs are obtained from a set of out-of-sample data,
    each set consists 30 days log returns of Bitcoin and CME future.
@@ -139,7 +141,7 @@ This large fluctuation is due to dependence break.
    \label{fig:OOSHE}
 \end{figure}
 
-Figure~\ref{fig:Gumbel} shows the time series of out-of-sample $R^h$ using Gumbel copula with the
+Figure~\ref{fig:Gumbel} shows the time series of out-of-sample $r^h$ using Gumbel copula with the
 objective of reducing variance.
 The red dots are the 30 most extreme negative returns in Bitcoin.
 In the figure, we can see the downside risk of Bitcoin is well managed by the hedging procedure with Gumbel copula.
@@ -153,22 +155,26 @@ Other copulas suffer from the break as well.
 
 
 
-\subsection{Stability of $h^*$}
-We measure the stability of $h^*$ by sum of absolute change
-\begin{align}
-    \sum_{t=1}^T|h_t - h_{t-1}|.
-    \end{align}
+%\subsection{Stability of $h^*$}
+\input{robustness.tex}
 
-Adjustment of portfolio weights induces price slippage (ref) and transaction cost.
-From figure \ref{SAD} we know the NIG factor copula with variance as risk reduction objective generates the smallest
-sum of absolute change in OHR.
 
-\begin{figure}[!th]
-   \centering
-   \includegraphics[width=\textwidth]{_pics/Sum of absolute change in OHR.png}
-   \caption{Sum of Absolute Change in OHR.
-   \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}}}
-   \label{fig:SAD}
-\end{figure}
+
+%We measure the stability of $h^*$ by sum of absolute change
+%\begin{align}
+%    \sum_{t=1}^T|h_t - h_{t-1}|.
+%    \end{align}
+%
+%Adjustment of portfolio weights induces price slippage (ref) and transaction cost.
+%From figure \ref{SAD} we know the NIG factor copula with variance as risk reduction objective generates the smallest
+%sum of absolute change in OHR.
+%
+%\begin{figure}[!th]
+%   \centering
+%   \includegraphics[width=\textwidth]{_pics/Sum of absolute change in OHR.png}
+%   \caption{Sum of Absolute Change in OHR.
+%   \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}}}
+%   \label{fig:SAD}
+%\end{figure}
 
 %\input{table.tex}

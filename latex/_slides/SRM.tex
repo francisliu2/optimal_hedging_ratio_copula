@@ -160,36 +160,15 @@
 
 %% begin presentation
 \title{\bigskip\bigskip\bigskip\\
-  \bfseries{Hedging CRIX with BTC futures}}
+  \bfseries{Hedging Cryptos with Futures}}
 
-
-% \author{Prof.\ Dr.\ Natalie
-%   Packham\\[3ex]
-% Hochschule f\"ur Wirtschaft und Recht Berlin}
-%\author{{\bf Natalie Packham\medskip\\} joint work with\\ Francis Liu,
-%  Meng-Jou Lu, Wolfgang K.\ H\"ardle}
-%\date{
-%  \vspace*{-1.5\baselineskip}
-%
-%  24 March 2021\\
-%
-%\hspace*{-.75cm}
-%  \includegraphics[width=4cm]{HWR_Logo_RGB.pdf}
-%  \hspace*{1cm}
-%  % \includegraphics[width=2cm]{_pics/IRTG.pdf}
-%  \hspace*{3.55cm}
-%%  \hspace*{2.25cm}
-%    \includegraphics[width=2cm]{HU.png}
-%}
-%\logo{
-%}
-%
-\author{{\bf Wolfgang K.\ H\"ardle\medskip\\} joint work with\\ Francis Liu,
-  Meng-Jou Lu, Natalie Packham}
+\author{{\bf Natalie Packham\medskip\\} joint work with\\ Francis Liu,
+  Meng-Jou Lu, Wolfgang K.\ H\"ardle}
 \date{
   \vspace*{-1.5\baselineskip}
-  RegTech Workshop\\
-  24 March 2021\\
+
+  1st Victoria Peak Conference\\
+  26 April 2021\\
 
 \hspace*{-.75cm}
   \includegraphics[width=4cm]{HWR_Logo_RGB.pdf}
@@ -201,7 +180,26 @@
 }
 \logo{
 }
-%\setbeameroption{show notes}
+%
+%
+% \author{{\bf Wolfgang K.\ H\"ardle\medskip\\} joint work with\\ Francis Liu,
+%   Meng-Jou Lu, Natalie Packham}
+% \date{
+%   \vspace*{-1.5\baselineskip}
+%   RegTech Workshop\\
+%   24 March 2021\\
+
+% \hspace*{-.75cm}
+%   \includegraphics[width=4cm]{HWR_Logo_RGB.pdf}
+%   \hspace*{1cm}
+%   % \includegraphics[width=2cm]{_pics/IRTG.pdf}
+%   \hspace*{3.55cm}
+% %  \hspace*{2.25cm}
+%     \includegraphics[width=2cm]{HU.png}
+% }
+% \logo{
+% }
+% %\setbeameroption{show notes}
 
 \renewcommand{\(}{\begin{columns}}
 \renewcommand{\)}{\end{columns}}
@@ -703,7 +701,7 @@ $h$.
   \item Hedge effectiveness \citep{Ederington1979} captures percentage
     reduction in risk:
     \begin{equation*}
-      1- \frac{\rho(R^h)}{\rho(R^S)}.
+      1- \frac{\rho(r^h)}{\rho(r^S)}.
     \end{equation*}
   \item Optimisation of $h^\ast$ every 5 days based on
     300-day-window.
@@ -787,6 +785,33 @@ $h$.
 \end{frame}
 
 \begin{frame}
+  \frametitle{P\&L (dynamic)}
+  \vspace*{-\baselineskip}
+  \begin{center}
+    \includegraphics[scale=.5]{../_pics/rrmse_dynamic.pdf}
+  \end{center}
+  \begin{itemize}
+  \item RMSE (compared to zero) relative to RMSE of unhedged position
+  \item 99\% risk measures underperform
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{P\&L (dynamic)}
+  \vspace*{-\baselineskip}
+  \begin{center}
+    \includegraphics[scale=.5]{../_pics/rdsv_dynamic.pdf}
+  \end{center}
+  \begin{itemize}
+  \item Downside semi-variance relative to downside
+    semi-variance of unhedged position
+  \item VaR 95\% and SRM perform best
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{P\&L (static)}
   \begin{center}
     \includegraphics[scale=0.85]{../_pics/PL_static_out_tcop.pdf}    
@@ -804,6 +829,31 @@ $h$.
     5 days
   \item From left to right: Variance, VaR 99\%, VaR 95\%, ES 99\%, ES
     95\%, Spectral 10
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{P\&L (static)}
+  \vspace*{-\baselineskip}
+  \begin{center}
+    \includegraphics[scale=.55]{../_pics/rrmse_static.pdf}
+  \end{center}
+  \begin{itemize}
+  \item RMSE (compared to one) relative to RMSE of unhedged position
+  \item Gumbel with ES 95\% or SRM performs best
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{P\&L (static)}
+  \vspace*{-\baselineskip}
+  \begin{center}
+    \includegraphics[scale=.55]{../_pics/rdsv_static.pdf}
+  \end{center}
+  \begin{itemize}
+  \item Downside semi-variance relative to downside semi-variance of
+    unhedged position 
+  \item SRM performs best, together with VaR 95\%
   \end{itemize}
 \end{frame}
 

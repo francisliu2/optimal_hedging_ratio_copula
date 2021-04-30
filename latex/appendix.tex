@@ -5,13 +5,13 @@
    Let $\bm{X} = (X_1, ..., X_d)^\top$ be real-valued random variables with corresponding
    copula density $\bm{c}_{X_1, ..., X_d}$, and continuous marginals $F_{X_1}, ..., F_{X_d}$.
    Then,
-   density of the linear combination of marginals $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ is
+   pdf of the linear combination of marginals $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ is
 
    \begin{align}
-   f_Z(z) &= \left| n_1^{-1} \right| \int_{[0,1]^{d-1}} \left[ \bm{c}_{X_1,...,X_d}
+   f_Z(z) &= \left| n_1^{-1} \right| \int_{[0,1]^{d-1}} \bm{c}_{X_1,...,X_d}
       \{F_{X_1} \circ S(z), u_2, ..., u_d \} \cdot
-      f_{X_1} \circ S(z) \right] du_2 ... du_d \label{density} \\
-      S(z) &= \frac{1}{n_1}\cdot z - \frac{n_2}{n_1} \cdot F^{-1}_{X_2}(u_2) - ... -  \frac{n_d}{n_1} \cdot F^{-1}_{X_d}(u_d)
+      f_{X_1} \circ S(z) du_2 ... du_d \label{density} \\
+      S(z) &= \frac{1}{n_1}\cdot z - \frac{n_2}{n_1} \cdot F^{(-1)}_{X_2}(u_2) - ... -  \frac{n_d}{n_1} \cdot F^{(-1)}_{X_d}(u_d)
       \end{align}
    \end{proposition}
 
@@ -19,7 +19,7 @@
    Rewrite $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ in matrix form
    \begin{align}
       \begin{bmatrix}
-      Y \\ X_2 \\ \vdots \\ X_d
+      Z \\ X_2 \\ \vdots \\ X_d
       \end{bmatrix}
       = \begin{bmatrix}
       n_1    & n_2   & \cdots & n_d     \\
@@ -62,3 +62,7 @@
 
    The claim \ref{density} is obtained by integrating out $x_2, ... x_d$ by substituting $dx_i = \frac{1}{f_{X_i}(x_i)}du_i$.
    \end{proof}
+
+\input{data.tex}
+
+

@@ -175,7 +175,7 @@ CCs and their derivatives into their portfolios. %\natp{portfolios (was: portfol
 we see the need to understand the downside risk and find a suitable way to hedge and are interested in resisting extreme risks and improve their profits.
 This paper analyse modern techniques for the choice of the hedge ratio of the CC portfolios with various copulae and risk measures. \medskip
 
-Hedge ratio is the appropriate size of futures contracts which should be held in order to cancel the movements of BTC price.
+Optimal hedge ratio is the appropriate size of futures contracts which should be held such that the movements in future price cancel that of BTC.
 The task of determining an optimal hedge ratio is not easy.
 It relies on the dependence between the BTC price and future price.
 %In this paper, we investigate the performance of different copulae and
@@ -200,20 +200,25 @@ which leads to underestimate financial risks.
   %exhibit more extreme events than a normal distribution can capture.]}
 Therefore, one cannot solely rely on $2^\text{nd}$ order moment calculations in order to
 minimize downside risk. Variance as a risk measure doesn't consider the variety of investors' utility functions. However, the investors are tail-risk averse.
-\citet{bollerslev2015tail} find that the jump tail risk is more closely associated with changes in risk-aversion. It is important to link the investor utility's functions as hedging the tail risk. Significant tail risks lead to the need to investigate even static hedge with more refined methods than minimum-variance based \citep{ederington2008minimum}.
+\citet{bollerslev2015tail} find that the jump tail risk is more closely associated with changes in risk-aversion.
+It is important to link the investor utility's functions as hedging the tail risk.
+Significant tail risks lead to the need to investigate even static hedge with more refined methods than minimum-variance based \citep{ederington2008minimum}. \medskip
 %One may turn to VaR to monitor tail risk. Hence, the VaR as a sole risk measure has two disadvantages.
 %First, it reflects only tail probability and not tail loss, and next it is not coherent;
-To capture empirical properties, we extend to other risk measures and dependence models. Coherency is a very natural property that suggest diversification will
-reduce risk. ES and SRM are chosen because of their coherence. In our study, the hedge ratio is determined by various risk measures,
-they include variance, ES, VaR,
-and SRM. 
+
+In order to capture the risk preferences of investors, in addition to variance, we include other risk measures.
+We consider also Value-at-Risk (VaR), Expected Shortfall (ES), and Spectral Risk Measure (SRM).
+%Coherency is a very natural property that suggest diversification will reduce risk.
+VaR is widely used by the industry and easy to understand.
+ES and SRM are chosen because of their coherence property, in particular, they encourage diversification.
+SRM is also directly related to individual's utility function.
+Popular examples are the exponential SRM and power SRM introduced by
+\citet{dowd2008spectral}.\medskip
 %\natp{\em [Careful with wording! The
  %hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
 %In particular, the SRM proposed by \citet{Acerbi2002} accounts for investors' utility (i.e. risk preference).
 %SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion. In other words, 
-The risk estimation is directly related to individual's utility function.
-Popular examples are the exponential SRM and power SRM introduced by
-\citet{dowd2008spectral}. \medskip
+
 % \natp{\em [This needs not go in the introduction. Just briefly mention the risk measures, and possibly that ES and SRM are chosen because of their coherence.]}
 %\medskip
 %

@@ -88,7 +88,7 @@
      E-mail: \texttt{packham@hwr-berlin.de}.}
 		 \and
          Wolfgang Karl H\"ardle\thanks{
-			Blockchain Research Center, Humboldt-Universit\"at zu Berlin, Germany. Wang Yanan Institute for Studies in Economics, Xiamen University, China. Sim Kee Boon Institute for Financial Economics, Singapore Management University, Singapore. Faculty of Mathematics and Physics, Charles University, Czech Republic. National Chiao Tung University, Taiwan.
+			Blockchain Research Center, Humboldt-Universit\"at zu Berlin, Germany. Wang Yanan Institute for Studies in Economics, Xiamen University, China. Sim Kee Boon Institute for Financial Economics, Singapore Management University, Singapore. Faculty of Mathematics and Physics, Charles University, Czech Republic. National Yang Ming Chiao Tung University, Taiwan.
      E-mail: \texttt{haerdle@wiwi.hu-berlin.de}.}
         \thanks{ Financial support of the European Union's Horizon 2020 research and innovation program ``FIN-TECH: A Financial supervision and Technology compliance training programme" under the grant agreement No 825215 (Topic: ICT-35-2018, Type of action: CSA), the European Cooperation in Science \& Technology COST Action grant CA19130 - Fintech and Artificial Intelligence in Finance - Towards a transparent financial industry, the Deutsche Forschungsgemeinschaft's IRTG 1792 grant, the Yushan Scholar Program of Taiwan, the Czech Science Foundation's grant no. 19-28231X / CAS: XDA 23020303, as well as support by Ansar Aynetdinov (\texttt{ansar.aynetdinov@hu-berlin.de}) are greatly acknowledged.
      }
@@ -124,7 +124,7 @@
 \begin{abstract}
 \footnotesize{
 The introduction of derivatives on Bitcoin, in particular the launch of futures contracts on CME in December 2017 and introduction of cryptocurrency index (CRIX) \citep{trimborn2018crix},
-enables investors to hedge risk exposures of Bitcoin by futures or cryptocurrency index.
+enables investors to hedge risk exposures of Bitcoin by futures or a cryptocurrency index.
 We investigate methods of finding the optimal hedge ratio $h^*$ under different dependence structures modeled by copulae and optimality definition described by a range of risk measures.
 Because of volatility swings and jumps in Bitcoin prices, the traditional variance-based approach to obtain the hedge ratios is infeasible.
 The approach is therefore generalised  to various risk measures, such as Value-at-Risk, Expected Shortfall and Spectral Risk Measures,
@@ -136,26 +136,26 @@ a cryptocurrency index.\\
 \noindent {\bf Keywords:} Portfolio Selection, Spectral Risk Measurement,  Coherent Risk}\pagestyle{empty}\\
 \end{abstract}
 
-\natp{{\bf TODO}:
-  \begin{itemize}
-  \item Please generate all graphics as pdf and possibly eps. pdf is a
-    vector graphic format, so it scales well. eps may be
-    required during the publishing process.
-  \item Plackett copula: This is a bivariate copula only, which is
-    probably one of the reasons it is not commonly found in finance
-    applications. It does not have tail dependence, which is one of
-    the things we typically look for in finance. We need a compelling
-    reason why it is of interest, otherwise I suggest to remove it.
-  \item We need to discuss if we use copulas or copulae. I have a
-    preference for copulas, which is the terminology used by Nelsen,
-    McNeil et al., Joe.
-  \item The introduction needs to be revised, see comments
-    below. Think about what needs to go into the introduction and what
-    does not, and then stick to this in a concise way. Also, re-read
-    every sentence 2-3 times and think carefully about what it says
-    and what it is supposed to say. 
-  \end{itemize}
-}
+%\natp{{\bf TODO}:
+%  \begin{itemize}
+%  \item Please generate all graphics as pdf and possibly eps. pdf is a
+%    vector graphic format, so it scales well. eps may be
+%    required during the publishing process.
+%  \item Plackett copula: This is a bivariate copula only, which is
+%    probably one of the reasons it is not commonly found in finance
+%    applications. It does not have tail dependence, which is one of
+%    the things we typically look for in finance. We need a compelling
+%    reason why it is of interest, otherwise I suggest to remove it.
+%  \item We need to discuss if we use copulas or copulae. I have a
+%    preference for copulas, which is the terminology used by Nelsen,
+%    McNeil et al., Joe.
+%  \item The introduction needs to be revised, see comments
+%    below. Think about what needs to go into the introduction and what
+%    does not, and then stick to this in a concise way. Also, re-read
+%    every sentence 2-3 times and think carefully about what it says
+%    and what it is supposed to say.
+%  \end{itemize}
+%}
 
 %\tableofcontents
 
@@ -166,31 +166,41 @@ a cryptocurrency index.\\
 
 Cryptocurrencies (CCs) are a growing asset class.
 Many more CCs are now available on the market since the first
-cryptocurrency Bitcoin (BTC) was introduced to the world in 2009. %\natp{\em [BTC was introduced in 2009.]} 
+cryptocurrency Bitcoin (BTC) surfaced, Nakemoto (2009). %\natp{\em [BTC was introduced in 2009.]}
 As the network effect weighs in, the prices of bitcoin and its variants have risen in tandem. These innovations and the perceived investment potential have led to rapid growth in the number of altcoins and the market size of CC. The price of bitcoin even surged to USD 20,000 at beginning of 2021. 
-Bitcoin is popular with the techno tribe, the currency is regarded as being beyond the reach of government regulation- the anonymous founder of Bitcoin introduced the idea of a distributed block chain to prevent the counterfeiting of Bitcoin (\citealp{ong2015evaluating}).  In response to the rapid development of the CC market, the CME group launched its new bitcoin future contract in Dec 2017. Trading volume in BTC futures surpassed \$2 trillion in 2020 (CryptoCompare, 2020).
+Bitcoin is popular with the techno tribe, the currency is regarded as being beyond the reach of government regulation- the anonymous founder of Bitcoin introduced the idea of a distributed block chain to prevent the counterfeiting of Bitcoin \citep{oet2015evaluating}.
+In response to the rapid development of the CC market, the CME group launched a BTC future contract in Dec 2017. Trading volume in BTC futures surpassed \$2 trillion in 2020 (CryptoCompare, 2020).
 While more and more investors (individuals and institution) are adding
 CCs and their derivatives into their portfolios. %\natp{portfolios (was: portfolii)}
-we see the need to understand the downside risk and find a suitable way to hedge and are interested in resisting extreme risks and improve their profits. This paper aims to propose modern techniques for analysis of the hedge ratio of the CC portfolios with various copulae and risk measures.\\
+we see the need to understand the downside risk and find a suitable way to hedge and are interested in resisting extreme risks and improve their profits.
+This paper analyse modern techniques for the choice of the hedge ratio of the CC portfolios with various copulae and risk measures. \medskip
 
- Hedge ratio is the appropriate size of futures contracts which should be held in order to creak an opposite position. The determination of the fair number of futures is of course the difficulty in hedging task.
+Hedge ratio is the appropriate size of futures contracts which should be held in order to cancel the movements of BTC price.
+The task of determining an optimal hedge ratio is not easy.
+It relies on the dependence between the BTC price and future price.
 %In this paper, we investigate the performance of different copulae and
 %risk measures in hedging Bitcoin and CRIX with Bitcoin
 %futures. {\color{blue} only this portfolio?} \natp{\em [$\leftarrow$ Make this the first sentence of the paper!]}
-Copulas provide the flexibility to model multivariate random variable
-separately by its margins and dependence structure. 
-Different risk measures accounts for investors' risk attitude.
+Copulae provide the flexibility to model multivariate random variable
+separately by its margins and dependence structure.
+The concept of copulae was originated by Wassily Hoeffding \citep{hoeffding2012collected} and, despite the slight difference, popularised by the work of Abe Sklar \citep{Sklar1959}.
+Different risk measures account for investors' risk attitude.
+They serve as loss functions in the searching process of optimal hedge ratio.
 Vast literature discussed the relationship between risk measures and investor's risk attitude, we refer readers to
 \citet{artzner1999coherent} for an axiomatic, economic reasoning approach of risk measure construction;
 \citet{embrechts2002correlation} for reasoning of using Expected Shortfall (ES) and Spectral Risk Measure (SRM) in addition to VaR;
-\citet{Acerbi2002} for direct linkage between risk measures and investor's risk attitude using the concept of "risk aversion function".
-In addition to the development of risk measures, financial asset return is known to be non Gaussian (\citealp{fama1963mandelbrot}). In particular, Gaussian models cannot produce so-called fat tails and asymmetry of observed probability densities, which leads to underestimate financial risks. 
+\citet{Acerbi2002} for direct linkage between risk measures and investor's risk attitude using the concept of "risk aversion function". \medskip
+
+Financial asset return is known to be non Gaussian \citep{fama1963mandelbrot}.
+In particular, Gaussian models cannot produce so-called fat tails and asymmetry of observed probability densities,
+which leads to underestimate financial risks.
 %\natp{\cite{Cont2001}}. \natp{\em [non-Gaussian is not
   %very specific, a uniform r.v.\ is also non-Gaussian. Try to express
  % this in a more meaningful way, e.g.\ Financial data are known to
   %exhibit more extreme events than a normal distribution can capture.]}
-One cannot rely on only 2nd order moment calculations in order to
-minimize downside risk. Variance as a risk measure doesn't consider the variety of investors' utility functions. However, the investors are tail-risk averse. \citet{bollerslev2015tail} find that the jump tail risk is more closely associated with changes in risk-aversion. It is important to link the investor utility's functions as hedging the tail risk. Significant tail risks lead to the need to investigate even static hedge with more refined methods than minimum-variance based (\citealp{ederington2008minimum}). 
+Therefore, one cannot solely rely on $2^\text{nd}$ order moment calculations in order to
+minimize downside risk. Variance as a risk measure doesn't consider the variety of investors' utility functions. However, the investors are tail-risk averse.
+\citet{bollerslev2015tail} find that the jump tail risk is more closely associated with changes in risk-aversion. It is important to link the investor utility's functions as hedging the tail risk. Significant tail risks lead to the need to investigate even static hedge with more refined methods than minimum-variance based \citep{ederington2008minimum}.
 %One may turn to VaR to monitor tail risk. Hence, the VaR as a sole risk measure has two disadvantages.
 %First, it reflects only tail probability and not tail loss, and next it is not coherent;
 To capture empirical properties, we extend to other risk measures and dependence models. Coherency is a very natural property that suggest diversification will
@@ -201,9 +211,9 @@ and SRM.
  %hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
 %In particular, the SRM proposed by \citet{Acerbi2002} accounts for investors' utility (i.e. risk preference).
 %SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion. In other words, 
-The risk estimation is directly related to the user's utility function.
+The risk estimation is directly related to individual's utility function.
 Popular examples are the exponential SRM and power SRM introduced by
-\citet{dowd2008spectral}. 
+\citet{dowd2008spectral}. \medskip
 % \natp{\em [This needs not go in the introduction. Just briefly mention the risk measures, and possibly that ES and SRM are chosen because of their coherence.]}
 %\medskip
 %
@@ -223,17 +233,18 @@ Popular examples are the exponential SRM and power SRM introduced by
 %  \end{itemize}
 %  }
 
-This paper considers a hedging problem of Bitcoin using its future and an aggregated index of cryptocurrencies CRIX,
-i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $R^h = R^S - h^*R^F$ has
+This paper considers hedging Bitcoin using its future. % and an aggregated index of cryptocurrencies CRIX,
+i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $r^h = r^S - h^*r^F$ has
 minimal risk.
-We denote $R^S$ as the log return of Bitcoin spot price, $R^F$ as log return of Bitcoin future and CRIX.
-The non Gaussianity and development of risk measures lead us to deploy copulae together with various risk measures as loss function to optimize the hedge ratio.
-In this paper, we calibrate the log returns of Bitcoin, CRIX, and CME future by copulae,
+Here $r^S$ as the log return of BTC spot price, $r^F$ the log return of Bitcoin future.
+The leptokurtic properties mentioned above leads us to deploy a comprehensive way of modelling dependency namely copulae together with various risk measures as loss function to find optimal hedge ratio.
+In this paper, we first calibrate the log returns of BTC and CME future by copulae,
 then find the optimal quantity of assets in the hedged portfolio according to a range of risk measures.
-By Sklar's theorem, we can model the margin and the dependence structure separately using copulae.
-This gives us enormous flexibility to model financial data.
+%By Sklar's theorem, we can model the margin and the dependence structure separately using copulae.
+%This gives us enormous flexibility to model financial data.
 \citet{barbi2014copula} use the C-convolution operator introduced by \citet{cherubini2011copula} to derive the distribution
-of linear combination of margins with copula as their dependence structure. Our main result shows that the distribution function of a linear combination of random variables can be expressed via the copula and margins. 
+of linear combination of margins with copula as their dependence structure.
+Our main result shows that the distribution function of a linear combination of random variables can be expressed via the copula and margins. \medskip
 %We propose a corrected expression the \citet{barbi2014copula}'s equation and propose a general expression for the density of the linear combination.
  %\natp{\em [No need to mention in the introduction that
  % the version is corrected. The main result -- that the distribution
@@ -264,8 +275,6 @@ of linear combination of margins with copula as their dependence structure. Our 
 %\label{fig:density illustration}
 %\end{figure}
 
-
-
 %Even though they reveal that SRM have some properties which cause problems when applying to practical risk management,
 %they show that exponential utility function might be plausible in some circumstances under weak conditions \citealp{buhlmann1980economic}.
 
@@ -290,13 +299,8 @@ of linear combination of margins with copula as their dependence structure. Our 
 
 %This paper has two main contributions to the existing literature. First, we reveal the quantiles of loss function built by different copulae. Second, by minimizing exponential SRM (ESRM) to determine the optimal hedge ratio, we give a guidance on the choice of risk aversion function to assist the risk manager in choosing an optimal risk aversion function for a portfolio. To our knowledge, these have received no attention so far in the published literatures.\\
 
-
-This research proposes the model techniques for the analysis of the hedging strategy on the CC's tail risk in five aspects. First, 
-
-
-
-The remainder
-of the article is organized as follows. Section 2 methodology. Section 3 data, and Section 4 empirical result. Section 5 concludes.\medskip
+This research proposes the model techniques for the analysis of the hedging strategy on the CC's tail risk in five aspects.
+The remainder of the article is organized as follows. Section 2 methodology. Section 3 data, and Section 4 empirical result. Section 5 concludes. \medskip
 
 All calculations in this work can be reproduced.
 The codes are available on \href{http://www.quantlet.com/}{www.quantlet.com}.

@@ -1,8 +1,7 @@
 
 \subsection{Copulae}\label{subsec:copulae}
-As we saw from the last section, risk measures we considered are all functionals of joint distribution of $r^S$ and $r^F$.
-We test different copulae for their ability to model joint distribution of crypto-related assets returns.
-We consider Gaussian-, $t$-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
+As we saw from the last section, risk measures we considered are all functionals of the joint distribution of $r^S$ and $r^F$.
+We test different copulae: Gaussian-, $t$-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
 This hedging exercise concerns only portfolios with two assets, we only present the bivariate version of copulae and some important features of a copula,
 they include Kendall's $\tau$, Spearman's $\rho$,
 upper tail dependence $\lambda_U \overset{\mathrm{def}}{=}  \lim_{q \rightarrow 1^-} \p\{X > F_{X}^{(-1)}(q)|Y > F_{Y}^{(-1)}(q)\}$ and
@@ -20,19 +19,21 @@ The bivariate Gaussian copula is:
                     &= \int_{-\infty}^{\Phi^{-1}(u)}
                        \int_{-\infty}^{\Phi^{-1}(v)}
                        \frac{1}{2\pi\sqrt{1-\rho^2}}
-                       \exp{\left(
+                       \exp{\left\{
                        \frac{s^2-2\rho st+t^2}{2(1-\rho^2)}
-                       \right)} ds dt
+                       \right\}} ds dt
         \end{align}
-where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution with zero mean, unit variance, and correlation $\rho$ \francis{\em the rho we use in risk measure is $\rho_{\text{something}}$. This should remove ambiguity.},
-and $\Phi^{-1}$ is quantile function univariate standard normal distribution.
+where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution with zero mean, unit variance, and correlation $\rho$.
+, and $\Phi^{-1}$ is quantile function univariate standard normal distribution.
+Please note that we use $rho$ to represent the correlation parameter in Gaussian copula only for traditional purposes.
+In other sections, $rho(\cdot)$ is a risk measure.
 The Gaussian copula density is
 \begin{align}
     \bm{c}_\rho(u,v) &= \frac{\bm{\varphi}_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
                         {\varphi\{\Phi^{-1}(u)\} \cdot \varphi\{\Phi^{-1}(v)\}} \nonumber \\
-                &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left(
+                &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left\{
                    -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
-                   \right),
+                   \right\},
     \end{align}
 where $\bm{\varphi}_{2,\rho}(\cdot)$ is the pdf of $\Phi_{2, \rho}$,
 and $\varphi(\cdot)$ the standard normal distribution pdf.\medskip

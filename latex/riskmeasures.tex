@@ -1,5 +1,5 @@
 \subsection{Risk Measures}\label{subsec:spectral-risk-measures}
-We consider four risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
+We consider a variety of risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
 %They are used in many literature about hedging, e.g. ;
 %The risk measures are also used by regulatory bodies,
 %for example Basel III ....
@@ -8,29 +8,29 @@ A summary of risk measures being used in portfolio selection problem can be foun
 
 
 Let $Z$ be a random variable of distribution $F_Z$.
-\begin{itemize}
-	\item Variance is $\text{Var}(F_Z) = \int_\mathbb{R}z^2 dF_Z(z)$
+\begin{enumerate}
+	\item Variance is $\text{Var}(F_Z)$
 	\item VaR of a given confidence level $\alpha$ is $\text{VaR}(F_Z) = -F_{Z}^{(-1)}(1-\alpha)$
 	\item ES with parameter $\alpha$ is $\text{ES}(F_Z) = -\frac{1}{1-\alpha}\int_0^{1-\alpha}F_Z^{(-1)}(p)dp$
-	\item ERM with Arrow-Pratt coeficient of absolute risk aversion $k$ is $\text{ERM}_k(F_Z) = \int_0^{1-\alpha}\phi(p) F_Z^{(-1)}(p)dp$ where $\phi$ is a weight function describe in equation \ref{eq:phi} below.
-	\end{itemize}\medskip
+	\item ERM with Arrow-Pratt coeficient of absolute risk aversion $k$ is $\text{ERM}_k(F_Z) = \int_0^{1-\alpha}\phi(p) F_Z^{(-1)}(p)dp$ where $\phi$ is a weight function described in (\ref{eq:phi}) below.
+	\end{enumerate}\medskip
 
 VaR, ES, and ERM fall into the class of Spectral Risk Measure (SRM).
-SRM has the form \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
+SRM has the from \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
 \begin{align}
 	\rho_\phi(r^h) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
 	\end{align}
 
 where $p$ is the loss quantile and $\phi(p)$ is a user-defined weighting function defined over $[0,1]$. \medskip
-We consider only admissible risk spectrum \francis{\em [named by \citet{Acerbi2002}]} $\phi(p)$:
-\begin{itemize}
+We consider only admissible risk spectra $\phi(p)$ (named by \citet{Acerbi2002})
+\begin{enumerate}[label=\roman*]
 	\item $\phi$ is positive
 	\item $\phi$ is decreasing
-	\item $\int_{[0,1]}\phi(q)dq = 1$
-	\end{itemize}\medskip
+	\item integrates to one.
+	\end{enumerate}\medskip
 
 The VaR's $\phi(p)$ gives all its weight on the $1-\alpha$ quantile of $Z$ and zero elsewhere,
-i.e. the weighting function is a Dirac delta function.
+i.e. the weighting function is a Dirac delta function, hence violates the ii property of admissible risk spectra.
 The ES' $\phi(p)$ gives all tail quantiles the same weight of $\frac{1}{1-\alpha}$ and non-tail quantiles zero weight.
 ERM assumes investor's risk preference is in a form of exponential utility function $U(x)=-e^{kx}$,
 its risk spectrum is defined as

@@ -38,7 +38,7 @@ The benefit of using copulae is two folded.
 First, copulae allow us to model the margins and dependence structure separately, see Sklar's Theorem.
 Second, copulae are invariance under strictly monotone increasing function \citep{schweizer1981nonparametric}, see lemma below.
 
-\begin{theorem}[Sklar's Theorem]
+\begin{theorem}[Hoeffding Sklar Theorem]
   Let $F$ be a joint distribution function with margins $F_X,
   F_Y$. Then, there exists a copula $C:[0,1]^2 \mapsto [0,1]$ such
   that, for all $x,y\in \R$
@@ -106,8 +106,8 @@ Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$ see e.g.\ Equ
   \end{align*}
   \end{proof}
 
-In addition to~\cite{barbi2014copula} we propose a more handy
-expression for the pdf of $Z$.
+%In addition to~\cite{barbi2014copula} we propose a more handy
+%expression for the pdf of $Z$.
 %\natp{\em [Please double-check the ``+'' signs in the second equation.]}\ \francis{ \em [the + sign is correct.]}
 
 \begin{corollary} Given the formulation of the above portfolio, the pdf of $Z$ can be written as

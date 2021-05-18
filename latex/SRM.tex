@@ -17,6 +17,8 @@
 \usepackage{psfrag}
 \usepackage{proofapnd}
 \usepackage[round]{natbib}
+%\usepackage{enumerate}% http://ctan.org/pkg/enumerate
+
 %\usepackage{bbm}
 %\usepackage[T1]{fontenc}
 %\usepackage[normal]{caption2} % for caption
@@ -132,6 +134,7 @@ In addition, we deploy different copulae for capturing the dependency between sp
 NIG and Archimedean copulae. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin.
 We find that across copulae and risk measures, the hedge effectiveness are very similar with the exception of the Frank copula, Expected Shortfall 99\% and Value-at-Risk 99\%.
 Our findings are based on an analysis for the time span from 15/12/2017 to 04/02/2021.
+The results allows investors to construct a stable portfolio with digital assets.
 \\
 
 \noindent {\bf JEL classification:}  \\
@@ -168,16 +171,25 @@ Our findings are based on an analysis for the time span from 15/12/2017 to 04/02
 
 Cryptocurrencies (CCs) are a growing asset class.
 Many more CCs are now available on the market since the first
-cryptocurrency Bitcoin (BTC) surfaced, Nakemoto (2009). %\natp{\em [BTC was introduced in 2009.]}
-As the network effect weighs in, the prices of bitcoin and its variants have risen in tandem. These innovations and the perceived investment potential have led to rapid growth in the number of altcoins and the market size of CC. The price of bitcoin even surged to USD 20,000 at beginning of 2021. 
-Bitcoin is popular with the techno tribe, the currency is regarded as being beyond the reach of government regulation- the anonymous founder of Bitcoin introduced the idea of a distributed block chain to prevent the counterfeiting of Bitcoin \citep{oet2015evaluating}.
-In response to the rapid development of the CC market, the CME group launched a BTC future contract in Dec 2017. Trading volume in BTC futures surpassed \$2 trillion in 2020 (CryptoCompare, 2020).
-While more and more investors (individuals and institution) are adding
-CCs and their derivatives into their portfolios. %\natp{portfolios (was: portfolii)}
-we see the need to understand the downside risk and find a suitable way to hedge and are interested in resisting extreme risks and improve their profits.
+cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}.
+In response to the rapid development of the CC market, the CME group launched a BTC future contract in Dec 2017.
+Trading volume in BTC futures surpassed \$2 trillion in 2020 (CryptoCompare, 2020).
+While more and more investors (individuals and institutions) are adding
+CCs and their derivatives into their portfolios,  %\natp{portfolios (was: portfolii)}
+we see the need to understand the downside risk and find a suitable way to hedge against extreme risks.
+The price of bitcoin even surged to USD 20,000 at beginning of 2021.
 This paper analyse modern techniques for the choice of the hedge ratio of the CC portfolios with various copulae and risk measures. \medskip
 
-Optimal hedge ratio is the appropriate size of futures contracts which should be held such that the movements in future price cancel that of BTC.
+
+%\natp{\em [BTC was introduced in 2009.]}
+%As the network effect weighs in, the prices of bitcoin and its variants have risen in tandem.
+%These innovations and the perceived investment potential have led to rapid growth in the number of altcoins and the market size of CC.
+%Bitcoin is popular with the techno tribe, the currency is regarded as being beyond the reach of government regulation- the anonymous founder of Bitcoin introduced the idea of a distributed block chain to prevent the counterfeiting of Bitcoin \citep{oet2015evaluating}.
+
+
+%and are interested in resisting extreme risks and improve their profits.
+
+The optimal hedge ratio is the appropriate size of futures contracts which should be held such that the movements in future price cancel that of BTC.
 The task of determining an optimal hedge ratio is not easy.
 It relies on the dependence between the BTC price and future price.
 %In this paper, we investigate the performance of different copulae and
@@ -185,7 +197,8 @@ It relies on the dependence between the BTC price and future price.
 %futures. {\color{blue} only this portfolio?} \natp{\em [$\leftarrow$ Make this the first sentence of the paper!]}
 Copulae provide the flexibility to model multivariate random variable
 separately by its margins and dependence structure.
-The concept of copulae was originated by Wassily Hoeffding \citep{hoeffding2012collected} and, despite the slight difference, popularised by the work of Abe Sklar \citep{Sklar1959}.
+The concept of copulae was originally developed (but not under this name) by Wassily Hoeffding \citep{hoeffding1940masstabinvariante}
+, later popularised by the work of Abe Sklar \citep{Sklar1959}.
 Different risk measures account for investors' risk attitude.
 They serve as loss functions in the searching process of optimal hedge ratio.
 Vast literature discussed the relationship between risk measures and investor's risk attitude, we refer readers to
@@ -240,18 +253,18 @@ Popular examples are the exponential SRM and power SRM introduced by
 %  \end{itemize}
 %  }
 
-This paper considers hedging Bitcoin using its future. % and an aggregated index of cryptocurrencies CRIX,
+This paper considers hedging BTC using its future. % and an aggregated index of cryptocurrencies CRIX,
 i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $r^h = r^S - h^*r^F$ has
 minimal risk.
-Here $r^S$ as the log return of BTC spot price, $r^F$ the log return of Bitcoin future.
+Here $r^S$ as the log return of BTC spot price, $r^F$ the log return of BTC future.
 The leptokurtic properties mentioned above leads us to deploy a comprehensive way of modelling dependency namely copulae together with various risk measures as loss function to find optimal hedge ratio.
-In this paper, we first calibrate the log returns of BTC and CME future by copulae,
+We first calibrate the log returns of BTC and CME future by copulae,
 then find the optimal quantity of assets in the hedged portfolio according to a range of risk measures.
 %By Sklar's theorem, we can model the margin and the dependence structure separately using copulae.
 %This gives us enormous flexibility to model financial data.
 \citet{barbi2014copula} use the C-convolution operator introduced by \citet{cherubini2011copula} to derive the distribution
 of linear combination of margins with copula as their dependence structure.
-Our main result shows that the distribution function of a linear combination of random variables can be expressed via the copula and margins. \medskip
+We slightly amend their lemma and come up with a formula for the linear combination of random variables for our purpose.\medskip
 %We propose a corrected expression the \citet{barbi2014copula}'s equation and propose a general expression for the density of the linear combination.
  %\natp{\em [No need to mention in the introduction that
  % the version is corrected. The main result -- that the distribution
@@ -306,9 +319,7 @@ Our main result shows that the distribution function of a linear combination of 
 
 %This paper has two main contributions to the existing literature. First, we reveal the quantiles of loss function built by different copulae. Second, by minimizing exponential SRM (ESRM) to determine the optimal hedge ratio, we give a guidance on the choice of risk aversion function to assist the risk manager in choosing an optimal risk aversion function for a portfolio. To our knowledge, these have received no attention so far in the published literatures.\\
 
-This research proposes the model techniques for the analysis of the hedging strategy on the CC's tail risk in five aspects.
-The remainder of the article is organized as follows. Section 2 methodology. Section 3 data, and Section 4 empirical result. Section 5 concludes. \medskip
-
+This paper is organized as follows. Section 2 introduces the notion of optimal hedge ratio; section 3 decribe the method of estimation of copulae; section 4 provides the empirical result; section 5 concludes.\medskip
 All calculations in this work can be reproduced.
 The codes are available on \href{http://www.quantlet.com/}{www.quantlet.com}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

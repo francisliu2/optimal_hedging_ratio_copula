@@ -129,17 +129,17 @@
 \footnotesize{
 The introduction of derivatives on Bitcoin, in particular the launch of futures contracts on CME in December 2017 and introduction of cryptocurrency indices like the CRIX or the Bloomberg Galaxy Crypto Index
 enables investors to hedge risk exposures of Bitcoin by futures or contingent claims on indices.
-We investigate methods of finding the optimal hedge ratio $h^*$ under different dependence structures modeled by copulae and optimality definition described by a range of risk measures.
+We investigate methods of finding an optimal hedge ratio $h^*$ under different dependence structures modeled by copulae and employing different optimality definitions based on a range of risk measures.
 Because of volatility swings and jumps in Bitcoin prices, the traditional variance-based approach to obtain the hedge ratios is infeasible.
-The approach is therefore generalised to various risk measures, such as Value-at-Risk, Expected Shortfall and a variety of Spectral Risk Measures.
+The techniques are therefore generalised to various risk measures, such as Value-at-Risk, Expected Shortfall and more general, Spectral Risk Measures.
 In addition, we deploy different copulae for capturing the dependency between spot and future returns, such as the Gaussian, Student-$t$,
 NIG and Archimedean copulae. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin.
 We find that across copulae and risk measures, the hedge effectiveness are very similar with the exception of the Frank copula, Expected Shortfall 99\% and Value-at-Risk 99\%.
 Our findings are based on an analysis for the time span from 15/12/2017 to 04/02/2021.
-The results allows investors to construct a stable portfolio with digital assets.
+The results allow investors to construct a stable portfolio with digital assets.
 \\
 
-\noindent {\bf JEL classification:}  \\
+\noindent {\bf JEL classification:C38, C53, F34, G11, G17}  \\
 \noindent {\bf Keywords:} Portfolio Selection, Spectral Risk Measurement,  Coherent Risk}\pagestyle{empty}\\
 \end{abstract}
 
@@ -175,10 +175,13 @@ Many more CCs are now available on the market since the first
 cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}.
 In response to the rapid development of the CC market, the CME group launched a BTC future contract in Dec 2017.
 Trading volume in BTC futures surpassed \$2 trillion in 2020 (CryptoCompare, 2020).
+In April 2021, the market value of outstanding coins had risen to 2.3t,
+more than 6\% of the world's narrow money supply and almost 3\% of the world GDP.
 While more and more investors (individuals and institutions) are adding
 CCs and their derivatives into their portfolios,  %\natp{portfolios (was: portfolii)}
 we see the need to understand the downside risk and find a suitable way to hedge against extreme risks.
-The price of bitcoin even surged to USD 20,000 at beginning of 2021.
+The price of BTC even surged to USD 60,000 in April 2021.
+Investment into CCs therefore require proper quantification of their dynamics, but more importantly, exact understanding of their dependency with surfacing contingent claims, e.g. futures and options.
 This paper analyse modern techniques for the choice of the hedge ratio of the CC portfolios with various copulae and risk measures. \medskip
 
 
@@ -199,7 +202,8 @@ It relies on the dependence between the BTC price and future price.
 Copulae provide the flexibility to model multivariate random variable
 separately by its margins and dependence structure.
 The concept of copulae was originally developed (but not under this name) by Wassily Hoeffding \citep{hoeffding1940masstabinvariante}
-, later popularised by the work of Abe Sklar \citep{Sklar1959}.
+, later popularised by the work of Abe Sklar \citep{Sklar1959}. \medskip
+
 Different risk measures account for investors' risk attitude.
 They serve as loss functions in the searching process of optimal hedge ratio.
 Vast literature discussed the relationship between risk measures and investor's risk attitude, we refer readers to

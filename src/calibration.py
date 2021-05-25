@@ -25,7 +25,7 @@ if calibration_method =='MM':
 	q_arr = config['q_arr'] # moment conditions for MM
 
 # Gaussian, t_Copula, Clayton, Frank, Gumbel, Plackett, Gaussian mix Indep
-C1  = Gaussian(dict(rho=0.9),       Law_RS=stats.norm, Law_RF=stats.norm) # fix the maringals!
+C1  = Gaussian(dict(rho=0.9),       Law_RS=stats.norm, Law_RF=stats.norm)
 C2  = t_Copula(dict(rho=0.1, nu=4), Law_RS=stats.norm, Law_RF=stats.norm, nu_lowerbound=2)
 C2c = t_Copula(dict(rho=0.1, nu=4), Law_RS=stats.norm, Law_RF=stats.norm, nu_lowerbound=4)
 C3  = Clayton(dict(theta=0.1),      Law_RS=stats.norm, Law_RF=stats.norm)

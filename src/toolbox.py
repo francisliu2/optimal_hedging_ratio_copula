@@ -7,6 +7,7 @@ from scipy.special import gamma
 from statsmodels.distributions.empirical_distribution import ECDF
 import scipy
 import dill
+np.random.seed(0)
 
 dill.settings['recurse'] = True
 

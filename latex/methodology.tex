@@ -29,11 +29,11 @@ Obviously the cdf of $r^h$ and risk measure depend on the joint distribution of 
 
 Optimising $h$ according to $f_{r^S,-hr^F}$ is unfavorable in a sense that one needs to calibrate a new joint pdf $f_{r^S, -hr^F}$ when updating $h$.
 This is too time consuming and unnecessary.
-Another problem of using joint pdf is that one lacks of flexibility to model the margins.
-A joint pdf completely determine the form of its marginals, for example, margins of a bivariate $t$-distribution are
+Another problem of using the joint pdf is that one lacks the flexibility to model the margins.
+A joint pdf completely determines the form of its marginals, for example, margins of a bivariate $t$-distribution are
 univariate $t$-distributions.\medskip
 
-To overcome the problems, we use copulae.
+To overcome such a problem, we use copulae.
 The benefit of using copulae is two folded.
 First, copulae allow us to model the margins and dependence structure separately, see Sklar's Theorem.
 Second, copulae are invariance under strictly monotone increasing function \citep{schweizer1981nonparametric}, see lemma below.
@@ -56,7 +56,8 @@ Second, copulae are invariance under strictly monotone increasing function \cite
 
 Indeed, many basic results about copulae can be traced back to early works of Wassily Hoeffding \citep{hoedffding1940, hoedffding1941}.
 The works aimed to derive a measure of relationship of variables which is invariant under change of scale.
-Readers can refer to \citet{hoeffding2012collected} for English translations of the works.
+See also \citet{hoeffding2012collected} for English translations of the original papers written in German.
+The following lemma is not hard to prove.
 
 \begin{lemma}
   \begin{align}
@@ -90,7 +91,7 @@ Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$ see e.g.\ Equ
 \citep{McNeil2005}:
 \begin{equation}
   \label{eq:1}
-  D_1 C_{X,Y}(F_X(x), F_Y(y)) = \p(Y\leq y|X=x).
+  D_1 C_{X,Y}\{F_X(x), F_Y(y)\} = \p(Y\leq y|X=x).
 \end{equation}
 \begin{proof}
   Using the identity (\ref{eq:1}) gives

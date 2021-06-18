@@ -529,8 +529,7 @@ class Frank(Copula):
 		self.paras = {"theta": result[0]}
 		return result
 
-	def tau(self,
-			theta=None):  # Statistical modeling of joint probability distribution using copula: Application to peak
+	def tau(self, theta=None):  # Statistical modeling of joint probability distribution using copula: Application to peak
 		# and permanent displacement seismic demands
 		# Exercise 5.9 in Nelsen
 		if theta == None:
@@ -541,7 +540,7 @@ class Frank(Copula):
 		part3 = scipy.integrate.quad(part3_fn, 0, theta)[0]
 		return (part1 + part2 * part3)
 
-	def D1C_inv(self, u, v):  # D1O's inverse
+	def D1C_inv(self, u, v):  # D1C's inverse
 		part0 = -1 / self.theta
 		part1a = (1 - np.exp(-self.theta))
 		part1b = (1 / v - 1) * np.exp(-self.theta * u) + 1

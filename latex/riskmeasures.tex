@@ -22,7 +22,7 @@ SRM has the from \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
 	\end{align}
 
 where $p$ is the loss quantile and $\phi(p)$ is a user-defined weighting function defined over $[0,1]$. \medskip
-We consider only admissible risk spectra $\phi(p)$ (named by \citet{Acerbi2002})
+We consider only admissible risk spectra $\phi(p)$ %(named by \citet{Acerbi2002})
 \begin{enumerate}[label=\roman*]
 	\item $\phi$ is positive
 	\item $\phi$ is decreasing
@@ -32,21 +32,22 @@ We consider only admissible risk spectra $\phi(p)$ (named by \citet{Acerbi2002})
 The VaR's $\phi(p)$ gives all its weight on the $1-\alpha$ quantile of $Z$ and zero elsewhere,
 i.e. the weighting function is a Dirac delta function, hence violates the ii property of admissible risk spectra.
 The ES' $\phi(p)$ gives all tail quantiles the same weight of $\frac{1}{1-\alpha}$ and non-tail quantiles zero weight.
-ERM assumes investor's risk preference is in a form of exponential utility function $U(x)=-e^{kx}$,
-its risk spectrum is defined as
+ERM assumes investor's risk preference is in a form of exponential utility function $U(x)=1-e^{kx}$,
+its corresponding risk spectrum is defined as
 
 \begin{align}
 	\phi(p) =\frac{k e^{-k(1-p)}}{1-e^{-k}} , \label{eq:phi}
 	\end{align}
 where $k$ is the Arrow-Pratt coefficient of absolute risk aversion. \medskip
 
-$k$ has an economic interpretation of being the ratio between the second derivative and first derivative
+The parameter $k$ has an economic interpretation of being the ratio between the second derivative and first derivative
 of investor's utility function on an risky asset
 
 \begin{align}
 	k = -\frac{U''(x)}{U'(x)},
 	\end{align}
 for $x$ in all possible outcomes.
+In case of the exponential utility, $k$ is the the constant absolute risk aversion (CARA).
 
 
 

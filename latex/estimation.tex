@@ -4,7 +4,7 @@
 \section{Estimation}\label{sec:estimation}
 
 \subsection{Simulated Method of Moments}\label{subsec:simulated-method-of-moments}
-This method is suggested by Oh and Patton (2013).
+This method is suggested by \citep{oh2013simulated}.
 In our setting, rank correlation e.g. Spearman's $\rho$ or Kendall's $\tau$,
 and quantile dependence measures at different levels $\lambda_q$
 are calibrated against their empirical counterparts.\medskip
@@ -60,7 +60,7 @@ In this work, we use $\tilde{\bm{m}}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \la
 for calibration of Bitcoin price and CME Bitcoin future.
 
 \subsection{Maximum Likelihood Estimation}\label{subsec:maximum-likelihood-estimation}
-By Sklar's theorem, the joint density of a $d$-dimensional random variable $\bm{X}$ with sample size $n$ can be written as
+By the Hoeffding-Sklar's theorem, the joint density of a $d$-dimensional random variable $\bm{X}$ with sample size $n$ can be written as
 \begin{align}
     \bm{f}_{\bm{X}}(x_1, ..., x_d) = \bm{c}\{F_{X_1}(x_1), ..., F_{X_d}(x_d)\} \prod_{j=1}^d f_{X_i}(x_i).
     \end{align}
@@ -143,6 +143,8 @@ quantile dependence from MLE and MM calibration procedures.
 Although the MLE is a better fit to a range of quantile dependence in the middle, it fails to address the situation in the tails.
 Our data empirically has weaker quantile dependence in the ends, and those points generate PnL to the hedged portfolio.
 MM is preferred visually as it produces a better fit to the dependence structure in the two extremes.
+Therefore, we deploy the method of moments throughout the analysis.
+We choose the $5^\text{th}$-, $10^\text{th}$-, $90^\text{th}$-, $95^\text{th}$-quantile, and Spearman's $\rho$ as the moments.
 
 
 %

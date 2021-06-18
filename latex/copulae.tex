@@ -12,7 +12,7 @@ For further detail, we refer readers to \citet{joe1997multivariate} and \citet{N
 See also \citet{hardle2010copulis}.
 
 \subsubsection{Elliptical Copulae}\label{sec:ellpitical-copulae}
-Elliptical copulae are dependence structure associated with elliptical distributions.
+Elliptical copulae define dependence structures associated with elliptical distributions.
 The bivariate Gaussian copula is:
     \begin{align}
         \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\} \nonumber \\
@@ -25,8 +25,8 @@ The bivariate Gaussian copula is:
         \end{align}
 where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution with zero mean, unit variance, and correlation $\rho$.
 , and $\Phi^{-1}$ is quantile function univariate standard normal distribution.
-Please note that we use $rho$ to represent the correlation parameter in Gaussian copula only for traditional purposes.
-In other sections, $rho(\cdot)$ is a risk measure.
+Please note that we use $\rho$ here to represent the correlation parameter in a Gaussian copula only for traditional purposes.
+In other sections, $\rho(\cdot)$ is a risk measure.
 The Gaussian copula density is
 \begin{align}
     \bm{c}_\rho(u,v) &= \frac{\bm{\varphi}_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
@@ -68,10 +68,10 @@ The copula density is
 where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}(\cdot, \cdot)$,
 and $t_\nu$ the density of standard $t$ distribution.\medskip
 
-Like all the other elliptical copulae, $t$ copula's Kendall's $\tau$ is identical to that of Gaussian copula (Demarta and reference therein).
+Like all the other elliptical copulae, $t$ copula's Kendall's $\tau$ is identical to that of Gaussian copula \citep[see][and references therein]{demarta2005t}.
 
 \subsubsection{Archimedean Copulae}\label{sec:archimedean-copula}
-The Archimedean copulae forms a large class of copulae with many convenient features.
+The family of Archimedean copulae forms a large class of copulae with many convenient features.
 In general, they take a form
 \begin{align}
     \bm{C}(u,v)= \psi^{-1}\{\psi(u), \psi(v)\},
@@ -116,7 +116,7 @@ $\lambda^U = 2-2^{\frac{1}{\theta}}$ and displays no lower tail dependence.
     \}^{\frac{1}{\theta}}},
     \end{align}
 where $\theta \in [1,\infty)$ is the dependence parameter.\medskip
-While Gumbel copula cannot model perfect counter dependence (ref), $\bm{C}_{1} = \bm{\Pi}$ models the independence,
+While Gumbel copula cannot model perfect counter dependence \citep{Nelsen2002}, $\bm{C}_{1} = \bm{\Pi}$ models the independence,
 and $\lim\limits_{\theta \to \infty} \bm{C}_\theta = \bm{W}$ models the perfect dependence.
 
 %The copula density takes the form

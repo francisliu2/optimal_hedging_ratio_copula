@@ -1,0 +1,13 @@
+Package: EMMIXskew
+Title: The EM Algorithm and Skew Mixture Distribution
+Description: EM algorithm for Mixture of Multivariate Skew Normal/T Distributions
+Depends: lattice,mvtnorm, KernSmooth
+Version: 1.0.1
+Author: Kui Wang, Angus Ng and Geoff McLachlan. 
+Maintainer: Geoff McLachlan <g.mclachlan@uq.edu.au>
+License: GPL
+LazyLoad: yes
+Packaged: 2013-11-13 07:00:51 UTC; s4225458
+NeedsCompilation: yes
+Repository: CRAN
+Date/Publication: 2013-11-13 09:02:25

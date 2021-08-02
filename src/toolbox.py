@@ -4,7 +4,7 @@ import scipy.linalg as la
 from functools import partial, lru_cache
 from scipy import integrate
 from scipy.special import gamma
-from statsmodels.distributions.empirical_distribution import ECDF
+from statsmodels.distributions.empirical_distribution import ECDF as quickECDF
 import scipy
 import dill
 np.random.seed(0)
@@ -319,7 +319,7 @@ def Variance(rh):
 
 def ERM_estimate_trapezoidal(k, rh):
 	rh = np.sort(rh)
-	s = ECDF(rh)(rh)
+	s = quickECDF(rh)(rh)
 	d = s[1:] - s[:-1]
 	toint = ERM_weight(k, s) * rh
 	return -np.sum((toint[:-1] + toint[1:]) * d) / 2
@@ -407,6 +407,14 @@ def clip_h(h, _min, _max):
         return 1
     else:
         return h
+
+class ECDF():
+	def __init__(self, data):
+		self.data = data
+
+	def __call__(self, x):
+		return np.array([np.sum(self.data <= x[i]) for i in range(len(x))]) / (len(self.data) + 1)
+
 
 
 

@@ -10,7 +10,8 @@ from scipy.stats import norm
 import pandas as pd
 import numpy as np
 import seaborn as sns
-from statsmodels.distributions.empirical_distribution import ECDF
+from toolbox import *
+# from statsmodels.distributions.empirical_distribution import ECDF # don't use that
 import os
 np.random.seed(0)
 

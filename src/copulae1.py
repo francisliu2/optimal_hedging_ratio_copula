@@ -9,7 +9,7 @@ from scipy.stats import norm
 from scipy import integrate
 from scipy.special import beta
 import scipy.linalg as la
-from statsmodels.distributions.empirical_distribution import ECDF
+# from statsmodels.distributions.empirical_distribution import ECDF
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -113,7 +113,7 @@ class Gaussian(Copula):
 
 		part1 = np.array(part1)
 		part2 = norm.pdf(norm.ppf(u)) * norm.pdf(norm.ppf(v))
-		return np.nanmean(np.log(part1 / part2))
+		return np.sum(np.log(part1 / part2))
 
 	def dependency_likelihood(self, u, v):
 		rho = self.rho
@@ -258,7 +258,7 @@ class t_Copula(Copula):
 
 		part1 = np.array(part1)
 		part2 = _t1.pdf(_t1.ppf(u)) * _t2.pdf(_t2.ppf(v))
-		return np.nanmean(np.log(part1 / part2))
+		return np.sum(np.log(part1 / part2))
 
 	def dependency_likelihood(self, u, v):
 		rho = self.rho
@@ -398,7 +398,7 @@ class Clayton(Copula):
 		part2 = (-1 + u ** (-theta) + v ** (-theta)) ** (-2 - (1 / theta))
 		l = np.log(part1 * part2)
 		l[~np.isfinite(l)] = np.min(l[np.isfinite(l)]) * 10
-		return np.mean(l)
+		return np.sum(l)
 
 	def dependency_likelihood(self, u, v):
 		theta = self.theta
@@ -513,7 +513,7 @@ class Frank(Copula):
 	def l_fn(self, theta, u, v):  # log dependency likelihood
 		part1 = -theta * np.exp(-theta * (u + v)) * (np.exp(-theta) - 1)
 		part2 = np.exp(-theta) - np.exp(-theta * u) - np.exp(-theta * v) + np.exp(-theta * (u + v))
-		return np.mean(np.log(part1 / (part2 ** 2)))
+		return np.sum(np.log(part1 / (part2 ** 2)))
 
 	def dependency_likelihood(self, u, v):
 		theta = self.theta
@@ -659,7 +659,7 @@ class Gumbel(Copula):
 			part6[~np.isfinite(part6)] = 100
 		if verbose:
 			print(part1, part2, part3, part4, part5, part6)
-		return np.nanmean(np.log(part1 * part2 * part3 * part4 * part5 * part6))
+		return np.sum(np.log(part1 * part2 * part3 * part4 * part5 * part6))
 
 	def dependency_likelihood(self, u, v):
 		theta = self.theta
@@ -810,7 +810,7 @@ class Plackett(Copula):
 		eta = theta - 1
 		part1 = ((1 + eta * (u + v)) ** 2 - 4 * theta * eta * u * v) ** (-3 / 2)
 		part2 = theta * (1 + eta * (u + v - 2 * u * v))
-		return np.nanmean(np.log(part1 * part2))
+		return np.sum(np.log(part1 * part2))
 
 	# From Appendix C.7. of "Extreme in Nature"
 	def spearman_rho(self):
@@ -875,7 +875,7 @@ class Gaussian_Mix_Independent(Copula):
 			return -5000
 		_Gaussian = Gaussian({"rho": rho}, stats.norm, stats.norm)
 		_Gaussian_c = np.array([_Gaussian.c(u[i], v[i]) for i in range(len(u))])
-		return np.nanmean(np.log(p * _Gaussian_c + (1 - p)))
+		return np.sum(np.log(p * _Gaussian_c + (1 - p)))
 
 	def dependency_likelihood(self, u, v):
 		rho = self.rho
@@ -975,7 +975,7 @@ class Gaussian_Mix_Gaussian(Copula):
 		_Gaussian_c1 = np.array([_Gaussian1.c(u[i], v[i]) for i in range(len(u))])
 		_Gaussian2 = Gaussian({"rho": rho2}, stats.norm, stats.norm)
 		_Gaussian_c2 = np.array([_Gaussian2.c(u[i], v[i]) for i in range(len(u))])
-		return np.nanmean(np.log(p * _Gaussian_c1 + (1 - p)* _Gaussian_c2))
+		return np.sum(np.log(p * _Gaussian_c1 + (1 - p)* _Gaussian_c2))
 
 	def dependency_likelihood(self, u, v):
 		rho1 = self.rho1

@@ -432,7 +432,7 @@ class Clayton(Copula):
 				2 * theta - 1) / (theta - 1) * rho
 		return I
 
-	def tau(self):
+	def tau(self): # Example 5.4 in Nelsen's Book
 		return (self.theta / (self.theta + 2))
 
 	def mm_loss(self, paras, u, v, q_arr):

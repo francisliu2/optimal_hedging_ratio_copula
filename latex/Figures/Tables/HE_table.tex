@@ -1,0 +1,196 @@
+%! Author = francis
+%! Date = 16/08/2021
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+
+
+% Document
+\begin{document}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &       ERM &       ES1 &       ES5 &      VaR1 &      VaR5 &       Var \\
+\midrule
+copula                       &  0.005824 &  0.017774 &  0.010284 &  0.011473 &  0.006050 &  0.000016 \\
+cross hedge                  &  0.005621 &  0.016612 &  0.009939 &  0.010840 &  0.006017 &  0.000015 \\
+\% relative diff              &  3.614733 &  6.994292 &  3.477070 &  5.840867 &  0.550620 &  3.673729 \\
+spot                         &  0.066608 &  0.190451 &  0.115618 &  0.136746 &  0.063220 &  0.002197 \\
+copula in stress period      &  0.005761 &  0.012901 &  0.009832 &  0.010900 &  0.007304 &  0.000015 \\
+cross hedge in stress period &  0.005587 &  0.012947 &  0.009621 &  0.010978 &  0.007088 &  0.000015 \\
+\% relative diff              &  3.105702 & -0.362275 &  2.198498 & -0.709928 &  3.036827 &  3.462588 \\
+spot in stress period        &  0.076401 &  0.155970 &  0.123428 &  0.124419 &  0.097999 &  0.003041 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table0} HE comparison BBT Tiingo}
+\end{table}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &        ERM &        ES1 &        ES5 &       VaR1 &       VaR5 &        Var \\
+\midrule
+copula                       &   0.063125 &   0.120135 &   0.092888 &   0.108273 &   0.069064 &   0.002636 \\
+cross hedge                  &   0.069192 &   0.148253 &   0.104279 &   0.119498 &   0.077508 &   0.002825 \\
+\% relative diff              &  -8.768273 & -18.966206 & -10.923261 &  -9.393743 & -10.894465 &  -6.692165 \\
+spot                         &   0.089140 &   0.225694 &   0.144080 &   0.168470 &   0.089899 &   0.004264 \\
+copula in stress period      &   0.075088 &   0.125497 &   0.111589 &   0.123216 &   0.092956 &   0.004913 \\
+cross hedge in stress period &   0.085074 &   0.176310 &   0.133037 &   0.151116 &   0.097079 &   0.005657 \\
+\% relative diff              & -11.737526 & -28.820160 & -16.122014 & -18.462414 &  -4.246979 & -13.154777 \\
+spot in stress period        &   0.119040 &   0.250498 &   0.200934 &   0.228042 &   0.156914 &   0.007407 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table1} HE comparison BBT future Tiingo ada}
+\end{table}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &       ERM &        ES1 &       ES5 &       VaR1 &      VaR5 &       Var \\
+\midrule
+copula                       &  0.045753 &   0.116154 &  0.071933 &   0.076843 &  0.049148 &  0.001346 \\
+cross hedge                  &  0.049662 &   0.130841 &  0.078328 &   0.085429 &  0.050916 &  0.001442 \\
+\% relative diff              & -7.871269 & -11.225416 & -8.164547 & -10.050049 & -3.473119 & -6.703109 \\
+spot                         &  0.083213 &   0.228328 &  0.142129 &   0.174268 &  0.090164 &  0.003446 \\
+copula in stress period      &  0.058527 &   0.169055 &  0.102075 &   0.139861 &  0.064593 &  0.002031 \\
+cross hedge in stress period &  0.060755 &   0.178084 &  0.104073 &   0.154476 &  0.062593 &  0.002151 \\
+\% relative diff              & -3.667054 &  -5.069882 & -1.919499 &  -9.460939 &  3.195479 & -5.585663 \\
+spot in stress period        &  0.100201 &   0.225398 &  0.174061 &   0.178273 &  0.125977 &  0.004865 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table2} HE comparison BBT future Tiingo eth}
+\end{table}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &       ERM &        ES1 &       ES5 &       VaR1 &      VaR5 &       Var \\
+\midrule
+copula                       &  0.058828 &   0.149425 &  0.092922 &   0.094752 &  0.063848 &  0.001755 \\
+cross hedge                  &  0.062266 &   0.167335 &  0.097900 &   0.110785 &  0.062293 &  0.001813 \\
+\% relative diff              & -5.521211 & -10.703020 & -5.085515 & -14.472352 &  2.497494 & -3.216869 \\
+spot                         &  0.096164 &   0.261008 &  0.163300 &   0.187398 &  0.095560 &  0.004076 \\
+copula in stress period      &  0.067627 &   0.205845 &  0.116784 &   0.113548 &  0.076603 &  0.002621 \\
+cross hedge in stress period &  0.068253 &   0.197203 &  0.117779 &   0.117185 &  0.070380 &  0.002617 \\
+\% relative diff              & -0.917372 &   4.382310 & -0.845265 &  -3.103126 &  8.841549 &  0.174381 \\
+spot in stress period        &  0.113052 &   0.281010 &  0.194193 &   0.185661 &  0.139036 &  0.005688 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table3} HE comparison BBT future Tiingo ltc}
+\end{table}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &       ERM &       ES1 &       ES5 &      VaR1 &       VaR5 &       Var \\
+\midrule
+copula                       &  0.079228 &  0.259104 &  0.139501 &  0.151341 &   0.079092 &  0.004273 \\
+cross hedge                  &  0.078219 &  0.260633 &  0.139179 &  0.146620 &   0.069081 &  0.004198 \\
+\% relative diff              &  1.290945 & -0.586730 &  0.231537 &  3.219567 &  14.492191 &  1.775367 \\
+spot                         &  0.095107 &  0.287638 &  0.164290 &  0.179563 &   0.100176 &  0.005283 \\
+copula in stress period      &  0.085013 &  0.201083 &  0.147950 &  0.175563 &   0.091099 &  0.005135 \\
+cross hedge in stress period &  0.081526 &  0.202907 &  0.143626 &  0.164448 &   0.101811 &  0.004769 \\
+\% relative diff              &  4.276966 & -0.898949 &  3.010917 &  6.758591 & -10.521458 &  7.667793 \\
+spot in stress period        &  0.094615 &  0.256529 &  0.167473 &  0.201297 &   0.110765 &  0.005255 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table4} HE comparison BBT future Tiingo xrp}
+\end{table}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &       ERM &       ES1 &       ES5 &      VaR1 &      VaR5 &       Var \\
+\midrule
+copula                       &  0.012046 &  0.036987 &  0.020541 &  0.020008 &  0.011741 &  0.000096 \\
+cross hedge                  &  0.012370 &  0.037775 &  0.021054 &  0.021001 &  0.012867 &  0.000098 \\
+\% relative diff              & -2.612613 & -2.084869 & -2.434416 & -4.728842 & -8.752752 & -1.855970 \\
+spot                         &  0.066617 &  0.177928 &  0.116244 &  0.142476 &  0.065817 &  0.002086 \\
+copula in stress period      &  0.017788 &  0.074821 &  0.036995 &  0.043342 &  0.019570 &  0.000202 \\
+cross hedge in stress period &  0.018160 &  0.076033 &  0.037775 &  0.045376 &  0.020252 &  0.000205 \\
+\% relative diff              & -2.052817 & -1.594053 & -2.064052 & -4.482996 & -3.369819 & -1.885142 \\
+spot in stress period        &  0.080025 &  0.161541 &  0.136882 &  0.145495 &  0.113336 &  0.003409 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table5} HE comparison BBT future BITX}
+\end{table}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &       ERM &       ES1 &       ES5 &      VaR1 &      VaR5 &       Var \\
+\midrule
+copula                       &  0.048878 &  0.114332 &  0.077133 &  0.083347 &  0.055215 &  0.001255 \\
+cross hedge                  &  0.050137 &  0.119798 &  0.079617 &  0.090130 &  0.053374 &  0.001292 \\
+\% relative diff              & -2.512498 & -4.562734 & -3.120502 & -7.525093 &  3.448315 & -2.822839 \\
+spot                         &  0.079960 &  0.236711 &  0.131559 &  0.163363 &  0.078888 &  0.003027 \\
+copula in stress period      &  0.052494 &  0.202875 &  0.099133 &  0.107227 &  0.063197 &  0.002229 \\
+cross hedge in stress period &  0.053169 &  0.210915 &  0.103446 &  0.118473 &  0.061673 &  0.002261 \\
+\% relative diff              & -1.268948 & -3.812107 & -4.169720 & -9.492758 &  2.470789 & -1.408455 \\
+spot in stress period        &  0.088451 &  0.289595 &  0.173538 &  0.207033 &  0.101460 &  0.005027 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table6} HE comparison BBT future BITW20}
+\end{table}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &       ERM &       ES1 &       ES5 &      VaR1 &      VaR5 &        Var \\
+\midrule
+copula                       &  0.054173 &  0.138594 &  0.086839 &  0.084179 &  0.058942 &   0.001696 \\
+cross hedge                  &  0.055962 &  0.147383 &  0.090365 &  0.091846 &  0.061897 &   0.001530 \\
+\% relative diff              & -3.195267 & -5.963533 & -3.902349 & -8.347861 & -4.774662 &  10.832507 \\
+spot                         &  0.085505 &  0.244400 &  0.142102 &  0.177450 &  0.087256 &   0.003382 \\
+copula in stress period      &  0.052274 &  0.245347 &  0.110437 &  0.113076 &  0.062958 &   0.003133 \\
+cross hedge in stress period &  0.052097 &  0.239297 &  0.110635 &  0.112673 &  0.064207 &   0.002476 \\
+\% relative diff              &  0.340950 &  2.528040 & -0.178703 &  0.358032 & -1.945057 &  26.551359 \\
+spot in stress period        &  0.093416 &  0.323453 &  0.180239 &  0.199110 &  0.109723 &   0.006061 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table7} HE comparison BBT future BITW70}
+\end{table}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &       ERM &       ES1 &       ES5 &      VaR1 &      VaR5 &       Var \\
+\midrule
+copula                       &  0.014238 &  0.047505 &  0.025037 &  0.022217 &  0.014902 &  0.000137 \\
+cross hedge                  &  0.014574 &  0.047847 &  0.025399 &  0.022665 &  0.015514 &  0.000140 \\
+\% relative diff              & -2.304006 & -0.715975 & -1.424354 & -1.979126 & -3.945876 & -1.798926 \\
+spot                         &  0.067329 &  0.186054 &  0.117143 &  0.142941 &  0.065716 &  0.002132 \\
+copula in stress period      &  0.020997 &  0.110891 &  0.046718 &  0.053623 &  0.019379 &  0.000324 \\
+cross hedge in stress period &  0.021258 &  0.112205 &  0.047341 &  0.053405 &  0.019692 &  0.000329 \\
+\% relative diff              & -1.229785 & -1.171451 & -1.314515 &  0.409517 & -1.589530 & -1.326984 \\
+spot in stress period        &  0.080456 &  0.197610 &  0.142460 &  0.154426 &  0.110179 &  0.003551 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table8} HE comparison BBT future BITW100}
+\end{table}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrr}
+\toprule
+{} &       ERM &       ES1 &       ES5 &      VaR1 &      VaR5 &       Var \\
+\midrule
+copula                       &  0.010219 &  0.030425 &  0.017260 &  0.017060 &  0.009533 &  0.000078 \\
+cross hedge                  &  0.010083 &  0.031857 &  0.017184 &  0.017522 &  0.009238 &  0.000078 \\
+\% relative diff              &  1.347764 & -4.493722 &  0.444115 & -2.635645 &  3.198000 & -0.406715 \\
+spot                         &  0.064772 &  0.178374 &  0.114805 &  0.139618 &  0.062770 &  0.001990 \\
+copula in stress period      &  0.015169 &  0.068021 &  0.031656 &  0.032183 &  0.016373 &  0.000171 \\
+cross hedge in stress period &  0.015036 &  0.071100 &  0.031598 &  0.032708 &  0.016045 &  0.000174 \\
+\% relative diff              &  0.884965 & -4.331002 &  0.182983 & -1.606256 &  2.048019 & -1.648355 \\
+spot in stress period        &  0.100992 &  0.271385 &  0.173078 &  0.176042 &  0.129120 &  0.004786 \\
+\bottomrule
+\end{tabular}
+}\end{center}\caption{\label{tab:table9} HE comparison BBT future CRIX}
+\end{table}
+\end{document}

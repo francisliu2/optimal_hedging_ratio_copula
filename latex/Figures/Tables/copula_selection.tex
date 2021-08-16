@@ -1,0 +1,34 @@
+%! Author = francis
+%! Date = 16/08/2021
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+
+% Document
+\begin{document}
+\begin{table}[h!]
+\begin{center}
+\noindent\makebox[\textwidth]{\begin{tabular}{lrrrrrrrr}
+\toprule
+{} &  Gaussian &  t\_Copula &  Clayton &  Frank &  Gumbel &  Plackett &  Gauss Mix Indep &  NIG \\
+\midrule
+btc     &         0 &       101 &        0 &      3 &       6 &         0 &                2 &    0 \\
+eth     &         4 &        36 &        4 &      0 &       0 &         0 &               68 &    0 \\
+ada     &         2 &        78 &       15 &      0 &       0 &         0 &               12 &    0 \\
+ltc     &         0 &        74 &        8 &      0 &       0 &         0 &               30 &    0 \\
+xrp     &         0 &        11 &       56 &     20 &       0 &         0 &               25 &    0 \\
+BITX    &         0 &        49 &        0 &      0 &       0 &         0 &               32 &    0 \\
+CRIX    &         0 &        61 &        0 &      0 &       0 &         0 &               24 &    3 \\
+BITW100 &         1 &        53 &        0 &      0 &       0 &         0 &               27 &    0 \\
+BITW20  &         0 &        56 &        2 &      0 &       0 &         0 &               23 &    0 \\
+BITW70  &         0 &        59 &       22 &      0 &       0 &         0 &                0 &    0 \\
+\bottomrule
+\end{tabular}}\end{center}\caption{\label{tab:table0} Copula Selection by AIC}
+\end{table}
+\end{document}

@@ -1,0 +1,1 @@
+"Transpose[{{""Date""}, -1 + ""unhedged"" + E^6[[2 ;; All,$Failed]], -1 + ""unhedged"" + E^7[[2 ;; All,$Failed]], -1 + ""Variance"" + E^6[[2 ;; All,$Failed]] + $Failed[[2,1]] - E^7[[2 ;; All,$Failed]]*$Failed[[2,1]], -1 + ""VaR 99%"" + E^6[[2 ;; All,$Failed]] + $Failed[[3,1]] - E^7[[2 ;; All,$Failed]]*$Failed[[3,1]]}]"

@@ -56,10 +56,8 @@ C4 = Frank(dict(theta=0.1), Law_RS=stats.norm, Law_RF=stats.norm)
 C5 = Gumbel(dict(theta=3), Law_RS=stats.norm, Law_RF=stats.norm)
 C6 = Plackett(dict(theta=10), Law_RS=stats.norm, Law_RF=stats.norm)
 C7 = Gaussian_Mix_Independent(dict(rho=.5, p=0.7), Law_RS=stats.norm, Law_RF=stats.norm)
-C8 = rot180Gumbel(dict(theta=3), Law_RS=stats.norm, Law_RF=stats.norm)
-
-Copulae_names = ['Gaussian', 't_Copula', 't_Copula_Capped', 'Clayton', 'Frank', 'Gumbel', 'Plackett', 'Gauss Mix Indep', 'rotGumbel']
-Copulae_arr = [C1, C2, C2c, C3, C4, C5, C6, C7, C8]
+Copulae_names = ['Gaussian', 't_Copula', 't_Copula_Capped', 'Clayton', 'Frank', 'Gumbel', 'Plackett', 'Gauss Mix Indep']
+Copulae_arr = [C1, C2, C2c, C3, C4, C5, C6, C7]
 Copulae = dict(zip(Copulae_names, Copulae_arr))
 
 # # Get List of csv files

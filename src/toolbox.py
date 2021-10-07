@@ -326,12 +326,12 @@ def ERM_estimate_trapezoidal(k, rh):
 
 
 def ES(q, rh):
-	b = np.quantile(rh, q)
+	b = np.quantile(rh, q, interpolation='nearest')
 	return -np.mean(rh[rh <= b])
 
 
 def VaR(q, rh):
-	return -np.quantile(rh, q)
+	return -np.quantile(rh, q, interpolation='nearest')
 
 
 def wrapper(rs, rf, h, risk_measure):
@@ -414,15 +414,3 @@ class ECDF():
 
 	def __call__(self, x):
 		return np.array([np.sum(self.data <= x[i]) for i in range(len(x))]) / (len(self.data) + 1)
-
-
-
-
-
-
-
-
-
-
-
-

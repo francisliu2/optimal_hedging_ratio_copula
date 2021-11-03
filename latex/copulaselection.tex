@@ -1,0 +1,14 @@
+\subsection{Copula Selection}\label{subsec:copula-selection}
+The dependency structure of price data changes across time, in which both the dependency parameters and the type of dependency, dependencies between cryptos and the BTCF are no exception.
+In this hedging exercise, we find a best fitting copula to model the dependency for every set of training data.
+We select the best fitting copula that provider the lowest Akaike Information Criterion (AIC)
+$$ \text{AIC} = 2k- 2 \log(L)$$, where $k$ is the number of estimated parameteres and $L$ is the likelihood. \medskip
+
+% they tend to suggest the same copula as the best fitting one.
+%Simulation studies has also been carried out to compare different copula selection methods, see \cite{}.
+Notice that there are other model selection procedure and criteria, e.g. TIC , likelihood ratio test.
+For a survey of model selection and inference, see \cite{anderson1998comparison}.
+Among various copula selection procedures, AIC is a popular choice for its applicability, for example \cite{breymann2003dependence} use the AIC to select best fitting copulae.
+In our case, the AICs are calculated only with dependency likelihood since the marginals are modelled in kernel density.
+The selected copula will then be used to search for OHR. \medskip
+%We consider the copula with the lowest AIC for a particular set of data the best fitting one and use it to generate OHR.

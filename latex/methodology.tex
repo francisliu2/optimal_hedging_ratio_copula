@@ -138,13 +138,16 @@ the copula density and the marginal densities.
 The proof and a generic expression can be found in the
 appendix. \medskip
 
+\section{Empirical Procedure}\label{sec:empirical-procedure}
+We discuss the empirical procedure to obtain the OHR.
+%to evaluate the BTCF hedging effectiveness to various crypto assets and indices. \medskip
 
+First, we split the time series of spots and future into sets of training and testing data.
+The training data is the first 300 observations and its corresponding testing data is the consecutive 5 observations.
+We roll 5 observations forward to obtain the next training and test data and repeat this until the end of the time series.
+Notice that the testing data are non-overlapping. \medskip
 
-\subsection{Construction of Hedged Portfolio}
-To evaluate the BTC future hedging effectiveness on various crypto assets and indexes,
-we obtain the OHR of different risk measures with training data and compute the hedging effectiveness using the testing data. \medskip
-
-For each set of training and testing data,
+Next, we obtain the OHR as follows:
 
 \begin{enumerate}
   \item \textbf{Construct Univariate Kernel Density Function (KDE)}.
@@ -153,17 +156,34 @@ For each set of training and testing data,
   \item \textbf{Calibrate Copulae}.
   We then calibrate copulae outlined in \ref{subsec:copulae} via the method of moments described in \ref{subsec:simulated-method-of-moments}.
   \item \textbf{Select Copula}.
-  We compute the Akaike Information Criterion $\text{AIC}=-2l+2k$,
-  where $l$ is the likelihood of the copula and $k$ is the number of parameter in the copula.
+  We compute the Akaike Information Criterion.
   The copula with the lowest AIC is used for the next step.
+  Discussion of this step is in \ref{subsec:copula-selection}.
   \item \textbf{Search for OHR}.
-  We search OHRs of different risk measures numerically by drawing samples from the selected copula and KDEs.
+  We search OHRs using different risk measures as loss function numerically by drawing samples from the selected copula and KDEs.
+  Risk measures used as risk reduction objectives are outlined in \ref{subsec:spectral-risk-measures}
   \item \textbf{Obtain testing log-return of hedged portfolio}.
-  We apply the OHRs to the testing data $r_h = r_s - h^{*r_f}$.
+  We apply the OHRs to the testing data $r_h = r_s - h^* r_f$.
   \end{enumerate}
 
 
+\input{copulae.tex}
+% ----------------
+% --- Copulae's definition and properties ---
+% ----------------
 
+\input{estimation.tex}
+% ----------------
+% --- Estimation of Copula ---
+% ----------------
+
+\input{copulaselection.tex}
+
+
+\input{riskmeasures.tex}
+% ----------------
+% --- Risk measures' definition and properties ---
+% ----------------
 
 
 %In this work, we consider two portfolios: $r^h = R^{\text{BTC}} - h R^{\text{future}}$ and $r^h = R^{\text{BTC}} - h R^{\text{CRIX}}$.

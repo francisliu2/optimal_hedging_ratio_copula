@@ -19,6 +19,7 @@
 \usepackage{psfrag}
 \usepackage{proofapnd}
 \usepackage[round]{natbib}
+\usepackage[table,xcdraw]{xcolor}
 %\usepackage{enumerate}% http://ctan.org/pkg/enumerate
 
 %\usepackage{bbm}
@@ -33,11 +34,11 @@
 \usepackage{slashbox}
 \usepackage{enumitem}
 \usepackage{booktabs}
-\usepackage{tabularx,ragged2e}
+\usepackage{tabularx,longtable, ragged2e,booktabs}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcolumntype{C}{>{\Centering\arraybackslash}X}
 \newcolumntype{s}{>{\hsize=.2\hsize \Centering\arraybackslash}X}
-
-\usepackage{longtable,booktabs}
 \usepackage{authblk}
 \usepackage{hyperref}
 \usepackage{indentfirst} % Macht eine Einrückung nach der Section
@@ -165,8 +166,8 @@ The results allow investors to construct a stable portfolio with digital assets.
 %}
 
 
-\natp{add
-  \url{https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/fut.22050?casa_token=l6mOC3XtpSUAAAAA\%3Aa4ikFS_PgHmAFWRzYq1LqDH3Go2esWWO_2wmNI6Ql7B166Cn1eouEiwBLxkMqt__5sCEP47JDjWodPQ}}
+%\natp{add
+%  \url{https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/fut.22050?casa_token=l6mOC3XtpSUAAAAA\%3Aa4ikFS_PgHmAFWRzYq1LqDH3Go2esWWO_2wmNI6Ql7B166Cn1eouEiwBLxkMqt__5sCEP47JDjWodPQ}}
 
 %\tableofcontents
 
@@ -339,23 +340,9 @@ The codes are available on \href{http://www.quantlet.com/}{www.quantlet.com}.
 % --- Describe the methodology of finding the optimal h ---
 % ----------------
 
-\input{riskmeasures.tex}
-% ----------------
-% --- Risk measures' definition and properties ---
-% ----------------
-
-\input{copulae.tex}
-% ----------------
-% --- Copulae's definition and properties ---
-% ----------------
-
-\input{estimation.tex}
-% ----------------
-% --- Estimation of Copula ---
-% ----------------
 \input{data.tex}
 
-\input{results.tex}
+\input{results_new.tex}
 % ----------------
 % --- Results ---
 % ----------------

@@ -14,9 +14,9 @@ We call this portfolio a hedged portfolio: the price movement of spot is hedged 
 
 
 Risk is measured by risk measures.
-Assume the payoff $r^h$ of a portfolio lives in a probability space, $r^h \in L(\Omega,\F, \P)$,
+Assume the payoff $r^h$ of a hedge portfolio lives in a probability space, $r^h \in L(\Omega,\F, \P)$,
 and there is a risk measure on $r^h$ $\rho: r^h \mapsto \mathbb{R}$.
-We are looking for an optimal hedge ratio $h^*$ which minimizes risk measure
+We are looking for an optimal hedge ratio (OHR) $h^*$ which minimizes a risk measure:
 
 \[h^* = \argmin_h \rho(r^h).\]
 
@@ -25,7 +25,7 @@ For example, Value-at-Risk (VaR) is simply the quantile of $r^h$ multiply with n
 We need the knowledge of $F_{r^h}$ in order to measure risk.
 By convolution of random variables~\citep{WKHMVA}, $f_{r^h}(z) = \int_{-\infty}^{\infty}f_{r^S, -hr^F}(x, z-x)dx$, where
 $f_{r^S, -hr^F}$ is the joint pdf of $r^S$ and $-hr^F$.
-Obviously the cdf of $r^h$ and risk measure depend on the joint distribution of $r^S$ and $-hr^F$.\medskip
+Obviously the cdf of $r^h$ and the risk measure depend on the joint distribution of $r^S$ and $-hr^F$.\medskip
 
 Optimising $h$ according to $f_{r^S,-hr^F}$ is unfavorable in a sense that one needs to calibrate a new joint pdf $f_{r^S, -hr^F}$ when updating $h$.
 This is too time consuming and unnecessary.
@@ -36,7 +36,7 @@ univariate $t$-distributions.\medskip
 To overcome such a problem, we use copulae.
 The benefit of using copulae is two folded.
 First, copulae allow us to model the margins and dependence structure separately, see Sklar's Theorem.
-Second, copulae are invariance under strictly monotone increasing function \citep{schweizer1981nonparametric}, see lemma below.
+Second, copulae are invariant under strictly monotone increasing function \citep{schweizer1981nonparametric}, see lemma below.
 
 \begin{theorem}[Hoeffding Sklar Theorem]
   Let $F$ be a joint distribution function with margins $F_X,
@@ -132,7 +132,7 @@ Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$ see e.g.\ Equ
       \right\} du. \label{eq:density2}
   \end{align}
   \end{corollary}
-The two expression are equivalent.
+The two expressions are equivalent.
 Notice that the pdf of $Z$ in the above proposition is readily accessible as long as we have
 the copula density and the marginal densities.
 The proof and a generic expression can be found in the

@@ -40,7 +40,7 @@ The empirical counterparts are
 where $\hat{F}(x) \overset{\mathrm{def}}{=} \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
 $\hat{C}(u,v) \overset{\mathrm{def}}{=}  \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$.\medskip
 
-We denote $\tilde{\bm{m}}(\bm{\theta})$ be a $m$-dimensional vector of dependence measures according the the
+We denote by $\tilde{\bm{m}}(\bm{\theta})$ the $m$-dimensional vector of dependence measures according the the
 dependence parameters $\bm{\theta}$,and  $\hat{\bm{m}}$ be the corresponding empirical counterpart.
 The difference between dependence measures and their counterpart is denoted by
 \begin{align*}
@@ -53,19 +53,19 @@ The SMM estimator is
     \hat{\bm{W}}
      \bm{g}(\bm{\theta}),
 \end{align*}
-where $\hat{W}$ is some positive definite weigh matrix.\medskip
+where $\hat{W}$ is some positive definite weight matrix.\medskip
 
 In this work, we use $\tilde{\bm{m}}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \lambda_{0.1},
 \lambda_{0.9}, \lambda_{0.95})^\top$
 for calibration of Bitcoin price and CME Bitcoin future.
 
 \subsection{Maximum Likelihood Estimation}\label{subsec:maximum-likelihood-estimation}
-By the Hoeffding-Sklar's theorem, the joint density of a $d$-dimensional random variable $\bm{X}$ with sample size $n$ can be written as
+By the Hoeffding-Sklar theorem, the joint density of a $d$-dimensional random variable $\bm{X}$ with sample size $n$ can be written as
 \begin{align}
     \bm{f}_{\bm{X}}(x_1, ..., x_d) = \bm{c}\{F_{X_1}(x_1), ..., F_{X_d}(x_d)\} \prod_{j=1}^d f_{X_i}(x_i).
     \end{align}
 We follow the treatment of MLE documented in section 10.1 of \citet{joe1997multivariate}, namely the inference functions for margins or IFM method.
-The log-likelihood $\sum^n_{i=1}f_{\bm{X}}(X_{i,1}, ..., X_{i,d})$ can be decomposed into dependence part and marginal part,
+The log-likelihood $\sum^n_{i=1}f_{\bm{X}}(X_{i,1}, ..., X_{i,d})$ can be decomposed into a dependence part and a marginal part,
 \begin{align}
     L(\bm{\theta}) &= \sum_{i=1}^n \bm{c}\{F_{X_1}(x_{i,1};\bm{\delta}_1), ..., F_{X_d}(x_{i,d}; \bm{\delta}_d);\bm{\gamma}\}
     + \sum_{i=1}^n \sum_{j=1}^d f_{X_j}(x_{i,j};\bm{\delta}_j)\\
@@ -84,7 +84,7 @@ That is, under regularity conditions, $(\hat{\bm{\delta}_1},..., \hat{\bm{\delta
     \frac{\partial L_C}{\partial \bm{\gamma}}\right) = \bm{0}.
     \end{align}
 
-However, the IFM requires making assumption to the distribution of of the margins.
+However, the IFM requires making assumption on the distribution of the margins.
 \citet{genest1995semiparametric} suggests to replace the estimation of marginals parameters estimation by non-parameteric estimation.
 Given non-parametric estimator $\hat{F}_i$ of the margins $F_i$, the estimator of the dependence parameters $\bm{\gamma}$ is
 \begin{align}
@@ -123,7 +123,7 @@ Given non-parametric estimator $\hat{F}_i$ of the margins $F_i$, the estimator o
 
 \subsubsection{Comparison}
 Both the simulated method of moments and the maximum likelihood estimation are unbiased.
-The problem remain is which procedure is more suitable for hedging.
+The question though which procedure is more suitable for hedging.
 %Cryptocurrencies are known to be very volatile.
 
 \begin{figure}[h]
@@ -131,10 +131,10 @@ The problem remain is which procedure is more suitable for hedging.
 \includegraphics[width=\textwidth]{_pics/Gumbel Copula quantile dependence.pdf}
 \includegraphics[width=\textwidth]{_pics/Clayton Copula quantile dependence.pdf}
   \caption{Quantile dependences of Gumbel, and Clayton Copula. The \textcolor{darkblue}{blue circle dots} are
-  the quantile dependence estimate of Bitcoin and CME future, \textcolor{darkblue}{blue dotted lines} are the estimates' 90\% confidnece interval.
+  the quantile dependence estimates of Bitcoin and CME future, \textcolor{darkblue}{blue dotted lines} are the estimates' 90\% confidence interval.
   \textcolor{orange}{Orange dotted line} is the copula implied quantile dependence by MM estimation.
-  \textcolor{lightblue}{Light blue dotted line} is the copula implied quantile dependence by MM estimation.
-  \href{http://www.quantlet.com/}{\includegraphics[width=20pt]{_pics/qletlogo_tr.png}} }
+  \textcolor{lightblue}{Light blue dotted line} is the copula implied quantile dependence by MLE estimation.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:quantile dependence1}
 \end{figure}
 

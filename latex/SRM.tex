@@ -21,6 +21,10 @@
 \usepackage[round]{natbib}
 \usepackage[table,xcdraw]{xcolor}
 %\usepackage{enumerate}% http://ctan.org/pkg/enumerate
+%\usepackage{cjk}
+\usepackage{CJK}
+\newcommand{\zh}[1]{\begin{CJK}{UTF8}{bsmi}#1\end{CJK}}
+\newcommand{\zhs}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
 
 %\usepackage{bbm}
 %\usepackage[T1]{fontenc}
@@ -33,8 +37,16 @@
 \usepackage{setspace}
 \usepackage{slashbox}
 \usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage{tabularx,longtable, ragged2e,booktabs}
+\usepackage{tabularx,longtable, ragged2e, booktabs, siunitx}
+\sisetup{
+%    per-mode = symbol,
+    output-decimal-marker = {.},
+%    group-minimum-digits = 4,
+%    range-units = brackets,
+%    list-final-separator = { \translate{and} },
+%    list-pair-separator = { \translate{and} },
+%    range-phrase = { \translate{to (numerical range)} },
+}
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcolumntype{C}{>{\Centering\arraybackslash}X}
@@ -54,6 +66,21 @@
 \definecolor{darkblue}{RGB}{0,29,245}
 \definecolor{orange}{RGB}{239, 133, 54}
 \definecolor{lightblue}{RGB}{59, 188, 175}
+
+%https://stackoverflow.com/questions/64369710/what-are-the-hex-codes-of-matplotlib-tab10-palette
+\definecolor{plt1}{RGB}{31, 119, 180}
+\definecolor{plt2}{RGB}{255, 127, 14}
+\definecolor{plt3}{RGB}{44, 160, 44}
+\definecolor{plt4}{RGB}{214, 39, 40}
+\definecolor{plt4}{RGB}{148, 103, 189}
+\definecolor{plt5}{RGB}{140, 86, 75}
+\definecolor{plt6}{RGB}{227, 119, 194}
+\definecolor{plt7}{RGB}{127, 127, 127}
+\definecolor{plt8}{RGB}{188, 189, 34}
+\definecolor{plt9}{RGB}{23, 190, 207}
+
+
+
 
 \providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
 \providecommand{\mj}[1]{\textcolor{darkred}{#1}}
@@ -95,7 +122,7 @@
          Wolfgang Karl H\"ardle\thanks{
 			Blockchain Research Center, Humboldt-Universit\"at zu Berlin, Germany. Wang Yanan Institute for Studies in Economics, Xiamen University, China. Sim Kee Boon Institute for Financial Economics, Singapore Management University, Singapore. Faculty of Mathematics and Physics, Charles University, Czech Republic. National Yang Ming Chiao Tung University, Taiwan.
      E-mail: \texttt{haerdle@wiwi.hu-berlin.de}.}
-        \thanks{ Financial support of the European Union's Horizon 2020 research and innovation program ``FIN-TECH: A Financial supervision and Technology compliance training programme" under the grant agreement No 825215 (Topic: ICT-35-2018, Type of action: CSA), the European Cooperation in Science \& Technology COST Action grant CA19130 - Fintech and Artificial Intelligence in Finance - Towards a transparent financial industry, the Deutsche Forschungsgemeinschaft's IRTG 1792 grant, the Yushan Scholar Program of Taiwan, the Czech Science Foundation's grant no. 19-28231X / CAS: XDA 23020303, as well as support by Ansar Aynetdinov (\texttt{ansar.aynetdinov@hu-berlin.de}) are greatly acknowledged.
+        \thanks{ Financial support of the European Union's Horizon 2020 research and innovation program ``FIN-TECH: A Financial supervision and Technology compliance training programme" under the grant agreement No 825215 (Topic: ICT-35-2018, Type of action: CSA), the European Cooperation in Science \& Technology COST Action grant CA19130 - Fintech and Artificial Intelligence in Finance - Towards a transparent financial industry, the Deutsche Forschungsgemeinschaft's IRTG 1792 grant, the Yushan Scholar Program of Taiwan (\begin{CJK}{UTF8}{gbsn}\zh{台灣玉山學者計劃}\end{CJK}), the Czech Science Foundation's grant no. 19-28231X / CAS: XDA 23020303, as well as support by Ansar Aynetdinov (\texttt{ansar.aynetdinov@hu-berlin.de}) are greatly acknowledged.
      }
 	\end{tabular}
 }
@@ -188,7 +215,7 @@ CCs and their derivatives into their portfolios,  %\natp{portfolios (was: portfo
 we see the need to understand the downside risk and find a suitable way to hedge against extreme risks.
 The price of BTC even surged to USD 60,000 in April 2021.
 Investment into CCs therefore require proper quantification of their dynamics, but more importantly, exact understanding of their dependency with surfacing contingent claims, e.g. futures and options.
-This paper analyse modern techniques for the choice of the hedge ratio of the CC portfolios with various copulae and risk measures. \medskip
+This paper analyses quantitative techniques for the choice of the hedge ratio of the CC portfolios with various copulae and risk measures. \medskip
 
 
 %\natp{\em [BTC was introduced in 2009.]}
@@ -228,12 +255,12 @@ Therefore, one cannot solely rely on $2^\text{nd}$ order moment calculations in 
 minimize downside risk. Variance as a risk measure doesn't consider the variety of investors' utility functions. However, the investors are tail-risk averse.
 \citet{bollerslev2015tail} find that the jump tail risk is more closely associated with changes in risk-aversion.
 It is important to link the investor utility's functions as hedging the tail risk.
-Significant tail risks lead to the need to investigate even static hedge with more refined methods than minimum-variance based \citep{ederington2008minimum}. \medskip
+Significant tail risks lead to the need to investigate even static hedges with more refined methods than minimum-variance based \citep{ederington2008minimum}. \medskip
 %One may turn to VaR to monitor tail risk. Hence, the VaR as a sole risk measure has two disadvantages.
 %First, it reflects only tail probability and not tail loss, and next it is not coherent;
 
 In order to capture the risk preferences of investors, in addition to variance, we include other risk measures.
-We consider also Value-at-Risk (VaR), Expected Shortfall (ES), and Spectral Risk Measure (SRM).
+We consider also Value-at-Risk (VaR), Expected Shortfall (ES), and Spectral Risk Measures (SRM).
 %Coherency is a very natural property that suggest diversification will reduce risk.
 VaR is widely used by the industry and easy to understand.
 ES and SRM are chosen because of their coherence property, in particular, they encourage diversification.
@@ -330,9 +357,9 @@ We slightly amend their lemma and come up with a formula for the linear combinat
 
 %This paper has two main contributions to the existing literature. First, we reveal the quantiles of loss function built by different copulae. Second, by minimizing exponential SRM (ESRM) to determine the optimal hedge ratio, we give a guidance on the choice of risk aversion function to assist the risk manager in choosing an optimal risk aversion function for a portfolio. To our knowledge, these have received no attention so far in the published literatures.\\
 
-This paper is organized as follows. Section 2 introduces the notion of optimal hedge ratio; section 3 decribe the method of estimation of copulae; section 4 provides the empirical result; section 5 concludes.\medskip
+This paper is organized as follows. Section 2 introduces the notion of optimal hedge ratio; section 3 decribes the method of estimation of copulae; section 4 provides the empirical result; section 5 concludes.\medskip
 All calculations in this work can be reproduced.
-The codes are available on \href{http://www.quantlet.com/}{www.quantlet.com}.
+The results are reproducible with data and codes available on \href{http://www.quantlet.com/}{www.quantlet.com {\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{methodology.tex}

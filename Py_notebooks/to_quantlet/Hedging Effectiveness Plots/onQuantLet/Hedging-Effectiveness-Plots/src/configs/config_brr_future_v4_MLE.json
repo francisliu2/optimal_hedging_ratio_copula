@@ -1,0 +1,7 @@
+{
+  "data_name"   : "./future_brr_v4",
+  "spot_name"   : "log return brr",
+  "future_name" : "log return future",
+  "calibration_method": "MLE",
+  "q_arr": [0.05,0.1,0.9,0.95]
+}

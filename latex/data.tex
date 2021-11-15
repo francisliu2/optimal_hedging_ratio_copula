@@ -1,9 +1,9 @@
 \section{Data}\label{subsec:data}
-In the empirical analysis, we consider the the risk reduction capability of the BTC future on five cryptos
+In the empirical analysis, we consider the risk reduction capability of the BTC-future (BTCF) on five cryptos
 , BTC, ETH, ADA, LTC, and XRP, and five crypto indexes, BITX, BITW100, CRIX, BITW20, and BITW70,
 For each of the 10 hedging portfolios, a crypto or index is considered as the spot and held in a unit size long position,
-and the BTC future is held in short position of OHR unit in order to reduce the risk of the spot.
-All the hedging portfolios are cross asset hedging except the BTC-future portfolio.
+and the BTCF is held in short position of OHR unit in order to reduce the risk of the spot.
+All the hedging portfolios are cross asset hedging except the BTCF portfolio.
 ETH, ADA, LTC, and XRP are popular cryptos tradable in various exchanges and have large market capitalization.
 BITX, BITW100, and CRIX are market-cap weighted crypto indexes with BTC as constituent.
 BITX and BITW100 tracks the total return of the 10 and 100 cryptos with largest market-cap respectively.
@@ -14,16 +14,20 @@ BITX.
 BITW70 has the same construction as BITW20 but with 70 largest market-cap cryptos outside BITX and BITW20.
 Therefore, BTC is excluded as constituent in BITW20 and BITW70. \medskip
 
-We collect the spots' and BTC future's daily price at 15:00 US Central Time (CT).
-The reason of choosing this particular time is that the CME group determines the daily settlements for BTC futures based on the trading activities on CME Globex between 14:59 and 15:00 CT.
+We collect the spots' and BTCF's daily price at 15:00 US Central Time (CT).
+The reason of choosing this particular time is that the CME group determines the daily settlements for BTCFs based on the trading activities on CME Globex between 14:59 and 15:00 CT.
 15:00 CT is also the reporting time of the daily closing price by the Bloomberg Terminal (BBT).
 Cryptos data are collected from a data provider called Tiingo.
 Tiingo aggregates crypto OHLC (open, high, low, and close) prices fed by APIs from various exhcanges.
 Tiingo covers major exchanges, e.g. Binance, Gemini, Poloniex etc., so Tiingo's aggregated OHLC price is a good representation a market tradable price.
-For each crypto, we match the opening price at 15:00 CT from Tiingo with the daily closing price of BTC future from BBT.
+For each crypto, we match the opening price at 15:00 CT from Tiingo with the daily closing price of BTCF from BBT.
 Since CRIX is not available at 15:00 CT, we recalculate a hourly CRIX using the monthly constituents weights and the hourly OHLC price data collected from Tiingo.
 BITX, BITW20, BITW70, and BITW100 are collected from the official website of their publisher Bitwise.com.
-The daily reporting time of the Bitwise indexes is 15:00 CT.
+The daily reporting time of the Bitwise indexes is 15:00 CT. \medskip
+
+At the time of writing, the CRIX' is undergoing the listing process on the S\&P Dow Jones Indices,
+the official CRIX data will then be calculated with Lukka Prime Data and available to public via S\&P.
+
 
 
 

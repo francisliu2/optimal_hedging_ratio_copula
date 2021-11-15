@@ -3,6 +3,8 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Py_notebooks/break_point_analysis/GGS" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Py_notebooks/to_quantlet/Hedging Effectiveness Plots/Hedging Effectiveness Plots" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Py_notebooks/to_quantlet/Hedging Effectiveness Plots/onQuantLet/Hedging-Effectiveness-Plots" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/_mathematica/Py_notebooks/break_point_analysis/GGS" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/scikit-monaco" vcs="Git" />
   </component>

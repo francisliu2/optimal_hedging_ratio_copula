@@ -1,31 +1,54 @@
 \section{Optimal hedge ratio}
 \label{sec:optimal-hedge-ratio}
-We form a portfolio with two assets, a spot asset and a future contract, for example Bitcoin spot and CME Bitcoin future.
+
+\natp{\em [Please note it is futures contract, not future contract.]}
+
+We form a portfolio with two assets, a spot asset and a futures
+contract, for example Bitcoin spot and a CME Bitcoin futures contract.
 Our objective is to minimize the risk of the exposure in the spot.
-To keep a simple portfolio setting, we long one unit of the spot and short $h$ unit of the future with $h \in [0, \infty)$.
-Let $r^S$ and $r^F$ be the log returns of the spot and future price, the log return of the portfolio is
-\[r^h = r^S -h r^F.\]
-We call this portfolio a hedged portfolio: the price movement of spot is hedged by the price movement of future.
-\medskip
+To keep a simple portfolio setting, we go long one unit of the spot
+and short $h$ units of the future, $h \geq 0$. 
+Letting $r^S$ and $r^F$ be the log returns of the spot and futures price,
+the log return of the portfolio is \natp{\em [Where does this formula
+  come from? Log returns are not additive across assets, therefore the
+  formula is wrong. This would hold for discrete returns. Otherwise,
+  write that the portolio return is approximated by this formula.]}
+\begin{equation*}
+R^h = R^S -h R^F.
+\end{equation*}
+\natp{\em [Capitalised returns as they are random variables.]}
+\natp{If the portfolio reduces the risk of the spot position, then
+  we call this a hedge portfolio. (was: We call this portfolio a
+  hedged portfolio: the price movement of spot is hedged by the price
+  movement of future.)} 
 
-%\footnote{The log return is simply the log of geometric difference between price at time $t$ and $t-1$ $\log \frac{\text{Price}_t}{\text{Price}_{t-1}}$.
-%The index $t$ follow the trading calendar.
-%The handling of calendar is important, we will discuss that in the data section.}
-
-
-Risk is measured by risk measures.
-Assume the payoff $r^h$ of a hedge portfolio lives in a probability space, $r^h \in L(\Omega,\F, \P)$,
-and there is a risk measure on $r^h$ $\rho: r^h \mapsto \mathbb{R}$.
-We are looking for an optimal hedge ratio (OHR) $h^*$ which minimizes a risk measure:
-
-\[h^* = \argmin_h \rho(r^h).\]
-
-Most risk measures are defined as functionals of the portfolio loss distribution $F_{r^h}$, i.e. $\rho: F_{r^h} \mapsto \mathbb{R}$.
-For example, Value-at-Risk (VaR) is simply the quantile of $r^h$ multiply with negative one $\text{VaR}_{1-\alpha} = -F_{r^h}^{(-1)}(1-\alpha) = -\inf\{x \in \mathbb{R}: 1-\alpha \leq F_{r^h}(x) \}$, where $\alpha$ is a parameter chosen by investor.
-We need the knowledge of $F_{r^h}$ in order to measure risk.
-By convolution of random variables~\citep{WKHMVA}, $f_{r^h}(z) = \int_{-\infty}^{\infty}f_{r^S, -hr^F}(x, z-x)dx$, where
+To measure risk, we define a risk measures $\rho$ to be a mapping from
+a financial position, such as $R^h$, to a real number, which is often
+interpreted as the amount of money to make the position acceptable
+(e.g.\ to a regulator), see e.g.\ \citep{Foellmer2002}. 
+\natp{(was: Risk is measured by a risk measure. Assume the payoff $r^h$ of a hedge
+portfolio lives in a probability space, $r^h \in L(\Omega,\F, \P)$, 
+and there is a risk measure on $r^h$ $\rho: r^h \mapsto \mathbb{R}$.)}
+Hedging refers to finding the optimal hedge ratio (OHR) $h^*$ that
+minimizes the risk,
+\begin{equation*}
+h^* = \argmin_h \rho(R^h).
+\end{equation*}
+\natp{(delete, as redundant with what was said above: Most risk measures are defined as functionals of the portfolio loss
+distribution $F_{r^h}$, i.e. $\rho: F_{r^h} \mapsto \mathbb{R}$.)}
+For example, Value-at-Risk (VaR) at the confidence level $\alpha$ is
+the absolute value of the $1-\alpha$-quantile of $R^h$, i.e., $\text{VaR}_{1-\alpha} =
+-F_{R^h}^{(-1)}(1-\alpha) = -\inf\{x \in \mathbb{R}: 1-\alpha \leq
+F_{R^h}(x) \}$, where $F_{R^h}$ is the distribution function of
+$R^h$. 
+\natp{(delete: We need the knowledge of $F_{R^h}$ in order to measure
+  risk.)}
+\natp{The density $f_{R^H}$ of $R^h$ is obtained from the joint
+  density of $R^S$ and $-h\, R^F$ by convolution, i.e., $f_{R^h}(z) =
+  \int_{-\infty}^{\infty}f_{R^S, -h\,r^F}(x, z-x)dx$, see e.g.\ \citep{WKHMVA}. 
+(was: By convolution of random variables~\citep{WKHMVA}, $f_{r^h}(z) = \int_{-\infty}^{\infty}f_{r^S, -hr^F}(x, z-x)dx$, where
 $f_{r^S, -hr^F}$ is the joint pdf of $r^S$ and $-hr^F$.
-Obviously the cdf of $r^h$ and the risk measure depend on the joint distribution of $r^S$ and $-hr^F$.\medskip
+Obviously the cdf of $r^h$ and the risk measure depend on the joint distribution of $r^S$ and $-hr^F$.\medskip)}
 
 Optimising $h$ according to $f_{r^S,-hr^F}$ is unfavorable in a sense that one needs to calibrate a new joint pdf $f_{r^S, -hr^F}$ when updating $h$.
 This is too time consuming and unnecessary.
@@ -300,3 +323,10 @@ Next, we obtain the OHR as follows:
 %      \right\} du.\label{eq:density2}
 %  \end{align}
 %  \end{proposition}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "SRM"
+%%% End:
+

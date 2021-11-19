@@ -154,12 +154,43 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-\footnotesize{
-The introduction of derivatives on Bitcoin, in particular the launch of futures contracts on CME in December 2017 and introduction of cryptocurrency indices like the CRIX or the Bloomberg Galaxy Crypto Index
-enables investors to hedge risk exposures of Bitcoin by futures or contingent claims on indices.
-We investigate methods of finding an optimal hedge ratio $h^*$ under different dependence structures modeled by copulae and employing different optimality definitions based on a range of risk measures.
-Because of volatility swings and jumps in Bitcoin prices, the traditional variance-based approach to obtain the hedge ratios is infeasible.
-The techniques are therefore generalised to various risk measures, such as Value-at-Risk, Expected Shortfall and more general, Spectral Risk Measures.
+  \footnotesize{
+
+The introduction of derivatives on Bitcion enables investors to hedge
+risk exposures in cryptocurrencies. We investigate
+different methods of determining the optimal hedge ratio when hedging
+various cryptocurrencies and crypto-portfolios with Bitcoin
+futures. Because of volatility swings and jumps in cryptocurrency prices, the
+traditional variance-based approach to obtain hedge ratios is
+infeasible. As a consequence, we consider two extensions of the
+traditional approach: first, different dependence structures are
+modelled by different copulae, such as the Gaussian, Student-$t$,
+Normal Inverse Gaussian and Archimedean copulae; second, different
+risk measures, such as value-at-risk, expected shortfall and spectral
+risk measures, are employed to find the optimal hedge ratio.
+Various measures of hedge effectiveness in out-of-sample tests give
+insights in the practice of hedging Bitcoin, Ethereum, Cardano, the
+CRIX index and a number of crypto-portfolios in the time period
+December 2017 until May 2021. We find that ... \natp{\em [needs to be amended.]}
+\\
+\natp{\em Old abstract:}\\
+The introduction of derivatives on Bitcoin \natp{(suggest to delete in
+  abstract:, in particular the launch of futures contracts on CME in
+  December 2017 and introduction of cryptocurrency indices like the
+  CRIX or the Bloomberg Galaxy Crypto Index)} 
+enables investors to hedge risk exposures in Bitcoin\natp{, other
+  cryptocurrencies or crypto-portfolios} with futures or
+contingent claims \natp{(delete: on indices)}.
+We investigate \natp{different} methods of \natp{determining the (was: finding an)} optimal hedge ratio
+\natp{(delete: $h^*$)}\natp{, taking into account (was: under)}
+different dependence structures modeled by copulae and \natp{(delete: employing)}
+different optimality definitions based on a range of risk measures. 
+Because of volatility swings and jumps in Bitcoin prices, the
+traditional variance-based approach to obtain the hedge ratios is
+infeasible. 
+The techniques \natp{\em [Which techniques?]} are therefore
+generalised to various risk measures, such as value-at-risk, expected
+shortfall and more generally, spectral risk measures.
 In addition, we deploy different copulae for capturing the dependency between spot and future returns, such as the Gaussian, Student-$t$,
 NIG and Archimedean copulae. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin.
 We find that across copulae and risk measures, the hedge effectiveness are very similar with the exception of the Frank copula, Expected Shortfall 99\% and Value-at-Risk 99\%.
@@ -205,19 +236,48 @@ The results allow investors to construct a stable portfolio with digital assets.
 Cryptocurrencies (CCs) are a growing asset class.
 Many more CCs are now available on the market since the first
 cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}.
-In response to the rapid development of the CC market, the CME group launched a BTC future contract in Dec 2017.
-Trading volume in BTC futures surpassed \$2 trillion in 2020 (CryptoCompare, 2020). \medskip
+In response to the rapid development of the CC market, the CME Group
+launched a\natp{n exchange-traded} BTC futures contract in December
+2017. \natp{\em [The 
+  terminology is futures contract, not future contract.]}
+Trading volume in BTC futures surpassed \$ 2 trillion in 2020
+(CryptoCompare, 2020). \natp{\em[CryptoCompare not in references;
+  possibly add as footnote (if it's a website, not an academic
+  reference).]} \medskip
 
-In April 2021, the market value of outstanding coins had risen to 2.3t,
-more than 6\% of the world's narrow money supply and almost 3\% of the world GDP.
-While more and more investors (individuals and institutions) are adding
-CCs and their derivatives into their portfolios,  %\natp{portfolios (was: portfolii)}
-we see the need to understand the downside risk and find a suitable way to hedge against extreme risks.
-The price of BTC even surged to USD 60,000 in April 2021.
-Investment into CCs therefore require proper quantification of their dynamics, but more importantly, exact understanding of their dependency with surfacing contingent claims, e.g. futures and options.
-This paper analyses quantitative techniques for the choice of the hedge ratio of the CC portfolios with various copulae and risk measures. \medskip
+By April 2021, the market value of outstanding coins had risen to
+\natp{\$ 2.3 trillion (was: 2.3t)},
+more than 6\% of the world's narrow money supply and almost 3\% of the
+world GDP.\natp{\em [Is this open interest in futures? Then a
+  comparision with money supply and GDP is tricky. Or is 2.3
+  trillion the USD value of mined coins?]}
+As more individual and institutional investors are
+adding CCs and CC derivatives into their portfolios, this creates
+the need to understand downside risks and find suitable ways to
+hedge against extreme risks. 
+The price of BTC even surged to USD 60,000 in April 2021. \natp{
+  add: from USD ... in October 2020. {\em [Also, need consistency re
+    USD or \$. At this position the sentence is ``dangling'', i.e., it
+    is not connected to the rest of the text. Place it earlier?]}}
+\natp{(delete: Investments into CCs therefore require proper
+  quantification of the dynamics.)}
+\natp{Fom a risk management perspective, the roller-coaster ride
+  of crypto prices creates significant basis risk, even when using
+  simple hedges involving crypto portfolios and BTC futures. This
+  requires analysing the dependence structure of cryptos and
+  futures beyond linear correlation.}
 
-
+\natp{In this paper, we analyse static hedges of crypto portfolios
+  with Bitcoin futures. Owing to the asymmetry of crypto returns as
+  well as the occurrence of extreme events, we consider different 
+  dependence structures via a variety of copula models and we optimise
+  the hedge ratio using different risk measures. A similar study was
+  conducted by \citep{barbi2014copula} for equity and FX portfolios. 
+(was: This paper analyses quantitative techniques for the choice of the
+hedge ratio of CC portfolios with various copulae and risk
+measures.)} \medskip 
+%
+%
 %\natp{\em [BTC was introduced in 2009.]}
 %As the network effect weighs in, the prices of bitcoin and its variants have risen in tandem.
 %These innovations and the perceived investment potential have led to rapid growth in the number of altcoins and the market size of CC.
@@ -226,46 +286,75 @@ This paper analyses quantitative techniques for the choice of the hedge ratio of
 
 %and are interested in resisting extreme risks and improve their profits.
 
-The optimal hedge ratio is the appropriate size of futures contracts which should be held such that the movements in future price cancel that of BTC.
-The task of determining an optimal hedge ratio is not easy.
-It relies on the dependence between the BTC price and future price.
+The \natp{(delete: optimal)} hedge ratio is the appropriate amount of
+futures contracts to be held in order to eliminate risk exposure in
+the underlying security. 
+\natp{(delete: The task of determining an optimal hedge ratio is not easy.)} \natp{\em
+  [Unclear what sentence is supposed to say; very subjective. I
+  suggest to delete or reformulate.]}
+\natp{The determination of the optimal hedge ratio relies primarily
+  (was: 
+It relies)} on the dependence between the BTC price and future price.
 %In this paper, we investigate the performance of different copulae and
 %risk measures in hedging Bitcoin and CRIX with Bitcoin
 %futures. {\color{blue} only this portfolio?} \natp{\em [$\leftarrow$ Make this the first sentence of the paper!]}
-Copulae provide the flexibility to model multivariate random variable
+Copulae provide the flexibility to model multivariate random variables
 separately by its margins and dependence structure.
-The concept of copulae was originally developed (but not under this name) by Wassily Hoeffding \citep{hoeffding1940masstabinvariante}
-, later popularised by the work of Abe Sklar \citep{Sklar1959}. \medskip
+The concept of copulae was originally developed (but not under this
+name) by Wassily Hoeffding \citep{hoeffding1940masstabinvariante}
+and later popularised by the work of Abe Sklar \citep{Sklar1959}. \medskip 
 
 Different risk measures account for investors' risk attitude.
 They serve as loss functions in the searching process of optimal hedge ratio.
-Vast literature discussed the relationship between risk measures and investor's risk attitude, we refer readers to
-\citet{artzner1999coherent} for an axiomatic, economic reasoning approach of risk measure construction;
-\citet{embrechts2002correlation} for reasoning of using Expected Shortfall (ES) and Spectral Risk Measure (SRM) in addition to VaR;
-\citet{Acerbi2002} for direct linkage between risk measures and investor's risk attitude using the concept of "risk aversion function". \medskip
+Of the vast literature discussed the relationship between risk
+measures and investor's risk attitude, we refer readers to
+\citet{artzner1999coherent} for an axiomatic, economic reasoning
+approach of risk measure construction;
+\citet{embrechts2002correlation} for reasoning of using Expected
+Shortfall (ES) and Spectral Risk Measures (SRM) in addition to VaR;
+\citet{Acerbi2002} for direct linkage between risk measures and
+investor's risk attitude using the concept of a ``risk aversion
+function''. \medskip 
 
-Financial asset return is known to be non Gaussian \citep{fama1963mandelbrot}.
-In particular, Gaussian models cannot produce so-called fat tails and asymmetry of observed probability densities,
-which leads to underestimate financial risks.
+Financial asset returns have long known to be non-Gaussian, see e.g.\
+\citep{fama1963mandelbrot,Cont2001}. Specifically, Gaussian models
+cannot produce fat tails and asymmetry of observed
+asset returns, implying a consistent underestimation of financial
+risks. 
 %\natp{\cite{Cont2001}}. \natp{\em [non-Gaussian is not
   %very specific, a uniform r.v.\ is also non-Gaussian. Try to express
  % this in a more meaningful way, e.g.\ Financial data are known to
   %exhibit more extreme events than a normal distribution can capture.]}
-Therefore, one cannot solely rely on $2^\text{nd}$ order moment calculations in order to
-minimize downside risk. Variance as a risk measure doesn't consider the variety of investors' utility functions. However, the investors are tail-risk averse.
-\citet{bollerslev2015tail} find that the jump tail risk is more closely associated with changes in risk-aversion.
-It is important to link the investor utility's functions as hedging the tail risk.
-Significant tail risks lead to the need to investigate even static hedges with more refined methods than minimum-variance based \citep{ederington2008minimum}. \medskip
+Therefore, one cannot solely rely on second-order moment calculations
+in order to minimize downside risk. Variance as a risk measure does not
+account for the variety of investors' utility functions. In
+particular, it is konw that  
+investors are tail-risk averse. \natp{\em [Last two sentences are
+  ``dangling''. Provide references. ]}
+\citet{bollerslev2015tail} find that the jump tail risk is more
+closely associated with changes in risk-aversion. \natp{\em
+  [Unclear. Do investors constantly change their risk aversion?]}
+It is important to link the investor utility's functions as hedging
+the tail risk. \natp{\em [Careful. We do not do this in our paper, so
+  maybe tone down.]}
+Significant tail risks lead to the need to investigate even static
+hedges with more refined methods than minimising the variance assuming
+normally distributed asset returns
+\citep{ederington2008minimum}. \medskip 
 %One may turn to VaR to monitor tail risk. Hence, the VaR as a sole risk measure has two disadvantages.
 %First, it reflects only tail probability and not tail loss, and next it is not coherent;
 
-In order to capture the risk preferences of investors, in addition to variance, we include other risk measures.
-We consider also Value-at-Risk (VaR), Expected Shortfall (ES), and Spectral Risk Measures (SRM).
+In order to capture \natp{a variety of (was: the)} risk
+preferences\natp{(delete: of investors)}, in addition to variance, we
+include \natp{the risk measures (was: other risk measures. 
+We consider also)} value-at-risk (VaR), expected shortfall (ES), and
+spectral risk measures (SRM). 
 %Coherency is a very natural property that suggest diversification will reduce risk.
-VaR is widely used by the industry and easy to understand.
-ES and SRM are chosen because of their coherence property, in particular, they encourage diversification.
-SRM is also directly related to individual's utility function.
-Popular examples are the exponential SRM and power SRM introduced by
+VaR is widely used by the finance industry and easy to understand. 
+ES and SRM are chosen because of their coherence property, in
+particular, they \natp{recognise diversification benefits (was: encourage diversification)}.
+SRM can also be directly related to an individual's utility function.
+Examples are the exponential SRM and power SRM introduced by
 \citet{dowd2008spectral}.\medskip
 %\natp{\em [Careful with wording! The
  %hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
@@ -291,6 +380,9 @@ Popular examples are the exponential SRM and power SRM introduced by
 %  \end{itemize}
 %  }
 
+\natp{\em [The paragraph below largely repeats what has been said
+  earlier. I suggest to take what is new and add it to the earlier
+  paragraph. There is no need to introduce formal notation at this stage.]}
 This paper considers hedging BTC using its future. % and an aggregated index of cryptocurrencies CRIX,
 i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $r^h = r^S - h^*r^F$ has
 minimal risk.

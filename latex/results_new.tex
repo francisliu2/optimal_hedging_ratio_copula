@@ -2,6 +2,106 @@
 
 %\input{copulaeselectiontable.tex}
 
+
+\subsection{Overview}\label{sec:overview}
+We visualize the out-of-sample hedged portfolio returns and the corresponding OHR in figure \ref{fig:overview}.
+We also indicate the dates when the five smallest returns occur in the spot return. \medskip
+
+Overall, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,  are well hedged by the BTCF.
+The overall magnitude of the hedged portfolio returns are greatly reduced, as well as the extreme losses in spot are no longer the extreme losses in the hedged portfolio returns.
+Most of the time different risk reduction objectives generate very similar hedged portfolio returns as one can from the plot that the hedged portfolio returns are overlapping to each other.
+One exception is the BTC-BTCF portfolio that minimize ES 99\% (first panel green line in middle plot) that if fluctuates greatly from Jun 2019 to Aug 2019.
+Its OHR is lower than its counterparts and so the resulting hedge fail to capture the magnitude of the negative return of BTC. \medskip
+
+Contrarily, BTC-not-involved spots' portfolios are less promising.
+Th hedged portfolio returns are as volatile as the spots.
+We will further discuss the effectiveness of hedge in section \ref{sec: HE results}.
+
+\begin{figure}[ht]
+    \centering
+%    \includegraphics[width=0.9\paperwidth]{_pics/overview.pdf}
+    \includegraphics[width=\textwidth]{_pics/overview.pdf}
+  \caption{An overview of out-of-sample hedged portfolios.
+            For each panel, the line plot on the top is the daily log returns of the spot;
+            line plot in the middle is the daily log returns of hedged portfolio with different risk reduction objectives;
+            line plot at the bottom is the OHR of different risk reduction objectives. The coloring of risk reduction objectives is as follows:
+                                      \textcolor{plt1}{blue line} for variance,
+                                      \textcolor{plt2}{orange line} for ES 95\%,
+                                      \textcolor{plt3}{green line} for ES 99\%,
+                                      \textcolor{plt4}{red line} for VaR 95\%,
+                                      \textcolor{plt5}{purple line} for VaR 99\%, and
+                                      \textcolor{plt6}{brown line} for ERM $k=10$.
+            The vertical black lines in the top and middle line plots indicate the dates when the five smallest returns occur in the spot return.
+            Most of the time the portfolio returns of different risk minimisation objectives overlap wth each other.
+            We can see that those BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,  are well hedged by the BTCF as the magnitude of the hedged portfolio returns are greatly reduced,
+            as well as the five extreme losses of the spots are well managed.
+            One exception is the BTC-BTCF portfolio that minimize ES 99\% (first panel green line in middle plot), which fluctuate greatly from Jun 2019 to Aug 2019.
+            In that period of time, the portfolio OHR is lower than its counterparts.
+            Hedges of spots that are not BTC related are less promising.
+            The effectiveness of a hedge is discussed in section \ref{sec: HE results}.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:overview}
+\end{figure}
+
+In addition to the time series plots,
+we inspect the performance of copula in hedging by the mean square error and lowersemi variance.
+Mean square error is the distance between a perfect hedge and the hedged portfolio returns $\operatorname{MSE}=\frac{1}{n}\sum_{i=1}^n(r^h_i)^2$.
+Lower semi variance is $\operatorname{LSV}=\frac{1}{n}\sum_{i=1}^n\{\operatorname{E}(r^h)r^h_i-\}^2$.
+All results here are out-of-sample results obtained without the copula selection step in order to compare the performances across copulae.  \medskip
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{_pics/MSE_BTC.pdf}
+  \caption{Mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+    The Frank copula is inferior in the BTC-involved portfolios.
+    Since Gumbel copula fail to model the lower tail dependence between BTC-not-involving spots and BTCF, the mean square errors are high.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:MSE_BTC}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{_pics/semiLowerVariance_BTC.pdf}
+  \caption{Lower semivariance of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+  The Frank copula is obviously inferior.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:SLV_BTC}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{_pics/MSE_other.pdf}
+  \caption{Mean square errors of portfolios constructed with different copula and risk minimization objectives.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:MSE_other}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{_pics/semiLowerVariance_other.pdf}
+  \caption{Lower semivariance of portfolios constructed with different copula and risk minimization objectives.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:SLV_other}
+\end{figure}
+
+
+Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the mean square error and lower semivariance of BTC-BTCF, we can see the Frank copula is the worst performing copula:
+the resulting hedged portfolio returns is far away from a perfect hedge.
+In figure \ref{fig:MSE_other} and \ref{fig:SLV_other}, the phenomena of Frank copula being inferior to its counterparts can be observed from the results of the CRIX, BITX, BITW100, and BITW20-BTCF portfolios.
+Interestingly, the spot in those portfolios usually have a strong dependency to the BTCF.
+In contrast, the inferiority of the Frank copula is less prominent in the BITW70, ADA, ETH, LTC and XRP-BTCF portfolios.
+We suspect that the Frank copula is not a choice to model assets with strong dependency.  \medskip
+
+We can also observe from figure \ref{fig:MSE_other} and \ref{fig:SLV_other} that Gumbel copula is not performing as good as other copula in the ETH, LTC, and XRP-BTCF portfolios.
+The reason is the Gumbel copula has only the upper tail dependence, while the ETH, LTC, and XRP exhibit lower tail dependency with BTCF.
+We will discuss this in the following section. \medskip
+
+Figure Xs also provide the information about the risk reduction objectives.
+In general, portfolios that minimise variance, ES 95\%, VaR 95\%, and ERM are very similar in means square error and lower semi variance.
+Contrarily, portfolios that minimise ES 99\% and VaR 99\% are have high mean square error and lower semi variance.
+This may due to the fact that ES 99\% and VaR 99\% are easily affected extreme events in the training data. \medskip
+%We will further discuss the issue in section X.  \medskip
+
 \subsection{Copula Selection Results}\label{sec: copula results}
 The copula selection result provides insight that help us understand the crypto market better, so
 we illustrate the copula selection result in this section.
@@ -44,7 +144,7 @@ However, Clayton's radial like feature does not match the behaviour of the finan
 
 It is worth to mention that although the NIG factor copula is penalised heavily due to its three parameters setup, it is frequently chosen to be the best copula to model the dependency between individual cryptos and the BTC future.
 An extreme case would be ADA, only NIG factor is chosen in our dataset.
-Another dependency structure being best described by the NIG factor copula is the pair of LTC-BTC future.
+Another dependency structure being best described by the NIG factor copula is the pair of LTC-BTCF.
 64 out of 112 training sets are best fitted by the NIG factor copula.
 Indices like BITX and CRIX are sometimes best fitted with the NIG factor copula as well, accounting for modelling 12 and 27 training sets respectively.
 The popularity of the NIG factor reflects the ability of the copula to model very complex dependency structure.
@@ -67,7 +167,7 @@ We present the summary statistics of the hedged portfolios returns in table \ref
 
 \begin{table}[t!]
 \include{_tables/ERM_rh}
-\caption{Log returns statistics of hedged portfolios aimed at minimizing ERM $k=10$.}
+\caption{Statistics of daily log returns  of hedged portfolios aimed at minimizing ERM $k=10$.}
 \label{tab:ERMrh}
 \end{table}
 
@@ -142,29 +242,30 @@ median HE to ADA is ranging from 9.01\% to 29.30\%, median HE to ETH Is ranging 
 median HE to XRP Is ranging from 0.46\% to 30.89\%.
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{_pics/ES5_HE_boxplot.pdf}
-  \caption{HE evaluated in different risk measures to various assets generated by minimizing ES5.
+  \caption{HE evaluated in the corresponding risk minimization objectives.
             The boxplots indicate the the median, upper quartile, lower quartile, minimium and maximum of the bootstrapped HE.
+            The HE of BTC-involved spots are significantly higher than that of BTC-not-involved spots.
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:HEboxplot}
 \end{figure}
 
-\newpage
-\begin{figure}[ht!]
-  \begin{turn}{-90}
-    \begin{minipage}{0.9\paperheight}
-      \centering
-      \includegraphics[angle=0,origin=c, width=0.9\paperheight]{_pics/OHRs_timeseries.pdf}
-      \captionsetup{width=0.75\paperheight}
-      \caption{ OHR time series. The \textcolor{plt1}{blue line} is OHR minimizing variance,
-                                      \textcolor{plt2}{orange line} is that of ES 95\%,
-                                      \textcolor{plt3}{green line} is that of ES 99\%,
-                                      \textcolor{plt4}{red line} is that of VaR 95\%,
-                                      \textcolor{plt5}{purple line} is that of VaR 99\%, and
-                                      \textcolor{plt6}{brown line} is that of ERM $k=10$.
-      \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
-      \label{fig:OHR-timeseries}
-    \end{minipage}
-  \end{turn}
-\end{figure}
-\newpage
+%\newpage
+%\begin{figure}[ht!]
+%  \begin{turn}{-90}
+%    \begin{minipage}{0.9\paperheight}
+%      \centering
+%      \includegraphics[angle=0,origin=c, width=0.9\paperheight]{_pics/OHRs_timeseries.pdf}
+%      \captionsetup{width=0.75\paperheight}
+%      \caption{ OHR time series. The \textcolor{plt1}{blue line} is OHR minimizing variance,
+%                                      \textcolor{plt2}{orange line} is that of ES 95\%,
+%                                      \textcolor{plt3}{green line} is that of ES 99\%,
+%                                      \textcolor{plt4}{red line} is that of VaR 95\%,
+%                                      \textcolor{plt5}{purple line} is that of VaR 99\%, and
+%                                      \textcolor{plt6}{brown line} is that of ERM $k=10$.
+%      \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+%      \label{fig:OHR-timeseries}
+%    \end{minipage}
+%  \end{turn}
+%\end{figure}
+%\newpage
 

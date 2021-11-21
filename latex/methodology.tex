@@ -183,9 +183,10 @@ appendix. \medskip
 \section{Empirical Procedure}\label{sec:empirical-procedure}
 We introduce the empirical procedure to obtain the optimal hedge ratio (OHR).
 %to evaluate the BTCF hedging effectiveness to various crypto assets and indices. \medskip
-First, we split the time series of spot and futures into sets of training and testing data.
-The training data is the first 300 observations and its corresponding
-testing data consists of the consecutive five observations.
+First, we split the time series of spot and futures into sets of
+training and testing data. The training data makes up the first 300
+observations and its corresponding testing data consists of the
+consecutive five observations. 
 We then roll five observations forward to obtain the next training and
 test data sets and repeat this until the end of the time series. 
 Note that the testing data are non-overlapping. 
@@ -211,10 +212,9 @@ Next, we obtain the OHR as follows:
   KDEs. The risk measures used as risk reduction objectives are
   outlined in \ref{subsec:spectral-risk-measures} 
   \item \textbf{Obtain testing log-return of hedged portfolio}.
-  Finally, we apply the OHRs to the testing data $r_h = r_s - h^* r_f$.
+  Finally, we apply the OHRs to the test data $r_h = r_s - h^* r_f$.
   \end{enumerate}
 
-  \natp{\em [Until here.]}
 
 \input{copulae.tex}
 % ----------------

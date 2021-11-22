@@ -1,74 +1,138 @@
 
 \subsection{Copulae}\label{subsec:copulae}
-As we saw from the last section, risk measures we considered are all functionals of the joint distribution of $r^S$ and $r^F$.
-We test different copulae: Gaussian-, $t$-, Frank-, Gumbel-, Clayton-, Plackett-, mixture, and factor copula.
-This hedging exercise concerns only portfolios with two assets, we only present the bivariate version of copulae and some important features of a copula,
-they include Kendall's $\tau$, Spearman's $\rho$,
-upper tail dependence $\lambda_U \overset{\mathrm{def}}{=}  \lim_{q \rightarrow 1^-} \p\{X > F_{X}^{(-1)}(q)|Y > F_{Y}^{(-1)}(q)\}$ and
-lower tail dependence $\lambda_L \overset{\mathrm{def}}{=}  \lim_{q \rightarrow 0^+} \p\{X \leq F_{X}^{(-1)}(q)|Y \leq F_{Y}^{(-1)}(q)\}$.
-Furthermore, we denote the Fr{\'e}chet-Hoeffding lower bound as $\bm{W}$, product copula as $\bm{\Pi}$, and the Fr{\'e}chet-Hoeffding upper bound as $\bm{M}$,
-they represent cases of perfect negative dependence, independence, and perfect positive dependence respectively.
-For further detail, we refer readers to \citet{joe1997multivariate} and \citet{Nelsen1999}.
-See also \citet{hardle2010copulis}.
+As seen in the last section, the risk measures are all
+functionals of the joint distribution of $R^S$ and $R^F$.
+\natp{To capture different aspects of the dependence structure, we
+  therefore consider a number of different copulas, which are layed
+  out in details below: (was: 
+The following copulae are considered:)} Gaussian-, $t$-, Frank-,
+Gumbel-, Clayton-, Plackett-, mixture, and factor copula. 
+As this hedging exercise concerns only portfolios with two assets, we
+focus on the bivariate version of copulae and some important
+features of a copula, including Kendall's $\tau$,
+\begin{equation*}
+  \text{\natp{formula here}},
+\end{equation*}
+Spearman's $\rho$,
+\begin{equation*}
+  \text{\natp{formula here}},
+\end{equation*}
+upper tail dependence
+\begin{equation*}
+\lambda_U \overset{\mathrm{def}}{=}  \lim_{q
+  \rightarrow 1^-} \p\{X > F_{X}^{(-1)}(q)|Y > F_{Y}^{(-1)}(q)\}
+\end{equation*}
+and
+lower tail dependence
+\begin{equation*}
+\lambda_L \overset{\mathrm{def}}{=}  \lim_{q
+  \rightarrow 0^+} \p\{X \leq F_{X}^{(-1)}(q)|Y \leq
+F_{Y}^{(-1)}(q)\}. 
+\end{equation*}
+Furthermore, we denote the Fr{\'e}chet-Hoeffding lower bound by
+$\bm{W}$, the product copula by $\bm{\Pi}$, and the Fr{\'e}chet-Hoeffding
+upper bound by $\bm{M}$. They represent cases of perfect negative
+dependence, independence, and perfect positive dependence,
+respectively. 
+For further details, we refer readers to \citet{joe1997multivariate}
+and \citet{Nelsen1999}; see also \citet{hardle2010copulis}.
 
 \subsubsection{Elliptical Copulae}\label{sec:ellpitical-copulae}
-Elliptical copulae define dependence structures associated with elliptical distributions.
-The bivariate Gaussian copula is:
-    \begin{align}
-        \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\} \nonumber \\
-                    &= \int_{-\infty}^{\Phi^{-1}(u)}
-                       \int_{-\infty}^{\Phi^{-1}(v)}
-                       \frac{1}{2\pi\sqrt{1-\rho^2}}
-                       \exp{\left\{
-                       \frac{s^2-2\rho st+t^2}{2(1-\rho^2)}
-                       \right\}} ds dt
-        \end{align}
-where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution with zero mean, unit variance, and correlation $\rho$.
-, and $\Phi^{-1}$ is quantile function univariate standard normal distribution.
-Please note that we use $\rho$ here to represent the correlation parameter in a Gaussian copula only for traditional purposes.
-In other sections, $\rho(\cdot)$ is a risk measure.
+
+\natp{\em [As no definition of elliptical copulas is given (or
+  needed), I suggest to call the section ``Gaussian and $t$-copula''
+  and just mention that they belong to the wider class of elliptical
+  copulas. Alternatively, have one setion for Gaussian and one for
+  $t$-copula.]}
+
+Elliptical copulae are dependence structures derived from elliptical
+distributions. A special case is the (bivariate) Gaussian copula,
+defined as 
+\begin{align}
+  \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\} \nonumber \\
+              &= \int_{-\infty}^{\Phi^{-1}(u)}
+                \int_{-\infty}^{\Phi^{-1}(v)}
+                \frac{1}{2\pi\sqrt{1-\rho^2}}
+                \exp{\left\{
+                \frac{s^2-2\rho st+t^2}{2(1-\rho^2)}
+                \right\}} \dd s\, \dd t,
+\end{align}
+\natp{\em [Note the difference between a variable $d$ and the
+  differential operator $\dd$.]}
+where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution
+with zero mean, unit variance, and correlation coefficient $\rho$, and
+$\Phi^{-1}$ is the quantile function univariate standard normal
+distribution.  
+\natp{Note that we use $\rho$ to denote the correlation
+  parameter as well as a $\rho(\cdot)$ to denote a risk measure. (was: 
+  Please note that we use $\rho$ here to represent the correlation
+  parameter in a Gaussian copula only for traditional purposes. 
+  In other sections, $\rho(\cdot)$ is a risk measure.)}
+\natp{The Gaussian copula is fully specified by the correlation
+  parameter $\rho$. Like all elliptical copulas, it is symmetric. It
+  has no tail dependence, which, in a finance context, implies that it
+  often underestimates tail risk.}
+
 The Gaussian copula density is
 \begin{align}
-    \bm{c}_\rho(u,v) &= \frac{\bm{\varphi}_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
-                        {\varphi\{\Phi^{-1}(u)\} \cdot \varphi\{\Phi^{-1}(v)\}} \nonumber \\
-                &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left\{
-                   -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
-                   \right\},
-    \end{align}
-where $\bm{\varphi}_{2,\rho}(\cdot)$ is the pdf of $\Phi_{2, \rho}$,
-and $\varphi(\cdot)$ the standard normal distribution pdf.\medskip
+  \bm{c}_\rho(u,v) &= \frac{\bm{\varphi}_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
+                     {\varphi\{\Phi^{-1}(u)\} \cdot \varphi\{\Phi^{-1}(v)\}} \nonumber \\[10pt]l
+                   &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left\{
+                     -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
+                     \right\},
+\end{align}
+where $\bm{\varphi}_{2,\rho}(\cdot)$ is the pdf corresponding to
+$\Phi_{2, \rho}$, and $\varphi(\cdot)$ the standard normal
+distribution pdf.
 
-The Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian Copula are
+Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian
+\natp{\em [Use a consistent notation, either $\tau_K$ or $\tau$;
+  likewise $\rho_S$ or $\rho$.]}
+Copula are 
     \begin{align}
         \tau_K(\rho) = \frac{2}{\pi}\arcsin\rho
         \end{align}
     \begin{align}
-        \rho_S(\rho) = \frac{6}{\pi}\arcsin\frac{\rho}{2}
-        \end{align}\medskip
+        \rho_S(\rho) = \frac{6}{\pi}\arcsin\frac{\rho}{2}.
+        \end{align}
 
-The $t$-Copula has a form
+The Student $t$-copula has the form
 \begin{align}
-        \bm{C}(u,v) &= \bm{T}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\} \nonumber \\
+        \bm{C}(u,v) &= \bm{T}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\} \nonumber \\[10pt]
             &= \int_{-\infty}^{T^{-1}_\nu(u)}
                \int_{-\infty}^{T^{-1}_\nu(v)}
             \frac{\Gamma\left(\frac{\nu+2}{2}\right)}
-            {\Gamma\left(\frac{\nu}{2}\right)\pi\nu\sqrt{1-\rho^2}}\\
+            {\Gamma\left(\frac{\nu}{2}\right)\pi\nu\sqrt{1-\rho^2}}\\[10pt]
            & \left(
         1+\frac{s^2-2st\rho+t^2}{\nu}
         \right)^{-\frac{\nu+2}{2}} ds dt,
     \end{align}
-where $\bm{T}_{2, \rho, \nu}(\cdot, \cdot)$ denotes the cdf of bivariate $t$ distribution with scale parameter $\rho$ and degree of freedom $\nu$,
-$T^{-1}_\nu(\cdot)$ is the quantile function of a standard $t$ distribution with degree of freedom $\rho$.
+where $\bm{T}_{2, \rho, \nu}$ denotes the cdf of
+bivariate $t$ distribution with scale parameter $\rho$ \natp{\em
+  [$\rho$ specifies the dependence, so why is it a scale parameter?
+  Are you sure?]} and degrees of freedom parameter $\nu$, 
+and where $T^{-1}_\nu(\cdot)$ is the quantile function of a standard
+$t$ distribution with degree of freedom $\nu$. 
+\natp{Contrary to the Gaussian copula, the $t$-copula has a non-zero
+  tail dependence coefficient, which makes it more appropriate for
+  dependence modelling in finance. The Gaussian copula arises as
+  $\nu\rightarrow\infty$.}
 
+\natp{\em [Please make sure to use equation numbers only if the
+  formulas are referenced.]}
 The copula density is
 \begin{align}
     \bm{c}(u,v) &= \frac{\bm{t}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\}}
     {t_\nu\{T^{-1}_\nu(u)\}\cdot t_\nu\{T^{-1}_\nu(v)\}},
     \end{align}
-where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}(\cdot, \cdot)$,
+where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}$
 and $t_\nu$ the density of standard $t$ distribution.\medskip
 
-Like all the other elliptical copulae, $t$ copula's Kendall's $\tau$ is identical to that of Gaussian copula \citep[see][and references therein]{demarta2005t}.
+Like all the other elliptical copulae, the $t$-copula's Kendall's
+$\tau$ is identical to that of the Gaussian copula \citep[see][and
+references therein]{demarta2005t}. 
+
+\natp{\em [until here]}
 
 \subsubsection{Archimedean Copulae}\label{sec:archimedean-copula}
 The family of Archimedean copulae forms a large class of copulae with many convenient features.
@@ -259,3 +323,9 @@ the cross-product ratio is equal to the dependence parameter
     \end{align}\medskip
 
 That is, the dependence parameter is equal to the ratio between number of concordence pairs and number of discordence pairs of a bivariate random variable.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "SRM"
+%%% End:

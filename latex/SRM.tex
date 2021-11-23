@@ -26,6 +26,19 @@
 %\newcommand{\zh}[1]{\begin{CJK}{UTF8}{bsmi}#1\end{CJK}}
 %\newcommand{\zhs}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
 
+
+%% Better roman enumeration list; no conflict with hyperref
+\usepackage{enumerate}
+\newenvironment{enumeroman} { %
+\begin{enumerate}[(i)]
+} { %
+\end{enumerate}}%
+
+\newenvironment{alphlist} { %
+  \begin{enumerate}[(a)]
+} { %
+\end{enumerate}} %
+
 %\usepackage{bbm}
 %\usepackage[T1]{fontenc}
 %\usepackage[normal]{caption2} % for caption

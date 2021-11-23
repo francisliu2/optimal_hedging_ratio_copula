@@ -342,7 +342,139 @@ while the remaining proportion $1-p$ cannot be managed. \natp{\em [Not
   some observations along the negative diagonal. However, this needs
   to be carefully explained -- or left out.]}
 
-\natp{\em [Until here. Will add NIG factor copula.]}
+\subsubsection{NIG factor copula}
+
+The {\em normal inverse Gaussian (NIG)\/} distribution, introduced by
+\citep{BarndorffNielsen1997}, has density function
+\begin{equation*}
+  g(x; \alpha,\beta, \mu, \delta) = \frac{\alpha}{\pi} \e^{\delta
+    \sqrt{\alpha^2-\beta^2} -\beta\mu} \frac{1}{q((x-\mu)/\delta)}
+  K_1\left[\delta \alpha q\left(\frac{x-\mu}{\delta}\right) \right]
+  \e^{\beta x},\quad x>0,
+\end{equation*}
+where $q(x) = \sqrt{1+x^2}$ and where $K_1$ is the modified Bessel
+function of third order and index $1$. The parameters satisfy $0\leq
+|\beta|\leq \alpha$, $\mu\in \R$ and $\delta>0$. The parameters have
+the following interpretation: $\mu$ and $\delta$ are location and
+scale parameters, respectively, $\alpha$ determines the heaviness of
+the tails and $\beta$ determines the degree of asymmetry. If
+$\beta=0$, then the distribution is symmetric around $\mu$.
+
+The moment-generating function of the NIG distribution is given by
+\begin{equation*}
+  M(u; \alpha, \beta, \mu, \delta) = \exp\left( \delta
+    \left(\sqrt{\alpha^2-\beta^2} - \sqrt{\alpha^2 - (\beta +
+        u)^2}\right) + \mu u\right). 
+\end{equation*}
+As a direct consequence, moments are easily calculated with the
+expectation and variance of the NIG distribution being
+\begin{align}
+  \label{eq:4}
+  \mathbb E X &= \mu + 
+                \frac{\delta \beta}{\sqrt{\alpha^2-\beta^2}}\\
+  \label{eq:5}
+  \text{Var}(X) &= \frac{\alpha^2\delta}{(\alpha^2-\beta^2)^{3/2}}.
+\end{align}
+
+
+The $\text{NIG}(\alpha, \beta, \mu\, \delta)$ distribution belongs to
+the class of so-called {\em normal
+variance-mean mixture},  (see Section 3.2 of
+\citep{McNeil2005}): $X$ follows an
+$\text{NIG}(\alpha,\beta,\mu,\delta)$ distribution if $X$ conditional
+on $W$ follows a normal distribution with mean $\mu+\beta W$ and
+variance $W$, i.e., 
+\begin{equation*}
+  X|W\stackrel{\mathcal L}\sim \Ncdf(\mu + \beta W, W),
+\end{equation*}
+where $W$ follows an {\em inverse Gaussian distribution}, denoted by
+$\text{IG}(\delta, \sqrt{\alpha^2-\beta^2})$.
+
+It is easily seen from the moment-generating function that the NIG distribution is preserved under linear combinations, provided
+the variables share the parameters $\alpha$ and $\beta$. For this
+and other reasons, the NIG distribution is popular in many areas of
+financial modelling; for example, it gives rise 
+to the normal inverse Gaussian L\'evy process, which may be represented
+as a Brownian motion with a time change.
+
+In the setting here, we consider the {\em NIG factor copula}. This is
+not directly derived from the multivariate NIG distribution, but
+determined through a factor structure instead. The factor structure,
+which 
+was applied e.g.\ in \citep{Kalemanova2007} for calibrating CDO's,
+gives additionaly flexibility as it does not force the components to
+have a mixing variable $W$.
+The following proposition introduces the NIG factor model and some of
+its properties.
+\begin{proposition}
+  \label{prop:NIG}
+  Let $Z\sim \text{NIG}(\alpha, \beta, \mu, \delta)$ and
+  $Z_i\sim \text{NIG}(\alpha, \beta, \mu_i, \delta_i)$,
+  $i=1,\ldots, n$ be independent NIG-distributed random
+  variables. Then:
+  \begin{enumerate}
+  \item  $X_i = Z + Z_i\sim \text{NIG}(\alpha,\beta,\mu+\mu_i,
+  \delta+\delta_i)$,
+\item and 
+  \begin{align}
+    \text{Cov}(X_i,X_j) &= \text{Var(Z)},\nonumber\\
+    \text{Corr}(X_i,X_j) &= \frac{\delta}{\sqrt{(\delta+\delta_i)
+                           (\delta+\delta_j)}}. \label{eq:6}
+  \end{align}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+  \begin{enumerate}
+  \item This follows directly from the moment-generating function. 
+  \item For the covariance,
+    \begin{align*}
+      \text{Cov}(X_i,X_j)
+      &= \E[(Z+Z_i) (Z+Z_j)] - \E[Z+Z_i] \E[Z+Z_j]\\
+      &= \E[Z^2] -(\E Z)^2.
+    \end{align*}
+    The correlation is determined directly from \eqref{eq:5}. 
+  \end{enumerate}
+\end{proof}
+
+The NIG factor copula is obtained by transforming the margins to
+uniforms (see Sklar's Theorem), giving (e.g.\
+\citep{krupskii2013factor}):
+\begin{equation*}
+  C_{r^S, r^F}(F_{r^S}(r^S), F_{r^F}(r^F)) = \int_\mathbb{R}
+  F_{Z_1}(F_{X_1}^{-1} \circ F_{r^S}(r^S) -z) \cdot
+  F_{Z_2}(F_{X_2}^{-1} \circ F_{r^F}(r^F) -z) \cdot
+  f_Z(z) dz
+  \end{equation*}
+If the margins are continuous, then Spearman's rho of NIG factor
+copula is 
+\begin{equation*}
+  \rho_S = 12 \int \int \int_{\mathbb{R}^3}
+  F_{X_1}(x_1) \cdot
+  F_{X_2}(x_2) \cdot
+  f_{Z_1}(x_1-z) \cdot
+  f_{Z_2}(x_2-z) \cdot
+  f_Z(z) dx_1 dx_2 dz - \frac{1}{48}.
+  \end{equation*}
+
+% \begin{proof}
+%   \begin{align}
+%   \rho_S(r^S, r^F) &= \rho\{F_{r^S}(r^S), F_{r^F}(r^F)\} \\
+%     &= \rho\{F_{X_1}(X_1), F_{X_2}(X_2)\} \\
+%     &= 12 \cdot \mathbb{E}\{F_{X_1}(X_1) \cdot F_{X_2}(X_2) \} - \frac{1}{48}\\
+%     &= 12 \cdot \int \int_{\mathbb{R}^2} F_{X_1}(X_1) \cdot F_{X_2}(X_2) dF_{X_1,X_2}(x_1,x_2)\\
+%     \end{align}
+%   Because
+%   \begin{align}
+%     F_{X_1,X_2}(x_1,x_2) &= \mathbb{P}(X_1 \leq x_1, X_2 \leq x_2)\\
+%     &= \mathbb{P}(Z_1 \leq x_1 - Z, Z_2 \leq x_2 - Z) \\
+%     &= \int_\mathbb{R}\mathbb{P}(Z_1 \leq x_1 - z) \cdot \mathbb{P}(Z_2 \leq x_2 - z) \cdot f_Z(z) dz,
+%     \end{align}
+%   so,
+%   \begin{align}
+%     \rho_S(r^S, r^F) = 12 \cdot \int \int \int_{\mathbb{R}^3} F_{X_1}(x_1) \cdot F_{X_2}(x_2) \cdot f_{Z_1}(x_1 -z) \cdot f_{Z_2}(x_2 -z) \cdot f_{Z}(z) dx_1 dx_2 dz -\frac{1}{48}
+%     \end{align}
+%   \end{proof}
+
 
 \subsection{Other Copula}\label{subsec:other-copula}
 \natp{\em [Why is there a separate subsection instead of 3.1.4?]}

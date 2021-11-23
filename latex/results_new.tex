@@ -2,12 +2,15 @@
 
 %\input{copulaeselectiontable.tex}
 
-
 \subsection{Overview}\label{sec:overview}
-We visualize the out-of-sample hedged portfolio returns and the corresponding OHR in figure \ref{fig:overview}.
-We also indicate the dates when the five smallest returns occur in the spot return in black vertical lines. \medskip
+In general, the hedged portfolio's performance depends on which spot is being hedge,
+Risk minimization objectives and copulae are not critical to the results as long as the objective is not
+ES 99\% or VaR 99\%, and copula is not Frank or rotGumbel.
+We will discuss the hedged portfolios results of different settings in this section.
+Figure \ref{fig:overview} present the out-of-sample hedged portfolio returns and the corresponding OHR.
+The dates when the five smallest returns occur in the spot return are highlghted in the figure in black vertical lines. \medskip
 
-Overall, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,  are well hedged by the BTCF.
+Overall, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100, are well hedged by the BTCF.
 The overall magnitude of the hedged portfolio returns are greatly reduced, as well as the extreme losses in spot are no longer the extreme losses in the hedged portfolio returns.
 Most of the time different risk reduction objectives generate very similar hedged portfolio returns.
 As the result hedged portfolio returns are overlapping to each other. \medskip
@@ -18,7 +21,7 @@ It is natural for the OHRs of the BTC-BTCF close to one as the futures price $F$
 $$F = Se^{rT},$$
 where $T$ is the futures' time to maturity.
 It s not difficult to show that the arithmetic difference between the daily log returns is almost zero, i.e. $\log\frac{F_{t+1}}{F_t} \approx \log\frac{S_{t+1}}{S_t}$.
-This relationship explains the every OHRs in BTC-BTCF portfolio are close to one. \medskip
+This relationship explains every OHRs in BTC-BTCF portfolio are close to one. \medskip
 
 Most of the time the OHRs in the BTC-BTCF portfolio are steady and well-performing,
 but we can find fluctuations in MES99\%HR and MVaR99\%HR.
@@ -28,8 +31,13 @@ The MVaR99\%HR performs similarly in that period time with less fluctuations.
 We suspect the fluctuating and malfunctioning MES99\%HR and MVaR99\%HR come from fact that ES 99\% and VaR 99\% are sensitive to small changes in the left tail as they consider a small fraction
 of the data. \medskip
 
-On the other hand, BTC-not-involved spots'portfolios,  i.e. BITW20-, BITW70-, ETH-, ADA-, LTC-, and XRP-BTCF, are less promising.
-The hedged portfolio returns are almost as volatile as the spots.
+Other BTC-involved spots are market-cap-weighted indices that weighted heavily on BTC.
+Therefore, the indices are highly correlated with the price of BTC, and so, the OHRs of the hedged portfolios are also close to one.
+The MES99\%HR and MVaR99\%HR also fluctuate more than their counterparts. \medskip
+
+We move on to the BTC-not-involved spots' portfolios, i.e. BITW20-, BITW70-, ETH-, ADA-, LTC-, and XRP-BTCF.
+In general, the performance of these portfolios are less promising.
+One can see from figure \ref{fig:overview} that these hedged portfolio returns are almost as volatile as the spots.
 Nonetheless, the the extreme downward jumps of the spots are not taken care by the hedge.
 We will further discuss the effectiveness of hedge in section \ref{sec: HE results}. \medskip
 
@@ -133,9 +141,9 @@ Those studies suggest $t$-copula is a better model over the Gaussian copula whic
 On the other hand, the radially symmetric feature makes the $t$-copula not a good choice to model the other hedging pairs.
 \cite{demarta2005t} describe the symmetry feature "strong", because if $(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
 then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ..., 1-U_d)$.
-This symmetry can be justified in the dependence structure between a future and its underlying by the theory of future pricing,
-which suggests the price of a future is a function of the underlying price \citep{hull2003options}.
-However, there is no such relationship between a future and an asset which is not the underlying, and so the radial symmetry becomes a drawback to model other hedging pairs e.g. ETH and BITX70.
+This symmetry can be justified in the dependence structure between a futures and its underlying by the theory of futures pricing,
+which suggests the price of a futures is a function of the underlying price \citep{hull2003options}.
+However, there is no such relationship between a futures and an asset which is not the underlying, and so the radial symmetry becomes a drawback to model other hedging pairs e.g. ETH and BITX70.
 Another drawback of the $t$-copula is the lack of flexibility to model off-diagonal region since Rho and nu jointly control the density of the off-diagonal region.
 %The off-diagonal region (HF paper breymann2003dependence)
 This is why sometimes the Gaussian Mix Independence (GMI) better model the dependence.  \medskip

@@ -135,14 +135,23 @@ references therein]{demarta2005t}.
 \natp{\em [until here]}
 
 \subsubsection{Archimedean Copulae}\label{sec:archimedean-copula}
-The family of Archimedean copulae forms a large class of copulae with many convenient features.
+The family of Archimedean copulae forms a large class of copulae with
+many convenient features.
+\natp{Contrary to elliptical copulas, which are derived from
+  elliptical distributions. Archimedean copulas are determined via a
+  simple parametric form of the dependence structure. A promiment
+  feature is the ability to model asymmetric dependence structures. }
 In general, they take a form
 \begin{align}
     \bm{C}(u,v)= \psi^{-1}\{\psi(u), \psi(v)\},
     \end{align}
-where $\psi:[0,1] \rightarrow [0,\infty)$ is a continuous, strictly decreasing and convex function such that
-$\psi(1)=0$ for any permissible dependence parameter $\theta$. $\psi$ is also called generator.
-$\psi^{-1}$ is the inverse of the generator.\medskip
+where $\psi:[0,1] \rightarrow [0,\infty)$ is a continuous, strictly
+decreasing and convex function such that $\psi(1)=0$ for any
+permissible dependence parameter $\theta$. $\psi$ is also called
+generator. $\psi^{-1}$ is the inverse of the generator.
+
+\natp{\em [Remove the Frank copula? Or are we still using it? Then
+  start with Clayton and Gumbel.]}
 
 The Frank copula (B3 in \citet{joe1997multivariate}) is a radial symmetric copula and cannot produce any tail dependence.
 It takes the form
@@ -172,91 +181,114 @@ and
 where $D_1$ and $D_2$ are the Debye function of order 1 and 2.
 Debye function is $D_n = \frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$.\medskip
 
-Gumbel copula (B6 in \citet{joe1997multivariate}) has upper tail dependence with the dependence parameter
-$\lambda^U = 2-2^{\frac{1}{\theta}}$ and displays no lower tail dependence.
-\begin{align}
-    \bm{C}_{\theta}(u,v) &= \exp{-\{
-    (-\log(u))^\theta +(-\log(v))^\theta
+The Gumbel copula (B6 in \citet{joe1997multivariate}) has upper tail
+dependence with the dependence parameter $\lambda^U =
+2-2^{\frac{1}{\theta}}$ and displays no lower tail dependence. 
+\begin{equation*}
+  \bm{C}_{\theta}(u,v) = \exp{-\{ (-\log(u))^\theta +(-\log(v))^\theta 
     \}^{\frac{1}{\theta}}},
-    \end{align}
-where $\theta \in [1,\infty)$ is the dependence parameter.\medskip
-While Gumbel copula cannot model perfect counter dependence \citep{Nelsen2002}, $\bm{C}_{1} = \bm{\Pi}$ models the independence,
-and $\lim\limits_{\theta \to \infty} \bm{C}_\theta = \bm{W}$ models the perfect dependence.
-
-%The copula density takes the form
+\end{equation*}
+where $\theta \in [1,\infty)$ is the dependence parameter.
+    
+While the Gumbel copula cannot model perfect counter-dependence
+\citep{Nelsen2002}, $\bm{C}_{1} = \bm{\Pi}$ models the independence, 
+and $\lim_\theta^\infty \bm{C}_\theta = \bm{W}$ models the perfect
+dependence. The copula density takes the form
 %\begin{align}
 %        f
 %    \end{align}
-
-  \begin{align}
-    \tau_K(\theta) =\frac{\theta-1}{\theta}
-    \end{align}
+  \begin{equation*}
+    \tau_K(\theta) =\frac{\theta-1}{\theta}. 
+   \end{equation*}
 
 The Clayton copula, by contrast to Gumbel copula,
-generates lower tail dependence in a form $\lambda^L = 2^{-\frac{1}{\theta}}$,
-but cannot generate upper tail dependence.\medskip
-
+generates lower tail dependence of the form $\lambda^L =
+2^{-\frac{1}{\theta}}$, but cannot generate upper tail dependence.
 The Clayton copula takes the form
-\begin{align}
-    \bm{C}_{\theta}(u,v) &= \left\{
+\begin{equation*}
+  \bm{C}_{\theta}(u,v) = \left\{
     \max(u^{-\theta}+v^{-\theta}-1,0)\right\}^{-\frac{1}{\theta}},
-    \end{align}
-where $\theta \in (-\infty, \infty)$ is the dependency parameter.
-$\lim\limits_{\theta \to -\infty} \bm{C}_\theta = \bm{M}$, $\bm{C}_0 = \bm{\Pi}$, and $\lim\limits_{\theta \to \infty} \bm{C}_\theta = \bm{W}$.\medskip
-
-Kendall's $\tau$ to this copula dependency is 
+\end{equation*}
+where $\theta \in (-\infty, \infty)$ is the dependence parameter.
+Moreover, $\lim_\theta^{-\infty} \bm{C}_\theta = \bm{M}$, $\bm{C}_0 =
+\bm{\Pi}$, and $\lim_\theta^\infty \bm{C}_\theta = \bm{W}$. 
+Kendall's $\tau$ of the Clayton copula is given by 
 \begin{align}
     \tau_K(\theta) =\frac{\theta}{\theta+2}.
-    \end{align}\medskip
+    \end{align}
 
 \subsubsection{Mixture Copula}\label{sec:mixture-copula}
-Mixture copula is a linear combination of copulae. 
+The mixture copula is a linear combination of copulae. 
 For a 2-dimensional random variable $\bm{X}=(X_1,X_2)^\top$,
-its distribution can be written as linear combination $K$ copulae
-\begin{align}
-    \p(X_1 \leq x_1, X_2 \leq x_2) = \sum_{k=1}^K p^k \cdot \bm{C}^{(k)}\{F^{(k)}_{X_1}(x_1;\bm{\gamma}^{(k)}_1),
+its distribution can be written as linear combination of $K$ copulae
+\begin{equation}
+    \p(X_1 \leq x_1, X_2 \leq x_2) = \sum_{k=1}^K p^{(k)} \cdot
+    \bm{C}^{(k)}\{F^{(k)}_{X_1}(x_1;\bm{\gamma}^{(k)}_1), 
     F^{(k)}_{X_2}(x_2;\bm{\gamma}^{(k)}_2); \bm{\theta^{(k)}}\}
-    \end{align}
+    \label{eq:2}
+    \end{equation}
 where $p^{(k)} \in [0,1]$ is the weight of each component,
-$\bm{\gamma}^{(k)}$ is the parameter of the marginal distribution in the $k^\text{th}$ component,
-and $\bm{\theta^{(k)}}$ is the dependence parameter with the copula of the $k^\text{th}$ component.
+$\bm{\gamma}^{(k)}$ \natp{are the parameters (was: is the parameter)}
+of the marginal distribution in the $k$-th component, 
+and $\bm{\theta^{(k)}}$ \natp{are the (was: is the)} dependence
+parameter\natp{s} of the copula of the $k$-th component. 
 The weights add up to one $\sum_{k=1}^K p^{(k)}=1$. \medskip
 
-We deploy a simplified version of the above representation by assuming the margins of $\bm{X}$ are not mixture.
-By Sklar's theorem one may write
-\begin{align}
+We deploy a simplified version of the above representation by assuming
+the margins of $\bm{X}$ are not a mixture. \natp{\em [Is this a
+  precise formulation? The margins are not mixtures anyway, just
+  specified for each copula component. Perhaps write: ... by
+  specifying the same margins for each copula component.]}
+
+\natp{\em [Check notation of quantile function throughout. I think we
+  should use $F^{(-1)}$ instead of $F^{-1}$, as the latter can be
+  mistaken for $1/F$].}
+
+By Sklar's theorem one may write \natp{\em [Only for the special case
+  where the margins are fixed, right? Mention this.]}
+\begin{equation*} 
     \bm{C}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{C}^{(k)}\{F^{-1}_{X_1}(u),
     F^{-1}_{X_2}(v); \bm{\theta^{(k)}}\}.
-    \end{align}\medskip
-
-The copula density is again a linear combination of copula density
+    \end{equation*}
+The copula density is again a linear combination of copula densities
 \begin{align}
     \bm{c}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{c}^{(k)}\{F^{-1}_{X_1}(u),
     F^{-1}_{X_2}(v); \bm{\theta^{(k)}}\}.
-    \end{align}\medskip
+    \end{align}
 
-While Kendall's $\tau$ of mixture copula is not known in close form,
-the Spearman's $\rho$ is
+While Kendall's $\tau$ of mixture copula is not known in closed form,
+Spearman's $\rho$ is specified by the following statement. 
 
 \begin{proposition}
-    Let $\rho_S^{(k)}$ be the Spearman's $\rho$ of the $k^\text{th}$ component and $\sum_{k=1}^K p^{(k)}=1$ holds,
-    the Spearman's $\rho$ of a mixture copula is
-    \begin{align}
+  \natp{In the setting of \eqref{eq:2} \em[Please check if this is
+    correct! Also, please check if the copula must be continuous.]}, 
+  let $\rho_S^{(k)}$ be Spearman's $\rho$ of the $k$-th component
+  \natp{(delete: and $\sum_{k=1}^K p^{(k)}=1$ holds,)}. 
+  Spearman's $\rho$ of the mixture copula is given by 
+  \begin{align}
         \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}
         \end{align}
     \end{proposition}
 
 \begin{proof}
-    Spearman's $\rho$ is defined as \citep{Nelsen1999}
-    \begin{align}
-        \rho_S = 12 \int_{\mathbb{I}^2} \bm{C}(s,t) ds dt - 3.
-        \end{align}
-    Rewrite the mixture copula into sumation of components
+    Since Spearman's $\rho$ is defined as \citep{Nelsen1999}
+    \begin{equation*}
+      \rho_S = 12 \int_{\mathbb{I}^2} \bm{C}(s,t) ds dt - 3,
+    \end{equation*}
+    Spearman's $\rho$ of the the mixture copula is given by summation
+    of the components 
        \begin{align}
-        \rho_S = 12 \int_{\mathbb{I}^2} \sum_{k=1}^K p^{(k)} \cdot \bm{C}^{(k)}(s,t) ds dt - 3.
+        \rho_S = 12 \int_{\mathbb{I}^2} \sum_{k=1}^K p^{(k)} \cdot
+         \bm{C}^{(k)}(s,t) ds dt - 3. 
         \end{align}
     \end{proof}
 
+\natp{\em [If the Fr'echet class is not used below, then I suggest to
+  remove the example, and replace it by one sentence wiht a reference,
+  i.e.: An example of a mixture copula is the Fr'echet class of
+  copulas, which are given by convex combinations of $\bm{W}$,
+  $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}.]} 
+    
 \begin{example}
     The Fr{\'e}chet class can be seen as an example of mixture copula.
     It is a convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}
@@ -280,29 +312,40 @@ the Spearman's $\rho$ is
 %Example 2 Gumbel-Clayton mixture
 %Example 3 Hu 2006.
 
-We use a mixture of Gaussian and independent copula in our analysis.
-We write the copula
-\begin{align}
-    \bm{C}(u,v) = p\cdot \bm{C}^\text{Gaussian}(u,v) + (1-p)(uv).
-    \end{align}
-The corresponding copula density is
-\begin{align}
-    \bm{c}(u,v) = p\cdot \bm{c}^\text{Gaussian}(u,v) + (1-p).
-    \end{align}
+We use a mixture of Gaussian and independent copulas in our analysis,
+i.e., 
+\begin{equation*}
+  \bm{C}(u,v) = p\cdot \bm{C}^\text{Gaussian}(u,v) + (1-p)(uv),
+\end{equation*}
+with corresponding density is
+\begin{equation*}
+  \bm{c}(u,v) = p\cdot \bm{c}^\text{Gaussian}(u,v) + (1-p).
+\end{equation*}
 
-This mixture allows us to model how much "random noise" appear in the dependency structure.
-In this hedging exercise, the structure of the "random noise" is not of our concern nor we can
-hedge the noise by a two-asset portfolio.
-However, the proportion of the "random noise" does affect the distribution of $r^h$,
-so as the optimal hedging ratio $h^\ast$.
-One can consider the mixture copula as a handful tool for stress testing.
+This mixture models the amount of ``random noise'' that appears in the
+dependence structure. In the hedging exercise, \natp{(delete: the structure of)} the
+``random noise'' \natp{adds an unhedgable component to the two-asset
+  portfolio, whose weight $(1-p)$ is calibrated from market data (was:
+  is not of our concern nor we can hedge the noise by a two-asset portfolio.)}
+\natp{(delete: However, the proportion of the ``random noise'' does
+  affect the distribution of $r^h$, so as the optimal hedging ratio
+  $h^\ast$.) \em[I think this can be deleted, but maybe not?]}
+One can consider the mixture copula as a handy tool for stress testing.
 Similar to this Gaussian mix Independent copula,
 $t$ copula is also a two parameter copula allow us to model the noise,
 but its interpretation of parameters is not as intuitive as that of a mixture.
 The mixing variable $p$ is the proportion of a manageable (hedgable) Gaussian copula,
-while the remaining proportion $1-p$ cannot be managed.
+while the remaining proportion $1-p$ cannot be managed. \natp{\em [Not
+  sure I understand the comparison with the $t$ copula. I think you
+  might be thinking of the case where the scaling variable of the
+  $t$-copula is large and the correlation is moderate, which produces
+  some observations along the negative diagonal. However, this needs
+  to be carefully explained -- or left out.]}
+
+\natp{\em [Until here. Will add NIG factor copula.]}
 
 \subsection{Other Copula}\label{subsec:other-copula}
+\natp{\em [Why is there a separate subsection instead of 3.1.4?]}
 The Plackett copula has an expression
 \begin{align}
     \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}

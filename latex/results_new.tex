@@ -5,11 +5,11 @@
 
 \subsection{Overview}\label{sec:overview}
 We visualize the out-of-sample hedged portfolio returns and the corresponding OHR in figure \ref{fig:overview}.
-We also indicate the dates when the five smallest returns occur in the spot return. \medskip
+We also indicate the dates when the five smallest returns occur in the spot return. \textcolor{plt4}{( In order to have an overview of the performance of hedged portfolio, we visualize the out-...)}\medskip
 
 Overall, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,  are well hedged by the BTCF.
 The overall magnitude of the hedged portfolio returns are greatly reduced, as well as the extreme losses in spot are no longer the extreme losses in the hedged portfolio returns.
-Most of the time different risk reduction objectives generate very similar hedged portfolio returns as one can from the plot that the hedged portfolio returns are overlapping to each other.
+Most of the time different risk reduction objectives generate very similar hedged portfolio returns as one can from the plot that the hedged portfolio returns are overlapping to each other.\textcolor{plt4}{(i don't understand this sentence, similar hedged portfolio returns means all the return are the same?)}
 One exception is the BTC-BTCF portfolio that minimize ES 99\% (first panel green line in middle plot) that if fluctuates greatly from Jun 2019 to Aug 2019.
 Its OHR is lower than its counterparts and so the resulting hedge fail to capture the magnitude of the negative return of BTC. \medskip
 
@@ -24,19 +24,18 @@ We will further discuss the effectiveness of hedge in section \ref{sec: HE resul
   \caption{An overview of out-of-sample hedged portfolios.
             For each panel, the line plot on the top is the daily log returns of the spot;
             line plot in the middle is the daily log returns of hedged portfolio with different risk reduction objectives;
-            line plot at the bottom is the OHR of different risk reduction objectives. The coloring of risk reduction objectives is as follows:
+            line plot at the bottom is the OHR of different risk reduction objectives. The coloring of risk reduction objectives is as follows:  \textcolor{plt4}{(the color of vocab is not matched with the vocab. )}      
                                       \textcolor{plt1}{blue line} for variance,
                                       \textcolor{plt2}{orange line} for ES 95\%,
                                       \textcolor{plt3}{green line} for ES 99\%,
                                       \textcolor{plt4}{red line} for VaR 95\%,
                                       \textcolor{plt5}{purple line} for VaR 99\%, and
                                       \textcolor{plt6}{brown line} for ERM $k=10$.
-            The vertical black lines in the top and middle line plots indicate the dates when the five smallest returns occur in the spot return.
+            The vertical black lines in the top and middle line plots indicate the dates when the five smallest returns occur in the spot return. \textcolor{plt4}{( could mark the five smallest returens occurs in the portfolio returns?)}
             Most of the time the portfolio returns of different risk minimisation objectives overlap wth each other.
-            We can see that those BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,  are well hedged by the BTCF as the magnitude of the hedged portfolio returns are greatly reduced,
+            We can see that those BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,  are well hedged by the BTCF as the magnitude of the hedged portfolio returns are greatly reduced \textcolor{plt4}{(i don't understand this, the return are reduced? i expect that the loss should be reduced.)},
             as well as the five extreme losses of the spots are well managed.
-            One exception is the BTC-BTCF portfolio that minimize ES 99\% (first panel green line in middle plot), which fluctuate greatly from Jun 2019 to Aug 2019.
-            In that period of time, the portfolio OHR is lower than its counterparts.
+            One exception is the BTC-BTCF portfolio that minimize ES 99\% (first panel green line in middle plot), which fluctuate greatly from Jun 2019 to Aug 2019.   \textcolor{plt4}{(did they? i cant find it fluctuates greatly.)}            In that period of time, the portfolio OHR is lower than its counterparts.
             Hedges of spots that are not BTC related are less promising.
             The effectiveness of a hedge is discussed in section \ref{sec: HE results}.
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }

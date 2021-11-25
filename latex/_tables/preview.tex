@@ -6,19 +6,26 @@
 
 % Packages
 \usepackage{amsmath}
-\usepackage{tabularx,booktabs}
+\usepackage{tabularx,longtable, ragged2e, booktabs, siunitx}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
-
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
 
-\usepackage{epstopdf}%
+\usepackage{epstopdf}
 \usepackage{graphicx}
-
 
 % Document
 \begin{document}
 
-\include{copulaeselectiontable}
+%\begin{table}[t!]
+\include{summaryStatistics}
+%\label{tab:a}}
+%\end{table}
+\include{ERM_rh}
+\include{ES5_rh}
+\include{ES1_rh}
+\include{VaR5_rh}
+\include{VaR1_rh}
+\include{var1_rh}
 
 \include{varHE}
 \include{ES5HE}

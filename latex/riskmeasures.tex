@@ -1,57 +1,77 @@
 \subsection{Risk Measures}\label{subsec:spectral-risk-measures}
-We consider a variety of risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
+
+\natp{The optimal hedge ratio is determined for the following (was: 
+We consider a)} variety of risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
 %They are used in many literature about hedging, e.g. ;
 %The risk measures are also used by regulatory bodies,
 %for example Basel III ....
-A summary of risk measures being used in portfolio selection problem can be found in \citet{hardle2008applied}.\medskip
-\medskip
-
-
-Let $Z$ be a random variable of distribution $F_Z$.
+A summary of risk measures being used in portfolio selection problem
+can be found in \citet{hardle2008applied}.
+\natp{The risk measures are defined as follows.} Let $Z$ be a random
+variable with distribution function $F_Z$.
 \begin{enumerate}
-	\item Variance is $\text{Var}(F_Z)$
-	\item VaR of a given confidence level $\alpha$ is $\text{VaR}(F_Z) = -F_{Z}^{(-1)}(1-\alpha)$
-	\item ES with parameter $\alpha$ is $\text{ES}(F_Z) = -\frac{1}{1-\alpha}\int_0^{1-\alpha}F_Z^{(-1)}(p)dp$
-	\item ERM with Arrow-Pratt coefficient of absolute risk aversion $k$ is $\text{ERM}_k(F_Z) = \int_0^{1-\alpha}\phi(p) F_Z^{(-1)}(p)dp$ where $\phi$ is a weight function described in (\ref{eq:phi}) below.
-	\end{enumerate}\medskip
+\item Variance: $\text{Var}(Z) = \E[(Z-\E Z)^2]$. 
+\item VaR at confidence level $\alpha$: $\text{VaR}_\alpha(Z) = -F_{Z}^{(-1)}(1-\alpha)$
+\item ES at confidence level $\alpha$: $\text{ES}(F_Z) = -\frac{1}{1-\alpha}\int_0^{1-\alpha}F_Z^{(-1)}(p)dp$
+\item ERM with Arrow-Pratt coefficient of absolute risk
+  aversion $k$:
+  \begin{equation*}
+    \text{ERM}_k(F_Z) = \int_0^{1-\alpha}\phi(p) F_Z^{(-1)}(p)dp,
+  \end{equation*}
+  where $\phi$ is a weight function described in (\ref{eq:phi}) below.
+\end{enumerate}
 
-VaR, ES, and ERM fall into the class of Spectral Risk Measure (SRM).
-SRM has the from \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
-\begin{align}
-	\rho_\phi(r^h) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
-	\end{align}
-
-where $p$ is the loss quantile and $\phi(p)$ is a user-defined weighting function defined over $[0,1]$. \medskip
-We consider only admissible risk spectra $\phi(p)$ %(named by \citet{Acerbi2002})
-\begin{enumerate}[label=\roman*]
-	\item $\phi$ is positive
-	\item $\phi$ is decreasing
-	\item integrates to one.
-	\end{enumerate}\medskip
+VaR, ES, and ERM fall into the class of spectral risk measures (SRM),
+which have the from \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
+\begin{equation*}
+  \rho_\phi(r^h) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
+\end{equation*}
+where $p$ is the loss quantile and $\phi(p)$ is a user-defined
+weighting function defined on $[0,1]$.
+We consider only so-called admissible risk spectra $\phi(p)$, i.e.,
+fulfilling %(named by \citet{Acerbi2002})
+\begin{enumerate}[label=(\roman*)]
+\item $\phi$ is positive,
+\item $\phi$ is decreasing,
+\item and $\int\phi=1$. 
+\end{enumerate}
 
 The VaR's $\phi(p)$ gives all its weight on the $1-\alpha$ quantile of $Z$ and zero elsewhere,
-i.e. the weighting function is a Dirac delta function, hence violates the ii property of admissible risk spectra.
-The ES' $\phi(p)$ gives all tail quantiles the same weight of $\frac{1}{1-\alpha}$ and non-tail quantiles zero weight.
-ERM assumes investor's risk preference is in a form of exponential utility function $U(x)=1-e^{kx}$,
-its corresponding risk spectrum is defined as
-
-\begin{align}
-	\phi(p) =\frac{k e^{-k(1-p)}}{1-e^{-k}} , \label{eq:phi}
-	\end{align}
+i.e. the weighting function is a Dirac delta function, and hence it
+violates the (ii) property of admissible risk spectra. 
+The ES' $\phi(p)$ gives all tail quantiles the same weight of
+$\displaystyle\frac{1}{1-\alpha}$ and non-tail quantiles zero weight. 
+The ERM assumes investors' risk preference are in the form of an
+exponential utility function $U(x)=1-e^{kx}$, so its corresponding
+risk spectrum is defined as \natp{\em [Please double-check. All I
+  could find was that the ERM is in the spirit of investors' risk
+  preferences not that it matches investors preferences. Please also
+  look in the notes.]}
+\begin{equation}
+  \phi(p) =\frac{k e^{-k(1-p)}}{1-e^{-k}} , \label{eq:phi}
+\end{equation}
 where $k$ is the Arrow-Pratt coefficient of absolute risk aversion. \medskip
-
-The parameter $k$ has an economic interpretation of being the ratio between the second derivative and first derivative
-of investor's utility function on an risky asset
-
-\begin{align}
-	k = -\frac{U''(x)}{U'(x)},
-	\end{align}
+The parameter $k$ has an economic interpretation as being the ratio
+between the second derivative and first derivative 
+of investor's utility function on an risky asset,
+\begin{equation*}
+  k = -\frac{U''(x)}{U'(x)},
+\end{equation*}
 for $x$ in all possible outcomes.
 In case of the exponential utility, $k$ is the the constant absolute risk aversion (CARA).
 
-
+\natp{\em [Also note that there is a one-to-one correspondence
+  between coherent risk measures and ERM's with admissible risk
+  spectra if I remember well. This is one of the main factors to use ERM's.]}
 
 %Spectral risk measures can also be written as
 %\begin{align}
 %	\rho_\phi(r^h) = - \int_\mathbb{R} x f_{r^h}(x) \phi\{F_{r^h}(x)\} d x.
-%	\end{align}
+   %  \end{align}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "SRM"
+%%% End:
+

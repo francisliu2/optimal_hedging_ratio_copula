@@ -3,14 +3,30 @@
 
 \subsection{Estimation}\label{sec:estimation}
 
-\subsubsection{Simulated Method of Moments}\label{subsec:simulated-method-of-moments}
-This method is suggested by \citep{oh2013simulated}.
+\natp{\em [Add a brief intro of which calibration methods are used and
+  why. Also check if the title of the section should be
+  ``Calibration'' instead of ``Estimation''.]}
+
+\subsubsection{Simulated Method of Moments}
+\label{subsec:simulated-method-of-moments}
+
+\natp{Do we really use {\em simulated\/} method of moments throughout?
+  I suggest to introduce this as {\em method of moments}.}
+
+
+\natp{To calibrate the various copulas, we use the {\em method of
+    moments\/} calibration method (was: This method is)} suggested by
+\citep{oh2013simulated}. \natp{It is targeted at copula-invariant
+  properties such as Spearman's $\rho$, Kendall's $\tau$ and so-called
+  {\em quantile dependence\/} measures, denoted by $\lambda_q$ for
+  quantile level $q$. (delete: 
 In our setting, rank correlation e.g. Spearman's $\rho$ or Kendall's $\tau$,
 and quantile dependence measures at different levels $\lambda_q$
-are calibrated against their empirical counterparts.\medskip
+are calibrated against their empirical counterparts.)}
 
-Spearman's rho, Kendall's tau, and quantile dependence of a pair $(X,Y)$
-with copula $C$ are defined as
+Spearman's rho, Kendall's tau, and quantile dependence of \natp{ the
+  (delete: a pair $(X,Y)$ with)} copula $C$ are defined as \natp{\em
+  [Suggest to use $\E$ for expectation.]}
 \begin{align}
   \rho_S &= 12 \int\int_{I^2} C_{\bm{\theta}}(u,v)\, \dd u\, \dd v-3\label{eq:rho_S}\\
   \tau_K &= 4\operatorname{\mathsf{E}}[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
@@ -34,63 +50,75 @@ The empirical counterparts are
                     &\text { if } q\in (0, 0.5],\\
                     \displaystyle \frac{1}{n} \sum_{k=1}^n
                     \frac{\1_{\{\hat F_X(x_k)>q, \hat F_Y(y_k)>q\}}}
-                    {1-q}, &\text { if } q\in (0.5,1).
-                  \end{cases},
+                    {1-q}, &\text { if } q\in (0.5,1),
+                  \end{cases}
 \end{align*}
-where $\hat{F}(x) \overset{\mathrm{def}}{=} \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
-$\hat{C}(u,v) \overset{\mathrm{def}}{=}  \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$.\medskip
+where $\displaystyle \hat{F}(x) =
+  \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
+$\displaystyle \hat{C}(u,v) = \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$.
 
-We denote by $\tilde{\bm{m}}(\bm{\theta})$ the $m$-dimensional vector of dependence measures according the the
-dependence parameters $\bm{\theta}$,and  $\hat{\bm{m}}$ be the corresponding empirical counterpart.
+
+Denote by $\bm{m}(\bm{\theta})$ the $m$-dimensional vector of
+dependence measures according the dependence parameters
+$\bm{\theta}$,and let $\hat{\bm{m}}$ be the corresponding empirical
+counterpart. 
 The difference between dependence measures and their counterpart is denoted by
 \begin{align*}
-    \bm{g}(\bm{\theta}) = \hat{\bm{m}} - \tilde{\bm{m}}(\bm{\theta}).
-\end{align*}\medskip
+    \bm{g}(\bm{\theta}) = \hat{\bm{m}} - \bm{m}(\bm{\theta}).
+\end{align*}
 
-The SMM estimator is
+The SMM \natp{\em [MM? Also introduce the abbreviation]} estimator is
 \begin{align*}
     \hat{\bm{\theta}} = \argmin_{\bm{\theta}\in \bm{\Theta}} \bm{g}(\bm{\theta})^\top
     \hat{\bm{W}}
      \bm{g}(\bm{\theta}),
 \end{align*}
-where $\hat{W}$ is some positive definite weight matrix.\medskip
-
-In this work, we use $\tilde{\bm{m}}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \lambda_{0.1},
+where $\hat{W}$ is some positive definite weight matrix. Here, we use
+$\bm{m}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \lambda_{0.1}, 
 \lambda_{0.9}, \lambda_{0.95})^\top$
-for calibration of Bitcoin price and CME Bitcoin future.
+for calibration of \natp{\em [update this:]} Bitcoin price and CME
+Bitcoin future. \natp{\em [How is $\hat W$ defined in our setting?
+  Why the hat?]}
 
-\subsection{Maximum Likelihood Estimation}\label{subsec:maximum-likelihood-estimation}
+\subsection{Maximum Likelihood Estimation}
+\label{subsec:maximum-likelihood-estimation}
 By the Hoeffding-Sklar theorem, the joint density of a $d$-dimensional random variable $\bm{X}$ with sample size $n$ can be written as
-\begin{align}
+\begin{equation*}
     \bm{f}_{\bm{X}}(x_1, ..., x_d) = \bm{c}\{F_{X_1}(x_1), ..., F_{X_d}(x_d)\} \prod_{j=1}^d f_{X_i}(x_i).
-    \end{align}
-We follow the treatment of MLE documented in section 10.1 of \citet{joe1997multivariate}, namely the inference functions for margins or IFM method.
+    \end{equation*}
+We follow the treatment of MLE documented in section 10.1 of
+\citet{joe1997multivariate}, namely the {\em inference functions for
+margins (IFM) method}.
 The log-likelihood $\sum^n_{i=1}f_{\bm{X}}(X_{i,1}, ..., X_{i,d})$ can be decomposed into a dependence part and a marginal part,
 \begin{align}
     L(\bm{\theta}) &= \sum_{i=1}^n \bm{c}\{F_{X_1}(x_{i,1};\bm{\delta}_1), ..., F_{X_d}(x_{i,d}; \bm{\delta}_d);\bm{\gamma}\}
     + \sum_{i=1}^n \sum_{j=1}^d f_{X_j}(x_{i,j};\bm{\delta}_j)\\
     &= L_C(\bm{\delta}_1, ..., \bm{\delta}_d, \bm{\gamma}) + \sum_{j=1}^d L_j(\bm{\delta}_j)
     \end{align}
-where $\bm{\delta}_j$ is the parameter of the $j$-th margin, $\bm{\gamma}$ is the parameter of the parametric copula, and
+where $\bm{\delta}_j$ are the parameters of the $j$-th margin, $\bm{\gamma}$ is the parameter of the parametric copula, and
 $\bm{\theta} = (\bm{\delta}_1,..., \bm{\delta}_d, \bm{\gamma})$.
-
-Instead of searching the $\bm{\theta}$ is a high dimensional space, \citet{joe1997multivariate} suggests to
+Instead of searching the $\bm{\theta}$ in a high dimensional space, \citet{joe1997multivariate} suggests to
 search for $\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}$ that maximize $L_1(\bm{\delta}_1), ..., L_d(\bm{\delta}_d)$,
 then search for $\hat{\bm{\gamma}}$ that maximize $L_C(\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}, \bm{\gamma})$.
 
+\natp{\em [I suggest to delete the next part, as the regularity
+  conditions are unclear, and it is just a first-order condition,
+  which is a-priori not clear to hold in a two-step procedure.]}
 That is, under regularity conditions, $(\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}, \hat{\bm{\gamma}})$ is the solution of
 \begin{align}
     \left( \frac{\partial L_1}{\partial \bm{\delta}_1}, ..., \frac{\partial L_d}{\partial \bm{\delta}_d},
     \frac{\partial L_C}{\partial \bm{\gamma}}\right) = \bm{0}.
     \end{align}
 
-However, the IFM requires making assumption on the distribution of the margins.
-\citet{genest1995semiparametric} suggests to replace the estimation of marginals parameters estimation by non-parameteric estimation.
-Given non-parametric estimator $\hat{F}_i$ of the margins $F_i$, the estimator of the dependence parameters $\bm{\gamma}$ is
-\begin{align}
-    \hat{\bm{\gamma}} = \argmax_{\bm{\gamma}} \sum_{i=1}^n \bm{c}\{ \hat{F}_{X_1}(x_{i,1}), ..., \hat{F}_{X_d}(x_{i,d});\bm{\gamma}\}.
-    \end{align}
+However, the IFM requires making assumption on the distribution of the
+margins.\natp{\em [delete until here.]}
 
+\natp{We follow \citet{genest1995semiparametric} who suggest (was:
+\citet{genest1995semiparametric} suggests)} to replace the estimation of marginals parameters estimation by non-parameteric estimation.
+Given non-parametric estimator $\hat{F}_i$ of the margins $F_i$, the estimator of the dependence parameters $\bm{\gamma}$ is
+\begin{equation*}
+    \hat{\bm{\gamma}} = \argmax_{\bm{\gamma}} \sum_{i=1}^n \bm{c}\{ \hat{F}_{X_1}(x_{i,1}), ..., \hat{F}_{X_d}(x_{i,d});\bm{\gamma}\}.
+    \end{equation*}
 
 
 %With the decomposition, the MLE estimator for a bivariate parametric copula is
@@ -121,7 +149,14 @@ Given non-parametric estimator $\hat{F}_i$ of the margins $F_i$, the estimator o
 %    \end{align}
 %where $u_i = \hat{F}_X(x_i)$ and $v_i = \hat{F}_Y(y_i)$.
 
-\subsubsection{Comparison}
+    \subsubsection{Comparison}
+    \natp{\em [Make this subsection; don't start subsubsections that
+      do not have a number 2.]}
+
+    \natp{\em [If the MLE method is not used at all, then it is OK to
+      just very briefly mention it and highlight the comparison. No
+      extra subsection needed.]}
+    
 Both the simulated method of moments and the maximum likelihood estimation are unbiased.
 The question though which procedure is more suitable for hedging.
 %Cryptocurrencies are known to be very volatile.
@@ -139,11 +174,20 @@ The question though which procedure is more suitable for hedging.
 \end{figure}
 
 Figure~\ref{fig:quantile dependence1} shows the empirical quantile dependence of Bitcoin and CME future and the copula implied
-quantile dependence from MLE and MM calibration procedures.
+quantile dependence of the MLE and MM calibration procedures.
 Although the MLE is a better fit to a range of quantile dependence in the middle, it fails to address the situation in the tails.
-Our data empirically has weaker quantile dependence in the ends, and those points generate PnL to the hedged portfolio.
-MM is preferred visually as it produces a better fit to the dependence structure in the two extremes.
-Therefore, we deploy the method of moments throughout the analysis.
+Our data empirically has weaker quantile dependence in the ends
+\natp{\em [weaker than what?]}, and
+those points generate PnL to the hedged portfolio. \natp{\em [If you
+  absolutetly want to address is this way, then it's better to write
+  ``we find that...''.]}
+MM is preferred visually as it produces a better fit to the dependence
+structure in the two extremes. \natp{\em [Visually preferred is very
+  subjective; suggest to delete. You could argue that the MM method is
+  targeted at copula properties, and allow to focus on tail behaviour,
+  contrary to MLE.]}
+Therefore, we deploy the method of moments throughout the
+analysis. \natp{\em [Then cut MLE part above short.]}
 We choose the $5^\text{th}$-, $10^\text{th}$-, $90^\text{th}$-, $95^\text{th}$-quantile, and Spearman's $\rho$ as the moments.
 
 
@@ -257,3 +301,9 @@ We choose the $5^\text{th}$-, $10^\text{th}$-, $90^\text{th}$-, $95^\text{th}$-q
 %%Genest and Werker (2002) obtained conditions under which the PMLE is asymptotically efficient.
 %%
 %%
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "SRM"
+%%% End:

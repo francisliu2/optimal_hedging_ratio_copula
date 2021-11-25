@@ -1,0 +1,162 @@
+\section{Empirical Results}\label{sec:results}
+
+\input{data.tex}
+
+\subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
+Since different copulae may suggest different OHRs, we analyse the result of hedged portfolios without the copula selection step
+in order to get a better understanding of how a copula affect the hedged portfolio with various risk minimization objectives.
+To do so, we inspect the performance of copula in hedging by the mean square error and lowersemi variance.
+Mean square error is the distance between a perfect hedge and the hedged portfolio returns $\operatorname{MSE}=\frac{1}{n}\sum_{i=1}^n(r^h_i)^2$.
+Lower semi variance is $\operatorname{LSV}=\frac{1}{n}\sum_{i=1}^n\{\operatorname{E}(r^h)-r^h_i\}^2$.
+All results here are out-of-sample results obtained without the copula selection step in order to compare the performances across copulae.  \medskip
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[width=\textwidth]{_pics/MSE_BTC.pdf}
+  \caption{Mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+    The Frank copula is inferior in the BTC-involved portfolios.
+    \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:MSE_BTC}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[width=\textwidth]{_pics/semiLowerVariance_BTC.pdf}
+  \caption{Lower semivariance of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+  The Frank copula is obviously inferior.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:SLV_BTC}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[width=\textwidth]{_pics/MSE_other.pdf}
+  \caption{Mean square errors of portfolios constructed with different copula and risk minimization objectives.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:MSE_other}
+\end{figure}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[width=\textwidth]{_pics/semiLowerVariance_other.pdf}
+  \caption{Lower semivariance of portfolios constructed with different copula and risk minimization objectives.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:SLV_other}
+\end{figure}
+
+Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the mean square error and lower semivariance of BTC-BTCF, we can see the Frank copula is the worst performing copula:
+the resulting hedged portfolio returns is far away from a perfect hedge.
+In figure \ref{fig:MSE_other} and \ref{fig:SLV_other}, the phenomena of Frank copula being inferior to its counterparts can be observed from the results of the CRIX, BITX, BITW100, and BITW20-BTCF portfolios.
+Interestingly, the spot in those portfolios usually have a strong dependency to the BTCF.
+In contrast, the inferiority of the Frank copula is less prominent in the BITW70, ADA, ETH, LTC and XRP-BTCF portfolios.
+We suspect that the Frank copula is not a choice to model assets with strong dependency.  \medskip
+
+We can also observe from figure \ref{fig:MSE_other} and \ref{fig:SLV_other} that Gumbel copula is not performing as good as other copula in the ETH, LTC, and XRP-BTCF portfolios.
+The reason is the Gumbel copula has only the upper tail dependence, while the ETH, LTC, and XRP exhibit lower tail dependency with BTCF.
+We will discuss this in the following section. \medskip
+
+\subsection{Copula Selection Results}\label{sec: copula results}
+Next, we inspect the copula selection result in this section.
+Although the copula selection is only an intermediate step to obtain the OHRs,
+the result of this step can help us better understand the dependence feature between BTCF and the assets we study in this work and give us
+valuable information to model the assets in the future.
+Decisions of the AIC procedure are summarised in table \ref{tab:copulasection}. \medskip
+
+Overall, $t$-copula, rotated Gumbel (rotGumbel), and the NIG factor copula are the most frequently chosen copulae by the AIC procedure. \medskip
+
+The $t$-copula is frequently chosen by AIC to model the dependency between the BTC and BTC involved indices, CRIX, BITX, BITW100, and the BTC future.
+BTC and BTC involved indices exhibit strong tail dependence (both upper and lower tail) with BTCF.
+We could interpret tail dependence much more of a tendency for one asset to be extreme when another is extreme and vice versa \citep{McNeil2015}.
+In fact, the $t$ copula has been suggested in various empirical studies to model financial data, such as \cite{zeevi2002beyond} and \cite{breymann2003dependence}.
+Those studies suggest $t$-copula is a better model over the Gaussian copula which financial data often seem to exhibit tail dependence. \medskip
+
+On the other hand, the radially symmetric feature makes the $t$-copula not a good choice to model the other hedging pairs.
+\cite{demarta2005t} describe the symmetry feature "strong", because if $(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
+then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ..., 1-U_d)$.
+This symmetry can be justified in the dependence structure between a futures and its underlying by the theory of futures pricing,
+which suggests the price of a futures is a function of the underlying price \citep{hull2003options}.
+However, there is no such relationship between a futures and an asset which is not the underlying, and so the radial symmetry becomes a drawback to model other hedging pairs e.g. ETH and BITX70.
+Another drawback of the $t$-copula is the lack of flexibility to model off-diagonal region since Rho and nu jointly control the density of the off-diagonal region.
+%The off-diagonal region (HF paper breymann2003dependence)
+This is why sometimes the Gaussian Mix Independence (GMI) better model the dependence.  \medskip
+
+Among the three popular copulae, rotGumbel copula shows its ability to model the dependency between ETH and BTCF,
+94 out of 112 training sets are best fitted with the rotated Gumbel.
+rotGumbel also performs well when modelling dependency between XRP, BITW20, BITW70, and the BTCF.
+In particular, the whole time series of the two indices, BITW20 and BITW70, are best fitted solely with the rotated Gumbel copula.
+The frequently chosen rotated Gumbel indicates the styled fact of financial data: prices tends to drop together.  \medskip
+
+In fact, Clayton's AIC in many of the training sets is the second lowest, just higher than that of rotated Gumbel.
+This is because the Clayton copula has the same ability to model the lower quantile dependence.
+However, Clayton's radial like feature does not match the behaviour of the financial data. \medskip
+
+It is worth to mention that although the NIG factor copula is penalised heavily due to its three parameters setup, it is frequently chosen to be the best copula to model the dependency between individual cryptos and the BTC future.
+An extreme case would be ADA, only NIG factor is chosen in our dataset.
+Another dependency structure being best described by the NIG factor copula is the pair of LTC-BTCF.
+64 out of 112 training sets are best fitted by the NIG factor copula.
+Indices like BITX and CRIX are sometimes best fitted with the NIG factor copula as well, accounting for modelling 12 and 27 training sets respectively.
+The popularity of the NIG factor reflects the ability of the copula to model very complex dependency structure.
+NIG factor copula is able to model the tail, radial asymmetry, and off diagonal behaviour.  \medskip %(ADA samples and fitted NIG samples)
+
+Frank copula is generally not a good choice to model financial data just like what \cite{barbi2014copula} has reported.
+Plackett is known for its dependence parameter can be written as the cross-product ratio \citep{joe1997multivariate}.
+However, this feature does not bring the Plackett Copula advantage over other copulae to model the dependence structure between cryptos and BTCF. \medskip
+
+\begin{table}[t!]
+\include{_tables/copulaeselectiontable}
+%\include{_tables/motivation}
+    \label{tab:copulasection}}
+\end{table}
+
+\subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
+We presents the TBC
+
+\include{_tables/ERM_rh}
+\include{_tables/ES5_rh}
+\include{_tables/ES1_rh}
+\include{_tables/VaR5_rh}
+\include{_tables/VaR1_rh}
+\include{_tables/var1_rh}
+
+\subsection{Hedging Effectiveness Results}\label{sec: HE results}
+In this section, we analyse the out-of-sample hedging effectiveness (HE) of BTCF as hedging.
+HE is defined as $$\text{HE} = 1-\frac{\rho_h}{\rho_s},$$
+a measure of the percentage reduction of portfolio risk attribute, in our case the spot $\rho_s$,
+to hedged portfolio risk attribute $\rho_h$.
+A higher HE indicates a higher hedging effectiveness and larger risk reduction. \medskip
+
+The HE above is a generalisation of Ederington measure of hedging performance, where we,
+in addition to variance, include other risk measures: Expected Shortfall 5\% and 1\% (ES5 and ES1), Value-at-Risk 5\% and 1\% (VaR5 and VaR1), and ERM.
+In particular, ES5 is recommended by the Basel Committee on Banking Supervision (BCBS) to replace VaR as a quantitative risk metrics system.
+The proposed reform aimed at enhancing the risk metric system's ability to capture tail risk. \medskip
+%Discussions of the issue can be found in literatures.
+%
+We obtain a time series of out-of-sample $r^h$ of each hedging pair and each risk reduction objective by concatenating the out-of-sample results.
+Then, we apply stationary block bootstrapping (SB) to the time series introduced by \cite{Politis1994} in our analysis in order to preserve the temporal structure of the data while sampling.
+The SB procedure is as follow.
+Assume a time series with $N$ observations $\{X_t\}_{t \in [1,N]}$ is a strong stationary, weakly dependence time series of interest,
+we form blocks of samples $B = \{X_i, ..., X_{i+j-1}\}$.
+Index $i$ is a random variable uniformly distributed over $[1,2,...,N]$ and $j$ is geometric distributed random variable with parameter .
+The block index $i$ and block length $j$ are independent.
+For any index $k$ which is greater than $N$, the sample $X_k$ is defined to be $X_{k(\mod N)}$.
+For each block, we calculate the hedging effectiveness with different risk measures mentioned above.
+We choose $p=0.005$, implying the expected block length is 200.
+100 blocks are drawn for each risk minimising objective and spot. \medskip
+
+From figure \ref{fig:HEboxplot}, we report, as expected, the BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged by the BTCF.
+Surprisingly, the performances are consistent across different risk reduction objectives and different HE evaluation.
+The median HE to BTC generated by various risk reduction objectives is ranging from 89.45\% to 99.31\%, median HE to CRIX is ranging from 81.13\% to 95.22\%,
+median HE to BITX is ranging from 79.06\% to 94.84\%, median HE to BITW100 Is ranging from 71.07\% to 92.98\%. \medskip
+
+The HE of BTCF to other cryptos and indices are substantially lower than to the BTC involving spots, but the consistency the performances across different risk reduction objectives and HE evaluation remains.
+The median HE to BITW20 generated by various risk reduction objectives is ranging from 24.67\% to 47.02\%, median HE to BITW70 is ranging from 23.61\% to 49.30\%,
+median HE to ADA is ranging from 9.01\% to 29.30\%, median HE to ETH Is ranging from 30.07\% to 36.18\%, median HE to LTC Is ranging from 37.74\% to 51.30\%,
+median HE to XRP Is ranging from 0.46\% to 30.89\%.
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{_pics/ES5_HE_boxplot.pdf}
+  \caption{HE evaluated in the corresponding risk minimization objectives.
+            The boxplots indicate the the median, upper quartile, lower quartile, minimium and maximum of the bootstrapped HE.
+            The HE of BTC-involved spots are significantly higher than that of BTC-not-involved spots.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:HEboxplot}
+\end{figure}

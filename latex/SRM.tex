@@ -26,6 +26,19 @@
 %\newcommand{\zh}[1]{\begin{CJK}{UTF8}{bsmi}#1\end{CJK}}
 %\newcommand{\zhs}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
 
+
+%% Better roman enumeration list; no conflict with hyperref
+\usepackage{enumerate}
+\newenvironment{enumeroman} { %
+\begin{enumerate}[(i)]
+} { %
+\end{enumerate}}%
+
+\newenvironment{alphlist} { %
+  \begin{enumerate}[(a)]
+} { %
+\end{enumerate}} %
+
 %\usepackage{bbm}
 %\usepackage[T1]{fontenc}
 %\usepackage[normal]{caption2} % for caption
@@ -78,7 +91,6 @@
 \definecolor{plt7}{RGB}{127, 127, 127}
 \definecolor{plt8}{RGB}{188, 189, 34}
 \definecolor{plt9}{RGB}{23, 190, 207}
-
 
 \providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
 \providecommand{\mj}[1]{\textcolor{darkred}{#1}}
@@ -191,7 +203,7 @@ December 2017 until May 2021. We find that ... \natp{\em [needs to be amended.]}
 % The techniques \natp{\em [Which techniques?]} are therefore
 % generalised to various risk measures, such as value-at-risk, expected
 % shortfall and more generally, spectral risk measures.
-% In addition, we deploy different copulae for capturing the dependency between spot and future returns, such as the Gaussian, Student-$t$,
+% In addition, we deploy different copulae for capturing the dependency between spot and futuresreturns, such as the Gaussian, Student-$t$,
 % NIG and Archimedean copulae. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin.
 % We find that across copulae and risk measures, the hedge effectiveness are very similar with the exception of the Frank copula, Expected Shortfall 99\% and Value-at-Risk 99\%.
 % Our findings are based on an analysis for the time span from 29/12/2017 to 27/05/2021.
@@ -229,7 +241,9 @@ copulas \natp{(delete: Portfolio Selection, Spectral Risk Measurement,l Coherent
 %\natp{add
 %  \url{https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/fut.22050?casa_token=l6mOC3XtpSUAAAAA\%3Aa4ikFS_PgHmAFWRzYq1LqDH3Go2esWWO_2wmNI6Ql7B166Cn1eouEiwBLxkMqt__5sCEP47JDjWodPQ}}
 
-%\tableofcontents
+\clearpage
+
+\tableofcontents
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -318,7 +332,7 @@ Therefore, to minimize down risk, one cannot solely rely on
 second-order moment calculations. Moreover, variance as a risk measure
 does not account for the variety of investors' utility functions. In
 particular, it is known that  
-investors are tail-risk averse. \natp{\em [Provide references.]}
+investors are tail-risk averse, see \cite{menezes1980increasing},
 \citet{bollerslev2015tail} find that the jump tail risk is more
 closely associated with changes in risk-aversion. \natp{\em
   [Unclear. Do investors constantly change their risk aversion?]}
@@ -374,12 +388,14 @@ i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfol
 minimal risk.
 Here $r^S$ as the log return of BTC spot price, $r^F$ the log return of BTC future.
 The leptokurtic properties mentioned above leads us to deploy a comprehensive way of modelling dependency namely copulae together with various risk measures as loss function to find optimal hedge ratio.
-We first calibrate the log returns of BTC and CME future by copulae,
+We first calibrate the log returns of BTC and CME futuresby copulae,
 then find the optimal quantity of assets in the hedged portfolio according to a range of risk measures.
 %By Sklar's theorem, we can model the margin and the dependence structure separately using copulae.
 %This gives us enormous flexibility to model financial data.
 \citet{barbi2014copula} use the C-convolution operator introduced by \citet{cherubini2011copula} to derive the distribution
-of linear combination of margins with copula as their dependence structure.
+of linear combination of margins with copula as their dependence
+structure. \natp{\em [The terminology C-convolution operator does not
+  appear again in the paper. Either remove or denote where this is defined.]}
 We slightly amend their lemma and come up with a formula for the linear combination of random variables for our purpose.\medskip
 %We propose a corrected expression the \citet{barbi2014copula}'s equation and propose a general expression for the density of the linear combination.
  %\natp{\em [No need to mention in the introduction that
@@ -445,9 +461,9 @@ The results are reproducible with data and codes available on \href{http://www.q
 % --- Describe the methodology of finding the optimal h ---
 % ----------------
 
-\input{data.tex}
 
-\input{results_new.tex}
+%\input{results_new.tex}
+\input{results_new_new.tex}
 % ----------------
 % --- Results ---
 % ----------------

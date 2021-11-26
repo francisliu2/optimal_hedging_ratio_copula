@@ -52,7 +52,7 @@ the resulting hedged portfolio returns is far away from a perfect hedge.
 In figure \ref{fig:MSE_other} and \ref{fig:SLV_other}, the phenomena of Frank copula being inferior to its counterparts can be observed from the results of the CRIX, BITX, BITW100, and BITW20-BTCF portfolios.
 Interestingly, the spot in those portfolios usually have a strong dependency to the BTCF.
 In contrast, the inferiority of the Frank copula is less prominent in the BITW70, ADA, ETH, LTC and XRP-BTCF portfolios.
-We suspect that the Frank copula is not a choice to model assets with strong dependency.  \medskip
+We suspect that the Frank copula is not a choice to model assets with strong dependency. \textcolor{darkblue}{Frank copula is not appropriate for data that exhibit asymmetric and heavy tails.}  \medskip
 
 We can also observe from figure \ref{fig:MSE_other} and \ref{fig:SLV_other} that Gumbel copula is not performing as good as other copula in the ETH, LTC, and XRP-BTCF portfolios.
 The reason is the Gumbel copula has only the upper tail dependence, while the ETH, LTC, and XRP exhibit lower tail dependency with BTCF.

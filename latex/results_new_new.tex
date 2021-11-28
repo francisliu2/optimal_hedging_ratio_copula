@@ -3,8 +3,7 @@
 \input{data.tex}
 
 \subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
-Since different copulae may suggest different OHRs, we analyse the result of hedged portfolios without the copula selection step
-in order to get a better understanding of how a copula affect the hedged portfolio with various risk minimization objectives.
+First, we analyse the result of hedged portfolios without the copula selection step in order to get a better understanding of how a copula affect the hedged portfolio with various risk minimization objectives.
 To do so, we inspect the performance of copula in hedging by the mean square error and lowersemi variance.
 Mean square error is the distance between a perfect hedge and the hedged portfolio returns $\operatorname{MSE}=\frac{1}{n}\sum_{i=1}^n(r^h_i)^2$.
 Lower semi variance is $\operatorname{LSV}=\frac{1}{n}\sum_{i=1}^n\{\operatorname{E}(r^h)-r^h_i\}^2$.
@@ -58,8 +57,8 @@ We will discuss this in the following section. \medskip
 \subsection{Copula Selection Results}\label{sec: copula results}
 Next, we inspect the copula selection result in this section.
 Although the copula selection is only an intermediate step to obtain the OHRs,
-the result of this step can help us better understand the dependence feature between BTCF and the assets we study in this work and give us
-valuable information to model the assets in the future.
+the result of this step can help us better understand the dependence feature between BTCF and the assets we study in this work.
+This gives us valuable information to model the assets in the future.
 Decisions of the AIC procedure are summarised in table \ref{tab:copulasection}. \medskip
 
 Overall, $t$-copula, rotated Gumbel (rotGumbel), and the NIG factor copula are the most frequently chosen copulae by the AIC procedure. \medskip
@@ -76,7 +75,7 @@ then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ..., 1-U_d)$.
 This symmetry can be justified in the dependence structure between a futures and its underlying by the theory of futures pricing,
 which suggests the price of a futures is a function of the underlying price \citep{hull2003options}.
 However, there is no such relationship between a futures and an asset which is not the underlying, and so the radial symmetry becomes a drawback to model other hedging pairs e.g. ETH and BITX70.
-Another drawback of the $t$-copula is the lack of flexibility to model off-diagonal region since Rho and nu jointly control the density of the off-diagonal region.
+Another drawback of the $t$-copula is the lack of flexibility to model off-diagonal region since $\rho$ and $\nu$ jointly control the density of the off-diagonal region.
 %The off-diagonal region (HF paper breymann2003dependence)
 This is why sometimes the Gaussian Mix Independence (GMI) better model the dependence.  \medskip
 
@@ -90,7 +89,8 @@ In fact, Clayton's AIC in many of the training sets is the second lowest, just h
 This is because the Clayton copula has the same ability to model the lower quantile dependence.
 However, Clayton's radial like feature does not match the behaviour of the financial data. \medskip
 
-It is worth to mention that although the NIG factor copula is penalised heavily due to its three parameters setup, it is frequently chosen to be the best copula to model the dependency between individual cryptos and the BTC future.
+It is worth to mention that although the NIG factor copula is penalised heavily due to its three parameters setup,
+it is frequently chosen to be the best copula to model the dependency between individual cryptos and the BTC future.
 An extreme case would be ADA, only NIG factor is chosen in our dataset.
 Another dependency structure being best described by the NIG factor copula is the pair of LTC-BTCF.
 64 out of 112 training sets are best fitted by the NIG factor copula.
@@ -116,7 +116,7 @@ We presents the TBC
 \include{_tables/ES1_rh}
 \include{_tables/VaR5_rh}
 \include{_tables/VaR1_rh}
-\include{_tables/var1_rh}
+\include{_tables/var_rh}
 
 \subsection{Hedging Effectiveness Results}\label{sec: HE results}
 In this section, we analyse the out-of-sample hedging effectiveness (HE) of BTCF as hedging.

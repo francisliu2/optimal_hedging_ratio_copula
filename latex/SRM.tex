@@ -50,7 +50,14 @@
 \usepackage{setspace}
 \usepackage{slashbox}
 \usepackage{enumitem}
-\usepackage{tabularx,longtable, ragged2e, booktabs, siunitx}
+%\usepackage{tablefootnote}
+\usepackage{multirow, tabularx,longtable, ragged2e, booktabs, siunitx}
+%\usepackage{footnote}
+%\usepackage{tablefootnote}
+%\usepackage{footnotehyper}
+%\makesavenoteenv{table, tabularx}
+%\makesavenoteenv{}
+
 \sisetup{
 %    per-mode = symbol,
     output-decimal-marker = {.},
@@ -64,6 +71,7 @@
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcolumntype{C}{>{\Centering\arraybackslash}X}
 \newcolumntype{s}{>{\hsize=.2\hsize \Centering\arraybackslash}X}
+
 \usepackage{authblk}
 \usepackage{hyperref}
 \usepackage{indentfirst} % Macht eine Einrückung nach der Section

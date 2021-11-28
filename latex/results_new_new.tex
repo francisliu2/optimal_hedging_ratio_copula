@@ -118,7 +118,19 @@ However, this feature does not bring the Plackett Copula advantage over other co
 \end{table}
 
 \subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
-We presents the TBC
+We analyse hedged portfolios in this section.
+Table~\ref{tab:ERM_rh} to table~\ref{tab:var_rh} summarise the statistics of daily returns of hedged portfolios. \medskip
+
+The tables look repeating: for each hedged portfolios,
+the first four moments as well as the maximum drawdown (MD) and the date of MD are very similar across different risk minimization objectives.
+This is because the optimal hedge ratios of different risk minimization objectives fall into a small range. \medskip
+
+On the other hand, the statistics vary across portfolios.
+Unsurprisingly, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100, are well hedged by the BTCF regardless of risk minimization objective. \medskip
+
+Contrarily, BTC-not-involved spots' portfolios are less promising.
+Th hedged portfolio returns are as volatile as the spots.
+We will further discuss the effectiveness of hedge in section \ref{sec: HE results}.
 
 \include{_tables/ERM_rh}
 \include{_tables/ES5_rh}
@@ -126,6 +138,8 @@ We presents the TBC
 \include{_tables/VaR5_rh}
 \include{_tables/VaR1_rh}
 \include{_tables/var_rh}
+
+
 
 \subsection{Hedging Effectiveness Results}\label{sec: HE results}
 In this section, we analyse the out-of-sample hedging effectiveness (HE) of BTCF as hedging.

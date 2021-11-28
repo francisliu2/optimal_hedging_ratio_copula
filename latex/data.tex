@@ -51,17 +51,25 @@ the S\&P Dow Jones Indices, the official CRIX data will then be
 calculated with Lukka Prime Data and available to the public via S\&P.
 
 \subsection{Overview of the out-of-sample data}\label{subsec:oosdata}
+
 For every asset and hedge portfolio, we concatenate the out-of-sample data to form a time series for analysis.
 The date range of the out-of-sample time series is from 2019-10-21 to 2021-05-27, in total of 405 data points in each time series.
 We analyse these time series throughout the whole result section. \medskip
 
 We introduce the out-of-sample data in this subsection before we proceed to analysing the hedged portfolio results.
-Figure~\ref{fig:BTC_price} presents the BTC and BTCF price in the first panel and the arithmetic difference between the daily return of BTC and BTCF $R_s - R_f$ in the
+Figure~\ref{fig:BTC_price} presents the BTC and BTCF price in USD in the first panel and the arithmetic difference between the daily return of BTC and BTCF, i.e. $R_s - R_f$, in the
 second panel.
 In the first panel, the black vertical lines with capital letter labels indicate the days of the five most negative daily return of BTC during out-pf-sample period.
-Table \ref{tab:BTC_5min} summarizes the relevant news headlines and events of those days.
+Table \ref{tab:BTC_5min} summarizes the relevant news headlines and events of those days. \medskip
 
-\begin{figure}[t]
+Figure~\ref{fig:index_price} and \ref{fig:individualCoins_price} are the cumulative returns of the indices and individual cryptos respectively.
+The black vertical lines labeled by assets name are the largest daily price drop of the assets i the out-of-sample data. \medskip
+
+The out-of-sample data covers the pre-COVID19 period, 2019-10-21 to 2020-03-09, as well as the COVID19 period, 2019-03-19 onwards.
+We can observe an overall upward trend of crypto prices in both periods.
+Nonetheless, the volatilities of assets are high (annualized around 100\%) regardless of COVID19.
+
+\begin{figure}[!ht]
 \includegraphics[width=\textwidth]{_pics/BTC_price.pdf}
   \caption{Out-of-sample BTC and BTCF price. The first panel presents the price of BTC in blue line and that of BTCF in orange line.
   The black vertical lines with capital letter labels indicate the five most negative daily return of BTC in the out-of-sample data.
@@ -72,7 +80,7 @@ Table \ref{tab:BTC_5min} summarizes the relevant news headlines and events of th
 \label{fig:BTC_price}
 \end{figure}
 
-  \begin{table}[ht]
+\begin{table}[ht]
     \centering
       \begin{tabularx}{.8\textwidth}{cccX}
         \toprule
@@ -123,7 +131,7 @@ Table \ref{tab:BTC_5min} summarizes the relevant news headlines and events of th
         BITW20  & & 26.66 &  \\
         ADA     & &23.55 &  \\
         ETH     & &27.40 &  \\
-        
+
         BITW70  & 2021-05-19& 27.64 & The spillover of the BTC shock on 2021-05-17 (label A in figure~\ref{fig:BTC_price} and table~\ref{tab:BTC_5min})\\
 
         XRP     & 2020-12-23 & 41.00 & Top executives were sued by the SEC of misleading investors$^1$. \\

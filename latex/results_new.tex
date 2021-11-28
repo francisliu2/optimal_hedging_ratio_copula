@@ -2,84 +2,20 @@
 
 %\input{copulaeselectiontable.tex}
 
+
 \subsection{Overview}\label{sec:overview}
+We visualize the out-of-sample hedged portfolio returns and the corresponding OHR in figure \ref{fig:overview}.
+We also indicate the dates when the five smallest returns occur in the spot return. \textcolor{plt4}{( In order to have an overview of the performance of hedged portfolio, we visualize the out-...)}\medskip
 
-\natp{\em [Start with some general time series plots of the BTC and
-  the Bitcoin futures. Readers will want to know how BTCF developed
-  during the time period. Explain some of the events during that
-  time. Also add some descriptive stuff, e.g.\ it'll be interesting to
-  see a correlation heatmap of the cryptos and indices.]}
+Overall, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,  are well hedged by the BTCF.
+The overall magnitude of the hedged portfolio returns are greatly reduced, as well as the extreme losses in spot are no longer the extreme losses in the hedged portfolio returns.
+Most of the time different risk reduction objectives generate very similar hedged portfolio returns as one can from the plot that the hedged portfolio returns are overlapping to each other.\textcolor{plt4}{(i don't understand this sentence, similar hedged portfolio returns means all the return are the same?)}
+One exception is the BTC-BTCF portfolio that minimize ES 99\% (first panel green line in middle plot) that if fluctuates greatly from Jun 2019 to Aug 2019.
+Its OHR is lower than its counterparts and so the resulting hedge fail to capture the magnitude of the negative return of BTC. \medskip
 
-In general, the hedged portfolio's performance depends on which spot is being hedge,
-Risk minimization objectives and copulae are not critical to the
-results as long as the objective is not ES 99\% or VaR 99\%, and
-copula is not Frank or rotGumbel. \natp{\em [These are already
-  conclusions. Start with results.]}
-We will discuss the hedged portfolios results of different settings in this section.
-Figure \ref{fig:overview} presents the out-of-sample hedged portfolio
-returns and the corresponding OHR. 
-The dates when the five smallest returns occur in the spot return are
-highlighted in the figure in black vertical lines.
-\natp{\em [The figure is extremely small. How about separating the
-  cryptos and the indices? Make sure the axes are the same in all
-  types of plots. Explain the choice of $k=10$ for the ERM.]}
-
-\natp{\em [Again, below are conclusions. I suggest to either continue
-  presenting results and then drawing conclusions at the end, or
-  otherwise explain 
-  explain how you draw this conclusion from the information so far.]}
-Overall, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,
-are well hedged \natp{\em [?]} by the BTCF.
-The overall magnitude of the hedged portfolio returns are greatly
-reduced, as well as the extreme losses in spot are no longer the
-extreme losses in the hedged portfolio returns. 
-Most of the time different risk reduction objectives generate very similar hedged portfolio returns.
-As the result hedged portfolio returns are overlapping to each other.
-
-The OHRs of these portfolios are close to one regardless of which risk minimization objective is taken.
-Let's look at the BTC-BTCF portfolio first.
-It is natural for the OHRs of the BTC-BTCF close to one as the futures price $F$ is governed by the underlying price $S$ and interest rate $r$
-$$F = Se^{rT},$$
-where $T$ is the futures' time to maturity.
-It s not difficult to show that the arithmetic difference between the daily log returns is almost zero, i.e. $\log\frac{F_{t+1}}{F_t} \approx \log\frac{S_{t+1}}{S_t}$.
-This relationship explains every OHRs in BTC-BTCF portfolio are close to one. \natp{\em [The point you are trying to make is that there is a static
-  no-arbitrage relationship between spot and futures price. This
-  enforces a hedge ratio of one (at expiry you receive one unit of
-  spot and deliver one unit of the future or vice versa). Hence, the
-  log-returns between spot and futures will also be close, and taking
-  into account spot financing the position, the log-return of the
-  portfolio (spot, futures, money market account) will be zero. In
-  cryptocurrencies we do not observe this relationship, though, but a
-  basis between futures and spot. Nonetheless, the hedge ratio will be
-  close to one. Please re-formulate according to these lines.]}
-
-\natp{\em [Please read the rest critically before
-  Thursday, so we can discuss. Consider the order of results: first
-  the copula results, then the rest, because they build on each
-  other. Think carefully about what you want to tell the reader.]}
-
-
-\natp{\em [Please try to reduce the size of the figures so that they
-  appear in the text.]}
-
-Most of the time the OHRs in the BTC-BTCF portfolio are steady and well-performing,
-but we can find fluctuations in MES99\%HR and MVaR99\%HR. \natp{\em
-  [Introduce abbreviations.]}
-In particular, MES99\%HR fluctuates greatly from Jun 2019 to Aug 2019.
-The MES99\%HR is lower than its counterparts and so the resulting hedge fail to capture the magnitude of the negative return of BTC.
-The MVaR99\%HR performs similarly in that period time with less fluctuations.
-We suspect the fluctuating and malfunctioning MES99\%HR and MVaR99\%HR come from fact that ES 99\% and VaR 99\% are sensitive to small changes in the left tail as they consider a small fraction
-of the data. \medskip
-
-Other BTC-involved spots are market-cap-weighted indices that weighted heavily on BTC.
-Therefore, the indices are highly correlated with the price of BTC, and so, the OHRs of the hedged portfolios are also close to one.
-The MES99\%HR and MVaR99\%HR also fluctuate more than their counterparts. \medskip
-
-We move on to the BTC-not-involved spots' portfolios, i.e. BITW20-, BITW70-, ETH-, ADA-, LTC-, and XRP-BTCF.
-In general, the performance of these portfolios are less promising.
-One can see from figure \ref{fig:overview} that these hedged portfolio returns are almost as volatile as the spots.
-Nonetheless, the the extreme downward jumps of the spots are not taken care by the hedge.
-We will further discuss the effectiveness of hedge in section \ref{sec: HE results}. \medskip
+Contrarily, BTC-not-involved spots' portfolios are less promising.
+Th hedged portfolio returns are as volatile as the spots.
+We will further discuss the effectiveness of hedge in section \ref{sec: HE results}.
 
 \begin{figure}[ht]
     \centering
@@ -88,20 +24,18 @@ We will further discuss the effectiveness of hedge in section \ref{sec: HE resul
   \caption{An overview of out-of-sample hedged portfolios.
             For each panel, the line plot on the top is the daily log returns of the spot;
             line plot in the middle is the daily log returns of hedged portfolio with different risk reduction objectives;
-            line plot at the bottom is the OHR of different risk reduction objectives. The coloring of risk reduction objectives is as follows:
+            line plot at the bottom is the OHR of different risk reduction objectives. The coloring of risk reduction objectives is as follows:  \textcolor{plt4}{(the color of vocab is not matched with the vocab. )}      
                                       \textcolor{plt1}{blue line} for variance,
                                       \textcolor{plt2}{orange line} for ES 95\%,
                                       \textcolor{plt3}{green line} for ES 99\%,
                                       \textcolor{plt4}{red line} for VaR 95\%,
                                       \textcolor{plt5}{purple line} for VaR 99\%, and
                                       \textcolor{plt6}{brown line} for ERM $k=10$.
-            The vertical black lines in the top and middle line plots indicate the dates when the five smallest returns occur in the spot return.
-            Most of the time the portfolio returns of different risk minimisation objectives overlap with each other.
-            We can see that those BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,  are well hedged by the BTCF as the magnitude of the hedged portfolio returns are greatly reduced,
+            The vertical black lines in the top and middle line plots indicate the dates when the five smallest returns occur in the spot return. \textcolor{plt4}{( could mark the five smallest returens occurs in the portfolio returns?)}
+            Most of the time the portfolio returns of different risk minimisation objectives overlap wth each other.
+            We can see that those BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100,  are well hedged by the BTCF as the magnitude of the hedged portfolio returns are greatly reduced \textcolor{plt4}{(i don't understand this, the return are reduced? i expect that the loss should be reduced.)},
             as well as the five extreme losses of the spots are well managed.
-            \natp{\em [I suggest to defer the remainder to the
-              text.]} One exception is the BTC-BTCF portfolio that minimizes ES 99\% (first panel green line in middle plot), which fluctuates greatly from Jun 2019 to Aug 2019.
-            In that period of time, the OHR is lower than its counterparts.
+            One exception is the BTC-BTCF portfolio that minimize ES 99\% (first panel green line in middle plot), which fluctuate greatly from Jun 2019 to Aug 2019.   \textcolor{plt4}{(did they? i cant find it fluctuates greatly.)}            In that period of time, the portfolio OHR is lower than its counterparts.
             Hedges of spots that are not BTC related are less promising.
             The effectiveness of a hedge is discussed in section \ref{sec: HE results}.
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
@@ -119,7 +53,8 @@ All results here are out-of-sample results obtained without the copula selection
     \includegraphics[width=\textwidth]{_pics/MSE_BTC.pdf}
   \caption{Mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
     The Frank copula is inferior in the BTC-involved portfolios.
-    \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+    Since Gumbel copula fail to model the lower tail dependence between BTC-not-involving spots and BTCF, the mean square errors are high.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:MSE_BTC}
 \end{figure}
 
@@ -168,11 +103,7 @@ This may due to the fact that ES 99\% and VaR 99\% are easily affected extreme e
 
 \subsection{Copula Selection Results}\label{sec: copula results}
 The copula selection result provides insight that help us understand the crypto market better, so
-we illustrate the copula selection result in this section. \natp{\em
-  [Please revise carefully. The previous sentence can be improved {\bf
-    a lot}! Give proper information (Why does this help to understand
-  the market better? Because the copulas were selected to model
-  different features of the dependence...).]}
+we illustrate the copula selection result in this section.
 Decisions of the AIC procedure are summarised in table \ref{tab:copulasection}. \medskip
 
 Overall, $t$-copula, rotated Gumbel (rotGumbel), and the NIG factor copula are the most frequently chosen copulae by the AIC procedure. \medskip
@@ -186,9 +117,9 @@ Those studies suggest $t$-copula is a better model over the Gaussian copula whic
 On the other hand, the radially symmetric feature makes the $t$-copula not a good choice to model the other hedging pairs.
 \cite{demarta2005t} describe the symmetry feature "strong", because if $(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
 then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ..., 1-U_d)$.
-This symmetry can be justified in the dependence structure between a futures and its underlying by the theory of futures pricing,
-which suggests the price of a futures is a function of the underlying price \citep{hull2003options}.
-However, there is no such relationship between a futures and an asset which is not the underlying, and so the radial symmetry becomes a drawback to model other hedging pairs e.g. ETH and BITX70.
+This symmetry can be justified in the dependence structure between a future and its underlying by the theory of future pricing,
+which suggests the price of a future is a function of the underlying price \citep{hull2003options}.
+However, there is no such relationship between a future and an asset which is not the underlying, and so the radial symmetry becomes a drawback to model other hedging pairs e.g. ETH and BITX70.
 Another drawback of the $t$-copula is the lack of flexibility to model off-diagonal region since Rho and nu jointly control the density of the off-diagonal region.
 %The off-diagonal region (HF paper breymann2003dependence)
 This is why sometimes the Gaussian Mix Independence (GMI) better model the dependence.  \medskip
@@ -224,8 +155,7 @@ However, this feature does not bring the Plackett Copula advantage over other co
 
 \begin{table}[t!]
 \include{_tables/copulaeselectiontable}
-%\include{_tables/motivation}
-    \label{tab:copulasection}}
+\label{tab:copulasection}}
 \end{table}
 
 \subsection{OHRs and Returns of Hedged Portfolios}\label{sec:results overview}
@@ -275,7 +205,7 @@ For BTC-involved indices, the OHRs are ranging from 0.75 to 1.05, slightly wider
 Again, we present the OHR time series generated by minimising ES 99\% and VaR 99\% are more fluctuating in different hedge portfolios.
 Furthermore, we can see more clearly in figure \ref{fig:OHR-timeseries} that OHR minimising ES 99\% are more extreme. \medskip
 
-\subsection{Hedging Effectiveness Results}\label{sec: HE results}
+\subsection{Hedging Effectiveness Results}\label {sec: HE results}
 In this section, we analyse the out-of-sample hedging effectiveness (HE) of BTCF as hedging.
 HE is defined as $$\text{HE} = 1-\frac{\rho_h}{\rho_s},$$
 a measure of the percentage reduction of portfolio risk attribute, in our case the spot $\rho_s$,
@@ -337,10 +267,4 @@ median HE to XRP Is ranging from 0.46\% to 30.89\%.
 %  \end{turn}
 %\end{figure}
 %\newpage
-
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "SRM"
-%%% End:
 

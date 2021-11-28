@@ -7,26 +7,26 @@ ETH, ADA, LTC, and XRP are popular cryptos tradable in various
 exchanges and have large market capitalization. 
 BITX, BITW100, and CRIX are market-cap weighted crypto indexes with
 BTC as constituent. 
-BITX and BITW100 tracks the total return of the 10 and 100 cryptos
-with largest market-cap respectively. 
+BITX and BITW100 track the total return of the 10 and 100 cryptos
+with largest market-cap, respectively. 
 CRIX decides the number of constituents by AIC and tracks that number
 of cryptos with largest market-cap. In our case, the number of
 constituents in CRIX is 5. 
-BITW20 is also a market-cap weighted crypto index but with 20 largest
-market-cap cryptos outside the constituents of BITX.
-BITW70 has the same construction as BITW20 but with 70 largest
+BITW20 is also a market-cap weighted crypto index but with the 20
+largest market-cap cryptos outside the constituents of BITX.
+BITW70 has the same construction as BITW20 but with the 70 largest
 market-cap cryptos outside BITX and BITW20. 
-Therefore, BTC is excluded as constituent in BITW20 and BITW70. \medskip
+Therefore, BTC is excluded as a constituent in BITW20 and BITW70.
 
 For each of the 10 hedging portfolios, a crypto or index is considered
 as the spot and held in a unit size long position, while 
 the front BTCF is held in a short position with units corresponding to
 the OHR in order to reduce the risk of the spot. 
-Except for the hedge of BTC, all hedging portfolios are considered
-cross-asset hedges. \medskip
+Except for the hedge of BTC, all hedging portfolios are considered to
+be cross-asset hedges. 
 
-We collect the spots' and BTCF's daily price at 15:00 US Central Time
-(CT). The reason of choosing this particular time is that the CME
+We collect the spots' and BTCF's daily prices at 15:00 US Central Time
+(CT). The reason for choosing this particular time is that the CME
 group determines the daily settlements for BTCF's based on the trading
 activities on CME Globex between 14:59 and 15:00 CT. This is also the
 reporting time of the daily closing price by Bloomberg. 
@@ -62,8 +62,9 @@ second panel.
 In the first panel, the black vertical lines with capital letter labels indicate the days of the five most negative daily return of BTC during out-pf-sample period.
 Table \ref{tab:BTC_5min} summarizes the relevant news headlines and events of those days. \medskip
 
-Figure~\ref{fig:index_price} and \ref{fig:individualCoins_price} are the cumulative returns of the indices and individual cryptos respectively.
-The black vertical lines labeled by assets name are the largest daily price drop of the assets i the out-of-sample data. \medskip
+Figures~\ref{fig:index_price} and \ref{fig:individualCoins_price}
+\natp{\em [swap references to figures? So it's Figures 3 and 4 ...]} are the cumulative returns of the indices and individual cryptos respectively.
+The black vertical lines labeled by assets name are the largest daily price drop of the assets in the out-of-sample data. \medskip
 
 The out-of-sample data covers the pre-COVID19 period, 2019-10-21 to 2020-03-09, as well as the COVID19 period, 2019-03-19 onwards.
 We can observe an overall upward trend of crypto prices in both periods.
@@ -74,8 +75,8 @@ Nonetheless, the volatilities of assets are high (annualized around 100\%) regar
   \caption{Out-of-sample BTC and BTCF price. The first panel presents the price of BTC in blue line and that of BTCF in orange line.
   The black vertical lines with capital letter labels indicate the five most negative daily return of BTC in the out-of-sample data.
   The second panel presents the difference between the \% return of BTC and BTCF.
-  The black vertical lines with lowercase letter label indicate the five most negative difference.
-  The crosses locate the level the difference.
+  The black vertical lines with lowercase letter label indicate the five most negative returns.
+  The crosses locate the level the returns.
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:BTC_price}
 \end{figure}
@@ -143,3 +144,8 @@ Nonetheless, the volatilities of assets are high (annualized around 100\%) regar
         \label{tab:All_min}
   \end{table}
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "SRM"
+%%% End:

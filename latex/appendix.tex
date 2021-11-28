@@ -1,12 +1,17 @@
 \newpage
-\section{Appendix}\label{sec:appendix}
-\subsection{Density of linear combination of random variables}
+\appendix
+% \section{Appendix}
+\section{Density of linear combination of random variables}
+\label{sec:appendix}
 \begin{proposition}
    Let $\bm{X} = (X_1, ..., X_d)^\top$ be real-valued random variables with corresponding
    copula density $\bm{c}_{X_1, ..., X_d}$, and continuous marginals $F_{X_1}, ..., F_{X_d}$.
-   Then,
-   pdf of the linear combination of marginals $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ is
-
+   Then, the
+   pdf of the linear combination of marginals $Z = n_1 \cdot X_1 +
+   ... +  n_d \cdot X_d $ is
+   \natp{\em [What does $\circ$ stand for? For functions, always use
+     $()$ instead of $\{\}$. Also state that $\mathbf z\in \R$. Use
+     the differential operator $\dd$ instead of $d$.]}
    \begin{align}
    f_Z(z) &= \left| n_1^{-1} \right| \int_{[0,1]^{d-1}} \bm{c}_{X_1,...,X_d}
       \{F_{X_1} \circ S(z), u_2, ..., u_d \} \cdot
@@ -16,7 +21,29 @@
    \end{proposition}
 
 \begin{proof}
-   Rewrite $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ in matrix form
+  Rewrite $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ in matrix form
+  \natp{\em [Be more precise in the sentence above. The matrix product contains $Z$,
+    but it is not equal to $Z$. Instead of defining $\mathbf A$
+    implicitly, why not say, let $\mathbf A=...$]}
+
+  \natp{Let $Z= n_1 \cdot X_1 + ... +  n_d \cdot X_d $ and let
+    $\mathbf A=\displaystyle \begin{bmatrix}
+      n_1    & n_2   & \cdots & n_d     \\
+      0      & 1     &  \cdots & 0       \\
+      \vdots &       & \ddots & \vdots \\
+      0      & \cdots &       & 1  \\
+    \end{bmatrix}$. Then,
+    \begin{equation*}
+      \begin{bmatrix}
+        Z \\ X_2 \\ \vdots \\ X_d
+      \end{bmatrix}
+      = \bm{A}
+      \begin{bmatrix}
+         X_1 \\ X_2 \\ \vdots \\ X_d
+      \end{bmatrix},
+    \end{equation*}
+    and by a transformation ...
+    }
    \begin{align}
       \begin{bmatrix}
       Z \\ X_2 \\ \vdots \\ X_d
@@ -34,9 +61,10 @@
       \begin{bmatrix}
          X_1 \\ X_2 \\ \vdots \\ X_d
       \end{bmatrix}.
-      \end{align} \medskip
+      \end{align} 
 
-   By transformation variables
+   By a transformation of the variables \natp{\em [Where are you taking
+     the transformation from, especially as $f$ may be non-linear.]}
    \begin{align}
       \bm{f}_{Z,X_2,...,X_d}(z, x_2, ...,x_d) &= \bm{f}_{X_1,...,X_d}\left( \bm{A}^{-1}
       \begin{bmatrix}
@@ -46,8 +74,8 @@
       &= \left| n_1^{-1} \right| \bm{f}_{X_1,...,X_d}\{S(z), x_2,...,x_d\}
       \end{align} \medskip
 
-   Let $u_i = F_{X_i}(x_i)$ and
-   use the relationship
+   Let $u_i = F_{X_i}(x_i)$ and  use the relationship \natp{\em
+     [Provide a reference for this relationship.]}
    \begin{align}
       \bm{c}_{X_1,...,X_d}(u_1, ..., u_d)=\frac{\bm{f}_{X_1,...,X_d}(x_1,...,x_d)}{\prod_{i=1}^d f_{X_i}(x_i)},
    \end{align}
@@ -100,4 +128,10 @@
 
 %\input{data.tex}
 
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "SRM"
+%%% End:
 

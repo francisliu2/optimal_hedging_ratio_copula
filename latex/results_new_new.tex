@@ -3,6 +3,26 @@
 \input{data.tex}
 
 \subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
+\begin{figure}[t]
+\centering
+\begin{minipage}[t]{.475\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{_pics/MSE_BTC.pdf}
+  \caption{Mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+    The Frank copula is inferior in the BTC-involved portfolios.
+    \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:MSE_BTC}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{.475\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{_pics/semiLowerVariance_BTC.pdf}
+  \caption{Lower semivariance of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+  The Frank copula is obviously inferior.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:SLV_BTC}
+\end{minipage}
+\end{figure}
 First, we analyse the results of hedged portfolios without the copula
 selection step in order to get a better understanding of how a copula
 affects the hedged portfolio with various risk minimization
@@ -18,66 +38,33 @@ All results presentedd here are out-of-sample results obtained without
 the copula selection step in order to compare the performances across
 copulae.  
 
-\begin{figure}[th]
-    \centering
-    \includegraphics[width=\textwidth]{_pics/MSE_BTC.pdf}
-  \caption{Mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
-    The Frank copula is inferior in the BTC-involved portfolios.
-    \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
-\label{fig:MSE_BTC}
-\end{figure}
 
-\begin{figure}[th]
-    \centering
-    \includegraphics[width=\textwidth]{_pics/semiLowerVariance_BTC.pdf}
-  \caption{Lower semivariance of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
-  The Frank copula is obviously inferior.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
-\label{fig:SLV_BTC}
-\end{figure}
-
-%\begin{landscape}
+\newpage
 \begin{figure}[!]
-\begin{subfigure}{\textwidth}\centering
         \centering
         \includegraphics[width=\textwidth]{_pics/MSE_other.pdf}
       \caption{Mean square errors of portfolios constructed with different copula and risk minimization objectives.
       \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
     \label{fig:MSE_other}
-\end{subfigure}%
-\end{figure}
+%\end{subfigure}%
+%\end{figure}
 
-<<<<<<< HEAD
-\begin{figure}[!]
-\begin{subfigure}{\textwidth}\centering
+%\begin{figure}[!]
+%\begin{subfigure}{\textwidth}\centering
         \centering
         \includegraphics[width=\textwidth]{_pics/semiLowerVariance_other.pdf}
       \caption{Lower semivariance of portfolios constructed with different copula and risk minimization objectives.
-      \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
-    \label{fig:SLV_other}
-\end{subfigure}
-=======
-\begin{figure}[th]
-    \centering
-    \includegraphics[width=\textwidth]{_pics/semiLowerVariance_other.pdf}
-  \caption{Lower semivariance of portfolios constructed with different copula and risk minimization objectives.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
-  \natp{\em [Just wondering if it's an option to streamline the axis,
+      \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
+        \natp{\em [Just wondering if it's an option to streamline the axis,
     so we can also see the differences in performance for the
     different portfolios?]}
   }
-\label{fig:SLV_other}
->>>>>>> 41938bde70e34090f862c2deb4029dfe951e2492
+    \label{fig:SLV_other}
 \end{figure}
-%\end{landscape}
+\clearpage
 
-
-
-
-
-
-\textcolor{darkblue}{As presented in Fig 3 and 4, either individual cryptos or indice, their cumulative returns dropped in Mar 2020. it's due to the result of COVID19. we can explain this for these two plots.}\\
-\textcolor{darkblue}{Here i think it should insert a paragraph to interpret how you enter the copulae, otherwise it's weird that comes to Fig 5 and 6.}\\
+%\textcolor{darkblue}{As presented in Fig 3 and 4, either individual cryptos or indice, their cumulative returns dropped in Mar 2020. it's due to the result of COVID19. we can explain this for these two plots.}\\
+%\textcolor{darkblue}{Here i think it should insert a paragraph to interpret how you enter the copulae, otherwise it's weird that comes to Fig 5 and 6.}\\
 
 Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} \natp{\em [reduce size
   of figures]} are the mean square
@@ -110,59 +97,57 @@ while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF.
 We will discuss this in the following section. \natp{\em [Please avoid
   the term ``dependency'', use dependence.]}
 
-\subsection{Copula Selection Results}
-\label{sec: copula results}
-
-\natp{\em [Table 8 on the last page is ``dangling''. Why is it not in
-  the text? And why is it not referenced? Also, I suggest to resize it
-  to a normal font size.]}
-
+\subsection{Copula Selection Results}\label{sec: copula results}
+\begin{table}[t]
+\include{_tables/copulaeselectiontable}
+    \label{tab:copulasection}
+\end{table}
 \textcolor{darkblue}{Interpret the steps of copula selection.} \\
 Next, we inspect the copula selection result.
 Although the copula selection is only an intermediate step to obtain the OHRs,
 the result of this step can help us better understand the dependence
-feature between BTCF and the assets we study in this work. 
+feature between BTCF and the assets we study in this work.
 This gives us valuable information to model the assets in the future.
 Decisions of the AIC procedure are summarised in Table \ref{tab:copulasection}.
 
 Overall, the $t$-copula, rotated Gumbel (rotGumbel), and the NIG
 factor copula are the most frequently chosen copulae by the AIC
-procedure. 
+procedure.
 
 The $t$-copula is frequently chosen to model the dependence between
 the BTC and BTC-involving-indices, CRIX, BITX, BITW100, and the BTC
-future. 
+future.
 BTC and BTC-involving-indices exhibit strong (upper and lower) tail
 dependence with BTCF.  We interpret tail dependence as a strong
-tendency for one asset to be extreme when another is extreme and 
-vice versa \citep{McNeil2015}. 
+tendency for one asset to be extreme when another is extreme and
+vice versa \citep{McNeil2015}.
 In fact, the $t$ copula has been suggested in various empirical
-studies to model financial data, such as \cite{zeevi2002beyond} and
-\cite{breymann2003dependence}. 
+studies to model financial data, such as~\cite{zeevi2002beyond} and~
+\cite{breymann2003dependence}.
 Those studies suggest that the $t$-copula is a better model compared
 to the Gaussian copula as financial data typically exhibit heavy tails
 and tail dependence. \textcolor{darkblue}{(because the thick and left
   skew  properties of financial data tail distribution are documented. )}
-\medskip 
+\medskip
 
 On the other hand, the radial symmetry of the $t$-copula appears to be
 a poor choice to model the remaining hedging pairs.
 \cite{demarta2005t} describe the symmetry feature ``strong'', because if
-$(U_1, ..., U_d)$ is a vector distributed in $t$-copula, 
+$(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
 then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ...,
 1-U_d)$. \natp{\em [Just to be clear: is that not the definition of
   radial symmetry? If so, call it definition, and place it earlier
   where the term is used for the first time.]}
 This symmetry can be justified in the dependence structure between a
-futures and its underlying by the theory of futures pricing, 
+futures and its underlying by the theory of futures pricing,
 which suggests the price of a futures is a function of the underlying
-price \citep{hull2003options}. 
+price \citep{hull2003options}.
 However, there is no such relationship between a futures and an asset
 which is not the underlying, and so the radial symmetry becomes a
-drawback to model other hedging pairs e.g. ETH and BITX70. 
+drawback to model other hedging pairs e.g. ETH and BITX70.
 Another drawback of the $t$-copula is the lack of flexibility to model
 off-diagonal region since $\rho$ and $\nu$ jointly control the density
-of the off-diagonal region. 
+of the off-diagonal region.
 %The off-diagonal region (HF paper breymann2003dependence)
 This is why sometimes the Gaussian Mix Independence (GMI) better model
 the dependence.  \natp{\em [I would suggest to shorten this. The
@@ -183,24 +168,23 @@ financial data: prices tends to drop together.  \natp{\em [No need to
 In fact, Clayton's AIC in many of the training sets is the second lowest, just higher than that of rotated Gumbel.
 This is because the Clayton copula has the same ability to model the lower quantile dependence.
 However, Clayton's radial like feature does not match the behaviour of
-the financial data.
-
+the financial data. \medskip
 
 It is worth to mention that although the NIG factor copula is penalised heavily due to its three parameters setup,
 it is frequently chosen to be the best copula to model the dependency
-between individual cryptos and the BTC future. 
+between individual cryptos and the BTC future.
 An extreme case would be ADA, where only NIG factor is chosen in our dataset.
 Another dependence structure being best described by the NIG factor
-copula is the pair of LTC-BTCF, with 
+copula is the pair of LTC-BTCF, with
 64 out of 112 training sets best fitted by the NIG factor copula.
 Indices like BITX and CRIX are sometimes best fitted with the NIG
 factor copula as well, accounting for modelling 12 and 27 training
-sets respectively. 
+sets respectively.
 The popularity of the NIG factor reflects the ability of the copula to
-model very complex dependence structure: the 
+model very complex dependence structure: the
 NIG factor copula is able to model the tail, radial asymmetry, and
 off-diagonal behaviour. \natp{\em [What do you mean by
-  ``off-diagonal behaviour''?]}
+  ``off-diagonal behaviour''?]} \medskip
 
 The Frank copula is generally not a good choice to model financial
 data (as also reported by \cite{barbi2014copula}).
@@ -213,13 +197,10 @@ structure of cryptos and BTCF.
 
 \natp{\em [until here]}
 
-\begin{table}[t!]
-\include{_tables/copulaeselectiontable}
-%\include{_tables/motivation}
-    \label{tab:copulasection}
-\end{table}
-
 \subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
+\begin{table}[t] \centering
+\include{_tables/BTC_rh}
+\end{table}
 We analyse the hedge portfolios in this section. \natp{\em [Careful,
   it's hedge portfolios, not hedged portfolios. The asset is hedged,
   not the portfolio.]}

@@ -70,7 +70,8 @@ The out-of-sample data covers the pre-COVID19 period, 2019-10-21 to 2020-03-09, 
 We can observe an overall upward trend of crypto prices in both periods.
 Nonetheless, the volatilities of assets are high (annualized around 100\%) regardless of COVID19.
 
-\begin{figure}[!ht]
+%\newpage
+\begin{figure}[!t]
 \includegraphics[width=\textwidth]{_pics/BTC_price.pdf}
   \caption{Out-of-sample BTC and BTCF price. The first panel presents the price of BTC in blue line and that of BTCF in orange line.
   The black vertical lines with capital letter labels indicate the five most negative daily return of BTC in the out-of-sample data.
@@ -81,7 +82,7 @@ Nonetheless, the volatilities of assets are high (annualized around 100\%) regar
 \label{fig:BTC_price}
 \end{figure}
 
-\begin{table}[ht]
+\begin{table}[!]
     \centering
       \begin{tabularx}{.8\textwidth}{cccX}
         \toprule
@@ -104,14 +105,9 @@ Nonetheless, the volatilities of assets are high (annualized around 100\%) regar
         \label{tab:BTC_5min}
   \end{table}
 
-\begin{figure}[t]
-\includegraphics[width=\textwidth]{_pics/individualCoins_price.pdf}
-  \caption{Out-of-sample cumulative return of individual cyptos.
-  The black vertical lines indicate largest price drop of cryptos indicated by the labels.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
-\label{fig:individualCoins_price}
-\end{figure}
+%\clearpage
 
+%\newpage
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/index_price.pdf}
   \caption{Out-of-sample cumulative return of crypto indices.
@@ -120,7 +116,15 @@ Nonetheless, the volatilities of assets are high (annualized around 100\%) regar
 \label{fig:index_price}
 \end{figure}
 
-\begin{table}[ht]
+\begin{figure}[!]
+\includegraphics[width=\textwidth]{_pics/individualCoins_price.pdf}
+  \caption{Out-of-sample cumulative return of individual cyptos.
+  The black vertical lines indicate largest price drop of cryptos indicated by the labels.
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:individualCoins_price}
+\end{figure}
+
+\begin{table}[!]
     \centering
       \begin{tabularx}{.8\textwidth}{cccX}
         \toprule
@@ -132,9 +136,7 @@ Nonetheless, the volatilities of assets are high (annualized around 100\%) regar
         BITW20  & & 26.66 &  \\
         ADA     & &23.55 &  \\
         ETH     & &27.40 &  \\
-
         BITW70  & 2021-05-19& 27.64 & The spillover of the BTC shock on 2021-05-17 (label A in figure~\ref{fig:BTC_price} and table~\ref{tab:BTC_5min})\\
-
         XRP     & 2020-12-23 & 41.00 & Top executives were sued by the SEC of misleading investors$^1$. \\
         \bottomrule
       \end{tabularx}
@@ -143,6 +145,7 @@ Nonetheless, the volatilities of assets are high (annualized around 100\%) regar
         CRIX, BITX, BITW100, BITW20, ADA and ETH have the same date the reason of the largest drop. $^1$ is reported by Bloomberg \url{https://bloom.bg/3cWdita}.}
         \label{tab:All_min}
   \end{table}
+%\clearpage
 
 
 %%% Local Variables:

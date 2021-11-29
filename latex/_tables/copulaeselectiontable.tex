@@ -1,6 +1,6 @@
  \ra{1.1}
     {\begin{tabularx}{\textwidth}{lYYYYY} \toprule
-         Copula/Asset & $t$ & Plackett & GMI & rotGumbel & NIG \\ \midrule
+         Spot/ Copula & $t$ & Plackett & GMI & rotGumbel & NIG \\ \midrule
      \multicolumn{6}{l}{Individual Cryptos}                                                                                 \\
         \ \ \ BTC          & 73         & 4                 & 2                        & 1                  & 31                  \\
         \ \ \ ETH          & 3          & 6                 & 8                        & 94                 & 1                   \\
@@ -16,7 +16,12 @@
         \ \ \ BITW70       & 0          & 0                 & 0                        & 80                 & 1                   \\
     \bottomrule
     \end{tabularx}
-        \caption{Copula Selection Results.\textcolor{darkblue}{(Insert the copula selection method here too)} }
+        \caption{Copula selection results (shortened).
+        The values are the count of a copula chosen by the AIC procedure during the out-of-sample period.
+        Each count represents five trading days since the each testing data consists of five trading days.
+        The table shows only the frequently chosen copula, i.e. $t$, Plackett, Gaussian Mix Independent (GMI), rotated Gumbel (rotGumbel), and
+        Normal Inverse Gaussian factor copula (NIG).
+        } }
 
 
 

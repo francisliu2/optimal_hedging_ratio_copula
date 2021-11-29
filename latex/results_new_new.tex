@@ -1,9 +1,7 @@
 \section{Empirical Results}\label{sec:results}
 
 \input{data.tex}
-
-\subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
-\begin{figure}[t]
+\begin{figure}[!th]
 \centering
 \begin{minipage}[t]{.475\textwidth}
     \centering
@@ -23,6 +21,7 @@
 \label{fig:SLV_BTC}
 \end{minipage}
 \end{figure}
+\subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
 First, we analyse the results of hedged portfolios without the copula
 selection step in order to get a better understanding of how a copula
 affects the hedged portfolio with various risk minimization
@@ -31,9 +30,9 @@ To do so, we inspect the hedge performance of copulas by
 the mean square error and lower semi-variance.
 The mean square error
 is the distance between a perfect hedge and the hedged portfolio
-returns $\operatorname{MSE}=\frac{1}{n}\sum_{i=1}^n(r^h_i)^2$. 
+returns $\operatorname{MSE}= \mbox{\sf E} (R^2)$.
 The lower semi-variance is defined as 
-$\operatorname{LSV}=\frac{1}{n}\sum_{i=1}^n\{\operatorname{E}(r^h)-r^h_i\}^2$. 
+$\operatorname{LSV}=\mbox{\sf E} \{R-\mbox{\sf E}(R)^2\}1(R\leq \mbox{\sf E}(R))$.
 All results presentedd here are out-of-sample results obtained without
 the copula selection step in order to compare the performances across
 copulae.  
@@ -204,7 +203,7 @@ structure of cryptos and BTCF.
 We analyse the hedge portfolios in this section. \natp{\em [Careful,
   it's hedge portfolios, not hedged portfolios. The asset is hedged,
   not the portfolio.]}
-Tables~\ref{tab:ERM_rh} to \ref{tab:var_rh} summarise the statistics
+Tables~\ref{tab:var_rh} to table~\ref{tab:ERM_rh} summarise the statistics
 of daily returns of hedged portfolios.
 \natp{\em [Is there a way to aggregate the tables? This would be
   useful, as otherwise the reader keeps scrolling back and

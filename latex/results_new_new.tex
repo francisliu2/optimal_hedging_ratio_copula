@@ -46,7 +46,11 @@ copulae.
     \centering
     \includegraphics[width=\textwidth]{_pics/semiLowerVariance_other.pdf}
   \caption{Lower semivariance of portfolios constructed with different copula and risk minimization objectives.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
+  \natp{\em [Just wondering if it's an option to streamline the axis,
+    so we can also see the differences in performance for the
+    different portfolios?]}
+  }
 \label{fig:SLV_other}
 \end{figure}
 
@@ -194,8 +198,15 @@ structure of cryptos and BTCF.
 \end{table}
 
 \subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
-We analyse hedged portfolios in this section.
-Table~\ref{tab:ERM_rh} to table~\ref{tab:var_rh} summarise the statistics of daily returns of hedged portfolios. \medskip
+We analyse the hedge portfolios in this section. \natp{\em [Careful,
+  it's hedge portfolios, not hedged portfolios. The asset is hedged,
+  not the portfolio.]}
+Tables~\ref{tab:ERM_rh} to \ref{tab:var_rh} summarise the statistics
+of daily returns of hedged portfolios.
+\natp{\em [Is there a way to aggregate the tables? This would be
+  useful, as otherwise the reader keeps scrolling back and
+  forth. Perhaps we can remove skewness and kurtosis, then plot in one
+  large table in landscape mode (with a lot of columns).]}
 
 The tables look repeating: for each hedged portfolios,
 the first four moments as well as the maximum drawdown (MD) and the date of MD are very similar across different risk minimization objectives.

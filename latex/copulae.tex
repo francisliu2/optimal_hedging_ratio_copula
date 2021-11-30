@@ -46,7 +46,26 @@ upper bound by $\bm{M}$. They represent cases of perfect negative
 dependence, independence, and perfect positive dependence,
 respectively. 
 For further details, we refer readers to \citet{joe1997multivariate}
-and \citet{Nelsen1999}; see also \citet{hardle2010copulis}.
+and \citet{Nelsen1999}; see also \citet{hardle2010copulis}. \medskip
+
+The symmetry property of copulae is also important for modelling financial data.
+In particular, we are interested in the radially symmetric among other symmetry definitions, see \ref{Nelsen1999}.
+
+\begin{defn}
+    Let $(U_1, ..., U_d)$ be random variables.
+    The random variables is radially symmetric if the joint cdf of $(U_1, ..., U_d)$ is same as the
+    joint cdf of $(1-U_1, ..., 1-U_d)$
+
+    \end{defn}
+
+To illustrate the difference among copulae, we plot random samples drawn from copulae listed below in figure~\ref{fig:copulaeScatterPlot}.
+
+\begin{figure}[t]
+    \centering
+  \includegraphics[width=\textwidth]{_pics/copulas_scatterplots.pdf}
+  \caption{Scatter plot of samples drawn from copulae. All copulas are calibrated to Spearman's $\rho$ of 0.75.}\label{fig:copulaeScatterPlot}
+\end{figure}
+
 
 \subsubsection{Gaussian and $t$ Copulae}\label{sec:ellpitical-copulae}
 

@@ -61,8 +61,7 @@ copulae.
 %\textcolor{darkblue}{As presented in Fig 3 and 4, either individual cryptos or indice, their cumulative returns dropped in Mar 2020. it's due to the result of COVID19. we can explain this for these two plots.}\\
 %\textcolor{darkblue}{Here i think it should insert a paragraph to interpret how you enter the copulae, otherwise it's weird that comes to Fig 5 and 6.}\\
 
-Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} \natp{\em [reduce size
-  of figures]} are the mean square
+Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the mean square
 error and lower semivariance of BTC-BTCF. We can see that the Frank copula
 is the worst performing copula: 
 the resulting hedged portfolio returns is far away from a perfect
@@ -73,32 +72,25 @@ of Frank copula being inferior to its counterparts can be observed
 from the results of the CRIX, BITX, BITW100, and BITW20-BTCF
 portfolios. 
 Interestingly, the spot in those portfolios usually have a strong
-dependence with the BTCF. 
+dependence with the BTCF.
 In contrast, the inferiority of the Frank copula is less prominent in
 the BITW70, ADA, ETH, LTC and XRP-BTCF portfolios. 
 We suspect that the Frank copula is not a choice to model assets with
-strong dependence. \textcolor{darkblue}{The Frank copula is not
-  appropriate for data that exhibit asymmetric and heavy tails.}
-\natp{\em [It is mentioned earlier that the Frank copula has no tail
-  dependence. This would explain that a strong dependence in finance
-  cannot be modelled well, as we observe strong dependence in
-  particular in the tails.]}
+strong dependence.
 
 We can also observe from Figures \ref{fig:MSE_other} and
 \ref{fig:SLV_other} that theGumbel copula is not performing as well as 
 other copulas in the ETH, LTC, and XRP-BTCF portfolios. 
 The reason is the Gumbel copula has only upper tail dependence,
 while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF. 
-We will discuss this in the following section. \natp{\em [Please avoid
-  the term ``dependency'', use dependence.]}
+We will discuss this in the following section.
 
-\subsection{Copula Selection Results}\label{sec: copula results}
+\subsection{Copula Selection Results}\label{subsec:-copula-results}
 \begin{table}[t]
 \include{_tables/copulaeselectiontable}
     \label{tab:copulasection}
 \end{table}
-\textcolor{darkblue}{Interpret the steps of copula selection.} \\
-Next, we inspect the copula selection result.
+Next, we inspect the copula selection result by the AIC procedure described in section~\ref{subsec:copula-selection}.
 Although the copula selection is only an intermediate step to obtain the OHRs,
 the result of this step can help us better understand the dependence
 feature between BTCF and the assets we study in this work.
@@ -127,38 +119,21 @@ and tail dependence. \textcolor{darkblue}{(because the thick and left
 
 On the other hand, the radial symmetry of the $t$-copula appears to be
 a poor choice to model the remaining hedging pairs.
-\cite{demarta2005t} describe the symmetry feature ``strong'', because if
-$(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
+\cite{demarta2005t} describe the radial symmetry feature of the $t$-copula ``strong'' as it is a radially symmetric distribution.
+To be specific, if $(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
 then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ...,
-1-U_d)$. \natp{\em [Just to be clear: is that not the definition of
-  radial symmetry? If so, call it definition, and place it earlier
-  where the term is used for the first time.]}
+1-U_d)$.
 This symmetry can be justified in the dependence structure between a
 futures and its underlying by the theory of futures pricing,
 which suggests the price of a futures is a function of the underlying
 price \citep{hull2003options}.
 However, there is no such relationship between a futures and an asset
-which is not the underlying, and so the radial symmetry becomes a
-drawback to model other hedging pairs e.g. ETH and BITX70.
-Another drawback of the $t$-copula is the lack of flexibility to model
-off-diagonal region since $\rho$ and $\nu$ jointly control the density
-of the off-diagonal region.
-%The off-diagonal region (HF paper breymann2003dependence)
-This is why sometimes the Gaussian Mix Independence (GMI) better model
-the dependence.  \natp{\em [I would suggest to shorten this. The
-  argument might be more concise if explaining that crashes take place
-  in all coins and indices simultaneously (this should be backed by
-  the Figures above), whereas positive development is more
-  idioosyncratic.]}
+which is not the underlying.
+Besides, asset prices tend to crash simultaneously whereas positive development is more idiosyncratic. \medskip
 
-Among the three popular copulae, rotGumbel copula shows its ability to model the dependency between ETH and BTCF,
-94 out of 112 training sets are best fitted with the rotated Gumbel.
-rotGumbel also performs well when modelling dependency between XRP, BITW20, BITW70, and the BTCF.
-In particular, the whole time series of the two indices, BITW20 and BITW70, are best fitted solely with the rotated Gumbel copula.
-The frequently chosen rotated Gumbel indicates the styled fact of
-financial data: prices tends to drop together.  \natp{\em [No need to
-  repeat what's already in the table. Rather, if there are insights,
-  then state them, otherwise it is OK to also say nothing.]}
+Among the three popular copulae, rotGumbel copula shows its ability to model the dependence between ETH and BTCF.
+rotGumbel also performs well when modelling dependence between XRP, BITW20, BITW70, and the BTCF.
+In particular, the whole time series of the two indices, BITW20 and BITW70, are best fitted solely with the rotated Gumbel copula. \medskip
 
 In fact, Clayton's AIC in many of the training sets is the second lowest, just higher than that of rotated Gumbel.
 This is because the Clayton copula has the same ability to model the lower quantile dependence.
@@ -166,7 +141,7 @@ However, Clayton's radial like feature does not match the behaviour of
 the financial data. \medskip
 
 It is worth to mention that although the NIG factor copula is penalised heavily due to its three parameters setup,
-it is frequently chosen to be the best copula to model the dependency
+it is frequently chosen to be the best copula to model the dependence
 between individual cryptos and the BTC future.
 An extreme case would be ADA, where only NIG factor is chosen in our dataset.
 Another dependence structure being best described by the NIG factor
@@ -178,8 +153,7 @@ sets respectively.
 The popularity of the NIG factor reflects the ability of the copula to
 model very complex dependence structure: the
 NIG factor copula is able to model the tail, radial asymmetry, and
-off-diagonal behaviour. \natp{\em [What do you mean by
-  ``off-diagonal behaviour''?]} \medskip
+off-diagonal (the region away from the diagonal line $(0,0)$ to $(1,1)$, see figure \ref{fig:copulaeScatterPlot}) behaviour. \medskip
 
 The Frank copula is generally not a good choice to model financial
 data (as also reported by \cite{barbi2014copula}).

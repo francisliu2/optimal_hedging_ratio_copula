@@ -13,7 +13,6 @@
 \natp{Do we really use {\em simulated\/} method of moments throughout?
   I suggest to introduce this as {\em method of moments}.}
 
-
 \natp{To calibrate the various copulas, we use the {\em method of
     moments\/} calibration method (was: This method is)} suggested by
 \citep{oh2013simulated}. \natp{It is targeted at copula-invariant
@@ -80,7 +79,7 @@ for calibration of \natp{\em [update this:]} Bitcoin price and CME
 Bitcoin future. \natp{\em [How is $\hat W$ defined in our setting?
   Why the hat?]}
 
-\subsection{Maximum Likelihood Estimation}
+\subsubsection{Comparison of method of moments and maximum likelihood}
 \label{subsec:maximum-likelihood-estimation}
 By the Hoeffding-Sklar theorem, the joint density of a $d$-dimensional random variable $\bm{X}$ with sample size $n$ can be written as
 \begin{equation*}
@@ -120,46 +119,8 @@ Given non-parametric estimator $\hat{F}_i$ of the margins $F_i$, the estimator o
     \hat{\bm{\gamma}} = \argmax_{\bm{\gamma}} \sum_{i=1}^n \bm{c}\{ \hat{F}_{X_1}(x_{i,1}), ..., \hat{F}_{X_d}(x_{i,d});\bm{\gamma}\}.
     \end{equation*}
 
-
-%With the decomposition, the MLE estimator for a bivariate parametric copula is
-%\begin{align}
-%    \hat{\bm{\theta}} = \argmax_{\bm{\theta} \in \bm{\Theta}} l(X_1,X_2; \bm{\theta}), \label{eq:EMLE}
-%    \end{align}
-%where
-%\begin{align}
-%    l(X_1,X_2; \bm{\theta}) = \sum_{i=1}^n \log c(x_{i,1}, x_{i,2};\bm{\theta}). \label{eq:Likelihood}
-%    \end{align}\medskip
-
-%Procedure of maximising equation~\ref{eq:EMLE} as a whole is called exact maximum likelihood method.
-%Leveraging the attractive feature of copula that one can model the dependence structure and marginals separately,
-%we rewrite~\ref{eq:Likelihood} into canonical expression
-%\begin{align}
-%    l(X,Y; \bm{\theta}) = \sum_{k=1}^n \log c\{F_X(x_i; \delta_X), F_Y(y_i; \delta_Y); \bm{\gamma}\}
-%    + \sum_{k=1}^n \log f_X(x_i; \bm{\delta}_X) + \sum_{k=1}^n \log f_X(y_i; \bm{\delta}_Y),
-%    \end{align}
-%where the $\bm{\gamma}$ is the dependence parameter in the copula and $\bm{\delta}$ is the parameters in the margins.\medskip
-%
-%The inference-functions for margins (IFM) approach by Joe is a two step procedure of maximising~\ref{eq:EMLE}.
-%The approach calibrate first the $\bm{\delta}$s and then the  $\bm{\gamma}$.\medskip
-%
-%Similar to the IFM approach, pseudo-maximum likelihood approach by Genest and Rivest (1993) replace the parametric margins by
-%empirical estimates, we rewrite \ref{eq:Likelihood} again with
-%\begin{align}
-%    l(X,Y; \bm{\theta}) = \sum_{k=1}^n \log c(u_i, v_i;\bm{\gamma}),
-%    \end{align}
-%where $u_i = \hat{F}_X(x_i)$ and $v_i = \hat{F}_Y(y_i)$.
-
-    \subsubsection{Comparison}
-    \natp{\em [Make this subsection; don't start subsubsections that
-      do not have a number 2.]}
-
-    \natp{\em [If the MLE method is not used at all, then it is OK to
-      just very briefly mention it and highlight the comparison. No
-      extra subsection needed.]}
-    
 Both the simulated method of moments and the maximum likelihood estimation are unbiased.
 The question though which procedure is more suitable for hedging.
-%Cryptocurrencies are known to be very volatile.
 
 \begin{figure}[h]
 %\includegraphics[width=\textwidth]{_pics/t Copula quantile dependence.png}

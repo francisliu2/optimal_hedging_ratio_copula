@@ -20,7 +20,7 @@ For a bivariate random variable of $n$ observations, there are $\binom{n}{2}$ di
 Let $c$ denote the number of concordant pairs, and $d$ the number of discordant pairs,
 Kendall's tau is defined as follows \citep{Nelsen1999}
 \begin{align*}
-\tau &= \frac{c-d}{c+d} \\
+\tau &= \frac{c-d}{c+d} \\[10pt]
      &= \frac{c-d}{\binom{n}{2}};
 \end{align*}
 
@@ -56,9 +56,9 @@ Since Gaussian and $t$ distributions are elliptical distributions, Gaussian and 
 
 Gaussian copula (bivariate) is defined as
 \begin{align}
-  \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\} \nonumber \\
-              &= \int_{-\infty}^{\Phi^{-1}(u)}
-                \int_{-\infty}^{\Phi^{-1}(v)}
+  \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\} \nonumber \\
+              &= \int_{-\infty}^{\Phi^{(-1)}(u)}
+                \int_{-\infty}^{\Phi^{(-1)}(v)}
                 \frac{1}{2\pi\sqrt{1-\rho^2}}
                 \exp{\left\{
                 \frac{s^2-2\rho st+t^2}{2(1-\rho^2)}
@@ -66,7 +66,7 @@ Gaussian copula (bivariate) is defined as
 \end{align}
 where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution
 with zero mean, unit variance, and correlation coefficient $\rho$, and
-$\Phi^{-1}$ is the quantile function univariate standard normal
+$\Phi^{(-1)}$ is the quantile function univariate standard normal
 distribution. \medskip
 
 Note that we use $\rho$ to denote the correlation parameter as well as a $\rho(\cdot)$ to denote a risk measure. \medskip
@@ -77,8 +77,8 @@ It has no tail dependence, which, in a finance context, implies that it often un
 
 The Gaussian copula density is
 \begin{align}
-  \bm{c}_\rho(u,v) &= \frac{\bm{\varphi}_{2,\rho}\{\Phi^{-1}(u), \Phi^{-1}(v)\}}
-                     {\varphi\{\Phi^{-1}(u)\} \cdot \varphi\{\Phi^{-1}(v)\}} \nonumber \\[10pt]
+  \bm{c}_\rho(u,v) &= \frac{\bm{\varphi}_{2,\rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\}}
+                     {\varphi\{\Phi^{(-1)}(u)\} \cdot \varphi\{\Phi^{(-1)}(v)\}} \nonumber \\[10pt]
                    &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left\{
                      -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
                      \right\},
@@ -97,9 +97,9 @@ Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian copula are
 
 The $t$-copula has the form
 \begin{align*}
-        \bm{C}(u,v) &= \bm{T}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\} \nonumber \\[10pt]
-            &= \int_{-\infty}^{T^{-1}_\nu(u)}
-               \int_{-\infty}^{T^{-1}_\nu(v)}
+        \bm{C}(u,v) &= \bm{T}_{2, \rho, \nu}\{T^{(-1)}_\nu(u), T^{(-1)}_\nu(v)\} \nonumber \\[10pt]
+            &= \int_{-\infty}^{T^{(-1)}_\nu(u)}
+               \int_{-\infty}^{T^{(-1)}_\nu(v)}
             \frac{\Gamma\left(\frac{\nu+2}{2}\right)}
             {\Gamma\left(\frac{\nu}{2}\right)\pi\nu\sqrt{1-\rho^2}}\\[10pt]
            & \left(
@@ -107,22 +107,19 @@ The $t$-copula has the form
         \right)^{-\frac{\nu+2}{2}} ds dt,
     \end{align*}
 where $\bm{T}_{2, \rho, \nu}$ denotes the cdf of
-bivariate $t$ distribution with scale parameter $\rho$ \natp{\em
-  [$\rho$ specifies the dependence, so why is it a scale parameter?
-  Are you sure?]} and degrees of freedom parameter $\nu$, 
-and where $T^{-1}_\nu(\cdot)$ is the quantile function of a standard
-$t$ distribution with degree of freedom $\nu$. 
-\natp{Contrary to the Gaussian copula, the $t$-copula has a non-zero
-  tail dependence coefficient, which makes it more appropriate for
-  dependence modelling in finance. The Gaussian copula arises as
-  $\nu\rightarrow\infty$.}
+bivariate $t$ distribution with dependence parameter $\rho$ and degrees of freedom parameter $\nu$,
+and where $T^{(-1)}_\nu(\cdot)$ is the quantile function of a standard
+$t$ distribution with degree of freedom $\nu$. \medskip
 
-\natp{\em [Please make sure to use equation numbers only if the
-  formulas are referenced.]}
+Contrary to the Gaussian copula, the $t$-copula has a non-zero
+tail dependence coefficient, which makes it more appropriate for
+dependence modelling in finance. The Gaussian copula arises as
+$\nu\rightarrow\infty$.
+
 The copula density is
 \begin{align*}
-    \bm{c}(u,v) &= \frac{\bm{t}_{2, \rho, \nu}\{T^{-1}_\nu(u), T^{-1}_\nu(v)\}}
-    {t_\nu\{T^{-1}_\nu(u)\}\cdot t_\nu\{T^{-1}_\nu(v)\}},
+    \bm{c}(u,v) &= \frac{\bm{t}_{2, \rho, \nu}\{T^{(-1)}_\nu(u), T^{(-1)}_\nu(v)\}}
+    {t_\nu\{T^{(-1)}_\nu(u)\}\cdot t_\nu\{T^{(-1)}_\nu(v)\}},
     \end{align*}
 where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}$
 and $t_\nu$ the density of standard $t$ distribution.\medskip
@@ -135,21 +132,19 @@ references therein]{demarta2005t}.
 \subsubsection{Archimedean Copulae}\label{sec:archimedean-copula}
 The family of Archimedean copulae forms a large class of copulae with
 many convenient features.
-\natp{Contrary to elliptical copulas, which are derived from
-  elliptical distributions. Archimedean copulas are determined via a
-  simple parametric form of the dependence structure. A promiment
-  feature is the ability to model asymmetric dependence structures. }
+Contrary to elliptical copulas, which are derived from
+elliptical distributions.
+Archimedean copulas are determined via a simple parametric form of the dependence structure.
+A prominent feature is the ability to model asymmetric dependence structures. \medskip
+
 In general, they take a form
 \begin{align*}
-    \bm{C}(u,v)= \psi^{-1}\{\psi(u), \psi(v)\},
+    \bm{C}(u,v)= \psi^{(-1)}\{\psi(u), \psi(v)\},
     \end{align*}
 where $\psi:[0,1] \rightarrow [0,\infty)$ is a continuous, strictly
 decreasing and convex function such that $\psi(1)=0$ for any
 permissible dependence parameter $\theta$. $\psi$ is also called
-generator. $\psi^{-1}$ is the inverse of the generator.
-
-\natp{\em [Remove the Frank copula? Or are we still using it? Then
-  start with Clayton and Gumbel.]}
+generator. $\psi^{(-1)}$ is the inverse of the generator. \medskip
 
 The Frank copula (B3 in \citet{joe1997multivariate}) is a radial symmetric copula and cannot produce any tail dependence.
 It takes the form
@@ -219,49 +214,22 @@ Kendall's $\tau$ of the Clayton copula is given by
 The mixture copula is a linear combination of copulae. 
 For a 2-dimensional random variable $\bm{X}=(X_1,X_2)^\top$,
 its distribution can be written as linear combination of $K$ copulae
-\begin{equation}
-    \p(X_1 \leq x_1, X_2 \leq x_2) = \sum_{k=1}^K p^{(k)} \cdot
-    \bm{C}^{(k)}\{F^{(k)}_{X_1}(x_1;\bm{\gamma}^{(k)}_1), 
-    F^{(k)}_{X_2}(x_2;\bm{\gamma}^{(k)}_2); \bm{\theta^{(k)}}\}
-    \label{eq:2}
-    \end{equation}
-where $p^{(k)} \in [0,1]$ is the weight of each component,
-$\bm{\gamma}^{(k)}$ \natp{are the parameters (was: is the parameter)}
-of the marginal distribution in the $k$-th component, 
-and $\bm{\theta^{(k)}}$ \natp{are the (was: is the)} dependence
-parameter\natp{s} of the copula of the $k$-th component. 
-The weights add up to one $\sum_{k=1}^K p^{(k)}=1$. \medskip
 
-We deploy a simplified version of the above representation by assuming
-the margins of $\bm{X}$ are not a mixture. \natp{\em [Is this a
-  precise formulation? The margins are not mixtures anyway, just
-  specified for each copula component. Perhaps write: ... by
-  specifying the same margins for each copula component.]}
-
-\natp{\em [Check notation of quantile function throughout. I think we
-  should use $F^{(-1)}$ instead of $F^{-1}$, as the latter can be
-  mistaken for $1/F$].}
-
-By Sklar's theorem one may write \natp{\em [Only for the special case
-  where the margins are fixed, right? Mention this.]}
 \begin{equation*} 
-    \bm{C}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{C}^{(k)}\{F^{-1}_{X_1}(u),
-    F^{-1}_{X_2}(v); \bm{\theta^{(k)}}\}.
+    \bm{C}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{C}^{(k)}\{F^{(-1)}_{X_1}(u),
+    F^{(-1)}_{X_2}(v); \bm{\theta^{(k)}}\}.
     \end{equation*}
 The copula density is again a linear combination of copula densities
-\begin{align}
-    \bm{c}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{c}^{(k)}\{F^{-1}_{X_1}(u),
-    F^{-1}_{X_2}(v); \bm{\theta^{(k)}}\}.
-    \end{align}
+\begin{align*}
+    \bm{c}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{c}^{(k)}\{F^{(-1)}_{X_1}(u),
+    F^{(-1)}_{X_2}(v); \bm{\theta^{(k)}}\}.
+    \end{align*}
 
 While Kendall's $\tau$ of mixture copula is not known in closed form,
 Spearman's $\rho$ is specified by the following statement. 
 
 \begin{proposition}
-  \natp{In the setting of \eqref{eq:2} \em[Please check if this is
-    correct! Also, please check if the copula must be continuous.]}, 
-  let $\rho_S^{(k)}$ be Spearman's $\rho$ of the $k$-th component
-  \natp{(delete: and $\sum_{k=1}^K p^{(k)}=1$ holds,)}. 
+  Let $\rho_S^{(k)}$ be Spearman's $\rho$ of the $k$-th component
   Spearman's $\rho$ of the mixture copula is given by 
   \begin{align}
         \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}
@@ -281,34 +249,8 @@ Spearman's $\rho$ is specified by the following statement.
         \end{align}
     \end{proof}
 
-\natp{\em [If the Fr'echet class is not used below, then I suggest to
-  remove the example, and replace it by one sentence wiht a reference,
-  i.e.: An example of a mixture copula is the Fr'echet class of
-  copulas, which are given by convex combinations of $\bm{W}$,
-  $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}.]} 
-    
-\begin{example}
-    The Fr{\'e}chet class can be seen as an example of mixture copula.
-    It is a convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}
-    \begin{align}
-        \bm{C}_{\alpha, \beta}(u,v)
-        = \alpha \bm{M}(u,v) +
-        (1-\alpha-\beta)\bm{\Pi}(u,v)
-        +\beta \bm{W}(u,v),
-        \end{align}
-    where $\alpha$ and $\beta$ are the dependence parameters, with $\alpha, \beta \geq 0$ and
-    $\alpha+\beta \leq 1$.
-    Its Kendall's $\tau$ and Spearman's $\rho$ are
-    \begin{align}
-        \tau_K(\alpha, \beta) = \frac{(\alpha - \beta)(\alpha+\beta+2)}{3}
-        \end{align}
-    , and
-    \begin{align}
-        \rho_S(\alpha, \beta) = \alpha - \beta
-        \end{align}
-    \end{example}\medskip
-%Example 2 Gumbel-Clayton mixture
-%Example 3 Hu 2006.
+An example of a mixture copula is the Fr'echet class of copulas, which are given by convex combinations of $\bm{W}$,
+  $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}. \medskip
 
 We use a mixture of Gaussian and independent copulas in our analysis,
 i.e., 
@@ -321,24 +263,8 @@ with corresponding density is
 \end{equation*}
 
 This mixture models the amount of ``random noise'' that appears in the
-dependence structure. In the hedging exercise, \natp{(delete: the structure of)} the
-``random noise'' \natp{adds an unhedgable component to the two-asset
-  portfolio, whose weight $(1-p)$ is calibrated from market data (was:
-  is not of our concern nor we can hedge the noise by a two-asset portfolio.)}
-\natp{(delete: However, the proportion of the ``random noise'' does
-  affect the distribution of $r^h$, so as the optimal hedging ratio
-  $h^\ast$.) \em[I think this can be deleted, but maybe not?]}
-One can consider the mixture copula as a handy tool for stress testing.
-Similar to this Gaussian mix Independent copula,
-$t$ copula is also a two parameter copula allow us to model the noise,
-but its interpretation of parameters is not as intuitive as that of a mixture.
-The mixing variable $p$ is the proportion of a manageable (hedgable) Gaussian copula,
-while the remaining proportion $1-p$ cannot be managed. \natp{\em [Not
-  sure I understand the comparison with the $t$ copula. I think you
-  might be thinking of the case where the scaling variable of the
-  $t$-copula is large and the correlation is moderate, which produces
-  some observations along the negative diagonal. However, this needs
-  to be carefully explained -- or left out.]}
+dependence structure. In the hedging exercise, the
+``random noise'' adds an unhedgable component to the two-asset portfolio, whose weight $(1-p)$ is calibrated from market data.
 
 \subsubsection{NIG factor copula}
 
@@ -439,8 +365,8 @@ uniforms (see Sklar's Theorem), giving (e.g.\
 \citep{krupskii2013factor}):
 \begin{equation*}
   C_{r^S, r^F}(F_{r^S}(r^S), F_{r^F}(r^F)) = \int_\mathbb{R}
-  F_{Z_1}(F_{X_1}^{-1} \circ F_{r^S}(r^S) -z) \cdot
-  F_{Z_2}(F_{X_2}^{-1} \circ F_{r^F}(r^F) -z) \cdot
+  F_{Z_1}(F_{X_1}^{(-1)} \circ F_{r^S}(r^S) -z) \cdot
+  F_{Z_2}(F_{X_2}^{(-1)} \circ F_{r^F}(r^F) -z) \cdot
   f_Z(z) dz
   \end{equation*}
 If the margins are continuous, then Spearman's rho of NIG factor
@@ -474,14 +400,7 @@ copula is
 %   \end{proof}
 
 
-\subsection{Other Copula}\label{subsec:other-copula}
-\natp{\em [Why is there a separate subsection instead of 3.1.4?]}
-
-\natp{\em [Also, the reason to include the Packett copula needs to be
-  made more clear; maybe with some evidence of what we see in the
-  data? Or with explaining that other copulas do not have the
-  property, and what it means that they do not have the property.]}
-
+\subsubsection{Plackett Copula}\label{subsec:other-copula}
 The Plackett copula has an expression
 \begin{align}
     \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}

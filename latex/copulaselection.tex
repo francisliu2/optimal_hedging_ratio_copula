@@ -1,16 +1,8 @@
 
 \subsubsection{Copula Selection}\label{subsec:copula-selection}
-
-%\natp{\em [I suggest: 3.3 Calibration and copula selection; 3.3.1 Method of moments; 3.3.2 Comparison with MLE; 3.3.3 Copula selection]}
-
-\natp{\em [Please avoid the word dependency. In probability theory, it is dependence.]}
-
 The dependence structure of price data changes across time, in which
-both the dependency parameters and the type of dependence,
-dependencies between cryptos and the BTCF are no exception. \natp{\em [?]}
-\natp{For this reason, we allow for a flexible choice of the
-  best-fitting copula, by re-calibrating periodically and
-  re-evaluating performance of the various copulas. (was: In this hedging exercise, we find a best fitting copula to model the dependency for every set of training data.)}
+both the dependency parameters and the type of dependence.
+For this reason, we allow for a flexible choice of the best-fitting copula, by re-calibrating periodically and re-evaluating performance of the various copulas.
 We select the best-fitting copula, characterised by the lowest {\em Akaike Information Criterion (AIC)},
 \begin{equation*}
  \text{AIC} = 2k- 2 \log(L),
@@ -20,13 +12,10 @@ parameteres and $L$ is the likelihood \citep{Akaike1973}.
 
 % they tend to suggest the same copula as the best fitting one.
 %Simulation studies has also been carried out to compare different copula selection methods, see \cite{}.
-\natp{Other model selection criteria, such as the (was: Notice that
-  there are other model selection procedure and criteria, e.g.) TIC}
-\natp{or } likelihood ratio test \natp{could be used instead.}
+Other model selection criteria, such as the TIC\citep{Takeuchi1976} or likelihood ratio test could be used instead.
 For a survey of model selection and inference, see \cite{anderson1998comparison}.
 Among various copula selection procedures, AIC is a popular choice for
-its applicability, \natp{see e.g.\ \cite{breymann2003dependence} (was:
-  for example \cite{breymann2003dependence} use the AIC to select best fitting copulae)}.
+its applicability, see e.g. \cite{breymann2003dependence}.
 In our case, the AICs are calculated only with dependency likelihood
 since the marginals are modelled via kernel density estimators.
 The selected copula will then be enter the calculation of the optimal

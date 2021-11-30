@@ -9,24 +9,18 @@
    Then, the
    pdf of the linear combination of marginals $Z = n_1 \cdot X_1 +
    ... +  n_d \cdot X_d $ is
-   \natp{\em [What does $\circ$ stand for? For functions, always use
-     $()$ instead of $\{\}$. Also state that $\mathbf z\in \R$. Use
-     the differential operator $\dd$ instead of $d$.]}
    \begin{align}
    f_Z(z) &= \left| n_1^{-1} \right| \int_{[0,1]^{d-1}} \bm{c}_{X_1,...,X_d}
-      \{F_{X_1} \circ S(z), u_2, ..., u_d \} \cdot
-      f_{X_1} \circ S(z) du_2 ... du_d \label{density} \\
-      S(z) &= \frac{1}{n_1}\cdot z - \frac{n_2}{n_1} \cdot F^{(-1)}_{X_2}(u_2) - ... -  \frac{n_d}{n_1} \cdot F^{(-1)}_{X_d}(u_d)
-      \end{align}
+      \left(F_{X_1} (S(z)), u_2, ..., u_d \right) \cdot
+      f_{X_1} (S(z)) \dd u_2 ... \dd u_d \label{density}
+   \end{align}
+   \begin{align*}
+      S(z) &= \frac{1}{n_1}\cdot z - \frac{n_2}{n_1} \cdot F^{(-1)}_{X_2}(u_2) - ... -  \frac{n_d}{n_1} \cdot F^{(-1)}_{X_d}(u_d).
+      \end{align*}
    \end{proposition}
 
 \begin{proof}
-  Rewrite $Z = n_1 \cdot X_1 + ... +  n_d \cdot X_d $ in matrix form
-  \natp{\em [Be more precise in the sentence above. The matrix product contains $Z$,
-    but it is not equal to $Z$. Instead of defining $\mathbf A$
-    implicitly, why not say, let $\mathbf A=...$]}
-
-  \natp{Let $Z= n_1 \cdot X_1 + ... +  n_d \cdot X_d $ and let
+  Let $Z= n_1 \cdot X_1 + ... +  n_d \cdot X_d $ and let
     $\mathbf A=\displaystyle \begin{bmatrix}
       n_1    & n_2   & \cdots & n_d     \\
       0      & 1     &  \cdots & 0       \\
@@ -40,55 +34,35 @@
       = \bm{A}
       \begin{bmatrix}
          X_1 \\ X_2 \\ \vdots \\ X_d
-      \end{bmatrix},
-    \end{equation*}
-    and by a transformation ...
-    }
-   \begin{align}
-      \begin{bmatrix}
-      Z \\ X_2 \\ \vdots \\ X_d
-      \end{bmatrix}
-      = \begin{bmatrix}
-      n_1    & n_2   & \cdots & n_d     \\
-      0      & 1     &  \cdots & 0       \\
-      \vdots &       & \ddots & \vdots \\
-      0      & \cdots &       & 1  \\
-      \end{bmatrix}
-      \begin{bmatrix}
-         X_1 \\ X_2 \\ \vdots \\ X_d
-      \end{bmatrix}
-      = \bm{A}
-      \begin{bmatrix}
-         X_1 \\ X_2 \\ \vdots \\ X_d
       \end{bmatrix}.
-      \end{align} 
+    \end{equation*}
 
-   By a transformation of the variables \natp{\em [Where are you taking
-     the transformation from, especially as $f$ may be non-linear.]}
-   \begin{align}
+   By transformation of the variables
+   \begin{align*}
       \bm{f}_{Z,X_2,...,X_d}(z, x_2, ...,x_d) &= \bm{f}_{X_1,...,X_d}\left( \bm{A}^{-1}
       \begin{bmatrix}
          z \\ x_2 \\ \vdots \\ x_d
       \end{bmatrix}
       \right)  \cdot |\det \bm{A}^{-1}| \\
-      &= \left| n_1^{-1} \right| \bm{f}_{X_1,...,X_d}\{S(z), x_2,...,x_d\}
-      \end{align} \medskip
+      &= \left| n_1^{-1} \right| \bm{f}_{X_1,...,X_d}\left(S(z), x_2,...,x_d\right).
+      \end{align*} \medskip
 
-   Let $u_i = F_{X_i}(x_i)$ and  use the relationship \natp{\em
-     [Provide a reference for this relationship.]}
-   \begin{align}
-      \bm{c}_{X_1,...,X_d}(u_1, ..., u_d)=\frac{\bm{f}_{X_1,...,X_d}(x_1,...,x_d)}{\prod_{i=1}^d f_{X_i}(x_i)},
-   \end{align}
-   we have
-   \begin{align}
-     & \bm{f}_{Z,X_2,...,X_d}(z, x_2, ...,x_d) = \\
-      & \left| n_1^{-1} \right| \cdot
-      \bm{c}_{X_1,...,X_d}\{F_{X_1} \circ S(z), u_2, ...,  u_d\}  \cdot
+   Let $u_i = F_{X_i}(x_i)$ and by chain rule we have
+   \begin{align*}
+       \bm{f}_{X_1,...,X_d}(x_1,...,x_d) &= \frac{\partial^d F_{X_1,...,X_d}(x_1, ..., x_d)}{\partial x_1 ... \partial x_d}\\
+                                         &= \bm{c}_{X_1,...,X_d}(u_1, ..., u_d) \cdot \prod_{i=1}^d f_{X_i}(x_i).
+   \end{align*}
+
+    Therefore,
+   \begin{align*}
+      \bm{f}_{Z,X_2,...,X_d}&(z, x_2, ...,x_d) = \\
+       \left| n_1^{-1} \right| &\cdot
+      \bm{c}_{X_1,...,X_d}\left(F_{X_1}( S(z)), u_2, ...,  u_d\right)  \cdot
       f_{X_1} \{ S(z) \} \cdot
-      \prod_{i=2}^d f_{X_i}(x_i)
-      \end{align}
+      \prod_{i=2}^d f_{X_i}(x_i).
+      \end{align*}
 
-   The claim (\ref{density}) is obtained by integrating out $x_2, ... x_d$ by substituting $dx_i = \frac{1}{f_{X_i}(x_i)}du_i$.
+   The claim (\ref{density}) is obtained by integrating out $x_2, ... x_d$ by substituting $\dd x_i = \frac{1}{f_{X_i}(x_i)} \dd u_i$.
    \end{proof}
 
 \clearpage

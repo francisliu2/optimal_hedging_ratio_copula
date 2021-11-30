@@ -76,15 +76,28 @@ The works aimed to derive a measure of relationship of variables,
 which is invariant under change of scale. 
 See also \citet{hoeffding2012collected} for English translations of
 the original papers written in German. 
-The following Lemma is not hard to prove. \natp{\em [Give a source of
-  the Lemma. Is it in the papers above? Or give a proof.]}
+The following Lemma is not hard to prove.
 
 \begin{lemma}
   \begin{align}
-  C_{X, hY}\{F_X(s),F_{hY}(t)\} = C_{X, Y}\{F_X(s),F_{Y}(t/h)\}.
+  C_{X, hY}\left(F_X(s),F_{hY}(t)\right) = C_{X, Y}\{F_X(s),F_{Y}(t/h)\}.
     \end{align}
   \end{lemma}
 
+\begin{proof}
+  Since copulae are invariant under strictly monotone increasing function \cite[Theorem 3 (i)]{schweizer1981nonparametric},
+  \begin{align*}
+    C_{X, hY}\left(F_X(s),F_{hY}(t)\right) = C_{X, Y}\left(F_X(s),F_{hY}(t)\right).
+    \end{align*}
+
+  We rewrite second argument of the copula
+  \begin{align*}
+    F_{hY}(t) &= \mathbb{P}(hY \leq t)\\
+              &= \mathbb{P}(Y \leq t/h)\\
+              &= F_Y(t/h),
+    \end{align*}
+  and finish the proof.
+  \end{proof}
 
 %The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ . \medskip
 Leveraging these two features of copulae, \citet{barbi2014copula}

@@ -1,7 +1,7 @@
 %! Author = francis
 %! Date = 30.10.20
 
-\subsection{Estimation}\label{sec:estimation}
+\subsection{Calibration of copulae}\label{sec:estimation}
 
 \natp{\em [Add a brief intro of which calibration methods are used and
   why. Also check if the title of the section should be
@@ -100,20 +100,19 @@ Instead of searching the $\bm{\theta}$ in a high dimensional space, \citet{joe19
 search for $\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}$ that maximize $L_1(\bm{\delta}_1), ..., L_d(\bm{\delta}_d)$,
 then search for $\hat{\bm{\gamma}}$ that maximize $L_C(\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}, \bm{\gamma})$.
 
-\natp{\em [I suggest to delete the next part, as the regularity
-  conditions are unclear, and it is just a first-order condition,
-  which is a-priori not clear to hold in a two-step procedure.]}
-That is, under regularity conditions, $(\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}, \hat{\bm{\gamma}})$ is the solution of
-\begin{align}
-    \left( \frac{\partial L_1}{\partial \bm{\delta}_1}, ..., \frac{\partial L_d}{\partial \bm{\delta}_d},
-    \frac{\partial L_C}{\partial \bm{\gamma}}\right) = \bm{0}.
-    \end{align}
+%\natp{\em [I suggest to delete the next part, as the regularity
+%  conditions are unclear, and it is just a first-order condition,
+%  which is a-priori not clear to hold in a two-step procedure.]}
+%That is, under regularity conditions, $(\hat{\bm{\delta}_1},..., \hat{\bm{\delta}_d}, \hat{\bm{\gamma}})$ is the solution of
+%\begin{align}
+%    \left( \frac{\partial L_1}{\partial \bm{\delta}_1}, ..., \frac{\partial L_d}{\partial \bm{\delta}_d},
+%    \frac{\partial L_C}{\partial \bm{\gamma}}\right) = \bm{0}.
+%    \end{align}
 
-However, the IFM requires making assumption on the distribution of the
-margins.\natp{\em [delete until here.]}
+%However, the IFM requires making assumption on the distribution of the
+%margins.\natp{\em [delete until here.]}
 
-\natp{We follow \citet{genest1995semiparametric} who suggest (was:
-\citet{genest1995semiparametric} suggests)} to replace the estimation of marginals parameters estimation by non-parameteric estimation.
+We follow \citet{genest1995semiparametric} who suggest to replace the estimation of marginals parameters estimation by non-parameteric estimation.
 Given non-parametric estimator $\hat{F}_i$ of the margins $F_i$, the estimator of the dependence parameters $\bm{\gamma}$ is
 \begin{equation*}
     \hat{\bm{\gamma}} = \argmax_{\bm{\gamma}} \sum_{i=1}^n \bm{c}\{ \hat{F}_{X_1}(x_{i,1}), ..., \hat{F}_{X_d}(x_{i,d});\bm{\gamma}\}.
@@ -130,25 +129,20 @@ The question though which procedure is more suitable for hedging.
   the quantile dependence estimates of Bitcoin and CME future, \textcolor{darkblue}{blue dotted lines} are the estimates' 90\% confidence interval.
   \textcolor{orange}{Orange dotted line} is the copula implied quantile dependence by MM estimation.
   \textcolor{lightblue}{Light blue dotted line} is the copula implied quantile dependence by MLE estimation.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+%  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
+  }
 \label{fig:quantile dependence1}
 \end{figure}
 
 Figure~\ref{fig:quantile dependence1} shows the empirical quantile dependence of Bitcoin and CME future and the copula implied
 quantile dependence of the MLE and MM calibration procedures.
 Although the MLE is a better fit to a range of quantile dependence in the middle, it fails to address the situation in the tails.
-Our data empirically has weaker quantile dependence in the ends
-\natp{\em [weaker than what?]}, and
-those points generate PnL to the hedged portfolio. \natp{\em [If you
-  absolutetly want to address is this way, then it's better to write
-  ``we find that...''.]}
-MM is preferred visually as it produces a better fit to the dependence
-structure in the two extremes. \natp{\em [Visually preferred is very
-  subjective; suggest to delete. You could argue that the MM method is
-  targeted at copula properties, and allow to focus on tail behaviour,
-  contrary to MLE.]}
+We find that our data empirically has low quantile dependence in the lower ends ($q<10\%$).
+We argue that MM is preferred as it produces a better fit to the dependence
+structure in the tail behaviour, contrary to MLE. \medskip
+
 Therefore, we deploy the method of moments throughout the
-analysis. \natp{\em [Then cut MLE part above short.]}
+analysis.
 We choose the $5^\text{th}$-, $10^\text{th}$-, $90^\text{th}$-, $95^\text{th}$-quantile, and Spearman's $\rho$ as the moments.
 
 

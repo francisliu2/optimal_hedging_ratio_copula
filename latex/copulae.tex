@@ -1,17 +1,16 @@
 
 \subsection{Copulae}\label{subsec:copulae}
-As seen in the last section, the risk measures are all
-functionals of the joint distribution of $R^S$ and $R^F$.
-\natp{To capture different aspects of the dependence structure, we
+To capture different aspects of the dependence structure, we
   therefore consider a number of different copulas, which are layed
-  out in details below: (was: 
-The following copulae are considered:)} Gaussian-, $t$-, Frank-,
-Gumbel-, Clayton-, Plackett-, mixture, and factor copula. 
+  out in details below: \medskip
+Gaussian-, $t$-, Frank-,
+Gumbel-, Clayton-,mixture, NIG factor, and Plackett-copula. \medskip
+
 As this hedging exercise concerns only portfolios with two assets, we
 focus on the bivariate version of copulae and some important
 features of a copula, including Kendall's $\tau_K$ and Spearman's $\rho_S$. \medskip
 
-Kendall's $\tau$ and Spearman's $\rho$ are measure of association in terms of concordance, see \cite{kruskal1958ordinal}
+Kendall's $\tau$ and Spearman's $\rho$ are measures of association in terms of concordance, see \cite{kruskal1958ordinal}
 Let $(x_i, y_i)$ and $(x_j, y_j)$ denote two observations from a vector $(X, Y)$ of continuous random variables.
 A pair of observations is concordant if $x_i<x_j$ and $y_i < y_j$, discordant if
 $x_i>x_j$ and $y_i < y_j$ or if $x_i<x_j$ and $y_i>y_j$.
@@ -24,9 +23,9 @@ Kendall's tau is defined as follows \citep{Nelsen1999}
      &= \frac{c-d}{\binom{n}{2}};
 \end{align*}
 
-Let $F$ and $G$ be cdfs of $X$ and $Y$ respectively, Spearman's $\rho$ is
+Let $F_X$ and $F_Y$ be cdfs of $X$ and $Y$ respectively, Spearman's $\rho$ is
 \begin{align*}
-\rho = 12\E (UV)-3;
+\rho = 12\E (F_X(X)F_Y(Y))-3;
 \end{align*}
 
 Upper tail dependence is defined as

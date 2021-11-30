@@ -1,34 +1,26 @@
 %! Author = francis
 %! Date = 30.10.20
 
-\subsection{Calibration of copulae}\label{sec:estimation}
+\subsection{Calibration and selection of copulae}\label{sec:estimation}
+We introduce the method to calibrate copulae to our data in this section.
+In general, there are two types of calibration procedures to calibrate copulae:
+maximum likelihood (MLE) and method of moments (MM).
+We decide to deploy the latter since it calibrates according to the moments we desired. \medskip
 
-\natp{\em [Add a brief intro of which calibration methods are used and
-  why. Also check if the title of the section should be
-  ``Calibration'' instead of ``Estimation''.]}
+In the following subsection, we present the configuration of the method of moments procedures we use.
+In the subsection after, we argue that MM is more suitable to this work by comparing MM with MLE.
 
-\subsubsection{Simulated Method of Moments}
+\subsubsection{Method of Moments}
 \label{subsec:simulated-method-of-moments}
 
-\natp{Do we really use {\em simulated\/} method of moments throughout?
-  I suggest to introduce this as {\em method of moments}.}
+We trace back the usage of MM to calibrate copulae to \citet{Genest1987, genest1993statistical}.
+The moments mainly refer to Kendall's $\tau$ or Spearman's $\rho$.
+We extend MM to quantile dependence measures denoted by $\lambda_q$ for quantile level $q$.
 
-\natp{To calibrate the various copulas, we use the {\em method of
-    moments\/} calibration method (was: This method is)} suggested by
-\citep{oh2013simulated}. \natp{It is targeted at copula-invariant
-  properties such as Spearman's $\rho$, Kendall's $\tau$ and so-called
-  {\em quantile dependence\/} measures, denoted by $\lambda_q$ for
-  quantile level $q$. (delete: 
-In our setting, rank correlation e.g. Spearman's $\rho$ or Kendall's $\tau$,
-and quantile dependence measures at different levels $\lambda_q$
-are calibrated against their empirical counterparts.)}
-
-Spearman's rho, Kendall's tau, and quantile dependence of \natp{ the
-  (delete: a pair $(X,Y)$ with)} copula $C$ are defined as \natp{\em
-  [Suggest to use $\E$ for expectation.]}
+Spearman's $\rho$, Kendall's $\tau$, and quantile dependence of the copula $C$ are defined as
 \begin{align}
   \rho_S &= 12 \int\int_{I^2} C_{\bm{\theta}}(u,v)\, \dd u\, \dd v-3\label{eq:rho_S}\\
-  \tau_K &= 4\operatorname{\mathsf{E}}[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
+  \tau_K &= 4\E[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
   \lambda_q &=
   \begin{cases}
     \p(F_X(X)\leq q| F_Y(Y)\leq q) = \displaystyle \frac{C_{\bm{\theta}}(q,q)}{q},
@@ -54,8 +46,7 @@ The empirical counterparts are
 \end{align*}
 where $\displaystyle \hat{F}(x) =
   \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
-$\displaystyle \hat{C}(u,v) = \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$.
-
+$\displaystyle \hat{C}(u,v) = \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$. \medskip
 
 Denote by $\bm{m}(\bm{\theta})$ the $m$-dimensional vector of
 dependence measures according the dependence parameters
@@ -66,18 +57,18 @@ The difference between dependence measures and their counterpart is denoted by
     \bm{g}(\bm{\theta}) = \hat{\bm{m}} - \bm{m}(\bm{\theta}).
 \end{align*}
 
-The SMM \natp{\em [MM? Also introduce the abbreviation]} estimator is
+The MM estimator is
 \begin{align*}
     \hat{\bm{\theta}} = \argmin_{\bm{\theta}\in \bm{\Theta}} \bm{g}(\bm{\theta})^\top
     \hat{\bm{W}}
      \bm{g}(\bm{\theta}),
 \end{align*}
-where $\hat{W}$ is some positive definite weight matrix. Here, we use
+where $\hat{W}$ is some positive definite weight matrix.
+In this work, we use
 $\bm{m}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \lambda_{0.1}, 
 \lambda_{0.9}, \lambda_{0.95})^\top$
-for calibration of \natp{\em [update this:]} Bitcoin price and CME
-Bitcoin future. \natp{\em [How is $\hat W$ defined in our setting?
-  Why the hat?]}
+for calibration.
+$\hat{W}$ is set to identity matrix.
 
 \subsubsection{Comparison of method of moments and maximum likelihood}
 \label{subsec:maximum-likelihood-estimation}

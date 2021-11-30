@@ -1,11 +1,12 @@
-\subsection{Risk Measures}\label{subsec:spectral-risk-measures}
-
+\subsection{Risk measures}\label{subsec:spectral-risk-measures}
 The optimal hedge ratio is determined for the following variety of risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
+A summary of risk measures being used in portfolio selection problem
+can be found in \citet{hardle2008applied}. \medskip
+The risk measures here serve as risk minimization objectives, i.e. loss functions for searching the optimal hedge ratio. \medskip
 %They are used in many literature about hedging, e.g. ;
 %The risk measures are also used by regulatory bodies,
 %for example Basel III ....
-A summary of risk measures being used in portfolio selection problem
-can be found in \citet{hardle2008applied}.
+
 The risk measures are defined as follows.
 Let $Z$ be a random
 variable with distribution function $F_Z$.
@@ -43,10 +44,7 @@ The ES' $\phi(p)$ gives all tail quantiles the same weight of
 $\displaystyle\frac{1}{1-\alpha}$ and non-tail quantiles zero weight. 
 The ERM assumes investors' risk preference are in the form of an
 exponential utility function $U(x)=1-e^{kx}$, so its corresponding
-risk spectrum is defined as \natp{\em [Please double-check. All I
-  could find was that the ERM is in the spirit of investors' risk
-  preferences not that it matches investors preferences. Please also
-  look in the notes.]}
+risk spectrum is defined as
 \begin{equation}
   \phi(p) =\frac{k e^{-k(1-p)}}{1-e^{-k}} , \label{eq:phi}
 \end{equation}
@@ -60,9 +58,6 @@ of investor's utility function on an risky asset,
 for $x$ in all possible outcomes.
 In case of the exponential utility, $k$ is the the constant absolute risk aversion (CARA).
 
-\natp{\em [Also note that there is a one-to-one correspondence
-  between coherent risk measures and ERM's with admissible risk
-  spectra if I remember well. This is one of the main factors to use ERM's.]}
 
 %Spectral risk measures can also be written as
 %\begin{align}

@@ -19,13 +19,13 @@ For a bivariate random variable of $n$ observations, there are $\binom{n}{2}$ di
 Let $c$ denote the number of concordant pairs, and $d$ the number of discordant pairs,
 Kendall's tau is defined as follows \citep{Nelsen1999}
 \begin{align*}
-\tau &= \frac{c-d}{c+d} \\[10pt]
+\tau_K &\overset{\mathrm{def}}{=} \frac{c-d}{c+d} \\[10pt]
      &= \frac{c-d}{\binom{n}{2}};
 \end{align*}
 
 Let $F_X$ and $F_Y$ be cdfs of $X$ and $Y$ respectively, Spearman's $\rho$ is
 \begin{align*}
-\rho = 12\E (F_X(X)F_Y(Y))-3;
+\rho_S \overset{\mathrm{def}}{=} 12\E (F_X(X)F_Y(Y))-3;
 \end{align*}
 
 Upper tail dependence is defined as
@@ -49,7 +49,7 @@ For further details, we refer readers to \citet{joe1997multivariate}
 and \citet{Nelsen1999}; see also \citet{hardle2010copulis}. \medskip
 
 The symmetry property of copulae is also important for modelling financial data.
-In particular, we are interested in the radially symmetric among other symmetry definitions, see \ref{Nelsen1999}.
+In particular, we are interested in the radially symmetric among other symmetry definitions, see \citet{Nelsen1999}.
 
 \begin{defn}
     Let $(U_1, ..., U_d)$ be random variables.
@@ -69,8 +69,8 @@ To illustrate the difference among copulae, we plot random samples drawn from co
 
 \subsubsection{Gaussian and $t$ Copulae}\label{sec:ellpitical-copulae}
 
-Gaussian and $t$ copulae are dervived from Gaussian and $t$ \textbf{distributions}
-Since Gaussian and $t$ distributions are elliptical distributions, Gaussian and $t$ copulae are called elliptical copulae.
+Gaussian and $t$ copulae are dervived from Gaussian and $t$ distributions.
+Since Gaussian and $t$ distributions are elliptical distributions, Gaussian and $t$ copulae are called elliptical copulae. \medskip
 
 Gaussian copula (bivariate) is defined as
 \begin{align}

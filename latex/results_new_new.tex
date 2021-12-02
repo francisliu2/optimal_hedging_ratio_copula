@@ -180,6 +180,9 @@ structure of cryptos and BTCF.
 %    \caption{Summary statistics of BTC-BTCF hedge portfolios out-of-sample daily returns under different risk minimisation objectives.}
 %\label{tab:BTCrh}
 %\end{table}
+\begin{landscape}
+  \include{_tables/bigTable}
+  \end{landscape}
 Table~\ref{tab:bigTable} presents the first two moments, maximum drawdown (MD) and the date of MD of the hedge portfolios.
 We observe that the statistics of the portfolios with different objectives are similar to each other.
 We provide the detail in table~\ref{tab:var_rh} to table~\ref{tab:ERM_rh} in the appendix. \medskip
@@ -197,11 +200,9 @@ We provide the detail in table~\ref{tab:var_rh} to table~\ref{tab:ERM_rh} in the
 %  forth in order to compare (or decide to just ignore the tables).]}
 %This is because the optimal hedge ratios of different risk minimization objectives fall into a small range. \medskip
 
-On the other hand, the statistics vary across spots.
 Unsurprisingly, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100, are well hedged by the BTCF regardless of risk minimization objective.
 Contrarily, BTC-not-involved spots' portfolios are less promising.
-Th hedged portfolio returns are as volatile as the spots. \natp{\em [Where do we see this? I suggest to add a row
-  ``unhedged'', this would be very informative.]}
+Those hedge portfolios' returns are as volatile as the assets, see for example ADA and XRP.
 We will further discuss the effectiveness of hedge in the next section. %\ref{sec: HE results}.
 
 \subsection{Hedging Effectiveness Results}\label{sec: HE results}
@@ -219,9 +220,8 @@ a measure of the percentage reduction of portfolio risk attribute, in our case t
 to hedged portfolio risk attribute $\rho_h$.
 A higher HE indicates a higher hedging effectiveness and larger risk reduction. \medskip
 
-The HE above is a generalisation how Ederington measure of hedging performance \citep{ederington1979hedging}.
-In addition to variance, we include the risk measures that serve as loss function while searching for OHR: Expected
-Shortfall 95\% and 99\%, Value-at-Risk 95\% and 99\% and ERM.
+The HE above is a generalisation of how Ederington measure of hedging performance \citep{ederington1979hedging}.
+In addition to variance, we include the risk measures which act as loss function while searching for OHR: ES 95\% and 99\%, VaR 95\% and 99\% and ERM.
 
 The formulation above gives a point estimate per testing data.
 However, each test data contain only 5 data points, the length is not sufficient to draw meaningful risk measure results.
@@ -229,7 +229,7 @@ To address this issue, we apply bootstrapping method on the concatenated test da
 
 The bootstrap is known to be a powerful nonparametric tool for approximating the sampling distributions of complicated statistics~\citep{efron1994introduction, davison1997bootstrap}.
 We apply stationary block bootstrapping to the time series introduced by \cite{Politis1994} in our analysis in order to preserve the temporal structure of the data while sampling.
-The stationary bootstrapping procedure is as follow.
+The stationary bootstrapping procedure is as follows.
 Assume a time series with $N$ observations $\{X_t\}_{t \in [1,N]}$ is a strong stationary, weakly dependence time series of interest,
 we form blocks of samples $B = \{X_i, ..., X_{i+j-1}\}$.
 Index $i$ is a random variable uniformly distributed over
@@ -285,9 +285,6 @@ The HEs of BTCF to other cryptos and indices are substantially lower than to the
   might be useful if using more than one hedge instrument, e.g.\ by
   including options as hedge instruments.]}
 
-\begin{landscape}
-  \include{_tables/bigTable}
-  \end{landscape}
 
 
 %%% Local Variables:

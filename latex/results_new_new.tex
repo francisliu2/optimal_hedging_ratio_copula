@@ -30,7 +30,7 @@ To do so, we inspect the hedge performance of copulas by
 the mean square error and lower semi-variance.
 The mean square error
 is the distance between a perfect hedge and the hedged portfolio
-returns $\operatorname{MSE}= \mbox{\sf E} (R^2)$.
+returns $\operatorname{MSE}= \E(R^2)$.
 The lower semi-variance is defined as 
 $\operatorname{LSV}=\E \left( (R-\E(R))^2 1(R\leq \E(R)) \right)$.
 All results presentedd here are out-of-sample results obtained without
@@ -175,33 +175,26 @@ structure of cryptos and BTCF.
 
 
 \subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
-\begin{table}[t] \centering
-    \include{_tables/BTC_rh}
-    \caption{Summary statistics of BTC-BTCF hedge portfolios out-of-sample daily returns under different risk minimisation objectives.}
-\label{tab:BTCrh}
-\end{table}
-Table~\ref{tab:BTCrh} presents the summary statistics, maximum drawdown (MD) and the date of MD of the BTC-BTCF hedge portfolios.
-The index column indicates the risk minimization objectives.
+%\begin{table}[t] \centering
+%    \include{_tables/BTC_rh}
+%    \caption{Summary statistics of BTC-BTCF hedge portfolios out-of-sample daily returns under different risk minimisation objectives.}
+%\label{tab:BTCrh}
+%\end{table}
+Table~\ref{tab:bigTable} presents the first two moments, maximum drawdown (MD) and the date of MD of the hedge portfolios.
 We observe that the statistics of the portfolios with different objectives are similar to each other.
-The means of the returns are close to zero;
-Standard deviations ranges from 0.32\% to 0.35\%;
-Skewnesses are slightly negative (skew to the right);
-Kurtosises are slightly larger than 3;
-The MDs are close to zero and the date of MDs are 2020-11-30.
+We provide the detail in table~\ref{tab:var_rh} to table~\ref{tab:ERM_rh} in the appendix. \medskip
 
-For the other spots \natp{\em [Do you mean cryptocurrencies? Or all
-  hedges? Then maybe use the word ``instruments to be hedged'' or ``instruments''.]}, tables~\ref{tab:var_rh} to table~\ref{tab:ERM_rh} summarise the statistics
-of daily returns of hedged portfolios.  \natp{\em [Table and Figure if
-  you reference them directly.]} \natp{\em [Why are the tables
-  oversized? Bring them down to normal size.]} \natp{\em [Also, think
-  carefully what VaR 5\% means. If you are taking the 5\% quantile of
-  P\&L data, then it's VaR 95\%.]}
-The tables look repeating so we place them in the appendix. \natp{\em
-  [I suggest to throw out skewness and kurtosis and place everything in one
-  table, landscape. Otherwise, the reader will need to scroll back and
-  forth in order to compare (or decide to just ignore the tables).]}
-For each hedge portfolios,
-the first four moments as well as the maximum drawdown (MD) and the date of MD are very similar across different risk minimization objectives. \natp{\em [delete this sentence, it is obvious.]}
+%For the other spots \natp{\em [Do you mean cryptocurrencies? Or all
+%  hedges? Then maybe use the word ``instruments to be hedged'' or ``instruments''.]}, tables~\ref{tab:var_rh} to table~\ref{tab:ERM_rh} summarise the statistics
+%of daily returns of hedged portfolios.  \natp{\em [Table and Figure if
+%  you reference them directly.]} \natp{\em [Why are the tables
+%  oversized? Bring them down to normal size.]} \natp{\em [Also, think
+%  carefully what VaR 5\% means. If you are taking the 5\% quantile of
+%  P\&L data, then it's VaR 95\%.]}
+%The tables look repeating so we place them in the appendix. \natp{\em
+%  [I suggest to throw out skewness and kurtosis and place everything in one
+%  table, landscape. Otherwise, the reader will need to scroll back and
+%  forth in order to compare (or decide to just ignore the tables).]}
 %This is because the optimal hedge ratios of different risk minimization objectives fall into a small range. \medskip
 
 On the other hand, the statistics vary across spots.
@@ -226,60 +219,43 @@ a measure of the percentage reduction of portfolio risk attribute, in our case t
 to hedged portfolio risk attribute $\rho_h$.
 A higher HE indicates a higher hedging effectiveness and larger risk reduction. \medskip
 
-The HE above is a generalisation of Ederington measure  \natp{\em [What is the Ederington measure? This is not a
-  known name, no reader will know what you mean. Provide a
-  reference to the Ederington paper, but the measure itself could
-  be compared to $R^2$.]} of hedging performance, where we,
-in addition to variance, include other risk measures: Expected
-Shortfall 5\% and 1\% (ES5 and ES1), Value-at-Risk 5\% and 1\% (VaR5
-and VaR1), and ERM. \natp{\em [Again: ES95\%, ES99\%, etc.]}
-In particular, ES5 is recommended by the Basel Committee on Banking Supervision (BCBS) to replace VaR as a quantitative risk metrics system.
-The proposed reform aimed at enhancing the risk metric system's ability to capture tail risk. \natp{\em [Delete last two
-  sentences. The change is already implemented, but the statement is
-  out of place here. Place it where the risk measures are introduced.]} 
-%Discussions of the issue can be found in literatures.
-%
+The HE above is a generalisation how Ederington measure of hedging performance \citep{ederington1979hedging}.
+In addition to variance, we include the risk measures that serve as loss function while searching for OHR: Expected
+Shortfall 95\% and 99\%, Value-at-Risk 95\% and 99\% and ERM.
 
-\natp{\em [What's going on here? Is this for the calculation of the
-  HE? So far, the reader thinks that HE will be given as a number, but
-  has no clue that you want to show HE distributions. Explain this
-  first. ]}
-We obtain a time series of out-of-sample $r^h$ of each hedging pair and each risk reduction objective by concatenating the out-of-sample results.
-Then, we apply stationary block bootstrapping (SB) to the time series introduced by \cite{Politis1994} in our analysis in order to preserve the temporal structure of the data while sampling.
-The SB procedure is as follow. \natp{\em [SB is never used again, so
-  get rid of abbreviation.]}
+The formulation above gives a point estimate per testing data.
+However, each test data contain only 5 data points, the length is not sufficient to draw meaningful risk measure results.
+To address this issue, we apply bootstrapping method on the concatenated test data as described in the beginning of the result section. \medskip
+
+The bootstrap is known to be a powerful nonparametric tool for approximating the sampling distributions of complicated statistics~\citep{efron1994introduction, davison1997bootstrap}.
+We apply stationary block bootstrapping to the time series introduced by \cite{Politis1994} in our analysis in order to preserve the temporal structure of the data while sampling.
+The stationary bootstrapping procedure is as follow.
 Assume a time series with $N$ observations $\{X_t\}_{t \in [1,N]}$ is a strong stationary, weakly dependence time series of interest,
 we form blocks of samples $B = \{X_i, ..., X_{i+j-1}\}$.
 Index $i$ is a random variable uniformly distributed over
-$[1,2,...,N]$ and $j$ is geometric distributed random variable with
-parameter . \natp{\em [What parameter?]} 
+$[1,2,...,N]$ and $j$ is geometric distributed random variable with parameter $p$.
 The block index $i$ and block length $j$ are independent.
 For any index $k$ which is greater than $N$, the sample $X_k$ is defined to be $X_{k(\mod N)}$.
 For each block, we calculate the hedging effectiveness with different risk measures mentioned above.
-We choose $p=0.005$, implying the expected block length is 200.
+We choose $p=1/250$, implying the average block length is 250.
+This average block length is chosen to reasonably calculate ES and VaR.
 100 blocks are drawn for each risk minimising objective and
-spot. \natp{\em [You need to go over this again. There are many
-  grammatical errors in there that need to be fixed. Also explain that
-  expected block length is 200 so that ES99\% and VaR99\% can be
-  calculated. Is the hedge ratio calculated for each sample drawn,
-  etc.? ]}
+spot.
+%\natp{\em [You need to go over this again. There are many
+%  grammatical errors in there that need to be fixed. Also explain that
+%  expected block length is 200 so that ES99\% and VaR99\% can be
+%  calculated. Is the hedge ratio calculated for each sample drawn,
+%  etc.? ]}
 
+From figure \ref{fig:HEboxplot}, we report the bootstrapped HE samples from the concatenated out-of-sample hedge portfolio return.
+As expected, the BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged by the BTCF.
+The HEs of BTCF to other cryptos and indices are substantially lower than to the BTC involving spots, but the consistency the performances across different risk reduction objectives and HE evaluation remains.
+%\natp{\em[It does not
+%  make sense to compare across different risk measures, so I suggest
+%  to delete the last statement. }
 
-From figure \ref{fig:HEboxplot}, we report, as expected, the BTC
-involving spots, the BTC, CRIX, BITX and BITW100, are well hedged by
-the BTCF. \natp{\em [fix.]}
-The performances are consistent across different risk reduction objectives and different HE evaluation.
-The median HE to BTC generated by various risk reduction objectives is ranging from 89.45\% to 99.31\%, median HE to CRIX is ranging from 81.13\% to 95.22\%,
-median HE to BITX is ranging from 79.06\% to 94.84\%, median HE to BITW100 Is ranging from 71.07\% to 92.98\%.  \natp{\em[It does not
-  make sense to compare across different risk measures, so I suggest
-  to delete the last statement. How can HE be negative??? Especially
-  for variance this is impossible.]}
-
-The HE of BTCF to other cryptos and indices are substantially lower than to the BTC involving spots, but the consistency the performances across different risk reduction objectives and HE evaluation remains.
-The median HE to BITW20 generated by various risk reduction objectives is ranging from 24.67\% to 47.02\%, median HE to BITW70 is ranging from 23.61\% to 49.30\%,
-median HE to ADA is ranging from 9.01\% to 29.30\%, median HE to ETH Is ranging from 30.07\% to 36.18\%, median HE to LTC Is ranging from 37.74\% to 51.30\%,
-median HE to XRP Is ranging from 0.46\% to 30.89\%. \natp{\em [Same as
-  before.]}
+%\natp{[How can HE be negative??? Especially
+%  for variance this is impossible.]}
 
 \natp{\em [We need some proper conclusions here.
   \begin{itemize}

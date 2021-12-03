@@ -88,6 +88,12 @@ We will discuss this in the following section.
 \subsection{Copula Selection Results}\label{subsec:-copula-results}
 \begin{table}[t]
 \include{_tables/copulaeselectiontable}
+ \caption{Copula selection results (shortened).
+        The values are the counts of a copula chosen by the AIC procedure during the out-of-sample period.
+        Each count represents five trading days since the each testing data consists of five trading days.
+        The table shows only the frequently chosen copula, i.e. $t$, Plackett, Gaussian Mix Independent (GMI), rotated Gumbel (rotGumbel), and
+        Normal Inverse Gaussian factor copula (NIG).
+        }
     \label{tab:copulasection}
 \end{table}
 Next, we inspect the copula selection result by the AIC procedure described in section~\ref{subsec:copula-selection}.
@@ -95,11 +101,11 @@ Although the copula selection is only an intermediate step to obtain the OHRs,
 the result of this step can help us better understand the dependence
 feature between BTCF and the assets we study in this work.
 This gives us valuable information to model the assets in the future.
-Decisions of the AIC procedure are summarised in Table \ref{tab:copulasection}.
+Decisions of the AIC procedure are summarised in Table \ref{tab:copulasection}. \medskip
 
 Overall, the $t$-copula, rotated Gumbel (rotGumbel), and the NIG
 factor copula are the most frequently chosen copulae by the AIC
-procedure.
+procedure. \medskip
 
 The $t$-copula is frequently chosen to model the dependence between
 the BTC and BTC-involving-indices, CRIX, BITX, BITW100, and the BTC
@@ -108,14 +114,12 @@ BTC and BTC-involving-indices exhibit strong (upper and lower) tail
 dependence with BTCF.  We interpret tail dependence as a strong
 tendency for one asset to be extreme when another is extreme and
 vice versa \citep{McNeil2015}.
-In fact, the $t$ copula has been suggested in various empirical
+In fact, the $t$ copula has been recommended in various empirical
 studies to model financial data, such as~\cite{zeevi2002beyond} and~
 \cite{breymann2003dependence}.
 Those studies suggest that the $t$-copula is a better model compared
 to the Gaussian copula as financial data typically exhibit heavy tails
-and tail dependence. \textcolor{darkblue}{(because the thick and left
-  skew  properties of financial data tail distribution are documented. )}
-\medskip
+and tail dependence. \medskip
 
 On the other hand, the radial symmetry of the $t$-copula appears to be
 a poor choice to model the remaining hedging pairs.
@@ -129,7 +133,7 @@ which suggests the price of a futures is a function of the underlying
 price \citep{hull2003options}.
 However, there is no such relationship between a futures and an asset
 which is not the underlying.
-Besides, asset prices tend to crash simultaneously whereas positive development is more idiosyncratic. \medskip
+Besides, asset prices tend to crash simultaneously whereas positive development tends to be idiosyncratic. \medskip
 
 Among the three popular copulae, rotGumbel copula shows its ability to model the dependence between ETH and BTCF.
 rotGumbel also performs well when modelling dependence between XRP, BITW20, BITW70, and the BTCF.
@@ -218,18 +222,18 @@ In this section, we analyse the out-of-sample hedging effectiveness (HE) of BTCF
 HE is defined as $$\text{HE} = 1-\frac{\rho_h}{\rho_s},$$
 a measure of the percentage reduction of portfolio risk attribute, in our case the spot $\rho_s$,
 to hedged portfolio risk attribute $\rho_h$.
-A higher HE indicates a higher hedging effectiveness and larger risk reduction. \medskip
+A higher HE indicates a greater risk reduction and thus the hedge is more effective. \medskip
 
-The HE above is a generalisation of how Ederington measure of hedging performance \citep{ederington1979hedging}.
-In addition to variance, we include the risk measures which act as loss function while searching for OHR: ES 95\% and 99\%, VaR 95\% and 99\% and ERM.
+The HE above is a generalisation of how \citet{ederington1979hedging} evaluate hedging performance.
+In addition to variance, we include the risk measures which act as loss function while searching for OHR: ES 95\% and 99\%, VaR 95\% and 99\% and ERM. \medskip
 
 The formulation above gives a point estimate per testing data.
-However, each test data contain only 5 data points, the length is not sufficient to draw meaningful risk measure results.
-To address this issue, we apply bootstrapping method on the concatenated test data as described in the beginning of the result section. \medskip
+However, each of our test data contain only 5 data points, the length is not sufficient to draw meaningful risk measure results.
+To address this issue, we apply bootstrapping method on the concatenated test data time series as described in the beginning of the result section. \medskip
 
-The bootstrap is known to be a powerful nonparametric tool for approximating the sampling distributions of complicated statistics~\citep{efron1994introduction, davison1997bootstrap}.
+The bootstrapping method is known to be a powerful nonparametric tool for approximating complicated statistics~\citep{efron1994introduction, davison1997bootstrap}.
 We apply stationary block bootstrapping to the time series introduced by \cite{Politis1994} in our analysis in order to preserve the temporal structure of the data while sampling.
-The stationary bootstrapping procedure is as follows.
+The configuration of stationary bootstrapping procedure in this work is as follows.
 Assume a time series with $N$ observations $\{X_t\}_{t \in [1,N]}$ is a strong stationary, weakly dependence time series of interest,
 we form blocks of samples $B = \{X_i, ..., X_{i+j-1}\}$.
 Index $i$ is a random variable uniformly distributed over
@@ -240,14 +244,14 @@ For each block, we calculate the hedging effectiveness with different risk measu
 We choose $p=1/250$, implying the average block length is 250.
 This average block length is chosen to reasonably calculate ES and VaR.
 100 blocks are drawn for each risk minimising objective and
-spot.
+spot. \medskip
 %\natp{\em [You need to go over this again. There are many
 %  grammatical errors in there that need to be fixed. Also explain that
 %  expected block length is 200 so that ES99\% and VaR99\% can be
 %  calculated. Is the hedge ratio calculated for each sample drawn,
 %  etc.? ]}
 
-From figure \ref{fig:HEboxplot}, we report the bootstrapped HE samples from the concatenated out-of-sample hedge portfolio return.
+Figure \ref{fig:HEboxplot} report the bootstrapped HE samples from the concatenated out-of-sample hedge portfolio return.
 As expected, the BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged by the BTCF.
 The HEs of BTCF to other cryptos and indices are substantially lower than to the BTC involving spots, but the consistency the performances across different risk reduction objectives and HE evaluation remains.
 %\natp{\em[It does not

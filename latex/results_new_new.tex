@@ -32,7 +32,7 @@ The mean square error
 is the distance between a perfect hedge and the hedged portfolio
 returns $\operatorname{MSE}= \E(R^2)$.
 The lower semi-variance is defined as 
-$\operatorname{LSV}=\E \left( (R-\E(R))^2 1(R\leq \E(R)) \right)$.
+$\operatorname{LSV}=\E \left( (R-\E(R))^2 \1_{\{R\leq \E(R)\}} \right)$.
 All results presentedd here are out-of-sample results obtained without
 the copula selection step in order to compare the performances across
 copulae.
@@ -65,8 +65,8 @@ Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the mean square
 error and lower semivariance of BTC-BTCF. We can see that the Frank copula
 is the worst performing copula: 
 the resulting hedged portfolio returns is far away from a perfect
-hedge. \natp{\em [I think I did the plots on a log-scale to see some
-  more detail. Can you try this? Or would you like me to do this?]}
+hedge. \natp{\em [Can you swap the plots so that they are ordered
+  according to the scales?]}
 In Figures \ref{fig:MSE_other} and \ref{fig:SLV_other}, the phenomenom
 of Frank copula being inferior to its counterparts can be observed
 from the results of the CRIX, BITX, BITW100, and BITW20-BTCF
@@ -189,7 +189,7 @@ structure of cryptos and BTCF.
   \end{landscape}
 Table~\ref{tab:bigTable} presents the first two moments, maximum drawdown (MD) and the date of MD of the hedge portfolios.
 We observe that the statistics of the portfolios with different objectives are similar to each other.
-We provide the detail in table~\ref{tab:var_rh} to table~\ref{tab:ERM_rh} in the appendix. \medskip
+We provide the detail in Tables~\ref{tab:var_rh} to \ref{tab:ERM_rh} in the appendix.
 
 %For the other spots \natp{\em [Do you mean cryptocurrencies? Or all
 %  hedges? Then maybe use the word ``instruments to be hedged'' or ``instruments''.]}, tables~\ref{tab:var_rh} to table~\ref{tab:ERM_rh} summarise the statistics
@@ -212,7 +212,7 @@ We will further discuss the effectiveness of hedge in the next section. %\ref{se
 \subsection{Hedging Effectiveness Results}\label{sec: HE results}
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/ES5_HE_boxplot.pdf}
-  \caption{Hedging effectiveness (HE) of portfolios with different risk minimizatio objectives evaluated by the corresponding risk minimization objectives.
+  \caption{Hedging effectiveness (HE) of portfolios with different risk minimization objectives evaluated by the corresponding risk minimization objectives.
             The boxplots indicate the the median, upper quartile, lower quartile, minimium and maximum of the bootstrapped HE.
             The HE of BTC-involved spots are significantly higher than that of BTC-not-involved spots.
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }

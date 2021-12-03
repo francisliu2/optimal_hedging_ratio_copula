@@ -1,33 +1,70 @@
 \section{Conclusion and Outlook}\label{sec:conclusion-and-outlook}
-We study the hedging effectiveness of Bitcoin futures to cryptos and crypto indices.
-We consider commonly used risk measures with different configurations to cater different risk appetite and scenarios, they are variance, Value-at-Risk 95\% and 99\%,
-Expected Shortfall 95\% and 99\%, and Exponential Risk Measure $k=10$. Dependence between cryptos and the futures plays an important role in hedging as it determines the distribution of the portfolio returns.
-However, in the time of writing, the crypto market is a vibrant and fast-developing market, causing cryptos to have complex and, possibly,
-time changing dependence structures with the Bitcoin futures.
-We use copulae, a flexible statistical tool that model marginals and dependence separately to capture complexity of the dependence structure;
-and periodically re-calibrate copulae and find the best-fitting copula via AIC to address the potential time changing dependence. \medskip
+We study the effectiveness of hedging cryptos and crypto indices with
+Bitcoin futures.
+To accomodate different risk appetites and scenarios, a variety of
+commonly used risk measures are considered to determine the optimal
+hedge ratio. The risk measures comprise variance, value-at-risk at
+the confidence levels 95\% and 99\%, expected shortfall 95\% and 99\%,
+and the exponential risk measure with parameter $k=10$.
 
-An extensive out-of-sample backtest suggests that the Bitcoin futures is consistently capable of hedging BTC and BTC-involved indices,
-BITX, CRIX, and BITW100, under different risk minimisation objectives and copula models.
-The MSEs and LSVs of the resulting portfolios are indistinguishably at a low level except the Frank copula.
-On the other hand, the AIC procedure flavours t-copula because it captures the tail dependence feature of the data.
-Unsurprisingly, the portfolios' out-of-sample maximum drawdowns are significantly reduced. \medskip
+At the time of writing, the crypto market is a vibrant and
+fast-developing market, causing cryptos to have complex and, possibly,
+time  changing dependence structures with the Bitcoin futures.
+As a consequence, the dependence between the cryptos and the futures
+contract plays an important role in hedging as it determines the
+distribution of the portfolio returns. We therefore consider various
+copulae, a flexible statistical tool that separate modelling of the
+marginals and the dependence structure of multivariate random
+vectors. To address the potential time changing dependence, we
+periodically re-calibrate the copula models and find the best-fitting
+copula via  AIC. 
 
-Contrarily, we observe a diverse result of the capability of BTC futures to hedge other cryptos and BTC-not-involved indices.
-In general, the ES 95\% and VaR 95\% perform better than their 99\% counterparts.
-In particular minimising ES 99\% leads to relatively high MSE and LSV disregard of which copula is in use.
-The ES 99\% and VaR 99\% even result in out-of-sample maximum drawdowns which are higher than that of the 95\% counterparts in some portfolios,
+An extensive out-of-sample backtest suggests that the Bitcoin futures
+is consistently capable of hedging BTC and BTC-involved indices, 
+BITX, CRIX, and BITW100, under different risk minimisation objectives
+and copula models. The mean-square errors (MSEs) and lower
+semi-variances (LSVs) of the resulting portfolios are
+indistinguishably at a low level except for the Frank copula. 
+On the other hand, the AIC procedure favours the $t$-copula because it 
+captures the tail dependence feature of the data. \natp{Compared to
+  the unhedged cases (was: Unsurprisingly)}, the
+portfolios' out-of-sample maximum drawdowns are significantly reduced. 
+
+Contrarily, we observe diverse results of the capability of BTC
+futures to hedge other cryptos and crypto indices that exclude Bitcoin. 
+In general, ES 95\% and VaR 95\% perform better than their 99\%
+counterparts. In particular, minimising ES 99\% leads to relatively
+high MSEs and LSVs regardless of the copula in use. The ES 99\% and
+VaR 99\% even result in out-of-sample maximum drawdowns that are
+higher than that of the 95\% counterparts in some portfolios, 
 for example in the ETH- and LTC-BTCF portfolio.
-Therefore, we conclude that overly emphasising tail risks by choosing extreme tail risk measures does not lead to a promising hedge in a cross hedging setting. \medskip
+Therefore, we conclude that overly emphasising tail risks by choosing
+extreme tail risk measures does not lead to a promising hedge in a
+cross-hedging setting. 
 
-The AIC procedure mainly flavours rotGumbel and NIG factor copula in modelling other cryptos and BTC-not-involved indices.
-This reflects the idiosyncratic nature of downward movements in crypto market.
-However, the best-fitting copula does not necessary leads to best performing portfolio in MSE or LSV, see e.g. ADA. \medskip
+The AIC procedure mainly flavours the rotated Gumbel and the NIG
+factor copula in modelling cryptos other than BTC and 
+indices excluding BTC. This reflects the idiosyncratic nature of
+downward movements in the crypto market. Interestingly, the best-fitting
+copula does not necessary leads to best performing portfolio in MSE or
+LSV, as is the case for ADA.
+This is what we call the discrepancy between the copula selection
+result and the MSE-LSV results. 
+We suspect the discrepancy is due to the static linear nature of the
+hedge as the sole hedge instrument is a futures contract. 
+Although copulae are flexible to model complex dependence structures
+by emphasising a number of important features such as lower tail
+dependence and radial symmetry, the simple linear hedge is very
+limited in its flexibility to address this complex dependence.
+Including liquidly traded derivatives with non-linear payoffs, such as
+options, might be a possibility to improve the hedge quality for these
+cryptos and portfolios. 
 
-This is what we call the discrepancy between the copula selection result and the MSE LSV results.
-We suspect the discrepancy is the result of our hedge being a linear, long and short only with assets and derivative with linear payoffs i.e. futures.
-Although copulae are flexible to model complex dependence structures by emphasising numbers of important features
-e.g. lower tail dependence and radial symmetry, the simple linear hedge is very limited in flexibility to address to complex dependence.
-Including derivatives with non-linear payoffs e.g. options might be a way out. \medskip
+% A possible research direction would be hedging the linear part with futures and non-linear part with options, e.g. the BTC options.
 
-%A possible research direction would be hedging the linear part with futures and non-linear part with options, e.g. the BTC options.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "SRM"
+%%% End:

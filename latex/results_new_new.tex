@@ -65,8 +65,9 @@ Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the mean square
 error and lower semivariance of BTC-BTCF. We can see that the Frank copula
 is the worst performing copula: 
 the resulting hedged portfolio returns is far away from a perfect
-hedge. \natp{\em [Can you swap the plots so that they are ordered
-  according to the scales?]}
+hedge.
+%\natp{\em [Can you swap the plots so that they are ordered
+%  according to the scales?]}
 In Figures \ref{fig:MSE_other} and \ref{fig:SLV_other}, the phenomenom
 of Frank copula being inferior to its counterparts can be observed
 from the results of the CRIX, BITX, BITW100, and BITW20-BTCF
@@ -156,15 +157,17 @@ factor copula as well, accounting for modelling 12 and 27 training
 sets respectively.
 The popularity of the NIG factor copula reflects the ability of the copula to
 model very complex dependence structure: the
-NIG factor copula is able to model the tail, radial asymmetry, and
-off-diagonal (the region away from the diagonal line $(0,0)$ to
-$(1,1)$, see figure \ref{fig:copulaeScatterPlot}) behaviour. \natp{\em
-  [I think you did not understand my comment. It is clear what the
-  ``off-diagonal'' is. It is unclear what is meant by ``off-diagonal
-  behaviour''. Do you mean extremes on the other diagonal? Do you mean
-  a cloud of points away from the diagonal? Not sure what the NIG
-  factor copula is capable of modelling in this respect. Perhaps you
-  have a reference?]}
+NIG factor copula is able to model the tail, radial asymmetry.
+
+%and
+%off-diagonal (the region away from the diagonal line $(0,0)$ to
+%$(1,1)$, see figure \ref{fig:copulaeScatterPlot}) behaviour. \natp{\em
+%  [I think you did not understand my comment. It is clear what the
+%  ``off-diagonal'' is. It is unclear what is meant by ``off-diagonal
+%  behaviour''. Do you mean extremes on the other diagonal? Do you mean
+%  a cloud of points away from the diagonal? Not sure what the NIG
+%  factor copula is capable of modelling in this respect. Perhaps you
+%  have a reference?]}
   
 
 
@@ -254,6 +257,11 @@ spot. \medskip
 Figure \ref{fig:HEboxplot} report the bootstrapped HE samples from the concatenated out-of-sample hedge portfolio return.
 As expected, the BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged by the BTCF.
 The HEs of BTCF to other cryptos and indices are substantially lower than to the BTC involving spots, but the consistency the performances across different risk reduction objectives and HE evaluation remains.
+
+Some HE bootstrapping samples are negative, it means that it is possible that introducing the BTC futures increases risk of the portfolios.
+This is an unfavorable situation for investors if they want to hedge cryptos with BTC futures.
+We do not recommend BTC futures being used to cross hedge cryptos.
+
 %\natp{\em[It does not
 %  make sense to compare across different risk measures, so I suggest
 %  to delete the last statement. }
@@ -261,33 +269,35 @@ The HEs of BTCF to other cryptos and indices are substantially lower than to the
 %\natp{[How can HE be negative??? Especially
 %  for variance this is impossible.]}
 
-\natp{\em [We need some proper conclusions here.
-  \begin{itemize}
-  \item It is noticable that the HE of variance is highest.
-  \item Comparing ES95\% and ES99\%, it is seen that ES95\%
-    performs better. This is an indication that tail risk remmains
-    despite hedging. 
-  \end{itemize}
-  ]}
+%\natp{\em [We need some proper conclusions here.
+%  \begin{itemize}
+%  \item It is noticable that the HE of variance is highest.
+%  \item Comparing ES95\% and ES99\%, it is seen that ES95\%
+%    performs better. This is an indication that tail risk remmains
+%    despite hedging.
+%  \end{itemize}
+%  ]}
 
-\natp{\em [A general conclusion is needed. That ES95\% / Var95\%
-  perform better than their 99\% counterparts is also evident from
-  Figures 7 and 8. So focussing on tail risk by choosing an extreme tail risk
-  measure does not lead to a promising hedge. Also variance performs
-  well, especially for the lower correlated instruments /
-  indices. Var95\% also performs well across all copulas. Please check
-  if the tables in the appendix confirm this.\\
-  Main conclusion is that the choice of copula highlights the 
-  differences in the instruments / indices and their relationships
-  with the futures contract. Unfortunately, we see that the copula
-  choice does not always lead to the best hedge (see e.g.\ ADA), where
-  Frank, Gaussian, Plackett and rotGumbel perform much better in
-  terms of MSE. I suspect that has to do with the fact that hedging is
-  necessarily linear, so a better copula model may not necessarily
-  attain a better (linear) hedge. This means that the copula selection
-  results should be taken as interesting by themselves. Also, they
-  might be useful if using more than one hedge instrument, e.g.\ by
-  including options as hedge instruments.]}
+
+
+%\natp{\em [A general conclusion is needed. That ES95\% / Var95\%
+%  perform better than their 99\% counterparts is also evident from
+%  Figures 7 and 8. So focussing on tail risk by choosing an extreme tail risk
+%  measure does not lead to a promising hedge. Also variance performs
+%  well, especially for the lower correlated instruments /
+%  indices. Var95\% also performs well across all copulas. Please check
+%  if the tables in the appendix confirm this.\\
+%  Main conclusion is that the choice of copula highlights the
+%  differences in the instruments / indices and their relationships
+%  with the futures contract. Unfortunately, we see that the copula
+%  choice does not always lead to the best hedge (see e.g.\ ADA), where
+%  Frank, Gaussian, Plackett and rotGumbel perform much better in
+%  terms of MSE. I suspect that has to do with the fact that hedging is
+%  necessarily linear, so a better copula model may not necessarily
+%  attain a better (linear) hedge. This means that the copula selection
+%  results should be taken as interesting by themselves. Also, they
+%  might be useful if using more than one hedge instrument, e.g.\ by
+%  including options as hedge instruments.]}
 
 
 

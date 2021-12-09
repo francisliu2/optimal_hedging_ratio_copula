@@ -189,7 +189,8 @@ risk measures, are employed to find the optimal hedge ratio.
 Various measures of hedge effectiveness in out-of-sample tests give
 insights in the practice of hedging Bitcoin, Ethereum, Cardano, the
 CRIX index and a number of crypto-portfolios in the time period
-December 2017 until May 2021. We find that ... \natp{\em [needs to be amended.]}
+December 2017 until May 2021. We find that BTC futures is able to hedge BTC and BTC-involved indices
+disregard of risk measures or copulae; Results of other cryptos and indices are inconclusive.
 \\
 % \natp{\em Old abstract:}\\
 % The introduction of derivatives on Bitcoin \natp{(suggest to delete in
@@ -218,7 +219,7 @@ December 2017 until May 2021. We find that ... \natp{\em [needs to be amended.]}
 
 \noindent {\bf JEL classification: C38, C53, F34, G11, G17}  \\
 \noindent {\bf Keywords:} Cryptocurrencies, risk management, hedging,
-copulas \natp{(delete: Portfolio Selection, Spectral Risk Measurement,l Coherent Risk)}}
+copulas}
 \pagestyle{empty}
 \end{abstract}
 
@@ -255,25 +256,22 @@ copulas \natp{(delete: Portfolio Selection, Spectral Risk Measurement,l Coherent
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:introduction}
-Cryptocurrencies (CCs) are a growing asset class.
-Many more CCs are now available on the market since the first
+Cryptocurrency (CC) is a fast-growing asset class,
+many more CCs are now available on the market since the first
 cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}.
 In response to the rapid development of the CC market, the CME Group
 launched exchange-traded BTC futures contracts in December
-2017. Trading volume in BTC futures surpassed \$ 2 trillion in 2020
-(CryptoCompare, 2020). \natp{\em[CryptoCompare not in references;
-  possibly add as footnote (if it's a website, not an academic
-  reference).]} 
-
-By April 2021, the market value of outstanding coins had risen to
-\$ 2.3 trillion, more than 6\% of the world's narrow money supply and
-almost 3\% of the world GDP.\natp{\em [Is this open interest in
-  futures? Then a comparision with money supply and GDP is
-  tricky. Or is 2.3 trillion the USD value of mined coins?]} The price
-of BTC even surged to \$ 64,500 in mid-April 2021 up by 460\% from 
- from \$ 11,500 six months earlier in October 2020 and up by 850\%
- from a year earlier. Just a month later, by mid-May 2021, the price
- had fallen to \$ 50,000, a one-month return of -22.5\%. 
+2017.
+At the time of writing, the CME BTC futures is the only regulated cryptos futures in the market.
+The average daily volume and open interest of the CME BTC futures are
+\$2,518 M and \$2,836 M respectively.
+The BTC futures is an attractive derivative for investor to participate in the crypto market as it is legal,
+standardised and well-understood. \medskip
+%The price
+%of BTC even surged to \$ 64,500 in mid-April 2021 up by 460\% from
+% from \$ 11,500 six months earlier in October 2020 and up by 850\%
+% from a year earlier. Just a month later, by mid-May 2021, the price
+% had fallen to \$ 50,000, a one-month return of -22.5\%.
  % see tiingo_btc.csv 
 More individual and institutional investors are adding CCs and CC
 derivatives into their portfolios, creating the need to understand
@@ -282,23 +280,17 @@ Fom a risk management perspective, the roller-coaster ride
 of crypto prices creates significant basis risk, even when using
 simple hedges involving crypto portfolios and BTC futures. This
 requires analysing the dependence structure of cryptos and
-futures beyond linear correlation.
+futures beyond linear correlation. \medskip
 
 In this paper, we analyse static hedges of crypto portfolios
 with Bitcoin futures. Owing to the asymmetry of crypto returns as
 well as the occurrence of extreme events, we consider different 
 dependence structures via a variety of copula models and we optimise
 the hedge ratio using different risk measures. A similar study was
-conducted by \citep{barbi2014copula} for equity and FX portfolios. 
-%
-%
-%\natp{\em [BTC was introduced in 2009.]}
-%As the network effect weighs in, the prices of bitcoin and its variants have risen in tandem.
-%These innovations and the perceived investment potential have led to rapid growth in the number of altcoins and the market size of CC.
-%Bitcoin is popular with the techno tribe, the currency is regarded as being beyond the reach of government regulation- the anonymous founder of Bitcoin introduced the idea of a distributed block chain to prevent the counterfeiting of Bitcoin \citep{oet2015evaluating}.
-
-
-%and are interested in resisting extreme risks and improve their profits.
+conducted by \citep{barbi2014copula} for equity and FX portfolios.
+\citet{barbi2014copula}'s work is based on \citet{cherubini2011copula} to derive the distribution
+of linear combination of margins with copula as their dependence structure.
+We slightly amend their lemma and come up with a formula for the linear combination of random variables for our purpose. \medskip
 
 The hedge ratio is the appropriate amount of futures contracts to be
 held in order to eliminate risk exposure in the underlying security.  
@@ -311,7 +303,7 @@ Copulae provide the flexibility to model multivariate random variables
 separately by their margins and dependence structure.
 The concept of copulae was originally developed (but not under this
 name) by Wassily Hoeffding \citep{hoeffding1940masstabinvariante}
-and later popularised by the work of Abe Sklar \citep{Sklar1959}.
+and later popularised by the work of Abe Sklar \citep{Sklar1959}. \medskip
 
 Different risk measures account for investors' risk attitudes.
 They serve as loss functions in the searching process of the optimal
@@ -323,7 +315,7 @@ approach of risk measure construction;
 Shortfall (ES) and Spectral Risk Measures (SRM) in addition to VaR;
 \citet{Acerbi2002} for direct linkage between risk measures and
 investor's risk attitude using the concept of a ``risk aversion
-function''.  
+function''.  \medskip
 
 Financial asset returns have long known to be non-Gaussian, see e.g.\
 \citep{fama1963mandelbrot,Cont2001}. Specifically, Gaussian models
@@ -338,19 +330,7 @@ Therefore, to minimize down risk, one cannot solely rely on
 second-order moment calculations. Moreover, variance as a risk measure
 does not account for the variety of investors' utility functions. In
 particular, it is known that  
-investors are tail-risk averse, see \cite{menezes1980increasing},
-\citet{bollerslev2015tail} find that the jump tail risk is more
-closely associated with changes in risk-aversion. \natp{\em
-  [Unclear. Do investors constantly change their risk aversion?]}
-It is important to link the investor utility's functions as hedging
-the tail risk. \natp{\em [Careful. We do not do this in our paper, so
-  maybe tone down.]}
-As such, significant tail risks lead to the need to investigate even
-static hedges with more refined methods than minimising the variance
-assuming normally distributed asset
-returns\citep{ederington2008minimum}.
-%One may turn to VaR to monitor tail risk. Hence, the VaR as a sole risk measure has two disadvantages.
-%First, it reflects only tail probability and not tail loss, and next it is not coherent;
+investors are tail-risk averse, see \cite{menezes1980increasing}. \medskip
 
 In order to capture a variety of risk preferences, in addition to
 variance, we include the risk measures value-at-risk (VaR), expected
@@ -361,7 +341,7 @@ ES and SRM are chosen because of their coherence property, in
 particular, they recognize diversification benefits.
 SRM can also be directly related to an individual's utility function.
 Examples are the exponential SRM and power SRM introduced by
-\citet{dowd2008spectral}.
+\citet{dowd2008spectral}. \medskip
 %\natp{\em [Careful with wording! The
  %hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
 %In particular, the SRM proposed by \citet{Acerbi2002} accounts for investors' utility (i.e. risk preference).
@@ -386,23 +366,25 @@ Examples are the exponential SRM and power SRM introduced by
 %  \end{itemize}
 %  }
 
-\natp{\em [The paragraph below largely repeats what has been said
-  earlier. I suggest to take what is new and add it to the earlier
-  paragraph. There is no need to introduce formal notation at this stage.]}
-This paper considers hedging BTC using its future. % and an aggregated index of cryptocurrencies CRIX,
-i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $r^h = r^S - h^*r^F$ has
-minimal risk.
-Here $r^S$ as the log return of BTC spot price, $r^F$ the log return of BTC future.
-The leptokurtic properties mentioned above leads us to deploy a comprehensive way of modelling dependency namely copulae together with various risk measures as loss function to find optimal hedge ratio.
-We first calibrate the log returns of BTC and CME futuresby copulae,
-then find the optimal quantity of assets in the hedged portfolio according to a range of risk measures.
+In this work, we study the hedging effectiveness of the Bitcoin futures to various cryptos and crypto indices under different risk preferences.
+With an extensive back-test, we find the ability of the BTC futures to hedge BTC and BTC-related indices promising regardless of copula (except Frank copula) and risk measures.
+On the other hand, the results of BTC futures to hedge other cryptos and indices are inconclusive.
+Instead of suggesting the ''to-use'' copula or risk measures, we discuss the characteristics of different settings. \medskip
+
+%\natp{\em [The paragraph below largely repeats what has been said
+%  earlier. I suggest to take what is new and add it to the earlier
+%  paragraph. There is no need to introduce formal notation at this stage.]}
+%This paper considers hedging BTC using its future. % and an aggregated index of cryptocurrencies CRIX,
+%i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $r^h = r^S - h^*r^F$ has
+%minimal risk.
+%Here $r^S$ as the log return of BTC spot price, $r^F$ the log return of BTC future.
+%The leptokurtic properties mentioned above leads us to deploy a comprehensive way of modelling dependency namely copulae together with various risk measures as loss function to find optimal hedge ratio.
+%We first calibrate the log returns of BTC and CME futuresby copulae,
+%then find the optimal quantity of assets in the hedged portfolio according to a range of risk measures.
 %By Sklar's theorem, we can model the margin and the dependence structure separately using copulae.
 %This gives us enormous flexibility to model financial data.
-\citet{barbi2014copula} use the C-convolution operator introduced by \citet{cherubini2011copula} to derive the distribution
-of linear combination of margins with copula as their dependence
-structure. \natp{\em [The terminology C-convolution operator does not
-  appear again in the paper. Either remove or denote where this is defined.]}
-We slightly amend their lemma and come up with a formula for the linear combination of random variables for our purpose.\medskip
+
+
 %We propose a corrected expression the \citet{barbi2014copula}'s equation and propose a general expression for the density of the linear combination.
  %\natp{\em [No need to mention in the introduction that
  % the version is corrected. The main result -- that the distribution

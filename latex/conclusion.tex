@@ -8,20 +8,21 @@ the confidence levels 95\% and 99\%, expected shortfall 95\% and 99\%,
 and the exponential risk measure with parameter $k=10$.
 
 At the time of writing, the crypto market is a vibrant and
-fast-developing market, causing cryptos to have complex and, possibly,
-time  changing dependence structures with the Bitcoin futures.
+fast-developing market, causing cryptos to have complex and
+time-changing dependence structures with the Bitcoin futures.
 As a consequence, the dependence between the cryptos and the futures
 contract plays an important role in hedging as it determines the
 distribution of the portfolio returns. We therefore consider various
-copulae, a flexible statistical tool that separate modelling of the
+copulae, a flexible statistical tool that separates modelling of the
 marginals and the dependence structure of multivariate random
-vectors. To address the potential time changing dependence, we
-periodically re-calibrate the copula models and find the best-fitting
-copula via  AIC. 
+vectors. To address the potential time-changing dependence, we
+periodically re-calibrate the copula models and determine the
+best-fitting copula via AIC. 
 
 An extensive out-of-sample backtest suggests that the Bitcoin futures
-is consistently capable of hedging BTC and BTC-involved indices, 
-BITX, CRIX, and BITW100, under different risk minimisation objectives
+are consistently capable of hedging BTC and BTC-involved indices,
+i.e., BITX, CRIX, and BITW100, under different risk minimisation
+objectives 
 and copula models. The mean-square errors (MSEs) and lower
 semi-variances (LSVs) of the resulting portfolios are
 indistinguishably at a low level except for the Frank copula. 
@@ -43,15 +44,16 @@ extreme tail risk measures does not lead to a promising hedge in a
 cross-hedging setting. 
 
 The AIC procedure mainly favours the rotated Gumbel and the NIG
-factor copula in modelling cryptos other than BTC and 
-indices excluding BTC. This reflects the idiosyncratic nature of
+factor copula in modelling non-BTC relate cryptos and indices. This
+reflects the idiosyncratic nature of 
 downward movements in the crypto market. Interestingly, the best-fitting
-copula does not necessary leads to best performing portfolio in MSE or
-LSV, as is the case for ADA.
-This is what we call the discrepancy between the copula selection
-result and the MSE-LSV results. 
-We suspect the discrepancy is due to the static linear nature of the
-hedge as the sole hedge instrument is a futures contract. 
+copula does not necessary lead to the best performing portfolio in
+terms of MSE or LSV. For example, this is the case for ADA.
+% This is what we call the discrepancy between the copula selection
+% result and the MSE-LSV results. 
+We suspect this discrepancy between the optimal copula selection and
+MSE-LSV results can be attributed to the static linear nature of the
+hedge, as the sole hedge instrument is a futures contract. 
 Although copulae are flexible to model complex dependence structures
 by emphasising a number of important features such as lower tail
 dependence and radial symmetry, the simple linear hedge is very

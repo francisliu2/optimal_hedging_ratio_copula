@@ -1,6 +1,6 @@
-\section{Optimal hedge ratio}
-\label{sec:optimal-hedge-ratio}
+\section{Optimal hedge ratio}\label{sec:optimal-hedge-ratio}
 
+\subsection{The theory of OHR}\label{subsec:}
 We form a portfolio with two assets, a spot asset and a futures
 contract, for example Bitcoin spot and a CME Bitcoin futures contract.
 Our objective is to minimize the risk of the exposure in the spot.
@@ -176,7 +176,7 @@ densities.
 A generic expression and proof can be found in the
 appendix.
 
-\section{Empirical procedure to determine optimal hedge ratio}\label{sec:empirical-procedure}
+\subsection{Procedure to determine optimal hedge ratio}\label{sec:empirical-procedure}
 We introduce the empirical procedure to obtain the optimal hedge ratio (OHR) being used in this work.
 First, we split the time series of spot and futures into sets of
 training and testing data.
@@ -211,7 +211,7 @@ Next, we obtain the OHR as follows:
   Finally, we apply the OHRs to the test data $R_h = R_s - h^* R_f$.
   \end{enumerate}
 
-
+\section{Copulae and risk measures}\label{sec:crm}
 \input{copulae.tex}
 % ----------------
 % --- Copulae's definition and properties ---

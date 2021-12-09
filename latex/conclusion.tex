@@ -17,7 +17,7 @@ copulae, a flexible statistical tool that separate modelling of the
 marginals and the dependence structure of multivariate random
 vectors. To address the potential time changing dependence, we
 periodically re-calibrate the copula models and find the best-fitting
-copula via  AIC. 
+copula via AIC.
 
 An extensive out-of-sample backtest suggests that the Bitcoin futures
 is consistently capable of hedging BTC and BTC-involved indices, 
@@ -48,9 +48,7 @@ indices excluding BTC. This reflects the idiosyncratic nature of
 downward movements in the crypto market. Interestingly, the best-fitting
 copula does not necessary leads to best performing portfolio in MSE or
 LSV, as is the case for ADA.
-This is what we call the discrepancy between the copula selection
-result and the MSE-LSV results. 
-We suspect the discrepancy is due to the static linear nature of the
+We suspect the discrepancy between the copula selection results and MSE-LSV results is due to the static linear nature of the
 hedge as the sole hedge instrument is a futures contract. 
 Although copulae are flexible to model complex dependence structures
 by emphasising a number of important features such as lower tail

@@ -18,7 +18,7 @@ The moments mainly refer to Kendall's $\tau$ or Spearman's $\rho$.
 We extend MM to quantile dependence measures denoted by $\lambda_q$ for quantile level $q$.
 
 Spearman's $\rho$, Kendall's $\tau$, and quantile dependence of the copula $C$ are defined as
-\begin{align}
+\begin{align*}
   \rho_S &= 12 \int\int_{I^2} C_{\bm{\theta}}(u,v)\, \dd u\, \dd v-3\label{eq:rho_S}\\
   \tau_K &= 4\E[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
   \lambda_q &=
@@ -28,7 +28,7 @@ Spearman's $\rho$, Kendall's $\tau$, and quantile dependence of the copula $C$ a
     \p(F_X(X)>q|F_Y(Y)>q) =\displaystyle \frac{1-2q+C_{\bm{\theta}}(q,q)} {1-q},
     &\text{ if } q\in (0.5,1).
   \end{cases}
-\end{align}\medskip
+\end{align*}\medskip
 The empirical counterparts are
 \begin{align*}
   \hat\rho_S &= \frac{12}{n} \sum_{k=1}^n \hat F_X(x_k) \hat F_Y(y_k)
@@ -80,11 +80,11 @@ We follow the treatment of MLE documented in section 10.1 of
 \citet{joe1997multivariate}, namely the {\em inference functions for
 margins (IFM) method}.
 The log-likelihood $\sum^n_{i=1}f_{\bm{X}}(X_{i,1}, ..., X_{i,d})$ can be decomposed into a dependence part and a marginal part,
-\begin{align}
+\begin{align*}
     L(\bm{\theta}) &= \sum_{i=1}^n \bm{c}\{F_{X_1}(x_{i,1};\bm{\delta}_1), ..., F_{X_d}(x_{i,d}; \bm{\delta}_d);\bm{\gamma}\}
     + \sum_{i=1}^n \sum_{j=1}^d f_{X_j}(x_{i,j};\bm{\delta}_j)\\
     &= L_C(\bm{\delta}_1, ..., \bm{\delta}_d, \bm{\gamma}) + \sum_{j=1}^d L_j(\bm{\delta}_j)
-    \end{align}
+    \end{align*}
 where $\bm{\delta}_j$ are the parameters of the $j$-th margin, $\bm{\gamma}$ is the parameter of the parametric copula, and
 $\bm{\theta} = (\bm{\delta}_1,..., \bm{\delta}_d, \bm{\gamma})$.
 Instead of searching the $\bm{\theta}$ in a high dimensional space, \citet{joe1997multivariate} suggests to

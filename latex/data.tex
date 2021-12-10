@@ -32,7 +32,6 @@ activities on CME Globex between 14:59 and 15:00 CT. This is also the
 reporting time of the daily closing price by Bloomberg. 
 The crypto spot data is collected from the data provider called
 Tiingo (\href{https://www.tiingo.com/}{https://www.tiingo.com/}).
-\natp{\em [thanks somewhere.]}
 Tiingo aggregates crypto OHLC (open, high, low, and close) prices fed
 by APIs from various exchanges. It covers major exchanges, such as
 Binance, Gemini, Poloniex etc., so Tiingo's aggregated OHLC price is a
@@ -70,18 +69,18 @@ We can observe an overall upward trend of crypto prices in both periods.
 Nonetheless, the volatilities of assets are high (annualized around 100\%) regardless of COVID19.
 
 %\newpage
-\begin{figure}[!t]
+\begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/BTC_price.pdf}
   \caption{Out-of-sample BTC and BTCF price. The first panel presents the price of BTC in blue line and that of BTCF in orange line.
   The black vertical lines with capital letter labels indicate the five most negative daily return of BTC in the out-of-sample data.
   The second panel presents the difference between the \% return of BTC and BTCF.
-  The black vertical lines with lowercase letter label indicate the five most negative returns.
-  The crosses locate the level the returns.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+  The black vertical lines indicate the five most negative returns.
+  The crosses locate the level the returns.}
+%  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:BTC_price}
 \end{figure}
 
-\begin{table}[!]
+\begin{table}[!h]
     \centering
       \begin{tabularx}{.8\textwidth}{cccX}
         \toprule
@@ -111,19 +110,31 @@ Nonetheless, the volatilities of assets are high (annualized around 100\%) regar
 \includegraphics[width=\textwidth]{_pics/index_price.pdf}
   \caption{Out-of-sample cumulative return of crypto indices.
   The black vertical lines indicate largest price drop of indices indicated by the labels.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+  The colouring is as follows:
+  \textcolor{plt1}{Blue line} is CRIX;
+  \textcolor{plt2}{Orange line} is BITX;
+  \textcolor{plt3}{Green line} is BITW100;
+  \textcolor{plt4}{Red line} is BITW20;
+  \textcolor{plt5}{Purple line} is BITW70.
+  }
+%  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:index_price}
 \end{figure}
 
-\begin{figure}[!]
+\begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/individualCoins_price.pdf}
   \caption{Out-of-sample cumulative return of individual cyptos.
   The black vertical lines indicate largest price drop of cryptos indicated by the labels.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+    \textcolor{plt1}{Blue line} is ADA;
+  \textcolor{plt2}{Orange line} is ETH;
+  \textcolor{plt3}{Green line} is LTC;
+  \textcolor{plt4}{Red line} is XRP.}
+
+%  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:individualCoins_price}
 \end{figure}
 
-\begin{table}[!]
+\begin{table}[t]
     \centering
       \begin{tabularx}{.8\textwidth}{cccX}
         \toprule

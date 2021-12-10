@@ -1,27 +1,59 @@
 \section{Empirical Results}\label{sec:results}
-
 \input{data.tex}
-\begin{figure}[!th]
+
+
+\subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
+\begin{landscape}
+\begin{figure}[h]
+  \begin{minipage}[t]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/MSE_indices.png}
+    \caption{Out-of-sample mean square errors of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
+    \label{fig:MSE_indices}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/MSE_cryptos.png}
+    \caption{Out-of-sample mean square errors of cryptos' hedge portfolios. Each plot has its own colour scale.}
+    \label{fig:MSE_cryptos}
+  \end{minipage}
+  \begin{minipage}[b]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_indices.png}
+      \caption{Out-of-sample lower semi variance of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
+    \label{fig:SLV_indices}
+  \end{minipage}
+    \hfill
+  \begin{minipage}[b]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_cryptos.png}
+     \caption{Out-of-sample lower semi variance of cryptos' hedge portfolios. Each plot has its own colour scale.}
+    \label{fig:SLV_cryptos}
+  \end{minipage}
+\end{figure}
+\end{landscape}
+\begin{figure}[t]
 \centering
 \begin{minipage}[t]{.475\textwidth}
     \centering
     \includegraphics[width=\textwidth]{_pics/MSE_BTC.pdf}
-  \caption{Mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
-    The Frank copula is inferior in the BTC-involved portfolios.
-    \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+  \caption{Out-of-sample mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+    The Frank copula is inferior in the BTC-involved portfolios.}
+%    \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:MSE_BTC}
-\end{minipage}%
+\end{minipage}
 \hfill
 \begin{minipage}[t]{.475\textwidth}
     \centering
     \includegraphics[width=\textwidth]{_pics/semiLowerVariance_BTC.pdf}
-  \caption{Lower semivariance of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
-  The Frank copula is obviously inferior.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+  \caption{Out-of-sample lower semivariance of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+  The Frank copula is obviously inferior.}
+%  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:SLV_BTC}
 \end{minipage}
 \end{figure}
-\subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
+
 First, we analyse the results of hedged portfolios without the copula
 selection step in order to get a better understanding of how a copula
 affects the hedged portfolio with various risk minimization
@@ -37,27 +69,6 @@ All results presentedd here are out-of-sample results obtained without
 the copula selection step in order to compare the performances across
 copulae.
 
-\newpage
-\begin{figure}[!]
-        \centering
-        \includegraphics[width=\textwidth]{_pics/MSE_other.pdf}
-      \caption{Mean square errors of portfolios constructed with different copula and risk minimization objectives.
-      \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
-    \label{fig:MSE_other}
-%\end{subfigure}%
-%\end{figure}
-
-%\begin{figure}[!]
-%\begin{subfigure}{\textwidth}\centering
-        \centering
-        \includegraphics[width=\textwidth]{_pics/semiLowerVariance_other.pdf}
-      \caption{Lower semivariance of portfolios constructed with different copula and risk minimization objectives.
-%      \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
-  }
-    \label{fig:SLV_other}
-\end{figure}
-\clearpage
-
 %\textcolor{darkblue}{As presented in Fig 3 and 4, either individual cryptos or indice, their cumulative returns dropped in Mar 2020. it's due to the result of COVID19. we can explain this for these two plots.}\\
 %\textcolor{darkblue}{Here i think it should insert a paragraph to interpret how you enter the copulae, otherwise it's weird that comes to Fig 5 and 6.}\\
 
@@ -68,7 +79,7 @@ the resulting hedged portfolio returns is far away from a perfect
 hedge.
 %\natp{\em [Can you swap the plots so that they are ordered
 %  according to the scales?]}
-In Figures \ref{fig:MSE_other} and \ref{fig:SLV_other}, the phenomenom
+In Figures \ref{fig:MSE_indices} and \ref{fig:SLV_indices}, the phenomenom
 of Frank copula being inferior to its counterparts can be observed
 from the results of the CRIX, BITX, BITW100, and BITW20-BTCF
 portfolios. 
@@ -79,8 +90,8 @@ the BITW70, ADA, ETH, LTC and XRP-BTCF portfolios.
 We suspect that the Frank copula is not a choice to model assets with
 strong dependence.
 
-We can also observe from Figures \ref{fig:MSE_other} and
-\ref{fig:SLV_other} that theGumbel copula is not performing as well as 
+We can also observe from Figures \ref{fig:MSE_cryptos} and
+\ref{fig:SLV_cryptos} that the Gumbel copula is not performing as well as
 other copulas in the ETH, LTC, and XRP-BTCF portfolios. 
 The reason is the Gumbel copula has only upper tail dependence,
 while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF. 
@@ -168,44 +179,18 @@ NIG factor copula is able to model the tail, radial asymmetry.
 %  a cloud of points away from the diagonal? Not sure what the NIG
 %  factor copula is capable of modelling in this respect. Perhaps you
 %  have a reference?]}
-  
-
 
 The Frank copula is generally not a good choice to model financial
 data (as also reported by \cite{barbi2014copula}).
 Plackett is characterised by its dependence parameter being equal to
-the cross-product ratio % \citep{joe1997multivariate}
-. \natp{\em [Provide
-  reference to Equation (32).]}
+the cross-product ratio, see eq.~\ref{eq:PlackettCrossProduct}.
 However, apparently, this property does not capture the dependence
 structure of cryptos and BTCF.
 
-
 \subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
-%\begin{table}[t] \centering
-%    \include{_tables/BTC_rh}
-%    \caption{Summary statistics of BTC-BTCF hedge portfolios out-of-sample daily returns under different risk minimisation objectives.}
-%\label{tab:BTCrh}
-%\end{table}
-\begin{landscape}
-  \include{_tables/bigTable}
-  \end{landscape}
 Table~\ref{tab:bigTable} presents the first two moments, maximum drawdown (MD) and the date of MD of the hedge portfolios.
 We observe that the statistics of the portfolios with different objectives are similar to each other.
 We provide the detail in Tables~\ref{tab:var_rh} to \ref{tab:ERM_rh} in the appendix.
-
-%For the other spots \natp{\em [Do you mean cryptocurrencies? Or all
-%  hedges? Then maybe use the word ``instruments to be hedged'' or ``instruments''.]}, tables~\ref{tab:var_rh} to table~\ref{tab:ERM_rh} summarise the statistics
-%of daily returns of hedged portfolios.  \natp{\em [Table and Figure if
-%  you reference them directly.]} \natp{\em [Why are the tables
-%  oversized? Bring them down to normal size.]} \natp{\em [Also, think
-%  carefully what VaR 5\% means. If you are taking the 5\% quantile of
-%  P\&L data, then it's VaR 95\%.]}
-%The tables look repeating so we place them in the appendix. \natp{\em
-%  [I suggest to throw out skewness and kurtosis and place everything in one
-%  table, landscape. Otherwise, the reader will need to scroll back and
-%  forth in order to compare (or decide to just ignore the tables).]}
-%This is because the optimal hedge ratios of different risk minimization objectives fall into a small range. \medskip
 
 Unsurprisingly, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100, are well hedged by the BTCF regardless of risk minimization objective.
 Contrarily, BTC-not-involved spots' portfolios are less promising.
@@ -262,6 +247,10 @@ Some HE bootstrapping samples are negative, it means that it is possible that in
 This is an unfavorable situation for investors if they want to hedge cryptos with BTC futures.
 We do not recommend BTC futures being used to cross hedge cryptos.
 
+
+\begin{landscape}
+  \include{_tables/bigTable}
+  \end{landscape}
 %\natp{\em[It does not
 %  make sense to compare across different risk measures, so I suggest
 %  to delete the last statement. }
@@ -299,9 +288,8 @@ We do not recommend BTC futures being used to cross hedge cryptos.
 %  might be useful if using more than one hedge instrument, e.g.\ by
 %  including options as hedge instruments.]}
 
-
-
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "SRM"
 %%% End:
+

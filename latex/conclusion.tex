@@ -15,15 +15,9 @@ contract plays an important role in hedging as it determines the
 distribution of the portfolio returns. We therefore consider various
 copulae, a flexible statistical tool that separates modelling of the
 marginals and the dependence structure of multivariate random
-<<<<<<< HEAD
-vectors. To address the potential time changing dependence, we
-periodically re-calibrate the copula models and find the best-fitting
-copula via AIC.
-=======
 vectors. To address the potential time-changing dependence, we
 periodically re-calibrate the copula models and determine the
 best-fitting copula via AIC. 
->>>>>>> bd5ff8b3ff4df86a605d1d8b6e0a9643e2529d13
 
 An extensive out-of-sample backtest suggests that the Bitcoin futures
 are consistently capable of hedging BTC and BTC-involved indices,
@@ -53,20 +47,12 @@ The AIC procedure mainly favours the rotated Gumbel and the NIG
 factor copula in modelling non-BTC relate cryptos and indices. This
 reflects the idiosyncratic nature of 
 downward movements in the crypto market. Interestingly, the best-fitting
-<<<<<<< HEAD
-copula does not necessary leads to best performing portfolio in MSE or
-LSV, as is the case for ADA.
-We suspect the discrepancy between the copula selection results and MSE-LSV results is due to the static linear nature of the
-hedge as the sole hedge instrument is a futures contract. 
-=======
 copula does not necessary lead to the best performing portfolio in
 terms of MSE or LSV. For example, this is the case for ADA.
-% This is what we call the discrepancy between the copula selection
-% result and the MSE-LSV results. 
 We suspect this discrepancy between the optimal copula selection and
 MSE-LSV results can be attributed to the static linear nature of the
 hedge, as the sole hedge instrument is a futures contract. 
->>>>>>> bd5ff8b3ff4df86a605d1d8b6e0a9643e2529d13
+
 Although copulae are flexible to model complex dependence structures
 by emphasising a number of important features such as lower tail
 dependence and radial symmetry, the simple linear hedge is very

@@ -72,7 +72,7 @@ Gaussian and $t$ copulae are dervived from Gaussian and $t$ distributions.
 Since Gaussian and $t$ distributions are elliptical distributions, Gaussian and $t$ copulae are called elliptical copulae. \medskip
 
 Gaussian copula (bivariate) is defined as
-\begin{align}
+\begin{align*}
   \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\} \nonumber \\
               &= \int_{-\infty}^{\Phi^{(-1)}(u)}
                 \int_{-\infty}^{\Phi^{(-1)}(v)}
@@ -80,7 +80,7 @@ Gaussian copula (bivariate) is defined as
                 \exp{\left\{
                 \frac{s^2-2\rho st+t^2}{2(1-\rho^2)}
                 \right\}} \dd s\, \dd t,
-\end{align}
+\end{align*}
 where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution
 with zero mean, unit variance, and correlation coefficient $\rho$, and
 $\Phi^{(-1)}$ is the quantile function univariate standard normal
@@ -93,24 +93,24 @@ Like all elliptical copulas, it is symmetric.
 It has no tail dependence, which, in a finance context, implies that it often underestimates tail risk. \medskip
 
 The Gaussian copula density is
-\begin{align}
+\begin{align*}
   \bm{c}_\rho(u,v) &= \frac{\bm{\varphi}_{2,\rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\}}
                      {\varphi\{\Phi^{(-1)}(u)\} \cdot \varphi\{\Phi^{(-1)}(v)\}} \nonumber \\[10pt]
                    &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left\{
                      -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
                      \right\},
-\end{align}
+\end{align*}
 where $\bm{\varphi}_{2,\rho}(\cdot)$ is the pdf corresponding to
 $\Phi_{2, \rho}$, and $\varphi(\cdot)$ the standard normal
 distribution pdf. \medskip
 
 Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian copula are
-    \begin{align}
+    \begin{align*}
         \tau_K(\rho) = \frac{2}{\pi}\arcsin\rho
-        \end{align}
-    \begin{align}
+        \end{align*}
+    \begin{align*}
         \rho_S(\rho) = \frac{6}{\pi}\arcsin\frac{\rho}{2}.
-        \end{align}
+        \end{align*}
 
 The $t$-copula has the form
 \begin{align*}
@@ -175,19 +175,19 @@ where $\theta \in [0, \infty]$ is the dependency parameter.
 $\bm{C}_{-\infty} = \bm{M}$, $\bm{C}_1 = \bm{\Pi}$, and $\bm{C}_\infty = \bm{W}$.
 
 The Copula density is
-\begin{align}
+\begin{align*}
     \bm{c}_{\theta}(u,v) &= \frac{\theta e^{\theta(u+v)(e^\theta-1)}}
     {\left\{e^\theta-e^{\theta u}-e^{\theta v}+e^{\theta (u+v)}\right\}^2}
-    \end{align}\medskip
+    \end{align*}\medskip
 
 Frank copula has Kendall's $\tau$ and Spearman's $\rho$ as follow:
-\begin{align}
+\begin{align*}
     \tau_K(\theta) = 1-4\frac{D_1\{-\log(\theta)\}}{\log(\theta)},
-    \end{align}
+    \end{align*}
 and
-\begin{align}
+\begin{align*}
     \rho_S(\theta) = 1-12\frac{D_2\{-\log(\theta)\} - D_1\{\log(\theta)\}}{\log(\theta)},
-    \end{align}
+    \end{align*}
 where $D_1$ and $D_2$ are the Debye function of order 1 and 2.
 Debye function is $D_n = \frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$.\medskip
 
@@ -223,9 +223,9 @@ where $\theta \in (-\infty, \infty)$ is the dependence parameter.
 Moreover, $\lim_\theta^{-\infty} \bm{C}_\theta = \bm{M}$, $\bm{C}_0 =
 \bm{\Pi}$, and $\lim_\theta^\infty \bm{C}_\theta = \bm{W}$. 
 Kendall's $\tau$ of the Clayton copula is given by 
-\begin{align}
+\begin{align*}
     \tau_K(\theta) =\frac{\theta}{\theta+2}.
-    \end{align}
+    \end{align*}
 
 \subsubsection{Mixture Copula}\label{sec:mixture-copula}
 The mixture copula is a linear combination of copulae. 
@@ -248,9 +248,9 @@ Spearman's $\rho$ is specified by the following statement.
 \begin{proposition}
   Let $\rho_S^{(k)}$ be Spearman's $\rho$ of the $k$-th component
   Spearman's $\rho$ of the mixture copula is given by 
-  \begin{align}
+  \begin{align*}
         \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}
-        \end{align}
+        \end{align*}
     \end{proposition}
 
 \begin{proof}
@@ -260,10 +260,10 @@ Spearman's $\rho$ is specified by the following statement.
     \end{equation*}
     Spearman's $\rho$ of the the mixture copula is given by summation
     of the components 
-       \begin{align}
+       \begin{align*}
         \rho_S = 12 \int_{\mathbb{I}^2} \sum_{k=1}^K p^{(k)} \cdot
          \bm{C}^{(k)}(s,t) ds dt - 3. 
-        \end{align}
+        \end{align*}
     \end{proof}
 
 An example of a mixture copula is the Fr'echet class of copulas, which are given by convex combinations of $\bm{W}$,
@@ -309,11 +309,11 @@ The moment-generating function of the NIG distribution is given by
 \end{equation*}
 As a direct consequence, moments are easily calculated with the
 expectation and variance of the NIG distribution being
-\begin{align}
-  \label{eq:4}
-  \mathbb E X &= \mu + 
-                \frac{\delta \beta}{\sqrt{\alpha^2-\beta^2}}\\
-  \label{eq:5}
+\begin{align*}
+  \mathbb E X &= \mu +
+                \frac{\delta \beta}{\sqrt{\alpha^2-\beta^2}}
+  \end{align*}
+\begin{align} \label{eq:5}
   \text{Var}(X) &= \frac{\alpha^2\delta}{(\alpha^2-\beta^2)^{3/2}}.
 \end{align}
 
@@ -373,7 +373,7 @@ its properties.
       &= \E[(Z+Z_i) (Z+Z_j)] - \E[Z+Z_i] \E[Z+Z_j]\\
       &= \E[Z^2] -(\E Z)^2.
     \end{align*}
-    The correlation is determined directly from \eqref{eq:5}. 
+    The correlation is determined directly from \ref{eq:5}.
   \end{enumerate}
 \end{proof}
 
@@ -419,18 +419,18 @@ copula is
 
 \subsubsection{Plackett copula}\label{subsec:other-copula}
 The Plackett copula has an expression
-\begin{align}
+\begin{align*}
     \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}
                          - \frac{\sqrt{\{
     1+(\theta-1)(u+v)\}^2 - 4uv\theta(\theta-1)}}{2(\theta-1)}
-    \end{align}
-\begin{align}
+    \end{align*}
+\begin{align*}
     \rho_S(\theta) = \frac{\theta+1}{\theta-1} - \frac{2\theta \log \theta}{(\theta-1)^2}
-    \end{align}\medskip
+    \end{align*}\medskip
 
 We include Placket copula in our analysis as it possesses a special property,
 the cross-product ratio is equal to the dependence parameter
-\begin{align}
+\begin{align} \label{eq:PlackettCrossProduct}.
     &\phantom{=} \frac{\p(U \leq u, V \leq v) \cdot \p(U > u, V > v)}
     {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\nonumber\\
     &= \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\nonumber\\

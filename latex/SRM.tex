@@ -91,12 +91,12 @@
 \definecolor{plt2}{RGB}{255, 127, 14}
 \definecolor{plt3}{RGB}{44, 160, 44}
 \definecolor{plt4}{RGB}{214, 39, 40}
-\definecolor{plt4}{RGB}{148, 103, 189}
-\definecolor{plt5}{RGB}{140, 86, 75}
-\definecolor{plt6}{RGB}{227, 119, 194}
-\definecolor{plt7}{RGB}{127, 127, 127}
-\definecolor{plt8}{RGB}{188, 189, 34}
-\definecolor{plt9}{RGB}{23, 190, 207}
+\definecolor{plt5}{RGB}{148, 103, 189}
+\definecolor{plt6}{RGB}{140, 86, 75}
+\definecolor{plt7}{RGB}{227, 119, 194}
+\definecolor{plt8}{RGB}{127, 127, 127}
+\definecolor{plt9}{RGB}{188, 189, 34}
+\definecolor{plt10}{RGB}{23, 190, 207}
 
 \providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
 \providecommand{\mj}[1]{\textcolor{darkred}{#1}}
@@ -122,6 +122,13 @@
             International Research Training Group
 1792, Humboldt-Universität zu Berlin, Germany.
      E-mail: \texttt{Francis.Liu@hwr-berlin.de}.}
+
+		 \and
+        Natalie Packham\thanks{
+			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
+            International Research Training Group 1792, Humboldt-Universität zu Berlin, Germany.
+     E-mail: \texttt{packham@hwr-berlin.de}.}
+
         \and
 		Meng-Jou Lu
         \thanks{
@@ -129,11 +136,6 @@
              Department of Finance, Asia University, 500, Lioufeng Rd., Wufeng, Taichung 41354, Taiwan
      E-mail: \texttt{mangrou@gmail.com}.}
 
-		 \and
-        Natalie Packham\thanks{
-			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
-            International Research Training Group 1792, Humboldt-Universität zu Berlin, Germany.
-     E-mail: \texttt{packham@hwr-berlin.de}.}
 		 \and
          Wolfgang Karl H\"ardle\thanks{
 			Blockchain Research Center, Humboldt-Universit\"at zu Berlin, Germany. Wang Yanan Institute for Studies in Economics, Xiamen University, China. Sim Kee Boon Institute for Financial Economics, Singapore Management University, Singapore. Faculty of Mathematics and Physics, Charles University, Czech Republic. National Yang Ming Chiao Tung University, Taiwan.
@@ -174,24 +176,16 @@
 \begin{abstract}
   \footnotesize{
 
-The introduction of derivatives on Bitcion enables investors to hedge
-risk exposures in cryptocurrencies. We investigate
-different methods of determining the optimal hedge ratio when hedging
-various cryptocurrencies and crypto-portfolios with Bitcoin
-futures. Because of volatility swings and jumps in cryptocurrency prices, the
-traditional variance-based approach to obtain hedge ratios is
-infeasible. As a consequence, we consider two extensions of the
-traditional approach: first, different dependence structures are
-modelled by different copulae, such as the Gaussian, Student-$t$,
-Normal Inverse Gaussian and Archimedean copulae; second, different
-risk measures, such as value-at-risk, expected shortfall and spectral
-risk measures are employed to find the optimal hedge ratio.
-Various measures of hedge effectiveness in out-of-sample tests give
-insights in the practice of hedging Bitcoin, Ethereum, Cardano, the
-CRIX index and a number of crypto-portfolios in the time period
-<<<<<<< HEAD
-December 2017 until May 2021. We find that BTC futures are able to hedge BTC and BTC-involved indices.
-The choice of risk measures or copulae leads to small differences of the performance. \\
+The introduction of derivatives on Bitcoin enables investors to hedge risk exposures in cryptocurrencies.
+Because of volatility swings and jumps in cryptocurrency prices, the traditional variance-based approach to obtain hedge ratios is infeasible.
+As a consequence, we consider two extensions of the traditional approach: first, different dependence structures are modelled by different copulae, such as the Gaussian, Student-t, Normal Inverse Gaussian and Archimedean copulae;
+second, different risk measures, such as value-at-risk, expected shortfall and spectral risk measures are employed to find the optimal hedge ratio.
+Extensive out-of-sample tests give insights in the practice of hedging various cryptos and crypto indices, including Bitcoin,  Ethereum, Cardano, the CRIX index and a number of
+crypto-portfolios in the time period December 2017 until May 2021.
+Evidences show that BTC futures can effectively hedge BTC and BTC-involved indices.
+This promising result is consistent across different risk measures and copulae except for Frank.
+On the other hand, we observe complex and diverse dependence structures between BTC-not-involved assets and the futures.
+As a consequence, results of hedging other assets and indices are diverse and, in some occasions, not ideal. \\
 %For other cryptos,
 %The choice of the optimal copulae  different dependence structure, some of the cryptos cannot be hedged by BTC futures.
 %The choice of the risk measures or copulae;
@@ -204,12 +198,6 @@ The choice of risk measures or copulae leads to small differences of the perform
 
 % what is the new stuffs
 
-=======
-December 2017 until May 2021. We find that BTC futures are able to
-hedge BTC and BTC-involved indices disregard of risk measures or
-copulae; Results of other cryptos and indices are inconclusive. 
-\\
->>>>>>> bd5ff8b3ff4df86a605d1d8b6e0a9643e2529d13
 % \natp{\em Old abstract:}\\
 % The introduction of derivatives on Bitcoin \natp{(suggest to delete in
 %   abstract:, in particular the launch of futures contracts on CME in
@@ -235,13 +223,11 @@ copulae; Results of other cryptos and indices are inconclusive.
 % The results allow investors to construct a stable portfolio with digital assets.
 % \\
 
-<<<<<<< HEAD
-\noindent {\bf JEL classification: G11, G13, G32}  \\ %G11 and G13 in QF
-=======
-\noindent {\bf JEL classification: % C38,
-  C53, % F34,
-  G11, G17}  \\
->>>>>>> bd5ff8b3ff4df86a605d1d8b6e0a9643e2529d13
+\noindent {\bf JEL classification: G11, G13}  \\ %G11 and G13 in QF
+%\noindent {\bf JEL classification: % C38,
+%  C53, % F34,
+%  G11, G17}  \\
+
 \noindent {\bf Keywords:} Cryptocurrencies, risk management, hedging,
 copulas}
 \pagestyle{empty}
@@ -274,7 +260,7 @@ copulas}
 
 \clearpage
 
-\tableofcontents
+%\tableofcontents
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -391,7 +377,9 @@ Examples are the exponential SRM and power SRM introduced by
 %  }
 
 In this work, we study the hedging effectiveness of the Bitcoin futures to various cryptos and crypto indices under different risk preferences.
-With an extensive back-test, we find the ability of the BTC futures to hedge BTC and BTC-related indices promising regardless of copula (except Frank copula) and risk measures.
+With an extensive back-test
+\footnote{We apprepciate the data provider Tiingo (\href{https://www.tiingo.com/}{https://www.tiingo.com/}) for the valuable crypto prices data.}
+, we find the ability of the BTC futures to hedge BTC and BTC-related indices promising regardless of copula (except Frank copula) and risk measures.
 On the other hand, the results of BTC futures to hedge other cryptos and indices are inconclusive.
 Instead of suggesting the ''to-use'' copula or risk measures, we discuss the characteristics of different settings. \medskip
 

@@ -1,12 +1,12 @@
 \section{Optimal hedge ratio}\label{sec:optimal-hedge-ratio}
 
 \subsection{Distribution of hedge portfolio}\label{subsec:DHP}
-We form a portfolio with two assets, a spot asset and a futures
-contract, for example Bitcoin spot and a CME Bitcoin futures contract.
-Our objective is to minimize the risk of the exposure in the spot.
-To keep a simple portfolio setting, we go long one unit of the spot
-and short $h$ units of the future, $h \geq 0$.
-Letting $R^S$ and $R^F$ be the (discrete) returns of the spot and
+We form a portfolio with two assets, consisting of one unit in the
+spot asset and a short position of $h$ units of a futures contract,
+for example one Bitcoin and some short positiono in a CME Bitcoin
+futures contract. 
+Our objective is to minimize the risk of the exposure in the spot. 
+Let $R^S$ and $R^F$ be the (discrete) returns of the spot and
 futures price. The (discrete) return of the portfolio is\footnote{%
 This is equivalent to stating that if both the spot price $S_{t-1}$
 and the futures price $F_{t-1}$ are 
@@ -17,17 +17,20 @@ S_t-S_{t-1}$, etc.
 \begin{equation*}
 R^h = R^S -h R^F.
 \end{equation*}
-
+\natp{\em [We need to discuss the footnote. Generally, the portfolio
+  return is $R_p = \sum_{i=1}^n w_i R_i$. With the futures contract,
+  the notional investment in the futures is zero, so the portfolio
+  return is $(S_0 (1+R^S) -h F_0 R^F)/S_0-1 = R^S-h R^F$, if
+  $S_0=F_0$.]} 
 
 If the portfolio reduces the risk of the spot position, then
 we call this a hedge portfolio.
-To measure risk, we define a risk measures $\rho$ to be a mapping from
-a financial position, such as $R^h$, to a real number, which is often
+To measure risk, we define a risk measure $\rho$ to be a mapping from
+a financial position or its return, such as $R^h$, to a real number, which is often
 interpreted as the amount of money to make the position acceptable
-(e.g.\ to a regulator), see e.g.\ \citep{Foellmer2002}. \medskip
-
-An optimal hedge ratio (OHR) $h^*$ is a parameter that
-minimizes the risk of the aforementioned portfolio
+(e.g.\ to a regulator), see e.g.\ \citep{Foellmer2002}. 
+The optimal hedge ratio (OHR) $h^*$ 
+minimizes the risk of the aforementioned portfolio:
 \begin{equation*}
 h^* = \argmin_h \rho(R^h).
 \end{equation*}

@@ -1,0 +1,1 @@
+"Transpose[{{""Date""}, Log[E^6[[2 ;; All,$Failed]]]/Log[""unhedged""], Log[E^5[[2 ;; All,$Failed]]]/Log[""future""], Log[E^6[[2 ;; All,$Failed]] + $Failed[[2,1]] - E^5[[2 ;; All,$Failed]]*$Failed[[2,1]]]/Log[""Variance""], Log[E^6[[2 ;; All,$Failed]] + $Failed[[3,1]] - E^5[[2 ;; All,$Failed]]*$Failed[[3,1]]]/Log[""VaR 99%""]}]"

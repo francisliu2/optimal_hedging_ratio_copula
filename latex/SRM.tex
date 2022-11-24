@@ -183,7 +183,8 @@ second, different risk measures, such as value-at-risk, expected shortfall and s
 Extensive out-of-sample tests  in the time period December 2017 until May 2021 give insights in the practice of hedging various cryptos and crypto indices, including Bitcoin,  Ethereum, Cardano, the CRIX index and a number of
 crypto-portfolios.
 Evidence shows that BTC futures can effectively hedge BTC and BTC-involved indices.
-This promising result is consistent across different risk measures and copulae except for Frank.
+This promising result is consistent across different risk measures and
+copulae except for the Frank copula.
 On the other hand, we observe complex and diverse dependence
 structures between non-BTC-related cryptoassets and the BTC futures. 
 As a consequence, the hedge performance of non-BTC-related
@@ -269,33 +270,38 @@ copulas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:introduction}
 Cryptocurrencies (CC's) are a fast-growing asset class,
-with many more CCs are now available on the market since the first
+with many more CCs now available on the market since the first
 cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}.
 In response to the rapid development of the CC market, the CME Group
 launched exchange-traded BTC futures contracts in December
 2017.
-At the time of writing, the CME BTC futures is the only regulated cryptos futures in the market.
+At the time of writing, the CME BTC futures is the only regulated
+cryptos futures in the market.\natp{\em [I think ETH is now available
+  as well.]}
 The average daily volume and open interest of the CME BTC futures are
-\$2,518 M and \$2,836 M respectively.
-\natp{\em [I think the following sentence can be deleted. Readers of
-  Quantitative Finance know the advantages of futures contracts.]} The BTC futures is an attractive derivative for investors to participate in the crypto market as it is legal,
-standardised and well-understood.
+\$2,518 M and \$2,836 M respectively.\natp{\em [Add an approximate date.]}
+% \natp{\em [I think the following sentence can be deleted. Readers of
+%   Quantitative Finance know the advantages of futures contracts.]}
+Due to its financial regulation, the CME BTC derivatives market  
+is an attractive way for institutional
+investors to participate or manage their exposure in the crypto market. 
 %The price
 %of BTC even surged to \$ 64,500 in mid-April 2021 up by 460\% from
 % from \$ 11,500 six months earlier in October 2020 and up by 850\%
 % from a year earlier. Just a month later, by mid-May 2021, the price
 % had fallen to \$ 50,000, a one-month return of -22.5\%.
  % see tiingo_btc.csv 
-More individual and institutional investors are adding CCs and CC
-derivatives into their portfolios, creating the need to understand
-downside risks and find suitable ways to hedge against extreme risks. 
+As more individual and institutional investors are adding CCs and CC
+derivatives to their portfolios, the need to understand
+downside risks and find suitable ways to hedge against extreme risks
+is created. 
 Fom a risk management perspective, the roller-coaster ride
 of crypto prices may create significant basis risk, even when using
 simple hedges involving crypto portfolios and BTC futures. This
 requires analysing the dependence structure of cryptos and
 futures beyond linear correlation. 
 
-In this paper, we analyse static hedges of crypto portfolios
+In this paper, we examine static hedges of crypto portfolios
 with Bitcoin futures. Owing to the asymmetry of crypto returns as
 well as the occurrence of extreme events, we consider different 
 dependence structures via a variety of copula models. We then optimise
@@ -303,12 +309,12 @@ the hedge ratio using different risk measures. A similar study was
 conducted by \citep{barbi2014copula} for equity and FX portfolios.
 \citet{barbi2014copula}'s work is based on \citet{cherubini2011copula}
 to derive the distribution of linear combinations of margins with
-copula as their dependence structure. We slightly extend their results 
-and come up with a formula for the linear combination of random
-variables for our purpose.
+copulae describing the dependence structure. We slightly extend their
+results and come up with a formula for the linear combination of
+random variables for our purpose.
 
-The hedge ratio is the appropriate amount of futures contracts to be
-held in order to eliminate the risk exposure in the underlying security.  
+The hedge ratio is the appropriate amount of futures contracts to hold
+in order to eliminate the risk exposure in the underlying security.   
 The determination of the optimal hedge ratio relies primarily
 on the dependence between BTC and futures prices.
 %In this paper, we investigate the performance of different copulae and
@@ -321,16 +327,16 @@ name) by Wassily Hoeffding \citep{hoeffding1940masstabinvariante}
 and later popularised by the work of Abe Sklar \citep{Sklar1959}. \medskip
 
 Different risk measures account for investors' risk attitudes.
-They serve as loss functions in the searching process of the optimal
+They serve as loss functions in the search process of the optimal
 hedge ratio. Of the vast literature discussing the relationship between
 risk measures and investor's risk attitude, we refer readers to
-\citet{artzner1999coherent} for an axiomatic, economic reasoning
+\citet{artzner1999coherent} for an axiomatic 
 approach of risk measure construction;
 \citet{embrechts2002correlation} for reasoning of using expected
 shortfall (ES) and spectral risk measures (SRM) in addition to
 value-at-risk (VaR);
-\citet{Acerbi2002} for direct linkage between risk measures and
-investor's risk attitude using the concept of a ``risk aversion
+\citet{Acerbi2002} for direct linkages between risk measures and
+investor's risk attitudes using the concept of a ``risk aversion
 function''.  \medskip
 
 Financial asset returns have long known to be non-Gaussian, see e.g.\
@@ -392,7 +398,8 @@ With an extensive back-test,\footnote{We thank the data provider
  indices promising regardless of the choices of the copula (with the
  exception of the Frank copula) and risk measure. 
 On the other hand, the results of BTC futures to hedge other cryptos and indices are inconclusive.
-Instead of suggesting the ''to-use'' copula or risk measures, we discuss the characteristics of different settings. \medskip
+Instead of suggesting a particular copula or risk measures, we discuss
+the characteristics of different settings. \medskip 
 
 %\natp{\em [The paragraph below largely repeats what has been said
 %  earlier. I suggest to take what is new and add it to the earlier

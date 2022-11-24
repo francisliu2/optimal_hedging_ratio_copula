@@ -24,7 +24,7 @@ we call this a hedge portfolio.
 To measure risk, we define a risk measures $\rho$ to be a mapping from
 a financial position, such as $R^h$, to a real number, which is often
 interpreted as the amount of money to make the position acceptable
-(e.g.\ to a regulator), see e.g.\ \citep{Foellmer2002}. \medskip
+(e.g.\ to a regulator), see e.g.\ \citep{Foellmer2002}.
 
 An optimal hedge ratio (OHR) $h^*$ is a parameter that
 minimizes the risk of the aforementioned portfolio
@@ -36,23 +36,23 @@ For example, Value-at-Risk (VaR) at the confidence level $\alpha$ is
 the absolute value of the $1-\alpha$-quantile of $R^h$, i.e., $\text{VaR}_{1-\alpha} =
 -F_{R^h}^{(-1)}(1-\alpha) = -\inf\{x \in \mathbb{R}: 1-\alpha \leq
 F_{R^h}(x) \}$, where $F_{R^h}$ is the distribution function of
-$R^h$. \medskip
+$R^h$.
 
-Obviously the cdf of $R^h$ and the risk measure depend on the joint distribution of $R^S$ and $-hR^F$. \medskip
+Obviously the cdf of $R^h$ and the risk measure depend on the joint distribution of $R^S$ and $-hR^F$.
 
 Optimising $h$ according to $f_{R^S,-hR^F}$ is unfavorable in the
 sense that one would need to calibrate the joint pdf $f_{R^S,-hR^F}$
 whenever updating $h$.
 Another problem of using the joint pdf is that one lacks the
 flexibility to model the margins separately from the dependence structure.
-To overcome both of these problems, we use copulae. \medskip
+To overcome both of these problems, we use copulae.
 
 The benefit of using copulae is two fold.
 First, copulae are invariant under strictly
 monotone increasing function \citep{schweizer1981nonparametric}, see the Lemma below.
 Second, copulae allow us to model the  margins and dependence structure separately, see Sklar's Theorem
 \citep{Sklar1959}.
-See also \citep{Nelsen1999, joe1997multivariate, McNeil2005} for Sklar's Theorem. \medskip
+See also \citep{Nelsen1999, joe1997multivariate, McNeil2005} for Sklar's Theorem.
 
 \begin{theorem}[Hoeffding Sklar Theorem]
   Let $F$ be a joint distribution function with margins $F_X,
@@ -99,7 +99,7 @@ the original papers written in German.
   and finish the proof.
   \end{proof}
 
-%The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ . \medskip
+%The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ .
 Leveraging these two features of copulae, \citet{barbi2014copula}
 introduce the distribution of linear combinations of random variables
 using copulae. 
@@ -121,7 +121,7 @@ following expression of the distribution.
   \end{equation}
 \end{proposition}
 Here, $F^{(-1)}$ denotes the inverse of $F$, i.e., the quantile
-function. \medskip
+function.
 
 Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$ and, see e.g.\ Equation (5.15) of
 \citep{McNeil2005},
@@ -185,7 +185,7 @@ observations and its corresponding testing data consists of the
 consecutive 5 observations.
 We then roll 5 observations forward (step size of 5) to obtain the next training and
 test data sets and repeat this until the end of the time series. 
-Note that the testing data are non-overlapping since the step size and equal to test size. \medskip
+Note that the testing data are non-overlapping since the step size and equal to test size.
 
 Next, we obtain the OHR as follows:
 
@@ -229,126 +229,3 @@ Next, we obtain the OHR as follows:
 % ----------------
 % --- Risk measures' definition and properties ---
 % ----------------
-
-
-%In this work, we consider two portfolios: $r^h = R^{\text{BTC}} - h R^{\text{future}}$ and $r^h = R^{\text{BTC}} - h R^{\text{CRIX}}$.
-%
-%\natp{\em [For now, stick to $r_S$ and $r_F$. This is still the
-%  general part, so no need to mention Bitcoin, CRIX, etc. here. Also,
-%  wasn't the idea to hedge CRIX with the future? I don't see why CRIX
-%  would be used to hedge Bitcoin when futures are readily
-%  available. Entering into futures contracts requires no notional,
-%  which makes them ideal for hedging.]}
-
-%OLD
-%\section{Methodology}\label{sec:methodology}
-%Following \citet{barbi2014copula}, we consider the problem of optimal
-%hedge ratios by extending the commonly known minimum variance hedge
-%ratio to more general risk measures and dependence
-%structures.\medskip
-%
-%Hedge portfolio: $R_t^h = R_t^S - h R_t^F$, involving returns of spot
-%and future contract and where $h$ is the hedge ratio.\medskip
-%
-%The optimal hedge ratio is
-%\begin{align}
-%    h^\ast = \argmin_h \rho_\phi(s,h),
-%    \end{align}
-%for given
-%confidence level $1-s$ (if applicable, e.g.\ in the case of VaR, ES),
-%where $\rho_\phi$ is a spectral risk measure with weighting function
-%$\phi$ (see below).
-%In other words, our task is to search for the optimal $h$ which can minimize a particular risk measure.
-%We call the risk measure being used in search process of $h^\ast$ risk reduction objective.
-%This naming is to differentiate the risk objective and risk outcome.
-%One can see from result section that the $h^\ast$ which minimize a particular risk measure in training does not
-%necessarily minimize the risk measure in testing data.
-%For example in table \ref{OOSRHVaR99}, the best performing risk reduction objective to reduce out-of-sample Value-at-Risk 99\% is
-%exponential risk measure $k=10$. \medskip
-%
-%The distribution function of $Z$ can be expressed in terms of the
-%copula and the marginal distributions as Proposition \ref{prop:dfrh}
-%result shows (this is a corrected version of Corollary 2.1 of
-%\citep{barbi2014copula}). For practical applications, it is numerically
-%faster and more stable to use additional information about the
-%specific copula and marginal distributions. We therefore derive
-%semi-analytic formulas for a number of special cases, such as the
-%Gaussian-, Student $t$-, normal inverse Gaussian (NIG) and Archimedean
-%copulas in Section \ref{sec:dependence}.
-%
-%\begin{proposition}
-%  \label{prop:dfrh}
-%  Let $X$ and $Y$ be two real-valued random variables on the same
-%  probability space $(\Omega, \mathcal A, p)$ with corresponding
-%  absolutely continuous copula $C_{X, Y}(w,\lambda)$ and
-%  continuous marginals $F_{X}$ and $F_{Y}$. Then, the distribution
-%  of of $Z$ is given by
-%  \begin{equation}
-%    \label{eq:3}
-%    F_{Z}(x) = 1- \int^1_0 D_1 C_{X, Y}
-%    \left( u, F_{Y} \left( \frac{F^{(-1)}_{X}(u)-x}{h} \right)
-%    \right)\, d u.
-%  \end{equation}
-%\end{proposition}\medskip
-%Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$,
-%which is easily shown to fulfil, see e.g.\ Equation (5.15) of
-%\citep{McNeil2005}:\footnote{%
-%  Let $F_X(x)=u$, $F_Y(y)=v$. Then, formally,
-%  \begin{align*}
-%    \frac{\partial}{\partial F_X(x)} C(F_X(x), F_Y(y)) %
-%    &= \frac{\partial}{\partial F_X(x)} \p(U\leq F_X(x),
-%      V\leq F_Y(y)) %
-%      = \p(U\in d F_X(x), V\leq F_Y(y))\\ %
-%    &= \p(V\leq F_Y(y)| U = F_X(x))\cdot \p(U \in d
-%      F_X(x)) %
-%      = \p(Y\leq y|X=x)\cdot \p(U\in d u)\\ %
-%    &= \p(Y\leq y|X=x).
-%  \end{align*}}
-%\begin{equation}
-%  \label{eq:1}
-%  D_1 C_{X,Y}(F_X(x), F_Y(y)) = \p(Y\leq y|X=x).
-%\end{equation}
-%\begin{proof}
-%  Using the identity (\ref{eq:1}) gives
-%  \begin{align*}
-%    F_{Z}(x) &= \p(r^S - h Y\leq x) %
-%                 = \E\left[\p\left(Y\geq \frac{X-x}{h}\Big|
-%                 X\right)\right]\\[10pt]
-%               &= 1-\E\left[\p\left(Y\leq \frac{X-x}{h}\Big|
-%                 X\right)\right]% \\[10pt]
-%               = 1- \int_0^1 D_1 C_{X, Y}\left(u,
-%                 F_{Y}\left(\frac{F^{(-1)}_{X}(u) -
-%                 x}{h}\right)\right)\, d u.
-%  \end{align*}
-%\end{proof}\medskip
-%
-%In addition to \cite{barbi2014copula} we propose an expression for the density of $Z$
-%
-%\begin{proposition} With the same setting of the above proposition, the density of $Z$ can be written as
-%  \begin{align}
-%  f_{Z}(y) &= \left|\frac{1}{h}\right|\int_0^1 c_{X, Y} \left[u,
-%  F_{Y}\left\{\frac{F^{(-1)}_{X}(u)-y}{h}\right\}
-%  \right]
-%   \cdot
-%  f_{Y}
-%  \left\{\frac{F^{(-1)}_{X}(u)-y}{h}\right\} du \label{eq:density1}
-%  \end{align}, or
-%    \begin{align}
-%      f_{Z}(y)
-%      = \int_0^1 c_{X, Y} \left[u,
-%      F_{X}\left\{y + h F^{(-1)}_{Y}(u)\right\}
-%      \right]
-%       \cdot
-%      f_{X}
-%      \left\{
-%      y+ hF^{(-1)}_{Y}(u)
-%      \right\} du.\label{eq:density2}
-%  \end{align}
-%  \end{proposition}
-
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "SRM"
-%%% End:
-

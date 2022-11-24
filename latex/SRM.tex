@@ -484,11 +484,126 @@ available at \href{http://www.quantlet.com/}{www.quantlet.com
 
 \input{conclusion.tex}
 % ----------------
-% --- Results ---
+% --- Conclusion and Discussion ---
 % ----------------
 
 \newpage
 %
 \bibliography{finance} %
 \input{appendix.tex}
+
+\subsection{Supplementary Material: Intraday Hedging}
+This supplementary material extends the study in the main body to the intraday rebalancing setting. Studying the intraday hedge is familiar to academia,
+e.g. \citet{harris2010limits}, \citet{dungey2013impact}, \citet{tse2013does}, and \citet{sheu2014incremental}.
+Numerous pieces of work on the crypto market are associated with or motivated by the presence of intraday traders as well,
+e.g. \citet{petukhina2021rise}, \citet{meshcheryakov2020ethereum}, \citet{alexander2022role}, \citet{zhang2022data}, and \citet{katsiampa2022high}.
+
+We have in view to robustify the results from the main body.
+The methodology in this supplementary material is similar to the main body, except we
+\begin{enumerate}
+\item form two hedging portfolios, BTC-BTCF and ETH-BTCF,
+\item simulate trades using Deribit hourly data, and
+\item rebalance every four hours.
+\end{enumerate}
+
+\subsubsection{Data}
+The intraday analysis is built upon a dataset of date range from 2020-06-01 00:00 UTC to 2020-08-01 00:00 UTC.
+All the price data are sampled hourly.
+
+The Deribit contract BTCUSD25SEP20 represents the BTCF;
+the Deribit BTC and ETH index represent the spot of BTC and ETH respectively.
+We take the hourly closing mid-price of the BTCUSD25SEP20 as the futures price and the last value of the BTC and ETH index in every hourly bucket as the spot prices.
+Since the date range of the data is fully covered by the lifetime of BTCUSD25SEP20, this study does not require rolling procedure to roll over futures contract near expiry.
+
+\subsubsection{Procedure}
+Starting from oldest data:
+\begin{enumerate}
+    \item Calibrate a copula by a training data of 300 datapoints, i.e. , in size
+    \item Draw samples $(\tilde r_s, \tilde r_f)$ from the calibrated copula
+    \item Numerically search for $h^* = \arg \max \phi(\tilde r_s - h\tilde r_f)$ according to a risk measure $\phi$
+    \item Apply $h^*$ to testing data to yield $r_h$; the testing data is the consecutive 4 data points to training data
+    \item Repeat the procedure for the next 4 datapoints
+    \item Concatenate $r_h$s the and sort chronologically to form a full length out-of-sample hedging portfolio returns
+\end{enumerate}
+
+The procedure is further repeated for all the combinations of risk measures and copulae.
+The full-length out-of-sample returns represent the corresponding performance of a particular risk measure-copula combination.
+They are used in computation mean square error (MSE) and lower-semi-variance (LSV) shown in the following section.
+
+The AIC selection step is performed between step 1 and step 2 of the procedure above.
+The resulting out-of-sample returns are a mix of results from the copula that has the lowest AIC on the training data.
+We keep a record of how many times a copula is choosen by this step.
+To yield robust HE measures, we apply stationary bootstrapping to the full-length AIC selected OOS returns with the following parameters: $p=1/4, T=300, N=1000$.
+
+\subsubsection{Results}
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{_pics/hourly_HE.png}
+  \caption{Intraday HEs of BTC-BTCF and ETH-BTCF portfolio. (working...)
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:HEboxplot_intraday}
+\end{figure}
+
+\textit{Bootstrapped OOS HEs}: The analysis begins with the boxplot in figure \ref{fig:HEboxplot_intraday} of the bootstrapped OOS HEs.
+In general, most of the daily rebalancing results of BTC-BTCF carry over to the intraday rebalancing schedule;
+The intraday rebalancing ETH-BTCF is different from its daily rebalancing counterpart.
+Note that the exact values of HEs from the two rebalancing schedules should not be directly compared for two reasons: 1. The data are from different date ranges; 2. Various factors contribute to the difference between results from different sampling frequencies, e.g. Epps effect, microstructure noise,
+and asynchronous trading.
+However, we compare the patterns and conclusions to get a general understanding of the hedging issue for future use.
+
+The main difference between the intraday rebalancing and daily rebalancing ETH-BTCF portfolio is negative HEs appear in the intraday results in all the risk measures we consider.
+The negative HEs suggests that BTCF should not be used to hedge against ETH in an intraday setting.
+Consider also the fact that BTCF is written on BTC instead of ETH, hedgers have no ground to assume they can take advantage of the intraday dependency structure between ETH and BTCF for hedging.
+Therefore, we mainly focus on the BTC-BTCF portfolios and mentioning the results of the ETH-BTCF portfolio is needed.
+
+
+\textit{BTC-BTCF HEs}: The HEs of BTC-BTCF are significantly higher than zero across different risk measures, suggesting that adding BTCF to a BTC portfolio can effectively reduce the risk measured by selected measures.
+Among risk measures, HE of variance is the highest for the BTC-BTCF portfolio, ranging from 72\% to 98\%;
+HE of other risk measures ranges from 25\% to 80\%.
+This result suggests that reducing variance is a well-achievable objective in the intraday setting.
+This finding is consistent with the conclusions of the daily rebalancing schedule. On the other hand, the HEs of ES99\% and VaR99\% are relatively more dispersed and skewed to the left.
+Both risk measures consider only 1\% of the data from the left for deciding the hedge ratio and computing the HEs.
+Considering only a few data points naturally leads to a less reliable hedge ratio and lower consistency HEs.
+Evidence also shows that ES99\% VaR99\% minimising portfolios have higher MSE and LSV.
+This result is again consistent with the daily rebalancing setting.
+
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{_pics/revision_BTC_MSEs.png}
+  \caption{BTC-BTCF MSEs (working...)
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:BTC_MSE}
+\end{figure}
+
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{_pics/revision_BTC_LSVs.png}
+  \caption{BTC-BTCF LSVs (working...)
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:BTC_LSV}
+\end{figure}
+
+\textit{BTC-BTCF MSE and LSV}: Figures \ref{fig:BTC_MSE} and \ref{fig:BTC_LSV}  report the OOS MSE and LSV of the BTC-BTCF when different copula and risk measures are in use.
+The MSE and LSV are in a similar magnitude with a few exceptions, a similar pattern to the daily rebalancing setting.
+
+Across various copulae, the BTC-BTCF portfolio that minimises VaR95\% provides the lowest MSE and LSV.
+Portfolios that minimise variance and ERM k=10 result in similar magnitudes of MSEs and LSVs, which are higher than VaR95\% but not by much,
+especially when Gumbel and NIG copulae are in use to model the dependency. ES99\% generates the highest MSEs and LSVs,
+disregarding which copula is in use. Notice that the portfolios that minimise ES99\% and VaR99\% are generally riskier than their 95\% counterparts in terms of MSEs and LSVs.
+
+Across various risk measures, Gumbel and NIG copulae are performing very well in the resulting portfolios’ MSE and LSV, except for ES99\%.
+The Frank copula is underperforming, disregarding which risk measures are in use.
+These results are consistent with the daily rebalancing setting and results in other literature.
+Notice that Gumbel and NIG are the only copulae that can model upper tail dependence among the copulae we examine.
+This suggests that the upper tail dependence is an essential feature of the dependency structure for hedging.
+The conclusion is further supported by comparing the Gumbel and the rotated Gumbel copula.
+The rotated Gumbel copula is the 180-degree rotated version of the Gumbel copula, sharing all the features of the Gumbel copula but switching from modelling the lower tail dependence to upper tail dependence.
+The rotated Gumbel copula results in portfolios with higher MSEs and LSVs consistently across risk measures.
+
+\textit{AIC selection results}: From table x (working...), the AIC procedure favours the same set of copulae in the intraday setting for both BTC-BTCF and ETH0BTCF portfolios.
+They are $t$-, Plackett, Gaussian Mix Independent, rotated Gumbel and NIG.
+Similar to the result in the daily rebalancing schedule, most of the time, 60\% in this case,
+the AIC procedure chooses t-Copula to model the dependence structure of BTC-BTCF in the intraday setting.
+For the rest of the time, the NIG copula is mainly chosen, accounting for around 26\% of the time.
+Rotated Gumbel, Gaussian Mix Independent, and Plackett are spontaneously chosen.
+On the other hand, the intraday ETH-BTCF’s AIC selection result is very different from that of the daily rebalancing.
+There are three copulae: $t$-, Gaussian Mix Independent, and NIG copula, that are closely chosen, instead of a single copula, rotated Gumbel copula, dominating the list in the daily rebalancing setting.
+In the intraday setting, the three copulae are chosen 35.1\%, 24.9\%, and 24.3\% of the time, respectively.
 \end{document}

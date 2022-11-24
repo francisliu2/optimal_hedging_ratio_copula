@@ -1,19 +1,19 @@
 
 \subsection{Copulae}\label{subsec:copulae}
 To capture different aspects of the dependence structure, we consider a number of different copulas, which are layed
-  out in details below \medskip
+  out in details below 
 Gaussian-, $t$-, Frank-,
-Gumbel-, Clayton-, mixture, NIG factor, and Plackett-copula. \medskip
+Gumbel-, Clayton-, mixture, NIG factor, and Plackett-copula. 
 
 As this hedging exercise concerns only portfolios with two assets, we
 focus on the bivariate version of copulae and some important
-features of a copula, including Kendall's $\tau_K$ and Spearman's $\rho_S$. \medskip
+features of a copula, including Kendall's $\tau_K$ and Spearman's $\rho_S$. 
 
 Kendall's $\tau$ and Spearman's $\rho$ are measures of association in terms of concordance, see \cite{kruskal1958ordinal}
 Let $(x_i, y_i)$ and $(x_j, y_j)$ denote two observations from a vector $(X, Y)$ of continuous random variables.
 A pair of observations is concordant if $x_i<x_j$ and $y_i < y_j$, discordant if
 $x_i>x_j$ and $y_i < y_j$ or if $x_i<x_j$ and $y_i>y_j$.
-For a bivariate random variable of $n$ observations, there are $\binom{n}{2}$ distinct pairs. \medskip
+For a bivariate random variable of $n$ observations, there are $\binom{n}{2}$ distinct pairs. 
 
 Let $c$ denote the number of concordant pairs, and $d$ the number of discordant pairs,
 Kendall's tau is defined as follows \citep{Nelsen1999}
@@ -45,7 +45,7 @@ upper bound by $\bm{M}$. They represent cases of perfect negative
 dependence, independence, and perfect positive dependence,
 respectively. 
 For further details, we refer readers to \citet{joe1997multivariate}
-and \citet{Nelsen1999}; see also \citet{hardle2010copulis}. \medskip
+and \citet{Nelsen1999}; see also \citet{hardle2010copulis}. 
 
 The symmetry property of copulae is also important for modelling financial data.
 In particular, we are interested in the radially symmetric among other symmetry definitions, see \citet{Nelsen1999}.
@@ -69,7 +69,7 @@ To illustrate the difference among copulae, we plot random samples drawn from co
 \subsubsection{Gaussian and $t$ Copulae}\label{sec:ellpitical-copulae}
 
 Gaussian and $t$ copulae are dervived from Gaussian and $t$ distributions.
-Since Gaussian and $t$ distributions are elliptical distributions, Gaussian and $t$ copulae are called elliptical copulae. \medskip
+Since Gaussian and $t$ distributions are elliptical distributions, Gaussian and $t$ copulae are called elliptical copulae. 
 
 Gaussian copula (bivariate) is defined as
 \begin{align*}
@@ -84,13 +84,13 @@ Gaussian copula (bivariate) is defined as
 where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution
 with zero mean, unit variance, and correlation coefficient $\rho$, and
 $\Phi^{(-1)}$ is the quantile function univariate standard normal
-distribution. \medskip
+distribution. 
 
-Note that we use $\rho$ to denote the correlation parameter as well as a $\rho(\cdot)$ to denote a risk measure. \medskip
+Note that we use $\rho$ to denote the correlation parameter as well as a $\rho(\cdot)$ to denote a risk measure. 
 
 The Gaussian copula is fully specified by the correlation parameter $\rho$.
 Like all elliptical copulas, it is symmetric.
-It has no tail dependence, which, in a finance context, implies that it often underestimates tail risk. \medskip
+It has no tail dependence, which, in a finance context, implies that it often underestimates tail risk. 
 
 The Gaussian copula density is
 \begin{align*}
@@ -102,7 +102,7 @@ The Gaussian copula density is
 \end{align*}
 where $\bm{\varphi}_{2,\rho}(\cdot)$ is the pdf corresponding to
 $\Phi_{2, \rho}$, and $\varphi(\cdot)$ the standard normal
-distribution pdf. \medskip
+distribution pdf. 
 
 Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian copula are
     \begin{align*}
@@ -126,7 +126,7 @@ The $t$-copula has the form
 where $\bm{T}_{2, \rho, \nu}$ denotes the cdf of
 bivariate $t$ distribution with dependence parameter $\rho$ and degrees of freedom parameter $\nu$,
 and where $T^{(-1)}_\nu(\cdot)$ is the quantile function of a standard
-$t$ distribution with degree of freedom $\nu$. \medskip
+$t$ distribution with degree of freedom $\nu$. 
 
 Contrary to the Gaussian copula, the $t$-copula has a non-zero
 tail dependence coefficient, which makes it more appropriate for
@@ -139,7 +139,7 @@ The copula density is
     {t_\nu\{T^{(-1)}_\nu(u)\}\cdot t_\nu\{T^{(-1)}_\nu(v)\}},
     \end{align*}
 where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}$
-and $t_\nu$ the density of standard $t$ distribution.\medskip
+and $t_\nu$ the density of standard $t$ distribution.
 
 Like all the other elliptical copulae, the $t$-copula's Kendall's
 $\tau$ is identical to that of the Gaussian copula \citep[see][and
@@ -152,7 +152,7 @@ many convenient features.
 Contrary to elliptical copulas, which are derived from
 elliptical distributions.
 Archimedean copulas are determined via a simple parametric form of the dependence structure.
-A prominent feature is the ability to model asymmetric dependence structures. \medskip
+A prominent feature is the ability to model asymmetric dependence structures. 
 
 In general, they take a form
 \begin{align*}
@@ -161,7 +161,7 @@ In general, they take a form
 where $\psi:[0,1] \rightarrow [0,\infty)$ is a continuous, strictly
 decreasing and convex function such that $\psi(1)=0$ for any
 permissible dependence parameter $\theta$. $\psi$ is also called
-generator. $\psi^{(-1)}$ is the inverse of the generator. \medskip
+generator. $\psi^{(-1)}$ is the inverse of the generator. 
 
 The Frank copula (B3 in \citet{joe1997multivariate}) is a radial symmetric copula and cannot produce any tail dependence.
 It takes the form
@@ -178,7 +178,7 @@ The Copula density is
 \begin{align*}
     \bm{c}_{\theta}(u,v) &= \frac{\theta e^{\theta(u+v)(e^\theta-1)}}
     {\left\{e^\theta-e^{\theta u}-e^{\theta v}+e^{\theta (u+v)}\right\}^2}
-    \end{align*}\medskip
+    \end{align*}
 
 Frank copula has Kendall's $\tau$ and Spearman's $\rho$ as follow:
 \begin{align*}
@@ -189,7 +189,7 @@ and
     \rho_S(\theta) = 1-12\frac{D_2\{-\log(\theta)\} - D_1\{\log(\theta)\}}{\log(\theta)},
     \end{align*}
 where $D_1$ and $D_2$ are the Debye function of order 1 and 2.
-Debye function is $D_n = \frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$.\medskip
+Debye function is $D_n = \frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$.
 
 The Gumbel copula (B6 in \citet{joe1997multivariate}) has upper tail
 dependence with the dependence parameter $\lambda^U =
@@ -267,7 +267,7 @@ Spearman's $\rho$ is specified by the following statement.
     \end{proof}
 
 An example of a mixture copula is the Fr'echet class of copulas, which are given by convex combinations of $\bm{W}$,
-  $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}. \medskip
+  $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}. 
 
 We use a mixture of Gaussian and independent copulas in our analysis,
 i.e., 
@@ -426,7 +426,7 @@ The Plackett copula has an expression
     \end{align*}
 \begin{align*}
     \rho_S(\theta) = \frac{\theta+1}{\theta-1} - \frac{2\theta \log \theta}{(\theta-1)^2}
-    \end{align*}\medskip
+    \end{align*}
 
 We include Placket copula in our analysis as it possesses a special property,
 the cross-product ratio is equal to the dependence parameter
@@ -435,7 +435,7 @@ the cross-product ratio is equal to the dependence parameter
     {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\nonumber\\
     &= \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\nonumber\\
     &= \theta.
-    \end{align}\medskip
+    \end{align}
 
 That is, the dependence parameter is equal to the ratio between number of concordence pairs and number of discordence pairs of a bivariate random variable.
 

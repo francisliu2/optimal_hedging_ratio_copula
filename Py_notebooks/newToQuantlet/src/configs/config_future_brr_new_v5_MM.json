@@ -1,0 +1,11 @@
+{
+  "data_name"   : "future_brr_new_v5",
+  "spot_name"   : "log return bitcoin",
+  "future_name" : "log return future",
+  "calibration_method": "MM",
+  "q_arr": [0.05,0.1,0.9,0.95],
+  "k_ERM": [10],
+  "q_arr_ES": [0.01,0.05],
+  "q_arr_VaR": [0.01,0.05],
+  "h_Clip": [0,99999]
+}

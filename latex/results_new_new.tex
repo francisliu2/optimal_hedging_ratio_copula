@@ -1,38 +1,5 @@
 \section{Empirical Results}\label{sec:results}
-\input{data.tex}
 
-
-\subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
-\begin{landscape}
-\begin{figure}[h]
-  \begin{minipage}[t]{0.475\linewidth}
-    \centering
-    \includegraphics[height=.5\linewidth]{_pics/MSE_indices.png}
-    \caption{Out-of-sample mean square errors of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
-    \label{fig:MSE_indices}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{0.475\linewidth}
-    \centering
-    \includegraphics[height=.5\linewidth]{_pics/MSE_cryptos.png}
-    \caption{Out-of-sample mean square errors of cryptos' hedge portfolios. Each plot has its own colour scale.}
-    \label{fig:MSE_cryptos}
-  \end{minipage}
-  \begin{minipage}[b]{0.475\linewidth}
-    \centering
-    \includegraphics[height=.5\linewidth]{_pics/semiVariance_indices.png}
-      \caption{Out-of-sample lower semi variance of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
-    \label{fig:SLV_indices}
-  \end{minipage}
-    \hfill
-  \begin{minipage}[b]{0.475\linewidth}
-    \centering
-    \includegraphics[height=.5\linewidth]{_pics/semiVariance_cryptos.png}
-     \caption{Out-of-sample lower semi variance of cryptos' hedge portfolios. Each plot has its own colour scale.}
-    \label{fig:SLV_cryptos}
-  \end{minipage}
-\end{figure}
-\end{landscape}
 \begin{figure}[t]
 \centering
 \begin{minipage}[t]{.475\textwidth}
@@ -53,7 +20,40 @@
 \label{fig:SLV_BTC}
 \end{minipage}
 \end{figure}
+\input{data.tex}
 
+
+\begin{landscape}
+\begin{figure}[h]
+  \begin{minipage}[t]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/MSE_indices.png}
+    \label{MSE_indices}
+    \caption{Out-of-sample mean square errors of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/MSE_cryptos.png}
+    \label{MSE_cryptos}
+    \caption{Out-of-sample mean square errors of cryptos' hedge portfolios. Each plot has its own colour scale.}
+  \end{minipage}
+  \begin{minipage}[b]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_indices.png}
+    \caption{Out-of-sample lower semi variance of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
+  \end{minipage}
+    \hfill
+  \begin{minipage}[b]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_cryptos.png}
+
+    \caption{Out-of-sample lower semi variance of cryptos' hedge portfolios. Each plot has its own colour scale.}
+  \end{minipage}
+\end{figure}
+\end{landscape}
+
+\subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
 First, we analyse the results of hedged portfolios without the copula
 selection step in order to get a better understanding of how a copula
 affects the hedged portfolio with various risk minimization
@@ -63,7 +63,7 @@ the mean square error and lower semi-variance.
 The mean square error
 is the distance between a perfect hedge and the hedged portfolio
 returns $\operatorname{MSE}= \E(R^2)$.
-The lower semi-variance is defined as 
+The lower semi-variance is defined as
 $\operatorname{LSV}=\E \left( (R-\E(R))^2 \1_{\{R\leq \E(R)\}} \right)$.
 All results presentedd here are out-of-sample results obtained without
 the copula selection step in order to compare the performances across
@@ -74,7 +74,7 @@ copulae.
 
 Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the mean square
 error and lower semivariance of BTC-BTCF. We can see that the Frank copula
-is the worst performing copula: 
+is the worst performing copula:
 the resulting hedged portfolio returns is far away from a perfect
 hedge.
 %\natp{\em [Can you swap the plots so that they are ordered
@@ -82,19 +82,19 @@ hedge.
 In Figures \ref{fig:MSE_indices} and \ref{fig:SLV_indices}, the phenomenom
 of Frank copula being inferior to its counterparts can be observed
 from the results of the CRIX, BITX, BITW100, and BITW20-BTCF
-portfolios. 
+portfolios.
 Interestingly, the spot in those portfolios usually have a strong
 dependence with the BTCF.
 In contrast, the inferiority of the Frank copula is less prominent in
-the BITW70, ADA, ETH, LTC and XRP-BTCF portfolios. 
+the BITW70, ADA, ETH, LTC and XRP-BTCF portfolios.
 We suspect that the Frank copula is not a choice to model assets with
 strong dependence.
 
 We can also observe from Figures \ref{fig:MSE_cryptos} and
 \ref{fig:SLV_cryptos} that the Gumbel copula is not performing as well as
-other copulas in the ETH, LTC, and XRP-BTCF portfolios. 
+other copulas in the ETH, LTC, and XRP-BTCF portfolios.
 The reason is the Gumbel copula has only upper tail dependence,
-while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF. 
+while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF.
 We will discuss this in the following section.
 
 \subsection{Copula Selection Results}\label{subsec:-copula-results}
@@ -188,6 +188,10 @@ However, apparently, this property does not capture the dependence
 structure of cryptos and BTCF.
 
 \subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
+
+\begin{landscape}
+  \include{_tables/bigTable}
+  \end{landscape}
 Table~\ref{tab:bigTable} presents the first two moments, maximum drawdown (MD) and the date of MD of the hedge portfolios.
 We observe that the statistics of the portfolios with different objectives are similar to each other.
 We provide the detail in Tables~\ref{tab:var_rh} to \ref{tab:ERM_rh} in the appendix.
@@ -199,7 +203,7 @@ We will further discuss the effectiveness of hedge in the next section. %\ref{se
 
 \subsection{Hedging Effectiveness Results}\label{sec: HE results}
 \begin{figure}[t]
-\includegraphics[width=\textwidth]{_pics/ES5_HE_boxplot.pdf}
+\includegraphics[width=\textwidth]{_pics/HE_boxplot.pdf}
   \caption{Hedging effectiveness (HE) of portfolios with different risk minimization objectives evaluated by the corresponding risk minimization objectives.
             The boxplots indicate the the median, upper quartile, lower quartile, minimium and maximum of the bootstrapped HE.
             The HE of BTC-involved spots are significantly higher than that of BTC-not-involved spots.
@@ -247,10 +251,6 @@ Some HE bootstrapping samples are negative, it means that it is possible that in
 This is an unfavorable situation for investors if they want to hedge cryptos with BTC futures.
 We do not recommend BTC futures being used to cross hedge cryptos.
 
-
-\begin{landscape}
-  \include{_tables/bigTable}
-  \end{landscape}
 %\natp{\em[It does not
 %  make sense to compare across different risk measures, so I suggest
 %  to delete the last statement. }
@@ -292,4 +292,3 @@ We do not recommend BTC futures being used to cross hedge cryptos.
 %%% mode: latex
 %%% TeX-master: "SRM"
 %%% End:
-

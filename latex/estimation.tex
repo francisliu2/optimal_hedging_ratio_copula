@@ -5,7 +5,7 @@
 We introduce the method to calibrate copulae to our data in this section.
 In general, there are two types of calibration procedures to calibrate copulae:
 maximum likelihood (MLE) and method of moments (MM).
-We decide to deploy the latter since it calibrates according to the moments desired. \medskip
+We decide to deploy the latter since it calibrates according to the moments desired. 
 
 In the following subsection, we present the configuration of the method of moments procedures in this work.
 In the subsection after, we argue that MM is more suitable to this work by comparing MM with MLE.
@@ -28,7 +28,7 @@ Spearman's $\rho$, Kendall's $\tau$, and quantile dependence of the copula $C$ a
     \p(F_X(X)>q|F_Y(Y)>q) =\displaystyle \frac{1-2q+C_{\bm{\theta}}(q,q)} {1-q},
     &\text{ if } q\in (0.5,1).
   \end{cases}
-\end{align*}\medskip
+\end{align*}
 The empirical counterparts are
 \begin{align*}
   \hat\rho_S &= \frac{12}{n} \sum_{k=1}^n \hat F_X(x_k) \hat F_Y(y_k)
@@ -46,7 +46,7 @@ The empirical counterparts are
 \end{align*}
 where $\displaystyle \hat{F}(x) =
   \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
-$\displaystyle \hat{C}(u,v) = \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$. \medskip
+$\displaystyle \hat{C}(u,v) = \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$. 
 
 Denote by $\bm{m}(\bm{\theta})$ the $m$-dimensional vector of
 dependence measures according the dependence parameters
@@ -130,7 +130,7 @@ quantile dependence of the MLE and MM calibration procedures.
 Although the MLE is a better fit to a range of quantile dependence in the middle, it fails to address the situation in the tails.
 We find that our data empirically has low quantile dependence in the lower ends ($q<10\%$).
 We argue that MM is preferred as it produces a better fit to the dependence
-structure in the tail behaviour, contrary to MLE. \medskip
+structure in the tail behaviour, contrary to MLE. 
 
 Therefore, we deploy the method of moments throughout the
 analysis.

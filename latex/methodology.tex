@@ -1,63 +1,75 @@
 \section{Optimal hedge ratio}\label{sec:optimal-hedge-ratio}
 
 \subsection{Distribution of hedge portfolio}\label{subsec:DHP}
-We form a portfolio with two assets, a spot asset and a futures
-contract, for example Bitcoin spot and a CME Bitcoin futures contract.
-Our objective is to minimize the risk of the exposure in the spot.
-To keep a simple portfolio setting, we go long one unit of the spot
-and short $h$ units of the future, $h \geq 0$.
-Letting $R^S$ and $R^F$ be the (discrete) returns of the spot and
+We form a portfolio with two assets, consisting of one unit in the
+spot asset and a short position of $h$ units of a futures contract,
+for example one Bitcoin and a short position in a CME Bitcoin
+futures contract. 
+The objective is to minimize the risk of the exposure in the spot. 
+Let $R^S$ and $R^F$ be the (discrete) returns of the spot and
 futures price. The (discrete) return of the portfolio is\footnote{%
-This is equivalent to stating that if both the spot price $S_{t-1}$
+In practice, as the nominal investment in the futures is zero, $R^F$
+is understood as the return on the notional amount underlying the
+futures contract. In other words, if both the spot price $S_{t-1}$
 and the futures price $F_{t-1}$ are 
-normalised to $1$, then $h$ units of the future will hedge the value
-change $\Delta V = \Delta S - h \Delta F$, where $\Delta S =
-S_t-S_{t-1}$, etc.
-  }
+normalised to $1$, then the portfolio return will be identical to the
+portfolio value change $\Delta V = \Delta S - h \Delta F$, where $\Delta S =
+S_t-S_{t-1}$, etc.}
 \begin{equation*}
 R^h = R^S -h R^F.
 \end{equation*}
+\natp{\em [I fixed this, please check.] [We need to discuss the
+  footnote. Generally, the portfolio return is $R_p = \sum_{i=1}^n w_i
+  R_i$. With the futures contract, the notional investment in the
+  futures is zero, so the portfolio return is $(S_0 (1+R^S) -h F_0
+  R^F)/S_0-1 = R^S-h R^F$, if $S_0=F_0$.]}
 
+To measure risk, we define a risk measure $\rho$ to be a mapping from
+a financial position or its return, such as $R^h$, to a real number, which is often
+interpreted as the amount of money to make the position acceptable
+(e.g.\ to a regulator), see e.g.\ \citep{Foellmer2002}.
+For example, a widely used risk measure is value-at-risk (VaR), which,
+at the confidence level $\alpha$,
+is derived from the $1-\alpha$ quantile of the return distribution. %  at the confidence level $\alpha$ is
+% the absolute value of the $1-\alpha$-quantile of $R^h$, i.e., $\text{VaR}_{1-\alpha} =
+% -F_{R^h}^{(-1)}(1-\alpha) = -\inf\{x \in \mathbb{R}: 1-\alpha \leq
+% F_{R^h}(x) \}$, where $F_{R^h}$ is the distribution function of
+% $R^h$.
 
 If the portfolio reduces the risk of the spot position, then
 we call this a hedge portfolio.
-To measure risk, we define a risk measures $\rho$ to be a mapping from
-a financial position, such as $R^h$, to a real number, which is often
-interpreted as the amount of money to make the position acceptable
-(e.g.\ to a regulator), see e.g.\ \citep{Foellmer2002}.
-
 An optimal hedge ratio (OHR) $h^*$ is a parameter that
 minimizes the risk of the aforementioned portfolio
 \begin{equation*}
 h^* = \argmin_h \rho(R^h).
 \end{equation*}
 
-For example, Value-at-Risk (VaR) at the confidence level $\alpha$ is
-the absolute value of the $1-\alpha$-quantile of $R^h$, i.e., $\text{VaR}_{1-\alpha} =
--F_{R^h}^{(-1)}(1-\alpha) = -\inf\{x \in \mathbb{R}: 1-\alpha \leq
-F_{R^h}(x) \}$, where $F_{R^h}$ is the distribution function of
-$R^h$.
-
-Obviously the cdf of $R^h$ and the risk measure depend on the joint distribution of $R^S$ and $-hR^F$.
-
-Optimising $h$ according to $f_{R^S,-hR^F}$ is unfavorable in the
-sense that one would need to calibrate the joint pdf $f_{R^S,-hR^F}$
-whenever updating $h$.
+Obviously the cdf and pdf of $R^h$ and the risk measure depend on the
+joint distribution of $R^S$ and $-hR^F$. However, optimising $h$
+according to $f_{R^S,-hR^F}$ is unfavorable since one would need to
+calibrate the joint pdf $f_{R^S,-hR^F}$ whenever updating $h$.
 Another problem of using the joint pdf is that one lacks the
-flexibility to model the margins separately from the dependence structure.
-To overcome both of these problems, we use copulae.
+flexibility to model the margins separately from the dependence
+structure. Copulae allow to overcome both of these problems. 
 
-The benefit of using copulae is two fold.
+The advantage of using copulae is two-fold.
 First, copulae are invariant under strictly
-monotone increasing function \citep{schweizer1981nonparametric}, see the Lemma below.
-Second, copulae allow us to model the  margins and dependence structure separately, see Sklar's Theorem
-\citep{Sklar1959}.
-See also \citep{Nelsen1999, joe1997multivariate, McNeil2005} for Sklar's Theorem.
+monotone increasing function \citep{schweizer1981nonparametric}, a
+property used in Lemma \ref{lemma:copula} below. 
+Second, copulae allow us to model the margins and dependence structure 
+separately, a result known as Sklar's Theorem \citep{Sklar1959}, which
+is given as Theorem \ref{theorem:sklar} below. 
+See also \citep{Nelsen1999, joe1997multivariate, McNeil2005} for
+Sklar's Theorem and more properties of copulae.
 
-\begin{theorem}[Hoeffding Sklar Theorem]
-  Let $F$ be a joint distribution function with margins $F_X,
-  F_Y$. Then, there exists a copula $C:[0,1]^2 \mapsto [0,1]$ such
-  that, for all $x,y\in \R$
+\natp{\em [I find it tricky that we give Sklar's Theorem, but no
+  definition of a copula. This should be added.]}
+
+\begin{theorem}[Hoeffding-Sklar-Theorem]
+  \label{theorem:sklar}
+  Let $F$ be a joint distribution function with marginal distributions
+  $F_X$ and $F_Y$. Then, there exists a copula $C:[0,1]^2 \mapsto
+  [0,1]$ such that, for all $x,y\in \R$
   \begin{equation}
     \label{eq:4}
     F(x,y)=C\{F_X(x), F_Y(y)\}.
@@ -79,31 +91,37 @@ the original papers written in German.
 %The following Lemma is not hard to prove.
 
 \begin{lemma}
+  \label{lemma:copula}
+  Let $h>0$ and let $X$ and $Y$ be continuous random variables. Then,
+  the joint distribution of the portfolio positions 
+  can be expressed via the joint distribution of the securities as
+  follows:
   \begin{align}
-  C_{X, hY}\left(F_X(s),F_{hY}(t)\right) = C_{X, Y}\left(F_X(s),F_{Y}(t/h)\right).
+  C_{X, hY}\left(F_X(s),F_{hY}(t)\right) = C_{X,
+    Y}\left(F_X(s),F_{Y}(t/h)\right), \quad s,t\in \R.
     \end{align}
   \end{lemma}
 
 \begin{proof}
-  Since copulae are invariant under strictly monotone increasing function \cite[Theorem 3 (i)]{schweizer1981nonparametric},
-  \begin{align*}
+  Since copulae are invariant under strictly monotone increasing
+  function \cite[Theorem 3 (i)]{schweizer1981nonparametric} or
+  \cite[Theorem 2.4.3]{Nelsen1999}, 
+  \begin{equation*}
     C_{X, hY}\left(F_X(s),F_{hY}(t)\right) = C_{X, Y}\left(F_X(s),F_{hY}(t)\right).
-    \end{align*}
-
-  We rewrite second argument of the copula
-  \begin{align*}
-    F_{hY}(t) &= \mathbb{P}(hY \leq t)\\
-              &= \mathbb{P}(Y \leq t/h)\\
-              &= F_Y(t/h),
-    \end{align*}
-  and finish the proof.
-  \end{proof}
+    \end{equation*}
+Re-writing the second argument of the copula gives
+\begin{equation*}
+  F_{hY}(t) = \mathbb{P}(hY \leq t)
+  = \mathbb{P}(Y \leq t/h)
+  = F_Y(t/h).
+\end{equation*}
+\end{proof}
 
 %The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ .
 Leveraging these two features of copulae, \citet{barbi2014copula}
 introduce the distribution of linear combinations of random variables
 using copulae. 
-We slightly edit the Corollary 2.1 of their work and yield the
+We slightly edit their Corollary 2.1 of their work and yield the 
 following expression of the distribution. 
 
 \begin{proposition}
@@ -112,19 +130,19 @@ following expression of the distribution.
   variables on a
   probability space $(\Omega, \F, \p)$ with
   absolutely continuous copula $C_{X, Y}$ and marginal distribution functions $F_{X}$
-  and $F_{Y}$. Then, the distribution function of $Z$ is given by 
+  and $F_{Y}$. Then, the distribution function of $Z$ \natp{\em [What
+    is $Z$?]} is given by 
   \begin{equation}
     \label{eq:3}
     F_{Z}(z) = 1- \int^1_0 D_1 C_{X, Y}
     \left[ u, F_{Y} \left\{ \frac{F^{(-1)}_{X}(u)-z}{h} \right\}
-    \right]\, d u.
+    \right]\, d u,   
   \end{equation}
+  where, $F^{(-1)}$ denotes the inverse of $F$, i.e., the quantile
+function. \natp{\em [Please check, but this holds only for $h>0$.]}
 \end{proposition}
-Here, $F^{(-1)}$ denotes the inverse of $F$, i.e., the quantile
-function.
-
-Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$ and, see e.g.\ Equation (5.15) of
-\citep{McNeil2005},
+Here, $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u}
+C(u,v)$ and, see e.g.\ Equation (5.15) of \citep{McNeil2005},
 \begin{equation}
   \label{eq:1}
   D_1 C_{X,Y}\{F_X(x), F_Y(y)\} = \p(Y\leq y|X=x).
@@ -147,8 +165,11 @@ Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$ and, see e.g.
 %expression for the pdf of $Z$.
 %\natp{\em [Please double-check the ``+'' signs in the second equation.]}\ \francis{ \em [the + sign is correct.]}
 
-\begin{corollary} Given the formulation of random variables, the
-  pdf of $Z$ can be written as 
+\begin{corollary} Given the formulation of random variables \natp{\em
+    [What exactly does this mean?]}, the
+  pdf of $Z$ can be written as
+  \natp{\em [Since $h>0$, it is sufficient to write $1/h$. Order of
+    arguments in $c_{X,Y}$ must be flipped.]}
   \begin{align}
   f_{Z}(z) &= \left|\frac{1}{h}\right|\int_0^1 c_{X, Y} \left[
   F_{Y}\left\{\frac{F^{(-1)}_{X}(u)-z}{h}\right\}, u
@@ -169,23 +190,28 @@ Here $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u} C(u,v)$ and, see e.g.
       \right\} du. \label{eq:density2}
   \end{align}
   \end{corollary}
-The two expressions are equivalent.
+The two expressions are equivalent. \natp{\em [This is obvious as
+  their LHS's agree... I think you want to say something else. How is
+  the second expression obtained?]}
 Note that the pdf of $Z$ in the above proposition can be assessed via numerical integration
 as long as we have the copula density and the marginal
 densities.
-A generic expression and proof can be found in the
-appendix.
+A generic expression \natp{\em [Of what?]} and proof can be found in the
+appendix. \natp{\em [Reference appendix properly.]}
 
 \subsection{Procedure to determine optimal hedge ratio}\label{sec:empirical-procedure}
-We introduce the empirical procedure to obtain the optimal hedge ratio (OHR) being used in this work.
+We introduce the empirical procedure to obtain the optimal hedge ratio
+(OHR) being used in this work. \natp{\em [This is really the
+  backtesting procedure. I think it'd be good if the word ``backtest''
+  appeared somwewhere.]}
 First, we split the time series of spot and futures into sets of
-training and testing data.
+training and testing data. \natp{\em [test data?]}
 The training data makes up the first 300
 observations and its corresponding testing data consists of the
 consecutive 5 observations.
 We then roll 5 observations forward (step size of 5) to obtain the next training and
 test data sets and repeat this until the end of the time series. 
-Note that the testing data are non-overlapping since the step size and equal to test size.
+Note that the testing data are non-overlapping since the step size is equal to test size.
 
 Next, we obtain the OHR as follows:
 
@@ -207,7 +233,10 @@ Next, we obtain the OHR as follows:
   the loss function by drawing samples from the selected copula and
   KDEs. The risk measures used as risk reduction objectives are
   outlined in \ref{subsec:spectral-risk-measures} 
-  \item \textbf{Obtain testing log-return of hedged portfolio}.
+  \item \textbf{Obtain testing log-return of hedged
+      portfolio}. \natp{\em [``testing log-return'' is a bit
+      confusing. I think ``testing'' refers to test data set? Find
+      better formulation.]} 
   Finally, we apply the OHRs to the test data $R_h = R_s - h^* R_f$.
   \end{enumerate}
 

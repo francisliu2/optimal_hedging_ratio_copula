@@ -76,9 +76,43 @@ Although the hedging effectiveness of combining various statistical tools with c
 our analysis shows that hedgers have the freedom to choose the copula (except the Frank copula) to model the dependence structure,
 whereas t, Plackett, Gaussian Mix independent, rotated Gumbel and NIG copula appear to be conservative choices to start the analysis.
 
+\textit{Policy maker}:
+Our results connect to the discussion of minimum capital requirements for crypto market risk exposure.
+The Basel Committee on Banking Supervision (BCBS) has made proposals and released consultative documents for the prudential treatment of banks' crypto-asset exposures.
+The Basel chair's stand on placing tough capital rules for crypto assets \footnote{See \url{https://www.risk.net/regulation/7948536/basel-chair-stands-by-tough-capital-rules-for-crypto-assets}} attracted discussion.
+The Second Consultation proposes to limit banks' exposures to Group 2 cryptoassets to 1\% of the bank's Tier 1 capital,
+calculated on a "double-gross" basis by adding the long and short positions without any hedging recognition
+$\text{Net position} = \max \left(
+\text{Long position}, |\text{Short position}|
+\right)
+- .65 \min\left(
+\text{Long position}, |\text{Short position}|
+\right)$ (60.66).
+Respondents to the consultations argued that the proposed methodology of calculating exposure is an extremely restrictive quantitative measure that prohibits banks to manage limit utilisation to crypto assets as the addition of a hedge instrument;
+a price increase of the underlying cryptoassets could make banks breaching the limit.
+According to our results, BTC position's market risk measured in various risk measures,
+even for VaR99\% and ES99\%, can be effectively reduced by an appropriate size of opposite position in CME BTC futures.
+While the debates carry on at the time of writing, our results align and can be seen as an extension of the existing researches made by stakeholders,
+for example, research done by CME \footnote{See \url{https://www.cmegroup.com/education/files/basics-of-hedge-effectiveness.pdf}},
+and International Swaps and Deriatives Association's report \footnote{\url{https://www.isda.org/a/pMWgE/Crypto-asset-Risks-and-Hedging-Analysis.pdf }}.
+
+On the other hand, our results support the categorisation criteria of the Basel cryptoassets.
+In the Second Consultation, Group 2 cryptoassets (Group 1 CCs are digitally tokenised traditional assets) are divided into two subcategories,
+Group 2a are the CCs that exists a derivative or exchange-traded fund (ETF)/exchange-traded note (ETN) that is traded on a regulated exchange that solely references the cryptoasset;
+Group 2b are the CCs that fail to meet the requirement.
+Our results suggest that the existence of derivative that solely references the cryptoasset empowers market participants to hedge their corresponding crypto position,
+thus it is sensible to treat the aforementioned Group 2a and 2b differently.
+On the contrary, we show that the hedging effectiveness significantly lower than 1 when the spot is different from what the CME futures is referencing, i.e. the cross hedge setting.
+That means the risk of holding a CC cannot be perfectly cross hedged by including the CME futures.
+Even worse, we observe negative HEs in some of the bootstrapped samples.
 
 
-% A possible research direction would be hedging the linear part with futures and non-linear part with options, e.g. the BTC options.
+
+
+
+
+
+
 
 
 

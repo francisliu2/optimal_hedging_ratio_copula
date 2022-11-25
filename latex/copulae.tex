@@ -1,43 +1,61 @@
 
 \subsection{Copulae}\label{subsec:copulae}
-To capture different aspects of the dependence structure, we consider a number of different copulas, which are layed
-  out in details below 
-Gaussian-, $t$-, Frank-,
+To capture different aspects of the dependence structure, we consider
+a set of different copulas, which are layed
+  out in detail below. These are the Gaussian-, $t$-, Frank-,
 Gumbel-, Clayton-, mixture, NIG factor, and Plackett-copula. 
 
-As this hedging exercise concerns only portfolios with two assets, we
-focus on the bivariate version of copulae and some important
-features of a copula, including Kendall's $\tau_K$ and Spearman's $\rho_S$. 
+As this hedging backtest concerns only portfolios with two assets, we
+focus on the bivariate version of each copula and bivariate copula
+measures, such as Kendall's $\tau_K$ and Spearman's $\rho_S$. 
 
-Kendall's $\tau$ and Spearman's $\rho$ are measures of association in terms of concordance, see \cite{kruskal1958ordinal}
-Let $(x_i, y_i)$ and $(x_j, y_j)$ denote two observations from a vector $(X, Y)$ of continuous random variables.
+\subsubsection{Copula measures}
+
+Kendall's $\tau$ and Spearman's $\rho$ are measures of association in
+terms of concordance, see \cite{kruskal1958ordinal}. \natp{\em [A
+  number of definitions follow. It usually helps the reader if they
+  are put in a definition block rather than just flowing with the text.]}
+Let $(x_i, y_i)$ and $(x_j, y_j)$ denote two realisations of a
+vector $(X, Y)$ of continuous random variables. 
 A pair of observations is concordant if $x_i<x_j$ and $y_i < y_j$, discordant if
-$x_i>x_j$ and $y_i < y_j$ or if $x_i<x_j$ and $y_i>y_j$.
-For a bivariate random variable of $n$ observations, there are $\binom{n}{2}$ distinct pairs. 
+$x_i>x_j$ and $y_i < y_j$ or if $x_i<x_j$ and $y_i>y_j$. \natp{\em
+  [What about the case $x_i>x_j$ and $y_i>y_j$?]}
+For a bivariate random variable of $n$ observations, there are
+$\binom{n}{2}$ distinct pairs. \natp{\em [I struggled with
+  understanding what ``distinct pairs'' refers to, but found the
+  answer in Nelsen. Perhaps add a little more test. Also, as this
+  paragraph seems to be taken directly from Nelsen, it {\bf must} be
+  cited accordingly!]}
 
-Let $c$ denote the number of concordant pairs, and $d$ the number of discordant pairs,
-Kendall's tau is defined as follows \citep{Nelsen1999}
-\begin{align*}
-\tau_K &\overset{\mathrm{def}}{=} \frac{c-d}{c+d} \\[10pt]
-     &= \frac{c-d}{\binom{n}{2}};
-\end{align*}
 
-Let $F_X$ and $F_Y$ be cdfs of $X$ and $Y$ respectively, Spearman's $\rho$ is
-\begin{align*}
-\rho_S \overset{\mathrm{def}}{=} 12\E (F_X(X)F_Y(Y))-3;
-\end{align*}
-
-Upper tail dependence is defined as
+Let $c$ denote the number of concordant pairs, and $d$ the number of
+discordant pairs. 
+Kendall's tau is defined as follows: \citep{Nelsen1999}
 \begin{equation*}
-\lambda_U \overset{\mathrm{def}}{=}  \lim_{q
+\tau_K := \frac{c-d}{c+d} = \frac{c-d}{\binom{n}{2}}. 
+\end{equation*}
+
+Let $F_X$ and $F_Y$ be the cdfs of $X$ and $Y$ respectively, Spearman's
+$\rho$ is \natp{\em [These are two sentences, so please separate them
+  into two sentences. Also, formulas belong syntactically to the
+  sentence, so if they end the sentence, there should be a full stop.]}
+\begin{equation*}
+\rho_S := 12\E (F_X(X)F_Y(Y))-3. 
+\end{equation*}
+\natp{\em [Is there a particular reason to switch between sample and
+  populationo versions?]}
+
+Upper tail dependence is defined as \natp{\em [Typeset terms that are
+  defined, e.g.\ upper tail dependence, in italics.]}
+\begin{equation*}
+\lambda_U :=  \lim_{q
   \rightarrow 1^-} \p\{X > F_{X}^{(-1)}(q)|Y > F_{Y}^{(-1)}(q)\};
 \end{equation*}
 
 Lower tail dependence is defined as
 \begin{equation*}
-\lambda_L \overset{\mathrm{def}}{=}  \lim_{q
-  \rightarrow 0^+} \p\{X \leq F_{X}^{(-1)}(q)|Y \leq
-F_{Y}^{(-1)}(q)\}. 
+\lambda_L :=  \lim_{q \rightarrow 0^+} \p\{X \leq F_{X}^{(-1)}(q)|Y
+\leq F_{Y}^{(-1)}(q)\}. 
 \end{equation*}
 Furthermore, we denote the Fr{\'e}chet-Hoeffding lower bound by
 $\bm{W}$, the product copula by $\bm{\Pi}$, and the Fr{\'e}chet-Hoeffding
@@ -48,30 +66,27 @@ For further details, we refer readers to \citet{joe1997multivariate}
 and \citet{Nelsen1999}; see also \citet{hardle2010copulis}. 
 
 The symmetry property of copulae is also important for modelling financial data.
-In particular, we are interested in the radially symmetric among other symmetry definitions, see \citet{Nelsen1999}.
+In particular, we are interested in radial symmetry among various
+concepts of symmetry, see \citet{Nelsen1999}. \natp{\em [Why?]}
 
 \begin{defn}
-    Let $(U_1, ..., U_d)$ be random variables.
-    The random variables is radially symmetric if the joint cdf of $(U_1, ..., U_d)$ is same as the
-    joint cdf of $(1-U_1, ..., 1-U_d)$
-
-    \end{defn}
-
-To illustrate the difference among copulae, we plot random samples drawn from copulae listed below in figure~\ref{fig:copulaeScatterPlot}.
-
-\begin{figure}[t]
-    \centering
-  \includegraphics[width=\textwidth]{_pics/copulas_scatterplots.pdf}
-  \caption{Scatterplots of samples drawn from copulae. All copulae are calibrated to Spearman's $\rho$ of 0.75 before sampling.}\label{fig:copulaeScatterPlot}
-\end{figure}
+  Let $(U_1, ..., U_d)$ be random variables. \natp{\em [uniform on $[0,1]$?]}
+  The random variables is radially symmetric if the joint cdf of
+  $(U_1, ..., U_d)$ is same as the joint cdf of $(1-U_1, ..., 1-U_d)$
+\end{defn}
 
 
 \subsubsection{Gaussian and $t$ Copulae}\label{sec:ellpitical-copulae}
 
-Gaussian and $t$ copulae are dervived from Gaussian and $t$ distributions.
-Since Gaussian and $t$ distributions are elliptical distributions, Gaussian and $t$ copulae are called elliptical copulae. 
+The Gaussian and $t$ copulae are dervived from Gaussian and $t$
+distributions. As the Gaussian and $t$ distributions belong to the family
+of elliptical distributions, their copulae belong to the family of
+elliptical copulae. \natp{\em [I personally would remove the reference
+  to the elliptical family, as this is not important for what is to
+  come. If it must stay, then briefly explain what elliptical distributions
+  are (``Empirical distributions are characeterised by...''.]}
 
-Gaussian copula (bivariate) is defined as
+The bivariate Gaussian copula is defined as
 \begin{align*}
   \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\} \nonumber \\
               &= \int_{-\infty}^{\Phi^{(-1)}(u)}
@@ -79,32 +94,46 @@ Gaussian copula (bivariate) is defined as
                 \frac{1}{2\pi\sqrt{1-\rho^2}}
                 \exp{\left\{
                 \frac{s^2-2\rho st+t^2}{2(1-\rho^2)}
-                \right\}} \dd s\, \dd t,
+                \right\}} \dd s\, \dd t,\quad, u,v\in [0,1],
 \end{align*}
-where $\Phi_{2, \rho}$ is the cdf of bivariate Normal distribution
+where $\Phi_{2, \rho}$ is the bivariate Normal cdf
 with zero mean, unit variance, and correlation coefficient $\rho$, and
-$\Phi^{(-1)}$ is the quantile function univariate standard normal
-distribution. 
-
-Note that we use $\rho$ to denote the correlation parameter as well as a $\rho(\cdot)$ to denote a risk measure. 
-
-The Gaussian copula is fully specified by the correlation parameter $\rho$.
-Like all elliptical copulas, it is symmetric.
-It has no tail dependence, which, in a finance context, implies that it often underestimates tail risk. 
+$\Phi^{(-1)}$ is the quantile function of the univariate standard normal
+distribution.
+The Gaussian copula is fully specified by the correlation parameter $\rho$. \footnote{
+The symbol $\rho$ is used to denote both the correlation parameter as
+well as a general risk measure. However, it will be clear from the
+context, what $\rho$ refers to.}
+Like all elliptical copulas, it is symmetric. \natp{\em [Remove
+  reference to elliptic copula.]}
+It has no tail dependence, which, in a finance context, implies that
+it often underestimates tail risk.  
 
 The Gaussian copula density is
-\begin{align*}
-  \bm{c}_\rho(u,v) &= \frac{\bm{\varphi}_{2,\rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\}}
-                     {\varphi\{\Phi^{(-1)}(u)\} \cdot \varphi\{\Phi^{(-1)}(v)\}} \nonumber \\[10pt]
-                   &= \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left\{
+\begin{equation*}
+  \bm{c}_\rho(u,v) = \frac{\bm{\varphi}_{2,\rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\}}
+                     {\varphi\{\Phi^{(-1)}(u)\} \cdot \varphi\{\Phi^{(-1)}(v)\}} 
+                  = \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left\{
                      -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
                      \right\},
-\end{align*}
+\end{equation*}
 where $\bm{\varphi}_{2,\rho}(\cdot)$ is the pdf corresponding to
 $\Phi_{2, \rho}$, and $\varphi(\cdot)$ the standard normal
-distribution pdf. 
+pdf. \natp{\em [I think the abbreviations cdf and pdf where not
+  introduced. Please double-check.]}
 
-Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian copula are
+To illustrate the various copulae and their differences,
+Figure~\ref{fig:copulaeScatterPlot} shows scatter plots of random
+samples of each of the copulae treated. 
+\begin{figure}[t]
+    \centering
+  \includegraphics[width=\textwidth]{_pics/copulas_scatterplots.pdf}
+  \caption{Scatterplots of samples drawn from various copulae. All
+    copulae are calibrated to Spearman's $\rho$ of 0.75 before
+    sampling.}\label{fig:copulaeScatterPlot} 
+\end{figure}
+
+Kendall's $\tau_K$ and Spearman's $\rho_S$ of the bivariate Gaussian copula are
     \begin{align*}
         \tau_K(\rho) = \frac{2}{\pi}\arcsin\rho
         \end{align*}
@@ -113,20 +142,22 @@ Kendall's $\tau_K$ and Spearman's $\rho_S$ of a bivariate Gaussian copula are
         \end{align*}
 
 The $t$-copula has the form
-\begin{align*}
-        \bm{C}(u,v) &= \bm{T}_{2, \rho, \nu}\{T^{(-1)}_\nu(u), T^{(-1)}_\nu(v)\} \nonumber \\[10pt]
-            &= \int_{-\infty}^{T^{(-1)}_\nu(u)}
+\begin{multline*}
+        \bm{C}(u,v) = \bm{T}_{2, \rho, \nu}\{T^{(-1)}_\nu(u), T^{(-1)}_\nu(v)\}\\
+        = \int_{-\infty}^{T^{(-1)}_\nu(u)}
                \int_{-\infty}^{T^{(-1)}_\nu(v)}
             \frac{\Gamma\left(\frac{\nu+2}{2}\right)}
-            {\Gamma\left(\frac{\nu}{2}\right)\pi\nu\sqrt{1-\rho^2}}\\[10pt]
-           & \left(
+            {\Gamma\left(\frac{\nu}{2}\right)\pi\nu\sqrt{1-\rho^2}}
+             \left(
         1+\frac{s^2-2st\rho+t^2}{\nu}
-        \right)^{-\frac{\nu+2}{2}} ds dt,
-    \end{align*}
-where $\bm{T}_{2, \rho, \nu}$ denotes the cdf of
-bivariate $t$ distribution with dependence parameter $\rho$ and degrees of freedom parameter $\nu$,
+        \right)^{-\frac{\nu+2}{2}}\, \dd s\, \dd t,
+    \end{multline*}
+where $\bm{T}_{2, \rho, \nu}$ denotes the 
+bivariate $t$ cdf with dependence parameter $\rho$ \natp{\em [Is this
+  Spearman's Rho? If so, then say so.]} and degrees of
+freedom parameter $\nu$, $\nu>2$,
 and where $T^{(-1)}_\nu(\cdot)$ is the quantile function of a standard
-$t$ distribution with degree of freedom $\nu$. 
+$t$ distribution with parameter $\nu$. 
 
 Contrary to the Gaussian copula, the $t$-copula has a non-zero
 tail dependence coefficient, which makes it more appropriate for
@@ -141,18 +172,23 @@ The copula density is
 where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}$
 and $t_\nu$ the density of standard $t$ distribution.
 
+\natp{The $t$-copula and Gaussian copula with parameter $\rho$ have
+  equal Kendall's $\tau$, a property shared by all so-called
+  elliptical copulas \citep[see][and
+references therein]{demarta2005t}. (was: 
 Like all the other elliptical copulae, the $t$-copula's Kendall's
 $\tau$ is identical to that of the Gaussian copula \citep[see][and
-references therein]{demarta2005t}. 
+references therein]{demarta2005t}.)}
 
 
 \subsubsection{Archimedean copulae}\label{sec:archimedean-copula}
 The family of Archimedean copulae forms a large class of copulae with
 many convenient features.
-Contrary to elliptical copulas, which are derived from
-elliptical distributions.
-Archimedean copulas are determined via a simple parametric form of the dependence structure.
-A prominent feature is the ability to model asymmetric dependence structures. 
+% Contrary to elliptical copulas, which are derived from
+% elliptical distributions.
+Archimedean copulas are determined via a simple parametric form of the
+dependence structure. A prominent feature is the ability to model
+asymmetric dependence structures.  
 
 In general, they take a form
 \begin{align*}

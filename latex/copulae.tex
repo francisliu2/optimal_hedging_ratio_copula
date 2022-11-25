@@ -43,7 +43,7 @@ $\rho$ is \natp{\em [These are two sentences, so please separate them
 \rho_S := 12\E (F_X(X)F_Y(Y))-3. 
 \end{equation*}
 \natp{\em [Is there a particular reason to switch between sample and
-  populationo versions?]}
+  population versions?]}
 
 Upper tail dependence is defined as \natp{\em [Typeset terms that are
   defined, e.g.\ upper tail dependence, in italics.]}
@@ -84,7 +84,7 @@ of elliptical distributions, their copulae belong to the family of
 elliptical copulae. \natp{\em [I personally would remove the reference
   to the elliptical family, as this is not important for what is to
   come. If it must stay, then briefly explain what elliptical distributions
-  are (``Empirical distributions are characeterised by...''.]}
+  are (``Empirical distributions are characterised by...''.]}
 
 The bivariate Gaussian copula is defined as
 \begin{align*}
@@ -190,33 +190,34 @@ Archimedean copulas are determined via a simple parametric form of the
 dependence structure. A prominent feature is the ability to model
 asymmetric dependence structures.  
 
-In general, they take a form
+In general, an Archimedean copula takes the form
 \begin{align*}
-    \bm{C}(u,v)= \psi^{(-1)}\{\psi(u), \psi(v)\},
+    \bm{C}(u,v)= \psi^{(-1)}\{\psi(u), \psi(v)\},\quad u,v\in [0,1],
     \end{align*}
 where $\psi:[0,1] \rightarrow [0,\infty)$ is a continuous, strictly
-decreasing and convex function such that $\psi(1)=0$ for any
-permissible dependence parameter $\theta$. $\psi$ is also called
-generator. $\psi^{(-1)}$ is the inverse of the generator. 
+decreasing and convex function such that $\psi(1)=0$ \natp{\em [Where
+  does $\theta$ come in?]} for any
+permissible dependence parameter $\theta$. The function $\psi$ is 
+called the generator, with $\psi^{(-1)}$ its inverse.
 
-The Frank copula (B3 in \citet{joe1997multivariate}) is a radial symmetric copula and cannot produce any tail dependence.
-It takes the form
+The {\em Frank copula\/} (B3 in \citet{joe1997multivariate}) takes the form
 \begin{align*}
     \bm{C}_{\theta}(u,v) &= \frac{1}{\theta}
     \log \left\{
     1 + \frac{(e^{-\theta u}-1)(e^{-\theta v}-1)}{e^{-\theta}-1}
-    \right\}
+    \right\}, \quad u,v\in [0,1],
     \end{align*}
-where $\theta \in [0, \infty]$ is the dependency parameter.
-$\bm{C}_{-\infty} = \bm{M}$, $\bm{C}_1 = \bm{\Pi}$, and $\bm{C}_\infty = \bm{W}$.
-
-The Copula density is
-\begin{align*}
-    \bm{c}_{\theta}(u,v) &= \frac{\theta e^{\theta(u+v)(e^\theta-1)}}
-    {\left\{e^\theta-e^{\theta u}-e^{\theta v}+e^{\theta (u+v)}\right\}^2}
+    with $\theta \in [0, \infty]$ the dependence parameter. It is a
+    radially symmetric copula and cannot produce any tail
+    dependence. The following parameters correspond perfect dependence
+    and independence: $\bm{C}_{-\infty} = \bm{M}$, $\bm{C}_1 = \bm{\Pi}$,
+    and $\bm{C}_\infty = \bm{W}$. The copula density is
+    \begin{align*}
+      \bm{c}_{\theta}(u,v)
+      &= \frac{\theta e^{\theta(u+v)(e^\theta-1)}}
+        {\left\{e^\theta-e^{\theta u}-e^{\theta v}+e^{\theta (u+v)}\right\}^2}.
     \end{align*}
-
-Frank copula has Kendall's $\tau$ and Spearman's $\rho$ as follow:
+    The Frank copula has Kendall's $\tau$ and Spearman's $\rho$ as follow:
 \begin{align*}
     \tau_K(\theta) = 1-4\frac{D_1\{-\log(\theta)\}}{\log(\theta)},
     \end{align*}
@@ -224,22 +225,26 @@ and
 \begin{align*}
     \rho_S(\theta) = 1-12\frac{D_2\{-\log(\theta)\} - D_1\{\log(\theta)\}}{\log(\theta)},
     \end{align*}
-where $D_1$ and $D_2$ are the Debye function of order 1 and 2.
-Debye function is $D_n = \frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$.
+where $D_1$ and $D_2$ are the Debye function of order 1 and 2, with
+the Debye function defined as $D_n =
+\frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$. \natp{\em [Please find a
+  reference for the Debye function. A good candiate is the Handbook by
+  Abramowitz Stegun.]}
 
-The Gumbel copula (B6 in \citet{joe1997multivariate}) has upper tail
-dependence with the dependence parameter $\lambda^U =
-2-2^{\frac{1}{\theta}}$ and displays no lower tail dependence. 
+The {\em Gumbel copula\/} (B6 in \citet{joe1997multivariate}) has
+distribution function
 \begin{equation*}
   \bm{C}_{\theta}(u,v) = \exp{-\{ (-\log(u))^\theta +(-\log(v))^\theta 
     \}^{\frac{1}{\theta}}},
 \end{equation*}
 where $\theta \in [1,\infty)$ is the dependence parameter.
+It has upper tail dependence with dependence parameter $\lambda^U
+= 2-2^{\frac{1}{\theta}}$ and displays no lower tail dependence. 
     
 While the Gumbel copula cannot model perfect counter-dependence
-\citep{Nelsen2002}, $\bm{C}_{1} = \bm{\Pi}$ models the independence, 
-and $\lim_\theta^\infty \bm{C}_\theta = \bm{W}$ models the perfect
-dependence. The copula density takes the form
+\citep{Nelsen2002}, $\bm{C}_{1} = \bm{\Pi}$ models independence, 
+and $\lim_{\theta\rightarrow\infty} \bm{C}_\theta = \bm{W}$ models
+perfect dependence. The copula density takes the form
 %\begin{align}
 %        f
 %    \end{align}
@@ -247,17 +252,17 @@ dependence. The copula density takes the form
     \tau_K(\theta) =\frac{\theta-1}{\theta}. 
    \end{equation*}
 
-The Clayton copula, by contrast to Gumbel copula,
-generates lower tail dependence of the form $\lambda^L =
-2^{-\frac{1}{\theta}}$, but cannot generate upper tail dependence.
-The Clayton copula takes the form
+The {\em Clayton copula\/} takes the form
 \begin{equation*}
   \bm{C}_{\theta}(u,v) = \left\{
     \max(u^{-\theta}+v^{-\theta}-1,0)\right\}^{-\frac{1}{\theta}},
 \end{equation*}
 where $\theta \in (-\infty, \infty)$ is the dependence parameter.
-Moreover, $\lim_\theta^{-\infty} \bm{C}_\theta = \bm{M}$, $\bm{C}_0 =
-\bm{\Pi}$, and $\lim_\theta^\infty \bm{C}_\theta = \bm{W}$. 
+The Clayton copula, by contrast to Gumbel copula,
+generates lower tail dependence with $\lambda^L =
+2^{-\frac{1}{\theta}}$, but cannot generate upper tail dependence.
+Moreover, $\lim_{\theta\rightarrow -\infty} \bm{C}_\theta = \bm{M}$, $\bm{C}_0 =
+\bm{\Pi}$, and $\lim_{\theta\rightarrow\infty} \bm{C}_\theta = \bm{W}$. 
 Kendall's $\tau$ of the Clayton copula is given by 
 \begin{align*}
     \tau_K(\theta) =\frac{\theta}{\theta+2}.
@@ -265,59 +270,78 @@ Kendall's $\tau$ of the Clayton copula is given by
 
 \subsubsection{Mixture Copula}\label{sec:mixture-copula}
 The mixture copula is a linear combination of copulae. 
-For a 2-dimensional random variable $\bm{X}=(X_1,X_2)^\top$,
-its distribution can be written as linear combination of $K$ copulae
-
+The distribution of a 2-dimensional random variable
+$\bm{X}=(X_1,X_2)^\top$ is written as linear combination of $K$
+copulae 
 \begin{equation*} 
     \bm{C}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{C}^{(k)}\{F^{(-1)}_{X_1}(u),
-    F^{(-1)}_{X_2}(v); \bm{\theta^{(k)}}\}.
-    \end{equation*}
-The copula density is again a linear combination of copula densities
+    F^{(-1)}_{X_2}(v); \bm{\theta^{(k)}}\}, \quad u,v\in [0,1].
+  \end{equation*}
+  \natp{Here, $\bm{\theta^{(k)}}$ refers to the parameters of the
+    $k$-th copula.} Likewise, the copula density is a linear
+    combination of copula densities 
 \begin{align*}
     \bm{c}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{c}^{(k)}\{F^{(-1)}_{X_1}(u),
     F^{(-1)}_{X_2}(v); \bm{\theta^{(k)}}\}.
     \end{align*}
 
-While Kendall's $\tau$ of mixture copula is not known in closed form,
-Spearman's $\rho$ is specified by the following statement. 
+\natp{\em
+  [I think the statement below can go without a formal proof. Here is
+  a suggestion].}
 
+   
+While Kendall's $\tau$ of the mixture copula is not known in closed form,
+Spearman's $\rho$ is easily derived as 
+\begin{equation*}
+  \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}. 
+\end{equation*}
+
+\natp{\em [Old text below.]}
+
+While Kendall's $\tau$ of the mixture copula is not known in closed form,
+Spearman's $\rho$ is specified by the following statement. 
 \begin{proposition}
   Let $\rho_S^{(k)}$ be Spearman's $\rho$ of the $k$-th component
   Spearman's $\rho$ of the mixture copula is given by 
   \begin{align*}
-        \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}
+        \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}.
         \end{align*}
     \end{proposition}
 
 \begin{proof}
-    Since Spearman's $\rho$ is defined as \citep{Nelsen1999}
-    \begin{equation*}
-      \rho_S = 12 \int_{\mathbb{I}^2} \bm{C}(s,t) ds dt - 3,
-    \end{equation*}
-    Spearman's $\rho$ of the the mixture copula is given by summation
-    of the components 
-       \begin{align*}
-        \rho_S = 12 \int_{\mathbb{I}^2} \sum_{k=1}^K p^{(k)} \cdot
-         \bm{C}^{(k)}(s,t) ds dt - 3. 
-        \end{align*}
-    \end{proof}
+  Since Spearman's $\rho$ is defined as \citep{Nelsen1999}
+  \begin{equation*}
+    \rho_S = 12 \int_{\mathbb{I}^2} \bm{C}(s,t) ds dt - 3,
+  \end{equation*}
+  Spearman's $\rho$ of the the mixture copula is given by summation
+  of the components 
+  \begin{align*}
+    \rho_S = 12 \int_{\mathbb{I}^2} \sum_{k=1}^K p^{(k)} \cdot
+    \bm{C}^{(k)}(s,t) ds dt - 3. 
+  \end{align*}
+\end{proof}
+\natp{\em [Continue here.]}
 
-An example of a mixture copula is the Fr'echet class of copulas, which are given by convex combinations of $\bm{W}$,
-  $\bm{\Pi}$, and $\bm{M}$ \citep{Nelsen1999}. 
+An example of a mixture copula is the Fr\'echet class of copulae, which
+are given by convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$
+\citep{Nelsen1999}.  
 
-We use a mixture of Gaussian and independent copulas in our analysis,
+We use a mixture of Gaussian and independence copulae in our analysis,
 i.e., 
 \begin{equation*}
-  \bm{C}(u,v) = p\cdot \bm{C}^\text{Gaussian}(u,v) + (1-p)(uv),
+  \bm{C}(u,v) = p\, \bm{C}^\text{Gaussian}(u,v) + (1-p)(uv),\quad p\in (0,1),
 \end{equation*}
-with corresponding density is
+with corresponding density 
 \begin{equation*}
-  \bm{c}(u,v) = p\cdot \bm{c}^\text{Gaussian}(u,v) + (1-p).
+  \bm{c}(u,v) = p\, \bm{c}^\text{Gaussian}(u,v) + (1-p).
 \end{equation*}
 
 This mixture models the amount of ``random noise'' that appears in the
 dependence structure. In the hedging exercise, the
-``random noise'' adds an unhedgable component to the two-asset portfolio, whose weight $(1-p)$ is calibrated from market data.
+``random noise'' adds an unhedgable component to the two-asset
+portfolio, whose weight $(1-p)$ is calibrated from market
+data. \natp{\em [Is it clear that the unhedgable part is more than the
+  ``random noise''?]}
 
 \subsubsection{NIG factor copula}
 
@@ -356,7 +380,7 @@ expectation and variance of the NIG distribution being
 
 The $\text{NIG}(\alpha, \beta, \mu\, \delta)$ distribution belongs to
 the class of so-called {\em normal
-variance-mean mixture},  (see Section 3.2 of
+variance-mean mixture distributions},  (see Section 3.2 of 
 \citep{McNeil2005}): $X$ follows an
 $\text{NIG}(\alpha,\beta,\mu,\delta)$ distribution if $X$ conditional
 on $W$ follows a normal distribution with mean $\mu+\beta W$ and
@@ -404,23 +428,28 @@ its properties.
   \begin{enumerate}
   \item This follows directly from the moment-generating function. 
   \item For the covariance,
-    \begin{align*}
+    \begin{equation*}
       \text{Cov}(X_i,X_j)
-      &= \E[(Z+Z_i) (Z+Z_j)] - \E[Z+Z_i] \E[Z+Z_j]\\
-      &= \E[Z^2] -(\E Z)^2.
-    \end{align*}
+      = \E[(Z+Z_i) (Z+Z_j)] - \E[Z+Z_i] \E[Z+Z_j]
+      = \E[Z^2] -(\E Z)^2.
+    \end{equation*}
     The correlation is determined directly from \ref{eq:5}.
   \end{enumerate}
 \end{proof}
 
-The NIG factor copula is obtained by transforming the margins to
+\natp{\em [Please clarify that $\circ$ refers to composition. Clean
+  up notation, e.g.\ marginals can be denoted $F_F$ and $F_S$, Use
+  just $C$ for the copula. What are $Z_1$ and $Z_2$? I don't find the
+  formula in the paper mentioned. Also, where is the formula for
+  Kendall's tau taken from?]}
+ The NIG factor copula is obtained by transforming the margins to
 uniforms (see Sklar's Theorem), giving (e.g.\
 \citep{krupskii2013factor}):
 \begin{equation*}
   C_{r^S, r^F}(F_{r^S}(r^S), F_{r^F}(r^F)) = \int_\mathbb{R}
   F_{Z_1}(F_{X_1}^{(-1)} \circ F_{r^S}(r^S) -z) \cdot
   F_{Z_2}(F_{X_2}^{(-1)} \circ F_{r^F}(r^F) -z) \cdot
-  f_Z(z) dz
+  f_Z(z) dz.
   \end{equation*}
 If the margins are continuous, then Spearman's rho of NIG factor
 copula is 
@@ -454,27 +483,34 @@ copula is
 
 
 \subsubsection{Plackett copula}\label{subsec:other-copula}
-The Plackett copula has an expression
+The Plackett copula has distribution functiono
 \begin{align*}
     \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}
                          - \frac{\sqrt{\{
-    1+(\theta-1)(u+v)\}^2 - 4uv\theta(\theta-1)}}{2(\theta-1)}
-    \end{align*}
+    1+(\theta-1)(u+v)\}^2 - 4uv\theta(\theta-1)}}{2(\theta-1)},
+\end{align*}
+\natp{where $\theta$...}.
+Spearman's Rho is given by 
 \begin{align*}
-    \rho_S(\theta) = \frac{\theta+1}{\theta-1} - \frac{2\theta \log \theta}{(\theta-1)^2}
+    \rho_S(\theta) = \frac{\theta+1}{\theta-1} - \frac{2\theta \log
+  \theta}{(\theta-1)^2}. 
     \end{align*}
 
-We include Placket copula in our analysis as it possesses a special property,
+The Placket copula possesses a special property, namely
 the cross-product ratio is equal to the dependence parameter
-\begin{align} \label{eq:PlackettCrossProduct}.
-    &\phantom{=} \frac{\p(U \leq u, V \leq v) \cdot \p(U > u, V > v)}
-    {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\nonumber\\
-    &= \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\nonumber\\
-    &= \theta.
-    \end{align}
+\begin{equation} \label{eq:PlackettCrossProduct}
+    % &\phantom{=}
+    \frac{\p(U \leq u, V \leq v) \cdot \p(U > u, V > v)}
+    {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\nonumber
+    =
+      \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\nonumber 
+    = \theta.
+\end{equation}
+In words, the dependence parameter is equal to the ratio of the 
+number of concordance pairs and the number of discordance pairs of a 
+bivariate random variable. 
 
-That is, the dependence parameter is equal to the ratio between number of concordence pairs and number of discordence pairs of a bivariate random variable.
-
+\natp{\em [Until here.]}
 
 %%% Local Variables:
 %%% mode: latex

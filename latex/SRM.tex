@@ -482,7 +482,10 @@ To yield robust HE measures, we apply stationary bootstrapping to the full-lengt
 \subsubsection{Results}
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/hourly_HE.png}
-  \caption{Intraday HEs of BTC-BTCF and ETH-BTCF portfolio. (working...)
+  \caption{Intraday HEs of BTC-BTCF and ETH-BTCF portfolio. The HEs of BTC-BTCF portfolios are significantly higher than $0$,
+which suggests involving the BTCF in the portfolio can effectively reduce market risk.
+The HEs of ETH-BTCF portfolios are lower than that of BTC-BTCF portfolios, and sometimes go below $0$.
+We nullify the hedging ability of BTCF in this intraday ETH-BTCF setting.
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:HEboxplot_intraday}
 \end{figure}
@@ -512,14 +515,16 @@ This result is again consistent with the daily rebalancing setting.
 
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/revision_BTC_MSEs.png}
-  \caption{BTC-BTCF MSEs (working...)
+  \caption{Intraday out-of-sample MSEs of the BTC-BTCF portfolio constructed by combinations of copula and ris minimization objectives.
+    The Frank copula is again inferior. Minimising ES99\% results in higher MSEs disregard of which copula is in use.
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:BTC_MSE}
 \end{figure}
 
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/revision_BTC_LSVs.png}
-  \caption{BTC-BTCF LSVs (working...)
+  \caption{Intraday out-of-sample LSVs of the BTC-BTCF portfolio constructed by combinations of copula and ris minimization objectives.
+    The Frank copula is again inferior. Minimising ES99\% results in higher MSEs disregard of which copula is in use.
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:BTC_LSV}
 \end{figure}
@@ -541,6 +546,18 @@ The conclusion is further supported by comparing the Gumbel and the rotated Gumb
 The rotated Gumbel copula is the 180-degree rotated version of the Gumbel copula, sharing all the features of the Gumbel copula but switching from modelling the lower tail dependence to upper tail dependence.
 The rotated Gumbel copula results in portfolios with higher MSEs and LSVs consistently across risk measures.
 
+
+\begin{table}[t]
+\include{_tables/copulaeselectiontable_intraday}
+ \caption{Copula selection results (shortened).
+        The values are the counts of a copula chosen by the AIC procedure during the out-of-sample period.
+        Each count represents five trading days since the each testing data consists of five trading days.
+        The table shows only the frequently chosen copula, i.e. $t$, Plackett, Gaussian Mix Independent (GMI), rotated Gumbel (rotGumbel), and
+        Normal Inverse Gaussian factor copula (NIG).
+        }
+    \label{tab:copulasection_intraday}
+\end{table}
+
 \textit{AIC selection results}: From table x (working...), the AIC procedure favours the same set of copulae in the intraday setting for both BTC-BTCF and ETH0BTCF portfolios.
 They are $t$-, Plackett, Gaussian Mix Independent, rotated Gumbel and NIG.
 Similar to the result in the daily rebalancing schedule, most of the time, 60\% in this case,
@@ -550,4 +567,7 @@ Rotated Gumbel, Gaussian Mix Independent, and Plackett are spontaneously chosen.
 On the other hand, the intraday ETH-BTCF’s AIC selection result is very different from that of the daily rebalancing.
 There are three copulae: $t$-, Gaussian Mix Independent, and NIG copula, that are closely chosen, instead of a single copula, rotated Gumbel copula, dominating the list in the daily rebalancing setting.
 In the intraday setting, the three copulae are chosen 35.1\%, 24.9\%, and 24.3\% of the time, respectively.
+
+
+
 \end{document}

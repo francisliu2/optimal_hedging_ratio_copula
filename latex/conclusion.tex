@@ -59,7 +59,24 @@ dependence and radial symmetry, the simple linear hedge is very
 limited in its flexibility to address this complex dependence.
 Including liquidly traded derivatives with non-linear payoffs, such as
 options, might be a possibility to improve the hedge quality for these
-cryptos and portfolios. 
+cryptos and portfolios.
+
+\section{Discussion}\label{sec:discussion}
+\textit{Cryptohedgers}: Our results and conclusion are drawn using a non-parametric way, kernel density estimation,
+to fit the marginal density of the crypto and futures returns because we intend to leave the modelling of marginal distributions flexible and generic.
+Copula provides the flexibility to model marginal distributions separately.
+That means the model assumption and parametrisation for spot and futures can be different.
+This empowers hedgers to make use of variety of statistical tools to model the marginal distributions according to asset specific features they are interested,
+to enhance the model predictability, and hence, to improve the hedging effectiveness.
+For example, one can use various types of GARCH to deal with clustered volatility observed from the spot while using structural time series to deal with seasonality in futures;
+alternatively, using Hawkes processes to deal with clustered jumps in spots and futures without modelling the spillover or co-jumps in the marginal distribution.
+Hedgers are allowed to be creative in this regard. In fact, many researchers have enriched the understanding of the crypto market dynamics,
+see for example \citet{kaiser2019seasonality}, \citet{gyamerah2022modelling}, and \citet{mark2022quantifying}.
+Although the hedging effectiveness of combining various statistical tools with copula remain an open question,
+our analysis shows that hedgers have the freedom to choose the copula (except the Frank copula) to model the dependence structure,
+whereas t, Plackett, Gaussian Mix independent, rotated Gumbel and NIG copula appear to be conservative choices to start the analysis.
+
+
 
 % A possible research direction would be hedging the linear part with futures and non-linear part with options, e.g. the BTC options.
 

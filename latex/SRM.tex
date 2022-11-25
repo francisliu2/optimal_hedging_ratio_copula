@@ -263,7 +263,7 @@ copulas}
 
 \clearpage
 
-%\tableofcontents
+\tableofcontents
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -275,16 +275,17 @@ cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}.
 In response to the rapid development of the CC market, the CME Group
 launched exchange-traded BTC futures contracts in December
 2017.
-At the time of writing, the CME BTC futures is the only regulated
-cryptos futures in the market.\natp{\em [I think ETH is now available
-  as well.]}
+At the time of writing, the CME is the only exchanged offering
+regulated crypto futures. 
 The average daily volume and open interest of the CME BTC futures are
-\$2,518 M and \$2,836 M respectively.\natp{\em [Add an approximate date.]}
+\$2,518 M and \$2,836 M respectively.\natp{\em [Add an approximate
+  date. Where are these figures from?]}
 % \natp{\em [I think the following sentence can be deleted. Readers of
 %   Quantitative Finance know the advantages of futures contracts.]}
-Due to its financial regulation, the CME BTC derivatives market  
+Because it is regulated, the CME BTC derivatives market  
 is an attractive way for institutional
-investors to participate or manage their exposure in the crypto market. 
+investors to participate in or manage their exposure in the crypto
+market.
 %The price
 %of BTC even surged to \$ 64,500 in mid-April 2021 up by 460\% from
 % from \$ 11,500 six months earlier in October 2020 and up by 850\%
@@ -320,25 +321,6 @@ on the dependence between BTC and futures prices.
 %In this paper, we investigate the performance of different copulae and
 %risk measures in hedging Bitcoin and CRIX with Bitcoin
 %futures. {\color{blue} only this portfolio?} \natp{\em [$\leftarrow$ Make this the first sentence of the paper!]}
-Copulae provide the flexibility to model multivariate random variables
-separately by their margins and dependence structure.
-The concept of copulae was originally developed (but not under this
-name) by Wassily Hoeffding \citep{hoeffding1940masstabinvariante}
-and later popularised by the work of Abe Sklar \citep{Sklar1959}. \medskip
-
-Different risk measures account for investors' risk attitudes.
-They serve as loss functions in the search process of the optimal
-hedge ratio. Of the vast literature discussing the relationship between
-risk measures and investor's risk attitude, we refer readers to
-\citet{artzner1999coherent} for an axiomatic 
-approach of risk measure construction;
-\citet{embrechts2002correlation} for reasoning of using expected
-shortfall (ES) and spectral risk measures (SRM) in addition to
-value-at-risk (VaR);
-\citet{Acerbi2002} for direct linkages between risk measures and
-investor's risk attitudes using the concept of a ``risk aversion
-function''.  \medskip
-
 Financial asset returns have long known to be non-Gaussian, see e.g.\
 \citep{fama1963mandelbrot,Cont2001}. Specifically, Gaussian models
 cannot produce the heavy tails and the asymmetry observed in 
@@ -352,7 +334,26 @@ Therefore, to minimize downside risk, one cannot solely rely on
 second-order moment calculations. Moreover, variance as a risk measure
 does not account for the variety of investors' utility functions. In
 particular, it is known that  
-investors are tail-risk averse, see \cite{menezes1980increasing}. \medskip
+investors are tail-risk averse, see \cite{menezes1980increasing}.
+Copulae provide the flexibility to model multivariate random variables
+separately by their margins and dependence structure.
+The concept of copulae was originally developed (but not under this
+name) by Wassily Hoeffding \citep{hoeffding1940masstabinvariante}
+and later popularised by the work of Abe Sklar \citep{Sklar1959}.
+
+Different risk measures account for investors' risk attitudes.
+They serve as loss functions in the search process of the optimal
+hedge ratio. Of the vast literature discussing the relationship between
+risk measures and investors' risk attitudes, we refer readers to
+\citet{artzner1999coherent} for an axiomatic 
+approach of risk measure construction;
+\citet{embrechts2002correlation} for reasoning of using expected
+shortfall (ES) and spectral risk measures (SRM) in addition to
+value-at-risk (VaR);
+\citet{Acerbi2002} for direct linkages between risk measures and
+investor's risk attitudes using the concept of a ``risk aversion
+function''. 
+
 
 In order to capture a variety of risk preferences, in addition to
 variance, we include the risk measures value-at-risk (VaR), expected
@@ -363,7 +364,7 @@ ES and SRM are chosen because of their coherence property, in
 particular, they recognize diversification benefits.
 SRM can also be directly related to an individual's utility function.
 Examples are the exponential SRM and power SRM introduced by
-\citet{dowd2008spectral}. \medskip
+\citet{dowd2008spectral}. 
 %\natp{\em [Careful with wording! The
  %hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
 %In particular, the SRM proposed by \citet{Acerbi2002} accounts for investors' utility (i.e. risk preference).
@@ -388,92 +389,28 @@ Examples are the exponential SRM and power SRM introduced by
 %  \end{itemize}
 %  }
 
-In this work, we study the hedge effectiveness of the Bitcoin futures
-to various cryptos and crypto indices under different risk
-preferences. 
-With an extensive back-test,\footnote{We thank the data provider
+In this work, we study the effectiveness of hedging various CC's and
+crypto indices using Bitcoin futures under copula models and different
+risk preferences. 
+In an extensive back-test,\footnote{We thank the data provider
   Tiingo (\href{https://www.tiingo.com/}{https://www.tiingo.com/}) for
   providing the crypto price data.}
  we find the ability of the BTC futures to hedge BTC and BTC-related
- indices promising regardless of the choices of the copula (with the
+ indices promising, regardless of the choices of the copula (with the
  exception of the Frank copula) and risk measure. 
-On the other hand, the results of BTC futures to hedge other cryptos and indices are inconclusive.
+On the other hand, the ability of BTC futures to hedge other cryptos
+\natp{depends on various factors, such as ... (was: is inconclusive)
+  {\em [Something more useful should be said here. ``is inconclusive''
+  means: ``stop reading here'']}}. 
 Instead of suggesting a particular copula or risk measures, we discuss
-the characteristics of different settings. \medskip 
+the characteristics of different settings.  
 
-%\natp{\em [The paragraph below largely repeats what has been said
-%  earlier. I suggest to take what is new and add it to the earlier
-%  paragraph. There is no need to introduce formal notation at this stage.]}
-%This paper considers hedging BTC using its future. % and an aggregated index of cryptocurrencies CRIX,
-%i.e. to find an optimal hedge ratio $h^*$ such that the risk of a hedged portfolio $r^h = r^S - h^*r^F$ has
-%minimal risk.
-%Here $r^S$ as the log return of BTC spot price, $r^F$ the log return of BTC future.
-%The leptokurtic properties mentioned above leads us to deploy a comprehensive way of modelling dependency namely copulae together with various risk measures as loss function to find optimal hedge ratio.
-%We first calibrate the log returns of BTC and CME futuresby copulae,
-%then find the optimal quantity of assets in the hedged portfolio according to a range of risk measures.
-%By Sklar's theorem, we can model the margin and the dependence structure separately using copulae.
-%This gives us enormous flexibility to model financial data.
-
-
-%We propose a corrected expression the \citet{barbi2014copula}'s equation and propose a general expression for the density of the linear combination.
- %\natp{\em [No need to mention in the introduction that
- % the version is corrected. The main result -- that the distribution
- % function of a linear combination of random variables can be
-  %expressed via the copula and margins -- remains valid.]}\medskip
-%Another advantage of copulae is that they \natp{capture (was: describe)} the whole dependence structure of random variables.
-%Figure \ref{fig:density illustration} illustrate the samples drawn
-%from different copulae but with the same Spearman's $\rho$. \natp{\em
-%  [Move this out of introduction.]}
-%
-%The distribution of the linear combination of margins $Z$ is also affected by the copulae.
-%One can see the $Z$ of Gumbel and Clayton copula are skewed to the right and left respectively due to the
-%asymmetry (radial symmetry \citet{Nelsen1999}) of copula.\natp{\em
-%  [Move this out of the introduction.]}
-%\medskip
-%
-%\begin{figure}[h]
-%\includegraphics[width=\textwidth]{_pics/density illustration1.png}
-%\includegraphics[width=\textwidth]{_pics/density illustration2.png}
-%  \caption{Upper Panel: Density of $Z= X - hY$ of different copulae with
-%  $X, Y \sim N(0,1)$,
-%  $0.75$ Spearman's rho between $X$ and $Y$, and $h=0.5$;
-%  Lower Panel: Scatter plot of samples from copulae.
-%  This illustration shows how dependence structure modelled by different copulae affects the density of the linear combination
-%  of margins.
-%  Notice that the $Z$ modelled by the asymmetric copulae, namely the Clayton and Gumbel copulae, are skewed to right
-%  and left respectively. \href{http://www.quantlet.com/}{\includegraphics[width=15pt]{_pics/qletlogo_tr.png}}}
-%\label{fig:density illustration}
-%\end{figure}
-
-%Even though they reveal that SRM have some properties which cause problems when applying to practical risk management,
-%they show that exponential utility function might be plausible in some circumstances under weak conditions \citealp{buhlmann1980economic}.
-
-%However, it still causes some problems to capture the behaviors of investors when the value of absolute risk aversion (ARA) parameter beyond a threshold \citealp{markowitz2014mean}.
-%If the relative risk aversion coefficients (RRA) are less than 1, \citet{dowd2008spectral} address that the weighting of lower risk-averse is higher than the higher risk-averse as the loss of portfolio increases.
-%On the other hand, the power SRM proposed by \citet{dowd2008spectral} when the relative risk aversion coefficients (RRA) are larger than 1, has also proper features to give a higher weight as loss increase.
-%Note that the selection of the utility function and the value of risk aversion parameter would be the matters of solving specific financial problem.
-%By contrast, the estimation of the VaR and the ES are conditional on the confidence level which is not easy to determine.
-%Since SRM is capable of reflecting the investor's attitude toward risk and has been applied to various fields of financial decision making, this paper apply to the determination of the optimal hedge ratio.
-%It is important for the hedger who should choose a proper value for the hedge ratio in order to minimize the risk of portfolio.\\
-%
-%A joint distribution of spot and futures has been specified in terms of a copula function to embody the tail behaviors of the spot and the futures \citealp{barbi2014copula}.
-%Copulae enable us to build the flexible multivariate distributions of dependence structure.
-%This paper conducts four types of copulae (Gaussian, t, Frank, Clayton, and Normal Inverse Gaussian) to derive the copula representation of quantities to reach copula-based SRM of the hedged portfolio.
-%It should be noted that the Clayton copula can be also used to construct the joint distribution with right tail dependence. Frank copula is symmetric and appropriate for data that exhibit weak or no tail dependence. Normal Inverse Gaussian (NIG) copula is a flexible system of joint distribution that includes fat-tailed and skewed distributions. However, there is still no evidence yet for selecting an exclusive copula in applications of hedging.\\
-%
-%An optimal hedge ratio represents the investor's subjective marginal rate of substitution between risk and return. \citet{cecchetti1988estimation} found that the optimal hedge ratios increases when an investor with a greater risk aversion by maximizing the expected value of the logarithm of wealth.
-%It is understandable if a investor's attitude is more risk-averse, they will increase the position of futures contracts to hedging the uncertain risk which they may take in the future.
-%On the contrary, \citet{brandtner2015decision} address that the theoretical result predictions for the subset of exponential and power SRMs are not reasonable but may be counter-intuitive if the corresponding parameter of risk aversion is large enough.
-%Different from \citet{brandtner2015decision}, we consider the joint distribution of financial assets to choose the optimal hedge ratio by minimizing SRM.
-%However, the empirical result shows the direction of optimal hedge ratio is increasing as the parameters represents the investors' attitude increases. \\
-
-%This paper has two main contributions to the existing literature. First, we reveal the quantiles of loss function built by different copulae. Second, by minimizing exponential SRM (ESRM) to determine the optimal hedge ratio, we give a guidance on the choice of risk aversion function to assist the risk manager in choosing an optimal risk aversion function for a portfolio. To our knowledge, these have received no attention so far in the published literatures.\\
 
 The paper is organized as follows. Section 2 introduces the notion of
-optimal hedge ratio; section 3 decribes the method of estimation of
-copulae; section 4 provides the empirical result; section 5
+an optimal hedge ratio; Section 3 decribes the method of estimation of
+copulae; Section 4 provides the empirical result; Section 5
 concludes. 
-All calculations in this work can be reproducedwith the data and codes
+All calculations in this work can be reproduced with the data and code
 available at \href{http://www.quantlet.com/}{www.quantlet.com
   {\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -462,10 +462,10 @@ Since the date range of the data is fully covered by the lifetime of BTCUSD25SEP
 \subsubsection{Procedure}
 Starting from oldest data:
 \begin{enumerate}
-    \item Calibrate a copula by a training data of 300 datapoints, i.e. , in size
+    \item Calibrate a copula by a training data of 336 datapoints, equivalent to 14 days data
     \item Draw samples $(\tilde r_s, \tilde r_f)$ from the calibrated copula
     \item Numerically search for $h^* = \arg \max \phi(\tilde r_s - h\tilde r_f)$ according to a risk measure $\phi$
-    \item Apply $h^*$ to testing data to yield $r_h$; the testing data is the consecutive 4 data points to training data
+    \item Apply $h^*$ to testing data to yield $r_h$; the testing data is the consecutive 4 data points to training data, i.e. the 4 hours data consecutive to the last training data
     \item Repeat the procedure for the next 4 datapoints
     \item Concatenate $r_h$s the and sort chronologically to form a full length out-of-sample hedging portfolio returns
 \end{enumerate}
@@ -546,19 +546,18 @@ The conclusion is further supported by comparing the Gumbel and the rotated Gumb
 The rotated Gumbel copula is the 180-degree rotated version of the Gumbel copula, sharing all the features of the Gumbel copula but switching from modelling the lower tail dependence to upper tail dependence.
 The rotated Gumbel copula results in portfolios with higher MSEs and LSVs consistently across risk measures.
 
-
 \begin{table}[t]
 \include{_tables/copulaeselectiontable_intraday}
- \caption{Copula selection results (shortened).
-        The values are the counts of a copula chosen by the AIC procedure during the out-of-sample period.
-        Each count represents five trading days since the each testing data consists of five trading days.
+ \caption{Intraday copula selection results (shortened).
+        The values are the percentage counts of a copula chosen by the AIC procedure during the out-of-sample period.
         The table shows only the frequently chosen copula, i.e. $t$, Plackett, Gaussian Mix Independent (GMI), rotated Gumbel (rotGumbel), and
         Normal Inverse Gaussian factor copula (NIG).
         }
     \label{tab:copulasection_intraday}
 \end{table}
 
-\textit{AIC selection results}: From table x (working...), the AIC procedure favours the same set of copulae in the intraday setting for both BTC-BTCF and ETH0BTCF portfolios.
+\textit{AIC selection results}: From table \ref{tab:copulasection_intraday},
+we can see the AIC procedure favours the same set of copulae in the intraday setting for both BTC-BTCF and ETH0BTCF portfolios.
 They are $t$-, Plackett, Gaussian Mix Independent, rotated Gumbel and NIG.
 Similar to the result in the daily rebalancing schedule, most of the time, 60\% in this case,
 the AIC procedure chooses t-Copula to model the dependence structure of BTC-BTCF in the intraday setting.

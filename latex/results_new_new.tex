@@ -53,10 +53,12 @@
 \end{figure}
 \end{landscape}
 
-\subsection{An overview of the hedged portfolios without the copula selection step}\label{subsec:HP1}
-First, we analyse the results of hedged portfolios without the copula
-selection step in order to get a better understanding of how a copula
-affects the hedged portfolio with various risk minimization
+\subsection{An overview of the hedged portfolios without the copula
+  selection step}
+\label{subsec:HP1}
+First, we analyse the results of the hedged portfolios without the
+copula selection step in order to get a better understanding of how a
+copula affects the hedged portfolio with various risk minimization
 objectives.
 To do so, we inspect the hedge performance of copulas by
 the mean square error and lower semi-variance.
@@ -72,103 +74,134 @@ copulae.
 %\textcolor{darkblue}{As presented in Fig 3 and 4, either individual cryptos or indice, their cumulative returns dropped in Mar 2020. it's due to the result of COVID19. we can explain this for these two plots.}\\
 %\textcolor{darkblue}{Here i think it should insert a paragraph to interpret how you enter the copulae, otherwise it's weird that comes to Fig 5 and 6.}\\
 
+\natp{\em [Please fix order of figures and references. Figures 3 and 4
+  are referenced here for the first time, when Figures 5 etc. have
+  already been discussed in the previous section.]}
+
 Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the mean square
-error and lower semivariance of BTC-BTCF. We can see that the Frank copula
-is the worst performing copula:
-the resulting hedged portfolio returns is far away from a perfect
-hedge.
+error and lower semivariance of BTC-BTCF. By far, the Frank copula
+is the worst performing copula.
 %\natp{\em [Can you swap the plots so that they are ordered
 %  according to the scales?]}
-In Figures \ref{fig:MSE_indices} and \ref{fig:SLV_indices}, the phenomenom
-of Frank copula being inferior to its counterparts can be observed
-from the results of the CRIX, BITX, BITW100, and BITW20-BTCF
-portfolios.
-Interestingly, the spot in those portfolios usually have a strong
-dependence with the BTCF.
+In Figures \ref{fig:MSE_indices} and \ref{fig:SLV_indices}, the
+phenomenom of the Frank copula being inferior to its counterparts can
+be observed for the CRIX, BITX, BITW100, and
+BITW20-BTCF portfolios.
+Interestingly, in all of these portfolios, the spot has a
+strong dependence with the BTCF.
 In contrast, the inferiority of the Frank copula is less prominent in
 the BITW70, ADA, ETH, LTC and XRP-BTCF portfolios.
-We suspect that the Frank copula is not a choice to model assets with
-strong dependence.
+As a consequence, it appears that the Frank copula is not an
+appropriate choice to model assets with strong dependence.
 
-We can also observe from Figures \ref{fig:MSE_cryptos} and
-\ref{fig:SLV_cryptos} that the Gumbel copula is not performing as well as
-other copulas in the ETH, LTC, and XRP-BTCF portfolios.
-The reason is the Gumbel copula has only upper tail dependence,
-while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF.
-We will discuss this in the following section.
+A further observation from Figures \ref{fig:MSE_cryptos} and
+\ref{fig:SLV_cryptos} is that the Gumbel copula does not perform as
+well as other copulas in the ETH, LTC, and XRP-BTCF portfolios.
+The reason is that the Gumbel copula has only upper tail dependence,
+while ETH, LTC, and XRP exhibit lower tail dependence with BTCF.
+We shall discuss this in the following section.
+
+\natp{\em [Please also reference the lower semi-variance figures. All
+  figures and tables must be reference. Is it possible to increase the
+  font sizes in the graphs, at least for the titles. They will not be
+  readable in the final version otherwise.  Also -- as mentioned
+  before -- please create .eps or .pdf graphics. These are scalable,
+  wheres png does not scale well.]}
 
 \subsection{Copula Selection Results}\label{subsec:-copula-results}
 \begin{table}[t]
 \include{_tables/copulaeselectiontable}
  \caption{Copula selection results (shortened).
-        The values are the counts of a copula chosen by the AIC procedure during the out-of-sample period.
-        Each count represents five trading days since the each testing data consists of five trading days.
-        The table shows only the frequently chosen copula, i.e. $t$, Plackett, Gaussian Mix Independent (GMI), rotated Gumbel (rotGumbel), and
-        Normal Inverse Gaussian factor copula (NIG).
+        The values are the absolute frequencies of a copula chosen by
+        the AIC procedure during the out-of-sample period. 
+        Each frequenc represents five trading days, which corresponds
+        to the recalibration interval.
+        The table show the frequently chosen copulas, which are
+        $t$, Plackett, Gaussian Mix Independent (GMI), rotated Gumbel
+        (rotGumbel) and Normal Inverse Gaussian factor copula (NIG). 
         }
     \label{tab:copulasection}
 \end{table}
-Next, we inspect the copula selection result by the AIC procedure described in section~\ref{subsec:copula-selection}.
-Although the copula selection is only an intermediate step to obtain the OHRs,
+Next, we inspect the copula selection results by the AIC procedure
+described in section~\ref{subsec:copula-selection}. 
+Although the copula selection is only an intermediate step to obtain
+the optimal hedge ratios,
 the result of this step can help us better understand the dependence
 feature between BTCF and the assets we study in this work.
-This gives us valuable information to model the assets in the future.
-Decisions of the AIC procedure are summarised in Table \ref{tab:copulasection}. \medskip
+This provides valuable information for modeling the assets in the future.
+The decisions of the AIC procedure are summarised in Table
+\ref{tab:copulasection}. Overall, the $t$-copula, rotated Gumbel
+(rotGumbel), and the NIG factor copula are the most frequently chosen
+copulae by the AIC procedure.
 
-Overall, the $t$-copula, rotated Gumbel (rotGumbel), and the NIG
-factor copula are the most frequently chosen copulae by the AIC
-procedure. \medskip
-
-The $t$-copula is frequently chosen to model the dependence between
+The $t$-copula is predominantly to model the dependence between 
 the BTC and BTC-involving-indices, CRIX, BITX, BITW100, and the BTC
 future.
 BTC and BTC-involving-indices exhibit strong (upper and lower) tail
 dependence with BTCF.  We interpret tail dependence as a strong
-tendency for one asset to be extreme when another is extreme and
+tendency for one asset to be extreme when the other is extreme and
 vice versa \citep{McNeil2015}.
 In fact, the $t$ copula has been recommended in various empirical
 studies to model financial data, such as~\cite{zeevi2002beyond} and~
 \cite{breymann2003dependence}.
 Those studies suggest that the $t$-copula is a better model compared
 to the Gaussian copula as financial data typically exhibit heavy tails
-and tail dependence. \medskip
+and tail dependence. 
 
-On the other hand, the radial symmetry of the $t$-copula appears to be
-a poor choice to model the remaining hedging pairs.
-\cite{demarta2005t} describe the radial symmetry feature of the $t$-copula ``strong'' as it is a radially symmetric distribution.
+\natp{\em [I do not understand the argument with the radial
+  symmetry. Specifying the definition of radial symmetry is also not
+  helpful here. To sharpen the argument, it should be something like
+  this: On the other hand, the symmetry of the $t$-copula appears to
+  be a poor choice to model the remaining hedging pairs. Here, the AIC
+  criterion predominantly selects copulas that allow for asymmetry
+  between the spot and the underlying. This reflects that overall
+  dependence between a 
+  non-BTC-related spot asset and the BTCF may be low, but tail risk,
+  especially on the down-side is present, as crashes in the crypto
+  market, which occur frequently, do not differentiate between
+  assets.]} 
+On the other hand, the \natp{\em (delete: radial)} symmetry of the
+$t$-copula appears to be a poor choice to model the remaining hedging
+pairs. 
+\cite{demarta2005t} describes the radial symmetry feature of the $t$-copula ``strong'' as it is a radially symmetric distribution.
 To be specific, if $(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
 then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ...,
 1-U_d)$.
 This symmetry can be justified in the dependence structure between a
 futures and its underlying by the theory of futures pricing,
 which suggests the price of a futures is a function of the underlying
-price \citep{hull2003options}.
-However, there is no such relationship between a futures and an asset
-which is not the underlying.
-Besides, asset prices tend to crash simultaneously whereas positive development tends to be idiosyncratic. \medskip
+price \citep{hull2003options}. However, there is no such relationship
+between a futures and an asset which is not the underlying. Besides,
+asset prices tend to crash simultaneously whereas positive development
+tends to be idiosyncratic.   
 
-Among the three popular copulae, rotGumbel copula shows its ability to model the dependence between ETH and BTCF.
-rotGumbel also performs well when modelling dependence between XRP, BITW20, BITW70, and the BTCF.
-In particular, the whole time series of the two indices, BITW20 and BITW70, are best fitted solely with the rotated Gumbel copula. \medskip
+Among the three popular copulae, rotGumbel copula shows its ability to
+model the dependence between ETH and BTCF. rotGumbel also performs
+well when modelling dependence between XRP, BITW20, BITW70, and the
+BTCF. In particular, the whole time series of the two indices, BITW20
+and BITW70, are best fitted solely with the rotated Gumbel
+copula.
 
-In fact, Clayton's AIC in many of the training sets is the second lowest, just higher than that of rotated Gumbel.
-This is because the Clayton copula has the same ability to model the lower quantile dependence.
-However, Clayton's radial like feature does not match the behaviour of
-the financial data. \medskip
+In fact, Clayton's AIC in many of the training sets is the second
+lowest, just higher than that of rotated Gumbel. This is because the
+Clayton copula has the same ability to model the lower quantile
+dependence. However, Clayton's radial like feature does not match the
+behaviour of the financial data. 
 
-It is worth to mention that although the NIG factor copula is penalised heavily due to its three parameters setup,
-it is frequently chosen to be the best copula to model the dependence
-between individual cryptos and the BTC future.
-An extreme case would be ADA, where only NIG factor is chosen in our dataset.
-Another dependence structure being best described by the NIG factor
-copula is the pair of LTC-BTCF, with
-64 out of 112 training sets best fitted by the NIG factor copula.
-Indices like BITX and CRIX are sometimes best fitted with the NIG
-factor copula as well, accounting for modelling 12 and 27 training
-sets respectively.
-The popularity of the NIG factor copula reflects the ability of the copula to
-model very complex dependence structure: the
-NIG factor copula is able to model the tail, radial asymmetry.
+It is worth to mention that although the NIG factor copula is
+penalised heavily due to its three parameters setup, it is frequently
+chosen to be the best copula to model the dependence between
+individual cryptos and the BTC future. An extreme case would be ADA,
+where only the NIG factor is chosen in our dataset. 
+Another dependence structure best described by the NIG factor
+copula is the pair of LTC-BTCF, with 64 out of 112 training sets best
+fitted by the NIG factor copula. Indices like BITX and CRIX are
+sometimes best fitted with the NIG factor copula as well, accounting
+for modelling 12 and 27 training sets, respectively. 
+\natp{The popularity of the NIG factor copula reflects the ability of the
+copula to model complex dependence structure, involving heavier tails
+than the Gaussian as well as asymmetric distributions. (was: the
+NIG factor copula is able to model the tail, radial asymmetry.)}
 
 %and
 %off-diagonal (the region away from the diagonal line $(0,0)$ to
@@ -180,26 +213,42 @@ NIG factor copula is able to model the tail, radial asymmetry.
 %  factor copula is capable of modelling in this respect. Perhaps you
 %  have a reference?]}
 
-The Frank copula is generally not a good choice to model financial
+The Frank copula turn out to generally be a poor choice to model financial
 data (as also reported by \cite{barbi2014copula}).
-Plackett is characterised by its dependence parameter being equal to
-the cross-product ratio, see eq.~\ref{eq:PlackettCrossProduct}.
-However, apparently, this property does not capture the dependence
-structure of cryptos and BTCF.
+The Plackett copula is characterised by its dependence parameter being
+equal to the cross-product ratio, see
+eq.~\ref{eq:PlackettCrossProduct}. However, apparently, this property
+does not capture the dependence structure of cryptos and BTCF.
+
 
 \subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
 
-\begin{landscape}
+\afterpage{
+  \begin{landscape}
   \include{_tables/bigTable}
-  \end{landscape}
-Table~\ref{tab:bigTable} presents the first two moments, maximum drawdown (MD) and the date of MD of the hedge portfolios.
-We observe that the statistics of the portfolios with different objectives are similar to each other.
-We provide the detail in Tables~\ref{tab:var_rh} to \ref{tab:ERM_rh} in the appendix.
+\end{landscape}
+}
 
-Unsurprisingly, the BTC-involved spots, i.e. BTC, CRIX, BITX, and BITW100, are well hedged by the BTCF regardless of risk minimization objective.
-Contrarily, BTC-not-involved spots' portfolios are less promising.
-Those hedge portfolios' returns are as volatile as the assets, see for example ADA and XRP.
-We will further discuss the effectiveness of hedge in the next section. %\ref{sec: HE results}.
+We now turn to the hedge performance. Table~\ref{tab:bigTable}
+presents the first two moments, maximum drawdown (MD) and the date of
+MD of the hedge portfolios. \natp{An interesting observation is the
+  similarity of the statistics when minimising with respect to
+  different risk measures. (was: 
+We observe that the statistics of the
+portfolios with different objectives are similar to each
+other. \natp{\em [Unclear what is meant by ``different objectives''?
+  Different risk measures?]})} Detailed statistics are found in
+Tables~\ref{tab:var_rh} to \ref{tab:ERM_rh} in Appendix
+\ref{sec:SSHP}. 
+ 
+Unsurprisingly, the BTC-involved spots, i.e., BTC, CRIX, BITX, and
+BITW100, are well hedged by the BTCF regardless of risk minimization
+objective. 
+The BTC-not-involved spots, on the contrary, are less promising. Those
+hedge portfolios' returns are as volatile or nearly as volatile as the
+assets themselves, see for example ADA and XRP. 
+We shall further discuss the effectiveness of hedge in the next
+section. %\ref{sec: HE results}. 
 
 \subsection{Hedging Effectiveness Results}\label{sec: HE results}
 \begin{figure}[t]
@@ -210,46 +259,93 @@ We will further discuss the effectiveness of hedge in the next section. %\ref{se
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:HEboxplot}
 \end{figure}
-In this section, we analyse the out-of-sample hedging effectiveness (HE) of BTCF as hedging.
+In this section, we analyse the out-of-sample hedging effectiveness
+(HE) of BTCF as a hedge instrument. 
 HE is defined as $$\text{HE} = 1-\frac{\rho_h}{\rho_s},$$
-a measure of the percentage reduction of portfolio risk attribute, in our case the spot $\rho_s$,
-to hedged portfolio risk attribute $\rho_h$.
-A higher HE indicates a greater risk reduction and thus the hedge is more effective. \medskip
+i.e., it measures the percentage reduction of risk of the hedge
+portfolio $\rho_h $ relative to the risk of the spot position $\rho_s$.
+A higher HE indicates a greater risk reduction and thus the hedge is
+more effective.  
+The HE above is a generalisation of how \citet{ederington1979hedging}
+evaluates hedge performance, which focusses on variance as the risk
+measure. 
+Aside from variance, we include the risk measures which act as
+loss function while searching for the optimal hedge ratios: ES 95\%
+and 99\%, VaR 95\% and 99\% and ERM.
 
-The HE above is a generalisation of how \citet{ederington1979hedging} evaluate hedging performance.
-In addition to variance, we include the risk measures which act as loss function while searching for OHR: ES 95\% and 99\%, VaR 95\% and 99\% and ERM. \medskip
+\natp{\em [A description is missing of how the hedge actually
+  works. How much data enters the calibration (I believe it's 300
+  days). Then what happens? On each day we have a hedge ratio. Do we
+  construct a new hedge each day? How long is the hedge period? So,
+  after which time period is P\&L calculated. 
+  This could also be added to Section 2.2.\\
+  What is the motivation behind the bootstrapping?]}
 
-The formulation above gives a point estimate per testing data.
-However, each of our test data contain only 5 data points, the length is not sufficient to draw meaningful risk measure results.
-To address this issue, we apply bootstrapping method on the concatenated test data time series as described in the beginning of the result section. \medskip
+The formulation above gives a point estimate per \natp{test data
+  point (was: testing data)}.
+However, each of our test data contain only 5 data points, the length
+is not sufficient to draw meaningful risk measure results. \natp{\em
+  [Last sentence unclear, because information is missing, see above.]}
+To address this issue, we apply bootstrapping method on the
+concatenated test data time series as described in the beginning of
+the result section. 
 
-The bootstrapping method is known to be a powerful nonparametric tool for approximating complicated statistics~\citep{efron1994introduction, davison1997bootstrap}.
-We apply stationary block bootstrapping to the time series introduced by \cite{Politis1994} in our analysis in order to preserve the temporal structure of the data while sampling.
-The configuration of stationary bootstrapping procedure in this work is as follows.
-Assume a time series with $N$ observations $\{X_t\}_{t \in [1,N]}$ is a strong stationary, weakly dependence time series of interest,
-we form blocks of samples $B = \{X_i, ..., X_{i+j-1}\}$.
-Index $i$ is a random variable uniformly distributed over
-$[1,2,...,N]$ and $j$ is geometric distributed random variable with parameter $p$.
-The block index $i$ and block length $j$ are independent.
-For any index $k$ which is greater than $N$, the sample $X_k$ is defined to be $X_{k(\mod N)}$.
-For each block, we calculate the hedging effectiveness with different risk measures mentioned above.
-We choose $p=1/250$, implying the average block length is 250.
+\natp{Bootstrapping refers to sampling from the empirical distribution of a
+given data sample (e.g.\ a time series of fiancial returns). The
+principal idea underlying bootstrapping is to provide statistical
+information about estimators that cannot be derived from just one
+realisation of the data. The method was introduced by
+\cite{Efron1979}; see also \citep{efron1994introduction,
+  davison1997bootstrap}. (was: 
+The bootstrapping method is known to be a powerful nonparametric tool 
+for approximating complicated statistics~\citep{efron1994introduction,
+  davison1997bootstrap}.)}
+
+We apply the stationary block bootstrap of \cite{Politis1994} in our
+analysis in order to account for the time-dependence of the data while 
+sampling.
+The sampling method of the stationary bootstrapping procedure is as
+follows. 
+Assuming a time series $\{X_t\}_{t \in [1,N]}$ that is
+a stationary strong, weakly dependent time series. 
+Blocks of samples $\{X_i, ..., X_{i+j-1}\}$, where the index $i$ is a
+random variable uniformly distributed over 
+$[1,2,...,N]$ and $j$ is geometric distributed random variable with
+parameter $p$ independent of $i$. 
+For any index $k$ which is greater than $N$, the sample $X_k$ is
+defined to be $X_{k(\mod N)}$. \natp{\em [Fix notation with $\mod$
+  operator.]} 
+For each block, we calculate the hedging effectiveness as outlined above.
+We choose $p=1/250$, implying the average block length is
+250. \natp{\em [I think this was changed, right?]}
 This average block length is chosen to reasonably calculate ES and VaR.
 100 blocks are drawn for each risk minimising objective and
-spot. \medskip
+spot. 
 %\natp{\em [You need to go over this again. There are many
 %  grammatical errors in there that need to be fixed. Also explain that
 %  expected block length is 200 so that ES99\% and VaR99\% can be
 %  calculated. Is the hedge ratio calculated for each sample drawn,
 %  etc.? ]}
 
-Figure \ref{fig:HEboxplot} report the bootstrapped HE samples from the concatenated out-of-sample hedge portfolio return.
-As expected, the BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged by the BTCF.
-The HEs of BTCF to other cryptos and indices are substantially lower than to the BTC involving spots, but the consistency the performances across different risk reduction objectives and HE evaluation remains.
+\natp{\em [The previous part still needs quite a bit of work as it
+  remains unclear to the reader what is actually going on. The
+  principal idea is to create an out-of-sample distribution of HE, but
+  with one sample path this is not possible. Therefore, the bootstrap,
+  right?]}
 
-Some HE bootstrapping samples are negative, it means that it is possible that introducing the BTC futures increases risk of the portfolios.
-This is an unfavorable situation for investors if they want to hedge cryptos with BTC futures.
-We do not recommend BTC futures being used to cross hedge cryptos.
+Figure \ref{fig:HEboxplot} report the bootstrapped HE samples from the
+concatenated out-of-sample hedge portfolio return. As expected, the
+BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged
+by the BTCF.  The HEs of the other cryptos and indices are
+substantially lower than to the BTC-related instruments, but 
+exhibit a consistent performances across different risk measures. 
+As it turns out, some HE bootstrapping samples are even negative,
+which means the ``hedge'' portfolio actually increases the risk. 
+\natp{This is, of course, counter-productive to hedging indicating
+  that BTC futures may not be suitable for cross-asset hedges (was:
+  This is an unfavorable situation for investors if they want to hedge 
+cryptos with BTC futures. 
+We do not recommend BTC futures being used to cross hedge cryptos.)}
 
 %\natp{\em[It does not
 %  make sense to compare across different risk measures, so I suggest

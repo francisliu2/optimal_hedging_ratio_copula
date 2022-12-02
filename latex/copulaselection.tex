@@ -1,9 +1,14 @@
 
 \subsubsection{Copula selection}\label{subsec:copula-selection}
-The dependence structure of price data changes across time, in which
+\natp{As the (was: The)} dependence structure of price data changes
+across time, \natp{(delete: in which
 both the dependency parameters and the type of dependence.
-For this reason, we allow for a flexible choice of the best-fitting copula, by re-calibrating periodically and re-evaluating performance of the various copulas.
-We select the best-fitting copula, characterised by the lowest {\em Akaike Information Criterion (AIC)},
+For this reason,)} we allow for a flexible choice of the best-fitting
+copula, by re-calibrating periodically and re-evaluating performance
+of the various copulas. 
+\natp{In each re-calibration, we (was: We)} select the best-fitting
+copula, characterised by the lowest {\em Akaike Information Criterion
+  (AIC)},
 \begin{equation*}
  \text{AIC} = 2k- 2 \log(L),
 \end{equation*}
@@ -16,9 +21,9 @@ Other model selection criteria, such as the TIC~\citep{takeuchi1976distribution}
 For a survey of model selection and inference, see \cite{anderson1998comparison}.
 Among various copula selection procedures, AIC is a popular choice for
 its applicability, see e.g. \cite{breymann2003dependence}.
-In our case, the AICs are calculated only with dependency likelihood
+In our case, the AICs are calculated only with dependence likelihood
 since the marginals are modelled via kernel density estimators.
-The selected copula will then be enter the calculation of the optimal
+The selected copula will then enter the calculation of the optimal
 hedge ratio.
 % We consider the copula with the lowest AIC for a particular set of data the best fitting one and use it to generate OHR.
 

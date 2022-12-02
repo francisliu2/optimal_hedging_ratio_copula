@@ -5,17 +5,24 @@
 We introduce the method to calibrate copulae to our data in this section.
 In general, there are two types of calibration procedures to calibrate copulae:
 maximum likelihood (MLE) and method of moments (MM).
-We decide to deploy the latter since it calibrates according to the moments desired. 
+We decide to deploy the latter since it calibrates according to the
+moments desired. \natp{\em [This is a long way of saying very little;
+  is it possible to shorten it?]}
 
 In the following subsection, we present the configuration of the method of moments procedures in this work.
-In the subsection after, we argue that MM is more suitable to this work by comparing MM with MLE.
+In the Subsection~\ref{subsec:maximum-likelihood-estimation}, we demonstrate
+that MM is more suitable to this work by comparing MM with MLE. 
 
 \subsubsection{Method of moments}
 \label{subsec:simulated-method-of-moments}
 
 We trace back the usage of MM to calibrate copulae to \citet{Genest1987, genest1993statistical}.
 The moments mainly refer to Kendall's $\tau$ or Spearman's $\rho$.
-We extend MM to quantile dependence measures denoted by $\lambda_q$ for quantile level $q$.
+We extend MM to quantile dependence measures denoted by $\lambda_q$
+for quantile level $q$. \natp{\em [Please check, but I am fairly sure
+  that we are not the first to extend MM to include quantiles! It must
+  be clear that the method outlined here is not new or developed by
+  us. Please cite (Oh and Patton, 2013) as well.]}
 
 Spearman's $\rho$, Kendall's $\tau$, and quantile dependence of the copula $C$ are defined as
 \begin{align*}
@@ -53,28 +60,32 @@ dependence measures according the dependence parameters
 $\bm{\theta}$,and let $\hat{\bm{m}}$ be the corresponding empirical
 counterpart. 
 The difference between dependence measures and their counterpart is denoted by
-\begin{align*}
-    \bm{g}(\bm{\theta}) = \hat{\bm{m}} - \bm{m}(\bm{\theta}).
-\end{align*}
-
-The MM estimator is
-\begin{align*}
+\begin{equation*}
+    \bm{g}(\bm{\theta}) = \hat{\bm{m}} - \bm{m}(\bm{\theta}),
+\end{equation*}
+and the MM estimator is
+\begin{equation*}
     \hat{\bm{\theta}} = \argmin_{\bm{\theta}\in \bm{\Theta}} \bm{g}(\bm{\theta})^\top
     \hat{\bm{W}}
      \bm{g}(\bm{\theta}),
-\end{align*}
-where $\hat{W}$ is some positive definite weight matrix.
+\end{equation*}
+where $\hat{W}$ is a positive definite weight matrix.
 In this work, we use
 $\bm{m}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \lambda_{0.1}, 
 \lambda_{0.9}, \lambda_{0.95})^\top$
-for calibration.
-$\hat{W}$ is set to identity matrix.
+for calibration with 
+$\hat{W}$ set to the identity matrix. \natp{\em [Is it right that we
+  do not have Kendall's $\tau$ in our calibration? I suggest to add a
+  sentence why.]}
 
 \subsubsection{Comparison between method of moments and maximum likelihood}
 \label{subsec:maximum-likelihood-estimation}
-By the Hoeffding-Sklar theorem, the joint density of a $d$-dimensional random variable $\bm{X}$ with sample size $n$ can be written as
+By the Hoeffding-Sklar Theorem (Theorem \ref{theorem:sklar}), the
+joint density of a $d$-dimensional random variable $\bm{X}$ with
+sample size $n$ can be written as 
 \begin{equation*}
-    \bm{f}_{\bm{X}}(x_1, ..., x_d) = \bm{c}\{F_{X_1}(x_1), ..., F_{X_d}(x_d)\} \prod_{j=1}^d f_{X_i}(x_i).
+    \bm{f}_{\bm{X}}(x_1, ..., x_d) = \bm{c}\{F_{X_1}(x_1), ...,
+    F_{X_d}(x_d)\} \prod_{j=1}^d f_{X_i}(x_i). 
     \end{equation*}
 We follow the treatment of MLE documented in section 10.1 of
 \citet{joe1997multivariate}, namely the {\em inference functions for
@@ -109,32 +120,46 @@ Given non-parametric estimator $\hat{F}_i$ of the margins $F_i$, the estimator o
     \hat{\bm{\gamma}} = \argmax_{\bm{\gamma}} \sum_{i=1}^n \bm{c}\{ \hat{F}_{X_1}(x_{i,1}), ..., \hat{F}_{X_d}(x_{i,d});\bm{\gamma}\}.
     \end{equation*}
 
-Both the simulated method of moments and the maximum likelihood estimation are unbiased.
-The question though which procedure is more suitable for hedging.
+Both the simulated method of moments and the maximum likelihood
+estimation are unbiased. 
+The question is which procedure is more
+suitable for hedging\natp{, especially given the fact that for CC's
+  the overall hedge performance may be driven by tail risks.}
 
 \begin{figure}[h]
 %\includegraphics[width=\textwidth]{_pics/t Copula quantile dependence.png}
 \includegraphics[width=\textwidth]{_pics/Gumbel Copula quantile dependence.pdf}
 \includegraphics[width=\textwidth]{_pics/Clayton Copula quantile dependence.pdf}
-  \caption{Quantile dependences of Gumbel, and Clayton Copula. The \textcolor{darkblue}{blue circle dots} are
-  the quantile dependence estimates of Bitcoin and CME future, \textcolor{darkblue}{blue dotted lines} are the estimates' 90\% confidence interval.
-  \textcolor{orange}{Orange dotted line} is the copula implied quantile dependence by MM estimation.
-  \textcolor{lightblue}{Light blue dotted line} is the copula implied quantile dependence by MLE estimation.
+  \caption{Quantile dependences of Gumbel and Clayton copulas. The
+    \textcolor{darkblue}{blue circle dots} are the quantile dependence
+    estimates of Bitcoin and CME future, the \textcolor{darkblue}{blue
+      dashed lines} are the estimates' 90\% confidence interval. 
+  The \textcolor{orange}{orange dotted line} is the copula implied
+  quantile dependence by MM estimation. The
+  \textcolor{lightblue}{light blue dotted line} is the copula implied
+  quantile dependence by MLE estimation.  
 %  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
   }
 \label{fig:quantile dependence1}
 \end{figure}
 
-Figure~\ref{fig:quantile dependence1} shows the empirical quantile dependence of Bitcoin and CME future and the copula implied
-quantile dependence of the MLE and MM calibration procedures.
-Although the MLE is a better fit to a range of quantile dependence in the middle, it fails to address the situation in the tails.
-We find that our data empirically has low quantile dependence in the lower ends ($q<10\%$).
-We argue that MM is preferred as it produces a better fit to the dependence
-structure in the tail behaviour, contrary to MLE. 
-
+Figure~\ref{fig:quantile dependence1} shows the empirical quantile
+dependence of Bitcoin and CME future and the copula implied quantile
+dependence of the MLE and MM calibration procedures. 
+Although the MLE is a better fit to a range of quantile dependence in
+the middle, it fails to address the situation in the tails. 
+We find that empirically the data has low quantile dependence in the
+lower ends ($q<10\%$). \natp{\em [How does the last sentence fit into
+  the argument? Not sure I get it.]} \natp{Due to the better fit of
+  the tail dependence structure, we choose MM as the calibration
+  method. (was: 
+We argue that MM is preferred as
+it produces a 
+better fit to the dependence structure in the tail behaviour, contrary
+to MLE.
 Therefore, we deploy the method of moments throughout the
-analysis.
-We choose the $5^\text{th}$-, $10^\text{th}$-, $90^\text{th}$-, $95^\text{th}$-quantile, and Spearman's $\rho$ as the moments.
+analysis.)}
+\natp{\em [delete, this has been said already.] (was: We choose the $5^\text{th}$-, $10^\text{th}$-, $90^\text{th}$-, $95^\text{th}$-quantile, and Spearman's $\rho$ as the moments.)}
 
 
 %

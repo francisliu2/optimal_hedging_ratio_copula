@@ -277,11 +277,8 @@ launched exchange-traded BTC futures contracts in December
 2017.
 At the time of writing, the CME is the only exchanged offering
 regulated crypto futures. 
-The average daily volume and open interest of the CME BTC futures are
-\$2,518 M and \$2,836 M respectively.\natp{\em [Add an approximate
-  date. Where are these figures from?]}
-% \natp{\em [I think the following sentence can be deleted. Readers of
-%   Quantitative Finance know the advantages of futures contracts.]}
+As per the CME report on 25th of Nov, 2022, the average daily volume and open interest of the CME BTC futures are
+\$1,220M and \$1,357M respectively \footnote{Data from CME: \url{https://www.cmegroup.com/ftp/bitcoinfutures/Bitcoin_Futures_Liquidity_Report_20221202.pdf}}.
 Because it is regulated, the CME BTC derivatives market  
 is an attractive way for institutional
 investors to participate in or manage their exposure in the crypto
@@ -398,12 +395,11 @@ In an extensive back-test,\footnote{We thank the data provider
  we find the ability of the BTC futures to hedge BTC and BTC-related
  indices promising, regardless of the choices of the copula (with the
  exception of the Frank copula) and risk measure. 
-On the other hand, the ability of BTC futures to hedge other cryptos
-\natp{depends on various factors, such as ... (was: is inconclusive)
-  {\em [Something more useful should be said here. ``is inconclusive''
-  means: ``stop reading here'']}}. 
-Instead of suggesting a particular copula or risk measures, we discuss
-the characteristics of different settings.  
+On the other hand, the ability of BTC futures to hedge other cryptos and crypto indices
+is affected by idiosyncratic factors such as regulatory factors and operational risk,
+but the overall CEM BTCF hedging effectiveness to other cryptos and crypto indices is far lower
+than that to BTC.
+We discuss the characteristics of the hedged portfolios contructed by range of risk measures-copulae pairs.
 
 
 The paper is organized as follows. Section 2 introduces the notion of
@@ -566,7 +562,5 @@ Rotated Gumbel, Gaussian Mix Independent, and Plackett are spontaneously chosen.
 On the other hand, the intraday ETH-BTCF’s AIC selection result is very different from that of the daily rebalancing.
 There are three copulae: $t$-, Gaussian Mix Independent, and NIG copula, that are closely chosen, instead of a single copula, rotated Gumbel copula, dominating the list in the daily rebalancing setting.
 In the intraday setting, the three copulae are chosen 35.1\%, 24.9\%, and 24.3\% of the time, respectively.
-
-
 
 \end{document}

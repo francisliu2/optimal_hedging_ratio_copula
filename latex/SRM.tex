@@ -18,6 +18,8 @@
 \usepackage{proofapnd}
 \usepackage[round]{natbib}
 \usepackage[table,xcdraw]{xcolor}
+\usepackage{afterpage}
+
 %\usepackage{enumerate}% http://ctan.org/pkg/enumerate
 %\usepackage{cjk}
 %\usepackage{CJK}
@@ -427,31 +429,52 @@ available at \href{http://www.quantlet.com/}{www.quantlet.com
 % --- Conclusion and Discussion ---
 % ----------------
 
-\newpage
+\clearpage
 %
 \bibliography{finance} %
 \input{appendix.tex}
 
-\subsection{Supplementary Material: Intraday Hedging}
-This supplementary material extends the study in the main body to the intraday rebalancing setting. Studying the intraday hedge is familiar to academia,
-e.g. \citet{harris2010limits}, \citet{dungey2013impact}, \citet{tse2013does}, and \citet{sheu2014incremental}.
-Numerous pieces of work on the crypto market are associated with or motivated by the presence of intraday traders as well,
-e.g. \citet{petukhina2021rise}, \citet{meshcheryakov2020ethereum}, \citet{alexander2022role}, \citet{zhang2022data}, and \citet{katsiampa2022high}.
+\clearpage
+\section{Supplementary Material: Intraday Hedging}
 
-We have in view to robustify the results from the main body.
-The methodology in this supplementary material is similar to the main body, except we
+\natp{\em [This section must be shortened significantly. It is not
+  necessary to repeat everything, just point out the differences.]}
+
+This supplementary material extends the study in the main body to an
+intraday rebalancing setting. \natp{\em [Do we really have intraay
+  rebalancing? Or just intraday P\&L? If rebalancing, then clarify.]}
+The idea is to infer if the findings from the daily setting extend to
+intraday data or if there are significant differences. Contrary to the
+setting with with daily data, this requires that we use data from
+unregulated exchanges. 
+
+\natp{\em [From my point of view there is no need to motivate intraday
+  risk management.]}
+Studying the intraday hedge is familiar to academia, 
+e.g. \citet{harris2010limits}, \citet{dungey2013impact},
+\citet{tse2013does}, and \citet{sheu2014incremental}.
+
+Numerous studies on the crypto market are associated with or motivated
+by the presence of intraday traders as well, 
+e.g. \citet{petukhina2021rise}, \citet{meshcheryakov2020ethereum},
+\citet{alexander2022role}, \citet{zhang2022data} and
+\citet{katsiampa2022high}. 
+
+\natp{(delete: We have in view to robustify the results from the main body.)}
+The methodology in this supplementary material is similar to the main
+body, except we 
 \begin{enumerate}
 \item form two hedging portfolios, BTC-BTCF and ETH-BTCF,
 \item simulate trades using Deribit hourly data, and
 \item rebalance every four hours.
 \end{enumerate}
 
-\subsubsection{Data}
-The intraday analysis is built upon a dataset of date range from 2020-06-01 00:00 UTC to 2020-08-01 00:00 UTC.
+\subsection{Data}
+The intraday analysis is built upon a dataset of date range from
+2020-06-01 00:00 UTC to 2020-08-01 00:00 UTC. 
 All the price data are sampled hourly.
-
-The Deribit contract BTCUSD25SEP20 represents the BTCF;
-the Deribit BTC and ETH index represent the spot of BTC and ETH respectively.
+The Deribit contract \natp{BTC-25SEP20 (was: 20BTCUSD25SEP20)} represents the BTCF;
+the Deribit BTC and ETH index represent the spot of BTC and ETH, respectively.
 We take the hourly closing mid-price of the BTCUSD25SEP20 as the futures price and the last value of the BTC and ETH index in every hourly bucket as the spot prices.
 Since the date range of the data is fully covered by the lifetime of BTCUSD25SEP20, this study does not require rolling procedure to roll over futures contract near expiry.
 
@@ -470,12 +493,14 @@ The procedure is further repeated for all the combinations of risk measures and 
 The full-length out-of-sample returns represent the corresponding performance of a particular risk measure-copula combination.
 They are used in computation mean square error (MSE) and lower-semi-variance (LSV) shown in the following section.
 
-The AIC selection step is performed between step 1 and step 2 of the procedure above.
+The AIC selection step is performed between Steps 1 and 2 of the procedure above.
 The resulting out-of-sample returns are a mix of results from the copula that has the lowest AIC on the training data.
 We keep a record of how many times a copula is choosen by this step.
-To yield robust HE measures, we apply stationary bootstrapping to the full-length AIC selected OOS returns with the following parameters: $p=1/4, T=300, N=1000$.
+To yield robust HE measures, we apply stationary bootstrapping to the
+full-length AIC selected out-of-sample returns with the following
+parameters: $p=1/4, T=300, N=1000$. 
 
-\subsubsection{Results}
+\subsection{Results}
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/hourly_HE.png}
   \caption{Intraday HEs of BTC-BTCF and ETH-BTCF portfolio. The HEs of BTC-BTCF portfolios are significantly higher than $0$,
@@ -486,61 +511,96 @@ We nullify the hedging ability of BTCF in this intraday ETH-BTCF setting.
 \label{fig:HEboxplot_intraday}
 \end{figure}
 
-\textit{Bootstrapped OOS HEs}: The analysis begins with the boxplot in figure \ref{fig:HEboxplot_intraday} of the bootstrapped OOS HEs.
+\textit{Bootstrapped out-of-sample HEs}: The analysis begins with the
+boxplot in figure \ref{fig:HEboxplot_intraday} of the bootstrapped out-of-sample
+HEs. 
 In general, most of the daily rebalancing results of BTC-BTCF carry over to the intraday rebalancing schedule;
-The intraday rebalancing ETH-BTCF is different from its daily rebalancing counterpart.
+\natp{\em [This can be {\bf significantly} shortened!]} The intraday rebalancing ETH-BTCF is different from its daily rebalancing counterpart.
 Note that the exact values of HEs from the two rebalancing schedules should not be directly compared for two reasons: 1. The data are from different date ranges; 2. Various factors contribute to the difference between results from different sampling frequencies, e.g. Epps effect, microstructure noise,
 and asynchronous trading.
 However, we compare the patterns and conclusions to get a general understanding of the hedging issue for future use.
 
-The main difference between the intraday rebalancing and daily rebalancing ETH-BTCF portfolio is negative HEs appear in the intraday results in all the risk measures we consider.
+The main difference between the intraday rebalancing and daily
+rebalancing ETH-BTCF portfolio is that negative HEs appear in the
+intraday results in all the risk measures we consider. \natp{This
+  implies that hedgers cannot draw on potential intraday dependence
+  between BTC and ETH to hedge an ETH crypto position. (delete: 
 The negative HEs suggests that BTCF should not be used to hedge against ETH in an intraday setting.
 Consider also the fact that BTCF is written on BTC instead of ETH, hedgers have no ground to assume they can take advantage of the intraday dependency structure between ETH and BTCF for hedging.
-Therefore, we mainly focus on the BTC-BTCF portfolios and mentioning the results of the ETH-BTCF portfolio is needed.
+Therefore, we mainly focus on the BTC-BTCF portfolios and mentioning
+the results of the ETH-BTCF portfolio is needed.)} 
 
 
-\textit{BTC-BTCF HEs}: The HEs of BTC-BTCF are significantly higher than zero across different risk measures, suggesting that adding BTCF to a BTC portfolio can effectively reduce the risk measured by selected measures.
-Among risk measures, HE of variance is the highest for the BTC-BTCF portfolio, ranging from 72\% to 98\%;
-HE of other risk measures ranges from 25\% to 80\%.
-This result suggests that reducing variance is a well-achievable objective in the intraday setting.
-This finding is consistent with the conclusions of the daily rebalancing schedule. On the other hand, the HEs of ES99\% and VaR99\% are relatively more dispersed and skewed to the left.
+\natp{Turning to BTC-BTCF, among the (delete: \textit{BTC-BTCF HEs}: The HEs of BTC-BTCF are
+significantly higher than zero across different risk measures,
+suggesting that adding BTCF to a BTC portfolio can effectively reduce
+the risk measured by selected measures. Among)} 
+risk measures, HE of variance is the highest \natp{(delete: for the
+  BTC-BTCF portfolio)}, ranging between 72\% to 98\%, while the
+  HE's other risk measures range between 25\% to 80\%.
+The finding that reducing variance is a well-achievable objective is
+consisten with the findings of the daily rebalancing schedule.
+\natp{\em [We can consider deleting the discussion about 99\% risk measures...]}
+On the other hand, the HEs of ES99\% and VaR99\% are relatively more dispersed and skewed to the left.
 Both risk measures consider only 1\% of the data from the left for deciding the hedge ratio and computing the HEs.
 Considering only a few data points naturally leads to a less reliable hedge ratio and lower consistency HEs.
 Evidence also shows that ES99\% VaR99\% minimising portfolios have higher MSE and LSV.
 This result is again consistent with the daily rebalancing setting.
 
+
 \begin{figure}[t]
-\includegraphics[width=\textwidth]{_pics/revision_BTC_MSEs.png}
+  \begin{center}
+    \includegraphics[width=.65\textwidth]{_pics/revision_BTC_MSEs.png}
+  \end{center}
   \caption{Intraday out-of-sample MSEs of the BTC-BTCF portfolio constructed by combinations of copula and ris minimization objectives.
     The Frank copula is again inferior. Minimising ES99\% results in higher MSEs disregard of which copula is in use.
-  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
+\natp{\em [Graph is cut off. Make pdf or eps.]}}
 \label{fig:BTC_MSE}
 \end{figure}
 
 \begin{figure}[t]
-\includegraphics[width=\textwidth]{_pics/revision_BTC_LSVs.png}
+  \begin{center}
+    \includegraphics[width=.65\textwidth]{_pics/revision_BTC_LSVs.png}
+  \end{center}
   \caption{Intraday out-of-sample LSVs of the BTC-BTCF portfolio constructed by combinations of copula and ris minimization objectives.
     The Frank copula is again inferior. Minimising ES99\% results in higher MSEs disregard of which copula is in use.
   \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
 \label{fig:BTC_LSV}
 \end{figure}
 
-\textit{BTC-BTCF MSE and LSV}: Figures \ref{fig:BTC_MSE} and \ref{fig:BTC_LSV}  report the OOS MSE and LSV of the BTC-BTCF when different copula and risk measures are in use.
-The MSE and LSV are in a similar magnitude with a few exceptions, a similar pattern to the daily rebalancing setting.
+Figures \ref{fig:BTC_MSE} and \ref{fig:BTC_LSV} report the
+out-of-sample MSE and LSV of the BTC-BTCF when different copulae and
+risk measures are in use. The MSE and LSV are in a similar magnitude
+\natp{\em [than what?]} with a few exceptions, a similar pattern to the daily rebalancing
+setting. \natp{\em [Fix sentence.]}
 
-Across various copulae, the BTC-BTCF portfolio that minimises VaR95\% provides the lowest MSE and LSV.
-Portfolios that minimise variance and ERM k=10 result in similar magnitudes of MSEs and LSVs, which are higher than VaR95\% but not by much,
-especially when Gumbel and NIG copulae are in use to model the dependency. ES99\% generates the highest MSEs and LSVs,
-disregarding which copula is in use. Notice that the portfolios that minimise ES99\% and VaR99\% are generally riskier than their 95\% counterparts in terms of MSEs and LSVs.
+Across various copulae, the BTC-BTCF portfolio that minimises VaR95\%
+provides the lowest MSE and LSV. 
+Portfolios that minimise variance and ERM with $k=10$ result in similar
+magnitudes of MSEs and LSVs \natp{\em [than what?]}, which are
+slightly greater than VaR95\%, especially when Gumbel and NIG copulae
+are in use to model the dependence. ES99\% generates the highest MSEs
+and LSVs, regardless of the copula. \natp{(delete: Notice that the
+  portfolios that 
+minimise ES99\% and VaR99\% are generally riskier than their 95\%
+counterparts in terms of MSEs and LSVs.)}
 
-Across various risk measures, Gumbel and NIG copulae are performing very well in the resulting portfolios’ MSE and LSV, except for ES99\%.
-The Frank copula is underperforming, disregarding which risk measures are in use.
-These results are consistent with the daily rebalancing setting and results in other literature.
-Notice that Gumbel and NIG are the only copulae that can model upper tail dependence among the copulae we examine.
-This suggests that the upper tail dependence is an essential feature of the dependency structure for hedging.
-The conclusion is further supported by comparing the Gumbel and the rotated Gumbel copula.
+Across various risk measures, Gumbel and NIG copulae perform
+well in the resulting portfolios’ MSE and LSV, except for
+ES99\%. 
+The Frank copula performs worst, regardless of the risk measure. 
+These results are consistent with the daily rebalancing setting and
+results in other literature. \natp{\em [Other literature? Perhaps
+  better to delete this. Or be more specific.]}
+As Gumbel and NIG are the only copulae that can model upper
+tail dependence, this suggests that the upper tail dependence is an
+essential feature of the dependence structure for hedging.
+\natp{\em [Delete?]} The conclusion is further supported by comparing the Gumbel and the
+rotated Gumbel copula. 
 The rotated Gumbel copula is the 180-degree rotated version of the Gumbel copula, sharing all the features of the Gumbel copula but switching from modelling the lower tail dependence to upper tail dependence.
-The rotated Gumbel copula results in portfolios with higher MSEs and LSVs consistently across risk measures.
+The rotated Gumbel copula results in portfolios with higher MSEs and
+LSVs consistently across risk measures. 
 
 \begin{table}[t]
 \include{_tables/copulaeselectiontable_intraday}
@@ -552,8 +612,13 @@ The rotated Gumbel copula results in portfolios with higher MSEs and LSVs consis
     \label{tab:copulasection_intraday}
 \end{table}
 
-\textit{AIC selection results}: From table \ref{tab:copulasection_intraday},
-we can see the AIC procedure favours the same set of copulae in the intraday setting for both BTC-BTCF and ETH0BTCF portfolios.
+
+Table \ref{tab:copulasection_intraday} shows the relative frequencies
+of the best fitting copula according to AIC.
+
+\natp{\em [No need to repeat all the numbers in the text, as they are
+  given in the table. Draw conclusions directly and mention only
+  exceptional numbers.]}
 They are $t$-, Plackett, Gaussian Mix Independent, rotated Gumbel and NIG.
 Similar to the result in the daily rebalancing schedule, most of the time, 60\% in this case,
 the AIC procedure chooses t-Copula to model the dependence structure of BTC-BTCF in the intraday setting.

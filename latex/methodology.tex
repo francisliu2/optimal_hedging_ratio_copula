@@ -38,7 +38,7 @@ is derived from the $1-\alpha$ quantile of the return distribution. %  at the co
 
 If the portfolio reduces the risk of the spot position, then
 we call this a hedge portfolio.
-An optimal hedge ratio (OHR) $h^*$ is a parameter that
+An optimal hedge ratio $h^*$ is a parameter that
 minimizes the risk of the aforementioned portfolio
 \begin{equation*}
 h^* = \argmin_h \rho(R^h).
@@ -198,7 +198,14 @@ A multivariate generalised of the expression above and its proof can be found in
 appendix \ref{sec:appendix}.
 
 \subsection{Procedure to determine optimal hedge ratio}\label{sec:empirical-procedure}
+<<<<<<< HEAD
 We introduce the backtesting procedure used in this work.
+=======
+We introduce the empirical procedure to obtain the optimal hedge ratio
+being used in this work. \natp{\em [This is really the
+  backtesting procedure. I think it'd be good if the word ``backtest''
+  appeared somwewhere.]}
+>>>>>>> ad68ec830056641072e03951b86031da0fa3ccce
 First, we split the time series of spot and futures into sets of
 training and test data.
 The training data makes up the first 300
@@ -208,29 +215,31 @@ We then roll 5 observations forward (step size of 5) to obtain the next training
 test data sets and repeat this until the end of the time series. 
 Note that the testing data are non-overlapping since the step size is equal to test size.
 
-Next, we obtain the OHR as follows:
+Next, we obtain the optimal hedge ratio as follows:
 
 \begin{enumerate}
-\item \textbf{Construct Univariate Kernel Density Function (KDE)}.
+\item \textbf{Construct univariate kernel density function (KDE)}.
   From the training data we calibrate the spot and futures'
   univariate kernel density functions using the Gaussian kernel with
   bandwidth determined by the refined plug-in method \citep[section
   3.3.3]{hardle2004nonparametric}.
-\item \textbf{Calibrate Copulae}.
+\item \textbf{Calibrate copulae}.
   We then calibrate the copulae outlined in section \ref{subsec:copulae} via the
   method of moments described in section \ref{subsec:simulated-method-of-moments}.
-\item \textbf{Select Copula}.
+\item \textbf{Select copula}.
   We compute the Akaike Information Criterion. The copula with the
   best (i.e., lowest) AIC is used for the next step. 
   A discussion of this step is found in \ref{subsec:copula-selection}.
-\item \textbf{Determine OHR}.
-  We determine the OHRs numerically using different risk measures as
+\item \textbf{Determine optimal hedge ratio}.
+  We determine the optimal hedge ratios numerically using different
+  risk measures as 
   the loss function by drawing samples from the selected copula and
   KDEs. The risk measures used as risk reduction objectives are
   outlined in \ref{subsec:spectral-risk-measures} 
   \item \textbf{Obtain log-return of hedged
       portfolio on test data set}.
-  Finally, we apply the OHRs to the test data $R_h = R_s - h^* R_f$.
+  Finally, we apply the optimal hedge ratios to the test data $R_h =
+  R_s - h^* R_f$. 
   \end{enumerate}
 
 \section{Copulae and risk measures}\label{sec:crm}

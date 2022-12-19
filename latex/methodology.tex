@@ -235,7 +235,9 @@ Section \ref{subsec:HP1} discusses the effects.
 
 \section{Copulae and risk measures}\label{sec:crm}
 
-\subsection{Dependence measures in Copula terms}
+Recall the definitions given 
+
+\subsection{Dependence measures in copula terms}
 This section introduces the dependence measures in Copula terms that are relevant to this work, 
 they are the Kendall's tau, Spearman's rho, and quantile dependence. 
 The sample, population versions, as well as the version written in copula, 
@@ -340,7 +342,6 @@ Quantile dependence measures the probability of two variables that is higher or 
 
 \end{defi}
 
-
 \subsection{Copulae}\label{sec:ellpitical-copulae}
 
 To capture different aspects of the dependence structure, we consider
@@ -348,18 +349,23 @@ a set of different copulas, which are layed
   out in detail below. These are the Gaussian-, $t$-, Frank-,
 Gumbel-, Clayton-, mixture, NIG factor, and Plackett-copula. 
 
+Figure~\ref{fig:copulaeScatterPlot} shows scatter plots of random
+samples of each of the copulae treated. 
+\begin{figure}[t]
+    \centering
+  \includegraphics[width=\textwidth]{_pics/copulas_scatterplots.pdf}
+  \caption{Scatterplots of samples drawn from various copulae. All
+    copulae are calibrated to Spearman's $\rho$ of 0.75 before
+    sampling.}\label{fig:copulaeScatterPlot} 
+\end{figure}
+
 As this hedging backtest concerns only portfolios with two assets, we
 focus on the bivariate version of each copula. 
 
 \subsubsection{Gaussian and $t$ Copulae}\label{sec:ellpitical-copulae}
 
 The Gaussian and $t$ copulae are dervived from Gaussian and $t$
-distributions. As the Gaussian and $t$ distributions belong to the family
-of elliptical distributions, their copulae belong to the family of
-elliptical copulae. \natp{\em [I personally would remove the reference
-  to the elliptical family, as this is not important for what is to
-  come. If it must stay, then briefly explain what elliptical distributions
-  are (``Empirical distributions are characterised by...''.]}
+distributions. 
 
 The bivariate Gaussian copula is defined as
 \begin{align*}
@@ -379,34 +385,21 @@ The Gaussian copula is fully specified by the correlation parameter $\rho$. \foo
 The symbol $\rho$ is used to denote both the correlation parameter as
 well as a general risk measure. However, it will be clear from the
 context, what $\rho$ refers to.}
-Like all elliptical copulas, it is symmetric. \natp{\em [Remove
-  reference to elliptic copula.]}
 It has no tail dependence, which, in a finance context, implies that
 it often underestimates tail risk.  
 
-The Gaussian copula density is
-\begin{equation*}
-  \bm{c}_\rho(u,v) = \frac{\bm{\varphi}_{2,\rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\}}
-                     {\varphi\{\Phi^{(-1)}(u)\} \cdot \varphi\{\Phi^{(-1)}(v)\}} 
-                  = \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left\{
-                     -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
-                     \right\},
-\end{equation*}
-where $\bm{\varphi}_{2,\rho}(\cdot)$ is the pdf corresponding to
-$\Phi_{2, \rho}$, and $\varphi(\cdot)$ the standard normal
-pdf. \natp{\em [I think the abbreviations cdf and pdf where not
-  introduced. Please double-check.]}
-
-To illustrate the various copulae and their differences,
-Figure~\ref{fig:copulaeScatterPlot} shows scatter plots of random
-samples of each of the copulae treated. 
-\begin{figure}[t]
-    \centering
-  \includegraphics[width=\textwidth]{_pics/copulas_scatterplots.pdf}
-  \caption{Scatterplots of samples drawn from various copulae. All
-    copulae are calibrated to Spearman's $\rho$ of 0.75 before
-    sampling.}\label{fig:copulaeScatterPlot} 
-\end{figure}
+% The Gaussian copula density is
+% \begin{equation*}
+%   \bm{c}_\rho(u,v) = \frac{\bm{\varphi}_{2,\rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\}}
+%                      {\varphi\{\Phi^{(-1)}(u)\} \cdot \varphi\{\Phi^{(-1)}(v)\}} 
+%                   = \frac{1}{2\pi\sqrt{1-\rho^2}}\exp\left\{
+%                      -\frac{u^2 - 2\rho uv + v^2}{2(1-\rho^2)}
+%                      \right\},
+% \end{equation*}
+% where $\bm{\varphi}_{2,\rho}(\cdot)$ is the pdf corresponding to
+% $\Phi_{2, \rho}$, and $\varphi(\cdot)$ the standard normal
+% pdf. \natp{\em [I think the abbreviations cdf and pdf where not
+%   introduced. Please double-check.]}
 
 Kendall's $\tau_K$ and Spearman's $\rho_S$ of the bivariate Gaussian copula are
     \begin{align*}
@@ -428,32 +421,22 @@ The $t$-copula has the form
         \right)^{-\frac{\nu+2}{2}}\, \dd s\, \dd t,
     \end{multline*}
 where $\bm{T}_{2, \rho, \nu}$ denotes the 
-bivariate $t$ cdf with dependence parameter $\rho$ \natp{\em [Is this
-  Spearman's Rho? If so, then say so.]} and degrees of
+bivariate $t$ cdf with dependence parameter $\rho$ and degrees of
 freedom parameter $\nu$, $\nu>2$,
 and where $T^{(-1)}_\nu(\cdot)$ is the quantile function of a standard
 $t$ distribution with parameter $\nu$. 
 
-Contrary to the Gaussian copula, the $t$-copula has a non-zero
-tail dependence coefficient, which makes it more appropriate for
-dependence modelling in finance. The Gaussian copula arises as
-$\nu\rightarrow\infty$.
+The $t$-copula and Gaussian copula with parameter $\rho$ have equal Kendall's $\tau$, \citep[see][and references therein]{demarta2005t}.
 
-The copula density is
-\begin{align*}
-    \bm{c}(u,v) &= \frac{\bm{t}_{2, \rho, \nu}\{T^{(-1)}_\nu(u), T^{(-1)}_\nu(v)\}}
-    {t_\nu\{T^{(-1)}_\nu(u)\}\cdot t_\nu\{T^{(-1)}_\nu(v)\}},
-    \end{align*}
-where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}$
-and $t_\nu$ the density of standard $t$ distribution.
-
-\natp{The $t$-copula and Gaussian copula with parameter $\rho$ have
-  equal Kendall's $\tau$, a property shared by all so-called
-  elliptical copulas \citep[see][and
-references therein]{demarta2005t}. (was: 
-Like all the other elliptical copulae, the $t$-copula's Kendall's
-$\tau$ is identical to that of the Gaussian copula \citep[see][and
-references therein]{demarta2005t}.)}
+On the other hand, the $t$-copula has a non-zero tail dependence coefficient,
+ which makes it more appropriate for dependence modelling in finance. (ref)
+% The copula density is
+% \begin{align*}
+%     \bm{c}(u,v) &= \frac{\bm{t}_{2, \rho, \nu}\{T^{(-1)}_\nu(u), T^{(-1)}_\nu(v)\}}
+%     {t_\nu\{T^{(-1)}_\nu(u)\}\cdot t_\nu\{T^{(-1)}_\nu(v)\}},
+%     \end{align*}
+% where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}$
+% and $t_\nu$ the density of standard $t$ distribution.
 
 \subsubsection{Archimedean copulae}\label{sec:archimedean-copula}
 The family of Archimedean copulae forms a large class of copulae with
@@ -466,11 +449,10 @@ asymmetric dependence structures.
 
 In general, an Archimedean copula takes the form
 \begin{align*}
-    \bm{C}(u,v)= \psi^{(-1)}\{\psi(u), \psi(v)\},\quad u,v\in [0,1],
+  \bm{C}_\theta(u,v) = \psi^{(-1)}\{\psi(u; \theta), \psi(v; \theta); \theta\},\quad u,v\in [0,1],
     \end{align*}
 where $\psi:[0,1] \rightarrow [0,\infty)$ is a continuous, strictly
-decreasing and convex function such that $\psi(1)=0$ \natp{\em [Where
-  does $\theta$ come in?]} for any
+decreasing and convex function such that $\psi(1)=0$ for any
 permissible dependence parameter $\theta$. The function $\psi$ is 
 called the generator, with $\psi^{(-1)}$ its inverse.
 
@@ -481,29 +463,29 @@ The {\em Frank copula\/} (B3 in \citet{joe1997multivariate}) takes the form
     1 + \frac{(e^{-\theta u}-1)(e^{-\theta v}-1)}{e^{-\theta}-1}
     \right\}, \quad u,v\in [0,1],
     \end{align*}
-    with $\theta \in [0, \infty]$ the dependence parameter. It is a
-    radially symmetric copula and cannot produce any tail
+    with $\theta \in [0, \infty]$ the dependence parameter. 
+    It is a symmetric copula and cannot produce any tail
     dependence. The following parameters correspond perfect dependence
     and independence: $\bm{C}_{-\infty} = \bm{M}$, $\bm{C}_1 = \bm{\Pi}$,
-    and $\bm{C}_\infty = \bm{W}$. The copula density is
-    \begin{align*}
-      \bm{c}_{\theta}(u,v)
-      &= \frac{\theta e^{\theta(u+v)(e^\theta-1)}}
-        {\left\{e^\theta-e^{\theta u}-e^{\theta v}+e^{\theta (u+v)}\right\}^2}.
-    \end{align*}
-    The Frank copula has Kendall's $\tau$ and Spearman's $\rho$ as follow:
+    and $\bm{C}_\infty = \bm{W}$. 
+    % The copula density is
+    % \begin{align*}
+    %   \bm{c}_{\theta}(u,v)
+    %   &= \frac{\theta e^{\theta(u+v)(e^\theta-1)}}
+    %     {\left\{e^\theta-e^{\theta u}-e^{\theta v}+e^{\theta (u+v)}\right\}^2}.
+    % \end{align*}
+    The Frank copula has Kendall's $\tau$ :
 \begin{align*}
     \tau_K(\theta) = 1-4\frac{D_1\{-\log(\theta)\}}{\log(\theta)},
     \end{align*}
-and
-\begin{align*}
-    \rho_S(\theta) = 1-12\frac{D_2\{-\log(\theta)\} - D_1\{\log(\theta)\}}{\log(\theta)},
-    \end{align*}
+% and
+% \begin{align*}
+%     \rho_S(\theta) = 1-12\frac{D_2\{-\log(\theta)\} - D_1\{\log(\theta)\}}{\log(\theta)},
+%     \end{align*}
 where $D_1$ and $D_2$ are the Debye function of order 1 and 2, with
 the Debye function defined as $D_n =
-\frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$. \natp{\em [Please find a
-  reference for the Debye function. A good candiate is the Handbook by
-  Abramowitz Stegun.]}
+\frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$.
+We refer readers to \cite{abramowitz1972handbook}[p.998] for definition of the Debye function. 
 
 The {\em Gumbel copula\/} (B6 in \citet{joe1997multivariate}) has
 distribution function
@@ -512,19 +494,17 @@ distribution function
     \}^{\frac{1}{\theta}}},
 \end{equation*}
 where $\theta \in [1,\infty)$ is the dependence parameter.
+Its  Kendall's tau takes the form \begin{equation*}
+  \tau_K(\theta) =\frac{\theta-1}{\theta}. 
+ \end{equation*}
 It has upper tail dependence with dependence parameter $\lambda^U
 = 2-2^{\frac{1}{\theta}}$ and displays no lower tail dependence. 
     
 While the Gumbel copula cannot model perfect counter-dependence
 \citep{Nelsen2002}, $\bm{C}_{1} = \bm{\Pi}$ models independence, 
 and $\lim_{\theta\rightarrow\infty} \bm{C}_\theta = \bm{W}$ models
-perfect dependence. The copula density takes the form
-%\begin{align}
-%        f
-%    \end{align}
-  \begin{equation*}
-    \tau_K(\theta) =\frac{\theta-1}{\theta}. 
-   \end{equation*}
+perfect dependence. 
+
 
 The {\em Clayton copula\/} takes the form
 \begin{equation*}
@@ -551,18 +531,14 @@ copulae
     \bm{C}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{C}^{(k)}\{F^{(-1)}_{X_1}(u),
     F^{(-1)}_{X_2}(v); \bm{\theta^{(k)}}\}, \quad u,v\in [0,1].
   \end{equation*}
-  \natp{Here, $\bm{\theta^{(k)}}$ refers to the parameters of the
-    $k$-th copula.} Likewise, the copula density is a linear
-    combination of copula densities 
-\begin{align*}
-    \bm{c}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{c}^{(k)}\{F^{(-1)}_{X_1}(u),
-    F^{(-1)}_{X_2}(v); \bm{\theta^{(k)}}\}.
-    \end{align*}
-
-\natp{\em
-  [I think the statement below can go without a formal proof. Here is
-  a suggestion].}
-
+  Here, $\bm{\theta^{(k)}}$ refers to the parameters of the
+    $k$-th copula.
+%     Likewise, the copula density is a linear
+%     combination of copula densities 
+% \begin{align*}
+%     \bm{c}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{c}^{(k)}\{F^{(-1)}_{X_1}(u),
+%     F^{(-1)}_{X_2}(v); \bm{\theta^{(k)}}\}.
+%     \end{align*}
    
 While Kendall's $\tau$ of the mixture copula is not known in closed form,
 Spearman's $\rho$ is easily derived as 
@@ -570,31 +546,31 @@ Spearman's $\rho$ is easily derived as
   \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}. 
 \end{equation*}
 
-\natp{\em [Old text below.]}
+% \natp{\em [Old text below.]}
 
-While Kendall's $\tau$ of the mixture copula is not known in closed form,
-Spearman's $\rho$ is specified by the following statement. 
-\begin{proposition}
-  Let $\rho_S^{(k)}$ be Spearman's $\rho$ of the $k$-th component
-  Spearman's $\rho$ of the mixture copula is given by 
-  \begin{align*}
-        \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}.
-        \end{align*}
-    \end{proposition}
+% While Kendall's $\tau$ of the mixture copula is not known in closed form,
+% Spearman's $\rho$ is specified by the following statement. 
+% \begin{proposition}
+%   Let $\rho_S^{(k)}$ be Spearman's $\rho$ of the $k$-th component
+%   Spearman's $\rho$ of the mixture copula is given by 
+%   \begin{align*}
+%         \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}.
+%         \end{align*}
+%     \end{proposition}
 
-\begin{proof}
-  Since Spearman's $\rho$ is defined as \citep{Nelsen1999}
-  \begin{equation*}
-    \rho_S = 12 \int_{\mathbb{I}^2} \bm{C}(s,t) ds dt - 3,
-  \end{equation*}
-  Spearman's $\rho$ of the the mixture copula is given by summation
-  of the components 
-  \begin{align*}
-    \rho_S = 12 \int_{\mathbb{I}^2} \sum_{k=1}^K p^{(k)} \cdot
-    \bm{C}^{(k)}(s,t) ds dt - 3. 
-  \end{align*}
-\end{proof}
-\natp{\em [Continue here.]}
+% \begin{proof}
+%   Since Spearman's $\rho$ is defined as \citep{Nelsen1999}
+%   \begin{equation*}
+%     \rho_S = 12 \int_{\mathbb{I}^2} \bm{C}(s,t) ds dt - 3,
+%   \end{equation*}
+%   Spearman's $\rho$ of the the mixture copula is given by summation
+%   of the components 
+%   \begin{align*}
+%     \rho_S = 12 \int_{\mathbb{I}^2} \sum_{k=1}^K p^{(k)} \cdot
+%     \bm{C}^{(k)}(s,t) ds dt - 3. 
+%   \end{align*}
+% \end{proof}
+% \natp{\em [Continue here.]}
 
 An example of a mixture copula is the Fr\'echet class of copulae, which
 are given by convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$
@@ -603,19 +579,17 @@ are given by convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$
 We use a mixture of Gaussian and independence copulae in our analysis,
 i.e., 
 \begin{equation*}
-  \bm{C}(u,v) = p\, \bm{C}^\text{Gaussian}(u,v) + (1-p)(uv),\quad p\in (0,1),
+  \bm{C}(u,v) = p\, \bm{C}^\text{Gaussian}(u,v) + (1-p)(uv),\quad p\in (0,1).
 \end{equation*}
-with corresponding density 
-\begin{equation*}
-  \bm{c}(u,v) = p\, \bm{c}^\text{Gaussian}(u,v) + (1-p).
-\end{equation*}
+% with corresponding density 
+% \begin{equation*}
+%   \bm{c}(u,v) = p\, \bm{c}^\text{Gaussian}(u,v) + (1-p).
+% \end{equation*}
 
 This mixture models the amount of ``random noise'' that appears in the
-dependence structure. In the hedging exercise, the
-``random noise'' adds an unhedgable component to the two-asset
-portfolio, whose weight $(1-p)$ is calibrated from market
-data. \natp{\em [Is it clear that the unhedgable part is more than the
-  ``random noise''?]}
+off-diagonal region of the dependence structure where the Gaussian copula has no control.
+In the hedging exercise, the structure of the off-diagonal ``random noise'' is not our main concern, 
+but the amount of it might affect the hedging effectiveness. 
 
 \subsubsection{NIG factor copula}
 
@@ -635,6 +609,27 @@ scale parameters, respectively, $\alpha$ determines the heaviness of
 the tails and $\beta$ determines the degree of asymmetry. If
 $\beta=0$, then the distribution is symmetric around $\mu$.
 
+The cdf and quantile function of NIG distribution, denoted by $G(x; \alpha, \beta, \mu, \delta)$ and $G^{(-1)}(x; \alpha, \beta, \mu, \delta)$,
+ have no known analytical form.
+ In this work, they are computed via numerical integration of the density and by simulation.
+
+The NIG distribution belongs to
+the class of so-called {\em normal
+variance-mean mixture distributions},  (see Section 3.2 of 
+\citep{McNeil2005}): $X$ follows an
+$\text{NIG}(\alpha,\beta,\mu,\delta)$ distribution if $X$ conditional
+on $W$ follows a normal distribution with mean $\mu+\beta W$ and
+variance $W$, i.e., 
+\begin{equation*}
+  X|W\stackrel{\mathcal L}\sim \Ncdf(\mu + \beta W, W),
+\end{equation*}
+where $W$ follows an {\em inverse Gaussian distribution}, denoted by
+$\text{IG}(\delta, \sqrt{\alpha^2-\beta^2})$.
+
+Simulation procedure of NIG$(\alpha, \beta, \mu, \delta)$ distribution is a natural result of the above decomposition. 
+To simulate the NIG distribution, first simulate a random variable $w \sim IG(\delta, \sqrt{\alpha^2-\beta^2})$, 
+then simluate $x \sim N(\mu+ \beta w, w)$ given $w$.
+
 The moment-generating function of the NIG distribution is given by
 \begin{equation*}
   M(u; \alpha, \beta, \mu, \delta) = \exp\left( \delta
@@ -651,36 +646,8 @@ expectation and variance of the NIG distribution being
   \text{Var}(X) &= \frac{\alpha^2\delta}{(\alpha^2-\beta^2)^{3/2}}.
 \end{align}
 
-
-The $\text{NIG}(\alpha, \beta, \mu\, \delta)$ distribution belongs to
-the class of so-called {\em normal
-variance-mean mixture distributions},  (see Section 3.2 of 
-\citep{McNeil2005}): $X$ follows an
-$\text{NIG}(\alpha,\beta,\mu,\delta)$ distribution if $X$ conditional
-on $W$ follows a normal distribution with mean $\mu+\beta W$ and
-variance $W$, i.e., 
-\begin{equation*}
-  X|W\stackrel{\mathcal L}\sim \Ncdf(\mu + \beta W, W),
-\end{equation*}
-where $W$ follows an {\em inverse Gaussian distribution}, denoted by
-$\text{IG}(\delta, \sqrt{\alpha^2-\beta^2})$.
-
 It is easily seen from the moment-generating function that the NIG distribution is preserved under linear combinations, provided
-the variables share the parameters $\alpha$ and $\beta$. For this
-and other reasons, the NIG distribution is popular in many areas of
-financial modelling; for example, it gives rise 
-to the normal inverse Gaussian L\'evy process, which may be represented
-as a Brownian motion with a time change.
-
-In the setting here, we consider the {\em NIG factor copula}. This is
-not directly derived from the multivariate NIG distribution, but
-determined through a factor structure instead. The factor structure,
-which 
-was applied e.g.\ in \citep{Kalemanova2007} for calibrating CDO's,
-gives additionaly flexibility as it does not force the components to
-have a mixing variable $W$.
-The following proposition introduces the NIG factor model and some of
-its properties.
+the variables share the parameters $\alpha$ and $\beta$. 
 \begin{proposition}
   \label{prop:NIG}
   Let $Z\sim \text{NIG}(\alpha, \beta, \mu, \delta)$ and
@@ -711,30 +678,58 @@ its properties.
   \end{enumerate}
 \end{proof}
 
-\natp{\em [Please clarify that $\circ$ refers to composition. Clean
-  up notation, e.g.\ marginals can be denoted $F_F$ and $F_S$, Use
-  just $C$ for the copula. What are $Z_1$ and $Z_2$? I don't find the
-  formula in the paper mentioned. Also, where is the formula for
-  Kendall's tau taken from?]}
- The NIG factor copula is obtained by transforming the margins to
-uniforms (see Sklar's Theorem), giving (e.g.\
-\citep{krupskii2013factor}):
-\begin{equation*}
-  C_{r^S, r^F}(F_{r^S}(r^S), F_{r^F}(r^F)) = \int_\mathbb{R}
-  F_{Z_1}(F_{X_1}^{(-1)} \circ F_{r^S}(r^S) -z) \cdot
-  F_{Z_2}(F_{X_2}^{(-1)} \circ F_{r^F}(r^F) -z) \cdot
-  f_Z(z) dz.
-  \end{equation*}
-If the margins are continuous, then Spearman's rho of NIG factor
-copula is 
-\begin{equation*}
-  \rho_S = 12 \int \int \int_{\mathbb{R}^3}
-  F_{X_1}(x_1) \cdot
-  F_{X_2}(x_2) \cdot
-  f_{Z_1}(x_1-z) \cdot
-  f_{Z_2}(x_2-z) \cdot
-  f_Z(z) dx_1 dx_2 dz - \frac{1}{48}.
-  \end{equation*}
+The NIG distribution is popular in many areas of
+financial modelling; for example, it gives rise 
+to the normal inverse Gaussian L\'evy process, which may be represented
+as a Brownian motion with a time change.
+
+In the setting here, we consider the {\em NIG factor copula}. This is
+not directly derived from the multivariate NIG distribution, but
+determined through a factor structure instead. \footnote{The factor structure,
+which was applied e.g.\ in \citep{Kalemanova2007} for calibrating CDO's,
+gives additionaly flexibility as it does not force the components to
+have a mixing variable $W$.}
+
+Denote the margins by $u,v \sim U(0,1)$. 
+The NIG factor model is obtained by transforming the unifrom margins to standardised NIG distriutions.
+We standardise NIG distribution to mean zero and unit variance. 
+Reparameterisation follows by the standarisation: 
+$\delta(\alpha, \beta) = \frac{(\alpha^2-\beta^2)^\frac{3}{2}}{\alpha^2}$ and 
+$\mu(\alpha, \beta)    = -\frac{\beta^3}{\alpha^2}-\beta$.
+
+
+
+ $X \overset{\text{def}}= G^{(-1)}(u; \alpha, \beta, \mu, \delta + \delta_X)$ and 
+ $Y \overset{\text{def}}= G^{(-1)}(v; \alpha, \beta, \mu, \delta + \delta_Y)$. 
+
+
+
+
+
+% \natp{\em [Please clarify that $\circ$ refers to composition. Clean
+%   up notation, e.g.\ marginals can be denoted $F_F$ and $F_S$, Use
+%   just $C$ for the copula. What are $Z_1$ and $Z_2$? I don't find the
+%   formula in the paper mentioned. Also, where is the formula for
+%   Kendall's tau taken from?]}
+%  The NIG factor copula is obtained by transforming the margins to
+% uniforms (see Sklar's Theorem), giving (e.g.\
+% \citep{krupskii2013factor}):
+% \begin{equation*}
+%   C_{r^S, r^F}(F_{r^S}(r^S), F_{r^F}(r^F)) = \int_\mathbb{R}
+%   F_{Z_1}(F_{X_1}^{(-1)} \circ F_{r^S}(r^S) -z) \cdot
+%   F_{Z_2}(F_{X_2}^{(-1)} \circ F_{r^F}(r^F) -z) \cdot
+%   f_Z(z) dz.
+%   \end{equation*}
+% If the margins are continuous, then Spearman's rho of NIG factor
+% copula is 
+% \begin{equation*}
+%   \rho_S = 12 \int \int \int_{\mathbb{R}^3}
+%   F_{X_1}(x_1) \cdot
+%   F_{X_2}(x_2) \cdot
+%   f_{Z_1}(x_1-z) \cdot
+%   f_{Z_2}(x_2-z) \cdot
+%   f_Z(z) dx_1 dx_2 dz - \frac{1}{48}.x
+%   \end{equation*}
 
 % \begin{proof}
 %   \begin{align}
@@ -789,10 +784,90 @@ bivariate random variable.
 % --- Estimation of Copula ---
 % ----------------
 
-\input{copulaselection.tex}
+\subsubsection{Copula selection}\label{subsec:copula-selection}
+As the dependence structure of price data changes
+across time, we allow for a flexible choice of the best-fitting
+copula, by re-calibrating periodically and re-evaluating performance
+of the various copulas. 
+In each re-calibration, we select the best-fitting
+copula, characterised by the lowest {\em Akaike Information Criterion
+  (AIC)},
+\begin{equation*}
+ \text{AIC} = 2k- 2 \log(L),
+\end{equation*}
+where $k$ is the number of estimated
+parameteres and $L$ is the likelihood \citep{Akaike1973}. 
 
+% they tend to suggest the same copula as the best fitting one.
+%Simulation studies has also been carried out to compare different copula selection methods, see \cite{}.
+Other model selection criteria, such as the TIC~\citep{takeuchi1976distribution} or likelihood ratio test could be used instead.
+For a survey of model selection and inference, see \cite{anderson1998comparison}.
+Among various copula selection procedures, AIC is a popular choice for
+its applicability, see e.g. \cite{breymann2003dependence}.
+In our case, the AICs are calculated only with dependence likelihood
+since the marginals are modelled via kernel density estimators.
+The selected copula will then enter the calculation of the optimal
+hedge ratio.
+% We consider the copula with the lowest AIC for a particular set of data the best fitting one and use it to generate OHR.
 
-\input{riskmeasures.tex}
-% ----------------
-% --- Risk measures' definition and properties ---
-% ----------------
+\subsection{Risk measures}\label{subsec:spectral-risk-measures}
+The optimal hedge ratio is determined for the following variety of risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
+A summary of risk measures being used in portfolio selection problem
+can be found in \citet{hardle2008applied}. 
+The risk measures here serve as risk minimization objectives, i.e. loss functions for searching the optimal hedge ratio. 
+%They are used in many literature about hedging, e.g. ;
+%The risk measures are also used by regulatory bodies,
+%for example Basel III ....
+
+The risk measures are defined as follows.
+Let $Z$ be a random
+variable with distribution function $F_Z$.
+\begin{enumerate}
+\item Variance: $\text{Var}(Z) = \E[(Z-\E Z)^2]$. 
+\item VaR at confidence level $\alpha$: $\text{VaR}_\alpha(Z) = -F_{Z}^{(-1)}(1-\alpha)$
+\item ES at confidence level $\alpha$: $\text{ES}(F_Z) = -\frac{1}{1-\alpha}\int_0^{1-\alpha}F_Z^{(-1)}(p)dp$
+\item ERM with Arrow-Pratt coefficient of absolute risk
+  aversion $k$:
+  \begin{equation*}
+    \text{ERM}_k(F_Z) = \int_0^{1-\alpha}\phi(p) F_Z^{(-1)}(p)dp,
+  \end{equation*}
+  where $\phi$ is a weight function described in (\ref{eq:phi}) below.
+\end{enumerate}
+
+VaR, ES, and ERM fall into the class of spectral risk measures (SRM),
+which have the form \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
+\begin{equation*}
+  \rho_\phi(r^h) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
+\end{equation*}
+where $p$ is the loss quantile and $\phi(p)$ is a user-defined
+weighting function defined on $[0,1]$.
+We consider only so-called admissible risk spectra $\phi(p)$, i.e.,
+fulfilling %(named by \citet{Acerbi2002})
+\begin{enumerate}[label=(\roman*)]
+\item $\phi$ is positive,
+\item $\phi$ is decreasing,
+\item and $\int\phi=1$. 
+\end{enumerate}
+
+The VaR's $\phi(p)$ gives all its weight on the $1-\alpha$ quantile of
+$Z$ and zero elsewhere, i.e., the weighting function is a Dirac delta
+function, and hence it violates the (ii) property of admissible risk
+spectra.  
+The ES' $\phi(p)$ gives all tail quantiles the same weight of
+$\displaystyle\frac{1}{1-\alpha}$ and non-tail quantiles zero weight. 
+The ERM assumes investors' risk preference are in the form of an
+exponential utility function $U(x)=1-e^{kx}$, so its corresponding
+risk spectrum is defined as
+\begin{equation*}
+  \phi(p) =\frac{k e^{-k(1-p)}}{1-e^{-k}} , \label{eq:phi}
+\end{equation*}
+where $k$ is the Arrow-Pratt coefficient of absolute risk aversion. 
+The parameter $k$ has an economic interpretation as being the ratio
+between the second derivative and first derivative 
+of investor's utility function on an risky asset,
+\begin{equation*}
+  k = -\frac{U''(x)}{U'(x)},
+\end{equation*}
+for $x$ in all possible outcomes.
+In case of the exponential utility, $k$ is the the constant absolute risk aversion (CARA).
+

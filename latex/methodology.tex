@@ -593,7 +593,7 @@ but the amount of it might affect the hedging effectiveness.
 
 \subsubsection{NIG factor copula}
 
-The {\em normal inverse Gaussian (NIG)\/} distribution, introduced by
+The NIG factor copula leverage on The {\em normal inverse Gaussian (NIG)\/} distribution, introduced by
 \citep{BarndorffNielsen1997}, has density function
 \begin{equation*}
   g(x; \alpha,\beta, \mu, \delta) = \frac{\alpha}{\pi} \e^{\delta
@@ -682,27 +682,43 @@ The NIG distribution is popular in many areas of
 financial modelling; for example, it gives rise 
 to the normal inverse Gaussian L\'evy process, which may be represented
 as a Brownian motion with a time change.
-
-In the setting here, we consider the {\em NIG factor copula}. This is
+In the setting here, we consider the {\em NIG factor copula}, which is
 not directly derived from the multivariate NIG distribution, but
 determined through a factor structure instead. \footnote{The factor structure,
 which was applied e.g.\ in \citep{Kalemanova2007} for calibrating CDO's,
 gives additionaly flexibility as it does not force the components to
 have a mixing variable $W$.}
 
-Denote the margins by $u,v \sim U(0,1)$. 
-The NIG factor model is obtained by transforming the unifrom margins to standardised NIG distriutions.
-We standardise NIG distribution to mean zero and unit variance. 
-Reparameterisation follows by the standarisation: 
-$\delta(\alpha, \beta) = \frac{(\alpha^2-\beta^2)^\frac{3}{2}}{\alpha^2}$ and 
-$\mu(\alpha, \beta)    = -\frac{\beta^3}{\alpha^2}-\beta$.
+Denote 
+\begin{align*}
+  X &= Z + Z_1 \\ 
+  Y &= Z + Z_2,
+  \end{align*}
+where $Z \sim \text{NIG}(\alpha, \beta, \mu, \delta)$, $Z_1 \sim \text{NIG}(\alpha, \beta, \mu_1, \delta_1)$, 
+$Z_2 \sim \text{NIG}(\alpha, \beta, \mu_2, \delta_2)$, and $Z, Z_1, Z_2$ are mutually independent. 
 
+The following reparameterisation steps reduce the number of parameters to three:
+\begin{enumerate}
+  \item Set $\mu = \mu_1= \mu_2 = 0$ . Location parameter does not affect the correlation structure.
+  \item Set $\delta = \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}$, $\delta_1 = \delta_2$, $\tilde \delta = \delta_1 = \delta_2$. 
+  The correlation between X and Y is fully captured by $\alpha, \beta$, and $\tilde \delta$.  
+\end{enumerate}
+  % Denote the margins by $u,v \sim U(0,1)$. 
+% The NIG factor model is obtained by transforming the unifrom margins to standardised NIG distriutions.
 
+\begin{prop}
+  Let $u,v \in [0,1]$, $f(\cdot) = g\left(\cdot; \alpha, \beta, 0, \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}
+  \right)$ and $F (\cdot) = G(\cdot; \alpha, \beta, 0, \tilde \delta)$, 
+  the {\em NIG factor copula} is 
+  \begin{equation*}
+    C(u,v) = \int_\mathbb{R} F(u-z)F(v-z)f(z)dz.
+  \end{equation*}
+\end{prop}
 
- $X \overset{\text{def}}= G^{(-1)}(u; \alpha, \beta, \mu, \delta + \delta_X)$ and 
- $Y \overset{\text{def}}= G^{(-1)}(v; \alpha, \beta, \mu, \delta + \delta_Y)$. 
+We refer readers to \cite{krupskii2013factor} for the methodology of constructing a factor copula. 
 
-
+The Spearman rho and quantile dependence of NIG factor copula have no known analystical form, 
+thus they are computed numerically. 
 
 
 

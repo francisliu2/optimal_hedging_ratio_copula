@@ -715,10 +715,11 @@ The following reparameterisation steps reduce the number of parameters to three:
   \end{equation*}
 \end{prop}
 
+The parameters $\alpha, \beta, \tilde \delta$ fully control the dependence between $u$ and $v$, $u, v \sim U(0,1)$, captured by the NIG factor copula.
 We refer readers to \cite{krupskii2013factor} for the methodology of constructing a factor copula. 
 
 The Spearman rho and quantile dependence of NIG factor copula have no known analystical form, 
-thus they are computed numerically. 
+thus they are computed numerically in this work. 
 
 
 
@@ -768,20 +769,19 @@ thus they are computed numerically.
 
 
 \subsubsection{Plackett copula}\label{subsec:other-copula}
-The Plackett copula has distribution functiono
+The Plackett copula has distribution function
 \begin{align*}
     \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}
                          - \frac{\sqrt{\{
     1+(\theta-1)(u+v)\}^2 - 4uv\theta(\theta-1)}}{2(\theta-1)},
-\end{align*}
-\natp{where $\theta$...}.
+\end{align*} where $0 \leq \theta < \infty$.
 Spearman's Rho is given by 
 \begin{align*}
     \rho_S(\theta) = \frac{\theta+1}{\theta-1} - \frac{2\theta \log
   \theta}{(\theta-1)^2}. 
     \end{align*}
 
-The Placket copula possesses a special property, namely
+The Placket copula possesses a special property:
 the cross-product ratio is equal to the dependence parameter
 \begin{equation} \label{eq:PlackettCrossProduct}
     % &\phantom{=}

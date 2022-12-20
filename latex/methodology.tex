@@ -80,7 +80,7 @@ The second property is called 2-non-decreasing.
 In other words, the two-dimensional copula is a joint cdf of a two-dimensional random vector
 on a unit square with uniform marginals.
 
-The following Hoeffding-Sklar-Theorem (usually known as Sklar theorem) ensures the existence of copula.
+The following Hoeffding-Sklar-Theorem (usually known as the Sklar's Theorem) ensures the existence of copula.
 
 \begin{theorem}[Hoeffding-Sklar-Theorem]
   \label{theorem:sklar}
@@ -121,8 +121,8 @@ the original papers written in German.
 
 \begin{proof}
   Since copulae are invariant under strictly monotone increasing
-  function \cite[Theorem 3 (i)]{schweizer1981nonparametric} or
-  \cite[Theorem 2.4.3]{Nelsen1999}, 
+  function \citet[Theorem 3 (i)]{schweizer1981nonparametric} or
+  \citet[Theorem 2.4.3]{Nelsen1999}, 
   \begin{equation*}
     C_{X, hY}\left(F_X(s),F_{hY}(t)\right) = C_{X, Y}\left(F_X(s),F_{hY}(t)\right).
     \end{equation*}
@@ -135,7 +135,7 @@ Re-writing the second argument of the copula gives
 \end{proof}
 
 %The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ .
-Leveraging these two features of copulae, \citet{barbi2014copula}
+Taking advantage of Theorem \ref{theorem:sklar} and Lemma \label{lemma:copula}, \citet{barbi2014copula}
 introduce the distribution of linear combinations of random variables
 using copulae. 
 We slightly edit their Corollary 2.1 of their work and yield the 
@@ -158,7 +158,7 @@ following expression of the distribution.
 function.
 \end{proposition}
 Here, $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u}
-C(u,v)$ and, see e.g.\ Equation (5.15) of \citep{McNeil2005},
+C(u,v)$ and, see e.g.\ Equation (5.15) of \citet{McNeil2005},
 \begin{equation}
   \label{eq:1}
   D_1 C_{X,Y}\{F_X(x), F_Y(y)\} = \p(Y\leq y|X=x).
@@ -204,22 +204,22 @@ as training data to obtain the optimal hedge ratio via the following steps:
 \begin{enumerate}
 \item \textbf{Construct univariate kernel density function (KDE)}:
   Construct the spot and futures' univariate kernel density functions seperately
-  using the Gaussian kernel. The bandwidths are determined seperately by the refined plug-in method \citep[section
+  using the Gaussian kernel. The bandwidths are determined seperately by the refined plug-in method \citep[Section
   3.3.3]{hardle2004nonparametric}.
 \item \textbf{Calibrate copulae}:
-  Calibrate the copulae outlined in section \ref{subsec:copulae} by the
-  method of moments described in section \ref{subsec:simulated-method-of-moments}.
+  Calibrate the copulae outlined in Section \ref{subsec:copulae} by the
+  method of moments described in Section \ref{subsec:simulated-method-of-moments}.
 \item \textbf{Select copula}:
   Compute the Akaike Information Criterion (AIC). The copula with the
-  best (i.e., lowest) AIC is used for the next step. 
-  A discussion of this step is found in \ref{subsec:copula-selection}.
+  best (i.e. lowest) AIC is used for the next step. 
+  A discussion of this step is found in Section \ref{subsec:copula-selection}.
 \item \textbf{Determine optimal hedge ratio}:
   Determine the optimal hedge ratios with respect to different
   risk measures numerically. 
   To do so, we draw samples from the calibrated copulae and KDEs 
   and search for the hedge ratio that gives the lowest risk measure. 
-  The risk measures are outlined in \ref{subsec:spectral-risk-measures} 
-  The minimisation algorithm \textit{scipy.optimize.minimize} from a Python package Scipy \citep{2020SciPy-NMeth} is used for the search of optimal hedge ratio.
+  The risk measures are outlined in Section \ref{subsec:spectral-risk-measures} 
+  The minimisation algorithm \textit{scipy.optimize.minimize} from the Python package {\em Scipy} \citep{2020SciPy-NMeth} is used for the search of optimal hedge ratio.
 \end{enumerate}
 
 Next, we apply the optimal hedge ratio to the test data to obtain out-of-sample hedged portfolio returns.
@@ -227,8 +227,9 @@ The test data is the 5 data points subsequent to the last training data point.
 The out-of-sample portfolio returns is also 5 data points in length.
 
 Finally, we roll forward by 5 data points and repeat the steps until the test data reach the end of the dataset. 
-The collection of out-of-sample portfolio returns forms a non-overlapping time serie (rolling step size is equal to test data length) that represents the performance of 
-the hedging methodology. See Section \ref{subsec:HP2} for results and discussions.  
+The collection of out-of-sample portfolio returns forms a non-overlapping time series since rolling step size is equal to test data length.
+The time series represent the profit and lost if hedgers recalibrate copulae and adjust the hedge ratio every 5 days from the start to the end of the out-of-sample data period.
+An intraday setup and its results are documented in Appendix \ref{sec:intraday}. 
 
 The backtesting procedure without the copula selection step is also carried out to examine the effects of deploying different copula. 
 Section \ref{subsec:HP1} discusses the effects. 
@@ -284,7 +285,7 @@ $x_i>x_j$ and $y_i>y_j$ is covered.
   dudv. \]
 \end{prop}
 
-We refer readers to \cite{Nelsen1999}[section 5.1.1] for the proof. 
+We refer readers to \citet[Section 5.1.1]{Nelsen1999} for the proof. 
 
 \begin{defi}[Rank]
   Let $x_1,...,x_n$ be realisations of a one dimensional random variable $X$. 
@@ -318,7 +319,7 @@ We refer readers to \cite{Nelsen1999}[section 5.1.1] for the proof.
     \[\rho_S = 12\int_{[0,1]^2}C(u,v)dudv-3. \]
   \end{theo}
 
-We refer readers to \cite{joe1997multivariate}[section 2.12.2] for the proof. 
+We refer readers to \citet[section 2.12.2]{joe1997multivariate} for the proof. 
 
 Quantile dependence measures the probability of two variables that is higher or below a given quantile of their univariate distributions.
 
@@ -342,13 +343,12 @@ Quantile dependence measures the probability of two variables that is higher or 
 
 \end{defi}
 
-\subsection{Copulae}\label{sec:ellpitical-copulae}
+\subsection{Copulae}\label{subsec:copulae}
 
 To capture different aspects of the dependence structure, we consider
 a set of different copulas, which are layed
   out in detail below. These are the Gaussian-, $t$-, Frank-,
 Gumbel-, Clayton-, mixture, NIG factor, and Plackett-copula. 
-
 Figure~\ref{fig:copulaeScatterPlot} shows scatter plots of random
 samples of each of the copulae treated. 
 \begin{figure}[t]
@@ -485,7 +485,7 @@ The {\em Frank copula\/} (B3 in \citet{joe1997multivariate}) takes the form
 where $D_1$ and $D_2$ are the Debye function of order 1 and 2, with
 the Debye function defined as $D_n =
 \frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$.
-We refer readers to \cite{abramowitz1972handbook}[p.998] for definition of the Debye function. 
+We refer readers to \citet[p.998]{abramowitz1972handbook} for definition of the Debye function. 
 
 The {\em Gumbel copula\/} (B6 in \citet{joe1997multivariate}) has
 distribution function
@@ -576,10 +576,10 @@ An example of a mixture copula is the Fr\'echet class of copulae, which
 are given by convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$
 \citep{Nelsen1999}.  
 
-We use a mixture of Gaussian and independence copulae in our analysis,
+We use the {\em Gaussian Mix Indepdent Copula (GMI)} in our analysis,
 i.e., 
 \begin{equation*}
-  \bm{C}(u,v) = p\, \bm{C}^\text{Gaussian}(u,v) + (1-p)(uv),\quad p\in (0,1).
+  \bm{C}(u,v) = p\, \bm{C}^\text{Gaussian}_\theta (u,v) + (1-p)(uv),\quad p\in [0,1].
 \end{equation*}
 % with corresponding density 
 % \begin{equation*}
@@ -620,7 +620,7 @@ The cdf and quantile function of NIG distribution, denoted by $G(x; \alpha, \bet
 The NIG distribution belongs to
 the class of so-called {\em normal
 variance-mean mixture distributions},  (see Section 3.2 of 
-\citep{McNeil2005}): $X$ follows an
+\citet{McNeil2005}): $X$ follows an
 $\text{NIG}(\alpha,\beta,\mu,\delta)$ distribution if $X$ conditional
 on $W$ follows a normal distribution with mean $\mu+\beta W$ and
 variance $W$, i.e., 

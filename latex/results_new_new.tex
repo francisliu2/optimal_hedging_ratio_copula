@@ -297,7 +297,7 @@ while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF.
     \label{tab:copulasection}
 \end{table}
 Next, we inspect the copula selection results by the AIC procedure
-described in section~\ref{subsec:copula-selection}. 
+described in Section~\ref{subsec:copula-selection}. 
 Although the copula selection is only an intermediate step to obtain
 the optimal hedge ratios,
 the result of this step can help us better understand the dependence
@@ -334,18 +334,20 @@ and tail dependence.
 %   especially on the down-side is present, as crashes in the crypto
 %   market, which occur frequently, do not differentiate between
 %   assets.]} 
-On the other hand, the symmetry of the $t$-copula appears to be 
+On the other hand, the symmetric $t$-copula appears to be 
 a poor choice to model the remaining hedging pairs. 
-\cite{demarta2005t} describes the symmetry feature of the $t$-copula ``strong''.
+\cite{demarta2005t} describes the symmetry feature of the $t$-copula ``strong'':
+if $(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
+then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ...,1-U_d)$.
+
 Here, the AIC criterion predominantly selects copulas that allow for asymmetry between the spot
 and the BTCF.
 This reflects that overall asymetric dependence between a non-BTC-related spot asset and
-the BTCF: asset prices tend to crash simultaneously whereas positive development
+the BTCF.
+In fact, we observe from the crypto market that asset prices tend to crash simultaneously whereas positive development
 tends to be idiosyncratic.   
 
-% To be specific, if $(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
-% then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ...,
-% 1-U_d)$.
+
 
 Among the three popular copulae, rotGumbel copula shows its ability to
 model the dependence between ETH and BTCF. rotGumbel also performs
@@ -355,7 +357,7 @@ and BITW70, are best fitted solely with the rotated Gumbel
 copula.
 
 In fact, Clayton's AIC in many of the training sets is the second
-lowest, just higher than that of rotated Gumbel. This is because the
+lowest, just slightly higher than that of rotated Gumbel. This is because the
 Clayton copula has the same ability to model the lower quantile
 dependence. However, Clayton's radial like feature does not match the
 behaviour of the financial data. 
@@ -388,7 +390,7 @@ The Frank copula turn out to generally be a poor choice to model financial
 data (as also reported by \cite{barbi2014copula}).
 The Plackett copula is characterised by its dependence parameter being
 equal to the cross-product ratio, see
-Eq.~\ref{eq:PlackettCrossProduct}. However, apparently, this property
+Eq.~\ref{eq:PlackettCrossProduct}. However, this property
 does not capture the dependence structure of cryptos and BTCF.
 
 \subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
@@ -413,7 +415,7 @@ objective.
 The BTC-not-involved spots, on the contrary, are less promising. Those
 hedge portfolios' returns are nearly as volatile as the
 assets themselves, see for example ADA and XRP. 
-We shall further discuss the effectiveness of hedge in the next
+We further discuss the effectiveness of hedge in the next
 section. %\ref{sec: HE results}. 
 
 \subsection{Hedging Effectiveness Results}\label{sec: HE results}
@@ -440,25 +442,25 @@ and 99\%, VaR 95\% and 99\% and ERM.
   \label{fig:HEboxplot}
   \end{figure}
 
-\natp{\em [A description is missing of how the hedge actually
-  works. How much data enters the calibration (I believe it's 300
-  days). Then what happens? On each day we have a hedge ratio. Do we
-  construct a new hedge each day? How long is the hedge period? So,
-  after which time period is P\&L calculated. 
-  This could also be added to Section 2.2.\\
-  What is the motivation behind the bootstrapping?]}
+% \natp{\em [A description is missing of how the hedge actually
+%   works. How much data enters the calibration (I believe it's 300
+%   days). Then what happens? On each day we have a hedge ratio. Do we
+%   construct a new hedge each day? How long is the hedge period? So,
+%   after which time period is P\&L calculated. 
+%   This could also be added to Section 2.2.\\
+%   What is the motivation behind the bootstrapping?]}
 
 
 As described in Section \ref{sec:empirical-procedure}, the backtesting procedure gives
 an out-of-sample hedged portfolio retruns time series for every spot-copula-risk measure combination. 
-In order to obtain a robust HE result, we apply the bootstrapping method.
+The time series represent the profit and lost if hedgers recalibrate copulae and adjust the hedge ratio every 5 days.  
+In order to obtain a robust HE result (instead of a point estimate), we apply the bootstrapping method.
 Bootstrapping refers to sampling from the empirical distribution of a
 given data sample (e.g.\ a time series of fiancial returns). The
 principal idea underlying bootstrapping is to provide statistical
 information about estimators that cannot be derived from just one
 realisation of the data. The method was introduced by
-\cite{Efron1979}; see also \citep{efron1994introduction,
-  davison1997bootstrap}. 
+\cite{Efron1979}; see also \citep{efron1994introduction, davison1997bootstrap}. 
 
 A specific type of bootstrapping method designed for timeseries, namely the stationary block bootstrap \cite{Politis1994}, is applied in our analysis.
 The stationary bootstrapping procedure is as follows. 
@@ -491,16 +493,15 @@ defined to be $X_{k(\mathrm{mod} N)}$.
   with one sample path this is not possible. Therefore, the bootstrap,
   right?]}
 
-Figure \ref{fig:HEboxplot} report the bootstrapped HE samples from the
-concatenated out-of-sample hedge portfolio return. As expected, the
-BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged
-by the BTCF.  The HEs of the other cryptos and indices are
+Figure \ref{fig:HEboxplot} reports the bootstrapped HE samples.
+As expected, the BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged
+by the BTCF. 
+The HEs of the other cryptos and indices are
 substantially lower than to the BTC-related instruments, but 
 exhibit a consistent performances across different risk measures. 
 As it turns out, some HE bootstrapping samples are even negative,
 which means the ``hedge'' portfolio actually increases the risk. 
-This is, of course, counter-productive to hedging indicating
-  that BTC futures may not be suitable for cross-asset hedges 
+This shows BTC futures is not suitable for cross-asset hedges (cross hedge).
 
 %\natp{\em[It does not
 %  make sense to compare across different risk measures, so I suggest

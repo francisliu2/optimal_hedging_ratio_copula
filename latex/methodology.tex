@@ -593,8 +593,12 @@ but the amount of it might affect the hedging effectiveness.
 
 \subsubsection{NIG factor copula}
 
-The NIG factor copula leverage on The {\em normal inverse Gaussian (NIG)\/} distribution, introduced by
-\citep{BarndorffNielsen1997}, has density function
+Normal Inverse Gaussian (NIG) distribution is a flexible and yet analytical tractable distribution introduced by
+\citep{BarndorffNielsen1997}.
+The {\em NIG factor copula} is constructed based on the characteristics of the NIG disribution. 
+We present the reparameterised version of NIG factor copula in this section.
+
+The NIG distribution has density function
 \begin{equation*}
   g(x; \alpha,\beta, \mu, \delta) = \frac{\alpha}{\pi} \e^{\delta
     \sqrt{\alpha^2-\beta^2} -\beta\mu} \frac{1}{q((x-\mu)/\delta)}
@@ -711,15 +715,21 @@ The following reparameterisation steps reduce the number of parameters to three:
   \right)$ and $F (\cdot) = G(\cdot; \alpha, \beta, 0, \tilde \delta)$, 
   the {\em NIG factor copula} is 
   \begin{equation*}
-    C(u,v) = \int_\mathbb{R} F(u-z)F(v-z)f(z)dz.
+    C(u,v) = \int_\mathbb{R} F(u-z)F(v-z)f(z)dz,
   \end{equation*}
+  where $\alpha, \beta \in \mathbb{R}$ satisfying $0 \leq |\beta| \leq \alpha$, and $\tilde \delta >0 $.
 \end{prop}
 
 The parameters $\alpha, \beta, \tilde \delta$ fully control the dependence between $u$ and $v$, $u, v \sim U(0,1)$, captured by the NIG factor copula.
 We refer readers to \cite{krupskii2013factor} for the methodology of constructing a factor copula. 
 
-The Spearman rho and quantile dependence of NIG factor copula have no known analystical form, 
-thus they are computed numerically in this work. 
+The quantile dependence and Spearman rho of NIG factor copula have no known analystical form.
+In this work, the quantile dependence is computed numerically; 
+the Spearman rho is approximated by the Spearman rho of the bivariate Gaussian copula. 
+When $\beta \rightarrow 0$ and $\alpha \rightarrow \infty$, the NIG distribution behaves similarly to Gaussian distribution, 
+making the NIG factor copula (bivariate) behaves similarly to the Gaussian copula (bivariate), and therefore, 
+the NIG factor copula's Spreaman rho is well approximated by the Spearman rho of the bivariate Gaussian copula.
+
 
 
 

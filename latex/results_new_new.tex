@@ -466,18 +466,23 @@ A specific type of bootstrapping method designed for timeseries, namely the stat
 The stationary bootstrapping procedure is as follows. 
 Assuming a time series $\{X_t\}_{t \in [1,N]}$ that is
 a stationary strong, weakly dependent time series. 
-Blocks of samples $\{X_i, ..., X_{i+j-1}\}$, where the index $i$ is a
+First, we draw a block of samples $\{X_i, ..., X_{i+j-1}\}$, where the index $i$ is a
 random variable uniformly distributed over 
 $[1,2,...,N]$ and $j$ is geometric distributed random variable with
 parameter $p$ independent of $i$. 
 For any index $k$ which is greater than $N$, the sample $X_k$ is
 defined to be $X_{k(\mathrm{mod} N)}$. 
-
+Then, we repeat the procedure until the number of samples are drawn in total across the blocks equal or exceed a predefined number $S$. 
+One bootstrapped time series sample is then the concantenation of the blocks truncated to length of $S$.
+The bootstrapped time series is known as the pseudo time series. 
 
 % For each block, we calculate the hedging effectiveness as outlined above.
-% We choose $p=1/300$, implying the average block length is 300.
-% The average length of 300 is chosen to be aligned with the length of each training set.  
-% This average block length is chosen to reasonably calculate ES and VaR.
+We choose $p=1/5$, implying the average block length is 5.
+The length of each pseudo time series sample $S = 300$ is chosen to be aligned with the length of each training set.  
+The length of each pseudo time series sample is also chosen to reasonably calculate ES and VaR.
+We draw in total $n=500$ pseudo time series,
+for each of them we compute various HE measures to obtain a collection of HE samples. 
+
 % 100 blocks are drawn for each risk minimising objective and
 % spot. 
 
@@ -487,11 +492,11 @@ defined to be $X_{k(\mathrm{mod} N)}$.
 %  calculated. Is the hedge ratio calculated for each sample drawn,
 %  etc.? ]}
 
-\natp{\em [The previous part still needs quite a bit of work as it
-  remains unclear to the reader what is actually going on. The
-  principal idea is to create an out-of-sample distribution of HE, but
-  with one sample path this is not possible. Therefore, the bootstrap,
-  right?]}
+% \natp{\em [The previous part still needs quite a bit of work as it
+%   remains unclear to the reader what is actually going on. The
+%   principal idea is to create an out-of-sample distribution of HE, but
+%   with one sample path this is not possible. Therefore, the bootstrap,
+%   right?]}
 
 Figure \ref{fig:HEboxplot} reports the bootstrapped HE samples.
 As expected, the BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged

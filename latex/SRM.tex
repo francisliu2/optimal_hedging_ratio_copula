@@ -461,16 +461,18 @@ portfolios' out-of-sample maximum drawdowns are significantly reduced.
 Contrarily, we observe more diverse results of the capability of BTC
 futures to hedge other cryptos and crypto indices that exclude Bitcoin. 
 In general, ES 95\% and VaR 95\% perform better than their 99\%
-counterparts. In particular, minimising ES 99\% leads to relatively
+in terms of mean square error (MSE) and lower semi variance (LSV).
+In particular, minimising ES 99\% leads to relatively
 high MSEs and LSVs regardless of the copula in use. The ES 99\% and
 VaR 99\% even result in out-of-sample maximum drawdowns that are
 higher than that of the 95\% counterparts in some portfolios, 
-for example in the ETH- and LTC-BTCF portfolio.
+for example in the ETH- and LTC-BTCF portfolios.
 Therefore, we conclude that overly emphasising tail risks by choosing
 extreme tail risk measures does not lead to a promising hedge in a
 cross-hedging setting. 
 
-The AIC procedure mainly favours the rotated Gumbel and the NIG
+As an intemediate step in determining the optimal hedge ratio, 
+the AIC procedure mainly favours the rotated Gumbel and the NIG
 factor copula in modelling non-BTC relate cryptos and indices. This
 reflects the systematic nature of 
 downward movements in the crypto market. Interestingly, the best-fitting
@@ -706,7 +708,7 @@ The resulting out-of-sample returns are a mix of results from the copula that ha
 We keep a record of how many times a copula is choosen by this step.
 To yield robust HE measures, we apply stationary bootstrapping to the
 full-length AIC selected out-of-sample returns with the following
-parameters: $p=1/4, T=300, N=1000$. 
+parameters: $p=1/4, T=336, S=1000$. 
 
 \subsection{Results}
 \begin{figure}[t]

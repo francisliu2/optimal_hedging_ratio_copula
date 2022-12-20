@@ -1,26 +1,5 @@
 \section{Empirical Results}\label{sec:results}
 
-\begin{figure}[t]
-\centering
-\begin{minipage}[t]{.475\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{_pics/MSE_BTC.pdf}
-  \caption{Out-of-sample mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
-    The Frank copula is inferior in the BTC-involved portfolios.}
-%    \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
-\label{fig:MSE_BTC}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{.475\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{_pics/semiLowerVariance_BTC.pdf}
-  \caption{Out-of-sample lower semivariance of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
-  The Frank copula is obviously inferior.}
-%  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
-\label{fig:SLV_BTC}
-\end{minipage}
-\end{figure}
-
 \subsection{Data}\label{subsec:data}
 In the empirical analysis, we analyse the capability 
 of CME Bitcoin Futures (BTCF) to reduce the risk of
@@ -49,8 +28,6 @@ the optimal hedge ratio in order to reduce the risk of the spot.
 Except for the hedge of BTC, all hedging portfolios are considered to
 be cross-asset hedges. 
 
-\natp{\em [What is the whole time frame?]}
-
 We collect the spots' and BTCF's daily prices at 15:00 US Central Time
 (CT). The reason for choosing this particular time is that the CME
 group determines the daily settlements for BTCF's based on the trading
@@ -71,6 +48,8 @@ BITX, BITW20, BITW70, and BITW100 are collected from the official
 website of their publisher Bitwise.com. 
 The daily reporting time of the Bitwise indexes is 15:00 CT.
 
+The date range of the whole dataset is from 2018-08-13 to 2021-05-27. 
+
 % At the time of writing, the CRIX is undergoing the listing process on
 % the S\&P Dow Jones Indices. The official CRIX data will then be
 % calculated with Lukka Prime Data and available to the public via
@@ -80,19 +59,11 @@ The daily reporting time of the Bitwise indexes is 15:00 CT.
 
 The date range of the out-of-sample time series is from 2019-10-21 to
 2021-05-27, in total of 405 data points in each time series. 
-For every asset and hedge portfolio, we concatenate the out-of-sample
-data to form a time series for analysis. We analyse this time series
-throughout the whole result section.  \natp{\em [Either mention the
-  time range of the in-sample data or mention the whole data range
-  above, where it is specified that the data are from 15.00 each day,
-  etc.]} 
+This section gives an overview of the out-of-sample period. 
 
-We introduce the out-of-sample data in this subsection before we
-proceed to analysing the hedged portfolio results. 
 Figure~\ref{fig:BTC_price} presents the BTC and BTCF price in USD in
-the first panel and the difference
-between the daily returns of BTC and BTCF, i.e. $R_s - R_f$, in the
-second panel. 
+the first panel and the difference between the daily returns of BTC and BTCF,
+ i.e. $R_s - R_f$, in the second panel. 
 In the first panel, the black vertical lines with capital letters
 labels indicate the days of the five most negative daily BTC returns
 during out-pf-sample period.
@@ -110,7 +81,7 @@ The out-of-sample data covers the pre-COVID19 period, 2019-10-21 to
 2020-03-09, as well as the COVID19 period, 2019-03-19 onwards. 
 We can observe an overall upward trend of crypto prices in both periods.
 Nonetheless, the volatilities of assets are high (annualized around
-100\%) regardless of COVID19. 
+100\%) regardless of the COVID19 outbreak. 
 
 %\newpage
 \begin{figure}[t]
@@ -156,10 +127,8 @@ Nonetheless, the volatilities of assets are high (annualized around
         }
         \label{tab:BTC_5min}
   \end{table}
-
-%\clearpage
-
-%\newpage
+\clearpage
+\newpage
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/index_price.pdf}
   \caption{Out-of-sample cumulative returns of crypto indices. 
@@ -202,9 +171,9 @@ Nonetheless, the volatilities of assets are high (annualized around
         BITX    & & 23.68 &  \\
         BITW100 & & 23.87 &  \\
         BITW20  & & 26.66 &  \\
-        ADA     & &23.55 &  \\
-        ETH     & &27.40 &  \\
-        BITW70  & 2021-05-19& 27.64 & Spillover of the BTC shock on
+        ADA     & & 23.55 &  \\
+        ETH     & & 27.40 &  \\
+        BITW70  & 2021-05-19 & 27.64 & Spillover of the BTC shock on
         2021-05-17 (label A in Figure~\ref{fig:BTC_price} and
         Table~\ref{tab:BTC_5min})\\ 
         XRP     & 2020-12-23 & 41.00 & Top executives of Ripple Labs
@@ -218,40 +187,32 @@ Nonetheless, the volatilities of assets are high (annualized around
         \url{https://bloom.bg/3cWdita}.} 
         \label{tab:All_min}
   \end{table}
-
-\begin{landscape}
-\begin{figure}[h]
-  \begin{minipage}[t]{0.475\linewidth}
-    \centering
-    \includegraphics[height=.5\linewidth]{_pics/MSE_indices.png}
-    \label{MSE_indices}
-    \caption{Out-of-sample mean square errors of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{0.475\linewidth}
-    \centering
-    \includegraphics[height=.5\linewidth]{_pics/MSE_cryptos.png}
-    \label{MSE_cryptos}
-    \caption{Out-of-sample mean square errors of cryptos' hedge portfolios. Each plot has its own colour scale.}
-  \end{minipage}
-  \begin{minipage}[b]{0.475\linewidth}
-    \centering
-    \includegraphics[height=.5\linewidth]{_pics/semiVariance_indices.png}
-    \caption{Out-of-sample lower semi variance of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
-  \end{minipage}
-    \hfill
-  \begin{minipage}[b]{0.475\linewidth}
-    \centering
-    \includegraphics[height=.5\linewidth]{_pics/semiVariance_cryptos.png}
-
-    \caption{Out-of-sample lower semi variance of cryptos' hedge portfolios. Each plot has its own colour scale.}
-  \end{minipage}
-\end{figure}
-\end{landscape}
-
+\clearpage
+\newpage
 \subsection{An overview of the hedged portfolios without the copula
   selection step}
 \label{subsec:HP1}
+  \begin{figure}[t]
+    \centering
+    \begin{minipage}[t]{.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{_pics/MSE_BTC.pdf}
+      \caption{Out-of-sample mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+        The Frank copula is inferior in the BTC-involved portfolios.}
+    %    \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+    \label{fig:MSE_BTC}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{_pics/semiLowerVariance_BTC.pdf}
+      \caption{Out-of-sample lower semivariance of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+      The Frank copula is obviously inferior.}
+    %  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+    \label{fig:SLV_BTC}
+    \end{minipage}
+    \end{figure}  
+
 First, we analyse the results of the hedged portfolios without the
 copula selection step in order to get a better understanding of how a
 copula affects the hedged portfolio with various risk minimization
@@ -263,22 +224,15 @@ is the distance between a perfect hedge and the hedged portfolio
 returns $\operatorname{MSE}= \E(R^2)$.
 The lower semi-variance is defined as
 $\operatorname{LSV}=\E \left( (R-\E(R))^2 \1_{\{R\leq \E(R)\}} \right)$.
-All results presentedd here are out-of-sample results obtained without
+All results presented here are out-of-sample results obtained without
 the copula selection step in order to compare the performances across
 copulae.
 
-%\textcolor{darkblue}{As presented in Fig 3 and 4, either individual cryptos or indice, their cumulative returns dropped in Mar 2020. it's due to the result of COVID19. we can explain this for these two plots.}\\
-%\textcolor{darkblue}{Here i think it should insert a paragraph to interpret how you enter the copulae, otherwise it's weird that comes to Fig 5 and 6.}\\
-
-\natp{\em [Please fix order of figures and references. Figures 3 and 4
-  are referenced here for the first time, when Figures 5 etc. have
-  already been discussed in the previous section.]}
-
-Figure \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the mean square
+Figures \ref{fig:MSE_BTC} to \ref{SLV_indices} visualise the out-of-sample MSEs and LSVs of all the portfolios.
+Figures \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the mean square
 error and lower semivariance of BTC-BTCF. By far, the Frank copula
 is the worst performing copula.
-%\natp{\em [Can you swap the plots so that they are ordered
-%  according to the scales?]}
+
 In Figures \ref{MSE_indices} and \ref{SLV_indices}, the phenomenom
 of Frank copula being inferior to its counterparts can be observed
 from the results of the CRIX, BITX, BITW100, and BITW20-BTCF
@@ -296,6 +250,38 @@ other copulas in the ETH, LTC, and XRP-BTCF portfolios.
 The reason is the Gumbel copula has only upper tail dependence,
 while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF.
 We will discuss this in the following section.
+
+\newpage
+\begin{landscape}
+\begin{figure}[h]
+  \begin{minipage}[t]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/MSE_indices.png}
+    \caption{Out-of-sample mean square errors of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
+    \label{MSE_indices}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/MSE_cryptos.png}
+    \caption{Out-of-sample mean square errors of cryptos' hedge portfolios. Each plot has its own colour scale.}
+    \label{MSE_cryptos}
+  \end{minipage}
+  \begin{minipage}[b]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_indices.png}
+    \caption{Out-of-sample lower semi variance of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
+    \label{SLV_cryptos}
+  \end{minipage}
+    \hfill
+  \begin{minipage}[b]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_cryptos.png}
+    \caption{Out-of-sample lower semi variance of cryptos' hedge portfolios. Each plot has its own colour scale.}
+    \label{SLV_indices}
+  \end{minipage}
+\end{figure}
+\end{landscape}
 
 \subsection{Copula Selection Results}\label{subsec:-copula-results}
 \begin{table}[t]
@@ -408,7 +394,6 @@ The Plackett copula is characterised by its dependence parameter being
 equal to the cross-product ratio, see
 eq.~\ref{eq:PlackettCrossProduct}. However, apparently, this property
 does not capture the dependence structure of cryptos and BTCF.
-
 
 \subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
 

@@ -46,7 +46,7 @@ h^* = \argmin_h \rho(R^h).
 
 Obviously the cdf and pdf of $R^h$ and the risk measure depend on the
 joint distribution of $R^S$ and $-hR^F$. However, optimising $h$
-according to $f_{R^S,-hR^F}$ is unfavorable since one would need to
+according to $f_{R^S,-hR^F}$ is unfavourable since one would need to
 calibrate the joint pdf $f_{R^S,-hR^F}$ whenever updating $h$.
 Another problem of using the joint pdf is that one lacks the
 flexibility to model the margins separately from the dependence
@@ -203,8 +203,8 @@ as training data to obtain the optimal hedge ratio via the following steps:
 
 \begin{enumerate}
 \item \textbf{Construct univariate kernel density function (KDE)}:
-  Construct the spot and futures' univariate kernel density functions seperately
-  using the Gaussian kernel. The bandwidths are determined seperately by the refined plug-in method \citep[Section
+  Construct the spot and futures' univariate kernel density functions separately
+  using the Gaussian kernel. The bandwidths are determined separately by the refined plug-in method \citep[Section
   3.3.3]{hardle2004nonparametric}.
 \item \textbf{Calibrate copulae}:
   Calibrate the copulae outlined in Section \ref{subsec:copulae} by the
@@ -242,7 +242,7 @@ Recall the definitions given
 This section introduces the dependence measures in Copula terms that are relevant to this work, 
 they are the Kendall's tau, Spearman's rho, and quantile dependence. 
 The sample, population versions, as well as the version written in copula, 
-of the depednece measures are introduced as they will be used in the method of moments calibration described in Section \ref{subsec:simulated-method-of-moments}. 
+of the dependence measures are introduced as they will be used in the method of moments calibration described in Section \ref{subsec:simulated-method-of-moments}. 
 
 The following definitions are adapted from \cite{Nelsen1999}. 
 
@@ -253,7 +253,7 @@ The following definitions are adapted from \cite{Nelsen1999}.
   $x_i>x_j$ and $y_i < y_j$ or if $x_i<x_j$ and $y_i>y_j$. 
 \end{defi}
 
-The index of observations $i$ and $j$ are interchangable, so the case
+The index of observations $i$ and $j$ are interchangeable, so the case
 $x_i>x_j$ and $y_i>y_j$ is covered.
 
 \begin{defi}[Sample version of Kendall's tau]
@@ -269,7 +269,7 @@ $x_i>x_j$ and $y_i>y_j$ is covered.
 
 \begin{defi}[Population Kendall's tau]
   Let $(X_1, Y_1)$ and $(X_2, Y_2)$ be independent and identically distributed random vectors, each with joint distribution function $H$.
-  The population Kandall's tau is defined as the difference between probability of concordance and the probability of discordance. 
+  The population Kendall's tau is defined as the difference between probability of concordance and the probability of discordance. 
   That is  
   \begin{equation*}
   \tau_K = P\left\{(X_1- X_2)(Y_1-Y_2) >0\right\} - P\left\{(X_1- X_2)(Y_1-Y_2) < 0\right\}. 
@@ -297,7 +297,7 @@ We refer readers to \citet[Section 5.1.1]{Nelsen1999} for the proof.
   $r_{ix}$ and $r_{iy}$ be the rank of $x_i$ and $y_i$ respectively, 
   $r_x = (r_{1x},..., r_{nx})$, and $r_y = (r_{1y},..., r_{ny})$. 
 
-  The sample Spreaman's rho is defined as
+  The sample Spearman's rho is defined as
   \begin{equation*}
   \hat \rho_S = \hat \rho(r_x, r_y), 
   \end{equation*}
@@ -306,7 +306,7 @@ We refer readers to \citet[Section 5.1.1]{Nelsen1999} for the proof.
 
 \begin{defi}[Population Spearman's rho]
   Let $F_X$ and $F_Y$ be the cdfs of random variable $X$ and $Y$ respectively, 
-  The population Spreaman's rho is defined as follows:
+  The population Spearman's rho is defined as follows:
   \begin{equation*}
   \rho_S = \rho(F_X(X), F_Y(Y)),  
   \end{equation*}
@@ -346,8 +346,8 @@ Quantile dependence measures the probability of two variables that is higher or 
 \subsection{Copulae}\label{subsec:copulae}
 
 To capture different aspects of the dependence structure, we consider
-a set of different copulas, which are layed
-  out in detail below. These are the Gaussian-, $t$-, Frank-,
+a set of different copulas, which are presented in detail below. 
+These are the Gaussian-, $t$-, Frank-,
 Gumbel-, Clayton-, mixture, NIG factor, and Plackett-copula. 
 Figure~\ref{fig:copulaeScatterPlot} shows scatter plots of random
 samples of each of the copulae treated. 
@@ -359,12 +359,12 @@ samples of each of the copulae treated.
     sampling.}\label{fig:copulaeScatterPlot} 
 \end{figure}
 
-As this hedging backtest concerns only portfolios with two assets, we
+As this hedging exercise concerns only portfolios with two assets, we
 focus on the bivariate version of each copula. 
 
 \subsubsection{Gaussian and $t$ Copulae}\label{sec:ellpitical-copulae}
 
-The Gaussian and $t$ copulae are dervived from Gaussian and $t$
+The Gaussian and $t$ copulae are derived from Gaussian and $t$
 distributions. 
 
 The bivariate Gaussian copula is defined as
@@ -576,7 +576,7 @@ An example of a mixture copula is the Fr\'echet class of copulae, which
 are given by convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$
 \citep{Nelsen1999}.  
 
-We use the {\em Gaussian Mix Indepdent Copula (GMI)} in our analysis,
+We use the {\em Gaussian Mix Independent Copula (GMI)} in our analysis,
 i.e., 
 \begin{equation*}
   \bm{C}(u,v) = p\, \bm{C}^\text{Gaussian}_\theta (u,v) + (1-p)(uv),\quad p\in [0,1].
@@ -596,7 +596,7 @@ but the amount of it might affect the hedging effectiveness.
 Normal Inverse Gaussian (NIG) distribution is a flexible and yet analytical tractable distribution introduced by
 \citep{BarndorffNielsen1997}.
 The {\em NIG factor copula} is constructed based on the characteristics of the NIG disribution. 
-We present the reparameterised version of NIG factor copula in this section.
+We present the re-parametrised version of NIG factor copula in this section.
 
 The NIG distribution has density function
 \begin{equation*}
@@ -632,7 +632,7 @@ $\text{IG}(\delta, \sqrt{\alpha^2-\beta^2})$.
 
 Simulation procedure of NIG$(\alpha, \beta, \mu, \delta)$ distribution is a natural result of the above decomposition. 
 To simulate the NIG distribution, first simulate a random variable $w \sim IG(\delta, \sqrt{\alpha^2-\beta^2})$, 
-then simluate $x \sim N(\mu+ \beta w, w)$ given $w$.
+then simulate $x \sim N(\mu+ \beta w, w)$ given $w$.
 
 The moment-generating function of the NIG distribution is given by
 \begin{equation*}
@@ -690,7 +690,7 @@ In the setting here, we consider the {\em NIG factor copula}, which is
 not directly derived from the multivariate NIG distribution, but
 determined through a factor structure instead. \footnote{The factor structure,
 which was applied e.g.\ in \citep{Kalemanova2007} for calibrating CDO's,
-gives additionaly flexibility as it does not force the components to
+gives additional flexibility as it does not force the components to
 have a mixing variable $W$.}
 
 Denote 
@@ -701,17 +701,17 @@ Denote
 where $Z \sim \text{NIG}(\alpha, \beta, \mu, \delta)$, $Z_1 \sim \text{NIG}(\alpha, \beta, \mu_1, \delta_1)$, 
 $Z_2 \sim \text{NIG}(\alpha, \beta, \mu_2, \delta_2)$, and $Z, Z_1, Z_2$ are mutually independent. 
 
-The following reparameterisation steps reduce the number of parameters to three:
+The following re-parameterisation steps reduce the number of parameters to three:
 \begin{enumerate}
   \item Set $\mu = \mu_1= \mu_2 = 0$ . Location parameter does not affect the correlation structure.
-  \item Set $\delta = \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}$, $\delta_1 = \delta_2$, $\tilde \delta = \delta_1 = \delta_2$. 
+  \item Set $\delta = \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}$ and $\delta_1 = \delta_2$; Define $\tilde \delta = \delta_1 = \delta_2$. 
   The dependence between X and Y is fully captured by $\alpha, \beta$, and $\tilde \delta$.  
 \end{enumerate}
   % Denote the margins by $u,v \sim U(0,1)$. 
 % The NIG factor model is obtained by transforming the unifrom margins to standardised NIG distriutions.
 
 \begin{prop}
-  Let $u,v \in [0,1]$, $f(\cdot) = g\left(\cdot; \alpha, \beta, 0, \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}
+  Let $f(\cdot) = g\left(\cdot; \alpha, \beta, 0, \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}
   \right)$, and $F (\cdot) = G(\cdot; \alpha, \beta, 0, \tilde \delta)$, 
   the {\em NIG factor copula} is 
   \begin{equation*}
@@ -728,7 +728,7 @@ In this work, the quantile dependence is computed numerically;
 the Spearman rho is approximated by the Spearman rho of the bivariate Gaussian copula. 
 When $\beta \rightarrow 0$ and $\alpha \rightarrow \infty$, the NIG distribution behaves similarly to Gaussian distribution, 
 making the NIG factor copula (bivariate) behaves similarly to the Gaussian copula (bivariate). 
-Therefore, the NIG factor copula's Spreaman rho is well approximated by the Spearman rho of the bivariate Gaussian copula.
+Therefore, the NIG factor copula's Spearman rho is well approximated by the Spearman rho of the bivariate Gaussian copula.
 
 
 % \natp{\em [Please clarify that $\circ$ refers to composition. Clean

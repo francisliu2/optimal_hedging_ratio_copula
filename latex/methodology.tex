@@ -64,8 +64,8 @@ Sklar's Theorem and more properties of copulae.
 
 We adapt the definition of a two-dimensional copula from \citep{Nelsen1999} as follows.
 
-\begin{defi} [A two-dimensional copula]
-  A two-dimensional copula is a function $C: [0,1]^2 \mapsto [0,1]$ with following properties:
+\begin{defi} [Bivariate copula]
+  {\em Bivariate copula} is a function $C: [0,1]^2 \mapsto [0,1]$ with following properties:
   \begin{enumerate}
     \item For every $u,v$ in $[0,1]$,
       \[C(u,0)= C(0,v)=0, \]
@@ -135,7 +135,7 @@ Re-writing the second argument of the copula gives
 \end{proof}
 
 %The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ .
-Taking advantage of Theorem \ref{theorem:sklar} and Lemma \label{lemma:copula}, \citet{barbi2014copula}
+Taking advantage of Theorem \ref{theorem:sklar} and Lemma \ref{lemma:copula}, \citet{barbi2014copula}
 introduce the distribution of linear combinations of random variables
 using copulae. 
 We slightly edit their Corollary 2.1 of their work and yield the 
@@ -194,8 +194,8 @@ C(u,v)$ and, see e.g.\ Equation (5.15) of \citet{McNeil2005},
 Note that the pdf of $Z$ in the above proposition can be assessed via numerical integration
 as long as we have the copula density and the marginal
 densities.
-A multivariate generalised of the expression above and its proof can be found in the
-appendix \ref{sec:appendix}.
+A multivariate generalisation of the expression above and its proof can be found in the
+Appendix \ref{sec:appendix}.
 
 \subsection{Backtesting Procedure}\label{sec:empirical-procedure}
 First, we take the earliest 300 data points from the dataset 
@@ -224,127 +224,16 @@ as training data to obtain the optimal hedge ratio via the following steps:
 
 Next, we apply the optimal hedge ratio to the test data to obtain out-of-sample hedged portfolio returns.
 The test data is the 5 data points subsequent to the last training data point. 
-The out-of-sample portfolio returns is also 5 data points in length.
 
 Finally, we roll forward by 5 data points and repeat the steps until the test data reach the end of the dataset. 
-The collection of out-of-sample portfolio returns forms a non-overlapping time series since rolling step size is equal to test data length.
-The time series represent the profit and lost if hedgers recalibrate copulae and adjust the hedge ratio every 5 days from the start to the end of the out-of-sample data period.
+The collection of out-of-sample portfolio returns forms a non-overlapping time series since the step size is equal to test data length.
+The time series represents the profit and lost if hedgers recalibrate copulae and adjust the hedge ratio every 5 days from the start to the end of the out-of-sample data period.
 An intraday setup and its results are documented in Appendix \ref{sec:intraday}. 
 
 The backtesting procedure without the copula selection step is also carried out to examine the effects of deploying different copula. 
 Section \ref{subsec:HP1} discusses the effects. 
 
-\section{Copulae and risk measures}\label{sec:crm}
-
-Recall the definitions given 
-
-\subsection{Dependence measures in copula terms}
-This section introduces the dependence measures in Copula terms that are relevant to this work, 
-they are the Kendall's tau, Spearman's rho, and quantile dependence. 
-The sample, population versions, as well as the version written in copula, 
-of the dependence measures are introduced as they will be used in the method of moments calibration described in Section \ref{subsec:simulated-method-of-moments}. 
-
-The following definitions are adapted from \cite{Nelsen1999}. 
-
-\begin{defi}[Concordance]
-  Let $(x_i, y_i)$ and $(x_j, y_j)$ denote two realisations of a
-  vector $(X, Y)$ of continuous random variables. 
-  A pair of observations is concordant if $x_i<x_j$ and $y_i < y_j$, discordant if
-  $x_i>x_j$ and $y_i < y_j$ or if $x_i<x_j$ and $y_i>y_j$. 
-\end{defi}
-
-The index of observations $i$ and $j$ are interchangeable, so the case
-$x_i>x_j$ and $y_i>y_j$ is covered.
-
-\begin{defi}[Sample version of Kendall's tau]
-  Let $\{(x_1, y_1), ..., (x_n, y_n)\}$ be realisations of a random vector $(X, Y)$,
-  let $c$ denote the number of concordant pairs, and $d$ the number of discordant pairs. 
-  The {\em{sample version of Kendall's tau}} is defined as:
-  \begin{equation*}
-  \hat \tau_K = \frac{c-d}{c+d} = \frac{c-d}{\binom{n}{2}}. 
-  \end{equation*}
-  \end{defi} % put all endall's tau together
-
-  The second equality holds because there are $\binom{n}{2}$ distinct pairs for $n$ observations of a bivariate random variable. 
-
-\begin{defi}[Population Kendall's tau]
-  Let $(X_1, Y_1)$ and $(X_2, Y_2)$ be independent and identically distributed random vectors, each with joint distribution function $H$.
-  The population Kendall's tau is defined as the difference between probability of concordance and the probability of discordance. 
-  That is  
-  \begin{equation*}
-  \tau_K = P\left\{(X_1- X_2)(Y_1-Y_2) >0\right\} - P\left\{(X_1- X_2)(Y_1-Y_2) < 0\right\}. 
-  \end{equation*}
-  \end{defi}
-
-\begin{prop}
-  Let $X$ and $Y$ be continuous random variables whose copula is $C$. 
-  Then the population Kendall's tau for $X$ and $Y$ is 
-  \[\tau_K = 1-4\int_{[0,1]^2}
-  \frac{\partial C(u,v)}{\partial u}
-  \frac{\partial C(u,v)}{\partial v}
-  dudv. \]
-\end{prop}
-
-We refer readers to \citet[Section 5.1.1]{Nelsen1999} for the proof. 
-
-\begin{defi}[Rank]
-  Let $x_1,...,x_n$ be realisations of a one dimensional random variable $X$. 
-  The rank of $x_i$ is $r_i = k$ if $x_i$ is the $k$-th smallest among $x_1,...,x_n$.
-  \end{defi}
-
-\begin{defi}[Sample Spearman's rho]
-  Let $\{(x_1, y_1),..., (x_n, y_n)\}$ be realisations of a vector $(X, Y)$ of random variables,
-  $r_{ix}$ and $r_{iy}$ be the rank of $x_i$ and $y_i$ respectively, 
-  $r_x = (r_{1x},..., r_{nx})$, and $r_y = (r_{1y},..., r_{ny})$. 
-
-  The sample Spearman's rho is defined as
-  \begin{equation*}
-  \hat \rho_S = \hat \rho(r_x, r_y), 
-  \end{equation*}
-  where $\hat \rho$ is the sample Pearson correlation.
-  \end{defi}
-
-\begin{defi}[Population Spearman's rho]
-  Let $F_X$ and $F_Y$ be the cdfs of random variable $X$ and $Y$ respectively, 
-  The population Spearman's rho is defined as follows:
-  \begin{equation*}
-  \rho_S = \rho(F_X(X), F_Y(Y)),  
-  \end{equation*}
-  where $\rho$ is the population Pearson correlation. 
-  \end{defi}
-
-  \begin{theo}
-    Let $X$ and $Y$ be continuous random variables whose copula is $C$. 
-    Then the population Spearman's rho for $X$ and $Y$ is 
-    \[\rho_S = 12\int_{[0,1]^2}C(u,v)dudv-3. \]
-  \end{theo}
-
-We refer readers to \citet[section 2.12.2]{joe1997multivariate} for the proof. 
-
-Quantile dependence measures the probability of two variables that is higher or below a given quantile of their univariate distributions.
-
-(simulated base paper from Oh and Patton)
-\begin{defi}[Sample quantile dependence] 
-  Let $\hat F_X$ and $\hat F_Y$ be the empirical cdfs of random variable $X$ and $Y$ respectively.
-  Let $(x_1, y_1),...,(x_n, y_n)$ be $n$ realisations of $X$ and $Y$. 
-  The sample quantile dependence of $X$ and $Y$ at the $q$-th quantile is 
-
-  \begin{equation*}
-    \lambda_q = \begin{cases}
-      (nq)^{-1}\sum_{i=1}^n 1\left( 
-        \hat F_X(x_i) \leq q, \hat F_Y(y_i) \leq q 
-      \right) & q \leq 0.5 \\
-      (n(1-q))^{-1}\sum_{i=1}^n 1\left( 
-        \hat F_X(x_i) > q, \hat  F_Y(y_i) > q 
-      \right) & q > 0.5 
-    \end{cases},
-  \end{equation*}
-  where $1(\cdot)$ is the indicator function. 
-
-\end{defi}
-
-\subsection{Copulae}\label{subsec:copulae}
-
+\section{Copulae}\label{sec:crm}
 To capture different aspects of the dependence structure, we consider
 a set of different copulas, which are presented in detail below. 
 These are the Gaussian-, $t$-, Frank-,
@@ -362,7 +251,7 @@ samples of each of the copulae treated.
 As this hedging exercise concerns only portfolios with two assets, we
 focus on the bivariate version of each copula. 
 
-\subsubsection{Gaussian and $t$ Copulae}\label{sec:ellpitical-copulae}
+\subsection{Gaussian and $t$ Copulae}\label{sec:ellpitical-copulae}
 
 The Gaussian and $t$ copulae are derived from Gaussian and $t$
 distributions. 
@@ -438,7 +327,7 @@ On the other hand, the $t$-copula has a non-zero tail dependence coefficient,
 % where $\bm{t}_{2,\rho, \nu}$ is the pdf of $\bm{T}_{2, \rho, \nu}$
 % and $t_\nu$ the density of standard $t$ distribution.
 
-\subsubsection{Archimedean copulae}\label{sec:archimedean-copula}
+\subsection{Archimedean copulae}\label{sec:archimedean-copula}
 The family of Archimedean copulae forms a large class of copulae with
 many convenient features.
 % Contrary to elliptical copulas, which are derived from
@@ -522,7 +411,7 @@ Kendall's $\tau$ of the Clayton copula is given by
     \tau_K(\theta) =\frac{\theta}{\theta+2}.
     \end{align*}
 
-\subsubsection{Mixture Copula}\label{sec:mixture-copula}
+\subsection{Mixture Copula}\label{sec:mixture-copula}
 The mixture copula is a linear combination of copulae. 
 The distribution of a 2-dimensional random variable
 $\bm{X}=(X_1,X_2)^\top$ is written as linear combination of $K$
@@ -591,7 +480,7 @@ off-diagonal region of the dependence structure where the Gaussian copula has no
 In the hedging exercise, the structure of the off-diagonal ``random noise'' is not our main concern, 
 but the amount of it might affect the hedging effectiveness. 
 
-\subsubsection{NIG factor copula}
+\subsection{NIG factor copula}
 
 Normal Inverse Gaussian (NIG) distribution is a flexible and yet analytical tractable distribution introduced by
 \citep{BarndorffNielsen1997}.
@@ -776,7 +665,7 @@ Therefore, the NIG factor copula's Spearman rho is well approximated by the Spea
 %   \end{proof}
 
 
-\subsubsection{Plackett copula}\label{subsec:other-copula}
+\subsection{Plackett copula}\label{subsec:other-copula}
 The Plackett copula has distribution function
 \begin{align*}
     \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}
@@ -808,7 +697,7 @@ bivariate random variable.
 % --- Estimation of Copula ---
 % ----------------
 
-\subsubsection{Copula selection}\label{subsec:copula-selection}
+\subsection{Copula selection}\label{subsec:copula-selection}
 As the dependence structure of price data changes
 across time, we allow for a flexible choice of the best-fitting
 copula, by re-calibrating periodically and re-evaluating performance
@@ -820,7 +709,7 @@ copula, characterised by the lowest {\em Akaike Information Criterion
  \text{AIC} = 2k- 2 \log(L),
 \end{equation*}
 where $k$ is the number of estimated
-parameteres and $L$ is the likelihood \citep{Akaike1973}. 
+parameters and $L$ is the likelihood \citep{Akaike1973}. 
 
 % they tend to suggest the same copula as the best fitting one.
 %Simulation studies has also been carried out to compare different copula selection methods, see \cite{}.
@@ -834,7 +723,7 @@ The selected copula will then enter the calculation of the optimal
 hedge ratio.
 % We consider the copula with the lowest AIC for a particular set of data the best fitting one and use it to generate OHR.
 
-\subsection{Risk measures}\label{subsec:spectral-risk-measures}
+\section{Risk measures}\label{subsec:spectral-risk-measures}
 The optimal hedge ratio is determined for the following variety of risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
 A summary of risk measures being used in portfolio selection problem
 can be found in \citet{hardle2008applied}. 

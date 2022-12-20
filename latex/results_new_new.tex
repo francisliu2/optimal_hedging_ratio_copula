@@ -464,22 +464,22 @@ realisation of the data. The method was introduced by
 
 A specific type of bootstrapping method designed for timeseries, namely the stationary block bootstrap \cite{Politis1994}, is applied in our analysis.
 The stationary bootstrapping procedure is as follows. 
-Assuming a time series $\{X_t\}_{t \in [1,N]}$ that is
-a stationary strong, weakly dependent time series. 
-First, we draw a block of samples $\{X_i, ..., X_{i+j-1}\}$, where the index $i$ is a
+Assume a time series $\{X_t\}_{t \in [1,N]}$ that is
+a stationary weakly time dependent time series,
+ we first draw a block of samples $\{X_i, ..., X_{i+j-1}\}$, where the index $i$ is a
 random variable uniformly distributed over 
 $[1,2,...,N]$ and $j$ is geometric distributed random variable with
 parameter $p$ independent of $i$. 
 For any index $k$ which is greater than $N$, the sample $X_k$ is
 defined to be $X_{k(\mathrm{mod} N)}$. 
-Then, we repeat the procedure until the number of samples are drawn in total across the blocks equal or exceed a predefined number $S$. 
+Then, we repeat the procedure until the number of samples are drawn in total across the blocks equal or exceed a predefined sample length $S$. 
 One bootstrapped time series sample is then the concantenation of the blocks truncated to length of $S$.
-The bootstrapped time series is known as the pseudo time series. 
+The resulting bootstrapped time series is known as pseudo time series. 
 
 % For each block, we calculate the hedging effectiveness as outlined above.
-We choose $p=1/5$, implying the average block length is 5.
+We choose $p=1/5$, implying the average block length is 5 such that it aligns with the recalibration frequency. 
 The length of each pseudo time series sample $S = 300$ is chosen to be aligned with the length of each training set.  
-The length of each pseudo time series sample is also chosen to reasonably calculate ES and VaR.
+The length of each pseudo time series sample allows ES and VaR to be calculated in a reasonable length.
 We draw in total $n=500$ pseudo time series,
 for each of them we compute various HE measures to obtain a collection of HE samples. 
 

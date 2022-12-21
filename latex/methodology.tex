@@ -233,12 +233,12 @@ The backtesting procedure without the copula selection step is also carried out 
 Section \ref{subsec:HP1} discusses the effects. 
 
 \section{Copulae}\label{sec:crm}
-To capture different aspects of the dependence structure, we consider
-a set of different copulas, 
+To capture different aspects of the dependence structure between spot and futures, we consider
+a set of different copulae, 
 they are the Gaussian-, $t$-, Frank-,
 Gumbel-, Clayton-, mixture, NIG factor, and Plackett-copula. 
 Figure~\ref{fig:copulaeScatterPlot} shows scatter plots of random
-samples of each of the copulae treated. 
+samples of each of the copulae. 
 \begin{figure}[t]
     \centering
   \includegraphics[width=\textwidth]{_pics/copulas_scatterplots.pdf}
@@ -266,7 +266,7 @@ The bivariate Gaussian copula is defined as
                 \right\}} \dd s\, \dd t,\quad, u,v\in [0,1],
 \end{align*}
 where $\Phi_{2, \rho}$ is the bivariate Normal cdf
-with zero mean, unit variance, and correlation coefficient $\rho$, and
+with zero mean, unit variance, with correlation coefficient $\rho$, and
 $\Phi^{(-1)}$ is the quantile function of the univariate standard normal
 distribution.
 The Gaussian copula is fully specified by the correlation parameter $\rho$. \footnote{
@@ -317,7 +317,7 @@ $t$ distribution with parameter $\nu$.
 The $t$-copula and Gaussian copula with parameter $\rho$ have equal Kendall's $\tau$, \citep[see][and references therein]{demarta2005t}.
 
 On the other hand, the $t$-copula has a non-zero tail dependence coefficient,
- which makes it more appropriate for dependence modelling in finance. (ref)
+ which makes it more appropriate for dependence modelling in finance.
 % The copula density is
 % \begin{align*}
 %     \bm{c}(u,v) &= \frac{\bm{t}_{2, \rho, \nu}\{T^{(-1)}_\nu(u), T^{(-1)}_\nu(v)\}}

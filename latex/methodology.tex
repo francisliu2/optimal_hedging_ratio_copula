@@ -206,8 +206,8 @@ as training data to obtain the optimal hedge ratio via the following steps:
   using the Gaussian kernel. The bandwidths are determined separately by the refined plug-in method \citep[Section
   3.3.3]{hardle2004nonparametric}.
 \item \textbf{Calibrate copulae}:
-  Calibrate the copulae outlined in Section \ref{subsec:copulae} by the
-  method of moments described in Section \ref{subsec:simulated-method-of-moments}.
+  Calibrate the copulae outlined in Section \ref{sec:crm} by the
+  method of moments described in Section \ref{sec:estimation}.
 \item \textbf{Select copula}:
   Compute the Akaike Information Criterion (AIC). The copula with the
   best (i.e. lowest) AIC is used for the next step. 
@@ -217,7 +217,7 @@ as training data to obtain the optimal hedge ratio via the following steps:
   risk measures numerically. 
   To do so, we draw samples from the calibrated copulae and KDEs 
   and search for the hedge ratio that gives the lowest risk measure. 
-  The risk measures are outlined in Section \ref{subsec:spectral-risk-measures} 
+  The risk measures are outlined in Section \ref{subsec:spectral-risk-measures}.
   The minimisation algorithm \textit{scipy.optimize.minimize} from the Python package {\em Scipy} \citep{2020SciPy-NMeth} is used for the search of optimal hedge ratio.
 \end{enumerate}
 
@@ -315,9 +315,7 @@ and where $T^{(-1)}_\nu(\cdot)$ is the quantile function of a standard
 $t$ distribution with parameter $\nu$. 
 
 The $t$-copula and Gaussian copula with parameter $\rho$ have equal Kendall's $\tau$, \citep[see][and references therein]{demarta2005t}.
-
-On the other hand, the $t$-copula has a non-zero tail dependence coefficient,
- which makes it more appropriate for dependence modelling in finance.
+The $t$-copula has non-zero upper and lower tail dependence, which makes it more appropriate for dependence modelling in finance than the Gaussian copula.
 % The copula density is
 % \begin{align*}
 %     \bm{c}(u,v) &= \frac{\bm{t}_{2, \rho, \nu}\{T^{(-1)}_\nu(u), T^{(-1)}_\nu(v)\}}
@@ -609,14 +607,14 @@ The following re-parameterisation steps reduce the number of parameters to three
 \end{prop}
 
 % The parameters $\alpha, \beta, \tilde \delta$ fully control the dependence between $u$ and $v$, $u, v \sim U(0,1)$, captured by the NIG factor copula.
-We refer readers to \cite{krupskii2013factor} for the methodology of constructing a factor copula. 
+We refer readers to \cite{krupskii2013factor} for the methodology of constructing factor copulae. 
 
-The quantile dependence and Spearman rho of NIG factor copula have no known analystical form.
+The quantile dependence and Spearman's rho of NIG factor copula have no known analystical form.
 In this work, the quantile dependence is computed numerically; 
-the Spearman rho is approximated by the Spearman rho of the bivariate Gaussian copula. 
-When $\beta \rightarrow 0$ and $\alpha \rightarrow \infty$, the NIG distribution behaves similarly to Gaussian distribution, 
+the Spearman's rho is approximated by the Spearman's rho of the bivariate Gaussian copula. 
+When $\beta \rightarrow 0$ and $\alpha \rightarrow \infty$, the NIG distribution behaves similarly to the Gaussian distribution, 
 making the NIG factor copula (bivariate) behaves similarly to the Gaussian copula (bivariate). 
-Therefore, the NIG factor copula's Spearman rho is well approximated by the Spearman rho of the bivariate Gaussian copula.
+Therefore, the NIG factor copula's Spearman's rho is well approximated by the Spearman's rho of the bivariate Gaussian copula.
 
 
 % \natp{\em [Please clarify that $\circ$ refers to composition. Clean
@@ -671,7 +669,7 @@ The Plackett copula has distribution function
                          - \frac{\sqrt{\{
     1+(\theta-1)(u+v)\}^2 - 4uv\theta(\theta-1)}}{2(\theta-1)},
 \end{align*} where $0 \leq \theta < \infty$.
-Spearman's Rho is given by 
+Spearman's rho is given by 
 \begin{align*}
     \rho_S(\theta) = \frac{\theta+1}{\theta-1} - \frac{2\theta \log
   \theta}{(\theta-1)^2}. 
@@ -691,10 +689,89 @@ In words, the dependence parameter is equal to the ratio of the
 number of concordance pairs and the number of discordance pairs of a 
 bivariate random variable. 
 
-\input{estimation.tex}
-% ----------------
-% --- Estimation of Copula ---
-% ----------------
+\subsection{Calibration}\label{sec:estimation}
+We trace back the usage of method of moments (MM) to calibrate copulae to \citet{Genest1987, genest1993statistical} 
+where the moments mainly refer to Kendall's $\tau$ or Spearman's $\rho$.
+Adapted from \cite{oh2013simulated}, we extend MM to quantile dependence measures. 
+Quantile dependence is denoted by $\lambda_q$ for quantile level $q$.
+
+Spearman's $\rho$, Kendall's $\tau$, and quantile dependence of the copula $C$ are defined as
+\begin{align*}
+  \rho_S &= 12 \int\int_{I^2} C_{\bm{\theta}}(u,v)\, \dd u\, \dd v-3\label{eq:rho_S}\\
+  \tau_K &= 4\E[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
+  \lambda_q &=
+  \begin{cases}
+    \p(F_X(X)\leq q| F_Y(Y)\leq q) = \displaystyle \frac{C_{\bm{\theta}}(q,q)}{q},
+    &\text{ if } q\in (0,0.5],\\
+    \p(F_X(X)>q|F_Y(Y)>q) =\displaystyle \frac{1-2q+C_{\bm{\theta}}(q,q)} {1-q},
+    &\text{ if } q\in (0.5,1).
+  \end{cases}
+\end{align*}
+The empirical counterparts are
+\begin{align*}
+  \hat\rho_S &= \frac{12}{n} \sum_{k=1}^n \hat F_X(x_k) \hat F_Y(y_k)
+               -3,\\
+  \hat\tau_K &= \frac{4}{n}\sum_{k=1}^n \hat{C}\{\hat{F}_X(x_i),\hat{F}_X(y_i)\} -1 ,\\
+  \hat\lambda_q &=
+                  \begin{cases}
+                    \displaystyle\frac{1}{n} \sum_{k=1}^n \frac{\1_{\{\hat
+                        F_X(x_k)\leq q, \hat F_Y(y_k)\leq q\}}} {q},
+                    &\text { if } q\in (0, 0.5],\\
+                    \displaystyle \frac{1}{n} \sum_{k=1}^n
+                    \frac{\1_{\{\hat F_X(x_k)>q, \hat F_Y(y_k)>q\}}}
+                    {1-q}, &\text { if } q\in (0.5,1),
+                  \end{cases}
+\end{align*}
+where $\displaystyle \hat{F}(x) =
+  \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
+$\displaystyle \hat{C}(u,v) = \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$. 
+
+Denote by $\bm{m}(\bm{\theta})$ the $m$-dimensional vector of
+dependence measures according the dependence parameters
+$\bm{\theta}$,and let $\hat{\bm{m}}$ be the corresponding empirical
+counterpart. 
+The difference between dependence measures and their counterpart is denoted by
+\begin{equation*}
+    \bm{g}(\bm{\theta}) = \hat{\bm{m}} - \bm{m}(\bm{\theta}),
+\end{equation*}
+and the MM estimator is
+\begin{equation*}
+    \hat{\bm{\theta}} = \argmin_{\bm{\theta}\in \bm{\Theta}} \bm{g}(\bm{\theta})^\top
+    \hat{\bm{W}}
+     \bm{g}(\bm{\theta}),
+\end{equation*}
+where $\hat{W}$ is a positive definite weight matrix.
+In this work, we use
+$\bm{m}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \lambda_{0.1}, 
+\lambda_{0.9}, \lambda_{0.95})^\top$
+for calibration with 
+$\hat{W}$ set to the identity matrix. 
+We replace Spearman's rho by Kendall's tau when the analytical form of the former is not available. 
+
+While maximum likelihood estimation is a viable procedure to calibrate copula, 
+we choose MM as the estimation procedure in this work. 
+Figure~\ref{fig:quantile dependence1} shows the empirical quantile
+dependence of Bitcoin and CME futures and the copula implied quantile
+dependence of the MLE and MM calibration procedures. 
+Although the MLE is a better fit to a range of quantile dependence in
+the middle, it fails to address the situation in the tails. 
+
+\begin{figure}[h]
+%\includegraphics[width=\textwidth]{_pics/t Copula quantile dependence.png}
+\includegraphics[width=\textwidth]{_pics/Gumbel Copula quantile dependence.pdf}
+\includegraphics[width=\textwidth]{_pics/Clayton Copula quantile dependence.pdf}
+  \caption{Quantile dependences of Gumbel and Clayton copulas. The
+    \textcolor{darkblue}{blue circle dots} are the quantile dependence
+    estimates of Bitcoin and CME future, the \textcolor{darkblue}{blue
+      dashed lines} are the estimates' 90\% confidence interval. 
+  The \textcolor{orange}{orange dotted line} is the copula implied
+  quantile dependence by MM estimation. The
+  \textcolor{lightblue}{light blue dotted line} is the copula implied
+  quantile dependence by MLE estimation.  
+%  \href{http://www.quantlet.com/}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
+  }
+\label{fig:quantile dependence1}
+\end{figure}
 
 \subsection{Copula selection}\label{subsec:copula-selection}
 As the dependence structure of price data changes

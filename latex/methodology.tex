@@ -62,31 +62,36 @@ is given as Theorem \ref{theorem:sklar} below.
 See also \citep{Nelsen1999, joe1997multivariate, McNeil2005} for
 Sklar's Theorem and more properties of copulae.
 
-We adapt the definition of a two-dimensional copula from \citep{Nelsen1999} as follows.
+We adapt the definition of a two-dimensional copula from
+\citepar{Nelsen1999} as follows. \natp{\em [Please check. I get an
+  error that \citepar{} is not known.]}
 
 \begin{defi} [Bivariate copula]
-  {\em Bivariate copula} is a function $C: [0,1]^2 \mapsto [0,1]$ with following properties:
+  A {\em bivariate copula} is a function $C: [0,1]^2 \mapsto [0,1]$ with following properties:
   \begin{enumerate}
     \item For every $u,v$ in $[0,1]$,
       \[C(u,0)= C(0,v)=0, \]
     \[C(u,1)= u \text{, and}\]
     \[C(1,v)= v;\]
     \item For every $u_1,u_2, v_1, v_2$ in $[0,1]$ such that $u_1 \leq u_2$ and $v_1 \leq v_2$,
-    \[C(u_2,v_2)-C(u_2,v_1)-C(u_1, v_2)+C(u_1,v_1) \geq 0\].
-    \end{enumerate}
+    \[C(u_2,v_2)-C(u_2,v_1)-C(u_1, v_2)+C(u_1,v_1) \geq 0.\]
+  \end{enumerate}
   \end{defi}
 
 The second property is called 2-non-decreasing.
-In other words, the two-dimensional copula is a joint cdf of a two-dimensional random vector
+In other words, a two-dimensional copula is the joint cdf of a two-dimensional random vector
 on a unit square with uniform marginals.
 
-The following Hoeffding-Sklar-Theorem (usually known as the Sklar's Theorem) ensures the existence of copula.
+The following Theorem, usually known as the Sklar's
+Theorem, ensures the existence of copula. \natp{\em [This is not
+  correct. Copulas, as defined above, exist. Sklar's Theorem links
+  copulas to arbitrary joint distributions.]}
 
 \begin{theorem}[Hoeffding-Sklar-Theorem]
   \label{theorem:sklar}
   Let $F$ be a joint distribution function with marginal distributions
   $F_X$ and $F_Y$. Then, there exists a copula $C:[0,1]^2 \mapsto
-  [0,1]$ such that, for all $x,y\in \R$
+  [0,1]$ such that, for all $x,y\in \R$,
   \begin{equation}
     \label{eq:4}
     F(x,y)=C\{F_X(x), F_Y(y)\}.
@@ -207,7 +212,9 @@ as training data to obtain the optimal hedge ratio via the following steps:
   3.3.3]{hardle2004nonparametric}.
 \item \textbf{Calibrate copulae}:
   Calibrate the copulae outlined in Section \ref{subsec:copulae} by the
-  method of moments described in Section \ref{subsec:simulated-method-of-moments}.
+  method of moments described in Section
+  \ref{subsec:simulated-method-of-moments}. \natp{\em [References do
+    not work.]}
 \item \textbf{Select copula}:
   Compute the Akaike Information Criterion (AIC). The copula with the
   best (i.e. lowest) AIC is used for the next step. 
@@ -218,15 +225,19 @@ as training data to obtain the optimal hedge ratio via the following steps:
   To do so, we draw samples from the calibrated copulae and KDEs 
   and search for the hedge ratio that gives the lowest risk measure. 
   The risk measures are outlined in Section \ref{subsec:spectral-risk-measures} 
-  The minimisation algorithm \textit{scipy.optimize.minimize} from the Python package {\em Scipy} \citep{2020SciPy-NMeth} is used for the search of optimal hedge ratio.
+  The minimisation algorithm \textit{scipy.optimize.minimize} from the
+  Python package {\em Scipy} \citep{2020SciPy-NMeth} is used for the
+  search of optimal hedge ratio.
 \end{enumerate}
 
+\natp{\em [Would it not make sense to include the following two steps
+  in the numerated list?]}
 Next, we apply the optimal hedge ratio to the test data to obtain out-of-sample hedged portfolio returns.
 The test data is the 5 data points subsequent to the last training data point. 
 
-Finally, we roll forward by 5 data points and repeat the steps until the test data reach the end of the dataset. 
+Finally, we roll forward by 5 data points and repeat the steps until the test data reaches the end of the dataset. 
 The collection of out-of-sample portfolio returns forms a non-overlapping time series since the step size is equal to test data length.
-The time series represents the profit and lost if hedgers recalibrate copulae and adjust the hedge ratio every 5 days from the start to the end of the out-of-sample data period.
+The time series represents the profit and loss if hedgers recalibrate copulae and adjust the hedge ratio every 5 days from the start to the end of the out-of-sample data period.
 An intraday setup and its results are documented in Appendix \ref{sec:intraday}. 
 
 The backtesting procedure without the copula selection step is also carried out to examine the effects of deploying different copula. 
@@ -254,7 +265,6 @@ focus on the bivariate version of each copula.
 
 The Gaussian and $t$ copulae are derived from Gaussian and $t$
 distributions. 
-
 The bivariate Gaussian copula is defined as
 \begin{align*}
   \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\} \nonumber \\
@@ -290,12 +300,10 @@ it often underestimates tail risk.
 %   introduced. Please double-check.]}
 
 Kendall's $\tau_K$ and Spearman's $\rho_S$ of the bivariate Gaussian copula are
-    \begin{align*}
-        \tau_K(\rho) = \frac{2}{\pi}\arcsin\rho
-        \end{align*}
-    \begin{align*}
+    \begin{equation*}
+        \tau_K(\rho) = \frac{2}{\pi}\arcsin\rho, \quad\quad
         \rho_S(\rho) = \frac{6}{\pi}\arcsin\frac{\rho}{2}.
-        \end{align*}
+        \end{equation*}
 
 The $t$-copula has the form
 \begin{multline*}
@@ -477,15 +485,15 @@ i.e.,
 This mixture models the amount of ``random noise'' that appears in the
 off-diagonal region of the dependence structure where the Gaussian copula has no control.
 In the hedging exercise, the structure of the off-diagonal ``random noise'' is not our main concern, 
-but the amount of it might affect the hedging effectiveness. 
+but the amount of it might affect the hedging effectiveness.
+\natp{\em [Good!]}
 
 \subsection{NIG factor copula}
 
 Normal Inverse Gaussian (NIG) distribution is a flexible and yet analytical tractable distribution introduced by
 \citep{BarndorffNielsen1997}.
 The {\em NIG factor copula} is constructed based on the characteristics of the NIG disribution. 
-We present the re-parametrised version of NIG factor copula in this section.
-
+We present the re-parametrised \natp{\em [What does re-parameterised mean?]} version of NIG factor copula in this section.
 The NIG distribution has density function
 \begin{equation*}
   g(x; \alpha,\beta, \mu, \delta) = \frac{\alpha}{\pi} \e^{\delta
@@ -495,7 +503,7 @@ The NIG distribution has density function
 \end{equation*}
 where $q(x) = \sqrt{1+x^2}$ and where $K_1$ is the modified Bessel
 function of third order and index $1$. The parameters satisfy $0\leq
-|\beta|\leq \alpha$, $\mu\in \R$ and $\delta>0$. The parameters have
+|\beta|\leq \alpha$, $\mu\in \R$ and $\delta>0$, and have
 the following interpretation: $\mu$ and $\delta$ are location and
 scale parameters, respectively, $\alpha$ determines the heaviness of
 the tails and $\beta$ determines the degree of asymmetry. If
@@ -518,9 +526,10 @@ variance $W$, i.e.,
 where $W$ follows an {\em inverse Gaussian distribution}, denoted by
 $\text{IG}(\delta, \sqrt{\alpha^2-\beta^2})$.
 
-Simulation procedure of NIG$(\alpha, \beta, \mu, \delta)$ distribution is a natural result of the above decomposition. 
+The simulation procedure of the NIG$(\alpha, \beta, \mu, \delta)$
+distribution is a natural result of the above decomposition.  
 To simulate the NIG distribution, first simulate a random variable $w \sim IG(\delta, \sqrt{\alpha^2-\beta^2})$, 
-then simulate $x \sim N(\mu+ \beta w, w)$ given $w$.
+then simulate $x \sim N(\mu+ \beta w, w|w)$. 
 
 The moment-generating function of the NIG distribution is given by
 \begin{equation*}
@@ -591,31 +600,36 @@ $Z_2 \sim \text{NIG}(\alpha, \beta, \mu_2, \delta_2)$, and $Z, Z_1, Z_2$ are mut
 
 The following re-parameterisation steps reduce the number of parameters to three:
 \begin{enumerate}
-  \item Set $\mu = \mu_1= \mu_2 = 0$ . Location parameter does not affect the correlation structure.
+  \item Set $\mu = \mu_1= \mu_2 = 0$ . The location parameter does not affect the correlation structure.
   \item Set $\delta = \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}$ and $\delta_1 = \delta_2$; Define $\tilde \delta = \delta_1 = \delta_2$. 
-  The dependence between X and Y is fully captured by $\alpha, \beta$, and $\tilde \delta$.  
+  The dependence between $X$ and $Y$ is fully captured by $\alpha, \beta$, and $\tilde \delta$.  
 \end{enumerate}
   % Denote the margins by $u,v \sim U(0,1)$. 
 % The NIG factor model is obtained by transforming the unifrom margins to standardised NIG distriutions.
 
+
+\natp{\em [Can you provide a reference for the Proposition?]}
 \begin{prop}
   Let $f(\cdot) = g\left(\cdot; \alpha, \beta, 0, \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}
-  \right)$, and $F (\cdot) = G(\cdot; \alpha, \beta, 0, \tilde \delta)$, 
-  the {\em NIG factor copula} is 
+  \right)$, and $F (\cdot) = G(\cdot; \alpha, \beta, 0, \tilde
+  \delta)$. The {\em NIG factor copula} is 
   \begin{equation*}
     C(u,v) = \int_\mathbb{R} F(u-z)F(v-z)f(z)dz,
   \end{equation*}
-  where $\alpha, \beta \in \mathbb{R}$ satisfying $0 \leq |\beta| \leq \alpha$, and $\tilde \delta >0 $.
+  where $\alpha, \beta \in \mathbb{R}$ satisfying $0 \leq |\beta| \leq
+  \alpha$, and $\tilde \delta >0 $. 
 \end{prop}
 
 % The parameters $\alpha, \beta, \tilde \delta$ fully control the dependence between $u$ and $v$, $u, v \sim U(0,1)$, captured by the NIG factor copula.
 We refer readers to \cite{krupskii2013factor} for the methodology of constructing a factor copula. 
 
+\natp{\em [Please be consistent in using Spearman's rho.]}
 The quantile dependence and Spearman rho of NIG factor copula have no known analystical form.
 In this work, the quantile dependence is computed numerically; 
-the Spearman rho is approximated by the Spearman rho of the bivariate Gaussian copula. 
+Spearman rho is approximated by Spearman rho of the bivariate Gaussian copula. 
 When $\beta \rightarrow 0$ and $\alpha \rightarrow \infty$, the NIG distribution behaves similarly to Gaussian distribution, 
-making the NIG factor copula (bivariate) behaves similarly to the Gaussian copula (bivariate). 
+making the (bivariate) NIG factor copula behave similarly to the
+(bivariate) Gaussian copula. 
 Therefore, the NIG factor copula's Spearman rho is well approximated by the Spearman rho of the bivariate Gaussian copula.
 
 

@@ -63,8 +63,7 @@ See also \citep{Nelsen1999, joe1997multivariate, McNeil2005} for
 Sklar's Theorem and more properties of copulae.
 
 We adapt the definition of a two-dimensional copula from
-\citepar{Nelsen1999} as follows. \natp{\em [Please check. I get an
-  error that \citepar{} is not known.]}
+\citep{Nelsen1999} as follows.
 
 \begin{defi} [Bivariate copula]
   A {\em bivariate copula} is a function $C: [0,1]^2 \mapsto [0,1]$ with following properties:
@@ -83,9 +82,12 @@ In other words, a two-dimensional copula is the joint cdf of a two-dimensional r
 on a unit square with uniform marginals.
 
 The following Theorem, usually known as the Sklar's
-Theorem, ensures the existence of copula. \natp{\em [This is not
-  correct. Copulas, as defined above, exist. Sklar's Theorem links
-  copulas to arbitrary joint distributions.]}
+Theorem, ensures the existence of copula which “couples” a 
+joint distribution function to its univariate margins \citep[Theorem 2.3.3.]{Nelsen1999}.
+
+% \natp{\em [This is not
+%   correct. Copulas, as defined above, exist. Sklar's Theorem links
+%   copulas to arbitrary joint distributions.]}
 
 \begin{theorem}[Hoeffding-Sklar-Theorem]
   \label{theorem:sklar}
@@ -480,14 +482,13 @@ This mixture models the amount of ``random noise'' that appears in the
 off-diagonal region of the dependence structure where the Gaussian copula has no control.
 In the hedging exercise, the structure of the off-diagonal ``random noise'' is not our main concern, 
 but the amount of it might affect the hedging effectiveness.
-\natp{\em [Good!]}
 
 \subsection{NIG factor copula}
 
 Normal Inverse Gaussian (NIG) distribution is a flexible and yet analytical tractable distribution introduced by
 \citep{BarndorffNielsen1997}.
 The {\em NIG factor copula} is constructed based on the characteristics of the NIG disribution. 
-We present the re-parametrised \natp{\em [What does re-parameterised mean?]} version of NIG factor copula in this section.
+This section presents the version of NIG factor copula we use in this work.
 The NIG distribution has density function
 \begin{equation*}
   g(x; \alpha,\beta, \mu, \delta) = \frac{\alpha}{\pi} \e^{\delta
@@ -604,28 +605,40 @@ The following re-parameterisation steps reduce the number of parameters to three
 
 \natp{\em [Can you provide a reference for the Proposition?]}
 \begin{prop}
-  Let $f(\cdot) = g\left(\cdot; \alpha, \beta, 0, \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}
+  Let $R^S$ and $R^F$ be continuous random variables with quantile functions $F_S^{(-1)}$ and $F_F^{(-1)}$ respectively,
+  $f(\cdot) = g\left(\cdot; \alpha, \beta, 0, \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}
   \right)$, and $F (\cdot) = G(\cdot; \alpha, \beta, 0, \tilde
   \delta)$. The {\em NIG factor copula} is 
   \begin{equation*}
-    C(u,v) = \int_\mathbb{R} F(u-z)F(v-z)f(z)dz,
+    C(u,v) = \int_\mathbb{R} F\left\{F_S^{(-1)}(u)-z\right\}
+    F\left\{F_F^{(-1)}(v)-z\right\}f(z)dz,
   \end{equation*}
   where $\alpha, \beta \in \mathbb{R}$ satisfying $0 \leq |\beta| \leq
   \alpha$, and $\tilde \delta >0 $. 
 \end{prop}
 
-% The parameters $\alpha, \beta, \tilde \delta$ fully control the dependence between $u$ and $v$, $u, v \sim U(0,1)$, captured by the NIG factor copula.
-We refer readers to \cite{krupskii2013factor} for the methodology of constructing factor copulae. 
+\begin{proof}
+The joint cdf of $X$ and $Y$ is
+\begin{align*}
+  F_{XY}(x,y) &= P(X\leq x, Y\leq y)\\
+              &= P(Z_1 \leq x-Z, Z_2 \leq y-Z)\\
+              &= \int_\mathbb{R} P(Z_1 \leq x-z)P(Z_2 \leq y-z)f_Z(z)dz.
+  \end{align*}
+Set $C(u,v) = F_{XY}(F_S^{(-1)}(u), F_F^{(-1)}(v))$, it is clear that $C$ satisfies the definition of Bivariate copula.
+By Hoeffding-Sklar-Theorem, the function $C$ exists as a joint distribution of $R^S$ and $R^F$ that couples the two marginal distributions. 
+\end{proof}
 
-\natp{\em [Please be consistent in using Spearman's rho.]}
-The quantile dependence and Spearman rho of NIG factor copula have no known analystical form.
+% The parameters $\alpha, \beta, \tilde \delta$ fully control the dependence between $u$ and $v$, $u, v \sim U(0,1)$, captured by the NIG factor copula.
+We refer readers to \citet[Section 3.10]{joe2014dependence} and \citet{krupskii2013factor} for the methodology of constructing factor copulae. 
+
+The quantile dependence and Spearman's rho of NIG factor copula have no known analystical form.
 In this work, the quantile dependence is computed numerically; 
-Spearman rho is approximated by Spearman rho of the bivariate Gaussian copula. 
+Spearman's rho is approximated by Spearman's rho of the bivariate Gaussian copula. 
 When $\beta \rightarrow 0$ and $\alpha \rightarrow \infty$, the NIG
 distribution behaves similarly to the Gaussian distribution, 
 making the (bivariate) NIG factor copula behave similarly to the
 (bivariate) Gaussian copula. 
-Therefore, the NIG factor copula's Spearman rho is well approximated by the Spearman rho of the bivariate Gaussian copula.
+Therefore, the NIG factor copula's Spearman's rho is well approximated by the Spearman's rho of the bivariate Gaussian copula.
 
 
 % \natp{\em [Please clarify that $\circ$ refers to composition. Clean

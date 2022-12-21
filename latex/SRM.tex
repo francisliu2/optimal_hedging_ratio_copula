@@ -405,10 +405,12 @@ than that to BTC.
 We discuss the characteristics of the hedged portfolios contructed by range of risk measures-copulae pairs.
 
 
-The paper is organized as follows. Section 2 introduces the notion of
-an optimal hedge ratio; Section 3 decribes the method of estimation of
-copulae; Section 4 provides the empirical result; Section 5
-concludes. 
+The paper is organized as follows. Section \ref{sec:optimal-hedge-ratio} introduces the notion of
+an optimal hedge ratio as well as the backtesting procedure deployed in this work;
+Section \ref{sec:crm} presents the copulae used in this work as well as the calibration procedure;
+Section \ref{subsec:spectral-risk-measures} provides the risk measures;
+Section \ref{sec:results} discusses the backtesting results; Finally,
+Section 5 concludes the findings. 
 All calculations in this work can be reproduced with the data and code
 available at \href{http://www.quantlet.com/}{www.quantlet.com
   {\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}. 
@@ -643,7 +645,7 @@ Further studies are required to generalise the hedging effectiveness of other cr
 % \input{_tables/summaryStatistics}
 % \input{_tables/combinedSummaryStatistics}
 
-\section{Summary Statistics}
+\section{Summary Statistics}\label{appendix:summary_stats}
 
 {\small %
   \begin{table}[th] \centering %\resizebox{\textwidth}{!}
@@ -837,7 +839,7 @@ BTC and ETH are chosen as spot to be hedged against by BTCF.
 The backtesting procedure in this section is the same to that of the main body, except the followings:
 \begin{enumerate}
   \item recalibration and rebalancing frequency are increased to every 4 hours,
-  \item lengths of training data and test data are changed to 336 (equivant to 14 days) and 4 respectively, and
+  \item lengths of training data and test data are changed to 336 (equivalent to 14 days) and 4 respectively, and
   \item the stationary bootstrapping parameters are changed to $p=1/4, T=336, S=1000$ to adapt to the new rebalancing frequency. 
 \end{enumerate}
 

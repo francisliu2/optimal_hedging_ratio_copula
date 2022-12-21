@@ -814,11 +814,11 @@ variable with distribution function $F_Z$.
 \begin{enumerate}
 \item Variance: $\text{Var}(Z) = \E[(Z-\E Z)^2]$. 
 \item VaR at confidence level $\alpha$: $\text{VaR}_\alpha(Z) = -F_{Z}^{(-1)}(1-\alpha)$
-\item ES at confidence level $\alpha$: $\text{ES}(F_Z) = -\frac{1}{1-\alpha}\int_0^{1-\alpha}F_Z^{(-1)}(p)dp$
+\item ES at confidence level $\alpha$: $\text{ES}(F_Z) = -\frac{1}{1-\alpha}\int_0^{1-\alpha}F_Z^{(-1)}(p)\dd p$
 \item ERM with Arrow-Pratt coefficient of absolute risk
   aversion $k$:
   \begin{equation*}
-    \text{ERM}_k(Z) = -\int_{[0,1]}\phi(p) F_Z^{(-1)}(p)dp,
+    \text{ERM}_k(Z) = -\int_{[0,1]}\phi(p) F_Z^{(-1)}(p)\dd p,
   \end{equation*}
   where $\phi$ is a weight function described in (\ref{eq:phi}) below.
 \end{enumerate}
@@ -826,7 +826,7 @@ variable with distribution function $F_Z$.
 VaR, ES, and ERM fall into the class of spectral risk measures (SRM),
 which have the form \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
 \begin{equation*}
-  \rho_\phi(Z) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
+  \rho_\phi(Z) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)\dd p,
 \end{equation*}
 where $p$ is the loss quantile and $\phi(p)$ is a user-defined
 weighting function defined on $[0,1]$.
@@ -835,7 +835,7 @@ fulfilling %(named by \citet{Acerbi2002})
 \begin{enumerate}[label=(\roman*)]
 \item $\phi$ is positive,
 \item $\phi$ is decreasing,
-\item and $\int\phi=1$. 
+\item and $\int_[0,1]\phi(p)\dd p=1$. 
 \end{enumerate}
 
 The VaR's $\phi(p)$ gives all its weight on the $1-\alpha$ quantile of

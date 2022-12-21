@@ -204,9 +204,8 @@ densities.
 A multivariate generalisation of the expression above and its proof can be found in Appendix \ref{sec:appendix}.
 
 \subsection{Backtesting Procedure}\label{sec:empirical-procedure}
-First, we take the earliest 300 data points from the dataset 
-as training data to obtain the optimal hedge ratio via the following steps:
-
+Time series of out-of-sample hedged portfolio returns that represent a hedger's profit and loss are obtained via the following steps.
+We start from the earliest 300 data points of each spot-futures pair as training data:
 \begin{enumerate}
 \item \textbf{Construct univariate kernel density function (KDE)}:
   Construct the spot and futures' univariate kernel density functions separately
@@ -226,19 +225,16 @@ as training data to obtain the optimal hedge ratio via the following steps:
   and search for the hedge ratio that gives the lowest risk measure. 
   The risk measures are outlined in Section \ref{subsec:spectral-risk-measures}.
   The minimisation algorithm \textit{scipy.optimize.minimize} from the Python package {\em Scipy} \citep{2020SciPy-NMeth} is used for the search of optimal hedge ratio.
+\item \textbf{Obtain out-of-sample hedged portfolio returns}: Apply the optimal hedge ratio to the test data to obtain out-of-sample hedged portfolio returns.
+      The test data is the 5 data points subsequent to the last training data point. 
+\item \textbf{Roll forward}: We roll forward by 5 data points and repeat the steps above until the test data reaches the end of the dataset.
 \end{enumerate}
 
-\natp{\em [Would it not make sense to include the following two steps
-  in the numerated list?]}
-Next, we apply the optimal hedge ratio to the test data to obtain out-of-sample hedged portfolio returns.
-The test data is the 5 data points subsequent to the last training data point. 
-
-Finally, we roll forward by 5 data points and repeat the steps until the test data reaches the end of the dataset. 
 The collection of out-of-sample portfolio returns forms a non-overlapping time series since the step size is equal to test data length.
 The time series represents the profit and loss if hedgers recalibrate copulae and adjust the hedge ratio every 5 days from the start to the end of the out-of-sample data period.
 An intraday setup and its results are documented in Appendix \ref{sec:intraday}. 
 
-The backtesting procedure without the copula selection step is also carried out to examine the effects of deploying different copula. 
+The backtesting procedure without the copula selection step (step 3) is also carried out to examine the effects of deploying different copula. 
 Section \ref{subsec:HP1} discusses the effects. 
 
 \section{Copulae}\label{sec:crm}
@@ -489,7 +485,6 @@ Normal Inverse Gaussian (NIG) distribution is a flexible and yet analytical trac
 \citep{BarndorffNielsen1997}.
 The {\em NIG factor copula} is constructed based on the characteristics of the NIG disribution. 
 This section presents the version of NIG factor copula we use in this work.
-
 The NIG distribution has density function
 \begin{equation*}
   g(x; \alpha,\beta, \mu, \delta) = \frac{\alpha}{\pi} \e^{\delta

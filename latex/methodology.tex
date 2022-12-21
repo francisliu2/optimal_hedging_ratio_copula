@@ -489,6 +489,7 @@ Normal Inverse Gaussian (NIG) distribution is a flexible and yet analytical trac
 \citep{BarndorffNielsen1997}.
 The {\em NIG factor copula} is constructed based on the characteristics of the NIG disribution. 
 This section presents the version of NIG factor copula we use in this work.
+
 The NIG distribution has density function
 \begin{equation*}
   g(x; \alpha,\beta, \mu, \delta) = \frac{\alpha}{\pi} \e^{\delta
@@ -598,38 +599,36 @@ $Z_2 \sim \text{NIG}(\alpha, \beta, \mu_2, \delta_2)$, and $Z, Z_1, Z_2$ are mut
 The following normalising steps reduce the number of parameters to three:
 \begin{enumerate}
   \item Set $\mu = \mu_1= \mu_2 = 0$ . The location parameter does not affect the correlation structure.
-  \item Set $\delta = \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}$ such that $Z$ is unit variance.  
-  \item Set $\delta_1 = \delta_2$; Define $\tilde \delta = \delta_1 = \delta_2$. 
-  The dependence between $X$ and $Y$ is fully captured by $\alpha, \beta$, and $\tilde \delta$.  
+  \item Set $\delta_1 = \delta_2 = \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}$ such that $Z_1$ and $Z_2$ are unit variance. 
+  Normalising the scale parameter does not affect the correlation structure.
 \end{enumerate}
   % Denote the margins by $u,v \sim U(0,1)$. 
 % The NIG factor model is obtained by transforming the unifrom margins to standardised NIG distriutions.
+The dependence between $X$ and $Y$ is now fully captured by $\alpha, \beta$, and $\delta$.  
 
-
-\natp{\em [Can you provide a reference for the Proposition?]}
+% 
+% \natp{\em [Can you provide a reference for the Proposition?]}
 \begin{prop}
-  Let $R^S$ and $R^F$ be continuous random variables with quantile functions $F_S^{(-1)}$ and $F_F^{(-1)}$ respectively,
-  $f(\cdot) = g\left(\cdot; \alpha, \beta, 0, \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}
-  \right)$, and $F (\cdot) = G(\cdot; \alpha, \beta, 0, \tilde
-  \delta)$. The {\em NIG factor copula} is 
+  Let $u,v \in [0,1]$,
+  $\alpha, \beta \in \mathbb{R}$ satisfying $0 \leq |\beta| \leq \alpha$, $\delta >0 $,
+  $f(\cdot) = g\left(\cdot; \alpha, \beta, 0, \delta \right)$, 
+  and $F (\cdot) = G\left(\cdot; \alpha, \beta, 0, \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}\right)$.
+  The {\em NIG factor copula} is 
   \begin{equation*}
     C(u,v) = \int_\mathbb{R} F\left\{F^{(-1)}(u)-z\right\}
-    F\left\{F^{(-1)}(v)-z\right\}f(z)dz,
+    F\left\{F^{(-1)}(v)-z\right\}f(z)dz.
   \end{equation*}
-  where $\alpha, \beta \in \mathbb{R}$ satisfying $0 \leq |\beta| \leq
-  \alpha$, and $\tilde \delta >0 $. 
+
 \end{prop}
 
 \begin{proof}
-The joint cdf of $X$ and $Y$ is
-\begin{align*}
-  F_{XY}(x,y) &= P(X\leq x, Y\leq y)\\
-              &= P(Z_1 \leq x-Z, Z_2 \leq y-Z)\\
-              &= \int_\mathbb{R} P(Z_1 \leq x-z)P(Z_2 \leq y-z)f_Z(z)dz.
-  \end{align*}
-Set $C(u,v) = F_{XY}(F_S^{(-1)}(u), F_F^{(-1)}(v))$. 
-It is clear that $C$ satisfies the definition of Bivariate copula.
-By Hoeffding-Sklar-Theorem, the function $C$ exists as a joint distribution of $R^S$ and $R^F$ that couples the two marginal distributions. 
+  Let $F_X$ and $F_Y$ be the cdfs, $F_X^{(-1)}$ and $F_Y^{(-1)}$ be the quantile functions of $X$ and $Y$ respectively. 
+  \begin{align*}
+    C(u,v) &= P\left(F_X(X) \leq u, F_Y(Y)\leq v\right)\\
+           &= \E \left\{\left.P\left(F_X(X) \leq u, F_Y(Y)\leq v \right|Z\right)\right\}\\
+           &= \E \left\{\left.P\left(Z_1 \leq F_X^{(-1)}(u)-Z, Z_2 \leq F_Y^{(-1)}(v)-Z \right|Z\right)\right\}\\
+           &=  \int_\mathbb{R} F\left\{F^{(-1)}(u)-z\right\}F\left\{F^{(-1)}(v)-z\right\}f(z)dz.
+  \end{align*} 
 \end{proof}
 
 % The parameters $\alpha, \beta, \tilde \delta$ fully control the dependence between $u$ and $v$, $u, v \sim U(0,1)$, captured by the NIG factor copula.

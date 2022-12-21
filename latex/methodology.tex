@@ -818,7 +818,7 @@ variable with distribution function $F_Z$.
 \item ERM with Arrow-Pratt coefficient of absolute risk
   aversion $k$:
   \begin{equation*}
-    \text{ERM}_k(F_Z) = \int_0^{1-\alpha}\phi(p) F_Z^{(-1)}(p)dp,
+    \text{ERM}_k(Z) = -\int_{[0,1]}\phi(p) F_Z^{(-1)}(p)dp,
   \end{equation*}
   where $\phi$ is a weight function described in (\ref{eq:phi}) below.
 \end{enumerate}
@@ -826,7 +826,7 @@ variable with distribution function $F_Z$.
 VaR, ES, and ERM fall into the class of spectral risk measures (SRM),
 which have the form \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
 \begin{equation*}
-  \rho_\phi(r^h) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
+  \rho_\phi(Z) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)d p,
 \end{equation*}
 where $p$ is the loss quantile and $\phi(p)$ is a user-defined
 weighting function defined on $[0,1]$.

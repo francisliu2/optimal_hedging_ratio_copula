@@ -619,9 +619,9 @@ The dependence between $X$ and $Y$ is now fully captured by $\alpha, \beta$, and
 \begin{proof}
   Let $F_X$ and $F_Y$ be the cdfs, $F_X^{(-1)}$ and $F_Y^{(-1)}$ be the quantile functions of $X$ and $Y$ respectively. 
   \begin{align*}
-    C(u,v) &= P\left(F_X(X) \leq u, F_Y(Y)\leq v\right)\\
-           &= \E \left\{\left.P\left(F_X(X) \leq u, F_Y(Y)\leq v \right|Z\right)\right\}\\
-           &= \E \left\{\left.P\left(Z_1 \leq F_X^{(-1)}(u)-Z, Z_2 \leq F_Y^{(-1)}(v)-Z \right|Z\right)\right\}\\
+    C(u,v) &= \p\left(F_X(X) \leq u, F_Y(Y)\leq v\right)\\
+           &= \E \left\{\left.\p\left(F_X(X) \leq u, F_Y(Y)\leq v \right|Z\right)\right\}\\
+           &= \E \left\{\left.\p\left(Z_1 \leq F_X^{(-1)}(u)-Z, Z_2 \leq F_Y^{(-1)}(v)-Z \right|Z\right)\right\}\\
            &=  \int_\mathbb{R} F\left\{F^{(-1)}(u)-z\right\}F\left\{F^{(-1)}(v)-z\right\}f(z)dz.
   \end{align*} 
 \end{proof}

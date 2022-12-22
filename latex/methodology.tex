@@ -142,11 +142,16 @@ Re-writing the second argument of the copula gives
 \end{proof}
 
 %The optimal hedge ratio is $h^\ast = \argmin_h \rho(Z)$, that is the best ratio that can minimize the risk of a hedged portfolio measured in terms of $\rho$ .
+
+Lemma \ref{lemma:copula} describes the fact that copula is invariance under linear transformation.
+That means rescaling one random variable does not change the dependence structure captured by copula. 
+Searching of optimal hedge ratio (numerically) requires frequent updates of the size of $h$,
+but with copula, the search does not require any recalibration.
 Taking advantage of Theorem \ref{theorem:sklar} and Lemma \ref{lemma:copula}, \citet{barbi2014copula}
 introduce the distribution of linear combinations of random variables
 using copulae. 
 We slightly edit their Corollary 2.1 of their work and yield the 
-following expression of the distribution. 
+following correct expression of the distribution. 
 
 \begin{proposition}
   \label{prop:dfrh}

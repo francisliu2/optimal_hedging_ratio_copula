@@ -277,8 +277,8 @@ cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}.
 In response to the rapid development of the CC market, the CME Group
 launched exchange-traded BTC futures contracts in December
 2017.
-At the time of writing, the CME is the only exchanged offering
-regulated crypto futures. 
+At the time of writing, the CME Bitcoin futures is one of a few crypto futures that is available on regulated exchange that offers
+regulated crypto futures \footnote{We thank the referees for reminding the authors that Bakkt BTC futures are also available on regulated exchange.}. 
 As per the CME report on 25th of Nov, 2022, the average daily volume and open interest of the CME BTC futures are
 \$1,220M and \$1,357M respectively \footnote{Data from CME: \url{https://www.cmegroup.com/ftp/bitcoinfutures/Bitcoin_Futures_Liquidity_Report_20221202.pdf}}.
 Because it is regulated, the CME BTC derivatives market  
@@ -301,7 +301,7 @@ simple hedges involving crypto portfolios and BTC futures. This
 requires analysing the dependence structure of cryptos and
 futures beyond linear correlation. 
 
-In this paper, we examine static hedges of crypto portfolios
+In this paper, we examine hedges of crypto portfolios
 with Bitcoin futures. Owing to the asymmetry of crypto returns as
 well as the occurrence of extreme events, we consider different 
 dependence structures via a variety of copula models. We then optimise
@@ -388,10 +388,18 @@ Examples are the exponential SRM and power SRM introduced by
 %  \end{itemize}
 %  }
 
+Evaluating the hedging effectiveness of crypto derivatives has been done by many researchers. 
+\citet{deng2020minimum} show that the crypto inverse futures is able to be used to hedge against BTC exposure.
+\citet{alexander2020bitmex} crypto derivatives on BitMEX not only play an important role in price discovery of BTC,
+ they can be used as hedging instrument to offset the movement of BTC price. 
+\citet{sebastiao2020bitcoin} present promising results of using BTC futures to hedge BTC and other CCs. 
+\citet{alexander2021hedging} extend the analysis to include the present of liquidation procedure in crypto exchanges. 
+They show that hedgers are able to manage the liquidation probability while keeping a reasonable hedging capability from crypto derivatives. 
+
 In this work, we study the effectiveness of hedging various CC's and
-crypto indices using Bitcoin futures under copula models and different
+crypto indices using BTC futures under copula models and different
 risk preferences. 
-In an extensive back-test,\footnote{We thank the data provider
+In an extensive backtest,\footnote{We thank the data provider
   Tiingo (\href{https://www.tiingo.com/}{https://www.tiingo.com/}) for
   providing the crypto price data.}
  we find the ability of the BTC futures to hedge BTC and BTC-related

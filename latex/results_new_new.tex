@@ -5,21 +5,26 @@ In the empirical analysis, we analyse the capability
 of CME Bitcoin Futures (BTCF) to reduce the risk of
 five cryptos, namely Bitcoin (BTC), Ethereum 
 (ETH), Cardano (ADA), Litecoin (LTC) and Ripple (XRP), as well as five
-crypto indexes, namely BITX, BITW100, CRIX, BITW20 and BITW70.
+crypto indices, namely BITX, BITW100, CRIX, BITW20 and BITW70.
+
 The currencies ETH, ADA, LTC, and XRP are popular cryptos traded at
 various exchanges and have large market capitalization. 
+
 BITX, BITW100, and CRIX are market-cap weighted crypto indexes with
 BTC as constituent. 
 BITX and BITW100 track the total return of the 10 and 100 cryptos
 with largest market-cap, respectively. 
 CRIX determines the number of constituents via AIC and tracks this
-number of cryptos with largest market-cap. In our case, the number of
-constituents in the CRIX is 5. 
+number of cryptos with largest market-cap. 
+The CRIX index is calculated by the S\&P Global and available on Bloomberg
+\footnote{See \url{https://www.spglobal.com/spdji/en/custom-indices/royalton-partners-ag-rpag/royalton-crix-crypto-index/\#overview}}.
 BITW20 is also a market-cap weighted crypto index but with the 20
 largest market-cap cryptos outside the constituents of BITX.
 BITW70 has the same construction as BITW20 but with the 70 largest
 market-cap cryptos outside BITX and BITW20. 
 Therefore, BTC is excluded as a constituent in BITW20 and BITW70.
+
+The five crypto indices are reconstituted monthly to stay updated to the rapidly changing crypto market. 
 
 For each of the ten hedge portfolios, a crypto or index is considered
 as the spot and held in a unit size long position, while 
@@ -508,7 +513,9 @@ exhibit a consistent performances across different risk measures.
 As it turns out, some HE bootstrapping samples are even negative,
 which means the ``hedge'' portfolio actually increases the risk. 
 This shows BTC futures is not suitable for cross-asset hedges (cross hedge).
-
+In fact, in the previous study by \citet{corbet2018bitcoin}, 
+researchers yield negative hedging effectiveness even when hedging against BTC exposure.
+\citet{} show that derivatives in BitMEX
 %\natp{\em[It does not
 %  make sense to compare across different risk measures, so I suggest
 %  to delete the last statement. }

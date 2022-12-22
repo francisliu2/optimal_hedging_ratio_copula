@@ -106,13 +106,20 @@ joint distribution function to its univariate margins \citep[Theorem 2.3.3.]{Nel
   is a joint distribution function with margins $F_X, F_Y$.
 \end{theorem}
 
-Indeed, many basic results about copulae can be traced back to early
+Hence, copula enables hedgers to model the dependence structure between the spot and futures separately from their marginals 
+without any restriction imposed by the marginals.
+For example, the marginals of multivariate Gaussian are always Gaussian, but marginals of copula can be any univariate marginals that hedgers flavour. 
+Since we want to focus on the effects of how dependence structure shapes hedging effectiveness, copula allows us to
+make minimal model assumption on the marginals by deploying kernel density estimators with different bandwidths for the spot and futures. 
+
+Regarding the theory behind copula, many basic results can be traced back to early
 works of Wassily Hoeffding \citep{hoedffding1940, hoedffding1941}. 
 The works aimed to derive a measure of relationship of variables,
 which is invariant under change of scale. 
 See also \citet{hoeffding2012collected} for English translations of
 the original papers written in German. 
-%The following Lemma is not hard to prove.
+
+Another feature of copula that is important for hedgers is shown below. 
 
 \begin{lemma}
   \label{lemma:copula}

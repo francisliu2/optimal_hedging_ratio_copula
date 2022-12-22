@@ -1,0 +1,224 @@
+%---------------------------------------------------------------------------
+\documentclass%%
+%---------------------------------------------------------------------------
+  [fontsize=12pt,%%          Schriftgroesse
+%---------------------------------------------------------------------------
+% Satzspiegel
+   paper=a4,%%               Papierformat
+   %enlargefirstpage=on,%%    Erste Seite anders
+   %pagenumber=headright,%%   Seitenzahl oben mittig  
+%---------------------------------------------------------------------------
+% Layout
+   headsepline=off,%%         Linie unter der Seitenzahl
+   parskip=half,%%           Abstand zwischen Absaetzen
+%---------------------------------------------------------------------------
+% Was kommt in den Briefkopf und in die Anschrift
+   fromalign=right,%%        Plazierung des Briefkopfs
+   fromphone=on,%%           Telefonnummer im Absender
+%   fromrule=aftername,%%     Linie im Absender (aftername, afteraddress)
+   fromrule=off,%%     Linie im Absender (aftername, afteraddress)
+   fromfax=off,%%            Faxnummer
+   fromemail=on,%%           Emailadresse
+   fromurl=off,%%            Homepage
+   fromlogo=off,%%            Firmenlogo
+   addrfield=on,%%           Adressfeld fuer Fensterkuverts
+   backaddress=on,%%         ...und Absender im Fenster
+   subject=beforeopening,%%  Plazierung der Betreffzeile
+   locfield=narrow,%%        zusaetzliches Feld fuer Absender
+   foldmarks=off,%%           Faltmarken setzen
+   numericaldate=off,%%      Datum numerisch ausgeben
+   refline=narrow,%%         Geschaeftszeile im Satzspiegel
+   firstfoot=on,%%           Footerbereich
+%---------------------------------------------------------------------------
+% Formatierung
+   draft=off%%                Entwurfsmodus
+]{scrlttr2}
+%---------------------------------------------------------------------------
+\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+
+\newif\iflogo
+\logotrue
+%\usepackage[english, ngerman]{babel}  
+\usepackage[english]{babel}  
+\usepackage{url}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc} 
+\usepackage{graphicx}
+% symbols: (cell)phone, email
+\RequirePackage{marvosym} 
+% for gray color in header
+\RequirePackage{color}
+\usepackage[T1]{fontenc}
+%---------------------------------------------------------------------------
+% Schriften werden hier definiert
+% \renewcommand*\familydefault{\sfdefault} % Latin Modern Sans
+% \setkomafont{fromname}{\sffamily\color{mygray}\LARGE}
+\usepackage{times}
+%\setkomafont{pagenumber}{\sffamily}
+\setkomafont{subject}{\mdseries}
+\setkomafont{backaddress}{\mdseries\tiny}
+\setkomafont{fromaddress}{\scriptsize\sffamily\mdseries}
+\setkomafont{fromname}{\bfseries\scriptsize\sffamily}
+%---------------------------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------------------------
+% Briefstil und Position des Briefkopfs
+\LoadLetterOption{DIN} %% oder: DINmtext, SN, SNleft, KOMAold.
+\makeatletter
+\@setplength{sigbeforevskip}{17mm} % Abstand der Signatur von dem closing
+%\@setplength{firstheadvpos}{17mm} % Abstand des Absenderfeldes vom Top
+\@setplength{firstheadvpos}{46mm} % Abstand des Absenderfeldes vom Top
+\@setplength{firstfootvpos}{275mm} % Abstand des Footers von oben
+\@setplength{firstheadwidth}{\paperwidth}
+\@setplength{locwidth}{70mm}   % Breite des Locationfeldes
+\@setplength{locvpos}{65mm}    % Abstand des Locationfeldes von oben
+\ifdim \useplength{toaddrhpos}>\z@
+  \@addtoplength[-2]{firstheadwidth}{\useplength{toaddrhpos}}
+\else
+  \@addtoplength[2]{firstheadwidth}{\useplength{toaddrhpos}}
+\fi
+\@setplength{foldmarkhpos}{6.5mm}
+\makeatother
+%---------------------------------------------------------------------------
+% Farben werden hier definiert
+% define gray for header
+\definecolor{mygray}{gray}{.55}
+% define blue for address
+\definecolor{myblue}{rgb}{0.25,0.45,0.75}
+
+%---------------------------------------------------------------------------
+% Absender Daten
+ \setkomavar{fromlogo}{\includegraphics[width=5cm]{HWR_Logo_RGB.pdf}}
+ \setkomavar{fromname}{%
+\iflogo
+\begin{minipage}[t]{.275\linewidth}
+\vspace*{-13\baselineskip}
+  \includegraphics[width=5.5cm]{HWR_Logo_RGB.pdf}
+\end{minipage}
+\vspace*{-\baselineskip} \\
+\fi
+Prof.\ Dr.\ Natalie Packham\smallskip}
+\setkomavar{fromaddress}{Professor of Mathematics and Statistics\\\smallskip
+% Department of Business and Economics\\
+Berlin School of Economics and Law\\\smallskip
+Badensche Str.\ 52\\\medskip
+10825 Berlin\medskip
+}
+\setkomavar{fromphone}[\Telefon~]{+49\,30\,30877-1369\smallskip}
+\setkomavar{fromemail}[\Letter~]{packham@hwr-berlin.de}
+\setkomavar{fromurl}[]{www.hwr-berlin.de}
+\setkomavar{backaddressseparator}{ - }
+\setkomavar{backaddress}{Hochschule f\"ur Wirtschaft und Recht $\bullet$ 
+  Badensche Stra\ss e 52 $\bullet$ 10825 Berlin}
+\setkomavar{signature}{
+%  \hspace*{.5cm}
+%  \includegraphics[scale=1]{signature_blue.pdf}\\
+  Natalie Packham
+} 
+\renewcommand*{\raggedsignature}{\raggedright}
+
+% Anlage neu definieren
+\renewcommand{\enclname}{Anlagen}
+\setkomavar{enclseparator}{: }
+%---------------------------------------------------------------------------
+% Seitenstil
+%pagenumber=footmiddle
+\pagestyle{plain}%% keine Header in der Kopfzeile bzw. plain
+\pagenumbering{arabic}
+%---------------------------------------------------------------------------
+%---------------------------------------------------------------------------
+%\firstfoot{\footnotesize%
+\firstfoot{\scriptsize\sf%
+% \rule[3pt]{\textwidth}{.4pt} \\
+% \begin{tabular}[t]{l@{}}% 
+% \usekomavar{fromname}\\
+% \usekomavar{fromaddress}\\
+% \end{tabular}%
+% \hfill
+% \begin{tabular}[t]{l@{}}%
+%   \usekomavar[\Mobilefone~]{fromphone}\\
+%    \usekomavar[\Letter~]{fromemail}\\
+% \end{tabular}%
+  \vspace*{-2.5\baselineskip}
+
+\ifkomavarempty{frombank}{}{%
+\hfill
+\begin{tabular}[t]{l@{}}%
+\usekomavar{frombank}
+\end{tabular}%
+}%
+}% 
+%---------------------------------------------------------------------------
+% Bankverbindung
+\setkomavar{frombank}{Berliner Volksbank\\
+Konto 884\, 101\, 52\, 40\\
+BLZ 100\, 900\, 00\\
+IBAN\\
+DE72\, 10090000\, 8841015240\\
+BIC BEVODEBB}
+%---------------------------------------------------------------------------
+%\setkomavar{yourref}{}
+%\setkomavar{yourmail}{}
+%\setkomavar{myref}{}
+%\setkomavar{customer}{}
+%\setkomavar{invoice}{}
+%---------------------------------------------------------------------------
+% Datum und Ort werden hier eingetragen
+\setkomavar{date}{\today}
+%\setkomavar{place}{Berlin}
+%---------------------------------------------------------------------------
+
+%---------------------------------------------------------------------------
+% Hier beginnt der Brief, mit der Anschrift des Empfaengers
+
+
+\begin{letter}{Managing Editor\\
+    SN Business \& Economics}
+%---------------------------------------------------------------------------
+% Der Betreff des Briefes
+\setkomavar{subject}{\bf Submission of manuscript}
+%---------------------------------------------------------------------------
+\opening{Dear Editor(s),}
+
+please find attached the manuscript ``Structured climate financing:
+valuation of CDO's on inhomogeneous asset pools''.
+
+In this paper I investigate a class of structured funds that has
+recently emerged. These structured funds are public-private
+partnerships seeking to leverage investment in renewable energy in
+emerging markets by attracting institutional investors. 
+
+The main contributions lie in explaining the cash-flow mechanism of
+these funds, deriving analytical pricing formulas for valuing
+tranches, and showing how to optimally structure the tranches. 
+
+The paper contains original research, has not been published and is
+not being considered for publication elsewhere.
+%\enlargethispage{5\baselineskip}
+
+I would be grateful if you could consider the paper for publication in
+SN Business \& Economics. Thank you for your consideration. 
+
+  \closing{Sincerely,
+% \vspace*{3\baselineskip}\\
+% %    \hspace*{.5cm}
+%     Prof.\ Dr.\ Natalie Packham
+    % \includegraphics[scale=1]{signature_blue.pdf}
+  }
+  % \bibliographystyle{plainnat} \bibliography{finance}
+%---------------------------------------------------------------------------
+%\ps{PS:}
+%\encl{Lebenslauf\\ Zeugnisse}
+%\cc{}
+%---------------------------------------------------------------------------
+\end{letter}
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+

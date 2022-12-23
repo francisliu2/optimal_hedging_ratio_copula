@@ -264,27 +264,27 @@ while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF.
 \begin{figure}[h]
   \begin{minipage}[t]{0.475\linewidth}
     \centering
-    \includegraphics[height=.5\linewidth]{_pics/MSE_indices.png}
+    \includegraphics[height=.5\linewidth]{_pics/MSE_indices.pdf}
     \caption{Out-of-sample mean square errors of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
     \label{MSE_indices}
   \end{minipage}
   \hfill
   \begin{minipage}[t]{0.475\linewidth}
     \centering
-    \includegraphics[height=.5\linewidth]{_pics/MSE_cryptos.png}
+    \includegraphics[height=.5\linewidth]{_pics/MSE_cryptos.pdf}
     \caption{Out-of-sample mean square errors of cryptos' hedge portfolios. Each plot has its own colour scale.}
     \label{MSE_cryptos}
   \end{minipage}
   \begin{minipage}[b]{0.475\linewidth}
     \centering
-    \includegraphics[height=.5\linewidth]{_pics/semiVariance_indices.png}
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_indices.pdf}
     \caption{Out-of-sample lower semi variance of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.}
     \label{SLV_cryptos}
   \end{minipage}
     \hfill
   \begin{minipage}[b]{0.475\linewidth}
     \centering
-    \includegraphics[height=.5\linewidth]{_pics/semiVariance_cryptos.png}
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_cryptos.pdf}
     \caption{Out-of-sample lower semi variance of cryptos' hedge portfolios. Each plot has its own colour scale.}
     \label{SLV_indices}
   \end{minipage}
@@ -293,13 +293,12 @@ while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF.
 
 \subsection{Copula Selection Results}\label{subsec:-copula-results}
 \begin{table}[t]
+  \centering
 \include{_tables/copulaeselectiontable}
  \caption{Copula selection results (shortened).
-        The values are the absolute frequencies of a copula chosen by
-        the AIC procedure during the out-of-sample period. 
-        Each frequenc represents five trading days, which corresponds
-        to the recalibration interval.
-        The table show the frequently chosen copulas, which are
+        The values are the percentage of time of a copula chosen by
+        the AIC procedure over the out-of-sample period. 
+        The table show only the frequently chosen copulas, which are
         $t$, Plackett, Gaussian Mix Independent (GMI), rotated Gumbel
         (rotGumbel) and Normal Inverse Gaussian factor copula (NIG). 
         }

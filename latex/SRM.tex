@@ -263,17 +263,17 @@ copulas}
 %\natp{add
 %  \url{https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/fut.22050?casa_token=l6mOC3XtpSUAAAAA\%3Aa4ikFS_PgHmAFWRzYq1LqDH3Go2esWWO_2wmNI6Ql7B166Cn1eouEiwBLxkMqt__5sCEP47JDjWodPQ}}
 
-\clearpage
+% \clearpage
 
-\tableofcontents
+% \tableofcontents
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:introduction}
-Cryptocurrencies (CC's) are a fast-growing asset class,
-with many more CCs now available on the market since the first
-cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}.
+THe cryptocurrency (CC) market is a fast-growing market.
+Since the first cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}, 
+many more CCs now available on the market.
 In response to the rapid development of the CC market, the CME Group
 launched exchange-traded BTC futures contracts in December
 2017.
@@ -281,10 +281,8 @@ At the time of writing, the CME Bitcoin futures is one of a few crypto futures t
 regulated crypto futures \footnote{We thank the referees for reminding the authors that Bakkt BTC futures are also available on regulated exchange.}. 
 As per the CME report on 25th of Nov, 2022, the average daily volume and open interest of the CME BTC futures are
 \$1,220M and \$1,357M respectively \footnote{Data from CME: \url{https://www.cmegroup.com/ftp/bitcoinfutures/Bitcoin_Futures_Liquidity_Report_20221202.pdf}}.
-Because it is regulated, the CME BTC derivatives market  
-is an attractive way for institutional
-investors to participate in or manage their exposure in the crypto
-market.
+The CME BTC futures is an attractive instrument for institutional investors to participate in or manage their exposure in the crypto
+market because it is fully regulated. 
 %The price
 %of BTC even surged to \$ 64,500 in mid-April 2021 up by 460\% from
 % from \$ 11,500 six months earlier in October 2020 and up by 850\%
@@ -315,7 +313,7 @@ random variables for our purpose.
 
 The hedge ratio is the appropriate amount of futures contracts to hold
 in order to eliminate the risk exposure in the underlying security.   
-The determination of the optimal hedge ratio relies primarily
+The determination of the hedge ratio relies primarily
 on the dependence between BTC and futures prices.
 %In this paper, we investigate the performance of different copulae and
 %risk measures in hedging Bitcoin and CRIX with Bitcoin
@@ -396,27 +394,26 @@ Evaluating the hedging effectiveness of crypto derivatives has been done by many
 \citet{alexander2021hedging} extend the analysis to include the present of liquidation procedure in crypto exchanges. 
 They show that hedgers are able to manage the liquidation probability while keeping a reasonable hedging capability from crypto derivatives. 
 
-In this work, we study the effectiveness of hedging various CC's and
-crypto indices using BTC futures under copula models and different
+In this work, we study the effectiveness of hedging various CCs and
+CC indices using the CME BTC futures under copula models and different
 risk preferences. 
-In an extensive backtest,\footnote{We thank the data provider
+Through an extensive backtest,\footnote{We thank the data provider
   Tiingo (\href{https://www.tiingo.com/}{https://www.tiingo.com/}) for
   providing the crypto price data.}
- we find the ability of the BTC futures to hedge BTC and BTC-related
- indices promising, regardless of the choices of the copula (with the
+ we find the ability of the CME BTC futures to hedge BTC and BTC-related
+ indices promising, regardless of the choice of the copula (with the
  exception of the Frank copula) and risk measure. 
-On the other hand, the ability of BTC futures to hedge other cryptos and crypto indices
+On the other hand, the ability of the CME BTC futures to hedge other CCs and CC indices
 is affected by idiosyncratic factors such as regulatory factors and operational risk,
-but the overall CEM BTCF hedging effectiveness to other cryptos and crypto indices is far lower
+but the overall hedging effectiveness to other cryptos and crypto indices is far lower
 than that to BTC.
-We discuss the characteristics of the hedged portfolios contructed by range of risk measures-copulae pairs.
-
+We discuss the characteristics of the hedged portfolios constructed by range of risk measures-copulae pairs.
 
 The paper is organized as follows. Section \ref{sec:optimal-hedge-ratio} introduces the notion of
-an optimal hedge ratio as well as the backtesting procedure deployed in this work;
+an optimal hedge ratio as well as the backtest procedure deployed in this work;
 Section \ref{sec:crm} presents the copulae used in this work as well as the calibration procedure;
 Section \ref{subsec:spectral-risk-measures} provides the risk measures;
-Section \ref{sec:results} discusses the backtesting results; Finally,
+Section \ref{sec:results} discusses the backtest results; Finally,
 Section 5 concludes the findings. 
 All calculations in this work can be reproduced with the data and code
 available at \href{http://www.quantlet.com/}{www.quantlet.com
@@ -437,7 +434,7 @@ available at \href{http://www.quantlet.com/}{www.quantlet.com
 \section{Conclusion and Outlook}\label{sec:conclusion-and-outlook}
 We study the effectiveness of hedging cryptos and crypto indices with
 Bitcoin futures.
-To accomodate different risk appetites and scenarios, a variety of
+To accommodate different risk appetites and scenarios, a variety of
 commonly used risk measures are considered to determine the optimal
 hedge ratio. The risk measures comprise variance, value-at-risk at
 the confidence levels 95\% and 99\%, expected shortfall 95\% and 99\%,
@@ -455,7 +452,7 @@ vectors. To address the potential time-changing dependence, we
 periodically re-calibrate the copula models and determine the
 best-fitting copula via AIC. 
 
-An extensive out-of-sample backtest suggests that Bitcoin futures
+An extensive out-of-sample backtest suggests that the CME Bitcoin futures
 are consistently capable of hedging BTC and BTC-involved indices,
 i.e., BITX, CRIX, and BITW100, under different risk minimisation
 objectives 
@@ -463,12 +460,12 @@ and copula models. The mean-square errors (MSEs) and lower
 semi-variances (LSVs) of the resulting portfolios are
 indistinguishable at a low level except for the Frank copula. 
 For BTC-related spot asset, the AIC procedure consistently
-favours the $t$-copula because it  
+pick the $t$-copula because it  
 captures the tail dependence feature of the data. 
 Compared to the unhedged cases, the
 portfolios' out-of-sample maximum drawdowns are significantly reduced. 
 
-Contrarily, we observe more diverse results of the capability of BTC
+Contrarily, we observe diverse results of the capability of BTC
 futures to hedge other cryptos and crypto indices that exclude Bitcoin. 
 In general, ES 95\% and VaR 95\% perform better than their 99\%
 in terms of mean square error (MSE) and lower semi variance (LSV).
@@ -481,9 +478,9 @@ Therefore, we conclude that overly emphasising tail risks by choosing
 extreme tail risk measures does not lead to a promising hedge in a
 cross-hedging setting. 
 
-As an intemediate step in determining the optimal hedge ratio, 
-the AIC procedure mainly favours the rotated Gumbel and the NIG
-factor copula in modelling non-BTC relate cryptos and indices. This
+As an intermediate step in determining the optimal hedge ratio, we report also the results from the AIC procedure.
+The procedure mainly favours the rotated Gumbel and the NIG
+factor copula while modelling non-BTC relate cryptos and indices. This
 reflects the systematic nature of 
 downward movements in the crypto market. Interestingly, the best-fitting
 copula does not necessary lead to the best performing portfolio in
@@ -519,17 +516,17 @@ dependence structure.
 
 With further analysis, the conclusion drawn from this study can also be applied to crypto market related policy making.
 Our results connect to the discussion of whether authority should allow crypto futures hedge as basis to lower the minimum capital requirements inflicted by crypto exposure.
-While the debates carry on at the time of writing, our results align and can be seen as an extension of the existing researches made by stakeholders,
-for example, research done by CME \footnote{See the CME and KPMG's reports on \url{https://www.cmegroup.com/education/files/basics-of-hedge-effectiveness.pdf}},
-and International Swaps and Derivatives Association's report \footnote{See the ISDA report "Crypto-asset Risks and Hedging Analysis" on \url{https://www.isda.org/a/pMWgE/Crypto-asset-Risks-and-Hedging-Analysis.pdf }}.
+While the debates carry on at the time of writing
+\footnote{See the Basel Committee on Banking Supervision proposals and consultative documents about prudential treatment of banks' crypto-asset exposures from \url{https://www.bis.org/bcbs/publ/d533.htm}.}
+, our results align and can be seen as an extension of the existing researches made by stakeholders,
+for example, research done by CME \footnote{See the CME and KPMG's reports on \url{https://www.cmegroup.com/education/files/basics-of-hedge-effectiveness.pdf}.},
+and International Swaps and Derivatives Association's report \footnote{See the ISDA report "Crypto-asset Risks and Hedging Analysis" on \url{https://www.isda.org/a/pMWgE/Crypto-asset-Risks-and-Hedging-Analysis.pdf}.}.
 Nonetheless, further studies are required to rule out or understand the risks other than market risk, e.g. operation risk and counterparty risk. 
 
-On the other hand, our results provide partial evidences in supporting seperate treatments of cryptos with a matured regulated derivatives market and those without. 
+On the other hand, our results provide partial evidences in supporting separate regulatory treatments of cryptos with a matured regulated derivatives market and those without. 
 Our results show a clear distinction between the hedging effectiveness of BTC futures to BTC related assets and BTC unrelated assets. 
 Hedgers are empowered by the BTC futures to manage their BTC and BTC-related exposure, but not the other crypto exposures.
 Further studies are required to generalise the hedging effectiveness of other crypto-futures pairs. 
-
-
 
 % relationship between existence of derivatives market and the availability 
 

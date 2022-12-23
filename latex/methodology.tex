@@ -24,10 +24,7 @@ R^h = R^S -h R^F.
 %  futures is zero, so the portfolio return is $(S_0 (1+R^S) -h F_0
 %  R^F)/S_0-1 = R^S-h R^F$, if $S_0=F_0$.]}
 
-To measure risk, we define a risk measure $\rho$ to be a mapping from
-a financial position or its return, such as $R^h$, to a real number, which is often
-interpreted as the amount of money to make the position acceptable
-(e.g.\ to a regulator), see e.g.\ \citep{Foellmer2002}.
+The risk of the hedged portfolio is measured by risk measure functions.
 For example, a widely used risk measure is value-at-risk (VaR), which,
 at the confidence level $\alpha$,
 is derived from the $1-\alpha$ quantile of the return distribution. %  at the confidence level $\alpha$ is
@@ -36,8 +33,8 @@ is derived from the $1-\alpha$ quantile of the return distribution. %  at the co
 % F_{R^h}(x) \}$, where $F_{R^h}$ is the distribution function of
 % $R^h$.
 
-If the portfolio reduces the risk of the spot position, then
-we call this a hedge portfolio.
+If the portfolio intended to reduce the risk of the spot position, then
+we call this a hedged portfolio.
 An optimal hedge ratio $h^*$ is a parameter that
 minimizes the risk of the aforementioned portfolio
 \begin{equation*}

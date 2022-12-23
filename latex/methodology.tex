@@ -724,11 +724,11 @@ bivariate random variable.
 
 \subsection{Calibration}\label{sec:estimation}
 We trace back the usage of method of moments (MM) to calibrate copulae to \citet{Genest1987, genest1993statistical} 
-where the moments mainly refer to Kendall's $\tau$ or Spearman's $\rho$.
+where the moments mainly refer to Kendall's tau $\tau_K$ or Spearman's rho $\rho_S$.
 Adapted from \cite{oh2013simulated}, we extend MM to quantile dependence measures. 
 Quantile dependence is denoted by $\lambda_q$ for quantile level $q$.
 
-Spearman's rho $\rho_S$, Kendall's tau $\tau_K$, and quantile dependence of the copula $C$ are defined as
+Spearman's rho, Kendall's tau, and quantile dependence of the copula $C$ are defined as
 \begin{align*}
   \rho_S &= 12 \int\int_{I^2} C_{\bm{\theta}}(u,v)\, \dd u\, \dd v-3\label{eq:rho_S}\\
   \tau_K &= 4\E[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\

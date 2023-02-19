@@ -805,10 +805,9 @@ the middle, it fails to address the situation in the tails.
 \subsection{Copula selection}\label{subsec:copula-selection}
 As the dependence structure of price data changes
 across time, we allow for a flexible choice of the best-fitting
-copula, by re-calibrating periodically and re-evaluating performance
-of the various copulas. 
-In each re-calibration, we select the best-fitting
-copula, characterised by the lowest {\em Akaike Information Criterion
+copula. This is done by recalibrating and reevaluating performance of the various copulae periodically. 
+In each recalibration, we select the best-fitting
+copula characterised by the lowest {\em Akaike Information Criterion
   (AIC)},
 \begin{equation*}
  \text{AIC} = 2k- 2 \log(L),
@@ -829,7 +828,7 @@ hedge ratio.
 % We consider the copula with the lowest AIC for a particular set of data the best fitting one and use it to generate OHR.
 
 \section{Risk measures}\label{subsec:spectral-risk-measures}
-The optimal hedge ratio is determined for the following variety of risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
+The optimal hedge ratio is determined by the following variety of risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
 A summary of risk measures being used in portfolio selection problem
 can be found in \citet{hardle2008applied}. 
 The risk measures here serve as risk minimization objectives, i.e. loss functions for searching the optimal hedge ratio. 
@@ -837,7 +836,7 @@ The risk measures here serve as risk minimization objectives, i.e. loss function
 %The risk measures are also used by regulatory bodies,
 %for example Basel III ....
 
-The risk measures are defined as follows.
+The risk measures are outlined as follows.
 Let $Z$ be a random
 variable with distribution function $F_Z$.
 \begin{enumerate}
@@ -888,4 +887,3 @@ of investor's utility function on an risky asset,
 \end{equation*}
 for $x$ in all possible outcomes.
 In case of the exponential utility, $k$ is the the constant absolute risk aversion (CARA).
-

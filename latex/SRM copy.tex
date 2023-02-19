@@ -1,0 +1,1019 @@
+\documentclass[11pt,a4paper,english]{article}
+\usepackage[titletoc, title]{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{array}
+\usepackage{babel}
+\usepackage{bbding}
+\usepackage{color}
+\usepackage[normal]{caption}
+\usepackage{subcaption}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{lipsum}
+%\usepackage{multirow}
+\usepackage{psfrag}
+\usepackage{proofapnd}
+\usepackage[round]{natbib}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{afterpage}
+
+%\usepackage{enumerate}% http://ctan.org/pkg/enumerate
+%\usepackage{cjk}
+%\usepackage{CJK}
+%\newcommand{\zh}[1]{\begin{CJK}{UTF8}{bsmi}#1\end{CJK}}
+%\newcommand{\zhs}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
+
+
+%% Better roman enumeration list; no conflict with hyperref
+\usepackage{enumerate}
+\newenvironment{enumeroman} { %
+\begin{enumerate}[(i)]
+} { %
+\end{enumerate}}%
+
+\newenvironment{alphlist} { %
+  \begin{enumerate}[(a)]
+} { %
+\end{enumerate}} %
+
+%\usepackage{bbm}
+%\usepackage[T1]{fontenc}
+%\usepackage[normal]{caption2} % for caption
+\usepackage{rotating}
+\usepackage[margin=2cm]{geometry} % for the same margin
+\usepackage{latexsym}
+%\usepackage{subfig}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{slashbox}
+\usepackage{enumitem}
+%\usepackage{tablefootnote}
+\usepackage{multirow, tabularx,longtable, ragged2e, booktabs, siunitx}
+%\usepackage{footnote}
+%\usepackage{tablefootnote}
+%\usepackage{footnotehyper}
+%\makesavenoteenv{table, tabularx}
+%\makesavenoteenv{}
+
+\sisetup{
+%    per-mode = symbol,
+    output-decimal-marker = {.},
+%    group-minimum-digits = 4,
+%    range-units = brackets,
+%    list-final-separator = { \translate{and} },
+%    list-pair-separator = { \translate{and} },
+%    range-phrase = { \translate{to (numerical range)} },
+}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\newcolumntype{s}{>{\hsize=.2\hsize \Centering\arraybackslash}X}
+
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{indentfirst} % Macht eine Einrückung nach der Section
+\bibliographystyle{ecta}
+
+\definecolor{markergreen}{rgb}{0.6, 1.0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{markergreen}{rgb}{0.6, 1.0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkorange}{rgb}{1,0.3,0}
+\definecolor{darkred}{RGB}{.7,0,0}
+\definecolor{darkblue}{RGB}{0,29,245}
+\definecolor{orange}{RGB}{239, 133, 54}
+\definecolor{lightblue}{RGB}{59, 188, 175}
+
+%https://stackoverflow.com/questions/64369710/what-are-the-hex-codes-of-matplotlib-tab10-palette
+\definecolor{plt1}{RGB}{31, 119, 180}
+\definecolor{plt2}{RGB}{255, 127, 14}
+\definecolor{plt3}{RGB}{44, 160, 44}
+\definecolor{plt4}{RGB}{214, 39, 40}
+\definecolor{plt5}{RGB}{148, 103, 189}
+\definecolor{plt6}{RGB}{140, 86, 75}
+\definecolor{plt7}{RGB}{227, 119, 194}
+\definecolor{plt8}{RGB}{127, 127, 127}
+\definecolor{plt9}{RGB}{188, 189, 34}
+\definecolor{plt10}{RGB}{23, 190, 207}
+
+\providecommand{\marker}[1]{\fcolorbox{markergreen}{markergreen}{{#1}}}
+\providecommand{\mj}[1]{\textcolor{darkred}{#1}}
+\providecommand{\francis}[1]{\textcolor{darkgreen}{#1}}
+\providecommand{\natp}[1]{\textcolor{darkorange}{#1}}
+
+\setlist[itemize]{leftmargin=*}
+\setlist[description]{leftmargin=*}
+
+%\setlength{\topmargin}{0.0 in} \setlength{\textwidth}{6in}
+%\setlength{\oddsidemargin}{0.5in}
+%\setlength{\evensidemargin}{-0.01in} \setlength{\textheight}{9in}
+\captionsetup{font={onehalfspacing,small}, labelfont=bf}
+
+\title{\LARGE \bf Hedging Cryptos with Bitcoin Futures}
+%\title{\natp{\large\bf Hedging Cryptocurrencies with Bitcoin Futures}}
+\author{
+	\begin{tabular}[t]{ccc}
+		\and
+        Francis Liu\thanks{
+			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
+            Blockchain Research Center, Humboldt-Universität zu Berlin, Germany.
+            International Research Training Group
+1792, Humboldt-Universität zu Berlin, Germany.
+     E-mail: \texttt{Francis.Liu@hwr-berlin.de}.}
+
+		 \and
+        Natalie Packham\thanks{
+			Department of Business and Economics, Berlin School of Economics and Law, Badensche Str. 52, 10825 Berlin, Germany.
+            International Research Training Group 1792, Humboldt-Universität zu Berlin, Germany.
+     E-mail: \texttt{packham@hwr-berlin.de}.}
+
+        \and
+		Meng-Jou Lu
+        \thanks{
+             Department of Finance, Asia University, 500, Lioufeng Rd., Wufeng, Taichung 41354, Taiwan
+             Department of Finance, Asia University, 500, Lioufeng Rd., Wufeng, Taichung 41354, Taiwan
+     E-mail: \texttt{mangrou@gmail.com}.}
+
+		 \and
+         Wolfgang Karl H\"ardle\thanks{
+			Blockchain Research Center, Humboldt-Universit\"at zu Berlin, Germany. Wang Yanan Institute for Studies in Economics, Xiamen University, China. Sim Kee Boon Institute for Financial Economics, Singapore Management University, Singapore. Faculty of Mathematics and Physics, Charles University, Czech Republic. National Yang Ming Chiao Tung University, Taiwan.
+     E-mail: \texttt{haerdle@wiwi.hu-berlin.de}.}
+        \thanks{ Financial support of the European Union's Horizon 2020 research and innovation program ``FIN-TECH: A Financial supervision and Technology compliance training programme" under the grant agreement No 825215 (Topic: ICT-35-2018, Type of action: CSA), the European Cooperation in Science \& Technology COST Action grant CA19130 - Fintech and Artificial Intelligence in Finance - Towards a transparent financial industry, the Deutsche Forschungsgemeinschaft's IRTG 1792 grant,
+                 the Yushan Scholar Program of Taiwan %(\begin{CJK}{UTF8}{gbsn}\zh{台灣玉山學者計劃}\end{CJK}),
+                 the Czech Science Foundation's grant no. 19-28231X / CAS: XDA 23020303, and DFG IRTG 1792 gratefully acknowledged.
+     }
+	\end{tabular}
+}
+\date{This version: \today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\baselinestretch}{1.2}
+%\newcommand{\indicator}{$1{\hskip -2.5 pt}\hbox{I}$}
+\newcommand{\indicator}{I}
+\input{definitions}
+
+\begin{document}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem {proposition}[lemma]{Proposition}
+\newtheorem {corollary}{Corollary}
+\newtheorem {theorem}{Theorem}
+\newtheorem{claim}[lemma]{Claim}
+\newtheorem{comment}[lemma]{Comment}
+\newtheorem{example}[lemma]{Example}
+\newtheorem{fact}[lemma]{Fact}
+\newtheorem{defn}[lemma]{Definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\newtheorem{programming}[exercise]{Programming assignment}
+\newenvironment{proof}{{\flushleft\textbf{\textsl{Proof.\ \ }}}}{\hfill{\hfill\rule{2mm}{2mm}}}
+\pagenumbering{arabic}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+  \footnotesize{
+
+The introduction of derivatives on Bitcoin enables investors to hedge risk exposures in cryptocurrencies.
+Because of volatility swings and jumps in cryptocurrency prices, the traditional variance-based approach to obtain hedge ratios may not be suitable for hedgers.
+In this work, we consider two extensions of the traditional approach: first, different dependence structures are modelled by different copulae, such as the Gaussian, Student-t, Normal Inverse Gaussian and Archimedean copulae;
+second, different risk measures, such as value-at-risk, expected shortfall and spectral risk measures are employed to find the optimal hedge ratio.
+Extensive out-of-sample tests using the data from the time period December 2017 until May 2021 give insights in the practice of hedging various cryptos and crypto indices, including Bitcoin,  Ethereum, Cardano, the CRIX index and a number of
+crypto-portfolios.
+Evidence shows that BTC futures can effectively hedge BTC and BTC-involved indices. 
+This promising result is consistent across different risk measures and
+copulae except for the Frank copula.
+On the other hand, we observe complex and diverse dependence
+structures between non-BTC-related cryptocurrencies and the BTC futures. 
+As a consequence, the hedge performance of non-BTC-related
+cryptocurrencies is mixed and even suitable for some assets.
+%For other cryptos,
+%The choice of the optimal copulae  different dependence structure, some of the cryptos cannot be hedged by BTC futures.
+%The choice of the risk measures or copulae;
+
+%Different dependence structures.
+
+%Results of other cryptos and indices are inconclusive.
+
+% Move Meng Jou to third.
+
+% what is the new stuffs
+
+% \natp{\em Old abstract:}\\
+% The introduction of derivatives on Bitcoin \natp{(suggest to delete in
+%   abstract:, in particular the launch of futures contracts on CME in
+%   December 2017 and introduction of cryptocurrency indices like the
+%   CRIX or the Bloomberg Galaxy Crypto Index)} 
+% enables investors to hedge risk exposures in Bitcoin\natp{, other
+%   cryptocurrencies or crypto-portfolios} with futures or
+% contingent claims \natp{(delete: on indices)}.
+% We investigate \natp{different} methods of \natp{determining the (was: finding an)} optimal hedge ratio
+% \natp{(delete: $h^*$)}\natp{, taking into account (was: under)}
+% different dependence structures modeled by copulae and \natp{(delete: employing)}
+% different optimality definitions based on a range of risk measures. 
+% Because of volatility swings and jumps in Bitcoin prices, the
+% traditional variance-based approach to obtain the hedge ratios is
+% infeasible. 
+% The techniques \natp{\em [Which techniques?]} are therefore
+% generalised to various risk measures, such as value-at-risk, expected
+% shortfall and more generally, spectral risk measures.
+% In addition, we deploy different copulae for capturing the dependency between spot and futuresreturns, such as the Gaussian, Student-$t$,
+% NIG and Archimedean copulae. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin.
+% We find that across copulae and risk measures, the hedge effectiveness are very similar with the exception of the Frank copula, Expected Shortfall 99\% and Value-at-Risk 99\%.
+% Our findings are based on an analysis for the time span from 29/12/2017 to 27/05/2021.
+% The results allow investors to construct a stable portfolio with digital assets.
+% \\
+
+\noindent {\bf JEL classification: G11, G13}  \\ %G11 and G13 in QF
+%\noindent {\bf JEL classification: % C38,
+%  C53, % F34,
+%  G11, G17}  \\
+
+\noindent {\bf Keywords:} Cryptocurrencies, risk management, hedging,
+copulas}
+\pagestyle{empty}
+\end{abstract}
+
+%\natp{{\bf TODO}:
+%  \begin{itemize}
+%  \item Please generate all graphics as pdf and possibly eps. pdf is a
+%    vector graphic format, so it scales well. eps may be
+%    required during the publishing process.
+%  \item Plackett copula: This is a bivariate copula only, which is
+%    probably one of the reasons it is not commonly found in finance
+%    applications. It does not have tail dependence, which is one of
+%    the things we typically look for in finance. We need a compelling
+%    reason why it is of interest, otherwise I suggest to remove it.
+%  \item We need to discuss if we use copulas or copulae. I have a
+%    preference for copulas, which is the terminology used by Nelsen,
+%    McNeil et al., Joe.
+%  \item The introduction needs to be revised, see comments
+%    below. Think about what needs to go into the introduction and what
+%    does not, and then stick to this in a concise way. Also, re-read
+%    every sentence 2-3 times and think carefully about what it says
+%    and what it is supposed to say.
+%  \end{itemize}
+%}
+
+
+%\natp{add
+%  \url{https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/fut.22050?casa_token=l6mOC3XtpSUAAAAA\%3Aa4ikFS_PgHmAFWRzYq1LqDH3Go2esWWO_2wmNI6Ql7B166Cn1eouEiwBLxkMqt__5sCEP47JDjWodPQ}}
+
+% \clearpage
+
+% \tableofcontents
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}\label{sec:introduction}
+THe cryptocurrency (CC) market is a fast-growing market.
+Since the first cryptocurrency Bitcoin (BTC) surfaced \citep{nakamoto2009}, 
+many more CCs now available on the market.
+In response to the rapid development of the CC market, the CME Group
+launched exchange-traded BTC futures contracts in December
+2017.
+At the time of writing, the CME Bitcoin futures is one of a few crypto futures that is available on regulated exchange that offers
+regulated crypto futures \footnote{We thank the referees for reminding the authors that Bakkt BTC futures are also available on regulated exchange.}. 
+As per the CME report on 25th of Nov, 2022, the average daily volume and open interest of the CME BTC futures are
+\$1,220M and \$1,357M respectively \footnote{Data from CME: \url{https://www.cmegroup.com/ftp/bitcoinfutures/Bitcoin_Futures_Liquidity_Report_20221202.pdf}}.
+The CME BTC futures is an attractive instrument for institutional investors to participate in or manage their exposure in the crypto
+market because it is fully regulated. 
+%The price
+%of BTC even surged to \$ 64,500 in mid-April 2021 up by 460\% from
+% from \$ 11,500 six months earlier in October 2020 and up by 850\%
+% from a year earlier. Just a month later, by mid-May 2021, the price
+% had fallen to \$ 50,000, a one-month return of -22.5\%.
+ % see tiingo_btc.csv 
+As more individual and institutional investors are adding CCs and CC
+derivatives to their portfolios, the need to understand
+downside risks and find suitable ways to hedge against extreme risks
+is created. 
+Fom a risk management perspective, the roller-coaster ride
+of crypto prices may create significant basis risk, even when using
+simple hedges involving crypto portfolios and BTC futures. This
+requires analysing the dependence structure of cryptos and
+futures beyond linear correlation. 
+
+In this paper, we examine hedges of crypto portfolios
+with Bitcoin futures. Owing to the asymmetry of crypto returns as
+well as the occurrence of extreme events, we consider different 
+dependence structures via a variety of copula models. We then optimise
+the hedge ratio using different risk measures. A similar study was
+conducted by \citep{barbi2014copula} for equity and FX portfolios.
+\citet{barbi2014copula}'s work is based on \citet{cherubini2011copula}
+to derive the distribution of linear combinations of margins with
+copulae describing the dependence structure. We slightly extend their
+results and come up with a formula for the linear combination of
+random variables for our purpose.
+
+The hedge ratio is the appropriate amount of futures contracts to hold
+in order to eliminate the risk exposure in the underlying security.   
+The determination of the hedge ratio relies primarily
+on the dependence between BTC and futures prices.
+%In this paper, we investigate the performance of different copulae and
+%risk measures in hedging Bitcoin and CRIX with Bitcoin
+%futures. {\color{blue} only this portfolio?} \natp{\em [$\leftarrow$ Make this the first sentence of the paper!]}
+Financial asset returns have long known to be non-Gaussian, see e.g.\
+\citep{fama1963mandelbrot,Cont2001}. Specifically, Gaussian models
+cannot produce the heavy tails and the asymmetry observed in 
+asset returns, which in turn implies a consistent underestimation of
+financial risks. 
+%\natp{\cite{Cont2001}}. \natp{\em [non-Gaussian is not
+  %very specific, a uniform r.v.\ is also non-Gaussian. Try to express
+ % this in a more meaningful way, e.g.\ Financial data are known to
+  %exhibit more extreme events than a normal distribution can capture.]}
+Therefore, to minimize downside risk, one cannot solely rely on
+second-order moment calculations. Moreover, variance as a risk measure
+does not account for the variety of investors' utility functions. In
+particular, it is known that  
+investors are tail-risk averse, see \cite{menezes1980increasing}.
+Copulae provide the flexibility to model multivariate random variables
+separately by their margins and dependence structure.
+The concept of copulae was originally developed (but not under this
+name) by Wassily Hoeffding \citep{hoeffding1940masstabinvariante}
+and later popularised by the work of Abe Sklar \citep{Sklar1959}.
+
+Different risk measures account for investors' risk attitudes.
+They serve as loss functions in the search process of the optimal
+hedge ratio. Of the vast literature discussing the relationship between
+risk measures and investors' risk attitudes, we refer readers to
+\citet{artzner1999coherent} for an axiomatic 
+approach of risk measure construction;
+\citet{embrechts2002correlation} for reasoning of using expected
+shortfall (ES) and spectral risk measures (SRM) in addition to
+value-at-risk (VaR);
+\citet{Acerbi2002} for direct linkages between risk measures and
+investor's risk attitudes using the concept of a ``risk aversion
+function''. 
+
+
+In order to capture a variety of risk preferences, in addition to
+variance, we include the risk measures value-at-risk (VaR), expected
+shortfall (ES), and spectral risk measures (SRM). 
+%Coherency is a very natural property that suggest diversification will reduce risk.
+VaR is widely used by the finance industry and easy to understand. 
+ES and SRM are chosen because of their coherence property, in
+particular, they recognize diversification benefits.
+SRM can also be directly related to an individual's utility function.
+Examples are the exponential SRM and power SRM introduced by
+\citet{dowd2008spectral}. 
+%\natp{\em [Careful with wording! The
+ %hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
+%In particular, the SRM proposed by \citet{Acerbi2002} accounts for investors' utility (i.e. risk preference).
+%SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion. In other words, 
+
+% \natp{\em [This needs not go in the introduction. Just briefly mention the risk measures, and possibly that ES and SRM are chosen because of their coherence.]}
+%\medskip
+%
+%\natp{The introduction should go along the lines:
+%  \begin{itemize}
+%  \item 1-2 sentence: Which problem is solved in this paper?
+%  \item Background Bitcoin: Growth, but roller-coaster ride, institutional investment,
+%    exchange-traded futures (the exchange is important!) (5 sentences,
+%    with references!)
+%  \item Significant tail risks and basis risk lead to the need to
+%    investigate even static hedges (=futures) with more refined
+%    methods than minimum-variance based (reference to Ederington
+%    here; this uses variance as risk measure and correlation as
+%    dependence measure).
+%  \item To capture empirical properties, extend to other risk measures
+%    and dependence models. 
+%  \end{itemize}
+%  }
+
+Evaluating the hedging effectiveness of crypto derivatives has been done by many researchers. 
+\citet{deng2020minimum} show that the crypto inverse futures is able to be used to hedge against BTC exposure.
+\citet{alexander2020bitmex} crypto derivatives on BitMEX not only play an important role in price discovery of BTC,
+ they can be used as hedging instrument to offset the movement of BTC price. 
+\citet{sebastiao2020bitcoin} present promising results of using BTC futures to hedge BTC and other CCs. 
+\citet{alexander2021hedging} extend the analysis to include the present of liquidation procedure in crypto exchanges. 
+They show that hedgers are able to manage the liquidation probability while keeping a reasonable hedging capability from crypto derivatives. 
+
+In this work, we study the effectiveness of hedging various CCs and
+CC indices using the CME BTC futures under copula models and different
+risk preferences. 
+Through an extensive backtest,\footnote{We thank the data provider
+  Tiingo (\href{https://www.tiingo.com/}{https://www.tiingo.com/}) for
+  providing the crypto price data.}
+ we find the ability of the CME BTC futures to hedge BTC and BTC-related
+ indices promising, regardless of the choice of the copula (with the
+ exception of the Frank copula) and risk measure. 
+On the other hand, the ability of the CME BTC futures to hedge other CCs and CC indices
+is affected by idiosyncratic factors such as regulatory factors and operational risk,
+but the overall hedging effectiveness to other cryptos and crypto indices is far lower
+than that to BTC.
+We discuss the characteristics of the hedged portfolios constructed by range of risk measures-copulae pairs.
+
+The paper is organized as follows. Section \ref{sec:optimal-hedge-ratio} introduces the notion of
+an optimal hedge ratio as well as the backtest procedure deployed in this work;
+Section \ref{sec:crm} presents the copulae used in this work as well as the calibration procedure;
+Section \ref{subsec:spectral-risk-measures} provides the risk measures;
+Section \ref{sec:results} discusses the backtest results; Finally,
+Section 5 concludes the findings. 
+All calculations in this work can be reproduced with the data and code
+available at \href{http://www.quantlet.com/}{www.quantlet.com
+  {\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{methodology.tex}
+% ----------------
+% --- Describe the methodology of finding the optimal h ---
+% ----------------
+
+%\input{results_new.tex}
+\input{results_new_new.tex}
+% ----------------
+% --- Results ---
+% ----------------
+
+\section{Conclusion and Outlook}\label{sec:conclusion-and-outlook}
+We study the effectiveness of hedging cryptos and crypto indices with
+Bitcoin futures.
+To accommodate different risk appetites and scenarios, a variety of
+commonly used risk measures are considered to determine the optimal
+hedge ratio. The risk measures comprise variance, value-at-risk at
+the confidence levels 95\% and 99\%, expected shortfall 95\% and 99\%,
+and the exponential risk measure with parameter $k=10$.
+
+At the time of writing, the crypto market is a vibrant and
+fast-developing market, causing cryptos to have complex and
+time-changing dependence structures with the Bitcoin futures.
+As a consequence, the dependence between the cryptos and the futures
+contract plays an important role in hedging as it determines the
+distribution of the portfolio returns. We therefore consider various
+copulae, a flexible statistical tool that separates modelling of the
+marginals and the dependence structure of multivariate random
+vectors. To address the potential time-changing dependence, we
+periodically re-calibrate the copula models and determine the
+best-fitting copula via AIC. 
+
+An extensive out-of-sample backtest suggests that the CME Bitcoin futures
+are consistently capable of hedging BTC and BTC-involved indices,
+i.e., BITX, CRIX, and BITW100, under different risk minimisation
+objectives 
+and copula models. The mean-square errors (MSEs) and lower
+semi-variances (LSVs) of the resulting portfolios are
+indistinguishable at a low level except for the Frank copula. 
+For BTC-related spot asset, the AIC procedure consistently
+pick the $t$-copula because it  
+captures the tail dependence feature of the data. 
+Compared to the unhedged cases, the
+portfolios' out-of-sample maximum drawdowns are significantly reduced. 
+
+Contrarily, we observe diverse results of the capability of BTC
+futures to hedge other cryptos and crypto indices that exclude Bitcoin. 
+In general, ES 95\% and VaR 95\% perform better than their 99\%
+in terms of mean square error (MSE) and lower semi variance (LSV).
+In particular, minimising ES 99\% leads to relatively
+high MSEs and LSVs regardless of the copula in use. The ES 99\% and
+VaR 99\% even result in out-of-sample maximum drawdowns that are
+higher than that of the 95\% counterparts in some portfolios, 
+for example in the ETH- and LTC-BTCF portfolios.
+Therefore, we conclude that overly emphasising tail risks by choosing
+extreme tail risk measures does not lead to a promising hedge in a
+cross-hedging setting. 
+
+As an intermediate step in determining the optimal hedge ratio, we report also the results from the AIC procedure.
+The procedure mainly favours the rotated Gumbel and the NIG
+factor copula while modelling non-BTC relate cryptos and indices. This
+reflects the systematic nature of 
+downward movements in the crypto market. Interestingly, the best-fitting
+copula does not necessary lead to the best performing portfolio in
+terms of MSE or LSV. This is the case, for example, for ADA. 
+We suspect that this discrepancy between the optimal copula selection and
+MSE-LSV results can be attributed to the static linear nature of the
+hedge, as the sole hedge instrument is a futures contract; the
+hedge is not sophisticated enough to react to the more involved
+dependence structure.
+
+% \section{Discussion}\label{sec:discussion}
+
+% \natp{\em [What is the goal of the discussion? If I remember correctly
+%   we wanted to mention that we use CME data as we have an
+%   institutional trader as a market maker in mind. This should go into
+%   the introduction. If you want to include policy makers, can you
+%   summarise this in a few sentences? Otherwise, we should leave this
+%   out, as we are not aiming at policy advice in this paper.]}
+
+% \textit{Cryptohedgers}: Our results and conclusion are drawn using a non-parametric way, kernel density estimation,
+% to fit the marginal density of the crypto and futures returns because we intend to leave the modelling of marginal distributions flexible and generic.
+% Copula provides the flexibility to model marginal distributions separately.
+% That means the model assumption and parametrisation for spot and futures can be different.
+% This empowers hedgers to make use of variety of statistical tools to model the marginal distributions according to asset specific features they are interested,
+% to enhance the model predictability, and hence, to improve the hedging effectiveness.
+% For example, one can use various types of GARCH to deal with clustered volatility observed from the spot while using structural time series to deal with seasonality in futures;
+% alternatively, using Hawkes processes to deal with clustered jumps in spots and futures without modelling the spillover or co-jumps in the marginal distribution.
+% Hedgers are allowed to be creative in this regard. In fact, many researchers have enriched the understanding of the crypto market dynamics,
+% see for example \citet{kaiser2019seasonality}, \citet{gyamerah2022modelling}, and \citet{mark2022quantifying}.
+% Although the hedging effectiveness of combining various statistical tools with copula remain an open question,
+% our analysis shows that hedgers have the freedom to choose the copula (except the Frank copula) to model the dependence structure,
+% whereas t, Plackett, Gaussian Mix independent, rotated Gumbel and NIG copula appear to be conservative choices to start the analysis.
+
+With further analysis, the conclusion drawn from this study can also be applied to crypto market related policy making.
+Our results connect to the discussion of whether authority should allow crypto futures hedge as basis to lower the minimum capital requirements inflicted by crypto exposure.
+While the debates carry on at the time of writing
+\footnote{See the Basel Committee on Banking Supervision proposals and consultative documents about prudential treatment of banks' crypto-asset exposures from \url{https://www.bis.org/bcbs/publ/d533.htm}.}
+, our results align and can be seen as an extension of the existing researches made by stakeholders,
+for example, research done by CME \footnote{See the CME and KPMG's reports on \url{https://www.cmegroup.com/education/files/basics-of-hedge-effectiveness.pdf}.},
+and International Swaps and Derivatives Association's report \footnote{See the ISDA report "Crypto-asset Risks and Hedging Analysis" on \url{https://www.isda.org/a/pMWgE/Crypto-asset-Risks-and-Hedging-Analysis.pdf}.}.
+Nonetheless, further studies are required to rule out or understand the risks other than market risk, e.g. operation risk and counterparty risk. 
+On the other hand, our results provide partial evidences in supporting separate regulatory treatments of cryptos with a matured regulated derivatives market and those without. 
+Our results show a clear distinction between the hedging effectiveness of BTC futures to BTC related assets and BTC unrelated assets. 
+Hedgers are empowered by the BTC futures to manage their BTC and BTC-related exposure, but not the other crypto exposures.
+Further studies are required to generalise the hedging effectiveness of other crypto-futures pairs. 
+
+% relationship between existence of derivatives market and the availability 
+
+% A general case 
+
+% the that solely references the cryptoasset empowers market participants to hedge their corresponding crypto position,
+% thus it is sensible to 
+
+
+% Cryptos without a derivatives market make hedgers harder to offset the movements. 
+
+% A general case the existence of derivative that solely references the cryptoasset empowers market participants to hedge their corresponding crypto position,
+% thus it is sensible to treat the aforementioned Group 2a and 2b differently.
+
+% cryptoassets categorisation criteria proposed by the Basel Committee.
+
+% The Basel Committee on Banking Supervision (BCBS) has made proposals and released consultative documents for the prudential treatment of banks' crypto-asset exposures.
+% The Basel chair's stand on placing tough capital rules for crypto assets \footnote{See \url{https://www.risk.net/regulation/7948536/basel-chair-stands-by-tough-capital-rules-for-crypto-assets}} attracted discussion.
+% The Second Consultation proposes to limit banks' exposures to Group 2 cryptoassets to 1\% of the bank's Tier 1 capital,
+% calculated on a "double-gross" basis by adding the long and short positions without any hedging recognition
+% $\text{Net position} = \max \left(
+% \text{Long position}, |\text{Short position}|
+% \right)
+% - .65 \min\left(
+% \text{Long position}, |\text{Short position}|
+% \right)$ (60.66).
+% Respondents to the consultations argued that the proposed methodology of calculating exposure is an extremely restrictive quantitative measure that prohibits banks to manage limit utilisation to crypto assets as the addition of a hedge instrument;
+% a price increase of the underlying cryptoassets could make banks breaching the limit.
+% According to our results, BTC position's market risk measured in various risk measures,
+% even for VaR99\% and ES99\%, can be effectively reduced by an appropriate size of opposite position in CME BTC futures.
+
+% In the Second Consultation, Group 2 cryptoassets (Group 1 CCs are digitally tokenised traditional assets) are divided into two subcategories,
+% Group 2a are the CCs that exists a derivative or exchange-traded fund (ETF)/exchange-traded note (ETN) that is traded on a regulated exchange that solely references the cryptoasset;
+% Group 2b are the CCs that fail to meet the requirement.
+% Our results suggest that the existence of derivative that solely references the cryptoasset empowers market participants to hedge their corresponding crypto position,
+% thus it is sensible to treat the aforementioned Group 2a and 2b differently.
+% On the contrary, we show that the hedging effectiveness significantly lower than 1 when the spot is different from what the CME futures is referencing, i.e. the cross hedge setting.
+% That means the risk of holding a CC cannot be perfectly cross hedged by including the CME futures.
+% Even worse, we observe negative HEs in some of the bootstrapped samples.
+% From the great difference in hedging effectiveness between the BTC-BTCF and other cross hedge portfolios,
+% we conclude that the existance of derivative that solely reference the cryptoasset is a sensible choice of crtyptoassets categorisation criteria
+% as it reflects assessibility of market participants to form risk reduction strategy.
+
+\clearpage
+%
+\bibliography{finance} %
+%\newpage
+\appendix
+% \section{Appendix}
+\section{Density of linear combination of random variables}
+\label{sec:appendix}
+\begin{proposition}
+   Let $\bm{X} = (X_1, ..., X_d)^\top$ be real-valued random variables with corresponding
+   copula density $\bm{c}_{X_1, ..., X_d}$, and continuous marginals $F_{X_1}, ..., F_{X_d}$.
+   Then, the
+   pdf of the linear combination of marginals $Z = n_1 \cdot X_1 +
+   ... +  n_d \cdot X_d $ is
+   \begin{align}
+   f_Z(z) &= \left| n_1^{-1} \right| \int_{[0,1]^{d-1}} \bm{c}_{X_1,...,X_d}
+      \left(F_{X_1} (S(z)), u_2, ..., u_d \right) \cdot
+      f_{X_1} (S(z)) \dd u_2 ... \dd u_d, \label{density}
+   \end{align}
+   with
+   \begin{align*}
+      S(z) &= \frac{1}{n_1}\cdot z - \frac{n_2}{n_1} \cdot F^{(-1)}_{X_2}(u_2) - ... -  \frac{n_d}{n_1} \cdot F^{(-1)}_{X_d}(u_d).
+      \end{align*}
+   \end{proposition}
+
+\begin{proof}
+  Let
+    \[\mathbf A=\displaystyle \begin{bmatrix}
+      n_1    & n_2  & \cdots &    & n_d     \\
+      0      & 1    & \cdots  &    & 0       \\
+      0      & 0    & 1 &  \cdots & 0       \\
+      \vdots &      & & \ddots & \vdots \\
+      0      & \cdots &       & 1  \\
+    \end{bmatrix}.\]
+    Then,
+    \begin{equation*}
+      \begin{bmatrix}
+        Z \\ X_2 \\ \vdots \\ X_d
+      \end{bmatrix}
+      = \bm{A}
+      \begin{bmatrix}
+         X_1 \\ X_2 \\ \vdots \\ X_d
+      \end{bmatrix}.
+    \end{equation*}
+
+   By transformation of the variables~\citep[Section 4.3]{hardle2019applied},
+   \begin{align*}
+      \bm{f}_{Z,X_2,...,X_d}(z, x_2, ...,x_d) &= \bm{f}_{X_1,...,X_d}\left( \bm{A}^{-1}
+      \begin{bmatrix}
+         z \\ x_2 \\ \vdots \\ x_d
+      \end{bmatrix}
+      \right)  \cdot |\det \bm{A}^{-1}| \\
+      &= \left| n_1^{-1} \right| \bm{f}_{X_1,...,X_d}\left(S(z), x_2,...,x_d\right).
+      \end{align*} \medskip
+
+   Let $u_i = F_{X_i}(x_i)$. By chain rule we have
+   \begin{align*}
+       \bm{f}_{X_1,...,X_d}(x_1,...,x_d) &= \frac{\partial^d F_{X_1,...,X_d}(x_1, ..., x_d)}{\partial x_1 ... \partial x_d}\\
+                                         &= \bm{c}_{X_1,...,X_d}(u_1, ..., u_d) \cdot \prod_{i=1}^d f_{X_i}(x_i).
+   \end{align*}
+
+    Therefore,
+   \begin{align*}
+      \bm{f}_{Z,X_2,...,X_d}&(z, x_2, ...,x_d) = \\
+       \left| n_1^{-1} \right| &\cdot
+      \bm{c}_{X_1,...,X_d}\left(F_{X_1}( S(z)), u_2, ...,  u_d\right)  \cdot
+      f_{X_1} \{ S(z) \} \cdot
+      \prod_{i=2}^d f_{X_i}(x_i).
+      \end{align*}
+
+   The claim (\ref{density}) is obtained by integrating out $x_2, ... x_d$ by substituting $\dd x_i = \frac{1}{f_{X_i}(x_i)} \dd u_i$.
+   \end{proof}
+
+%\clearpage
+
+%\include{_tables/summaryStatistics}
+% \input{_tables/summaryStatistics}
+% \input{_tables/combinedSummaryStatistics}
+
+\section{Summary Statistics}\label{appendix:summary_stats}
+
+{\small %
+  \begin{table}[th] \centering %\resizebox{\textwidth}{!}
+    {%
+\begin{tabular}{lrrrrrrrr} \toprule
+         {} &    Mean \% &     Std \% &      Skew &       Kurt &         MD \% &     MD date & $\rho$ & $\tau$ \\
+\midrule
+     \multicolumn{9}{l}{Hedging Instrument} \\
+\ \ \ BTCF    &  0.3906 &  4.6312 & -0.5060 &   4.4204 & -26.9920 &  2020-03-12 &  1.0000 &  1.0000 \\
+     \multicolumn{9}{l}{Individual Cryptos}                                                                                 \\
+\ \ \ BTC     &  0.3915 &  4.4023 & -0.5857 &   4.6565 & -25.9965 &  2020-03-12 &  0.9975 &  0.9507 \\
+\ \ \ ETH     &  0.6819 &  6.0103 & -0.2557 &   5.2646 & -32.0144 &  2020-03-12 &  0.7712 &  0.5988 \\
+\ \ \ ADA     &  0.9467 &  6.6990 &  0.1661 &   2.3086 & -26.8528 &  2020-03-12 &  0.6296 &  0.4825 \\
+\ \ \ LTC     &  0.3227 &  6.4781 & -0.9935 &   5.3011 & -37.5913 &  2021-05-19 &  0.8080 &  0.6113 \\
+\ \ \ XRP     &  0.2987 &  7.9843 &  0.5542 &  12.4882 & -52.7652 &  2020-12-23 &  0.4510 &  0.4939 \\
+   \multicolumn{9}{l}{Crypto Indices with BTC Constituent}                                                                  \\
+\ \ \ BITX    &  0.4308 &  4.5676 & -0.8842 &   4.7222 & -27.0220 &  2020-03-12 &  0.9769 &  0.8738 \\
+\ \ \ CRIX    &  0.4602 &  4.5420 & -0.7952 &   4.7549 & -27.1385 &  2020-03-12 &  0.9799 &  0.8769 \\
+\ \ \ BITW100 &  0.4683 &  4.6174 & -0.9864 &   4.9381 & -27.2694 &  2020-03-12 &  0.9674 &  0.8537 \\
+    \multicolumn{9}{l}{Crypto Indices without BTC Constituent}                                                              \\
+\ \ \ BITW20  &  0.6249 &  5.5021 & -1.1518 &   5.2203 & -31.0092 &  2020-03-12 &  0.7674 &  0.5883 \\
+\ \ \ BITW70  &  0.6353 &  5.8155 & -1.1171 &   5.1926 & -32.3453 &  2021-05-19 &  0.7525 &  0.5459 \\
+\bottomrule
+\end{tabular}}
+\caption{Summary statistics of assets' daily returns during the out-of-sample period, from 2019-10-21 to 2021-05-27.
+        The first four columns are the first four moments of assets' daily returns.
+        The fifth and sixth columns are the maximum drawdown (MD) and the date of the MD.
+        The last two columns are Pearson's $\rho$s and Kendall's $\tau$s between the assets and BTCF. }
+\label{tab:SSA}
+
+\end{table}
+}
+
+\clearpage
+\newpage
+% \section{Summary Statistics of Hedged Portfolios}\label{sec:SSHP}
+{\small %
+  \begin{table}[h] \centering %\resizebox{\textwidth}{!}
+    {%
+\begin{tabular}{lrrrrrrr} \toprule
+         {} &    Mean \% &     Std \% &      Skew &       Kurt &         MD \% &     MD date & Variance \\
+\midrule
+     \multicolumn{7}{l}{Individual Cryptos}                                                                                 \\
+\ \ \ BTC     &  0.0215 &  0.3221 & -1.0119 &   3.1929 &  -1.4393 &  2020-11-30 &    0.0000 \\
+\ \ \ ETH     &  0.2823 &  3.8741 &  0.9469 &   7.1064 & -17.7421 &  2021-05-19 &    0.0015 \\
+\ \ \ ADA     &  0.5617 &  5.2722 &  1.3634 &   4.4818 & -13.8687 &  2021-01-08 &    0.0028 \\
+\ \ \ LTC     & -0.0871 &  3.9052 & -0.3617 &   7.6239 & -28.3029 &  2021-05-19 &    0.0018 \\
+\ \ \ XRP     & -0.0123 &  7.1537 &  1.1451 &  20.0236 & -52.5236 &  2020-12-23 &    0.0043 \\
+   \multicolumn{7}{l}{Crypto Indices with BTC Constituent}                                                                  \\
+\ \ \ BITX    &  0.0561 &  0.9954 & -0.4204 &  13.2487 &  -7.7567 &  2021-05-19 &    0.0001 \\
+\ \ \ CRIX    &  0.0812 &  0.9183 & -0.0027 &  14.3136 &  -7.1025 &  2021-05-19 &    0.0001 \\
+\ \ \ BITW100 &  0.0855 &  1.1986 & -1.7440 &  22.2644 & -11.3866 &  2021-05-19 &    0.0001 \\
+    \multicolumn{7}{l}{Crypto Indices without BTC Constituent}                                                              \\
+\ \ \ BITW20  &  0.2429 &  3.5846 & -0.3063 &   4.1622 & -21.4680 &  2021-05-19 &    0.0013 \\
+\ \ \ BITW70  &  0.2706 &  3.8838 & -0.6490 &   4.6312 & -23.9984 &  2021-05-19 &    0.0015 \\
+\bottomrule
+\end{tabular}}
+\caption{Summary statistics of out-of-sample daily returns of hedged portfolios that minimize variance.}
+\label{tab:var_rh}
+
+\end{table}\begin{table}[!] \centering %\resizebox{\textwidth}{!}
+  {%
+\begin{tabular}{lrrrrrrr} \toprule
+         {} &    Mean \% &     Std \% &      Skew &       Kurt &         MD \% &     MD date & VaR 5\% \\
+\midrule
+     \multicolumn{7}{l}{Individual Cryptos}                                                                                 \\
+\ \ \ BTC     &  0.0253 &  0.3294 & -0.9725 &   3.4373 &  -1.5347 &  2020-11-30 &  0.0063 \\
+\ \ \ ETH     &  0.3084 &  3.8944 &  1.0243 &   7.4297 & -19.1750 &  2021-05-19 &  0.0514 \\
+\ \ \ ADA     &  0.5726 &  5.2204 &  1.2981 &   4.2544 & -14.6974 &  2021-05-19 &  0.0769 \\
+\ \ \ LTC     & -0.0742 &  3.9145 & -0.3836 &   7.5384 & -28.3672 &  2021-05-19 &  0.0622 \\
+\ \ \ XRP     &  0.0208 &  7.1520 &  1.1269 &  19.8930 & -52.5667 &  2020-12-23 &  0.0683 \\
+   \multicolumn{7}{l}{Crypto Indices with BTC Constituent}                                                                  \\
+\ \ \ BITX    &  0.0562 &  0.9930 & -0.3117 &  12.4780 &  -7.5639 &  2021-05-19 &  0.0128 \\
+\ \ \ CRIX    &  0.0863 &  0.9151 &  0.0718 &  13.7915 &  -6.9744 &  2021-05-19 &  0.0092 \\
+\ \ \ BITW100 &  0.0846 &  1.1980 & -1.6592 &  21.3725 & -11.2582 &  2021-05-19 &  0.0164 \\
+    \multicolumn{7}{l}{Crypto Indices without BTC Constituent}                                                              \\
+\ \ \ BITW20  &  0.2728 &  3.5940 & -0.3721 &   4.4896 & -22.0733 &  2021-05-19 &  0.0546 \\
+\ \ \ BITW70  &  0.2847 &  3.9133 & -0.6580 &   4.7874 & -24.6513 &  2021-05-19 &  0.0626 \\
+\bottomrule
+\end{tabular}}
+\caption{Summary statistics of out-of-sample daily returns of hedged portfolios that minimize VaR 5\%.}
+\label{tab:VaR5_rh}
+
+\end{table}\begin{table}[!] \centering %\resizebox{\textwidth}{!}
+  {%
+\begin{tabular}{lrrrrrrr} \toprule
+         {} &    Mean \% &     Std \% &      Skew &       Kurt &         MD \% &     MD date & VaR 1\% \\
+\midrule
+     \multicolumn{7}{l}{Individual Cryptos}                                                                                 \\
+\ \ \ BTC     &  0.0176 &  0.3270 & -1.0405 &   3.3742 &  -1.5689 &  2020-11-30 &  0.0134 \\
+\ \ \ ETH     &  0.2977 &  3.9132 &  0.9547 &   7.2414 & -18.6061 &  2021-05-19 &  0.1026 \\
+\ \ \ ADA     &  0.5562 &  5.3466 &  1.1362 &   3.9334 & -15.4795 &  2021-05-19 &  0.1106 \\
+\ \ \ LTC     & -0.0852 &  4.1503 & -0.7234 &   7.3208 & -29.0915 &  2021-05-19 &  0.1030 \\
+\ \ \ XRP     &  0.0352 &  7.1658 &  1.1582 &  19.8506 & -52.5727 &  2020-12-23 &  0.1387 \\
+   \multicolumn{7}{l}{Crypto Indices with BTC Constituent}                                                                  \\
+\ \ \ BITX    &  0.0593 &  1.0178 & -0.5331 &  13.3100 &  -8.0299 &  2021-05-19 &  0.0247 \\
+\ \ \ CRIX    &  0.0738 &  0.9695 & -0.4729 &  13.6500 &  -7.0185 &  2021-05-19 &  0.0245 \\
+\ \ \ BITW100 &  0.0823 &  1.2338 & -1.9365 &  23.1938 & -11.8752 &  2021-05-19 &  0.0347 \\
+    \multicolumn{7}{l}{Crypto Indices without BTC Constituent}                                                              \\
+\ \ \ BITW20  &  0.2499 &  3.6210 & -0.3866 &   4.3396 & -21.6634 &  2021-05-19 &  0.0988 \\
+\ \ \ BITW70  &  0.2788 &  3.9257 & -0.7635 &   5.1288 & -24.5294 &  2021-05-19 &  0.1147 \\
+\bottomrule
+\end{tabular}}
+\caption{Summary statistics of out-of-sample daily returns of hedged portfolios that minimize VaR 1\%.}
+\label{tab:VaR1_rh}
+
+\end{table}\begin{table}[!] \centering %\resizebox{\textwidth}{!}
+  {%
+\begin{tabular}{lrrrrrrr} \toprule
+         {} &    Mean \% &     Std \% &      Skew &       Kurt &         MD \% &     MD date & ES 5\% \\
+\midrule
+     \multicolumn{7}{l}{Individual Cryptos}                                                                                 \\
+\ \ \ BTC     &  0.0204 &  0.3234 & -1.0150 &   3.4423 &  -1.5629 &  2020-11-30 &  0.0101 \\
+\ \ \ ETH     &  0.3082 &  3.8890 &  1.0119 &   7.4077 & -18.7819 &  2021-05-19 &  0.0782 \\
+\ \ \ ADA     &  0.5525 &  5.2673 &  1.2557 &   4.2423 & -14.9647 &  2021-05-19 &  0.0984 \\
+\ \ \ LTC     & -0.0808 &  3.9829 & -0.4957 &   7.2302 & -28.4608 &  2021-05-19 &  0.0962 \\
+\ \ \ XRP     &  0.0176 &  7.1533 &  1.1411 &  19.9176 & -52.5698 &  2020-12-23 &  0.1354 \\
+   \multicolumn{7}{l}{Crypto Indices with BTC Constituent}                                                                  \\
+\ \ \ BITX    &  0.0591 &  1.0065 & -0.3453 &  12.1335 &  -7.6211 &  2021-05-19 &  0.0215 \\
+\ \ \ CRIX    &  0.0777 &  0.9207 &  0.0164 &  13.5608 &  -6.9894 &  2021-05-19 &  0.0173 \\
+\ \ \ BITW100 &  0.0848 &  1.2125 & -1.6397 &  19.7472 & -11.1357 &  2021-05-19 &  0.0274 \\
+    \multicolumn{7}{l}{Crypto Indices without BTC Constituent}                                                              \\
+\ \ \ BITW20  &  0.2608 &  3.6115 & -0.3555 &   4.2016 & -21.5430 &  2021-05-19 &  0.0804 \\
+\ \ \ BITW70  &  0.2785 &  3.9157 & -0.6949 &   4.8047 & -24.3474 &  2021-05-19 &  0.0908 \\
+\bottomrule
+\end{tabular}}
+\caption{Summary statistics of out-of-sample daily returns of hedged portfolios that minimize ES 5\%.}
+\label{tab:ES5_rh}
+
+\end{table}\begin{table}[!] \centering %\resizebox{\textwidth}{!}
+  {%
+\begin{tabular}{lrrrrrrr} \toprule
+         {} &    Mean \% &     Std \% &      Skew &       Kurt &         MD \% &     MD date & ES 1\% \\
+\midrule
+     \multicolumn{7}{l}{Individual Cryptos}                                                                                 \\
+\ \ \ BTC     &  0.0148 &  0.3476 & -0.8354 &   3.3054 &  -1.6225 &  2020-11-30 &  0.0234 \\
+\ \ \ ETH     &  0.3080 &  3.8954 &  0.9840 &   7.4947 & -18.7625 &  2021-05-19 &  0.1299 \\
+\ \ \ ADA     &  0.5016 &  5.4040 &  1.1008 &   3.9607 & -15.4481 &  2021-05-19 &  0.1463 \\
+\ \ \ LTC     & -0.1029 &  4.1581 & -0.7757 &   7.4375 & -29.1727 &  2021-05-19 &  0.1647 \\
+\ \ \ XRP     & -0.0200 &  7.2887 &  1.1121 &  18.8732 & -52.5700 &  2020-12-23 &  0.2516 \\
+   \multicolumn{7}{l}{Crypto Indices with BTC Constituent}                                                                  \\
+\ \ \ BITX    &  0.0598 &  1.0312 & -0.4410 &  11.5863 &  -7.7424 &  2021-05-19 &  0.0411 \\
+\ \ \ CRIX    &  0.0835 &  0.9461 & -0.0361 &  12.4047 &  -7.0203 &  2021-05-19 &  0.0350 \\
+\ \ \ BITW100 &  0.0781 &  1.2640 & -1.9645 &  21.8836 & -11.9263 &  2021-05-19 &  0.0593 \\
+    \multicolumn{7}{l}{Crypto Indices without BTC Constituent}                                                              \\
+\ \ \ BITW20  &  0.2538 &  3.6323 & -0.4086 &   4.4462 & -21.9866 &  2021-05-19 &  0.1282 \\
+\ \ \ BITW70  &  0.2660 &  3.9320 & -0.7598 &   5.0050 & -24.4764 &  2021-05-19 &  0.1535 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Summary statistics of out-of-sample daily returns of hedged portfolios that minimize ES 1\%.}
+\label{tab:ES1_rh}
+
+\end{table}\begin{table}[!] \centering %\resizebox{\textwidth}{!}
+  {%
+\begin{tabular}{lrrrrrrr} \toprule
+         {} &    Mean \% &     Std \% &      Skew &       Kurt &         MD \% &     MD date & ERM k=10 \\
+\midrule
+     \multicolumn{7}{l}{Individual Cryptos}                                                                                 \\
+\ \ \ BTC     &  0.0223 &  0.3221 & -1.0008 &   3.4153 &  -1.5242 &  2020-11-30 &    0.0057 \\
+\ \ \ ETH     &  0.3117 &  3.8679 &  1.0345 &   7.5751 & -18.8729 &  2021-05-19 &    0.0491 \\
+\ \ \ ADA     &  0.5722 &  5.3590 &  1.4203 &   4.6970 & -14.3885 &  2021-01-08 &    0.0700 \\
+\ \ \ LTC     & -0.0512 &  3.8812 & -0.2929 &   7.7022 & -28.0879 &  2021-05-19 &    0.0616 \\
+\ \ \ XRP     &  0.0155 &  7.1579 &  1.1244 &  19.8583 & -52.5689 &  2020-12-23 &    0.0787 \\
+   \multicolumn{7}{l}{Crypto Indices with BTC Constituent}                                                                  \\
+\ \ \ BITX    &  0.0590 &  1.0078 & -0.4427 &  13.0839 &  -7.8581 &  2021-05-19 &    0.0127 \\
+\ \ \ CRIX    &  0.0840 &  0.9087 &  0.0488 &  14.5501 &  -7.0530 &  2021-05-19 &    0.0100 \\
+\ \ \ BITW100 &  0.0853 &  1.2032 & -1.6522 &  20.5562 & -11.1846 &  2021-05-19 &    0.0153 \\
+    \multicolumn{7}{l}{Crypto Indices without BTC Constituent}                                                              \\
+\ \ \ BITW20  &  0.2564 &  3.6009 & -0.3446 &   4.2152 & -21.5920 &  2021-05-19 &    0.0503 \\
+\ \ \ BITW70  &  0.2818 &  3.9074 & -0.6952 &   4.8745 & -24.5250 &  2021-05-19 &    0.0557 \\
+\bottomrule
+\end{tabular}}
+\caption{Summary statistics of out-of-sample daily returns of hedged portfolios that minimize ERM $k=10$.}
+\label{tab:ERM_rh}
+
+\end{table}
+}
+
+\clearpage
+\section{Supplementary Material: Intraday Hedging}\label{sec:intraday}
+
+% \natp{\em [This section must be shortened significantly. It is not
+%   necessary to repeat everything, just point out the differences.]}
+
+% This supplementary material extends the study in the main body to an
+% intraday rebalancing setting. \natp{\em [Do we really have intraay
+%   rebalancing? Or just intraday P\&L? If rebalancing, then clarify.]}
+Here we extend the hedging effectiveness analysis to intraday data again through backtesting.
+BTC and ETH are chosen as spot to be hedged against by BTCF. 
+The backtesting procedure in this section is the same to that of the main body, except the followings:
+\begin{enumerate}
+  \item recalibration and rebalancing frequencies are increased to every 4 hours,
+  \item lengths of training data and test data are changed to 336 (equivalent to 14 days) and 4 respectively, and
+  \item the stationary bootstrapping parameters are changed to $p=1/4, T=336, S=1000$ to adapt to the new rebalancing frequency. 
+\end{enumerate}
+
+The increased recalibration and rebalancing frequencies require hourly data that CME does not provide, 
+causing us to backtest with data from less regulated crypto exchanges.
+
+We collect price data from Deribit from 2020-06-01 00:00 UTC to 2020-08-01 00:00 UTC. 
+All price data are hourly data.
+The Deribit contract BTC-25SEP20 represents BTCF;
+the Deribit BTC and ETH index represent the spot of BTC and ETH, respectively.
+We take the hourly closing mid-price of the BTC-25SEP20 as the futures price and the last value of the BTC and ETH index in every hourly bucket as the spot prices.
+Since the date range of the data is fully covered by the lifetime of BTC-25SEP20, this study does not require futures contract rollover.
+
+Note that the exact values of MSE, LSV or HE from the two rebalancing schedules shall not be directly compared for two reasons: 1. The data are from different date ranges; 2. Various factors contribute to the difference between two sampling frequencies, e.g. Epps effect, microstructure noise,
+and asynchronous trading.
+However, we compare the patterns and conclusions of the two to get a general understanding of the hedging issue for future use.
+
+% \natp{\em [From my point of view there is no need to motivate intraday
+%   risk management.]}
+% Studying the intraday hedge is familiar to academia, 
+% e.g. \citet{harris2010limits}, \citet{dungey2013impact},
+% \citet{tse2013does}, and \citet{sheu2014incremental}.
+
+% Numerous studies on the crypto market are associated with or motivated
+% by the presence of intraday traders as well, 
+% e.g. \citet{petukhina2021rise}, \citet{meshcheryakov2020ethereum},
+% \citet{alexander2022role}, \citet{zhang2022data} and
+% \citet{katsiampa2022high}. 
+
+% \natp{(delete: We have in view to robustify the results from the main body.)}
+
+% \begin{enumerate}
+% \item form two hedging portfolios, BTC-BTCF and ETH-BTCF,
+% \item simulate trades using Deribit hourly data, and
+% \item rebalance every four hours.
+% \end{enumerate}
+
+
+% \subsubsection{Procedure}
+% Starting from oldest data:
+% \begin{enumerate}
+%     \item Calibrate a copula by a training data of 336 datapoints, equivalent to 14 days data
+%     \item Draw samples $(\tilde r_s, \tilde r_f)$ from the calibrated copula
+%     \item Numerically search for $h^* = \arg \max \phi(\tilde r_s - h\tilde r_f)$ according to a risk measure $\phi$
+%     \item Apply $h^*$ to testing data to yield $r_h$; the testing data is the consecutive 4 data points to training data, i.e. the 4 hours data consecutive to the last training data
+%     \item Repeat the procedure for the next 4 datapoints
+%     \item Concatenate $r_h$s the and sort chronologically to form a full length out-of-sample hedging portfolio returns
+% \end{enumerate}
+
+% The procedure is further repeated for all the combinations of risk measures and copulae.
+% The full-length out-of-sample returns represent the corresponding performance of a particular risk measure-copula combination.
+% They are used in computation mean square error (MSE) and lower-semi-variance (LSV) shown in the following section.
+
+% The AIC selection step is performed between Steps 1 and 2 of the procedure above.
+% The resulting out-of-sample returns are a mix of results from the copula that has the lowest AIC on the training data.
+% We keep a record of how many times a copula is choosen by this step.
+% To yield robust HE measures, we apply stationary bootstrapping to the
+% full-length AIC selected out-of-sample returns with the following
+% parameters: $p=1/4, T=336, S=1000$. 
+
+% \subsection{Results}
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{_pics/intraday_HE.pdf}
+  \caption{Intraday HEs of BTC-BTCF and ETH-BTCF portfolio. The HEs of BTC-BTCF portfolios are significantly higher than $0$,
+which suggests involving the BTCF in the portfolio can effectively reduce market risk.
+The HEs of ETH-BTCF portfolios are lower than that of BTC-BTCF portfolios, and sometimes go below $0$.
+We nullify the hedging ability of BTCF in this intraday ETH-BTCF setting.
+  \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/intraday/figure 13.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:HEboxplot_intraday}
+\end{figure}
+
+% \textit{Bootstrapped out-of-sample HEs}:
+Figure \ref{fig:HEboxplot_intraday} presents the bootstrapped out-of-sample HEs. 
+In general, the daily rebalancing results of BTC-BTCF carry over to the intraday rebalancing schedule;
+The intraday rebalancing ETH-BTCF is different from its daily rebalancing counterpart.
+The main difference between the intraday rebalancing and daily
+rebalancing ETH-BTCF portfolio is that negative HEs appear in the
+intraday results in all the risk measures we consider. 
+This implies that hedgers cannot gain hedging potential from intraday dependence between BTC and ETH to hedge an ETH crypto position. 
+% \natp{(delete: 
+% The negative HEs suggests that BTCF should not be used to hedge against ETH in an intraday setting.
+% Consider also the fact that BTCF is written on BTC instead of ETH, hedgers have no ground to assume they can take advantage of the intraday dependency structure between ETH and BTCF for hedging.
+% Therefore, we mainly focus on the BTC-BTCF portfolios and mentioning
+% the results of the ETH-BTCF portfolio is needed.)} 
+
+
+Turning to BTC-BTCF, the HEs of BTC-BTCF are
+significantly higher than zero across different risk measures,
+suggesting that adding BTCF to a BTC portfolio can effectively reduce
+the risk measured by selected measures.
+Among risk measures, HE of variance is the highest, ranging between 72\% to 98\%, while the
+  HE's other risk measures range between 25\% to 80\%.
+Reducing variance being a well-achievable objective is
+consistent with the findings of the daily rebalancing schedule.
+On the other hand, the HEs of ES99\% and VaR99\% are relatively more dispersed and skewed to the left.
+Both risk measures consider only 1\% of the data from the left for deciding the hedge ratio and computing the HEs.
+Considering only a few data points naturally leads to a less reliable hedge ratio and lower consistency HEs.
+Evidence also shows that ES99\% VaR99\% minimising portfolios have higher MSE and LSV.
+This result is again consistent with the daily rebalancing setting.
+
+
+\begin{figure}[t]
+  \begin{center}
+    \includegraphics[width=.65\textwidth]{_pics/intraday_BTC_MSEs.pdf}
+  \end{center}
+  \caption{Intraday out-of-sample MSEs of the BTC-BTCF portfolio constructed by combinations of copula and risk measures.
+    The Frank copula is again inferior. Minimising ES99\% results in higher MSEs disregard of which copula is in use.
+  \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/intraday/gen_MSEs_LSVs.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
+}
+\label{fig:BTC_MSE}
+\end{figure}
+
+\begin{figure}[t]
+  \begin{center}
+    \includegraphics[width=.65\textwidth]{_pics/intraday_BTC_LSVs.pdf}
+  \end{center}
+  \caption{Intraday out-of-sample LSVs of the BTC-BTCF portfolio constructed by combinations of copula and ris minimization objectives.
+    The Frank copula is again inferior. Minimising ES99\% results in higher MSEs disregard of which copula is in use.
+  \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/intraday/gen_MSEs_LSVs.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:BTC_LSV}
+\end{figure}
+
+Figures \ref{fig:BTC_MSE} and \ref{fig:BTC_LSV} report the
+out-of-sample MSE and LSV of the BTC-BTCF when different copulae and
+risk measures are in use. The MSEs and LSVs share similar patterns to that of the daily rebalancing
+setting. 
+Across various copulae, the BTC-BTCF portfolio that minimises VaR95\%
+provides the lowest MSE and LSV. 
+Portfolios that minimise variance and ERM with $k=10$ are close in MSEs and LSVs,
+The MSEs and LSVs are slightly higher than that of VaR95\%, especially when Gumbel and NIG copulae
+are in use to model the dependence. ES99\% generates the highest MSEs
+and LSVs, regardless of the copula. 
+
+Across various risk measures, Gumbel and NIG copulae perform
+well in the resulting portfolios’ MSE and LSV, except for
+ES99\%. 
+The Frank copula performs worst, regardless of the risk measure. 
+These results are consistent with the daily rebalancing setting and
+conclusion drawn in \citet[p.667]{barbi2014copula}. 
+% As Gumbel and NIG are the only copulae that can model upper
+% tail dependence, this suggests that the upper tail dependence is an
+% essential feature of the dependence structure for hedging.
+% \natp{\em [Delete?]} The conclusion is further supported by comparing the Gumbel and the
+% rotated Gumbel copula. 
+% The rotated Gumbel copula is the 180-degree rotated version of the Gumbel copula, sharing all the features of the Gumbel copula but switching from modelling the lower tail dependence to upper tail dependence.
+% The rotated Gumbel copula results in portfolios with higher MSEs and
+% LSVs consistently across risk measures. 
+
+\begin{table}[t]
+  \centering
+  \begin{tabularx}{\textwidth}{lYYYYY} \toprule
+       Spot/ Copula & $t$ & Plackett & GMI & rotGumbel & NIG \\ \midrule
+      \ \ \ BTC          & 60.00          & \phantom{0}1.11       & \phantom{0}3.33    & \phantom{0}8.89       & 26.67                  \\
+      \ \ \ ETH          & 35.14          & \phantom{0}0.00       & 24.32              & 15.68                 & 24.86                   \\
+  \bottomrule
+  \end{tabularx}  
+ \caption{Intraday copula selection results (shortened).
+        The values are the percentage of counts of a copula chosen by the AIC procedure during the out-of-sample period.
+        The table shows only the frequently chosen copula, i.e. $t$, Plackett, Gaussian Mix Independent (GMI), rotated Gumbel (rotGumbel), and
+        Normal Inverse Gaussian factor copula (NIG).
+        }
+    \label{tab:copulasection_intraday}
+\end{table}
+
+Table \ref{tab:copulasection_intraday} shows the percentage of counts of a copula chosen by the AIC procedure over the out-of-sample period.
+
+Most frequently chosen copulae are $t$-, Plackett, Gaussian Mix Independent, rotated Gumbel and NIG.
+Similar to the result in the daily rebalancing schedule, most of the time the AIC procedure chooses t-Copula to model
+the dependence structure of BTC-BTCF in the intraday setting.
+For the rest of the time, the NIG copula is mainly chosen.
+Rotated Gumbel, Gaussian Mix Independent, and Plackett are spontaneously chosen.
+On the other hand, the intraday ETH-BTCF’s AIC selection result is very different from that of the daily rebalancing.
+There are three copulae: $t$-, Gaussian Mix Independent, and NIG copula, that are closely chosen, instead of a single copula, rotated Gumbel copula, dominating the list in the daily rebalancing setting.
+\end{document}

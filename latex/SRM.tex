@@ -13,19 +13,11 @@
 \usepackage{graphicx}
 \usepackage{pdflscape}
 \usepackage{lipsum}
-%\usepackage{multirow}
 \usepackage{psfrag}
 \usepackage{proofapnd}
 \usepackage[round]{natbib}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{afterpage}
-
-%\usepackage{enumerate}% http://ctan.org/pkg/enumerate
-%\usepackage{cjk}
-%\usepackage{CJK}
-%\newcommand{\zh}[1]{\begin{CJK}{UTF8}{bsmi}#1\end{CJK}}
-%\newcommand{\zhs}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
-
 
 %% Better roman enumeration list; no conflict with hyperref
 \usepackage{enumerate}
@@ -39,34 +31,16 @@
 } { %
 \end{enumerate}} %
 
-%\usepackage{bbm}
-%\usepackage[T1]{fontenc}
-%\usepackage[normal]{caption2} % for caption
 \usepackage{rotating}
 \usepackage[margin=2cm]{geometry} % for the same margin
 \usepackage{latexsym}
-%\usepackage{subfig}
 \usepackage{float}
 \usepackage{setspace}
 \usepackage{slashbox}
 \usepackage{enumitem}
-%\usepackage{tablefootnote}
 \usepackage{multirow, tabularx,longtable, ragged2e, booktabs, siunitx}
-%\usepackage{footnote}
-%\usepackage{tablefootnote}
-%\usepackage{footnotehyper}
-%\makesavenoteenv{table, tabularx}
-%\makesavenoteenv{}
 
-\sisetup{
-%    per-mode = symbol,
-    output-decimal-marker = {.},
-%    group-minimum-digits = 4,
-%    range-units = brackets,
-%    list-final-separator = { \translate{and} },
-%    list-pair-separator = { \translate{and} },
-%    range-phrase = { \translate{to (numerical range)} },
-}
+\sisetup{output-decimal-marker = {.}}
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcolumntype{C}{>{\Centering\arraybackslash}X}
@@ -74,7 +48,7 @@
 
 \usepackage{authblk}
 \usepackage{hyperref}
-\usepackage{indentfirst} % Macht eine Einrückung nach der Section
+\usepackage{indentfirst} 
 \bibliographystyle{ecta}
 
 \definecolor{markergreen}{rgb}{0.6, 1.0, 0}
@@ -88,7 +62,6 @@
 \definecolor{orange}{RGB}{239, 133, 54}
 \definecolor{lightblue}{RGB}{59, 188, 175}
 
-%https://stackoverflow.com/questions/64369710/what-are-the-hex-codes-of-matplotlib-tab10-palette
 \definecolor{plt1}{RGB}{31, 119, 180}
 \definecolor{plt2}{RGB}{255, 127, 14}
 \definecolor{plt3}{RGB}{44, 160, 44}
@@ -108,9 +81,6 @@
 \setlist[itemize]{leftmargin=*}
 \setlist[description]{leftmargin=*}
 
-%\setlength{\topmargin}{0.0 in} \setlength{\textwidth}{6in}
-%\setlength{\oddsidemargin}{0.5in}
-%\setlength{\evensidemargin}{-0.01in} \setlength{\textheight}{9in}
 \captionsetup{font={onehalfspacing,small}, labelfont=bf}
 
 \title{\LARGE \bf Hedging Cryptos with Bitcoin Futures}
@@ -191,81 +161,13 @@ On the other hand, we observe complex and diverse dependence
 structures between non-BTC-related cryptocurrencies and the BTC futures. 
 As a consequence, the hedge performance of non-BTC-related
 cryptocurrencies is mixed and even suitable for some assets.
-%For other cryptos,
-%The choice of the optimal copulae  different dependence structure, some of the cryptos cannot be hedged by BTC futures.
-%The choice of the risk measures or copulae;
-
-%Different dependence structures.
-
-%Results of other cryptos and indices are inconclusive.
-
-% Move Meng Jou to third.
-
-% what is the new stuffs
-
-% \natp{\em Old abstract:}\\
-% The introduction of derivatives on Bitcoin \natp{(suggest to delete in
-%   abstract:, in particular the launch of futures contracts on CME in
-%   December 2017 and introduction of cryptocurrency indices like the
-%   CRIX or the Bloomberg Galaxy Crypto Index)} 
-% enables investors to hedge risk exposures in Bitcoin\natp{, other
-%   cryptocurrencies or crypto-portfolios} with futures or
-% contingent claims \natp{(delete: on indices)}.
-% We investigate \natp{different} methods of \natp{determining the (was: finding an)} optimal hedge ratio
-% \natp{(delete: $h^*$)}\natp{, taking into account (was: under)}
-% different dependence structures modeled by copulae and \natp{(delete: employing)}
-% different optimality definitions based on a range of risk measures. 
-% Because of volatility swings and jumps in Bitcoin prices, the
-% traditional variance-based approach to obtain the hedge ratios is
-% infeasible. 
-% The techniques \natp{\em [Which techniques?]} are therefore
-% generalised to various risk measures, such as value-at-risk, expected
-% shortfall and more generally, spectral risk measures.
-% In addition, we deploy different copulae for capturing the dependency between spot and futuresreturns, such as the Gaussian, Student-$t$,
-% NIG and Archimedean copulae. Various measures of hedge effectiveness in out-of-sample tests give insights in the practice of hedging Bitcoin.
-% We find that across copulae and risk measures, the hedge effectiveness are very similar with the exception of the Frank copula, Expected Shortfall 99\% and Value-at-Risk 99\%.
-% Our findings are based on an analysis for the time span from 29/12/2017 to 27/05/2021.
-% The results allow investors to construct a stable portfolio with digital assets.
-% \\
 
 \noindent {\bf JEL classification: G11, G13}  \\ %G11 and G13 in QF
-%\noindent {\bf JEL classification: % C38,
-%  C53, % F34,
-%  G11, G17}  \\
 
 \noindent {\bf Keywords:} Cryptocurrencies, risk management, hedging,
 copulas}
 \pagestyle{empty}
 \end{abstract}
-
-%\natp{{\bf TODO}:
-%  \begin{itemize}
-%  \item Please generate all graphics as pdf and possibly eps. pdf is a
-%    vector graphic format, so it scales well. eps may be
-%    required during the publishing process.
-%  \item Plackett copula: This is a bivariate copula only, which is
-%    probably one of the reasons it is not commonly found in finance
-%    applications. It does not have tail dependence, which is one of
-%    the things we typically look for in finance. We need a compelling
-%    reason why it is of interest, otherwise I suggest to remove it.
-%  \item We need to discuss if we use copulas or copulae. I have a
-%    preference for copulas, which is the terminology used by Nelsen,
-%    McNeil et al., Joe.
-%  \item The introduction needs to be revised, see comments
-%    below. Think about what needs to go into the introduction and what
-%    does not, and then stick to this in a concise way. Also, re-read
-%    every sentence 2-3 times and think carefully about what it says
-%    and what it is supposed to say.
-%  \end{itemize}
-%}
-
-
-%\natp{add
-%  \url{https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/fut.22050?casa_token=l6mOC3XtpSUAAAAA\%3Aa4ikFS_PgHmAFWRzYq1LqDH3Go2esWWO_2wmNI6Ql7B166Cn1eouEiwBLxkMqt__5sCEP47JDjWodPQ}}
-
-% \clearpage
-
-% \tableofcontents
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -283,12 +185,7 @@ As per the CME report on 25th of Nov, 2022, the average daily volume and open in
 \$1,220M and \$1,357M respectively \footnote{Data from CME: \url{https://www.cmegroup.com/ftp/bitcoinfutures/Bitcoin_Futures_Liquidity_Report_20221202.pdf}}.
 The CME BTC futures is an attractive instrument for institutional investors to participate in or manage their exposure in the crypto
 market because it is fully regulated. 
-%The price
-%of BTC even surged to \$ 64,500 in mid-April 2021 up by 460\% from
-% from \$ 11,500 six months earlier in October 2020 and up by 850\%
-% from a year earlier. Just a month later, by mid-May 2021, the price
-% had fallen to \$ 50,000, a one-month return of -22.5\%.
- % see tiingo_btc.csv 
+
 As more individual and institutional investors are adding CCs and CC
 derivatives to their portfolios, the need to understand
 downside risks and find suitable ways to hedge against extreme risks
@@ -315,18 +212,13 @@ The hedge ratio is the appropriate amount of futures contracts to hold
 in order to eliminate the risk exposure in the underlying security.   
 The determination of the hedge ratio relies primarily
 on the dependence between BTC and futures prices.
-%In this paper, we investigate the performance of different copulae and
-%risk measures in hedging Bitcoin and CRIX with Bitcoin
-%futures. {\color{blue} only this portfolio?} \natp{\em [$\leftarrow$ Make this the first sentence of the paper!]}
+
 Financial asset returns have long known to be non-Gaussian, see e.g.\
 \citep{fama1963mandelbrot,Cont2001}. Specifically, Gaussian models
 cannot produce the heavy tails and the asymmetry observed in 
 asset returns, which in turn implies a consistent underestimation of
 financial risks. 
-%\natp{\cite{Cont2001}}. \natp{\em [non-Gaussian is not
-  %very specific, a uniform r.v.\ is also non-Gaussian. Try to express
- % this in a more meaningful way, e.g.\ Financial data are known to
-  %exhibit more extreme events than a normal distribution can capture.]}
+
 Therefore, to minimize downside risk, one cannot solely rely on
 second-order moment calculations. Moreover, variance as a risk measure
 does not account for the variety of investors' utility functions. In
@@ -362,29 +254,6 @@ particular, they recognize diversification benefits.
 SRM can also be directly related to an individual's utility function.
 Examples are the exponential SRM and power SRM introduced by
 \citet{dowd2008spectral}. 
-%\natp{\em [Careful with wording! The
- %hedge is not optimal. The optimal hedge ratio that minimises a risk measure is chosen.]}
-%In particular, the SRM proposed by \citet{Acerbi2002} accounts for investors' utility (i.e. risk preference).
-%SRM is a weighted average of the quantities of a loss distribution, the weights of which depend on the investor's risk-aversion. In other words, 
-
-% \natp{\em [This needs not go in the introduction. Just briefly mention the risk measures, and possibly that ES and SRM are chosen because of their coherence.]}
-%\medskip
-%
-%\natp{The introduction should go along the lines:
-%  \begin{itemize}
-%  \item 1-2 sentence: Which problem is solved in this paper?
-%  \item Background Bitcoin: Growth, but roller-coaster ride, institutional investment,
-%    exchange-traded futures (the exchange is important!) (5 sentences,
-%    with references!)
-%  \item Significant tail risks and basis risk lead to the need to
-%    investigate even static hedges (=futures) with more refined
-%    methods than minimum-variance based (reference to Ederington
-%    here; this uses variance as risk measure and correlation as
-%    dependence measure).
-%  \item To capture empirical properties, extend to other risk measures
-%    and dependence models. 
-%  \end{itemize}
-%  }
 
 Evaluating the hedging effectiveness of crypto derivatives has been done by many researchers. 
 \citet{deng2020minimum} show that the crypto inverse futures is able to be used to hedge against BTC exposure.
@@ -420,16 +289,1252 @@ available at \href{http://www.quantlet.com/}{www.quantlet.com
   {\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{methodology.tex}
-% ----------------
-% --- Describe the methodology of finding the optimal h ---
-% ----------------
+\section{Optimal hedge ratio}\label{sec:optimal-hedge-ratio}
 
-%\input{results_new.tex}
-\input{results_new_new.tex}
-% ----------------
-% --- Results ---
-% ----------------
+\subsection{Distribution of hedge portfolio}\label{subsec:DHP}
+We form a portfolio with two assets, consisting of one unit in the
+spot asset and a short position of $h$ units of a futures contract,
+for example one Bitcoin and a short position in a CME Bitcoin
+futures contract. 
+The objective is to minimize the risk of the exposure in the spot. 
+Let $R^S$ and $R^F$ be the (discrete) returns of the spot and
+futures price. The (discrete) return of the portfolio is\footnote{%
+In practice, as the nominal investment in the futures is zero, $R^F$
+is understood as the return on the notional amount underlying the
+futures contract. In other words, if both the spot price $S_{t-1}$
+and the futures price $F_{t-1}$ are 
+normalised to $1$, then the portfolio return will be identical to the
+portfolio value change $\Delta V = \Delta S - h \Delta F$, where $\Delta S =
+S_t-S_{t-1}$, etc.}
+\begin{equation*}
+R^h = R^S -h R^F.
+\end{equation*}
+%\natp{\em [I fixed this, please check.] [We need to discuss the
+%  footnote. Generally, the portfolio return is $R_p = \sum_{i=1}^n w_i
+%  R_i$. With the futures contract, the notional investment in the
+%  futures is zero, so the portfolio return is $(S_0 (1+R^S) -h F_0
+%  R^F)/S_0-1 = R^S-h R^F$, if $S_0=F_0$.]}
+
+The risk of the hedged portfolio is measured by risk measure functions $\rho$s.
+For example, a widely used risk measure is value-at-risk (VaR), which,
+at the confidence level $\alpha$,
+is derived from the $1-\alpha$ quantile of the return distribution. %  at the confidence level $\alpha$ is
+% the absolute value of the $1-\alpha$-quantile of $R^h$, i.e., $\text{VaR}_{1-\alpha} =
+% -F_{R^h}^{(-1)}(1-\alpha) = -\inf\{x \in \mathbb{R}: 1-\alpha \leq
+% F_{R^h}(x) \}$, where $F_{R^h}$ is the distribution function of
+% $R^h$.
+
+If the portfolio is intended to reduce the risk of the spot position, then
+we call this a hedged portfolio.
+An optimal hedge ratio $h^*$ is a parameter that
+minimizes the risk of the aforementioned portfolio
+\begin{equation*}
+h^* = \argmin_h \rho(R^h).
+\end{equation*}
+
+Obviously the cdf and pdf of $R^h$ and the risk measure depend on the
+joint distribution of $R^S$ and $-hR^F$. However, optimising $h$
+according to the joint pdf is unfavourable since one would need to
+calibrate it whenever she updates $h$.
+Another problem of using the joint pdf is that one lacks the
+flexibility to model the margins separately from the dependence
+structure. Copulae allow to overcome both of these problems. 
+
+The advantage of using copulae is two-fold.
+First, copulae are invariant under strictly
+monotone increasing function \citep{schweizer1981nonparametric}, a
+property used in Lemma \ref{lemma:copula} below. 
+Second, copulae allow us to model the margins and dependence structure 
+separately, a result known as Sklar's Theorem \citep{Sklar1959}, which
+is given as Theorem \ref{theorem:sklar} below. 
+See also \citep{Nelsen1999, joe1997multivariate, McNeil2005} for
+Sklar's Theorem and more properties of copulae.
+
+We adapt the definition of a two-dimensional copula from
+\citep{Nelsen1999} as follows.
+
+\begin{defi} [Bivariate copula]
+  A {\em bivariate copula} is a function $C: [0,1]^2 \mapsto [0,1]$ with following properties:
+  \begin{enumerate}
+    \item For every $u,v$ in $[0,1]$,
+      \[C(u,0)= C(0,v)=0, \]
+    \[C(u,1)= u \text{, and}\]
+    \[C(1,v)= v;\]
+    \item For every $u_1,u_2, v_1, v_2$ in $[0,1]$ such that $u_1 \leq u_2$ and $v_1 \leq v_2$,
+    \[C(u_2,v_2)-C(u_2,v_1)-C(u_1, v_2)+C(u_1,v_1) \geq 0.\]
+  \end{enumerate}
+  \end{defi}
+
+The second property is called 2-non-decreasing.
+In other words, a two-dimensional copula is the joint cdf of a two-dimensional random vector
+on a unit square with uniform marginals.
+
+The following Theorem, usually known as the Sklar's
+Theorem, ensures the existence of copula which “couples” a 
+joint distribution function to its univariate margins \citep[Theorem 2.3.3.]{Nelsen1999}.
+
+% \natp{\em [This is not
+%   correct. Copulas, as defined above, exist. Sklar's Theorem links
+%   copulas to arbitrary joint distributions.]}
+
+\begin{theorem}[Hoeffding-Sklar-Theorem]
+  \label{theorem:sklar}
+  Let $F$ be a joint distribution function with marginal distributions
+  $F_X$ and $F_Y$. Then, there exists a copula $C:[0,1]^2 \mapsto
+  [0,1]$ such that, for all $x,y\in \R$,
+  \begin{equation}
+    \label{eq:4}
+    F(x,y)=C\{F_X(x), F_Y(y)\}.
+  \end{equation}
+  If the margins are continuous, then $C$ is unique; otherwise $C$ is
+  unique on the range of the margins.
+
+  Conversely, if $C$ is a copula and $F_X, F_Y$ are univariate
+  distribution functions, then the function $F$ defined by (\ref{eq:4})
+  is a joint distribution function with margins $F_X, F_Y$.
+\end{theorem}
+
+Hence, copula enables hedgers to model the dependence structure between the spot and futures separately from their marginals 
+without any restriction imposed by the model assumption marginals.
+For example, the marginals of multivariate Gaussian are always Gaussian, but marginals of copula can be any univariate marginals that hedgers favour. 
+Since we want to focus on the effects of how dependence structure shapes hedging effectiveness, copula allows us to
+make minimal model assumption on the marginals by deploying kernel density estimators with different bandwidths for the spot and futures. 
+
+Regarding the theory behind copula, many basic results can be traced back to early
+works of Wassily Hoeffding \citep{hoedffding1940, hoedffding1941}. 
+The two works aim to derive a measure of relationship of variables which is invariant under change of scale. 
+See also \citet{hoeffding2012collected} for English translations of
+the original papers written in German. 
+
+Another feature of copula that is important for hedgers is shown below. 
+
+\begin{lemma}
+  \label{lemma:copula}
+  Let $h>0$ and let $X$ and $Y$ be continuous random variables. Then,
+  the joint distribution of the portfolio positions 
+  can be expressed via the joint distribution of the securities as
+  follows:
+  \begin{align}
+  C_{X, hY}\left(F_X(s),F_{hY}(t)\right) = C_{X,
+    Y}\left(F_X(s),F_{Y}(t/h)\right), \quad s,t\in \R.
+    \end{align}
+  \end{lemma}
+
+\begin{proof}
+  Since copulae are invariant under strictly monotone increasing
+  function \citet[Theorem 3 (i)]{schweizer1981nonparametric} or
+  \citet[Theorem 2.4.3]{Nelsen1999}, 
+  \begin{equation*}
+    C_{X, hY}\left(F_X(s),F_{hY}(t)\right) = C_{X, Y}\left(F_X(s),F_{hY}(t)\right).
+    \end{equation*}
+Re-writing the second argument of the copula gives
+\begin{equation*}
+  F_{hY}(t) = \mathbb{P}(hY \leq t)
+  = \mathbb{P}(Y \leq t/h)
+  = F_Y(t/h).
+\end{equation*}
+\end{proof}
+
+Lemma \ref{lemma:copula} describes the fact that copula is invariance under linear transformation.
+That means rescaling one random variable does not change the dependence structure captured by copula. 
+Searching of optimal hedge ratio (numerically) requires frequent updates of the size $h$,
+but with copula, the search does not require any recalibration.
+Taking advantage of Lemma \ref{lemma:copula}, \citet{barbi2014copula}
+introduce the distribution of linear combinations of random variables
+using copulae. 
+We slightly edit Corollary 2.1 of their work and yield the 
+following correct expression of the distribution. 
+
+\begin{proposition}
+  \label{prop:dfrh}
+  Let $X$ and $Y$ be two real-valued continuous random
+  variables on a
+  probability space $(\Omega, \F, \p)$ with
+  absolutely continuous copula $C_{X, Y}$ and marginal distribution functions $F_{X}$
+  and $F_{Y}$. Then, the distribution function of $Z=X-hY$, $h >0$,  is given by
+  \begin{equation}
+    \label{eq:3}
+    F_{Z}(z) = 1- \int^1_0 D_1 C_{X, Y}
+    \left[ u, F_{Y} \left\{ \frac{F^{(-1)}_{X}(u)-z}{h} \right\}
+    \right]\, d u,   
+  \end{equation}
+  where, $F^{(-1)}$ denotes the inverse of $F$, i.e., the quantile
+function.
+\end{proposition}
+Here, $D_1 C(u,v)=\displaystyle \frac{\partial}{\partial u}
+C(u,v)$ and, see e.g.\ Equation (5.15) of \citet{McNeil2005},
+\begin{equation}
+  \label{eq:1}
+  D_1 C_{X,Y}\{F_X(x), F_Y(y)\} = \p(Y\leq y|X=x).
+\end{equation}
+\begin{proof}
+  Using the identity (\ref{eq:1}) gives
+  \begin{align*}
+    F_{Z}(z) &= \p(X - h Y\leq z) %
+                 = \E\left\{\p\left(Y\geq \frac{X-z}{h}\Big|
+                 X\right)\right\}\\[10pt]
+               &= 1-\E\left\{\p\left(Y\leq \frac{X-z}{h}\Big|
+                 X\right)\right\}% \\[10pt]
+               = 1- \int_0^1 D_1 C_{X, Y}\left[u,
+                 F_{Y}\left\{\frac{F^{(-1)}_{X}(u) -
+                 z}{h}\right\}\right]\, d u.
+  \end{align*}
+  \end{proof}
+
+\begin{corollary} The pdf of $Z$ can be written as
+  \begin{align}
+  f_{Z}(z) &= h^{-1}\int_0^1 c_{X, Y} \left[
+  F_{Y}\left\{\frac{F^{(-1)}_{X}(u)-z}{h}\right\}, u
+  \right]
+   \cdot
+  f_{Y}
+  \left\{\frac{F^{(-1)}_{X}(u)-z}{h}\right\} du, \label{eq:density1}
+  \end{align}
+  \end{corollary}
+Note that the pdf of $Z$ in the above proposition can be assessed via numerical integration
+as long as we have the copula density and the marginal
+densities.
+A multivariate generalisation of the expression above and its proof can be found in Appendix \ref{sec:appendix}.
+
+\subsection{Backtesting Procedure}\label{sec:empirical-procedure}
+Time series of out-of-sample hedged portfolio returns that represent a hedger's profit and loss are obtained via the following steps.
+We start from the earliest 300 data points of each spot-futures pair as training data:
+\begin{enumerate}
+\item \textbf{Construct univariate kernel density function (KDE)}:
+  Construct the spot and futures' univariate kernel density functions separately
+  using the Gaussian kernel. The bandwidths are determined separately by the refined plug-in method \citep[Section
+  3.3.3]{hardle2004nonparametric}.
+\item \textbf{Calibrate copulae}:
+  Calibrate the copulae outlined in Section \ref{sec:crm} by the
+  method of moments described in Section \ref{sec:estimation}.
+\item \textbf{Select copula}:
+  Compute the Akaike Information Criterion (AIC). The copula with the
+  best (i.e. lowest) AIC is used for the next step. 
+  A discussion of this step is found in Section \ref{subsec:copula-selection}.
+\item \textbf{Determine optimal hedge ratio}:
+  Determine the optimal hedge ratios with respect to different
+  risk measures numerically. 
+  To do so, we draw samples from the calibrated copulae and KDEs 
+  and search for the hedge ratio that gives the lowest risk measure. 
+  The risk measures are outlined in Section \ref{subsec:spectral-risk-measures}.
+  The minimisation algorithm \textit{scipy.optimize.minimize} from the Python package {\em Scipy} \citep{2020SciPy-NMeth} is used for the search of optimal hedge ratio.
+\item \textbf{Obtain out-of-sample hedged portfolio returns}: Apply the optimal hedge ratio to the test data to obtain out-of-sample hedged portfolio returns.
+      The test data is the 5 data points subsequent to the last training data point. 
+\item \textbf{Roll forward}: We roll forward by 5 data points and repeat the steps above until the test data reaches the end of the dataset.
+\end{enumerate}
+
+The collection of out-of-sample portfolio returns forms a non-overlapping time series since the step size is equal to test data length.
+The time series represents the profit and loss if hedgers recalibrate copulae and adjust the hedge ratio every 5 days from the start to the end of the out-of-sample data period.
+An intraday setup and its results are documented in Appendix \ref{sec:intraday}. 
+
+The backtesting procedure without the copula selection step (step 3) is also carried out to examine the effects of deploying different copula. 
+Section \ref{subsec:HP1} discusses the effects. 
+
+\section{Copulae}\label{sec:crm}
+To capture different aspects of the dependence structure between spot and futures, we consider
+a range of different copulae. 
+The copulae are the Gaussian-, $t$-, Frank-,
+Gumbel-, Clayton-, mixture, NIG factor, and Plackett-copula. 
+Figure~\ref{fig:copulaeScatterPlot} shows scatter plots of random
+samples drawn from the copulae. 
+\begin{figure}[t]
+    \centering
+  \includegraphics[width=\textwidth]{_pics/copulas_scatterplots.pdf}
+  \caption{Scatterplots of samples drawn from various copulae. All
+    copulae are calibrated to Spearman's $\rho$ of 0.75 before
+    sampling.}\label{fig:copulaeScatterPlot} 
+\end{figure}
+
+As this hedging exercise concerns only portfolios with two assets, we
+focus on the bivariate version of each copula. 
+
+\subsection{Gaussian and $t$ Copulae}\label{sec:ellpitical-copulae}
+
+The Gaussian and $t$ copulae are derived from Gaussian and $t$
+distributions. 
+The bivariate Gaussian copula is defined as
+\begin{align*}
+  \bm{C}(u,v) &= \Phi_{2, \rho}\{\Phi^{(-1)}(u), \Phi^{(-1)}(v)\} \nonumber \\
+              &= \int_{-\infty}^{\Phi^{(-1)}(u)}
+                \int_{-\infty}^{\Phi^{(-1)}(v)}
+                \frac{1}{2\pi\sqrt{1-\rho^2}}
+                \exp{\left\{
+                \frac{s^2-2\rho st+t^2}{2(1-\rho^2)}
+                \right\}} \dd s\, \dd t,\quad, u,v\in [0,1],
+\end{align*}
+where $\Phi_{2, \rho}$ is the bivariate Normal cdf
+with zero mean, unit variance, with correlation coefficient $\rho$, and
+$\Phi^{(-1)}$ is the quantile function of the univariate standard normal
+distribution.
+The Gaussian copula is fully specified by the correlation parameter $\rho$. \footnote{
+The symbol $\rho$ is used to denote both the correlation parameter as
+well as a general risk measure. However, it will be clear from the
+context, what $\rho$ refers to.}
+It has no tail dependence, which, in a finance context, implies that
+it often underestimates tail risk.  
+
+Kendall's tau $\tau_K$ and Spearman's rho $\rho_S$ of the bivariate Gaussian copula are
+    \begin{equation*}
+        \tau_K(\rho) = \frac{2}{\pi}\arcsin\rho, \quad\quad
+        \rho_S(\rho) = \frac{6}{\pi}\arcsin\frac{\rho}{2}.
+        \end{equation*}
+
+The $t$-copula has the form
+\begin{multline*}
+        \bm{C}(u,v) = \bm{T}_{2, \rho, \nu}\{T^{(-1)}_\nu(u), T^{(-1)}_\nu(v)\}\\
+        = \int_{-\infty}^{T^{(-1)}_\nu(u)}
+               \int_{-\infty}^{T^{(-1)}_\nu(v)}
+            \frac{\Gamma\left(\frac{\nu+2}{2}\right)}
+            {\Gamma\left(\frac{\nu}{2}\right)\pi\nu\sqrt{1-\rho^2}}
+             \left(
+        1+\frac{s^2-2st\rho+t^2}{\nu}
+        \right)^{-\frac{\nu+2}{2}}\, \dd s\, \dd t,
+    \end{multline*}
+where $\bm{T}_{2, \rho, \nu}$ denotes the 
+bivariate $t$ cdf with dependence parameter $\rho$ and degrees of
+freedom parameter $\nu$, $\nu>2$,
+and where $T^{(-1)}_\nu(\cdot)$ is the quantile function of a standard
+$t$ distribution with parameter $\nu$. 
+
+The $t$-copula and Gaussian copula with parameter $\rho$ have equal $\tau_K$s, \citep[see][and references therein]{demarta2005t}.
+The $t$-copula has non-zero upper and lower tail dependence, which makes it more appropriate for dependence modelling in finance than the Gaussian copula.
+
+\subsection{Archimedean copulae}\label{sec:archimedean-copula}
+The family of Archimedean copulae forms a large class of copulae with
+many convenient features.
+
+Archimedean copulas are determined via a simple parametric form of the
+dependence structure. A prominent feature is the ability to model
+asymmetric dependence structures.  
+
+In general, an Archimedean copula takes the form
+\begin{align*}
+  \bm{C}_\theta(u,v) = \psi^{(-1)}\{\psi(u; \theta), \psi(v; \theta); \theta\},\quad u,v\in [0,1],
+    \end{align*}
+where $\psi:[0,1] \rightarrow [0,\infty)$ is a continuous, strictly
+decreasing and convex function such that $\psi(1)=0$ for any
+permissible dependence parameter $\theta$. The function $\psi$ is 
+called the generator, with $\psi^{(-1)}$ its inverse.
+
+The {\em Frank copula\/} (B3 in \citet{joe1997multivariate}) takes the form
+\begin{align*}
+    \bm{C}_{\theta}(u,v) &= \frac{1}{\theta}
+    \log \left\{
+    1 + \frac{(e^{-\theta u}-1)(e^{-\theta v}-1)}{e^{-\theta}-1}
+    \right\}, \quad u,v\in [0,1],
+    \end{align*}
+    with $\theta \in [0, \infty]$ the dependence parameter. 
+    It is a symmetric copula and cannot produce any tail
+    dependence. The following parameters correspond perfect dependence
+    and independence: $\bm{C}_{-\infty} = \bm{M}$, $\bm{C}_1 = \bm{\Pi}$,
+    and $\bm{C}_\infty = \bm{W}$. 
+    The Frank copula has $\tau_K$ :
+\begin{align*}
+    \tau_K(\theta) = 1-4\frac{D_1\{-\log(\theta)\}}{\log(\theta)},
+    \end{align*}
+
+where $D_1$ and $D_2$ are the Debye function of order 1 and 2, with
+the Debye function defined as $D_n =
+\frac{n}{x^n}\int_0^x\frac{t^n}{e^t-1}dt$.
+We refer readers to \citet[p.998]{abramowitz1972handbook} for definition of the Debye function. 
+
+The {\em Gumbel copula\/} (B6 in \citet{joe1997multivariate}) has
+distribution function
+\begin{equation*}
+  \bm{C}_{\theta}(u,v) = \exp{-\{ (-\log(u))^\theta +(-\log(v))^\theta 
+    \}^{\frac{1}{\theta}}},
+\end{equation*}
+where $\theta \in [1,\infty)$ is the dependence parameter.
+Its  Kendall's tau takes the form \begin{equation*}
+  \tau_K(\theta) =\frac{\theta-1}{\theta}. 
+ \end{equation*}
+It has upper tail dependence with dependence parameter $\lambda^U
+= 2-2^{\frac{1}{\theta}}$ and displays no lower tail dependence. 
+    
+While the Gumbel copula cannot model perfect counter-dependence
+\citep{Nelsen2002}, $\bm{C}_{1} = \bm{\Pi}$ models independence, 
+and $\lim_{\theta\rightarrow\infty} \bm{C}_\theta = \bm{W}$ models
+perfect dependence. 
+
+
+The {\em Clayton copula\/} takes the form
+\begin{equation*}
+  \bm{C}_{\theta}(u,v) = \left\{
+    \max(u^{-\theta}+v^{-\theta}-1,0)\right\}^{-\frac{1}{\theta}},
+\end{equation*}
+where $\theta \in (-\infty, \infty)$ is the dependence parameter.
+The Clayton copula, by contrast to Gumbel copula,
+generates lower tail dependence with $\lambda^L =
+2^{-\frac{1}{\theta}}$, but cannot generate upper tail dependence.
+Moreover, $\lim_{\theta\rightarrow -\infty} \bm{C}_\theta = \bm{M}$, $\bm{C}_0 =
+\bm{\Pi}$, and $\lim_{\theta\rightarrow\infty} \bm{C}_\theta = \bm{W}$. 
+The Kendall's tau of the Clayton copula is given by 
+\begin{align*}
+    \tau_K(\theta) =\frac{\theta}{\theta+2}.
+    \end{align*}
+
+\subsection{Mixture Copula}\label{sec:mixture-copula}
+The mixture copula is a linear combination of copulae. 
+The distribution of a 2-dimensional random variable
+$\bm{X}=(X_1,X_2)^\top$ is written as linear combination of $K$
+copulae 
+\begin{equation*} 
+    \bm{C}(u,v)= \sum_{k=1}^K p^{(k)} \cdot \bm{C}^{(k)}\{F^{(-1)}_{X_1}(u),
+    F^{(-1)}_{X_2}(v); \bm{\theta^{(k)}}\}, \quad u,v\in [0,1].
+  \end{equation*}
+  Here, $\bm{\theta^{(k)}}$ refers to the parameters of the
+    $k$-th copula.
+   
+While Kendall's tau of the mixture copula is not known in closed form,
+Spearman's rho is easily derived as 
+\begin{equation*}
+  \rho_S = \sum_{k=1}^K p^{(k)} \cdot \rho_S^{(k)}. 
+\end{equation*}
+
+An example of a mixture copula is the Fr\'echet class of copulae, which
+are given by convex combinations of $\bm{W}$, $\bm{\Pi}$, and $\bm{M}$
+\citep{Nelsen1999}.  
+
+We use the {\em Gaussian Mix Independent Copula (GMI)} in our analysis,
+i.e., 
+\begin{equation*}
+  \bm{C}(u,v) = p\, \bm{C}^\text{Gaussian}_\theta (u,v) + (1-p)(uv),\quad p\in [0,1].
+\end{equation*}
+
+This mixture models the amount of ``random noise'' that appears in the
+off-diagonal region of the dependence structure where the Gaussian copula has no control.
+In the hedging exercise, the structure of the off-diagonal ``random noise'' is not our main concern, 
+but the amount of it might affect the hedging effectiveness.
+
+\subsection{NIG factor copula}
+
+Normal Inverse Gaussian (NIG) distribution is a flexible and yet analytical tractable distribution introduced by
+\citep{BarndorffNielsen1997}.
+The {\em NIG factor copula} is constructed based on the characteristics of the NIG disribution. 
+This section presents the version of NIG factor copula we use in this work.
+The NIG distribution has density function
+\begin{equation*}
+  g(x; \alpha,\beta, \mu, \delta) = \frac{\alpha}{\pi} \e^{\delta
+    \sqrt{\alpha^2-\beta^2} -\beta\mu} \frac{1}{q((x-\mu)/\delta)}
+  K_1\left[\delta \alpha q\left(\frac{x-\mu}{\delta}\right) \right]
+  \e^{\beta x},\quad x>0,
+\end{equation*}
+where $q(x) = \sqrt{1+x^2}$ and where $K_1$ is the modified Bessel
+function of third order and index $1$. The parameters satisfy $0\leq
+|\beta|\leq \alpha$, $\mu\in \R$ and $\delta>0$, and have
+the following interpretation: $\mu$ and $\delta$ are location and
+scale parameters, respectively, $\alpha$ determines the heaviness of
+the tails and $\beta$ determines the degree of asymmetry. If
+$\beta=0$, then the distribution is symmetric around $\mu$.
+
+The cdf and quantile function of NIG distribution, denoted by $G(x; \alpha, \beta, \mu, \delta)$ and $G^{(-1)}(x; \alpha, \beta, \mu, \delta)$,
+ have no known analytical form.
+ In this work, they are computed via numerical integration of the density and by simulation.
+
+The NIG distribution belongs to
+the class of so-called {\em normal
+variance-mean mixture distributions},  (see Section 3.2 of 
+\citet{McNeil2005}): $X$ follows an
+$\text{NIG}(\alpha,\beta,\mu,\delta)$ distribution if $X$ conditional
+on $W$ follows a normal distribution with mean $\mu+\beta W$ and
+variance $W$, i.e., 
+\begin{equation*}
+  X|W\stackrel{\mathcal L}\sim \Ncdf(\mu + \beta W, W),
+\end{equation*}
+where $W$ follows an {\em inverse Gaussian distribution}, denoted by
+$\text{IG}(\delta, \sqrt{\alpha^2-\beta^2})$.
+
+The simulation procedure of the NIG$(\alpha, \beta, \mu, \delta)$
+distribution is a natural result of the above decomposition.  
+To simulate the NIG distribution, first simulate a random variable $w \sim IG(\delta, \sqrt{\alpha^2-\beta^2})$, 
+then simulate $x \sim N(\mu+ \beta w, w|w)$. 
+
+The moment-generating function of the NIG distribution is given by
+\begin{equation*}
+  M(u; \alpha, \beta, \mu, \delta) = \exp\left( \delta
+    \left(\sqrt{\alpha^2-\beta^2} - \sqrt{\alpha^2 - (\beta +
+        u)^2}\right) + \mu u\right). 
+\end{equation*}
+As a direct consequence, moments are easily calculated with the
+expectation and variance of the NIG distribution being
+\begin{align*}
+  \mathbb E X &= \mu +
+                \frac{\delta \beta}{\sqrt{\alpha^2-\beta^2}}
+  \end{align*}
+\begin{align} \label{eq:5}
+  \text{Var}(X) &= \frac{\alpha^2\delta}{(\alpha^2-\beta^2)^{3/2}}.
+\end{align}
+
+It is easily seen from the moment-generating function that the NIG distribution is preserved under linear combinations, provided
+the variables share the parameters $\alpha$ and $\beta$. 
+\begin{prop}
+  \label{prop:NIG}
+  Let $Z\sim \text{NIG}(\alpha, \beta, \mu, \delta)$ and
+  $Z_i\sim \text{NIG}(\alpha, \beta, \mu_i, \delta_i)$,
+  $i=1,\ldots, n$ be independent NIG-distributed random
+  variables. Then:
+  \begin{enumerate}
+  \item  $X_i = Z + Z_i\sim \text{NIG}(\alpha,\beta,\mu+\mu_i,
+  \delta+\delta_i)$,
+\item and 
+  \begin{align}
+    \text{Cov}(X_i,X_j) &= \text{Var(Z)},\nonumber\\
+    \text{Corr}(X_i,X_j) &= \frac{\delta}{\sqrt{(\delta+\delta_i)
+                           (\delta+\delta_j)}}. \label{eq:6}
+  \end{align}
+\end{enumerate}
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+  \item This follows directly from the moment-generating function. 
+  \item For the covariance,
+    \begin{equation*}
+      \text{Cov}(X_i,X_j)
+      = \E[(Z+Z_i) (Z+Z_j)] - \E[Z+Z_i] \E[Z+Z_j]
+      = \E[Z^2] -(\E Z)^2.
+    \end{equation*}
+    The correlation is determined directly from \ref{eq:5}.
+  \end{enumerate}
+\end{proof}
+
+The NIG distribution is popular in many areas of
+financial modelling; for example, it gives rise 
+to the normal inverse Gaussian L\'evy process, which may be represented
+as a Brownian motion with a time change.
+In the setting here, we consider the {\em NIG factor copula}, which is
+not directly derived from the multivariate NIG distribution, but
+determined through a factor structure instead. \footnote{The factor structure,
+which was applied e.g.\ in \citep{Kalemanova2007} for calibrating CDO's,
+gives additional flexibility as it does not force the components to
+have a mixing variable $W$.}
+
+The bivariate NIG factor model is given by
+\begin{align*}
+  X &= Z + Z_1 \\ 
+  Y &= Z + Z_2,
+  \end{align*}
+where $Z \sim \text{NIG}(\alpha, \beta, \mu, \delta)$, $Z_1 \sim \text{NIG}(\alpha, \beta, \mu_1, \delta_1)$, 
+$Z_2 \sim \text{NIG}(\alpha, \beta, \mu_2, \delta_2)$, and $Z, Z_1, Z_2$ are mutually independent. 
+
+The following normalising steps reduce the number of parameters to three:
+\begin{enumerate}
+  \item Set $\mu = \mu_1= \mu_2 = 0$ . The location parameter does not affect the correlation structure.
+  \item Set $\delta_1 = \delta_2 = \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}$ such that $Z_1$ and $Z_2$ are unit variance. 
+  Normalising the scale parameter does not affect the correlation structure.
+\end{enumerate}
+
+The dependence between $X$ and $Y$ is now fully captured by $\alpha, \beta$, and $\delta$.  
+
+\begin{prop}
+  Let $u,v \in [0,1]$,
+  $\alpha, \beta \in \mathbb{R}$ satisfying $0 \leq |\beta| \leq \alpha$, $\delta >0 $,
+  $f(\cdot) = g\left(\cdot; \alpha, \beta, 0, \delta \right)$, 
+  and $F (\cdot) = G\left(\cdot; \alpha, \beta, 0, \frac{(\alpha^2-\beta^2)^{3/2}}{\alpha^2}\right)$.
+  The {\em NIG factor copula} is 
+  \begin{equation*}
+    C(u,v) = \int_\mathbb{R} F\left\{F^{(-1)}(u)-z\right\}
+    F\left\{F^{(-1)}(v)-z\right\}f(z)dz.
+  \end{equation*}
+
+\end{prop}
+
+\begin{proof}
+  Let $F_X$ and $F_Y$ be the cdfs, $F_X^{(-1)}$ and $F_Y^{(-1)}$ be the quantile functions of $X$ and $Y$ respectively. 
+  \begin{align*}
+    C(u,v) &= \p\left(F_X(X) \leq u, F_Y(Y)\leq v\right)\\
+           &= \E \left\{\left.\p\left(F_X(X) \leq u, F_Y(Y)\leq v \right|Z\right)\right\}\\
+           &= \E \left\{\left.\p\left(Z_1 \leq F_X^{(-1)}(u)-Z, Z_2 \leq F_Y^{(-1)}(v)-Z \right|Z\right)\right\}\\
+           &=  \int_\mathbb{R} F\left\{F^{(-1)}(u)-z\right\}F\left\{F^{(-1)}(v)-z\right\}f(z)dz.
+  \end{align*} 
+\end{proof}
+
+We refer readers to \citet{krupskii2018factor} for the methodology of constructing factor copulae. 
+See also \citet[Section 3.10]{joe2014dependence} and \citet{krupskii2013factor}. 
+
+The quantile dependence and Spearman's rho of NIG factor copula have no known analystical form.
+In this work, the quantile dependence is computed numerically; 
+Spearman's rho is approximated by Spearman's rho of the bivariate Gaussian copula. 
+When $\beta \rightarrow 0$ and $\alpha \rightarrow \infty$, the NIG
+distribution behaves similarly to the Gaussian distribution, 
+making the (bivariate) NIG factor copula behave similarly to the
+(bivariate) Gaussian copula. 
+Therefore, the NIG factor copula's Spearman's rho is well approximated by the Spearman's rho of the bivariate Gaussian copula.
+
+\subsection{Plackett copula}\label{subsec:other-copula}
+The Plackett copula has distribution function
+\begin{align*}
+    \bm{C}_{\theta}(u,v) &= \frac{1+(\theta-1)(u+v)}{2(\theta-1)}
+                         - \frac{\sqrt{\{
+    1+(\theta-1)(u+v)\}^2 - 4uv\theta(\theta-1)}}{2(\theta-1)},
+\end{align*} where $0 \leq \theta < \infty$.
+Spearman's rho is given by 
+\begin{align*}
+    \rho_S(\theta) = \frac{\theta+1}{\theta-1} - \frac{2\theta \log
+  \theta}{(\theta-1)^2}. 
+    \end{align*}
+
+The Placket copula possesses a special property:
+the cross-product ratio is equal to the dependence parameter
+\begin{equation} \label{eq:PlackettCrossProduct}
+    % &\phantom{=}
+    \frac{\p(U \leq u, V \leq v) \cdot \p(U > u, V > v)}
+    {\p(U \leq u, V > v) \cdot \p(U > u, V \leq v)}\nonumber
+    =
+      \frac{\bm{C}_\theta(u,v)\{1-u-v+\bm{C}_\theta(u,v)\}}{\{u-\bm{C}_\theta(u,v)\}\{v-\bm{C}_\theta(u,v)}\nonumber 
+    = \theta.
+\end{equation}
+In words, the dependence parameter is equal to the ratio of the 
+number of concordance pairs and the number of discordance pairs of a 
+bivariate random variable. 
+
+\subsection{Calibration}\label{sec:estimation}
+We trace back the usage of method of moments (MM) to calibrate copulae to \citet{Genest1987, genest1993statistical} 
+where the moments mainly refer to Kendall's tau $\tau_K$ or Spearman's rho $\rho_S$.
+Adapted from \cite{oh2013simulated}, we extend MM to quantile dependence measures. 
+Quantile dependence is denoted by $\lambda_q$ for quantile level $q$.
+
+Spearman's rho, Kendall's tau, and quantile dependence of the copula $C$ are defined as
+\begin{align*}
+  \rho_S &= 12 \int\int_{I^2} C_{\bm{\theta}}(u,v)\, \dd u\, \dd v-3\label{eq:rho_S}\\
+  \tau_K &= 4\E[C_{\bm{\theta}}\{F_X(x), F_Y(y)\}]-1,\\
+  \lambda_q &=
+  \begin{cases}
+    \p(F_X(X)\leq q| F_Y(Y)\leq q) = \displaystyle \frac{C_{\bm{\theta}}(q,q)}{q},
+    &\text{ if } q\in (0,0.5],\\
+    \p(F_X(X)>q|F_Y(Y)>q) =\displaystyle \frac{1-2q+C_{\bm{\theta}}(q,q)} {1-q},
+    &\text{ if } q\in (0.5,1).
+  \end{cases}
+\end{align*}
+The empirical counterparts are
+\begin{align*}
+  \hat\rho_S &= \frac{12}{n} \sum_{k=1}^n \hat F_X(x_k) \hat F_Y(y_k)
+               -3,\\
+  \hat\tau_K &= \frac{4}{n}\sum_{k=1}^n \hat{C}\{\hat{F}_X(x_i),\hat{F}_X(y_i)\} -1 ,\\
+  \hat\lambda_q &=
+                  \begin{cases}
+                    \displaystyle\frac{1}{n} \sum_{k=1}^n \frac{\1_{\{\hat
+                        F_X(x_k)\leq q, \hat F_Y(y_k)\leq q\}}} {q},
+                    &\text { if } q\in (0, 0.5],\\
+                    \displaystyle \frac{1}{n} \sum_{k=1}^n
+                    \frac{\1_{\{\hat F_X(x_k)>q, \hat F_Y(y_k)>q\}}}
+                    {1-q}, &\text { if } q\in (0.5,1),
+                  \end{cases}
+\end{align*}
+where $\displaystyle \hat{F}(x) =
+  \frac{1}{n}\sum_{k=1}^n 1_{\{x_i\leq x\}}$ and
+$\displaystyle \hat{C}(u,v) = \frac{1}{n}\sum_{k=1}^n 1_{\{u_i\leq u, v_i\leq v\}}$. 
+
+Denote by $\bm{m}(\bm{\theta})$ the $m$-dimensional vector of
+dependence measures according the dependence parameters
+$\bm{\theta}$,and let $\hat{\bm{m}}$ be the corresponding empirical
+counterpart. 
+The difference between dependence measures and their counterpart is denoted by
+\begin{equation*}
+    \bm{g}(\bm{\theta}) = \hat{\bm{m}} - \bm{m}(\bm{\theta}),
+\end{equation*}
+and the {\em MM estimator} is
+\begin{equation*}
+    \hat{\bm{\theta}} = \argmin_{\bm{\theta}\in \bm{\Theta}} \bm{g}(\bm{\theta})^\top
+    \hat{\bm{W}}
+     \bm{g}(\bm{\theta}),
+\end{equation*}
+where $\hat{W}$ is a positive definite weight matrix.
+In this work, we use
+$\bm{m}(\bm{\theta}) = (\rho_S, \lambda_{0.05}, \lambda_{0.1}, 
+\lambda_{0.9}, \lambda_{0.95})^\top$
+for calibration with 
+$\hat{W}$ set to the identity matrix. 
+We replace Spearman's rho by Kendall's tau when the analytical form of the former is not available. 
+
+While maximum likelihood estimation is a viable procedure to calibrate copula, 
+we choose MM as the estimation procedure in this work. 
+Figure~\ref{fig:quantile dependence1} shows the empirical quantile
+dependence of Bitcoin and CME futures and the copula implied quantile
+dependence of the MLE and MM calibration procedures. 
+Although the MLE is a better fit to a range of quantile dependence in
+the middle, it fails to address the situation in the tails. 
+
+\begin{figure}[h]
+%\includegraphics[width=\textwidth]{_pics/t Copula quantile dependence.png}
+\includegraphics[width=\textwidth]{_pics/Gumbel Copula quantile dependence.pdf}
+\includegraphics[width=\textwidth]{_pics/Clayton Copula quantile dependence.pdf}
+  \caption{Quantile dependences of Gumbel and Clayton copulas. The
+    \textcolor{darkblue}{blue circle dots} are the quantile dependence
+    estimates of Bitcoin and CME future, the \textcolor{darkblue}{blue
+      dashed lines} are the estimates' 90\% confidence interval. 
+  The \textcolor{orange}{orange dotted line} is the copula implied
+  quantile dependence by MM estimation. The
+  \textcolor{lightblue}{light blue dotted line} is the copula implied
+  quantile dependence by MLE estimation.  
+  \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/figure 2.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}
+  
+\label{fig:quantile dependence1}
+\end{figure}
+
+\subsection{Copula selection}\label{subsec:copula-selection}
+As the dependence structure of price data changes
+across time, we allow for a flexible choice of the best-fitting
+copula. This is done by recalibrating and reevaluating performance of the various copulae periodically. 
+In each recalibration, we select the best-fitting
+copula characterised by the lowest {\em Akaike Information Criterion
+  (AIC)},
+\begin{equation*}
+ \text{AIC} = 2k- 2 \log(L),
+\end{equation*}
+where $k$ is the number of estimated
+parameters and $L$ is the likelihood \citep{Akaike1973}. 
+
+% they tend to suggest the same copula as the best fitting one.
+%Simulation studies has also been carried out to compare different copula selection methods, see \cite{}.
+Other model selection criteria, such as the TIC~\citep{takeuchi1976distribution} or likelihood ratio test could be used instead.
+For a survey of model selection and inference, see \cite{anderson1998comparison}.
+Among various copula selection procedures, AIC is a popular choice for
+its applicability, see e.g. \cite{breymann2003dependence}.
+In our case, the AICs are calculated only with dependence likelihood
+since the marginals are modelled via kernel density estimators.
+The selected copula will then enter the calculation of the optimal
+hedge ratio.
+% We consider the copula with the lowest AIC for a particular set of data the best fitting one and use it to generate OHR.
+
+\section{Risk measures}\label{subsec:spectral-risk-measures}
+The optimal hedge ratio is determined by the following variety of risk measures: variance, Value-at-Risk (VaR), Expected Shortfall (ES), and Exponential Risk Measure (ERM).
+A summary of risk measures being used in portfolio selection problem
+can be found in \citet{hardle2008applied}. 
+The risk measures here serve as risk minimization objectives, i.e. loss functions for searching the optimal hedge ratio. 
+%They are used in many literature about hedging, e.g. ;
+%The risk measures are also used by regulatory bodies,
+%for example Basel III ....
+
+The risk measures are outlined as follows.
+Let $Z$ be a random
+variable with distribution function $F_Z$.
+\begin{enumerate}
+\item Variance: $\text{Var}(Z) = \E[(Z-\E Z)^2]$. 
+\item VaR at confidence level $\alpha$: $\text{VaR}_\alpha(Z) = -F_{Z}^{(-1)}(1-\alpha)$
+\item ES at confidence level $\alpha$: $\text{ES}_\alpha(F_Z) = -\frac{1}{1-\alpha}\int_0^{1-\alpha}F_Z^{(-1)}(p)\dd p$
+\item ERM with Arrow-Pratt coefficient of absolute risk
+  aversion $k$:
+  \begin{equation*}
+    \text{ERM}_k(Z) = -\int_{[0,1]}\phi(p) F_Z^{(-1)}(p)\dd p,
+  \end{equation*}
+  where $\phi$ is a weight function described in (\ref{eq:phi}) below.
+\end{enumerate}
+
+VaR, ES, and ERM fall into the class of spectral risk measures (SRM),
+which have the form \citep{Acerbi2002}%, adam2008spectral,dowd2008spectral}
+\begin{equation*}
+  \rho_\phi(Z) = - \int_0^1 \phi(p) F_{Z}^{(-1)}(p)\dd p,
+\end{equation*}
+where $p$ is the loss quantile and $\phi(p)$ is a user-defined
+weighting function defined on $[0,1]$.
+We consider only so-called admissible risk spectra $\phi(p)$, i.e.,
+fulfilling %(named by \citet{Acerbi2002})
+\begin{enumerate}[label=(\roman*)]
+\item $\phi$ is positive,
+\item $\phi$ is decreasing,
+\item and $\int_{[0,1]}\phi(p)\dd p=1$. 
+\end{enumerate}
+
+The VaR's $\phi(p)$ gives all its weight on the $1-\alpha$ quantile of
+$Z$ and zero elsewhere, i.e., the weighting function is a Dirac delta
+function, and hence it violates the (ii) property of admissible risk
+spectra.  
+The ES' $\phi(p)$ gives all tail quantiles the same weight of
+$\displaystyle\frac{1}{1-\alpha}$ and non-tail quantiles zero weight. 
+The ERM assumes investors' risk preference are in the form of an
+exponential utility function $U(x)=1-e^{kx}$, so its corresponding
+risk spectrum is defined as
+\begin{equation*}
+  \phi(p) =\frac{k e^{-k(1-p)}}{1-e^{-k}} , \label{eq:phi}
+\end{equation*}
+where $k$ is the Arrow-Pratt coefficient of absolute risk aversion. 
+The parameter $k$ has an economic interpretation as being the ratio
+between the second derivative and first derivative 
+of investor's utility function on an risky asset,
+\begin{equation*}
+  k = -\frac{U''(x)}{U'(x)},
+\end{equation*}
+for $x$ in all possible outcomes.
+In case of the exponential utility, $k$ is the the constant absolute risk aversion (CARA).
+
+\section{Empirical Results}\label{sec:results}
+
+\subsection{Data}\label{subsec:data}
+In the empirical analysis, we analyse the capability 
+of CME Bitcoin Futures (BTCF) to reduce the risk of
+five cryptos, namely Bitcoin (BTC), Ethereum 
+(ETH), Cardano (ADA), Litecoin (LTC) and Ripple (XRP), as well as five
+crypto indices, namely BITX, BITW100, CRIX, BITW20 and BITW70.
+
+The currencies ETH, ADA, LTC, and XRP are popular cryptos traded at
+various exchanges and have large market capitalization. 
+
+
+Crypto indices are included in our analysis since they serve as a good proxy
+for hedgers who need to hedge against a portfolio of cryptos.
+The indices included are in different numbers of constituents. 
+BITX, BITW100, and CRIX are market-cap weighted crypto indexes with
+BTC as constituent. 
+BITX and BITW100 track the total return of the 10 and 100 cryptos
+with largest market-cap, respectively. 
+CRIX determines the number of constituents via AIC and tracks this
+number of cryptos with largest market-cap. 
+The CRIX index is calculated by the S\&P Global and available on Bloomberg
+\footnote{See S\&P 500 website about the CRIX index calculation \url{https://www.spglobal.com/spdji/en/custom-indices/royalton-partners-ag-rpag/royalton-crix-crypto-index/\#overview}.}.
+BITW20 is also a market-cap weighted crypto index but with the 20
+largest market-cap cryptos outside the constituents of BITX.
+BITW70 has the same construction as BITW20 but with the 70 largest
+market-cap cryptos outside BITX and BITW20. 
+Therefore, BTC is excluded as a constituent in BITW20 and BITW70.
+All crypto indices are reconstituted monthly to stay updated to the rapidly changing crypto market. 
+
+For each of the ten hedge portfolios, a crypto or index is considered
+as the spot and held in a unit size long position, while 
+the front BTCF is held in a short position with units corresponding to
+the optimal hedge ratio in order to reduce the risk of the spot. 
+BTCF is rolled over to the next front BTCF after expiry. 
+Except for the hedge of BTC, all hedging portfolios are considered to
+be cross-asset hedges. 
+
+We collect the spots' and BTCF's daily prices at 15:00 US Central Time
+(CT). The reason for choosing this particular time is to match the CME daily settlement time.
+The CME determines the daily settlements for BTCF's based on the trading
+activities on CME Globex between 14:59 and 15:00 CT. This is also the
+reporting time of the daily closing price by Bloomberg. 
+The crypto spot data is collected from the data provider called
+Tiingo (\href{https://www.tiingo.com/}{https://www.tiingo.com/}).
+Tiingo aggregates crypto OHLC (open, high, low, and close) prices fed
+by APIs from various exchanges, such as Binance, Gemini, Poloniex.
+The aggregated price data is the volume-weighted average price, making it a
+reasonable representation of a tradable market price
+\footnote{
+Researchers are concerned about the possible bad quality of crypto price data due to suspected wash-trading activities. 
+The issue is reported by, for example, \cite{alexander2020critical} and \cite{le2021wash}. 
+Authors thank an anonymous referee for tipping us considering results from \cite{vidal2022cryptocurrency};
+the extensive study suggests that the unique price aggregated using data from various exchanges is appropriate for research as long as the liquidity of the crypto is sufficient. 
+}.
+
+
+For each crypto, we match the opening price at 15:00 CT from Tiingo
+with the daily BTCF closing price from Bloomberg.
+Since CRIX is not available at 15:00 CT, we recalculated an hourly
+CRIX using the monthly constituents weights and the hourly OHLC price
+data collected from Tiingo. 
+BITX, BITW20, BITW70, and BITW100 are collected from the official
+website of their publisher Bitwise.com. 
+The daily reporting time of the Bitwise indexes is 15:00 CT.
+
+The date range of the whole dataset is from 2018-08-13 to 2021-05-27. 
+
+\subsection{Overview of the out-of-sample data}\label{subsec:oosdata}
+
+The date range of the out-of-sample time series is from 2019-10-21 to
+2021-05-27, in total of 405 data points in each time series. 
+This section gives an overview of the out-of-sample period. 
+
+Figure~\ref{fig:BTC_price} presents the BTC and BTCF price in USD in
+the first panel and the difference between the daily returns of BTC and BTCF,
+ i.e. $R_s - R_f$, in the second panel. 
+In the first panel, the black vertical lines with capital letters
+labels indicate the days of the five most negative daily BTC returns
+during out-pf-sample period.
+Table \ref{tab:BTC_5min} summarizes the relevant news headlines and
+events of those days.  
+
+Figures~\ref{fig:index_price} and \ref{fig:individualCoins_price} show
+the cumulative returns of the indices and individual cryptos,
+respectively.  The vertical lines labeled by assets name refer to the 
+largest daily price drops of each asset in the out-of-sample data.  
+Table \ref{tab:All_min} summarises the events that are associated with largest prices drops in 
+out-of-sample data. 
+
+The out-of-sample data covers the pre-COVID19 period, 2019-10-21 to
+2020-03-11 \footnote{See WHO's announcement in the media briefing on 2020-03-11 \url{https://www.who.int/director-general/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020}.}, as well as the COVID19 period, 2019-03-11 onwards. 
+We observe an overall upward trend of crypto prices in both periods.
+Nonetheless, the volatilities of assets are high (annualised volatilities are around
+100\%) regardless of the COVID19 outbreak. 
+
+\newpage
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{_pics/BTC_price.pdf}
+  \caption{Out-of-sample BTC and BTCF price. The first panel presents the price of BTC in blue line and that of BTCF in orange line.
+  The black vertical lines with capital letter labels indicate the five most negative daily return of BTC in the out-of-sample data.
+  The second panel presents the difference between the percentage returns of BTC and BTCF.
+  The black vertical lines indicate the five most negative returns.
+  The crosses locate the level the returns.
+ \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/Figure 3_4_5.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+\label{fig:BTC_price}
+\end{figure}
+
+\begin{table}[!h]
+    \centering
+      \begin{tabularx}{.8\textwidth}{cccX}
+        \toprule
+        Label &   Date & \% Drop in Price &  Summary\\
+        \midrule
+        A &  2020-03-09 & 13.83 &  Coronavirus outbreak that affects
+        the global markets; BTC as potential safe-haven was
+        questioned.$^1$\\ 
+        B &  2020-03-12 & 22.89 &  Continuation of the 2020-03-09
+        drop.  \\ 
+        C &  2020-05-11 & 12.11 &  Price correction (from \$10,000 to
+        \$8,100) after BTC price surge because of the third supply
+        halving.$^{2,3}$ \\ 
+        D &  2021-01-11 & 14.41 &  Short term correction of BTC hits
+        the \$40,000 mark.$^4$\\ 
+        E &  2021-05-17 & 11.86 &  Tesla stops accepting BTC as
+        payment currency due to environmental concerns related to the
+        excessive energy use in processing transactions.$^5$\\ 
+        \bottomrule
+      \end{tabularx}
+        \caption{Summary of events associated with the five most
+          extreme daily price drops in out-of-sample BTC price data. 
+        The capital letter labels in the first column correspond to
+        the labels in the first panel of figure~\ref{fig:BTC_price}. 
+        $^1$ is reported by the CNBC news \url{https://cnb.cx/3HZ2x7K}; $^2$ is from Forbes \url{https://bit.ly/3rdJPmP};
+        $^3$ is from livemint.com \url{https://bit.ly/3FRi6Na};
+        $^4$ is from CNBC \url{https://cnb.cx/3nU0ppO};
+        $^5$ is from Reuters \url{https://reut.rs/3leCiAv}.
+        }
+        \label{tab:BTC_5min}
+  \end{table}
+\clearpage
+\newpage
+
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{_pics/index_price.pdf}
+  \caption{Out-of-sample cumulative returns of crypto indices. 
+  The black vertical lines indicate the largest price drops of each
+  index as indicated by the labels.
+  The colouring is as follows:
+  \textcolor{plt1}{Blue line} is CRIX;
+  \textcolor{plt2}{Orange line} is BITX;
+  \textcolor{plt3}{Green line} is BITW100;
+  \textcolor{plt4}{Red line} is BITW20;
+  \textcolor{plt5}{Purple line} is BITW70.
+  \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/Figure 3_4_5.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+  \label{fig:index_price}
+\end{figure}
+
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{_pics/individualCoins_price.pdf}
+  \caption{Out-of-sample cumulative returns of individual cyptos.
+  The black vertical lines indicate the largest price drops each
+  cryptos as indicated by the labels.
+    \textcolor{plt1}{Blue line} is ADA;
+  \textcolor{plt2}{Orange line} is ETH;
+  \textcolor{plt3}{Green line} is LTC;
+  \textcolor{plt4}{Red line} is XRP.
+  \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/Figure 3_4_5.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+  \label{fig:individualCoins_price}
+\end{figure}
+
+\begin{table}[t]
+    \centering
+      \begin{tabularx}{.8\textwidth}{cccX}
+        \toprule
+        Label &  Date & \% Drop in Price &  Summary\\
+        \midrule
+        CRIX    &2020-03-12 & 23.77 &
+        \multirow[t]{6}{\hsize}{Coronavirus outbreak that affects the
+          global markets including the crpyto market.}\\ 
+        BITX    & & 23.68 &  \\
+        BITW100 & & 23.87 &  \\
+        BITW20  & & 26.66 &  \\
+        ADA     & & 23.55 &  \\
+        ETH     & & 27.40 &  \\
+        BITW70  & 2021-05-19 & 27.64 & Spillover of the BTC shock on
+        2021-05-17 (label A in Figure~\ref{fig:BTC_price} and
+        Table~\ref{tab:BTC_5min})\\ 
+        XRP     & 2020-12-23 & 41.00 & Top executives of Ripple Labs
+        sued by the SEC of misleading investors$^1$. \\ 
+        \bottomrule
+      \end{tabularx}
+        \caption{Summary of events that associated with largest price drops in out-of-sample data.
+        The labels in the first column are the labels in Figure \ref{fig:index_price} and Figure \ref{fig:individualCoins_price}.
+        CRIX, BITX, BITW100, BITW20, ADA and ETH have the same date
+        the reason of the largest drop.$^1$ is reported by Bloomberg
+        \url{https://bloom.bg/3cWdita}.} 
+        \label{tab:All_min}
+  \end{table}
+\clearpage
+\newpage
+\subsection{An overview of the hedged portfolios without the copula
+  selection step}
+\label{subsec:HP1}
+  \begin{figure}[t]
+    \centering
+    \begin{minipage}[t]{.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{_pics/MSE_BTC.pdf}
+      \caption{Out-of-sample mean square errors of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+        The Frank copula is inferior in the BTC-involved portfolios.
+        \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/figure 6_7_8_9_10_11.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+        \label{fig:MSE_BTC}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{_pics/semiLowerVariance_BTC.pdf}
+      \caption{Out-of-sample lower semivariance of BTC-BTCF portfolios constructed with different copula and risk minimization objectives.
+      The Frank copula is obviously inferior.
+      \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/figure 6_7_8_9_10_11.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}} }
+      \label{fig:SLV_BTC}
+    \end{minipage}
+    \end{figure}  
+
+First, we analyse the results of the hedged portfolios without the
+copula selection step in order to get a better understanding of how a
+copula affects the hedged portfolio with various risk minimization
+objectives.
+To do so, we inspect the hedge performance of copulas by
+the mean square error and lower semi-variance.
+The mean square error
+is the distance between a perfect hedge and the hedged portfolio
+returns $\operatorname{MSE}= \E(R^2)$.
+The lower semi-variance is defined as
+$\operatorname{LSV}=\E \left( (R-\E(R))^2 \1_{\{R\leq \E(R)\}} \right)$.
+All results presented here are out-of-sample results obtained without
+the copula selection step in order to compare the performances across
+copulae.
+
+Figures \ref{fig:MSE_BTC} to \ref{SLV_indices} visualise the out-of-sample MSEs and LSVs of all the portfolios in colorplots.
+Figures \ref{fig:MSE_BTC} and \ref{fig:SLV_BTC} are the MSEs and LSVs of BTC-BTCF. 
+By far, the Frank copula is the worst performing copula.
+In Figures \ref{MSE_indices} and \ref{SLV_indices}, the phenomenon
+of Frank copula being inferior to its counterparts can also be observed
+from the results of the CRIX, BITX, BITW100, and BITW20-BTCF
+portfolios.
+Interestingly, the spot in those portfolios usually have a strong
+dependence with the BTCF.
+In contrast, the inferiority of the Frank copula is less prominent in
+the BITW70, ADA, ETH, LTC and XRP-BTCF portfolios.
+
+We suspect that the Frank copula is not a choice to model assets with
+strong dependence.
+
+From Figures \ref{MSE_cryptos} and
+\ref{SLV_cryptos}, one can see that the Gumbel copula is not performing as well as
+other copulas in the ETH, LTC, and XRP-BTCF portfolios.
+The reason is the Gumbel copula has only upper tail dependence,
+while the ETH, LTC, and XRP exhibit lower tail dependence with BTCF.
+
+\newpage
+\begin{landscape}
+\begin{figure}[h]
+  \begin{minipage}[t]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/MSE_indices.pdf}
+    \caption{Out-of-sample mean square errors of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.
+    \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/figure 6_7_8_9_10_11.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}
+    \label{MSE_indices}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/MSE_cryptos.pdf}
+    \caption{Out-of-sample mean square errors of cryptos' hedge portfolios. Each plot has its own colour scale.
+    \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/figure 6_7_8_9_10_11.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}\label{MSE_cryptos}
+  \end{minipage}
+  \begin{minipage}[b]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_indices.pdf}
+    \caption{Out-of-sample lower semi variance of indices' hedge portfolios. Plots in a row share the same colour scale for comparison.
+    \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/figure 6_7_8_9_10_11.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}
+    \label{SLV_cryptos}
+  \end{minipage}
+    \hfill
+  \begin{minipage}[b]{0.475\linewidth}
+    \centering
+    \includegraphics[height=.5\linewidth]{_pics/semiVariance_cryptos.pdf}
+    \caption{Out-of-sample lower semi variance of cryptos' hedge portfolios. Each plot has its own colour scale.
+    \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/figure 6_7_8_9_10_11.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}}
+    \label{SLV_indices}
+  \end{minipage}
+\end{figure}
+\end{landscape}
+
+\subsection{Copula Selection Results}\label{subsec:-copula-results}
+\begin{table}[t]
+  \centering
+\include{_tables/copulaeselectiontable}
+ \caption{Copula selection results (shortened).
+        The values are the percentage of time of a copula chosen by
+        the AIC procedure over the out-of-sample period. 
+        The table shows only the frequently chosen copulas, which are
+        $t$, Plackett, Gaussian Mix Independent (GMI), rotated Gumbel
+        (rotGumbel) and Normal Inverse Gaussian factor copula (NIG). 
+        }
+    \label{tab:copulasection}
+\end{table}
+Next, we inspect the copula selection results by the AIC procedure
+described in Section~\ref{subsec:copula-selection}. 
+Although the copula selection is only an intermediate step to obtain
+the optimal hedge ratios,
+the result of this step can help us better understand the dependence
+feature between BTCF and the assets we study in this work.
+This provides valuable information for modeling the assets in the future.
+The decisions of the AIC procedure are summarised in Table
+\ref{tab:copulasection}. Overall, the $t$-copula, rotated Gumbel
+(rotGumbel), and the NIG factor copula are the most frequently chosen
+copulae by the AIC procedure.
+
+The $t$-copula is predominantly chosen by the AIC procedure to model the dependence between 
+the BTC and BTC-involving-indices, CRIX, BITX, BITW100, and the BTC
+future.
+BTC and BTC-involving-indices exhibit strong (upper and lower) tail
+dependence with BTCF, a strong tendency for one asset to be extreme when the other is extreme and
+vice versa. 
+See \cite{McNeil2015} for further details about tail dependence.
+In fact, the $t$ copula has been recommended in various empirical
+studies to model financial data, such as~\cite{zeevi2002beyond} and~
+\cite{breymann2003dependence}.
+Those studies suggest that the $t$-copula is a better model compared
+to the Gaussian copula as financial data typically exhibit heavy tails
+and tail dependence. 
+
+On the other hand, the symmetric $t$-copula appears to be 
+a poor choice to model the remaining hedging pairs. 
+\cite{demarta2005t} describes the symmetry feature of the $t$-copula ``strong'':
+if $(U_1, ..., U_d)$ is a vector distributed in $t$-copula,
+then $(U_1, ..., U_d) \overset{\mathcal{L}}= (1-U_1, ...,1-U_d)$.
+
+Here, the AIC criterion predominantly selects copulas that allow for asymmetry between the spot
+and the BTCF.
+This reflects that overall asymetric dependence between a non-BTC-related spot asset and
+the BTCF.
+In fact, we observe from the crypto market that asset prices tend to crash simultaneously whereas positive development
+tends to be idiosyncratic.   
+
+Among the three popular copulae, rotGumbel copula shows its ability to
+model the dependence between ETH and BTCF. rotGumbel also performs
+well when modelling dependence between XRP, BITW20, BITW70, and the
+BTCF. In particular, the whole time series of the two indices, BITW20
+and BITW70, are best fitted solely with the rotated Gumbel
+copula.
+
+In fact, Clayton's AIC in many of the training sets is the second
+lowest, just slightly higher than that of rotated Gumbel. This is because the
+Clayton copula has the same ability to model the lower quantile
+dependence. However, Clayton's radial like feature does not match the
+behaviour of the financial data. 
+
+It is worth to mention that although the NIG factor copula is
+penalised heavily due to its three parameters setup, it is frequently
+chosen to be the best copula to model the dependence between
+individual cryptos and the BTC future. An extreme case occurs for ADA,
+where only the NIG factor is chosen in our dataset. 
+Another dependence structure best described by the NIG factor
+copula is the pair of LTC-BTCF, with 64 out of 112 training sets best
+fitted by the NIG factor copula. Indices like BITX and CRIX are
+sometimes best fitted with the NIG factor copula as well, accounting
+for modelling 12 and 27 training sets, respectively. 
+The popularity of the NIG factor copula reflects the ability of the
+copula to model complex dependence structure, involving heavier tails
+than the Gaussian as well as asymmetric distributions.
+
+The Frank copula turn out to generally be a poor choice to model financial
+data (as also reported by \cite{barbi2014copula}).
+The Plackett copula is characterised by its dependence parameter being
+equal to the cross-product ratio, see
+(\ref{eq:PlackettCrossProduct}). However, this property
+does not capture the dependence structure of cryptos and BTCF.
+
+\subsection{Hedged portfolios with the copula selection step}\label{subsec:HP2}
+
+\afterpage{
+  \begin{landscape}
+  \include{_tables/bigTable}
+\end{landscape}
+}
+
+We now turn to the hedge performance. 
+Table~\ref{tab:bigTable}
+presents the first two moments, maximum drawdown (MD) and the date of
+MD of the hedge portfolios. An interesting observation is the similarity of
+the statistics when minimising with respect to different risk measures.
+Detailed statistics are in Tables~\ref{tab:var_rh} to \ref{tab:ERM_rh} in Appendix
+\ref{appendix:summary_stats}. 
+ 
+Unsurprisingly, the BTC-involved spots, i.e., BTC, CRIX, BITX, and
+BITW100, are well hedged by the BTCF regardless of risk minimization
+objective. 
+The BTC-not-involved spots, on the contrary, are less promising. Those
+hedge portfolios' returns are nearly as volatile as the
+assets themselves, see for example ADA and XRP. 
+We further discuss the effectiveness of hedge in the next
+section. %\ref{sec: HE results}. 
+
+\subsection{Hedging Effectiveness Results}\label{sec: HE results}
+In this section, we analyse the out-of-sample hedging effectiveness
+(HE) of BTCF as a hedge instrument. 
+HE is defined as $$\text{HE} = 1-\frac{\rho_h}{\rho_s},$$
+i.e., it measures the percentage reduction of risk of the hedge
+portfolio $\rho_h $ relative to the risk of the spot position $\rho_s$.
+A higher HE indicates a greater risk reduction and thus the hedge is
+more effective.  
+The HE above is a generalisation of how \citet{ederington1979hedging}
+evaluates hedge performance, which focusses on variance as the risk
+measure. 
+Aside from variance, we include the risk measures which act as
+loss function while searching for the optimal hedge ratios: ES 95\%
+and 99\%, VaR 95\% and 99\% and ERM.
+
+\begin{figure}[t]
+  \includegraphics[width=\textwidth]{_pics/HE_boxplot.pdf}
+    \caption{Hedging effectiveness (HE) of portfolios with different risk minimization objectives evaluated by the corresponding risk minimization objectives.
+              The boxplots indicate the the median, upper quartile, lower quartile, minimium and maximum of the bootstrapped HE.
+              The HE of BTC-involved spots are significantly higher than that of BTC-not-involved spots.
+    \href{https://github.com/QuantLet/Hedging-Cryptos-with-Bitcoin-Futures/blob/main/newToQuantlet/Pynotebooks/figures/figure 12.ipynb}{\includegraphics[height=\baselineskip]{_pics/qletlogo_tr.png}}
+    }
+    \label{fig:HEboxplot}
+  \end{figure}
+
+As described in Section \ref{sec:empirical-procedure}, the backtesting procedure gives
+an out-of-sample hedged portfolio return time series for every spot-copula-risk measure combination. 
+The time series represent the profit and lost if hedgers recalibrate copulae and adjust the hedge ratio every 5 days.  
+In order to obtain a robust HE result (instead of a point estimate), we apply the bootstrapping method.
+Bootstrapping refers to sampling from the empirical distribution of a
+given data sample (e.g.\ a time series of fiancial returns). The
+principal idea underlying bootstrapping is to provide statistical
+information about estimators that cannot be derived from just one
+realisation of the data. The method was introduced by
+\cite{Efron1979}; see also \citep{efron1994introduction, davison1997bootstrap}. 
+
+A specific type of bootstrapping method designed for timeseries, namely the stationary block bootstrap \cite{Politis1994}, is applied in our analysis.
+The stationary bootstrapping procedure is as follows. 
+Assume a time series $\{X_t\}_{t \in [1,N]}$ that is
+a stationary weakly time dependent time series,
+ we first draw a block of samples $\{X_i, ..., X_{i+j-1}\}$, where the index $i$ is a
+random variable uniformly distributed over 
+$[1,2,...,N]$ and $j$ is geometric distributed random variable with
+parameter $p$ independent of $i$. 
+For any index $k$ which is greater than $N$, the sample $X_k$ is
+defined to be $X_{k(\mathrm{mod} N)}$. 
+Then, we repeat the procedure until the number of samples are drawn in total across the blocks equal or exceed a predefined sample length $S$. 
+One bootstrapped time series sample is then the concantenation of the blocks truncated to length of $S$.
+The resulting bootstrapped time series is known as pseudo time series. 
+
+We choose $p=1/5$, implying the average block length is 5 such that it aligns with the recalibration frequency. 
+The length of each pseudo time series sample $S = 300$ is chosen to be aligned with the length of each training set.  
+The length of each pseudo time series sample allows ES and VaR to be calculated in a reasonable length.
+We draw in total $n=500$ pseudo time series,
+for each of them we compute various HE measures to obtain a collection of HE samples. 
+
+Figure \ref{fig:HEboxplot} reports the bootstrapped HE samples.
+As expected, the BTC involving spots, the BTC, CRIX, BITX and BITW100, are well hedged
+by the BTCF. 
+The HEs of the other cryptos and indices are
+substantially lower than to the BTC-related instruments, but 
+exhibit a consistent performances across different risk measures. 
+As it turns out, some HE bootstrapping samples are even negative,
+which means the "hedge" portfolio actually increases the risk. 
+This shows BTC futures is not suitable for cross-asset hedges (cross hedge).
+In fact, in the previous study by \citet{corbet2018bitcoin}, 
+researchers yield negative hedging effectiveness even when hedging against BTC exposure.
+% \citet{} show that derivatives in BitMEX
+
+
 
 \section{Conclusion and Outlook}\label{sec:conclusion-and-outlook}
 We study the effectiveness of hedging cryptos and crypto indices with
@@ -491,29 +1596,6 @@ hedge, as the sole hedge instrument is a futures contract; the
 hedge is not sophisticated enough to react to the more involved
 dependence structure.
 
-% \section{Discussion}\label{sec:discussion}
-
-% \natp{\em [What is the goal of the discussion? If I remember correctly
-%   we wanted to mention that we use CME data as we have an
-%   institutional trader as a market maker in mind. This should go into
-%   the introduction. If you want to include policy makers, can you
-%   summarise this in a few sentences? Otherwise, we should leave this
-%   out, as we are not aiming at policy advice in this paper.]}
-
-% \textit{Cryptohedgers}: Our results and conclusion are drawn using a non-parametric way, kernel density estimation,
-% to fit the marginal density of the crypto and futures returns because we intend to leave the modelling of marginal distributions flexible and generic.
-% Copula provides the flexibility to model marginal distributions separately.
-% That means the model assumption and parametrisation for spot and futures can be different.
-% This empowers hedgers to make use of variety of statistical tools to model the marginal distributions according to asset specific features they are interested,
-% to enhance the model predictability, and hence, to improve the hedging effectiveness.
-% For example, one can use various types of GARCH to deal with clustered volatility observed from the spot while using structural time series to deal with seasonality in futures;
-% alternatively, using Hawkes processes to deal with clustered jumps in spots and futures without modelling the spillover or co-jumps in the marginal distribution.
-% Hedgers are allowed to be creative in this regard. In fact, many researchers have enriched the understanding of the crypto market dynamics,
-% see for example \citet{kaiser2019seasonality}, \citet{gyamerah2022modelling}, and \citet{mark2022quantifying}.
-% Although the hedging effectiveness of combining various statistical tools with copula remain an open question,
-% our analysis shows that hedgers have the freedom to choose the copula (except the Frank copula) to model the dependence structure,
-% whereas t, Plackett, Gaussian Mix independent, rotated Gumbel and NIG copula appear to be conservative choices to start the analysis.
-
 With further analysis, the conclusion drawn from this study can also be applied to crypto market related policy making.
 Our results connect to the discussion of whether authority should allow crypto futures hedge as basis to lower the minimum capital requirements inflicted by crypto exposure.
 While the debates carry on at the time of writing
@@ -527,54 +1609,10 @@ Our results show a clear distinction between the hedging effectiveness of BTC fu
 Hedgers are empowered by the BTC futures to manage their BTC and BTC-related exposure, but not the other crypto exposures.
 Further studies are required to generalise the hedging effectiveness of other crypto-futures pairs. 
 
-% relationship between existence of derivatives market and the availability 
-
-% A general case 
-
-% the that solely references the cryptoasset empowers market participants to hedge their corresponding crypto position,
-% thus it is sensible to 
-
-
-% Cryptos without a derivatives market make hedgers harder to offset the movements. 
-
-% A general case the existence of derivative that solely references the cryptoasset empowers market participants to hedge their corresponding crypto position,
-% thus it is sensible to treat the aforementioned Group 2a and 2b differently.
-
-% cryptoassets categorisation criteria proposed by the Basel Committee.
-
-% The Basel Committee on Banking Supervision (BCBS) has made proposals and released consultative documents for the prudential treatment of banks' crypto-asset exposures.
-% The Basel chair's stand on placing tough capital rules for crypto assets \footnote{See \url{https://www.risk.net/regulation/7948536/basel-chair-stands-by-tough-capital-rules-for-crypto-assets}} attracted discussion.
-% The Second Consultation proposes to limit banks' exposures to Group 2 cryptoassets to 1\% of the bank's Tier 1 capital,
-% calculated on a "double-gross" basis by adding the long and short positions without any hedging recognition
-% $\text{Net position} = \max \left(
-% \text{Long position}, |\text{Short position}|
-% \right)
-% - .65 \min\left(
-% \text{Long position}, |\text{Short position}|
-% \right)$ (60.66).
-% Respondents to the consultations argued that the proposed methodology of calculating exposure is an extremely restrictive quantitative measure that prohibits banks to manage limit utilisation to crypto assets as the addition of a hedge instrument;
-% a price increase of the underlying cryptoassets could make banks breaching the limit.
-% According to our results, BTC position's market risk measured in various risk measures,
-% even for VaR99\% and ES99\%, can be effectively reduced by an appropriate size of opposite position in CME BTC futures.
-
-% In the Second Consultation, Group 2 cryptoassets (Group 1 CCs are digitally tokenised traditional assets) are divided into two subcategories,
-% Group 2a are the CCs that exists a derivative or exchange-traded fund (ETF)/exchange-traded note (ETN) that is traded on a regulated exchange that solely references the cryptoasset;
-% Group 2b are the CCs that fail to meet the requirement.
-% Our results suggest that the existence of derivative that solely references the cryptoasset empowers market participants to hedge their corresponding crypto position,
-% thus it is sensible to treat the aforementioned Group 2a and 2b differently.
-% On the contrary, we show that the hedging effectiveness significantly lower than 1 when the spot is different from what the CME futures is referencing, i.e. the cross hedge setting.
-% That means the risk of holding a CC cannot be perfectly cross hedged by including the CME futures.
-% Even worse, we observe negative HEs in some of the bootstrapped samples.
-% From the great difference in hedging effectiveness between the BTC-BTCF and other cross hedge portfolios,
-% we conclude that the existance of derivative that solely reference the cryptoasset is a sensible choice of crtyptoassets categorisation criteria
-% as it reflects assessibility of market participants to form risk reduction strategy.
-
 \clearpage
 %
 \bibliography{finance} %
-%\newpage
 \appendix
-% \section{Appendix}
 \section{Density of linear combination of random variables}
 \label{sec:appendix}
 \begin{proposition}
@@ -641,12 +1679,6 @@ Further studies are required to generalise the hedging effectiveness of other cr
 
    The claim (\ref{density}) is obtained by integrating out $x_2, ... x_d$ by substituting $\dd x_i = \frac{1}{f_{X_i}(x_i)} \dd u_i$.
    \end{proof}
-
-%\clearpage
-
-%\include{_tables/summaryStatistics}
-% \input{_tables/summaryStatistics}
-% \input{_tables/combinedSummaryStatistics}
 
 \section{Summary Statistics}\label{appendix:summary_stats}
 
@@ -830,13 +1862,6 @@ Further studies are required to generalise the hedging effectiveness of other cr
 
 \clearpage
 \section{Supplementary Material: Intraday Hedging}\label{sec:intraday}
-
-% \natp{\em [This section must be shortened significantly. It is not
-%   necessary to repeat everything, just point out the differences.]}
-
-% This supplementary material extends the study in the main body to an
-% intraday rebalancing setting. \natp{\em [Do we really have intraay
-%   rebalancing? Or just intraday P\&L? If rebalancing, then clarify.]}
 Here we extend the hedging effectiveness analysis to intraday data again through backtesting.
 BTC and ETH are chosen as spot to be hedged against by BTCF. 
 The backtesting procedure in this section is the same to that of the main body, except the followings:
@@ -860,50 +1885,6 @@ Note that the exact values of MSE, LSV or HE from the two rebalancing schedules 
 and asynchronous trading.
 However, we compare the patterns and conclusions of the two to get a general understanding of the hedging issue for future use.
 
-% \natp{\em [From my point of view there is no need to motivate intraday
-%   risk management.]}
-% Studying the intraday hedge is familiar to academia, 
-% e.g. \citet{harris2010limits}, \citet{dungey2013impact},
-% \citet{tse2013does}, and \citet{sheu2014incremental}.
-
-% Numerous studies on the crypto market are associated with or motivated
-% by the presence of intraday traders as well, 
-% e.g. \citet{petukhina2021rise}, \citet{meshcheryakov2020ethereum},
-% \citet{alexander2022role}, \citet{zhang2022data} and
-% \citet{katsiampa2022high}. 
-
-% \natp{(delete: We have in view to robustify the results from the main body.)}
-
-% \begin{enumerate}
-% \item form two hedging portfolios, BTC-BTCF and ETH-BTCF,
-% \item simulate trades using Deribit hourly data, and
-% \item rebalance every four hours.
-% \end{enumerate}
-
-
-% \subsubsection{Procedure}
-% Starting from oldest data:
-% \begin{enumerate}
-%     \item Calibrate a copula by a training data of 336 datapoints, equivalent to 14 days data
-%     \item Draw samples $(\tilde r_s, \tilde r_f)$ from the calibrated copula
-%     \item Numerically search for $h^* = \arg \max \phi(\tilde r_s - h\tilde r_f)$ according to a risk measure $\phi$
-%     \item Apply $h^*$ to testing data to yield $r_h$; the testing data is the consecutive 4 data points to training data, i.e. the 4 hours data consecutive to the last training data
-%     \item Repeat the procedure for the next 4 datapoints
-%     \item Concatenate $r_h$s the and sort chronologically to form a full length out-of-sample hedging portfolio returns
-% \end{enumerate}
-
-% The procedure is further repeated for all the combinations of risk measures and copulae.
-% The full-length out-of-sample returns represent the corresponding performance of a particular risk measure-copula combination.
-% They are used in computation mean square error (MSE) and lower-semi-variance (LSV) shown in the following section.
-
-% The AIC selection step is performed between Steps 1 and 2 of the procedure above.
-% The resulting out-of-sample returns are a mix of results from the copula that has the lowest AIC on the training data.
-% We keep a record of how many times a copula is choosen by this step.
-% To yield robust HE measures, we apply stationary bootstrapping to the
-% full-length AIC selected out-of-sample returns with the following
-% parameters: $p=1/4, T=336, S=1000$. 
-
-% \subsection{Results}
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{_pics/intraday_HE.pdf}
   \caption{Intraday HEs of BTC-BTCF and ETH-BTCF portfolio. The HEs of BTC-BTCF portfolios are significantly higher than $0$,
@@ -922,12 +1903,6 @@ The main difference between the intraday rebalancing and daily
 rebalancing ETH-BTCF portfolio is that negative HEs appear in the
 intraday results in all the risk measures we consider. 
 This implies that hedgers cannot gain hedging potential from intraday dependence between BTC and ETH to hedge an ETH crypto position. 
-% \natp{(delete: 
-% The negative HEs suggests that BTCF should not be used to hedge against ETH in an intraday setting.
-% Consider also the fact that BTCF is written on BTC instead of ETH, hedgers have no ground to assume they can take advantage of the intraday dependency structure between ETH and BTCF for hedging.
-% Therefore, we mainly focus on the BTC-BTCF portfolios and mentioning
-% the results of the ETH-BTCF portfolio is needed.)} 
-
 
 Turning to BTC-BTCF, the HEs of BTC-BTCF are
 significantly higher than zero across different risk measures,
@@ -982,14 +1957,6 @@ ES99\%.
 The Frank copula performs worst, regardless of the risk measure. 
 These results are consistent with the daily rebalancing setting and
 conclusion drawn in \citet[p.667]{barbi2014copula}. 
-% As Gumbel and NIG are the only copulae that can model upper
-% tail dependence, this suggests that the upper tail dependence is an
-% essential feature of the dependence structure for hedging.
-% \natp{\em [Delete?]} The conclusion is further supported by comparing the Gumbel and the
-% rotated Gumbel copula. 
-% The rotated Gumbel copula is the 180-degree rotated version of the Gumbel copula, sharing all the features of the Gumbel copula but switching from modelling the lower tail dependence to upper tail dependence.
-% The rotated Gumbel copula results in portfolios with higher MSEs and
-% LSVs consistently across risk measures. 
 
 \begin{table}[t]
   \centering
